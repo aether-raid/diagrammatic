@@ -1,0 +1,59 @@
+{
+  "name": "diagrammatic",
+  "displayName": "Diagrammatic",
+  "description": "Beautiful and concise MVC diagrams within seconds",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "diagrammatic.showMVCDiagram",
+        "title": "Show MVC Diagram",
+        "category": "Diagrammatic"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "pretest": "npm run compile && npm run lint",
+    "test": "vscode-test",
+    
+    "lint": "eslint --config ./eslint.config.mjs src && eslint --config ./eslint.config.react.mjs webview-ui",
+
+    "build:ext": "tsc -p ./",
+    "build:react": "vite build",
+    "watch:ext": "tsc -watch -p ./",
+    "watch:react": "vite build --watch",
+    "compile": "npm run build:react && npm run build:ext",
+    "watch": "npm run build:ext && npm run watch:react"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "@types/vscode": "^1.96.0",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.16.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "globals": "^15.14.0",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
