@@ -21,6 +21,7 @@
     ]
   },
   "scripts": {
+    "dev": "vite dev",
     "vscode:prepublish": "npm run compile",
     "pretest": "npm run compile && npm run lint",
     "test": "vscode-test",
