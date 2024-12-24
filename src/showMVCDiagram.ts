@@ -26,18 +26,18 @@ const handleShowMVCDiagram = (context: vscode.ExtensionContext, panel: vscode.We
 const getWebViewContent = (context: vscode.ExtensionContext, panel: vscode.WebviewPanel) => {
     const webviewPath = vscode.Uri.joinPath(context.extensionUri, 'dist', 'webview');
     
-    // const cssPath = vscode.Uri.joinPath(distPath, 'assets', 'style.css');
+    const cssPath = vscode.Uri.joinPath(webviewPath, 'assets', 'webview.css');
     const scriptPath = vscode.Uri.joinPath(webviewPath, 'webview.js');
     
-    // const cssSrc = panel.webview.asWebviewUri(cssPath);
+    const cssSrc = panel.webview.asWebviewUri(cssPath);
     const scriptSrc = panel.webview.asWebviewUri(scriptPath);
 
     return `
         <!doctype html>
         <html lang="en">
         <head>
+            <link rel="stylesheet" href=${cssSrc}>
             <meta charset="UTF-8" />
-            <link rel="icon" type="image/svg+xml" href="/vite.svg" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </head>
         <body>
