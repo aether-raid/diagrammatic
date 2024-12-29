@@ -14,12 +14,14 @@ const handleShowMVCDiagram = (context: vscode.ExtensionContext, panel: vscode.We
             vscode.ViewColumn.One,
             {
                 localResourceRoots: [vscode.Uri.joinPath(context.extensionUri, 'dist')],
-                enableScripts: true
+                enableScripts: true,
+                retainContextWhenHidden: true
             }
         );
+
+        panel.webview.html = getWebViewContent(context, panel);
     }
 
-    panel.webview.html = getWebViewContent(context, panel);
     return panel;
 };
 
