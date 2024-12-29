@@ -12,6 +12,11 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const showMVCDiagram = vscode.commands.registerCommand('diagrammatic.showMVCDiagram', () => {
 		currentPanel = handleShowMVCDiagram(context, currentPanel);
+		currentPanel.onDidDispose(
+			() => { currentPanel = undefined },
+			null,
+			context.subscriptions
+		);
 	});
 	context.subscriptions.push(showMVCDiagram);
 }
