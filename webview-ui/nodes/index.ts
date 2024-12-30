@@ -57,7 +57,7 @@ export const initialNodes: AppNode[] = [
         id: '5',
         type: 'file',
         position: { x:0, y:0 },
-        data: {}
+        data: { fileName: 'Farm' }
     }
 ];
 

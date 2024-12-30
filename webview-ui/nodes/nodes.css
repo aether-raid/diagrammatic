@@ -1,4 +1,4 @@
-.react-flow__node-file, .react-flow__node-textUpdater {
+.custom__node {
     /* Following default ReactFlow styling */
     padding: 10px;
     font-size: 12px;
@@ -13,6 +13,12 @@
     width: auto; /* Default is 150px */
 }
 
+/* File Node */
+.file-node {
+    padding: 0;
+}
+
+/* Text Updater Node */
 .text-updater-node label {
     display: block;
     font-size: 12px;
