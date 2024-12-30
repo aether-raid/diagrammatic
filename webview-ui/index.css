@@ -2,6 +2,9 @@
   font-family: Roboto Slab, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+
+  /* Merging styles between ReactFlow & Bootstrap */
+  --xy-node-border-radius: var(--bs-border-radius);
 }
 
 html,
@@ -14,4 +17,3 @@ body,
   height: 100vh;
   height: 100vh;
 }
-  

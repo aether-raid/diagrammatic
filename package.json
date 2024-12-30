@@ -25,9 +25,7 @@
     "vscode:prepublish": "npm run compile",
     "pretest": "npm run compile && npm run lint",
     "test": "vscode-test",
-    
     "lint": "eslint --config ./eslint.config.mjs src && eslint --config ./eslint.config.react.mjs webview-ui",
-
     "build:ext": "tsc -p ./",
     "build:react": "vite build",
     "watch:ext": "tsc -watch -p ./",
@@ -56,7 +54,9 @@
   "dependencies": {
     "@dagrejs/dagre": "^1.1.4",
     "@xyflow/react": "^12.3.6",
+    "bootstrap": "^5.3.3",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.10.7",
     "react-dom": "^18.2.0"
   }
 }
