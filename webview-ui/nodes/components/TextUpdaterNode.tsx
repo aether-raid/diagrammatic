@@ -2,7 +2,7 @@ import { ChangeEvent, useCallback } from "react"
 
 import { Handle, NodeProps, Position } from "@xyflow/react";
 
-import { type TextUpdaterNode } from "./types";
+import { type TextUpdaterNode } from "../types";
 
 
 export function TextUpdaterNode ({ isConnectable }: NodeProps<TextUpdaterNode>) {
