@@ -1,7 +1,8 @@
 import { NodeTypes } from "@xyflow/react";
 
-import { TextUpdaterNode } from "./TextUpdaterNode";
 import { AppNode } from "./types";
+import { TextUpdaterNode } from "./TextUpdaterNode";
+import { FileNode } from "./FileNode";
 
 
 export const initialNodes: AppNode[] = [
@@ -51,9 +52,16 @@ export const initialNodes: AppNode[] = [
         type: 'textUpdater',
         position: { x:0, y:0 },
         data: {}
+    },
+    {
+        id: '5',
+        type: 'file',
+        position: { x:0, y:0 },
+        data: {}
     }
 ];
 
 export const nodeTypes = {
+    'file': FileNode,
     'textUpdater': TextUpdaterNode
 } satisfies NodeTypes;

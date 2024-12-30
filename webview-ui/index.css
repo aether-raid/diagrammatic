@@ -14,29 +14,4 @@ body,
   height: 100vh;
   height: 100vh;
 }
-
-.text-updater-node {
-  height: 50px;
-  padding: 5px;
-  
-
-  /* Match styling from React Flow */
-  border: var(--xy-node-border, var(--xy-node-border-default));
-  border-radius: var(--xy-node-border-radius, var(--xy-node-border-radius-default));
-  color: var(--xy-node-color, var(--xy-node-color-default)); 
-  background-color: var(--xy-node-background-color, var(--xy-node-background-color-default));
-}
-
-.text-updater-node label {
-  display: block;
-  font-size: 12px;
-}
-
-.text-updater-node [data-handleid="a"] {
-  left: 35%;
-}
-
-.text-updater-node [data-handleid="b"] {
-  left: 65%;
-}
   
