@@ -12,10 +12,8 @@ export function FunctionRow ({ fnName }: FunctionRowProps) {
         { fnName }
 
         {/* Handles */}
-        <Handle type='source' position={Position.Left} />
-        <Handle type='target' position={Position.Left} />
-        <Handle type='source' position={Position.Right} />
-        <Handle type='target' position={Position.Right} />
+        <Handle type='target' position={Position.Left} id={`${fnName}-target`} />
+        <Handle type='source' position={Position.Right} id={`${fnName}-source`} />
       </td>
     </tr>
   )
