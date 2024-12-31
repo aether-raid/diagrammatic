@@ -28,26 +28,6 @@ export const initialNodes: AppNode[] = [
         data: { label: 'Node 2B' }
     },
     {
-        id: '2c',
-        position: { x:0, y:0 },
-        data: { label: 'Node 2C' }
-    },
-    {
-        id: '2d',
-        position: { x:0, y:0 },
-        data: { label: 'Node 2D' }
-    },
-    {
-        id: '2e',
-        position: { x:0, y:0 },
-        data: { label: 'Node 2E' }
-    },
-    {
-        id: '3',
-        position: { x:0, y:0 },
-        data: { label: 'Node 3' }
-    },
-    {
         id: '4',
         type: 'textUpdater',
         position: { x:0, y:0 },
@@ -57,7 +37,36 @@ export const initialNodes: AppNode[] = [
         id: '5',
         type: 'file',
         position: { x:0, y:0 },
-        data: { fileName: 'Farm' }
+        data: {
+          fileName: 'Farm',
+          entities: [
+            'harvestPotato',
+            'harvestCorn'
+          ]
+        }
+    },
+    {
+      id: '6',
+      type: 'file',
+      position: { x:0, y:0 },
+      data: {
+        fileName: 'Grocer',
+        entities: [
+          'sellProduct'
+        ]
+      }
+    },
+    {
+      id: '7',
+      type: 'file',
+      position: { x:0, y:0 },
+      data: {
+        fileName: 'Customer',
+        entities: [
+          'consumePotato',
+          'consumeCorn'
+        ]
+      }
     }
 ];
 

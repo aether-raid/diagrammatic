@@ -1,6 +1,6 @@
 import { NodeProps } from "@xyflow/react";
 
-import { FunctionRow } from "./FunctionRow";
+import { EntityRow } from "./EntityRow";
 import { type FileNode } from "../types";
 
 
@@ -10,8 +10,7 @@ export function FileNode ({ data }: NodeProps<FileNode>) {
       <p className="p-2 fw-bold rounded-top bg-primary">{ data.fileName }</p>
       <table>
         <tbody>
-          <FunctionRow fnName='harvestPotato' />
-          <FunctionRow fnName='harvestCorn' />
+          {data.entities.map(entityName => <EntityRow fnName={entityName} />)}
         </tbody>
       </table>
     </div>
