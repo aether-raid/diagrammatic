@@ -1,0 +1,181 @@
+export class Variable {
+  constructor(token, pointsTo = null, lineNumber = null) {
+    this.token = token;
+    this.pointsTo = pointsTo;
+    this.lineNumber = lineNumber;
+  }
+
+  toString() {
+    return `Variable: token=${this.token}, pointsTo=${
+      this.pointsTo?.toString() ?? null
+    }`;
+  }
+}
+
+/**
+ *  Calls represent function call expressions.
+ *  They can be an attribute call like object.do_something()
+ *  Or a "naked" call like do_something()
+ */
+export class Call {
+  constructor({ token, lineNumber = null, ownerToken = null }) {
+    this.token = token;
+    this.lineNumber = lineNumber;
+    this.ownerToken = ownerToken;
+  }
+
+  /**
+   * Attribute calls are like `a.do_something()` rather than `do_something()`
+   */
+  isAttribute() {
+    return this.ownerToken !== null;
+  }
+
+  matchesVariable(variable) {
+    if (!this.isAttribute()) {
+      return null;
+    }
+
+    if (this.ownerToken === variable.token) {
+    }
+  }
+
+  toString() {
+    return `Call: token=${this.token}, ownerToken=${this.ownerToken}`;
+  }
+}
+export class Node {
+  constructor({ token, calls, variables, lineNumber = null, parent = null }) {
+    this.token = token;
+    this.calls = calls;
+    this.variables = variables;
+    this.lineNumber = lineNumber;
+    this.parent = parent;
+  }
+
+  /**
+   * Resolve the Node/Group for the pointsTo field
+   */
+  resolveVariables(allSubgroups, allNodes) {
+    for (const variable of this.variables) {
+      if (typeof variable.pointsTo === "string") {
+        for (const subgroup of allSubgroups) {
+          if (variable.pointsTo === subgroup.token) {
+            variable.pointsTo = subgroup;
+          }
+        }
+
+        for (const node of allNodes) {
+          if (variable.pointsTo === node.token) {
+            variable.pointsTo = node;
+          }
+        }
+      }
+    }
+  }
+
+  isConstructor() {
+    return this.token === "constructor";
+  }
+
+  getFileGroup() {
+    let parent = this.parent;
+    while (parent.parent) {
+      parent = parent.parent;
+    }
+    return parent;
+  }
+
+  getVariablesInScope() {
+    let ret;
+    if (this.lineNumber === null) {
+      ret = [...this.variables];
+    } else {
+      ret = this.variables.filter((v) => v.lineNumber <= this.lineNumber);
+    }
+
+    let parent = this.parent;
+    while (parent) {
+      ret.concat(parent.getVariablesInScope());
+      parent = parent.parent;
+    }
+    return ret;
+  }
+
+  toString() {
+    const callsStr = this.calls.map((call) => call.toString()).join(",\n\t");
+    const variablesStr = this.variables
+      .map((variable) => variable.toString())
+      .join(",\n\t");
+
+    return `Node(
+      token=${this.token}, 
+      calls=[
+        ${callsStr}
+      ], 
+      variables=[
+        ${variablesStr}
+      ], 
+      parent=${this.parent?.token}
+    )`;
+  }
+}
+
+/**
+ * Represent namespaces (classes and modules/files)
+ */
+export const GroupType = {
+  CLASS: "CLASS",
+  FILE: "FILE",
+  NAMESPACE: "NAMESPACE",
+};
+
+export class Group {
+  constructor({ groupType, token, lineNumber = null, parent = null }) {
+    this.nodes = [];
+    this.subgroups = [];
+    this.groupType = groupType;
+    this.token = token;
+    this.lineNumber = lineNumber;
+    this.parent = parent;
+    this.rootNode = null;
+  }
+
+  addNode(node, isRoot = false) {
+    this.nodes.push(node);
+    if (isRoot) {
+      this.rootNode = node;
+    }
+  }
+
+  addSubgroup(node) {
+    this.subgroups.push(node);
+  }
+
+  /**
+   * List of group + all subgroups
+   * @returns {Array} List of groups
+   */
+  allGroups() {
+    return [this, ...this.subgroups.flatMap((sg) => sg.allGroups())];
+  }
+
+  /**
+   * List of nodes that are part of this group + all subgroups
+   * @returns {Array} List of nodes
+   */
+  allNodes() {
+    return [...this.nodes, ...this.subgroups.flatMap((sg) => sg.allNodes())];
+  }
+
+  toString() {
+    return `Group: token=${this.token}`;
+  }
+}
+
+export class Edge {
+  constructor(source, target) {
+    this.source = source;
+    this.target = target;
+  }
+}

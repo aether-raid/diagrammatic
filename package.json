@@ -57,6 +57,9 @@
     "bootstrap": "^5.3.3",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.7",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tree-sitter": "^0.22.4",
+    "tree-sitter-javascript": "^0.23.1",
+    "tree-sitter-typescript": "^0.23.2"
   }
 }
