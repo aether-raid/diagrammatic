@@ -241,7 +241,7 @@ export function findLinkForCall(call, nodeA, allNodes) {
     // calling a function in the file space
     if (
       !call.isAttribute() &&
-      call.token == node.token &&
+      call.token === node.token &&
       node.parent instanceof Group &&
       node.parent.groupType === GroupType.FILE
     ) {
@@ -259,12 +259,12 @@ export function findLinks(nodeA, allNodes) {
     }
   }
 
-  for (const variable of nodeA.variables) {
+  /* for (const variable of nodeA.variables) {
     // e.g. let article = new ArticleEntity()
     if (variable.pointsTo instanceof Group) {
       links.push(new Edge(nodeA, variable.pointsTo));
     }
-  }
+  } */
 
   return links;
 }

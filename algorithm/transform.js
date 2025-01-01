@@ -29,3 +29,22 @@ export function transformEdges(allEdges) {
   }
   return output;
 }
+
+export function transformFileGroups(fileGroups) {
+  const output = [];
+  for (const fileGroup of fileGroups) {
+    for (const subgroup of fileGroup.subgroups) {
+      const entities = subgroup.nodes.flatMap((node) => [node.token]);
+      output.push({
+        id: subgroup.token,
+        type: "class",
+        position: { x: 0, y: 0 },
+        data: {
+          fileName: subgroup.token,
+          entities,
+        },
+      });
+    }
+  }
+  return output
+}

@@ -1,5 +1,5 @@
 import { makeFileGroup, findLinks, parseFilesToASTs } from "./function.js";
-import { transformEdges } from "./transform.js";
+import { transformEdges, transformFileGroups } from "./transform.js";
 
 const astTrees = await parseFilesToASTs(
   "/Users/sharlenetio/Desktop/fyp/samples/nestjs-realworld-example-app/src/article",
@@ -25,5 +25,10 @@ for (const nodeA of allNodes) {
   allEdges = allEdges.concat(links);
 }
 
-// TO FIX: some issue with the node parent being the file instead of the class 
-// console.log(transformEdges(allEdges))
+const outputNodes = transformFileGroups(fileGroups);
+for (const o of outputNodes) {
+  console.log(o);
+}
+
+const outputEdges = transformEdges(allEdges);
+console.log(outputEdges);

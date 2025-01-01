@@ -67,7 +67,7 @@ export class TypeScriptAlgorithm {
     });
 
     for (const node of nodeTrees) {
-      const nodeList = this.makeNodes(node, parent);
+      const nodeList = this.makeNodes(node, classGroup);
       for (const subnode of nodeList) {
         classGroup.addNode(subnode);
       }
