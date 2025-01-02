@@ -2,9 +2,6 @@ import * as vscode from 'vscode';
 
 
 const handleShowMVCDiagram = (context: vscode.ExtensionContext, panel: vscode.WebviewPanel | undefined) => {
-    context;
-    console.log(context.extensionUri);
-    
     if (panel) {
         panel.reveal();
     } else {
