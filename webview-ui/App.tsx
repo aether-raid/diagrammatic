@@ -10,7 +10,8 @@ import { initialNodes, nodeTypes } from './nodes';
 import { initialEdges } from './edges';
 import { AppNode } from './nodes/types';
 import { AppEdge } from './edges/types';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
+import { WebviewMessage } from './App.types';
 
 
 interface OptionProps {
@@ -47,9 +48,45 @@ const getLayoutedElements = (nodes: AppNode[], edges: AppEdge[], options: Option
 }
 
 const LayoutFlow = () => {
+    const vscode = useRef<any>(null);
+
     const { fitView } = useReactFlow();
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+
+    useEffect(() => {
+        // Setup message listener
+        const onMessage = (event: MessageEvent<WebviewMessage>) => {
+            const { command, message } = event.data;
+            console.log('recv:', command, message);
+
+            // TODO: Refactor this into a non switch-case if possible
+            switch (command) {
+              case 'accept-node-edge-data':
+                console.log('accepted, changing NE-data');
+                setNodes(message.nodes);
+                setEdges(message.edges);
+                break;
+            }
+        };
+
+        window.addEventListener('message', onMessage);
+
+        // Send message to inform extension that webview is ready to receive data.
+        if (!vscode.current) {
+            // @ts-ignore: Expected, part of native VSCode API.
+            vscode.current = acquireVsCodeApi();
+            vscode.current.postMessage({
+                command: 'ready',
+                message: undefined
+            });
+        }
+
+        return () => {
+            // Remove event listener on component unmount
+            window.removeEventListener('message', onMessage);
+        }
+    }, []);
 
     const onLayout = useCallback((direction: string) => {
         console.log(nodes);
