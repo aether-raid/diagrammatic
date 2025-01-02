@@ -45,8 +45,34 @@ export function activate(context: vscode.ExtensionContext) {
       message: nodeEdgeData
     });
   });
-
   context.subscriptions.push(showMVCDiagram);
+
+  const testMsg = vscode.commands.registerCommand('diagrammatic.testMsg', () => {
+    if (!currentPanel) {
+      console.log("no panel available.");
+      return;
+    }
+
+    currentPanel.webview.postMessage({
+      command: 'accept-node-edge-data',
+      message: {
+        nodes: [{
+          id: '1',
+          type: 'file',
+          position: { x:0, y:0 },
+          data: {
+            fileName: 'Cloud',
+            entities: [
+              'fira',
+              'firaga'
+            ]
+          }
+        }],
+        edges: []
+      }
+    });
+  });
+  context.subscriptions.push(testMsg);
 }
 
 // This method is called when your extension is deactivated

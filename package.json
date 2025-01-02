@@ -17,6 +17,11 @@
         "command": "diagrammatic.showMVCDiagram",
         "title": "Show MVC Diagram",
         "category": "Diagrammatic"
+      },
+      {
+        "command": "diagrammatic.testMsg",
+        "title": "Test Msg",
+        "category": "Diagrammatic"
       }
     ]
   },
