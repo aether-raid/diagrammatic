@@ -14,36 +14,14 @@ import { sendAcceptNodeEdgeMessageToWebview } from './messageHandler';
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
   let currentPanel: vscode.WebviewPanel | undefined = undefined;
-  let webviewIsReady: boolean = false;
-  let waitWebviewReady: Promise<void>;
 
   const showMVCDiagram = vscode.commands.registerCommand('diagrammatic.showMVCDiagram', async () => {
-    let nodeEdgeData: NodeEdgeData = runCodeToDiagramAlgorithm();
-
-    waitWebviewReady = new Promise((resolve) => {
-      currentPanel = handleShowMVCDiagram(context, currentPanel);
-      currentPanel.onDidDispose(
-        () => { currentPanel = undefined },
-        null,
-        context.subscriptions
-      );
-
-      currentPanel.webview.onDidReceiveMessage((message: WebviewCommandMessage) => {
-        switch (message.command) {
-          case Commands.READY:
-            webviewIsReady = true;
-            resolve();
-        };
-      });
-    });
-
-    // Wait for webview to setup listeners (ready) before sending data over
-    if (!webviewIsReady) {
-      await waitWebviewReady;
-    }
-
-    // If webview is ready, currentPanel definitely exists, can safely assert it.
-    sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, currentPanel!);
+    currentPanel = await handleShowMVCDiagram(context, currentPanel);
+    currentPanel.onDidDispose(
+      () => { currentPanel = undefined },
+      null,
+      context.subscriptions
+    );
   });
   context.subscriptions.push(showMVCDiagram);
 
