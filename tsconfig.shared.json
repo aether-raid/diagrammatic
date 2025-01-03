@@ -2,7 +2,7 @@
     "compilerOptions": {
         "composite": true,
         "rootDir": "./shared",
-        "outDir": "./dist/shared",
+        "outDir": "./dist/extension/shared",
         "skipLibCheck": true,
     },
     "include": ["./shared"],

@@ -2,6 +2,8 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
+import { Commands, WebviewCommandMessage } from '@shared/message.types';
+
 import handleShowMVCDiagram from './showMVCDiagram';
 import { runCodeToDiagramAlgorithm } from './runCodeToDiagramAlgorithm';
 import { NodeEdgeData } from './extension.types';
@@ -15,7 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
   let waitWebviewReady: Promise<void>;
 
   const showMVCDiagram = vscode.commands.registerCommand('diagrammatic.showMVCDiagram', async () => {
-    let nodeEdgeData: NodeEdgeData | undefined = undefined;
+    let nodeEdgeData: NodeEdgeData = runCodeToDiagramAlgorithm();
 
     waitWebviewReady = new Promise((resolve) => {
       currentPanel = handleShowMVCDiagram(context, currentPanel);
@@ -25,10 +27,9 @@ export function activate(context: vscode.ExtensionContext) {
         context.subscriptions
       );
 
-      nodeEdgeData = runCodeToDiagramAlgorithm();
-      currentPanel.webview.onDidReceiveMessage((message) => {
+      currentPanel.webview.onDidReceiveMessage((message: WebviewCommandMessage) => {
         switch (message.command) {
-          case 'ready':
+          case Commands.READY:
             webviewIsReady = true;
             resolve();
         };
@@ -40,10 +41,11 @@ export function activate(context: vscode.ExtensionContext) {
       await waitWebviewReady;
     }
 
-    currentPanel!.webview.postMessage({
-      command: 'accept-node-edge-data',
-      message: nodeEdgeData
-    });
+    const message: WebviewCommandMessage = {
+      command: Commands.ACCEPT_NODE_EDGE_DATA,
+      message: nodeEdgeData,
+    }
+    currentPanel!.webview.postMessage(message);
   });
   context.subscriptions.push(showMVCDiagram);
 
@@ -53,8 +55,8 @@ export function activate(context: vscode.ExtensionContext) {
       return;
     }
 
-    currentPanel.webview.postMessage({
-      command: 'accept-node-edge-data',
+    const message: WebviewCommandMessage = {
+      command: Commands.ACCEPT_NODE_EDGE_DATA,
       message: {
         nodes: [{
           id: '1',
@@ -70,7 +72,8 @@ export function activate(context: vscode.ExtensionContext) {
         }],
         edges: []
       }
-    });
+    }
+    currentPanel.webview.postMessage(message);
   });
   context.subscriptions.push(testMsg);
 }

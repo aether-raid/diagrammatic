@@ -12,7 +12,8 @@ import { AppEdge } from '@shared/edge.types';
 import { initialNodes, nodeTypes } from './nodes';
 import { initialEdges } from './edges';
 import { useCallback, useEffect, useRef } from 'react';
-import { WebviewMessage } from './App.types';
+import { AcceptNodeEdgeDataPayload, Commands, WebviewCommandMessage } from '@shared/message.types';
+
 
 
 interface OptionProps {
@@ -57,16 +58,15 @@ const LayoutFlow = () => {
 
     useEffect(() => {
         // Setup message listener
-        const onMessage = (event: MessageEvent<WebviewMessage>) => {
+        const onMessage = (event: MessageEvent<WebviewCommandMessage>) => {
             const { command, message } = event.data;
-            console.log('recv:', command, message);
 
             // TODO: Refactor this into a non switch-case if possible
             switch (command) {
-              case 'accept-node-edge-data':
-                console.log('accepted, changing NE-data');
-                setNodes(message.nodes);
-                setEdges(message.edges);
+              case Commands.ACCEPT_NODE_EDGE_DATA:
+                const msg = message as AcceptNodeEdgeDataPayload;
+                setNodes(msg.nodes);
+                setEdges(msg.edges);
                 break;
             }
         };
@@ -77,10 +77,12 @@ const LayoutFlow = () => {
         if (!vscode.current) {
             // @ts-ignore: Expected, part of native VSCode API.
             vscode.current = acquireVsCodeApi();
-            vscode.current.postMessage({
-                command: 'ready',
-                message: undefined
-            });
+
+            const message: WebviewCommandMessage = {
+              command: Commands.READY,
+              message: {}
+            }
+            vscode.current.postMessage(message);
         }
 
         return () => {

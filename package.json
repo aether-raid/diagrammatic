@@ -31,9 +31,9 @@
     "pretest": "npm run compile && npm run lint",
     "test": "vscode-test",
     "lint": "eslint --config ./eslint.config.mjs src && eslint --config ./eslint.config.react.mjs webview-ui",
-    "build:ext": "tsc -b ./",
+    "build:ext": "tsc -b ./ && tsc-alias -v",
     "build:react": "vite build",
-    "watch:ext": "tsc -watch -b ./",
+    "watch:ext": "tsc -b ./ --watch && tsc-alias --watch -v",
     "watch:react": "vite build --watch",
     "compile": "npm run build:react && npm run build:ext",
     "watch": "npm run build:ext && npm run watch:react"
@@ -53,6 +53,7 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
+    "tsc-alias": "^1.8.10",
     "typescript": "^5.7.2",
     "vite": "^6.0.5"
   },
