@@ -11,7 +11,7 @@ export interface AcceptNodeEdgeDataPayload {
   edges: AppEdge[];
 }
 
-interface ReadyPayload {};
+export interface ReadyPayload {};
 
 export interface WebviewCommandMessage {
   command: Commands;

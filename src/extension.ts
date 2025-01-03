@@ -7,6 +7,7 @@ import { Commands, WebviewCommandMessage } from '@shared/message.types';
 import handleShowMVCDiagram from './showMVCDiagram';
 import { runCodeToDiagramAlgorithm } from './runCodeToDiagramAlgorithm';
 import { NodeEdgeData } from './extension.types';
+import { sendAcceptNodeEdgeMessageToWebview } from './messageHandler';
 
 
 // This method is called when your extension is activated
@@ -41,11 +42,8 @@ export function activate(context: vscode.ExtensionContext) {
       await waitWebviewReady;
     }
 
-    const message: WebviewCommandMessage = {
-      command: Commands.ACCEPT_NODE_EDGE_DATA,
-      message: nodeEdgeData,
-    }
-    currentPanel!.webview.postMessage(message);
+    // If webview is ready, currentPanel definitely exists, can safely assert it.
+    sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, currentPanel!);
   });
   context.subscriptions.push(showMVCDiagram);
 
@@ -55,25 +53,21 @@ export function activate(context: vscode.ExtensionContext) {
       return;
     }
 
-    const message: WebviewCommandMessage = {
-      command: Commands.ACCEPT_NODE_EDGE_DATA,
-      message: {
-        nodes: [{
-          id: '1',
-          type: 'file',
-          position: { x:0, y:0 },
-          data: {
-            fileName: 'Cloud',
-            entities: [
-              'fira',
-              'firaga'
-            ]
-          }
-        }],
-        edges: []
-      }
-    }
-    currentPanel.webview.postMessage(message);
+    sendAcceptNodeEdgeMessageToWebview({
+      nodes: [{
+        id: '1',
+        type: 'file',
+        position: { x:0, y:0 },
+        data: {
+          fileName: 'Cloud',
+          entities: [
+            'fira',
+            'firaga'
+          ]
+        }
+      }],
+      edges: []
+    }, currentPanel);
   });
   context.subscriptions.push(testMsg);
 }

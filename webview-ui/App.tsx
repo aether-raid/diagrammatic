@@ -8,12 +8,12 @@ import '@xyflow/react/dist/style.css'; // Must import this, else React Flow will
 
 import { AppNode } from '@shared/node.types';
 import { AppEdge } from '@shared/edge.types';
+import { AcceptNodeEdgeDataPayload, Commands, WebviewCommandMessage } from '@shared/message.types';
 
 import { initialNodes, nodeTypes } from './nodes';
 import { initialEdges } from './edges';
 import { useCallback, useEffect, useRef } from 'react';
-import { AcceptNodeEdgeDataPayload, Commands, WebviewCommandMessage } from '@shared/message.types';
-
+import { sendReadyMessageToExtension } from './messageHandler';
 
 
 interface OptionProps {
@@ -77,12 +77,7 @@ const LayoutFlow = () => {
         if (!vscode.current) {
             // @ts-ignore: Expected, part of native VSCode API.
             vscode.current = acquireVsCodeApi();
-
-            const message: WebviewCommandMessage = {
-              command: Commands.READY,
-              message: {}
-            }
-            vscode.current.postMessage(message);
+            sendReadyMessageToExtension(vscode.current);
         }
 
         return () => {
