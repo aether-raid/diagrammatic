@@ -1,4 +1,8 @@
+import { AppEdge } from "@shared/edge.types";
+import { AppNode } from "@shared/node.types";
+
 import { NodeEdgeData } from "./extension.types";
+
 
 const getCode = (): string => {
   return 'code should be returned here!';
@@ -10,7 +14,7 @@ const executeAlgorithm = (code: string): any => {
 
 const transformToNodeEdgeFormat = (data: any): NodeEdgeData => {
   // Replace nodes/edges with the actual ones
-  const nodes = [
+  const nodes: AppNode[] = [
     {
       id: '5',
       type: 'file',
@@ -48,7 +52,7 @@ const transformToNodeEdgeFormat = (data: any): NodeEdgeData => {
     }
   ]
 
-  const edges = [
+  const edges: AppEdge[] = [
     { id: '5-6a', source: '5', target: '6', sourceHandle: 'harvestPotato', animated: true },
     { id: '5-6b', source: '5', target: '6', sourceHandle: 'harvestCorn', animated: true },
     { id: '6-7a', source: '6', target: '7', targetHandle: 'consumePotato', animated: true },

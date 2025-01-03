@@ -1,7 +1,8 @@
 import { EdgeTypes } from "@xyflow/react";
 
+import { AppEdge } from "@shared/edge.types";
+
 import { CustomEdge } from "./CustomEdge";
-import { AppEdge } from "./types";
 
 
 export const initialEdges: AppEdge[] = [

@@ -1,8 +1,8 @@
 import { NodeTypes } from "@xyflow/react";
 
-import { AppNode } from "./types";
 import { TextUpdaterNode } from "./components/TextUpdaterNode";
 import { FileNode } from "./components/FileNode";
+import { AppNode } from "@shared/node.types";
 
 
 export const initialNodes: AppNode[] = [

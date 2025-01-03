@@ -1,7 +1,7 @@
 import { NodeProps } from "@xyflow/react";
 
 import { EntityRow } from "./EntityRow";
-import { type FileNode } from "../types";
+import { type FileNode } from "@shared/node.types";
 
 
 export function FileNode ({ data }: NodeProps<FileNode>) {

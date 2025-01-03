@@ -1,5 +1,6 @@
 import { BaseEdge, EdgeLabelRenderer, EdgeProps, getStraightPath, useReactFlow } from "@xyflow/react"
-import { type CustomEdge } from "./types";
+
+import { type CustomEdge } from "@shared/edge.types";
 
 
 export function CustomEdge ({ id, sourceX, sourceY, targetX, targetY }: EdgeProps<CustomEdge>) {

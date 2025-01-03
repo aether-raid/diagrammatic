@@ -6,10 +6,11 @@ import Dagre from '@dagrejs/dagre';
 import { Background, Controls, MiniMap, Panel, ReactFlow, ReactFlowProvider, useEdgesState, useNodesState, useReactFlow } from '@xyflow/react';
 import '@xyflow/react/dist/style.css'; // Must import this, else React Flow will not work!
 
+import { AppNode } from '@shared/node.types';
+import { AppEdge } from '@shared/edge.types';
+
 import { initialNodes, nodeTypes } from './nodes';
 import { initialEdges } from './edges';
-import { AppNode } from './nodes/types';
-import { AppEdge } from './edges/types';
 import { useCallback, useEffect, useRef } from 'react';
 import { WebviewMessage } from './App.types';
 
