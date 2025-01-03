@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "composite": true,
+        "rootDir": "./shared",
+        "outDir": "./dist/shared"
+    },
+    "include": ["shared"],
+}
