@@ -2,7 +2,7 @@ import { makeFileGroup, findLinks, parseFilesToASTs } from "./function.js";
 import { transformEdges, transformFileGroups } from "./transform.js";
 
 const astTrees = await parseFilesToASTs(
-  "/Users/sharlenetio/Desktop/fyp/samples/nestjs-realworld-example-app/src/article",
+  "/Users/sharlenetio/Desktop/nestjs-realworld-example-app/src/article",
   true
 );
 

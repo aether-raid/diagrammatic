@@ -1,10 +1,10 @@
 import fs from "fs";
 import path from "path";
-import Parser from "tree-sitter";
+import Parser, { SyntaxNode, Tree } from "tree-sitter";
 import TypeScript from "tree-sitter-typescript";
 
-import { Variable, Call, Group, Edge, GroupType } from "./model.js";
-import { TypeScriptAlgorithm } from "./typescript.js";
+import { Variable, Call, Group, Edge, GroupType, Node } from "./model";
+import { TypeScriptAlgorithm } from "./typescript";
 
 /**
  * Parse files in a folder and convert them to ASTs.
@@ -13,11 +13,14 @@ import { TypeScriptAlgorithm } from "./typescript.js";
  * @param skipParseErrors - Whether to skip files that cannot be parsed.
  * @returns A promise resolving to a list of [filename, AST] tuples.
  */
-export function parseFilesToASTs(folderPath, skipParseErrors = true) {
+export function parseFilesToASTs(
+  folderPath: string,
+  skipParseErrors: boolean = true
+) {
   const parser = new Parser();
   parser.setLanguage(TypeScript.typescript);
 
-  const fileASTTrees = [];
+  const fileASTTrees: [string, Tree][] = [];
 
   try {
     const files = fs.readdirSync(folderPath);
@@ -27,7 +30,10 @@ export function parseFilesToASTs(folderPath, skipParseErrors = true) {
 
       if (fs.statSync(filePath).isDirectory()) {
         // If it's a directory, recurse into it
-        const subdirectoryFiles = parseFilesToASTs(filePath, skipParseErrors);
+        const subdirectoryFiles = parseFilesToASTs(
+          filePath,
+          skipParseErrors
+        );
         fileASTTrees.push(...subdirectoryFiles);
       } else if (fs.statSync(filePath).isFile() && filePath.endsWith(".ts")) {
         // If it's a TypeScript file, parse it
@@ -37,7 +43,10 @@ export function parseFilesToASTs(folderPath, skipParseErrors = true) {
           fileASTTrees.push([file, ast]);
         } catch (ex) {
           if (skipParseErrors) {
-            console.warn(`Could not parse ${file}. Skipping...`, ex.message);
+            console.warn(
+              `Could not parse ${file}. Skipping...`,
+              (ex as Error).message
+            );
           } else {
             throw ex;
           }
@@ -45,7 +54,7 @@ export function parseFilesToASTs(folderPath, skipParseErrors = true) {
       }
     }
   } catch (err) {
-    console.error("Error reading folder:", err.message);
+    console.error("Error reading folder:", (err as Error).message);
     throw err;
   }
 
@@ -56,8 +65,8 @@ export function parseFilesToASTs(folderPath, skipParseErrors = true) {
  * Walk through the ast tree and return all nodes except decorators and their children
  * TODO: only return certain node types
  */
-export function walk(body) {
-  let ret = [];
+export function walk(body: SyntaxNode[] | SyntaxNode): SyntaxNode[] {
+  let ret: SyntaxNode[] = [];
   if (Array.isArray(body)) {
     for (const child of body) {
       ret = ret.concat(walk(child));
@@ -89,7 +98,7 @@ export function walk(body) {
  *
  * @returns {string}
  */
-export function processMemberExpression(node) {
+export function processMemberExpression(node: SyntaxNode) {
   const objectNode = node.childForFieldName("object");
   const propertyNode = node.childForFieldName("property");
 
@@ -116,7 +125,7 @@ export function processMemberExpression(node) {
  *
  * @returns {Call}
  */
-export function processCallExpression(node) {
+export function processCallExpression(node: SyntaxNode): Call | null {
   const func = node.childForFieldName("function");
 
   if (!func) {
@@ -155,7 +164,7 @@ export function processCallExpression(node) {
  * @param {Array} body - List of TreeSitter nodes
  * @returns {Array<Call>} - List of Call objects.
  */
-export function makeCalls(body) {
+export function makeCalls(body: SyntaxNode[]) {
   const calls = [];
 
   for (const node of walk(body)) {
@@ -178,7 +187,7 @@ export function makeCalls(body) {
  *
  * @returns {[Variable]}
  */
-export function processVariableDeclaration(node) {
+export function processVariableDeclaration(node: SyntaxNode): Variable | null {
   const name = node.childForFieldName("name");
   const value = node.childForFieldName("value");
 
@@ -214,8 +223,8 @@ export function processVariableDeclaration(node) {
   return null;
 }
 
-export function makeLocalVariables(tree, parent) {
-  let variables = [];
+export function makeLocalVariables(tree: SyntaxNode[], parent: Node | Group) {
+  let variables: Variable[] = [];
 
   for (const node of walk(tree)) {
     switch (node.type) {
@@ -245,7 +254,11 @@ export function makeLocalVariables(tree, parent) {
  *
  * @returns {Edge}
  */
-export function findLinkForCall(call, nodeA, allNodes) {
+export function findLinkForCall(
+  call: Call,
+  nodeA: Node,
+  allNodes: Node[]
+): Edge | null {
   for (const node of allNodes) {
     /**
      * I have variable: articleService -> class ArticleService
@@ -258,7 +271,7 @@ export function findLinkForCall(call, nodeA, allNodes) {
         variable.pointsTo instanceof Group
       ) {
         // search through class methods
-        const classNode = variable.pointsTo;
+        const classNode: Group = variable.pointsTo;
         for (const node of classNode.nodes) {
           if (node.token === call.token) {
             return new Edge(nodeA, node);
@@ -280,7 +293,7 @@ export function findLinkForCall(call, nodeA, allNodes) {
   return null;
 }
 
-export function findLinks(nodeA, allNodes) {
+export function findLinks(nodeA: Node, allNodes: Node[]) {
   const links = [];
   for (const call of nodeA.calls) {
     const link = findLinkForCall(call, nodeA, allNodes);
@@ -299,7 +312,7 @@ export function findLinks(nodeA, allNodes) {
   return links;
 }
 
-export function getFirstChildOfType(node, target) {
+export function getFirstChildOfType(node: SyntaxNode, target: string) {
   for (let i = 0; i < node.childCount; i++) {
     if (node.child(i)?.type === target) {
       return node.child(i);
@@ -307,7 +320,7 @@ export function getFirstChildOfType(node, target) {
   }
 }
 
-export function getAllChildrenOfType(node, target) {
+export function getAllChildrenOfType(node: SyntaxNode, target: string) {
   const ret = [];
   for (let i = 0; i < node.childCount; i++) {
     if (node.child(i)?.type === target) {
@@ -317,11 +330,11 @@ export function getAllChildrenOfType(node, target) {
   return ret;
 }
 
-export function getLineNumber(node) {
+export function getLineNumber(node: SyntaxNode) {
   return node.startPosition?.row + 1; // change to 1 index
 }
 
-export function getName(node) {
+export function getName(node: SyntaxNode) {
   return node.childForFieldName("name")?.text ?? null;
 }
 
@@ -329,7 +342,7 @@ export function getName(node) {
  * Given an AST for the entire file, generate a file group
  * complete with subgroups, nodes, etc.
  */
-export function makeFileGroup(node, fileName) {
+export function makeFileGroup(node: SyntaxNode, fileName: string): Group {
   const {
     groups: subgroupTrees,
     nodes: nodeTrees,
@@ -371,7 +384,7 @@ export function makeFileGroup(node, fileName) {
  * @param node - TreeSitter RequiredParameterNode
  * @returns {Variable|null}
  */
-export function processConstructorRequiredParameter(node) {
+export function processConstructorRequiredParameter(node: SyntaxNode) {
   const identifier = getFirstChildOfType(node, "identifier");
   const typeAnnotation = getFirstChildOfType(node, "type_annotation");
   if (!identifier || !typeAnnotation) {
