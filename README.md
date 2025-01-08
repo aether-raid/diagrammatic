@@ -1,10 +1,15 @@
 # Welcome to Diagrammatic
 
-## Installation Guide
+## Development Installation Guide
 
-* npm install
-* Start in browser: npm run dev
-* Start in VSCode extension mode: Press F5, make sure your local .vscode folder is using the one in this repo.
+* **Install dependencies**: npm install
+* **Start in VSCode extension mode**: Press F5
+  * This will run the environment in watch mode (both the Extension & the React webview)
+  * Ensure your local .vscode folder is using the one in this repo.
+  * **To start the extension**:
+    * Ctrl+Shift+P > Diagrammatic: Show MVC Diagram
+    * Might have more commands, all under diagrammatic
+* <s>Start in browser: npm run dev</s> (not working after VScode integration, low-priority to fix)
 
 ## Features
 
