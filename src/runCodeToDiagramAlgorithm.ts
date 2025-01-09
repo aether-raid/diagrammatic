@@ -2,6 +2,7 @@ import { AppEdge } from "@shared/edge.types";
 import { AppNode } from "@shared/node.types";
 
 import { NodeEdgeData } from "./extension.types";
+import { MarkerType } from "@xyflow/react";
 
 
 const getCode = (): string => {
@@ -53,10 +54,10 @@ const transformToNodeEdgeFormat = (data: any): NodeEdgeData => {
   ]
 
   const edges: AppEdge[] = [
-    { id: '5-6a', source: '5', target: '6', sourceHandle: 'harvestPotato', animated: true },
-    { id: '5-6b', source: '5', target: '6', sourceHandle: 'harvestCorn', animated: true },
-    { id: '6-7a', source: '6', target: '7', targetHandle: 'consumePotato', animated: true },
-    { id: '6-7b', source: '6', target: '7', targetHandle: 'consumeCorn', animated: true }
+    { id: '5-6a', source: '5', target: '6', sourceHandle: 'harvestPotato', markerEnd: { type: MarkerType.ArrowClosed } },
+    { id: '5-6b', source: '5', target: '6', sourceHandle: 'harvestCorn', markerEnd: { type: MarkerType.ArrowClosed }  },
+    { id: '6-7a', source: '6', target: '7', targetHandle: 'consumePotato', markerEnd: { type: MarkerType.ArrowClosed } },
+    { id: '6-7b', source: '6', target: '7', targetHandle: 'consumeCorn', markerEnd: { type: MarkerType.ArrowClosed } }
   ];
 
   return {
