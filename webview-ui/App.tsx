@@ -3,7 +3,7 @@
 // *********************************
 
 import Dagre from '@dagrejs/dagre';
-import { Background, Controls, MiniMap, Panel, ReactFlow, ReactFlowProvider, useEdgesState, useNodesState, useReactFlow } from '@xyflow/react';
+import { Background, Controls, getConnectedEdges, MiniMap, Panel, ReactFlow, ReactFlowProvider, useEdgesState, useNodesState, useReactFlow } from '@xyflow/react';
 import '@xyflow/react/dist/style.css'; // Must import this, else React Flow will not work!
 
 import { AppNode } from '@shared/node.types';
@@ -12,7 +12,7 @@ import { AcceptNodeEdgeDataPayload, Commands, WebviewCommandMessage } from '@sha
 
 import { initialNodes, nodeTypes } from './nodes';
 import { initialEdges } from './edges';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { sendReadyMessageToExtension } from './messageHandler';
 
 
@@ -55,6 +55,8 @@ const LayoutFlow = () => {
     const { fitView } = useReactFlow();
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+    const [highlightedNodes, setHighlightedNodes] = useState<string[]>([]);
+    const [highlightedEdges, setHighlightedEdges] = useState<string[]>([]);
 
     useEffect(() => {
         // Setup message listener
@@ -97,13 +99,33 @@ const LayoutFlow = () => {
         window.requestAnimationFrame(() => { fitView() }); 
     }, [nodes, edges]);
 
+    const handleNodeMouseEnter = (node: AppNode) => {
+      const connectedEdges = getConnectedEdges([node], edges);
+      const connectedNodes = connectedEdges.map(edge => edge.target);
+      setHighlightedNodes([...connectedNodes, node.id]);
+      setHighlightedEdges(connectedEdges.filter(edge => edge.source === node.id).map(edge => edge.id));
+    };
+
+    const handleNodeMouseLeave = () => {
+      setHighlightedNodes([]);
+      setHighlightedEdges([]);
+    }
+
     return (
         <ReactFlow
             nodeTypes={nodeTypes}
-            nodes={nodes}
-            edges={edges}
+            nodes={nodes.map(n => ({
+              ...n,
+              className: highlightedNodes.includes(n.id) ? 'highlighted-node' : ''
+            }))}
+            edges={edges.map(e => ({
+              ...e,
+              className: highlightedEdges.includes(e.id) ? 'highlighted-edge' : ''
+            }))}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
+            onNodeMouseEnter={(_event, node) => handleNodeMouseEnter(node)}
+            onNodeMouseLeave={handleNodeMouseLeave}
             fitView
             colorMode='dark'
         >

@@ -13,6 +13,11 @@
     width: auto; /* Default is 150px */
 }
 
+/* Highlighted Nodes */
+.highlighted-node > div {
+    border: 1px solid greenyellow;
+}
+
 /* File Node */
 .file-node {
     padding: 0;

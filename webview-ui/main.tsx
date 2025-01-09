@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './reset.css';
 import './index.css';
 import './nodes/nodes.css';
+import './edges/edges.css';
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
