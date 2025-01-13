@@ -77,9 +77,16 @@ const LayoutFlow = () => {
 
         // Send message to inform extension that webview is ready to receive data.
         if (!vscode.current) {
-            // @ts-ignore: Expected, part of native VSCode API.
-            vscode.current = acquireVsCodeApi();
-            sendReadyMessageToExtension(vscode.current);
+            try {
+                // @ts-ignore: Expected, part of native VSCode API.
+                vscode.current = acquireVsCodeApi();
+                sendReadyMessageToExtension(vscode.current);
+            } catch (error) {
+                if ((error as Error).message !== 'acquireVsCodeApi is not defined') {
+                    // Only catch the above error, throw all else
+                    throw error;
+                }
+            }
         }
 
         return () => {

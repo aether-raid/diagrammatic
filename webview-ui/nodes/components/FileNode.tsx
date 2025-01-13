@@ -10,7 +10,7 @@ export function FileNode ({ data }: NodeProps<FileNode>) {
       <p className="p-2 fw-bold rounded-top bg-primary">{ data.fileName }</p>
       <table>
         <tbody>
-          {data.entities.map(entityName => <EntityRow fnName={entityName} />)}
+          {data.entities.map(entityName => <EntityRow key={entityName} fnName={entityName} />)}
         </tbody>
       </table>
     </div>
