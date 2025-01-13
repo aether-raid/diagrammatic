@@ -31,12 +31,16 @@
     "pretest": "npm run compile && npm run lint",
     "test": "vscode-test",
     "lint": "eslint --config ./eslint.config.mjs src && eslint --config ./eslint.config.react.mjs webview-ui",
+
     "build:ext": "tsc -b ./ && tsc-alias -v",
     "build:react": "vite build",
-    "watch:ext": "tsc -b ./ --watch && tsc-alias --watch -v",
+    "build": "npm run build:react && npm run build:ext",
+
+    "watch:tsc": "tsc -b -watch --preserveWatchOutput ./",
+    "watch:tsc-alias": "tsc-alias --watch -v",
     "watch:react": "vite build --watch",
-    "compile": "npm run build:react && npm run build:ext",
-    "watch": "npm run build:ext && npm run watch:react"
+    "watch:ext": "concurrently \"npm run watch:tsc\" \"npm run watch:tsc-alias\"",
+    "watch": "concurrently \"npm run watch:ext\" \"npm run watch:react\""
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
@@ -49,6 +53,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.4.1",
+    "concurrently": "^9.1.2",
     "eslint": "^9.16.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.16",
