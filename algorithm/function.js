@@ -322,6 +322,27 @@ export function getLineNumber(node) {
 }
 
 export function getName(node) {
+  switch (node.type) {
+    case "export_statement":
+      const lexicalDeclaration = getFirstChildOfType(
+        node,
+        "lexical_declaration"
+      );
+      if (!lexicalDeclaration) {
+        break;
+      }
+      return getName(lexicalDeclaration);
+    case "lexical_declaration":
+      const variableDeclaration = getFirstChildOfType(
+        node,
+        "variable_declarator"
+      );
+      if (!variableDeclaration) {
+        break;
+      }
+      const identifier = variableDeclaration.childForFieldName("name");
+      return identifier?.text ?? null;
+  }
   return node.childForFieldName("name")?.text ?? null;
 }
 
