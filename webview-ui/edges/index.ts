@@ -6,10 +6,10 @@ import { CustomEdge } from "./CustomEdge";
 
 
 export const initialEdges: AppEdge[] = [
-    { id: '5-6a', source: '5', target: '6', sourceHandle: 'harvestPotato', markerEnd: { type: MarkerType.ArrowClosed } },
-    { id: '5-6b', source: '5', target: '6', sourceHandle: 'harvestCorn', markerEnd: { type: MarkerType.ArrowClosed }  },
-    { id: '6-7a', source: '6', target: '7', targetHandle: 'consumePotato', markerEnd: { type: MarkerType.ArrowClosed } },
-    { id: '6-7b', source: '6', target: '7', targetHandle: 'consumeCorn', markerEnd: { type: MarkerType.ArrowClosed } }
+    { id: '5-6a', source: '5', target: '6', sourceHandle: 'harvestPotato', targetHandle: 'sellProduct', markerEnd: { type: MarkerType.ArrowClosed } },
+    { id: '5-6b', source: '5', target: '6', sourceHandle: 'harvestCorn', targetHandle: 'sellProduct', markerEnd: { type: MarkerType.ArrowClosed }  },
+    { id: '6-7a', source: '6', target: '7', sourceHandle: 'sellProduct', targetHandle: 'consumePotato', markerEnd: { type: MarkerType.ArrowClosed } },
+    { id: '6-7b', source: '6', target: '7', sourceHandle: 'sellProduct', targetHandle: 'consumeCorn', markerEnd: { type: MarkerType.ArrowClosed } }
 ];
 
 export const edgeTypes = {

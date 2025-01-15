@@ -13,8 +13,8 @@ export const initialNodes: AppNode[] = [
     data: {
       fileName: 'Farm',
       entities: [
-        'harvestPotato',
-        'harvestCorn'
+        { name: 'harvestPotato' },
+        { name: 'harvestCorn' }
       ]
     }
   },
@@ -25,7 +25,7 @@ export const initialNodes: AppNode[] = [
     data: {
       fileName: 'Grocer',
       entities: [
-        'sellProduct'
+        { name: 'sellProduct' }
       ]
     }
   },
@@ -36,8 +36,8 @@ export const initialNodes: AppNode[] = [
     data: {
       fileName: 'Customer',
       entities: [
-        'consumePotato',
-        'consumeCorn'
+        { name: 'consumePotato' },
+        { name: 'consumeCorn' }
       ]
     }
   }
