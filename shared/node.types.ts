@@ -1,5 +1,5 @@
 import { BuiltInNode, Node } from "@xyflow/react";
-import { HoveredEntity } from "./app.types";
+import { NodeRow } from "./app.types";
 
 interface FileEntity {
   name: string;
@@ -12,7 +12,7 @@ interface HighlightableFileEntity extends FileEntity {
 export type FileNode = Node<{
   fileName: string;
   entities: HighlightableFileEntity[];
-  setHoveredEntity?: React.Dispatch<React.SetStateAction<HoveredEntity | undefined>>
+  setHoveredEntity?: React.Dispatch<React.SetStateAction<NodeRow | undefined>>
 }, 'file'>;
 export type TextUpdaterNode = Node<{}, 'textUpdater'>;
 export type AppNode = BuiltInNode | TextUpdaterNode | FileNode;
