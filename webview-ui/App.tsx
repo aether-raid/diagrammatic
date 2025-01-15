@@ -109,6 +109,45 @@ const LayoutFlow = () => {
         window.requestAnimationFrame(() => { fitView() }); 
     }, [nodes, edges]);
 
+    // TODO: Refactor & properly name variables
+    // TODO: Check against explored nodes in case there is a loop
+    const exploreFlowBFS = (initialEdges: AppEdge[]) => {
+      console.log('Initial to explore: ', initialEdges);
+
+      let unexploredEdges = [...initialEdges];
+      let unexploredEntities: string[][] = [];
+      let edgesToHighlight = [...initialEdges];
+      let entitiesToHighlight: string[][] = [];
+
+      while(unexploredEdges.length !== 0 || unexploredEntities.length !== 0) {
+        while(unexploredEdges.length !== 0) {
+          const edge = unexploredEdges.shift()!; // Since length is not 0, can safely assume it will exist
+          console.log(edge.target, edge.targetHandle);
+          unexploredEntities.push([edge.target, edge.targetHandle!]);
+          entitiesToHighlight.push([edge.target, edge.targetHandle!]);
+        }
+
+        while(unexploredEntities.length !== 0) {
+          const entity = unexploredEntities.shift()!; // Since length is not 0, can safely assume it will exist
+          const node = getNode(entity[0]);
+          let connectedEdges = getConnectedEdges([node!], edges); // Safe assumption that node will never be undefined since an edge is there.
+
+          connectedEdges = connectedEdges.filter(e =>
+            (e.source === entity[0])
+            && (e.sourceHandle === entity[1])
+          );
+
+          unexploredEdges.push(...connectedEdges);
+          edgesToHighlight.push(...connectedEdges);
+        }
+      }
+
+      return {
+        edgesToHighlight: edgesToHighlight.map(e => e.id),
+        entitiesToHighlight: entitiesToHighlight.map(e => `${e[0]}-${e[1]}`)
+      }
+    };
+
     useEffect(() => {
       // console.log("Currently hovering on: ", hoveredEntity);
       if (!hoveredEntity) {
@@ -121,13 +160,16 @@ const LayoutFlow = () => {
       if (!hoveredNode) { return; }
 
       let connectedEdges = getConnectedEdges([hoveredNode], edges);
-      setHighlightedEdges(connectedEdges
-        .filter(e => (e.source === hoveredEntity.nodeId) && (e.sourceHandle === hoveredEntity.rowId))
-        .map(e => e.id)
+      connectedEdges = connectedEdges.filter(e =>
+        (e.source === hoveredEntity.nodeId)
+        && (e.sourceHandle === hoveredEntity.rowId)
       );
 
+      const bfsResult = exploreFlowBFS(connectedEdges);
+      setHighlightedEdges(bfsResult.edgesToHighlight);
+
       const entityRepr = `${hoveredEntity.nodeId}-${hoveredEntity.rowId}`;
-      setHighlightedNodes([entityRepr]);
+      setHighlightedNodes([entityRepr, ...bfsResult.entitiesToHighlight]);
     }, [hoveredEntity]);
 
     const prepareNode = (node: AppNode) => (node.type !== 'file' ? node : {
