@@ -300,6 +300,9 @@ export function findLinks(nodeA, allNodes) {
 }
 
 export function getFirstChildOfType(node, target) {
+  if (!node) {
+    return null;
+  }
   for (let i = 0; i < node.childCount; i++) {
     if (node.child(i)?.type === target) {
       return node.child(i);
@@ -342,6 +345,12 @@ export function getName(node) {
       }
       const identifier = variableDeclaration.childForFieldName("name");
       return identifier?.text ?? null;
+    case "call_expression":
+      const member_expression = getFirstChildOfType(node, "member_expression");
+      if (!member_expression) {
+        break;
+      }
+      return member_expression.text;
   }
   return node.childForFieldName("name")?.text ?? null;
 }

@@ -30,10 +30,7 @@ export function parseFilesToASTs(
 
       if (fs.statSync(filePath).isDirectory()) {
         // If it's a directory, recurse into it
-        const subdirectoryFiles = parseFilesToASTs(
-          filePath,
-          skipParseErrors
-        );
+        const subdirectoryFiles = parseFilesToASTs(filePath, skipParseErrors);
         fileASTTrees.push(...subdirectoryFiles);
       } else if (fs.statSync(filePath).isFile() && filePath.endsWith(".ts")) {
         // If it's a TypeScript file, parse it
@@ -312,7 +309,10 @@ export function findLinks(nodeA: Node, allNodes: Node[]) {
   return links;
 }
 
-export function getFirstChildOfType(node: SyntaxNode, target: string) {
+export function getFirstChildOfType(node: SyntaxNode | null, target: string) {
+  if (!node) {
+    return null;
+  }
   for (let i = 0; i < node.childCount; i++) {
     if (node.child(i)?.type === target) {
       return node.child(i);
@@ -355,6 +355,12 @@ export function getName(node: SyntaxNode) {
       }
       const identifier = variableDeclaration.childForFieldName("name");
       return identifier?.text ?? null;
+    case "call_expression":
+      const member_expression = getFirstChildOfType(node, "member_expression");
+      if (!member_expression) {
+        break;
+      }
+      return member_expression.text;
   }
   return node.childForFieldName("name")?.text ?? null;
 }

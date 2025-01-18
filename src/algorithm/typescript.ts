@@ -33,6 +33,11 @@ export class TypeScriptAlgorithm {
       const nodeType = child.type;
 
       if (
+        (nodeType === "call_expression" &&
+          getFirstChildOfType(
+            child.childForFieldName("arguments"),
+            "arrow_function"
+          )) ||
         (nodeType === "export_statement" &&
           getFirstChildOfType(child, "lexical_declaration")) ||
         nodeType === "method_definition" ||
