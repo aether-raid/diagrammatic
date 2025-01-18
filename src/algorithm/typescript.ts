@@ -8,6 +8,7 @@ import {
   processConstructorRequiredParameter,
 } from "./function";
 import { SyntaxNode } from "tree-sitter";
+import { getFirstChildOfType } from "./function.js";
 
 export class TypeScriptAlgorithm {
   /**
@@ -32,6 +33,8 @@ export class TypeScriptAlgorithm {
       const nodeType = child.type;
 
       if (
+        (nodeType === "export_statement" &&
+          getFirstChildOfType(child, "lexical_declaration")) ||
         nodeType === "method_definition" ||
         nodeType === "function_declaration"
       ) {
