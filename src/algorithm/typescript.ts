@@ -1,4 +1,4 @@
-import { Node, Group, GroupType } from "./model.js";
+import { Node, Group, GroupType } from "./model";
 import {
   makeCalls,
   makeLocalVariables,
@@ -6,9 +6,9 @@ import {
   getLineNumber,
   getAllChildrenOfType,
   processConstructorRequiredParameter,
-  getFirstChildOfType,
-} from "./function.js";
-import { visualizeAST } from "./temp.js";
+} from "./function";
+import { SyntaxNode } from "tree-sitter";
+import { getFirstChildOfType } from "./function.js";
 
 export class TypeScriptAlgorithm {
   /**
@@ -20,10 +20,14 @@ export class TypeScriptAlgorithm {
    * @param node - Tree-sitter node.
    * @returns - {groups, nodes, body}
    */
-  static separateNamespaces(node) {
-    const groups = [];
-    const nodes = [];
-    const body = [];
+  static separateNamespaces(node: SyntaxNode): {
+    groups: SyntaxNode[];
+    nodes: SyntaxNode[];
+    body: SyntaxNode[];
+  } {
+    const groups: SyntaxNode[] = [];
+    const nodes: SyntaxNode[] = [];
+    const body: SyntaxNode[] = [];
 
     for (const child of node.children) {
       const nodeType = child.type;
@@ -66,7 +70,7 @@ export class TypeScriptAlgorithm {
    * Given an AST for the subgroup (a class), generate that subgroup.
    * Generate all of the nodes internal to the group.
    */
-  static makeClassGroup(node, parent) {
+  static makeClassGroup(node: SyntaxNode, parent: Group) {
     const { groups, nodes: nodeTrees, body } = this.separateNamespaces(node);
     const classGroup = new Group({
       groupType: GroupType.CLASS,
@@ -88,7 +92,7 @@ export class TypeScriptAlgorithm {
    * Given an AST of all the lines in a function, create the Node along with the
    * calls and variables internal to it. Also make the nested subnodes
    */
-  static makeNodes(tree, parent) {
+  static makeNodes(tree: SyntaxNode, parent: Node | Group): Node[] {
     const { nodes, body } = this.separateNamespaces(tree);
     const token = getName(tree);
     const calls = makeCalls(body);
@@ -129,7 +133,7 @@ export class TypeScriptAlgorithm {
     return [node, ...subnodes];
   }
 
-  static makeRootNode(body, parent) {
+  static makeRootNode(body: SyntaxNode[], parent: Group): Node {
     return new Node({
       token: "(global)",
       calls: makeCalls(body),

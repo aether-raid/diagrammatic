@@ -4,13 +4,21 @@
  *  Not all variables can be resolved
  */
 export class Variable {
-  constructor(token, pointsTo, lineNumber) {
+  token: string;
+  pointsTo: string | Call | Node | Group | null;
+  lineNumber: number | null;
+
+  constructor(
+    token: string,
+    pointsTo: string | Call | Node | Group | null = null,
+    lineNumber: number | null = null
+  ) {
     this.token = token;
     this.pointsTo = pointsTo;
     this.lineNumber = lineNumber;
   }
 
-  toString() {
+  toString(): string {
     return `Variable: token=${this.token}, pointsTo=${
       this.pointsTo?.toString() ?? null
     }`;
@@ -23,7 +31,19 @@ export class Variable {
  *  Or a "naked" call like do_something()
  */
 export class Call {
-  constructor({ token, lineNumber = null, ownerToken = null }) {
+  token: string;
+  lineNumber: number | null;
+  ownerToken: string | null;
+
+  constructor({
+    token,
+    lineNumber = null,
+    ownerToken = null,
+  }: {
+    token: string;
+    lineNumber?: number | null;
+    ownerToken?: string | null;
+  }) {
     this.token = token;
     this.lineNumber = lineNumber;
     this.ownerToken = ownerToken;
@@ -32,11 +52,11 @@ export class Call {
   /**
    * Attribute calls are like `a.do_something()` rather than `do_something()`
    */
-  isAttribute() {
+  isAttribute(): boolean {
     return this.ownerToken !== null;
   }
 
-  matchesVariable(variable) {
+  matchesVariable(variable: Variable) {
     if (!this.isAttribute()) {
       return null;
     }
@@ -45,13 +65,31 @@ export class Call {
     }
   }
 
-  toString() {
+  toString(): string {
     return `Call: token=${this.token}, ownerToken=${this.ownerToken}`;
   }
 }
 
 export class Node {
-  constructor({ token, calls, variables, lineNumber = null, parent }) {
+  token: string | null;
+  calls: Call[];
+  variables: Variable[];
+  lineNumber: number | null;
+  parent: Node | Group;
+
+  constructor({
+    token,
+    calls,
+    variables,
+    lineNumber = null,
+    parent,
+  }: {
+    token: string | null;
+    calls: Call[];
+    variables: Variable[];
+    lineNumber?: number | null;
+    parent: Node | Group;
+  }) {
     this.token = token;
     this.calls = calls;
     this.variables = variables;
@@ -62,7 +100,7 @@ export class Node {
   /**
    * Resolve the Node/Group for the pointsTo field
    */
-  resolveVariables(allSubgroups, allNodes) {
+  resolveVariables(allSubgroups: Group[], allNodes: Node[]): void {
     for (const variable of this.variables) {
       if (typeof variable.pointsTo === "string") {
         for (const subgroup of allSubgroups) {
@@ -80,12 +118,12 @@ export class Node {
     }
   }
 
-  isConstructor() {
+  isConstructor(): boolean {
     return this.token === "constructor";
   }
 
-  getFileGroup() {
-    let parent = this.parent;
+  getFileGroup(): Group | Node | null {
+    let parent: Group | Node | null = this.parent;
     while (parent?.parent) {
       parent = parent.parent;
     }
@@ -131,14 +169,32 @@ export class Node {
 /**
  * Represent namespaces (classes and modules/files)
  */
-export const GroupType = {
-  CLASS: "CLASS",
-  FILE: "FILE",
-  NAMESPACE: "NAMESPACE",
-};
+export enum GroupType {
+  CLASS,
+  FILE,
+  NAMESPACE,
+}
 
 export class Group {
-  constructor({ groupType, token, lineNumber = null, parent = null }) {
+  nodes: Node[];
+  subgroups: Group[];
+  groupType: GroupType;
+  token: string | null;
+  lineNumber: number | null;
+  parent: Group | null;
+  rootNode: Node | null;
+
+  constructor({
+    groupType,
+    token,
+    lineNumber = null,
+    parent = null,
+  }: {
+    groupType: GroupType;
+    token: string | null;
+    lineNumber?: number | null;
+    parent?: Group | null;
+  }) {
     this.nodes = [];
     this.subgroups = [];
     this.groupType = groupType;
@@ -148,14 +204,14 @@ export class Group {
     this.rootNode = null;
   }
 
-  addNode(node, isRoot = false) {
+  addNode(node: Node, isRoot = false): void {
     this.nodes.push(node);
     if (isRoot) {
       this.rootNode = node;
     }
   }
 
-  addSubgroup(group) {
+  addSubgroup(group: Group): void {
     this.subgroups.push(group);
   }
 
@@ -163,7 +219,7 @@ export class Group {
    * List of group + all subgroups
    * @returns {Array} List of groups
    */
-  allGroups() {
+  allGroups(): Group[] {
     return [this, ...this.subgroups.flatMap((sg) => sg.allGroups())];
   }
 
@@ -171,17 +227,19 @@ export class Group {
    * List of nodes that are part of this group + all subgroups
    * @returns {Array} List of nodes
    */
-  allNodes() {
+  allNodes(): Node[] {
     return [...this.nodes, ...this.subgroups.flatMap((sg) => sg.allNodes())];
   }
 
-  toString() {
+  toString(): string {
     return `Group: token=${this.token}`;
   }
 }
 
 export class Edge {
-  constructor(source, target) {
+  source: Node | Group;
+  target: Node | Group;
+  constructor(source: Node | Group, target: Node | Group) {
     this.source = source;
     this.target = target;
   }

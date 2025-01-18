@@ -1,12 +1,14 @@
-import { Node, Group } from "./model.js";
+import { AppNode } from "@shared/node.types";
+import { Node, Group, Edge } from "./model";
+import { AppEdge } from "@shared/edge.types";
 
 /**
  * Transform list of edges to a format suitable for ReactFlow
  * (1) Node -> Group
  * (2) Node -> Node
  */
-export function transformEdges(allEdges) {
-  const output = [];
+export function transformEdges(allEdges: Edge[]): AppEdge[] {
+  const output: AppEdge[] = [];
   for (const edge of allEdges) {
     if (edge.target instanceof Node) {
       output.push({
@@ -33,17 +35,17 @@ export function transformEdges(allEdges) {
 /**
  * Transform list of file groups to a format suitable for ReactFlow
  */
-export function transformFileGroups(fileGroups) {
-  const output = [];
+export function transformFileGroups(fileGroups: Group[]): AppNode[] {
+  const output: AppNode[] = [];
   for (const fileGroup of fileGroups) {
     for (const subgroup of fileGroup.subgroups) {
-      const entities = subgroup.nodes.flatMap((node) => [node.token ?? ""]);
+      const entities = subgroup.nodes.flatMap((node) => [node.token ?? '']);
       output.push({
-        id: subgroup.token ?? "",
+        id: subgroup.token ?? '',
         type: "file",
         position: { x: 0, y: 0 },
         data: {
-          fileName: subgroup.token ?? "",
+          fileName: subgroup.token ?? '',
           entities,
         },
       });
