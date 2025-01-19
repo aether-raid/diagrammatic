@@ -11,16 +11,16 @@ import { TypeScriptAlgorithm } from "./typescript";
  *
  * @param folderPath - The folder containing the source files.
  * @param skipParseErrors - Whether to skip files that cannot be parsed.
- * @returns A promise resolving to a list of [filename, AST] tuples.
+ * @returns A promise resolving to a list of [filePath, filename, AST] tuples.
  */
 export function parseFilesToASTs(
   folderPath: string,
   skipParseErrors: boolean = true
-) {
+): [string, string, Tree][] {
   const parser = new Parser();
   parser.setLanguage(TypeScript.typescript);
 
-  const fileASTTrees: [string, Tree][] = [];
+  const fileASTTrees: [string, string, Tree][] = [];
 
   try {
     const files = fs.readdirSync(folderPath);
@@ -37,7 +37,7 @@ export function parseFilesToASTs(
         try {
           const sourceCode = fs.readFileSync(filePath, "utf-8");
           const ast = parser.parse(sourceCode);
-          fileASTTrees.push([file, ast]);
+          fileASTTrees.push([filePath, file, ast]);
         } catch (ex) {
           if (skipParseErrors) {
             console.warn(
@@ -369,7 +369,11 @@ export function getName(node: SyntaxNode) {
  * Given an AST for the entire file, generate a file group
  * complete with subgroups, nodes, etc.
  */
-export function makeFileGroup(node: SyntaxNode, fileName: string): Group {
+export function makeFileGroup(
+  node: SyntaxNode,
+  filePath: string,
+  fileName: string
+): Group {
   const {
     groups: subgroupTrees,
     nodes: nodeTrees,
@@ -379,6 +383,7 @@ export function makeFileGroup(node: SyntaxNode, fileName: string): Group {
     groupType: GroupType.FILE,
     token: fileName,
     lineNumber: 0,
+    filePath,
   });
   for (const node of nodeTrees) {
     const nodeList = TypeScriptAlgorithm.makeNodes(node, fileGroup);

@@ -183,17 +183,20 @@ export class Group {
   lineNumber: number | null;
   parent: Group | null;
   rootNode: Node | null;
+  filePath: string | null;
 
   constructor({
     groupType,
     token,
     lineNumber = null,
     parent = null,
+    filePath = null,
   }: {
     groupType: GroupType;
     token: string | null;
     lineNumber?: number | null;
     parent?: Group | null;
+    filePath: string | null;
   }) {
     this.nodes = [];
     this.subgroups = [];
@@ -202,6 +205,7 @@ export class Group {
     this.lineNumber = lineNumber;
     this.parent = parent;
     this.rootNode = null;
+    this.filePath = filePath;
   }
 
   addNode(node: Node, isRoot = false): void {

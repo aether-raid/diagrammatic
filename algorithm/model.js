@@ -138,7 +138,13 @@ export const GroupType = {
 };
 
 export class Group {
-  constructor({ groupType, token, lineNumber = null, parent = null }) {
+  constructor({
+    groupType,
+    token,
+    lineNumber = null,
+    parent = null,
+    filePath = null,
+  }) {
     this.nodes = [];
     this.subgroups = [];
     this.groupType = groupType;
@@ -146,6 +152,7 @@ export class Group {
     this.lineNumber = lineNumber;
     this.parent = parent;
     this.rootNode = null;
+    this.filePath = filePath;
   }
 
   addNode(node, isRoot = false) {

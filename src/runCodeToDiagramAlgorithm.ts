@@ -6,6 +6,7 @@ import {
 } from "./algorithm/function";
 import { Edge, Group } from "./algorithm/model";
 import { transformEdges, transformFileGroups } from "./algorithm/transform";
+import { Tree } from "tree-sitter";
 
 export const runCodeToDiagramAlgorithm = (): NodeEdgeData => {
   const astTrees = parseFilesToASTs(
@@ -14,8 +15,8 @@ export const runCodeToDiagramAlgorithm = (): NodeEdgeData => {
   );
 
   const fileGroups: Group[] = [];
-  astTrees.forEach(([fileName, ast]) => {
-    const fileGroup = makeFileGroup(ast.rootNode, fileName);
+  astTrees.forEach(([filePath, fileName, ast]: [string, string, Tree]) => {
+    const fileGroup = makeFileGroup(ast.rootNode, filePath, fileName);
     fileGroups.push(fileGroup);
   });
 
