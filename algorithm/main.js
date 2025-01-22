@@ -2,13 +2,15 @@ import { makeFileGroup, findLinks, parseFilesToASTs } from "./function.js";
 import { transformEdges, transformFileGroups } from "./transform.js";
 
 const astTrees = await parseFilesToASTs(
-  "/Users/sharlenetio/Desktop/nestjs-realworld-example-app/src/article",
+  "/Users/sharlenetio/Desktop/fyp/samples/node-express-realworld-example-app/src/app/routes/article",
+  // "/Users/sharlenetio/Desktop/fyp/samples/node-express-realworld-example-app/src/app/routes/test",
+  // "/Users/sharlenetio/Desktop/fyp/samples/nestjs-realworld-example-app/src/article",
   true
 );
 
 const fileGroups = [];
-astTrees.forEach(([fileName, ast], index) => {
-  const fileGroup = makeFileGroup(ast.rootNode, fileName);
+astTrees.forEach(([filePath, fileName, ast], index) => {
+  const fileGroup = makeFileGroup(ast.rootNode, filePath, fileName);
   fileGroups.push(fileGroup);
 });
 
