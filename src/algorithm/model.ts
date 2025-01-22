@@ -196,7 +196,7 @@ export class Group {
     token: string | null;
     lineNumber?: number | null;
     parent?: Group | null;
-    filePath: string | null;
+    filePath?: string | null;
   }) {
     this.nodes = [];
     this.subgroups = [];
