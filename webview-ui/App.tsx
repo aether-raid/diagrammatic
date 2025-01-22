@@ -6,6 +6,7 @@ import Dagre from '@dagrejs/dagre';
 import { Background, Controls, getConnectedEdges, MiniMap, Panel, ReactFlow, ReactFlowProvider, useEdgesState, useNodesState, useReactFlow } from '@xyflow/react';
 import '@xyflow/react/dist/style.css'; // Must import this, else React Flow will not work!
 
+import { NodeRow } from '@shared/app.types';
 import { AppNode } from '@shared/node.types';
 import { AppEdge } from '@shared/edge.types';
 import { AcceptNodeEdgeDataPayload, Commands, WebviewCommandMessage } from '@shared/message.types';
@@ -14,6 +15,7 @@ import { initialNodes, nodeTypes } from './nodes';
 import { initialEdges } from './edges';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { sendReadyMessageToExtension } from './messageHandler';
+import { getEdgesEntitiesToHighlightBFS, getOutgoingEdgesFromEntityRow } from './helper';
 
 
 interface OptionProps {
@@ -52,11 +54,12 @@ const getLayoutedElements = (nodes: AppNode[], edges: AppEdge[], options: Option
 const LayoutFlow = () => {
     const vscode = useRef<any>(null);
 
-    const { fitView } = useReactFlow();
+    const { fitView, getNode } = useReactFlow<AppNode, AppEdge>();
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const [highlightedNodes, setHighlightedNodes] = useState<string[]>([]);
     const [highlightedEdges, setHighlightedEdges] = useState<string[]>([]);
+    const [hoveredEntity, setHoveredEntity] = useState<NodeRow | undefined>(undefined);
 
     useEffect(() => {
         // Setup message listener
@@ -77,9 +80,16 @@ const LayoutFlow = () => {
 
         // Send message to inform extension that webview is ready to receive data.
         if (!vscode.current) {
-            // @ts-ignore: Expected, part of native VSCode API.
-            vscode.current = acquireVsCodeApi();
-            sendReadyMessageToExtension(vscode.current);
+            try {
+                // @ts-ignore: Expected, part of native VSCode API.
+                vscode.current = acquireVsCodeApi();
+                sendReadyMessageToExtension(vscode.current);
+            } catch (error) {
+                if ((error as Error).message !== 'acquireVsCodeApi is not defined') {
+                    // Only catch the above error, throw all else
+                    throw error;
+                }
+            }
         }
 
         return () => {
@@ -99,33 +109,47 @@ const LayoutFlow = () => {
         window.requestAnimationFrame(() => { fitView() }); 
     }, [nodes, edges]);
 
-    const handleNodeMouseEnter = (node: AppNode) => {
-      const connectedEdges = getConnectedEdges([node], edges);
-      const connectedNodes = connectedEdges.map(edge => edge.target);
-      setHighlightedNodes([...connectedNodes, node.id]);
-      setHighlightedEdges(connectedEdges.filter(edge => edge.source === node.id).map(edge => edge.id));
-    };
+    useEffect(() => {
+      // console.log("Currently hovering on: ", hoveredEntity);
+      if (!hoveredEntity) {
+        setHighlightedNodes([]);
+        setHighlightedEdges([]);
+        return;
+      }
 
-    const handleNodeMouseLeave = () => {
-      setHighlightedNodes([]);
-      setHighlightedEdges([]);
-    }
+      const hoveredNode = getNode(hoveredEntity.nodeId)!; // Can safely assume it exists since it's part of the graph
+      const outgoingEdges = getOutgoingEdgesFromEntityRow(hoveredNode, hoveredEntity.rowId, edges);
+      const toHighlight = getEdgesEntitiesToHighlightBFS(outgoingEdges, edges, getNode);
+      setHighlightedEdges(toHighlight.edges);
+
+      const entityRepr = `${hoveredEntity.nodeId}-${hoveredEntity.rowId}`;
+      setHighlightedNodes([entityRepr, ...toHighlight.entities]);
+    }, [hoveredEntity]);
+
+    const prepareNode = (node: AppNode) => (node.type !== 'entity' ? node : {
+      ...node,
+      data: {
+        ...node.data,
+        items: node.data.items.map(item => {
+          item.highlighted = highlightedNodes.includes(`${node.id}-${item.name}`);
+          return item;
+        }),
+        setHoveredEntity
+      }
+    });
+
+    const prepareEdge = (edge: AppEdge) => ({
+      ...edge,
+      className: highlightedEdges.includes(edge.id) ? 'highlighted-edge' : ''
+    });
 
     return (
         <ReactFlow
             nodeTypes={nodeTypes}
-            nodes={nodes.map(n => ({
-              ...n,
-              className: highlightedNodes.includes(n.id) ? 'highlighted-node' : ''
-            }))}
-            edges={edges.map(e => ({
-              ...e,
-              className: highlightedEdges.includes(e.id) ? 'highlighted-edge' : ''
-            }))}
+            nodes={nodes.map(n => prepareNode(n))}
+            edges={edges.map(e => prepareEdge(e))}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
-            onNodeMouseEnter={(_event, node) => handleNodeMouseEnter(node)}
-            onNodeMouseLeave={handleNodeMouseLeave}
             fitView
             colorMode='dark'
         >

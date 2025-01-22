@@ -1,4 +1,4 @@
-import { EdgeTypes } from "@xyflow/react";
+import { EdgeTypes, MarkerType } from "@xyflow/react";
 
 import { AppEdge } from "@shared/edge.types";
 
@@ -6,18 +6,14 @@ import { CustomEdge } from "./CustomEdge";
 
 
 export const initialEdges: AppEdge[] = [
-    { id: '1-2', source: '1', target: '2', animated: true },
-    { id: '1-3', source: '1', target: '3', animated: true },
-    { id: '2-2a', source: '2', target: '2a', animated: true },
-    { id: '2a-2b', source: '2a', target: '2b', animated: true },
-    { id: '2a-2c', source: '2a', target: '2c', animated: true },
-    { id: '2a-2d', source: '2a', target: '2d', animated: true },
-    { id: '2d-2e', source: '2d', target: '2e', animated: true },
-
-    { id: '5-6a', source: '5', target: '6', sourceHandle: 'harvestPotato', animated: true },
-    { id: '5-6b', source: '5', target: '6', sourceHandle: 'harvestCorn', animated: true },
-    { id: '6-7a', source: '6', target: '7', targetHandle: 'consumePotato', animated: true },
-    { id: '6-7b', source: '6', target: '7', targetHandle: 'consumeCorn', animated: true }
+    { id: '5-5a', source: '5', target: '5a', sourceHandle: 'Planter', targetHandle: 'entity', markerEnd: { type: MarkerType.ArrowClosed } },
+    { id: '5-5b', source: '5', target: '5b', sourceHandle: 'Harvester', targetHandle: 'entity', markerEnd: { type: MarkerType.ArrowClosed } },
+    { id: '5b-6-1', source: '5b', target: '6', sourceHandle: 'harvestPotato', targetHandle: 'sellProduct', markerEnd: { type: MarkerType.ArrowClosed } },
+    { id: '5b-6-2', source: '5b', target: '6', sourceHandle: 'harvestCorn', targetHandle: 'sellProduct', markerEnd: { type: MarkerType.ArrowClosed }  },
+    { id: '5b-8b', source: '5b', target: '8', sourceHandle: 'harvestCarrot', targetHandle: 'cookAndGiveDish', markerEnd: { type: MarkerType.ArrowClosed }  },
+    { id: '6-7a', source: '6', target: '7', sourceHandle: 'sellProduct', targetHandle: 'consumePotato', markerEnd: { type: MarkerType.ArrowClosed } },
+    { id: '6-7b', source: '6', target: '7', sourceHandle: 'sellProduct', targetHandle: 'consumeCorn', markerEnd: { type: MarkerType.ArrowClosed } },
+    { id: '7-8a', source: '7', target: '8', sourceHandle: 'consumePotato', targetHandle: 'cookAndGiveDish', markerEnd: { type: MarkerType.ArrowClosed } }
 ];
 
 export const edgeTypes = {

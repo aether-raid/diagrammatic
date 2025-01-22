@@ -32,14 +32,15 @@
     "test": "vscode-test",
     "lint": "eslint --config ./eslint.config.mjs src && eslint --config ./eslint.config.react.mjs webview-ui",
 
-    "build:ext": "tsc -b ./ && tsc-alias -v",
+    "build:ext-no-alias": "tsc -b ./",
+    "build:ext": "npm run build:ext-no-alias && tsc-alias -v",
     "build:react": "vite build",
     "build": "npm run build:react && npm run build:ext",
 
     "watch:tsc": "tsc -b -watch --preserveWatchOutput ./",
     "watch:tsc-alias": "tsc-alias --watch -v",
     "watch:react": "vite build --watch",
-    "watch:ext": "concurrently \"npm run watch:tsc\" \"npm run watch:tsc-alias\"",
+    "watch:ext": "npm run build:ext-no-alias ./ && concurrently \"npm run watch:tsc\" \"npm run watch:tsc-alias\"",
     "watch": "concurrently \"npm run watch:ext\" \"npm run watch:react\""
   },
   "devDependencies": {

@@ -45,13 +45,14 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
 
       output.push({
         id: fileGroup.token ?? "",
-        type: "file",
+        type: 'entity',
         position: { x: 0, y: 0 },
         data: {
-          fileName: fileGroup.token ?? "",
+          entityName: fileGroup.token ?? "",
+          entityType: 'file',
           filePath: fileGroup.filePath ?? "",
           lineNumber: 0,
-          entities: fileGroupNodes,
+          items: fileGroupNodes,
         },
       });
     }
@@ -61,13 +62,14 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
       ]);
       output.push({
         id: subgroup.token ?? "",
-        type: "class",
+        type: 'entity',
         position: { x: 0, y: 0 },
         data: {
-          fileName: subgroup.token ?? "",
+          entityName: subgroup.token ?? "",
+          entityType: 'class',
           filePath: fileGroup.filePath ?? "",
           lineNumber: subgroup.lineNumber ?? 0,
-          entities: subgroupNodes,
+          items: subgroupNodes,
         },
       });
     }

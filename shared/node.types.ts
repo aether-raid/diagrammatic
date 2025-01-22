@@ -1,8 +1,25 @@
 import { BuiltInNode, Node } from "@xyflow/react";
+import { NodeRow } from "./app.types";
 
-export type FileNode = Node<{
-  fileName: string;
-  entities: string[];
-}, 'file'>;
+interface EntityItem {
+  name: string;
+}
+
+interface HighlightableEntityItem extends EntityItem {
+  highlighted?: boolean;
+}
+
+
+export type EntityNode = Node<{
+  entityName: string;
+  entityType: 'class' | 'file';
+  items: HighlightableEntityItem[];
+
+  setHoveredEntity?: React.Dispatch<React.SetStateAction<NodeRow | undefined>>
+  filePath?: string;
+  lineNumber?: number;
+}, 'entity'>;
+
 export type TextUpdaterNode = Node<{}, 'textUpdater'>;
-export type AppNode = BuiltInNode | TextUpdaterNode | FileNode;
+
+export type AppNode = BuiltInNode | TextUpdaterNode | EntityNode;
