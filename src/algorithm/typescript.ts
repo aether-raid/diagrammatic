@@ -11,6 +11,57 @@ import { SyntaxNode } from "tree-sitter";
 import { getFirstChildOfType } from "./function.js";
 
 export class TypeScriptAlgorithm {
+  static separateFile(node: SyntaxNode): {
+    groups: SyntaxNode[];
+    nodes: SyntaxNode[];
+    body: SyntaxNode[];
+  } {
+    const groups: SyntaxNode[] = [];
+    const nodes: SyntaxNode[] = [];
+    const body: SyntaxNode[] = [];
+
+    for (const child of node.children) {
+      const nodeType = child.type;
+
+      if (
+        (nodeType === "call_expression" &&
+          getFirstChildOfType(
+            child.childForFieldName("arguments"),
+            "arrow_function"
+          )) ||
+        (nodeType === "export_statement" &&
+          getFirstChildOfType(child, "lexical_declaration")) ||
+        (nodeType === "lexical_declaration" &&
+          getFirstChildOfType(
+            getFirstChildOfType(child, "variable_declarator"),
+            "arrow_function"
+          )) ||
+        nodeType === "method_definition" ||
+        nodeType === "function_declaration"
+      ) {
+        nodes.push(child);
+      } else if (nodeType === "class_declaration") {
+        groups.push(child);
+      } else {
+        const {
+          groups: subGroups,
+          nodes: subNodes,
+          body: subBody,
+        } = this.separateFile(child);
+
+        if (subGroups.length > 0 || subNodes.length > 0) {
+          groups.push(...subGroups);
+          nodes.push(...subNodes);
+          body.push(...subBody);
+        } else {
+          body.push(child);
+        }
+      }
+    }
+
+    return { groups, nodes, body };
+  }
+
   /**
    * Recursively separates a Tree-sitter syntax tree node into groups, nodes, and body.
    * Group: FILE / CLASS
@@ -33,13 +84,6 @@ export class TypeScriptAlgorithm {
       const nodeType = child.type;
 
       if (
-        (nodeType === "call_expression" &&
-          getFirstChildOfType(
-            child.childForFieldName("arguments"),
-            "arrow_function"
-          )) ||
-        (nodeType === "export_statement" &&
-          getFirstChildOfType(child, "lexical_declaration")) ||
         nodeType === "method_definition" ||
         nodeType === "function_declaration"
       ) {

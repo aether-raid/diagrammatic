@@ -308,6 +308,8 @@ export function getFirstChildOfType(node, target) {
       return node.child(i);
     }
   }
+
+  return null;
 }
 
 export function getAllChildrenOfType(node, target) {
@@ -364,7 +366,7 @@ export function makeFileGroup(node, filePath, fileName) {
     groups: subgroupTrees,
     nodes: nodeTrees,
     body,
-  } = TypeScriptAlgorithm.separateNamespaces(node);
+  } = TypeScriptAlgorithm.separateFile(node);
   const fileGroup = new Group({
     groupType: GroupType.FILE,
     token: fileName,

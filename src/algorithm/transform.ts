@@ -39,22 +39,26 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
   const output: AppNode[] = [];
   for (const fileGroup of fileGroups) {
     if (fileGroup.nodes) {
-      const fileGroupNodes = fileGroup.nodes.flatMap((node: Node) => [
-        { name: node.token ?? "", lineNumber: node.lineNumber ?? 0 },
-      ]);
+      const fileGroupNodes = fileGroup.nodes.flatMap((node: Node) =>
+        node.token !== "(global)"
+          ? [{ name: node.token ?? "", lineNumber: node.lineNumber ?? 0 }]
+          : []
+      );
 
-      output.push({
-        id: fileGroup.token ?? "",
-        type: 'entity',
-        position: { x: 0, y: 0 },
-        data: {
-          entityName: fileGroup.token ?? "",
-          entityType: 'file',
-          filePath: fileGroup.filePath ?? "",
-          lineNumber: 0,
-          items: fileGroupNodes,
-        },
-      });
+      if (fileGroupNodes.length > 0) {
+        output.push({
+          id: fileGroup.token ?? "",
+          type: "entity",
+          position: { x: 0, y: 0 },
+          data: {
+            entityName: fileGroup.token ?? "",
+            entityType: "file",
+            filePath: fileGroup.filePath ?? "",
+            lineNumber: 0,
+            items: fileGroupNodes,
+          },
+        });
+      }
     }
     for (const subgroup of fileGroup.subgroups) {
       const subgroupNodes = subgroup.nodes.flatMap((node: Node) => [
@@ -62,11 +66,11 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
       ]);
       output.push({
         id: subgroup.token ?? "",
-        type: 'entity',
+        type: "entity",
         position: { x: 0, y: 0 },
         data: {
           entityName: subgroup.token ?? "",
-          entityType: 'class',
+          entityType: "class",
           filePath: fileGroup.filePath ?? "",
           lineNumber: subgroup.lineNumber ?? 0,
           items: subgroupNodes,
