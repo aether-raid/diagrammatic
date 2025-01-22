@@ -21,7 +21,7 @@ export function EntityNode ({ id, data }: NodeProps<EntityNode>) {
   return (
     <div className='custom__node entity-node'>
       <p className={`p-2 fw-bold rounded-top entity__${data.entityType}`}>{ data.entityName }</p>
-      <table>
+      <table className='w-100'>
         <tbody>
           {data.items.map(item => <EntityNodeItem
             key={item.name}
