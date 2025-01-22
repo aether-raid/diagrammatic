@@ -42,11 +42,15 @@ export function activate(context: vscode.ExtensionContext) {
           nodes: [
             {
               id: "1",
-              type: "file",
+              type: "entity",
               position: { x: 0, y: 0 },
               data: {
-                fileName: "Cloud",
-                entities: ["fira", "firaga"],
+                entityName: "Cloud",
+                entityType: 'file',
+                items: [
+                  { name: "fira" },
+                  { name: "firaga" }
+                ],
               },
             },
           ],

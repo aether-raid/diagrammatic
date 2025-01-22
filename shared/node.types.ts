@@ -14,7 +14,10 @@ export type EntityNode = Node<{
   entityName: string;
   entityType: 'class' | 'file';
   items: HighlightableEntityItem[];
+
   setHoveredEntity?: React.Dispatch<React.SetStateAction<NodeRow | undefined>>
+  filePath?: string;
+  lineNumber?: number;
 }, 'entity'>;
 
 export type TextUpdaterNode = Node<{}, 'textUpdater'>;
