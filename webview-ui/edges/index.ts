@@ -6,6 +6,8 @@ import { CustomEdge } from "./CustomEdge";
 
 
 export const initialEdges: AppEdge[] = [
+    { id: '5-5a', source: '5', target: '5a', sourceHandle: 'Planter', targetHandle: 'entity', markerEnd: { type: MarkerType.ArrowClosed } },
+    { id: '5-5b', source: '5', target: '5b', sourceHandle: 'Harvester', targetHandle: 'entity', markerEnd: { type: MarkerType.ArrowClosed } },
     { id: '5b-6-1', source: '5b', target: '6', sourceHandle: 'harvestPotato', targetHandle: 'sellProduct', markerEnd: { type: MarkerType.ArrowClosed } },
     { id: '5b-6-2', source: '5b', target: '6', sourceHandle: 'harvestCorn', targetHandle: 'sellProduct', markerEnd: { type: MarkerType.ArrowClosed }  },
     { id: '5b-8b', source: '5b', target: '8', sourceHandle: 'harvestCarrot', targetHandle: 'cookAndGiveDish', markerEnd: { type: MarkerType.ArrowClosed }  },

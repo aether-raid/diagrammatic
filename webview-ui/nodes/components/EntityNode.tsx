@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NodeProps } from "@xyflow/react";
+import { Handle, NodeProps, Position } from "@xyflow/react";
 
 import { EntityNodeItem } from "./EntityNodeItem";
 import { type EntityNode } from "@shared/node.types";
@@ -31,6 +31,9 @@ export function EntityNode ({ id, data }: NodeProps<EntityNode>) {
           />)}
         </tbody>
       </table>
+
+      {/* Handles */}
+      <Handle type='target' position={Position.Top} id='entity' />
     </div>
   )
 }
