@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { NodeProps } from "@xyflow/react";
 
-import { EntityRow } from "./EntityRow";
-import { type FileNode } from "@shared/node.types";
+import { EntityNodeItem } from "./EntityNodeItem";
+import { type EntityNode } from "@shared/node.types";
 
 
-export function FileNode ({ id, data }: NodeProps<FileNode>) {
+export function EntityNode ({ id, data }: NodeProps<EntityNode>) {
   const [hoveredRow, setHoveredRow] = useState<string|undefined>('');
 
   useEffect(() => {
@@ -19,14 +19,14 @@ export function FileNode ({ id, data }: NodeProps<FileNode>) {
   }, [hoveredRow])
 
   return (
-    <div className='custom__node file-node'>
-      <p className="p-2 fw-bold rounded-top bg-primary">{ data.fileName }</p>
+    <div className='custom__node entity-node'>
+      <p className={`p-2 fw-bold rounded-top entity__${data.entityType}`}>{ data.entityName }</p>
       <table>
         <tbody>
-          {data.entities.map(entity => <EntityRow
-            key={entity.name}
-            fnName={entity.name}
-            highlighted={entity.highlighted ?? false}
+          {data.items.map(item => <EntityNodeItem
+            key={item.name}
+            itemName={item.name}
+            highlighted={item.highlighted ?? false}
             setHoveredRow={setHoveredRow}
           />)}
         </tbody>

@@ -1,18 +1,46 @@
 import { NodeTypes } from "@xyflow/react";
 
 import { TextUpdaterNode } from "./components/TextUpdaterNode";
-import { FileNode } from "./components/FileNode";
+import { EntityNode } from "./components/EntityNode";
 import { AppNode } from "@shared/node.types";
 
 
 export const initialNodes: AppNode[] = [
   {
     id: '5',
-    type: 'file',
+    type: 'entity',
     position: { x:0, y:0 },
     data: {
-      fileName: 'Farm',
-      entities: [
+      entityName: 'Farm',
+      entityType: 'file',
+      items: [
+        { name: 'Planter' },
+        { name: 'Harvester' },
+      ]
+    }
+  },
+  {
+    id: '5a',
+    type: 'entity',
+    position: { x:0, y:0 },
+    data: {
+      entityName: 'Planter',
+      entityType: 'class',
+      items: [
+        { name: 'plantPotato' },
+        { name: 'plantCorn' },
+        { name: 'plantCarrot' }
+      ]
+    }
+  },
+  {
+    id: '5b',
+    type: 'entity',
+    position: { x:0, y:0 },
+    data: {
+      entityName: 'Harvester',
+      entityType: 'class',
+      items: [
         { name: 'harvestPotato' },
         { name: 'harvestCorn' },
         { name: 'harvestCarrot' }
@@ -21,22 +49,24 @@ export const initialNodes: AppNode[] = [
   },
   {
     id: '6',
-    type: 'file',
+    type: 'entity',
     position: { x:0, y:0 },
     data: {
-      fileName: 'Grocer',
-      entities: [
+      entityName: 'Grocer',
+      entityType: 'file',
+      items: [
         { name: 'sellProduct' }
       ]
     }
   },
   {
     id: '7',
-    type: 'file',
+    type: 'entity',
     position: { x:0, y:0 },
     data: {
-      fileName: 'Customer',
-      entities: [
+      entityName: 'Customer',
+      entityType: 'file',
+      items: [
         { name: 'consumePotato' },
         { name: 'consumeCorn' }
       ]
@@ -44,11 +74,12 @@ export const initialNodes: AppNode[] = [
   },
   {
     id: '8',
-    type: 'file',
+    type: 'entity',
     position: { x:0, y:0 },
     data: {
-      fileName: 'Gift',
-      entities: [
+      entityName: 'Gift',
+      entityType: 'file',
+      items: [
         { name: 'givePotato' },
         { name: 'giveCorn' },
         { name: 'cookAndGiveDish' }
@@ -58,6 +89,6 @@ export const initialNodes: AppNode[] = [
 ];
 
 export const nodeTypes = {
-    'file': FileNode,
+    'entity': EntityNode,
     'textUpdater': TextUpdaterNode
 } satisfies NodeTypes;

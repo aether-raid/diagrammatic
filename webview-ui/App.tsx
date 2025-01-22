@@ -126,13 +126,13 @@ const LayoutFlow = () => {
       setHighlightedNodes([entityRepr, ...toHighlight.entities]);
     }, [hoveredEntity]);
 
-    const prepareNode = (node: AppNode) => (node.type !== 'file' ? node : {
+    const prepareNode = (node: AppNode) => (node.type !== 'entity' ? node : {
       ...node,
       data: {
         ...node.data,
-        entities: node.data.entities.map(entity => {
-          entity.highlighted = highlightedNodes.includes(`${node.id}-${entity.name}`);
-          return entity;
+        items: node.data.items.map(item => {
+          item.highlighted = highlightedNodes.includes(`${node.id}-${item.name}`);
+          return item;
         }),
         setHoveredEntity
       }

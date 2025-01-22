@@ -1,14 +1,14 @@
 import { Handle, Position } from "@xyflow/react";
 
 
-interface EntityRowProps {
-  fnName: string;
+interface EntityNodeItemProps {
+  itemName: string;
   highlighted: boolean;
   setHoveredRow: React.Dispatch<React.SetStateAction<string|undefined>>;
 }
 
-export function EntityRow ({ fnName, highlighted, setHoveredRow }: EntityRowProps) {
-  const onMouseEnter = () => setHoveredRow(fnName);
+export function EntityNodeItem ({ itemName, highlighted, setHoveredRow }: EntityNodeItemProps) {
+  const onMouseEnter = () => setHoveredRow(itemName);
   const onMouseLeave = () => setHoveredRow(undefined);
 
   return (
@@ -18,11 +18,11 @@ export function EntityRow ({ fnName, highlighted, setHoveredRow }: EntityRowProp
       onMouseLeave={onMouseLeave}
     >
       <td className="px-3 py-2 position-relative">
-        { fnName }
+        { itemName }
 
         {/* Handles */}
-        <Handle type='target' position={Position.Left} id={fnName} />
-        <Handle type='source' position={Position.Right} id={fnName} />
+        <Handle type='target' position={Position.Left} id={itemName} />
+        <Handle type='source' position={Position.Right} id={itemName} />
       </td>
     </tr>
   )

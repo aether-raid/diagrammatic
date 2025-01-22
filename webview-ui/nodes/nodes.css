@@ -18,9 +18,17 @@
     border: 1px solid greenyellow;
 }
 
-/* File Node */
-.file-node {
+/* Entity Node */
+.entity-node {
     padding: 0;
+}
+
+.entity-node > .entity__file {
+    background-color: #0D6EFD;
+}
+
+.entity-node > .entity__class {
+    background-color: #FD0DE6;
 }
 
 /* Text Updater Node */
