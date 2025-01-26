@@ -14,8 +14,8 @@ import { AcceptNodeEdgeDataPayload, Commands, WebviewCommandMessage } from '@sha
 import { initialNodes, nodeTypes } from './nodes';
 import { initialEdges } from './edges';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { sendReadyMessageToExtension } from './messageHandler';
 import { getEdgesEntitiesToHighlightBFS, getOutgoingEdgesFromEntityRow } from './helper';
+import { initVsCodeApi, sendReadyMessageToExtension } from './vscodeApiHandler';
 
 
 interface OptionProps {
@@ -82,8 +82,8 @@ const LayoutFlow = () => {
         if (!vscode.current) {
             try {
                 // @ts-ignore: Expected, part of native VSCode API.
-                vscode.current = acquireVsCodeApi();
-                sendReadyMessageToExtension(vscode.current);
+                initVsCodeApi();
+                sendReadyMessageToExtension();
             } catch (error) {
                 if ((error as Error).message !== 'acquireVsCodeApi is not defined') {
                     // Only catch the above error, throw all else

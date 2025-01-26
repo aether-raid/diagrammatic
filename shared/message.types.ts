@@ -3,6 +3,7 @@ import { AppNode } from "./node.types";
 
 export enum Commands {
   ACCEPT_NODE_EDGE_DATA = 'accept-node-edge-data',
+  JUMP_TO_LINE = 'jump-to-line',
   READY = 'ready'
 }
 
@@ -11,9 +12,14 @@ export interface AcceptNodeEdgeDataPayload {
   edges: AppEdge[];
 }
 
+export interface JumpToLinePayload {
+  filePath: string;
+  lineNumber: number;
+}
+
 export interface ReadyPayload {};
 
 export interface WebviewCommandMessage {
   command: Commands;
-  message: AcceptNodeEdgeDataPayload | ReadyPayload;
+  message: AcceptNodeEdgeDataPayload | JumpToLinePayload | ReadyPayload ;
 }

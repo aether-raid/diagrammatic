@@ -27,6 +27,10 @@ export function EntityNode ({ id, data }: NodeProps<EntityNode>) {
             key={item.name}
             itemName={item.name}
             highlighted={item.highlighted ?? false}
+            location={{
+              filePath: data.filePath,
+              lineNumber: item.lineNumber,
+            }}
             setHoveredRow={setHoveredRow}
           />)}
         </tbody>
