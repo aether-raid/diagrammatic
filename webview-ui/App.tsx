@@ -3,7 +3,7 @@
 // *********************************
 
 import Dagre from '@dagrejs/dagre';
-import { Background, Controls, getConnectedEdges, MiniMap, Panel, ReactFlow, ReactFlowProvider, useEdgesState, useNodesState, useReactFlow } from '@xyflow/react';
+import { Background, Controls, MiniMap, Panel, ReactFlow, ReactFlowProvider, useEdgesState, useNodesState, useReactFlow } from '@xyflow/react';
 import '@xyflow/react/dist/style.css'; // Must import this, else React Flow will not work!
 
 import { NodeRow } from '@shared/app.types';

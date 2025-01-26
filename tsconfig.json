@@ -3,9 +3,12 @@
     "paths": {
       "@shared/*": ["./shared/*"]
     },
+
+    "noEmit": true,
+    "outDir": "./dist/extension",
+
     "module": "Node16",
     "target": "ES2022",
-    "outDir": "./dist/extension",
     "lib": [
       "ES2022", "DOM"
     ],

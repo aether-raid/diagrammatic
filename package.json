@@ -10,7 +10,7 @@
     "Other"
   ],
   "activationEvents": [],
-  "main": "./dist/extension/extension.js",
+  "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
@@ -27,22 +27,21 @@
   },
   "scripts": {
     "dev": "vite dev",
-    "vscode:prepublish": "npm run compile",
+    "vscode:prepublish": "npm run build",
     "pretest": "npm run compile && npm run lint",
     "test": "vscode-test",
     "lint": "eslint --config ./eslint.config.mjs src && eslint --config ./eslint.config.react.mjs webview-ui",
 
     "prebuild": "rimraf ./dist",
-    "build:ext-no-alias": "tsc -b ./",
-    "build:ext": "npm run build:ext-no-alias && tsc-alias -v",
+    "build:typecheck": "tsc -b ./ && tsc -b ./webview-ui",
+    "build:ext": "node esbuild.js",
     "build:react": "vite build",
-    "build": "npm run build:react && npm run build:ext",
+    "build": "npm run build:typecheck && npm run build:ext && npm run build:react",
 
-    "watch:tsc": "tsc -b -watch --preserveWatchOutput ./",
-    "watch:tsc-alias": "tsc-alias --watch -v",
+    "watch:typecheck": "concurrently \"tsc -b --watch ./\" \"tsc -b --watch ./webview-ui\"",
+    "watch:ext": "node esbuild.js --watch",
     "watch:react": "vite build --watch",
-    "watch:ext": "npm run prebuild && npm run build:ext-no-alias ./ && concurrently \"npm run watch:tsc\" \"npm run watch:tsc-alias\"",
-    "watch": "concurrently \"npm run watch:ext\" \"npm run watch:react\""
+    "watch": "npm run prebuild && concurrently \"npm run watch:typecheck\" \"npm run watch:ext\" \"npm run watch:react\""
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
@@ -56,12 +55,12 @@
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.4.1",
     "concurrently": "^9.1.2",
+    "esbuild": "^0.24.2",
     "eslint": "^9.16.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
     "rimraf": "^6.0.1",
-    "tsc-alias": "^1.8.10",
     "typescript": "^5.7.2",
     "vite": "^6.0.5"
   },
