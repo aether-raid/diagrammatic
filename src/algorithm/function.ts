@@ -2,9 +2,11 @@ import fs from "fs";
 import path from "path";
 import Parser, { SyntaxNode, Tree } from "tree-sitter";
 import TypeScript from "tree-sitter-typescript";
+import Python from "tree-sitter-python";
 
 import { Variable, Call, Group, Edge, GroupType, Node } from "./model";
 import { TypeScriptAlgorithm } from "./typescript";
+import { PythonAlgorithm } from "./python";
 
 /**
  * Parse files in a folder and convert them to ASTs.
@@ -18,8 +20,6 @@ export function parseFilesToASTs(
   skipParseErrors: boolean = true
 ): [string, string, Tree][] {
   const parser = new Parser();
-  parser.setLanguage(TypeScript.typescript);
-
   const fileASTTrees: [string, string, Tree][] = [];
 
   try {
@@ -32,8 +32,16 @@ export function parseFilesToASTs(
         // If it's a directory, recurse into it
         const subdirectoryFiles = parseFilesToASTs(filePath, skipParseErrors);
         fileASTTrees.push(...subdirectoryFiles);
-      } else if (fs.statSync(filePath).isFile() && filePath.endsWith(".ts")) {
-        // If it's a TypeScript file, parse it
+      } else if (fs.statSync(filePath).isFile()) {
+        if (filePath.endsWith(".ts")) {
+          parser.setLanguage(TypeScript.typescript);
+        } else if (filePath.endsWith(".tsx")) {
+          parser.setLanguage(TypeScript.tsx);
+        } else if (filePath.endsWith(".py")) {
+          parser.setLanguage(Python);
+        } else {
+          return [];
+        }
         try {
           const sourceCode = fs.readFileSync(filePath, "utf-8");
           const ast = parser.parse(sourceCode);
@@ -376,11 +384,16 @@ export function makeFileGroup(
   filePath: string,
   fileName: string
 ): Group {
+  let Language = TypeScriptAlgorithm;
+  if (filePath.endsWith(".py")) {
+    Language = PythonAlgorithm;
+  }
+
   const {
     groups: subgroupTrees,
     nodes: nodeTrees,
     body,
-  } = TypeScriptAlgorithm.separateFile(node);
+  } = Language.separateFile(node);
   const fileGroup = new Group({
     groupType: GroupType.FILE,
     token: fileName,
@@ -388,19 +401,19 @@ export function makeFileGroup(
     filePath,
   });
   for (const node of nodeTrees) {
-    const nodeList = TypeScriptAlgorithm.makeNodes(node, fileGroup);
+    const nodeList = Language.makeNodes(node, fileGroup);
     for (const subnode of nodeList) {
       fileGroup.addNode(subnode);
     }
   }
 
-  const rootNode = TypeScriptAlgorithm.makeRootNode(body, fileGroup);
+  const rootNode = Language.makeRootNode(body, fileGroup);
   if (rootNode) {
     fileGroup.addNode(rootNode, true);
   }
 
   for (const subgroup of subgroupTrees) {
-    const newSubgroup = TypeScriptAlgorithm.makeClassGroup(subgroup, fileGroup);
+    const newSubgroup = Language.makeClassGroup(subgroup, fileGroup);
     fileGroup.addSubgroup(newSubgroup);
   }
 

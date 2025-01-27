@@ -62,17 +62,19 @@ export function transformFileGroups(fileGroups) {
       const subgroupNodes = subgroup.nodes.flatMap((node) => [
         { name: node.token ?? "", lineNumber: node.lineNumber ?? 0 },
       ]);
-      output.push({
-        id: subgroup.token ?? "",
-        type: "class",
-        position: { x: 0, y: 0 },
-        data: {
-          fileName: subgroup.token ?? "",
-          filePath: fileGroup.filePath ?? "",
-          lineNumber: subgroup.lineNumber ?? 0,
-          entities: subgroupNodes,
-        },
-      });
+      if (subgroup.token) {
+        output.push({
+          id: subgroup.token ?? "",
+          type: "class",
+          position: { x: 0, y: 0 },
+          data: {
+            fileName: subgroup.token ?? "",
+            filePath: fileGroup.filePath ?? "",
+            lineNumber: subgroup.lineNumber ?? 0,
+            entities: subgroupNodes,
+          },
+        });
+      }
     }
   }
   return output;

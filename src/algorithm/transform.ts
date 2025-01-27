@@ -64,18 +64,20 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
       const subgroupNodes = subgroup.nodes.flatMap((node: Node) => [
         { name: node.token ?? "", lineNumber: node.lineNumber ?? 0 },
       ]);
-      output.push({
-        id: subgroup.token ?? "",
-        type: "entity",
-        position: { x: 0, y: 0 },
-        data: {
-          entityName: subgroup.token ?? "",
-          entityType: "class",
-          filePath: fileGroup.filePath ?? "",
-          lineNumber: subgroup.lineNumber ?? 0,
-          items: subgroupNodes,
-        },
-      });
+      if (subgroup.token) {
+        output.push({
+          id: subgroup.token ?? "",
+          type: "entity",
+          position: { x: 0, y: 0 },
+          data: {
+            entityName: subgroup.token ?? "",
+            entityType: "class",
+            filePath: fileGroup.filePath ?? "",
+            lineNumber: subgroup.lineNumber ?? 0,
+            items: subgroupNodes,
+          },
+        });
+      }
     }
   }
   return output;

@@ -2,9 +2,11 @@ import fs from "fs";
 import path from "path";
 import Parser from "tree-sitter";
 import TypeScript from "tree-sitter-typescript";
+import Python from "tree-sitter-python";
 
 import { Variable, Call, Group, Edge, GroupType } from "./model.js";
 import { TypeScriptAlgorithm } from "./typescript.js";
+import { PythonAlgorithm } from "./python.js";
 
 /**
  * Parse files in a folder and convert them to ASTs.
@@ -15,8 +17,6 @@ import { TypeScriptAlgorithm } from "./typescript.js";
  */
 export function parseFilesToASTs(folderPath, skipParseErrors = true) {
   const parser = new Parser();
-  parser.setLanguage(TypeScript.typescript);
-
   const fileASTTrees = [];
 
   try {
@@ -29,8 +29,17 @@ export function parseFilesToASTs(folderPath, skipParseErrors = true) {
         // If it's a directory, recurse into it
         const subdirectoryFiles = parseFilesToASTs(filePath, skipParseErrors);
         fileASTTrees.push(...subdirectoryFiles);
-      } else if (fs.statSync(filePath).isFile() && filePath.endsWith(".ts")) {
-        // If it's a TypeScript file, parse it
+      } else if (fs.statSync(filePath).isFile()) {
+        if (filePath.endsWith(".ts")) {
+          parser.setLanguage(TypeScript.typescript);
+        } else if (filePath.endsWith(".tsx")) {
+          parser.setLanguage(TypeScript.tsx);
+        } else if (filePath.endsWith(".py")) {
+          parser.setLanguage(Python);
+        } else {
+          return [];
+        }
+
         try {
           const sourceCode = fs.readFileSync(filePath, "utf-8");
           const ast = parser.parse(sourceCode);
@@ -362,11 +371,18 @@ export function getName(node) {
  * complete with subgroups, nodes, etc.
  */
 export function makeFileGroup(node, filePath, fileName) {
+  let Language;
+  if (filePath.endsWith(".ts") || filePath.endsWith(".tsx")) {
+    Language = TypeScriptAlgorithm;
+  } else if (filePath.endsWith(".py")) {
+    Language = PythonAlgorithm;
+  }
+
   const {
     groups: subgroupTrees,
     nodes: nodeTrees,
     body,
-  } = TypeScriptAlgorithm.separateFile(node);
+  } = Language.separateFile(node);
   const fileGroup = new Group({
     groupType: GroupType.FILE,
     token: fileName,
@@ -374,19 +390,19 @@ export function makeFileGroup(node, filePath, fileName) {
     filePath,
   });
   for (const node of nodeTrees) {
-    const nodeList = TypeScriptAlgorithm.makeNodes(node, fileGroup);
+    const nodeList = Language.makeNodes(node, fileGroup);
     for (const subnode of nodeList) {
       fileGroup.addNode(subnode);
     }
   }
 
-  const rootNode = TypeScriptAlgorithm.makeRootNode(body, fileGroup);
+  const rootNode = Language.makeRootNode(body, fileGroup);
   if (rootNode) {
     fileGroup.addNode(rootNode, true);
   }
 
   for (const subgroup of subgroupTrees) {
-    const newSubgroup = TypeScriptAlgorithm.makeClassGroup(subgroup, fileGroup);
+    const newSubgroup = Language.makeClassGroup(subgroup, fileGroup);
     fileGroup.addSubgroup(newSubgroup);
   }
 
