@@ -28,7 +28,7 @@ import {
 import { initialNodes, nodeTypes } from "./nodes";
 import { initialEdges } from "./edges";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { sendReadyMessageToExtension } from "./messageHandler";
+import { sendReadyMessageToExtension } from "./vscodeApiHandler";
 
 interface OptionProps {
     direction: string;
