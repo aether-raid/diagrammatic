@@ -13,7 +13,7 @@ async function main() {
     sourcesContent: false,
     platform: 'node',
     outfile: 'dist/extension.js',
-    external: ['vscode', 'tree-sitter', 'tree-sitter-javascript', 'tree-sitter-typescript'],
+    external: ['vscode', 'tree-sitter', 'tree-sitter-javascript', 'tree-sitter-typescript', 'tree-sitter-python'],
     logLevel: 'silent',
     plugins: [
       /* add to the end of plugins array */

@@ -5,8 +5,8 @@ import TypeScript from "tree-sitter-typescript";
 import Python from "tree-sitter-python";
 
 import { Variable, Call, Group, Edge, GroupType, Node } from "./model";
-import { TypeScriptAlgorithm } from "./typescript";
-import { PythonAlgorithm } from "./python";
+import { Language } from "./language.js";
+import { LanguageRules } from "./rules.js";
 
 /**
  * Parse files in a folder and convert them to ASTs.
@@ -382,18 +382,14 @@ export function getName(node: SyntaxNode) {
 export function makeFileGroup(
   node: SyntaxNode,
   filePath: string,
-  fileName: string
+  fileName: string,
+  languageRules: LanguageRules
 ): Group {
-  let Language = TypeScriptAlgorithm;
-  if (filePath.endsWith(".py")) {
-    Language = PythonAlgorithm;
-  }
-
   const {
     groups: subgroupTrees,
     nodes: nodeTrees,
     body,
-  } = Language.separateFile(node);
+  } = Language.separateNamespaces(node, languageRules);
   const fileGroup = new Group({
     groupType: GroupType.FILE,
     token: fileName,
@@ -401,7 +397,7 @@ export function makeFileGroup(
     filePath,
   });
   for (const node of nodeTrees) {
-    const nodeList = Language.makeNodes(node, fileGroup);
+    const nodeList = Language.makeNodes(node, fileGroup, languageRules);
     for (const subnode of nodeList) {
       fileGroup.addNode(subnode);
     }
@@ -413,7 +409,7 @@ export function makeFileGroup(
   }
 
   for (const subgroup of subgroupTrees) {
-    const newSubgroup = Language.makeClassGroup(subgroup, fileGroup);
+    const newSubgroup = Language.makeClassGroup(subgroup, fileGroup, languageRules);
     fileGroup.addSubgroup(newSubgroup);
   }
 

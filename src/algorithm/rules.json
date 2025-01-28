@@ -1,0 +1,84 @@
+{
+  ".py": {
+    "nodes": [
+      {
+        "type": "function_definition"
+      }
+    ],
+    "groups": [
+      {
+        "type": "class_definition"
+      }
+    ]
+  },
+  ".ts": {
+    "nodes": [
+      {
+        "type": "call_expression",
+        "child": {
+          "field": "arguments",
+          "child": {
+            "type": "arrow_function"
+          }
+        }
+      },
+      {
+        "type": "export_statement",
+        "child": {
+          "type": "lexical_declaration"
+        }
+      },
+      {
+        "type": "lexical_declaration",
+        "child": {
+          "type": "variable_declarator",
+          "child": {
+            "type": "arrow_function"
+          }
+        }
+      },
+      {
+        "type": "method_definition"
+      },
+      {
+        "type": "function_declaration"
+      }
+    ],
+    "groups": [{ "type": "class_declaration" }]
+  },
+  ".tsx": {
+    "nodes": [
+      {
+        "type": "call_expression",
+        "child": {
+          "field": "arguments",
+          "child": {
+            "type": "arrow_function"
+          }
+        }
+      },
+      {
+        "type": "export_statement",
+        "child": {
+          "type": "lexical_declaration"
+        }
+      },
+      {
+        "type": "lexical_declaration",
+        "child": {
+          "type": "variable_declarator",
+          "child": {
+            "type": "arrow_function"
+          }
+        }
+      },
+      {
+        "type": "method_definition"
+      },
+      {
+        "type": "function_declaration"
+      }
+    ],
+    "groups": [{ "type": "class_declaration" }]
+  }
+}

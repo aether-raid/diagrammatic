@@ -5,8 +5,7 @@ import TypeScript from "tree-sitter-typescript";
 import Python from "tree-sitter-python";
 
 import { Variable, Call, Group, Edge, GroupType } from "./model.js";
-import { TypeScriptAlgorithm } from "./typescript.js";
-import { PythonAlgorithm } from "./python.js";
+import { Language } from "./language.js";
 
 /**
  * Parse files in a folder and convert them to ASTs.
@@ -26,10 +25,10 @@ export function parseFilesToASTs(folderPath, skipParseErrors = true) {
       const filePath = path.join(folderPath, file);
 
       if (fs.statSync(filePath).isDirectory()) {
-        // If it's a directory, recurse into it
         const subdirectoryFiles = parseFilesToASTs(filePath, skipParseErrors);
         fileASTTrees.push(...subdirectoryFiles);
       } else if (fs.statSync(filePath).isFile()) {
+
         if (filePath.endsWith(".ts")) {
           parser.setLanguage(TypeScript.typescript);
         } else if (filePath.endsWith(".tsx")) {
@@ -370,19 +369,12 @@ export function getName(node) {
  * Given an AST for the entire file, generate a file group
  * complete with subgroups, nodes, etc.
  */
-export function makeFileGroup(node, filePath, fileName) {
-  let Language;
-  if (filePath.endsWith(".ts") || filePath.endsWith(".tsx")) {
-    Language = TypeScriptAlgorithm;
-  } else if (filePath.endsWith(".py")) {
-    Language = PythonAlgorithm;
-  }
-
+export function makeFileGroup(node, filePath, fileName, languageRules) {
   const {
     groups: subgroupTrees,
     nodes: nodeTrees,
     body,
-  } = Language.separateFile(node);
+  } = Language.separateNamespaces(node, languageRules);
   const fileGroup = new Group({
     groupType: GroupType.FILE,
     token: fileName,
@@ -390,7 +382,7 @@ export function makeFileGroup(node, filePath, fileName) {
     filePath,
   });
   for (const node of nodeTrees) {
-    const nodeList = Language.makeNodes(node, fileGroup);
+    const nodeList = Language.makeNodes(node, fileGroup, languageRules);
     for (const subnode of nodeList) {
       fileGroup.addNode(subnode);
     }
@@ -402,7 +394,11 @@ export function makeFileGroup(node, filePath, fileName) {
   }
 
   for (const subgroup of subgroupTrees) {
-    const newSubgroup = Language.makeClassGroup(subgroup, fileGroup);
+    const newSubgroup = Language.makeClassGroup(
+      subgroup,
+      fileGroup,
+      languageRules
+    );
     fileGroup.addSubgroup(newSubgroup);
   }
 
