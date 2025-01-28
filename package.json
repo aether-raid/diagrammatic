@@ -28,16 +28,15 @@
   "scripts": {
     "dev": "vite dev",
     "vscode:prepublish": "npm run compile",
+    "compile": "tsc",
     "pretest": "npm run compile && npm run lint",
     "test": "vscode-test",
     "lint": "eslint --config ./eslint.config.mjs src && eslint --config ./eslint.config.react.mjs webview-ui",
-
     "prebuild": "rimraf ./dist",
     "build:ext-no-alias": "tsc -b ./",
     "build:ext": "npm run build:ext-no-alias && tsc-alias -v",
     "build:react": "vite build",
     "build": "npm run build:react && npm run build:ext",
-
     "watch:tsc": "tsc -b -watch --preserveWatchOutput ./",
     "watch:tsc-alias": "tsc-alias --watch -v",
     "watch:react": "vite build --watch",
