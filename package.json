@@ -27,20 +27,17 @@
   },
   "scripts": {
     "dev": "vite dev",
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc",
-    
+    "vscode:prepublish": "npm run build",
     "pretest": "npm run build && npm run lint",
     "test": "vscode-test",
     "lint": "eslint --config ./eslint.config.mjs src && eslint --config ./eslint.config.react.mjs webview-ui",
-    
+
     "prebuild": "rimraf ./dist",
     "build:typecheck": "tsc -b ./ && tsc -b ./webview-ui",
     "build:ext": "node esbuild.js",
     "build:react": "vite build",
     "build": "npm run build:typecheck && npm run build:ext && npm run build:react",
-    "watch:tsc": "tsc -b -watch --preserveWatchOutput ./",
-    "watch:tsc-alias": "tsc-alias --watch -v",
+
     "watch:typecheck": "concurrently \"tsc -b --watch ./\" \"tsc -b --watch ./webview-ui\"",
     "watch:ext": "node esbuild.js --watch",
     "watch:react": "vite build --watch",
