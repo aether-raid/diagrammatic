@@ -45,7 +45,7 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
 
       output.push({
         id: fileGroup.token ?? "",
-        type: 'entity',
+        type: 'entity' as any,
         position: { x: 0, y: 0 },
         data: {
           entityName: fileGroup.token ?? "",
@@ -62,7 +62,7 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
       ]);
       output.push({
         id: subgroup.token ?? "",
-        type: 'entity',
+        type: 'entity' as any,
         position: { x: 0, y: 0 },
         data: {
           entityName: subgroup.token ?? "",
