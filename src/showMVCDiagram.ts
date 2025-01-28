@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 
-import { Commands, WebviewCommandMessage } from "@shared/message.types";
+import { Commands, JumpToLinePayload, WebviewCommandMessage } from "@shared/message.types";
 
 import { runCodeToDiagramAlgorithm } from "./runCodeToDiagramAlgorithm";
 import { NodeEdgeData } from "./extension.types";
@@ -19,10 +19,19 @@ const handleShowMVCDiagram = async (
 
   panel = setupWebviewPanel(context);
   const waitWebviewReady: Promise<void> = new Promise((resolve) => {
-    panel.webview.onDidReceiveMessage((message: WebviewCommandMessage) => {
+    panel.webview.onDidReceiveMessage(async (message: WebviewCommandMessage) => {
       switch (message.command) {
         case Commands.READY:
           resolve();
+          break;
+        case Commands.JUMP_TO_LINE:
+          const msg = message.message as JumpToLinePayload;
+          const fileUri = vscode.Uri.file(msg.filePath);
+          const position = new vscode.Position(msg.lineNumber-1, 0);
+          await vscode.commands.executeCommand('vscode.open', fileUri, {
+            selection: new vscode.Range(position, position),
+          });
+          break;
       }
     });
   });

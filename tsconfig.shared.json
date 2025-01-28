@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "emitDeclarationOnly": true,
         "composite": true,
         "rootDir": "./shared",
         "outDir": "./dist/extension/shared",
