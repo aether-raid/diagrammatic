@@ -2,11 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 
-import { Commands, WebviewCommandMessage } from "@shared/message.types";
-
 import handleShowMVCDiagram from "./showMVCDiagram";
-import { runCodeToDiagramAlgorithm } from "./runCodeToDiagramAlgorithm";
-import { NodeEdgeData } from "./extension.types";
 import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
 
 // This method is called when your extension is activated
