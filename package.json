@@ -29,9 +29,11 @@
     "dev": "vite dev",
     "vscode:prepublish": "npm run compile",
     "compile": "tsc",
-    "pretest": "npm run compile && npm run lint",
+    
+    "pretest": "npm run build && npm run lint",
     "test": "vscode-test",
     "lint": "eslint --config ./eslint.config.mjs src && eslint --config ./eslint.config.react.mjs webview-ui",
+    
     "prebuild": "rimraf ./dist",
     "build:typecheck": "tsc -b ./ && tsc -b ./webview-ui",
     "build:ext": "node esbuild.js",
