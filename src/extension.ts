@@ -42,7 +42,7 @@ export function activate(context: vscode.ExtensionContext) {
           nodes: [
             {
               id: "1",
-              type: "entity",
+              type: "entity" as any,
               position: { x: 0, y: 0 },
               data: {
                 entityName: "Cloud",

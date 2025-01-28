@@ -13,9 +13,10 @@ export const initialNodes: AppNode[] = [
     data: {
       entityName: 'Farm',
       entityType: 'file',
+      filePath: 'path/to/farm',
       items: [
-        { name: 'Planter' },
-        { name: 'Harvester' },
+        { name: 'Planter', lineNumber: 15 },
+        { name: 'Harvester', lineNumber: 45 },
       ]
     }
   },
@@ -26,10 +27,11 @@ export const initialNodes: AppNode[] = [
     data: {
       entityName: 'Planter',
       entityType: 'class',
+      filePath: 'path/to/planter',
       items: [
-        { name: 'plantPotato' },
-        { name: 'plantCorn' },
-        { name: 'plantCarrot' }
+        { name: 'plantPotato', lineNumber: 0 },
+        { name: 'plantCorn', lineNumber: 20 },
+        { name: 'plantCarrot', lineNumber: 40 }
       ]
     }
   },
@@ -40,10 +42,11 @@ export const initialNodes: AppNode[] = [
     data: {
       entityName: 'Harvester',
       entityType: 'class',
+      filePath: 'path/to/harvester',
       items: [
-        { name: 'harvestPotato' },
-        { name: 'harvestCorn' },
-        { name: 'harvestCarrot' }
+        { name: 'harvestPotato', lineNumber: 0 },
+        { name: 'harvestCorn', lineNumber: 20 },
+        { name: 'harvestCarrot', lineNumber: 40 }
       ]
     }
   },
@@ -54,8 +57,9 @@ export const initialNodes: AppNode[] = [
     data: {
       entityName: 'Grocer',
       entityType: 'file',
+      filePath: 'path/to/grocer',
       items: [
-        { name: 'sellProduct' }
+        { name: 'sellProduct', lineNumber: 0 }
       ]
     }
   },
@@ -66,9 +70,10 @@ export const initialNodes: AppNode[] = [
     data: {
       entityName: 'Customer',
       entityType: 'file',
+      filePath: 'path/to/customer',
       items: [
-        { name: 'consumePotato' },
-        { name: 'consumeCorn' }
+        { name: 'consumePotato', lineNumber: 15 },
+        { name: 'consumeCorn', lineNumber: 36 }
       ]
     }
   },
@@ -79,10 +84,11 @@ export const initialNodes: AppNode[] = [
     data: {
       entityName: 'Gift',
       entityType: 'file',
+      filePath: 'path/to/gift',
       items: [
-        { name: 'givePotato' },
-        { name: 'giveCorn' },
-        { name: 'cookAndGiveDish' }
+        { name: 'givePotato', lineNumber: 0 },
+        { name: 'giveCorn', lineNumber: 32 },
+        { name: 'cookAndGiveDish', lineNumber: 77 }
       ]
     }
   }

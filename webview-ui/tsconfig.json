@@ -4,6 +4,9 @@
       "@shared/*": ["../shared/*"]
     },
 
+    "noEmit": true,
+    "outDir": "./dist/webview",
+
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
@@ -22,5 +25,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
   },
-  "include": ["./", "../shared"],
+  "references": [
+    { "path": "../tsconfig.shared.json" },
+  ]
 }

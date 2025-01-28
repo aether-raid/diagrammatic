@@ -3,6 +3,7 @@ import { NodeRow } from "./app.types";
 
 interface EntityItem {
   name: string;
+  lineNumber?: number;
 }
 
 interface HighlightableEntityItem extends EntityItem {
@@ -17,7 +18,6 @@ export type EntityNode = Node<{
 
   setHoveredEntity?: React.Dispatch<React.SetStateAction<NodeRow | undefined>>
   filePath?: string;
-  lineNumber?: number;
 }, 'entity'>;
 
 export type TextUpdaterNode = Node<{}, 'textUpdater'>;

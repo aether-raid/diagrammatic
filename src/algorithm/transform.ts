@@ -54,7 +54,6 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
             entityName: fileGroup.token ?? "",
             entityType: "file",
             filePath: fileGroup.filePath ?? "",
-            lineNumber: 0,
             items: fileGroupNodes,
           },
         });
@@ -73,7 +72,6 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
             entityName: subgroup.token ?? "",
             entityType: "class",
             filePath: fileGroup.filePath ?? "",
-            lineNumber: subgroup.lineNumber ?? 0,
             items: subgroupNodes,
           },
         });

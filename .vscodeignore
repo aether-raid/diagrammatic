@@ -1,11 +1,34 @@
 .vscode/**
 .vscode-test/**
-src/**
 .gitignore
 .yarnrc
 vsc-extension-quickstart.md
-**/tsconfig.json
-**/eslint.config.mjs
 **/*.map
 **/*.ts
 **/.vscode-test.*
+
+# Source files
+src/**
+webview-ui/**
+algorithm/**
+
+# tsconfig
+**/tsconfig.json
+**/tsconfig.shared.json
+
+# node_modules
+node_modules/**
+!node_modules/node-gyp-build
+!node_modules/tree-sitter
+!node_modules/tree-sitter-javascript
+!node_modules/tree-sitter-typescript
+
+# eslint
+**/eslint.config.mjs
+**/eslint.config.react.mjs
+
+# esbuild
+esbuild.js
+
+# webview entrypoint
+index.html
