@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Handle, NodeProps, Position } from "@xyflow/react";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 import { EntityNodeItem } from "./EntityNodeItem";
 import { type EntityNode } from "@shared/node.types";
@@ -20,7 +22,18 @@ export function EntityNode ({ id, data }: NodeProps<EntityNode>) {
 
   return (
     <div className='custom__node entity-node'>
-      <p className={`p-2 fw-bold rounded-top entity__${data.entityType}`}>{ data.entityName }</p>
+      <OverlayTrigger
+        overlay={
+          <Tooltip>
+            { data.filePath }
+          </Tooltip>
+        }
+      >
+        <div className={`p-2 fw-bold rounded-top entity__${data.entityType}`}>
+          <p className={'fs-7 fw-light'}>{ data.entityType }</p>
+          <p>{ data.entityName }</p>
+        </div>
+      </OverlayTrigger>
       <table className='w-100'>
         <tbody>
           {data.items.map(item => <EntityNodeItem
