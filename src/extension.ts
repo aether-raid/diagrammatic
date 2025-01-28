@@ -14,11 +14,11 @@ import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
 export function activate(context: vscode.ExtensionContext) {
   let currentPanel: vscode.WebviewPanel | undefined = undefined;
 
-    const enterFilePathCommand = vscode.commands.registerCommand(
-      "diagrammatic.enterFilePath",
+    const showMVCDiagram = vscode.commands.registerCommand(
+      "diagrammatic.showMVCDiagram",
       async () => {
         const filePath = await vscode.window.showInputBox({
-          prompt: "Enter the file path:",
+          prompt: "Enter your repository file path:",
           placeHolder: "/path/to/your/file.ts",
           ignoreFocusOut: true,
           validateInput: (text) => {
@@ -27,29 +27,40 @@ export function activate(context: vscode.ExtensionContext) {
         });
   
         if (filePath) {
-          vscode.window.showInformationMessage(`File path entered: ${filePath}`);
+          vscode.window.showInformationMessage(`Parsing file path: ${filePath}`);
   
-          // handleFilePath(filePath);
+          try {
+            currentPanel = await handleShowMVCDiagram(context, currentPanel, filePath);
+            currentPanel.onDidDispose(
+              () => {
+                currentPanel = undefined;
+              },
+              null,
+              context.subscriptions
+            );
+          } catch (error) {
+            vscode.window.showErrorMessage(`Error running algorithm: ${error}`);
+          }        
         }
       }
     );
   
-    context.subscriptions.push(enterFilePathCommand);
+    context.subscriptions.push(showMVCDiagram);
 
-  const showMVCDiagram = vscode.commands.registerCommand(
-    "diagrammatic.showMVCDiagram",
-    async () => {
-      currentPanel = await handleShowMVCDiagram(context, currentPanel);
-      currentPanel.onDidDispose(
-        () => {
-          currentPanel = undefined;
-        },
-        null,
-        context.subscriptions
-      );
-    }
-  );
-  context.subscriptions.push(showMVCDiagram);
+  // const showMVCDiagram = vscode.commands.registerCommand(
+  //   "diagrammatic.showMVCDiagram",
+  //   async () => {
+  //     currentPanel = await handleShowMVCDiagram(context, currentPanel);
+  //     currentPanel.onDidDispose(
+  //       () => {
+  //         currentPanel = undefined;
+  //       },
+  //       null,
+  //       context.subscriptions
+  //     );
+  //   }
+  // );
+  // context.subscriptions.push(showMVCDiagram);
 
   const testMsg = vscode.commands.registerCommand(
     "diagrammatic.testMsg",

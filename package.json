@@ -22,6 +22,11 @@
         "command": "diagrammatic.testMsg",
         "title": "Test Msg",
         "category": "Diagrammatic"
+      },
+      {
+        "command": "diagrammatic.enterFilePath",
+        "title": "Enter File Path for Parsing",
+        "category": "Diagrammatic"
       }
     ]
   },
