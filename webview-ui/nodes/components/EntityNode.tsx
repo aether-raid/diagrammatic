@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Handle, NodeProps, Position } from "@xyflow/react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
+import Popover from "react-bootstrap/Popover";
 
 import { EntityNodeItem } from "./EntityNodeItem";
 import { type EntityNode } from "@shared/node.types";
@@ -24,9 +24,12 @@ export function EntityNode ({ id, data }: NodeProps<EntityNode>) {
     <div className='custom__node entity-node'>
       <OverlayTrigger
         overlay={
-          <Tooltip>
-            { data.filePath }
-          </Tooltip>
+          <Popover>
+            <Popover.Header className="px-3">{ data.filePath }</Popover.Header>
+            <Popover.Body className="py-2 px-3">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </Popover.Body>
+          </Popover>
         }
       >
         <div className={`p-2 fw-bold rounded-top entity__${data.entityType}`}>
