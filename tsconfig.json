@@ -5,8 +5,6 @@
     },
 
     "noEmit": true,
-    "outDir": "./dist/extension",
-
     "module": "Node16",
     "target": "ES2022",
     "lib": [
@@ -14,6 +12,7 @@
     ],
     "sourceMap": true,
     "rootDir": "./src",
+    "outDir": "./dist/extension",
     "strict": true,   /* enable all strict type-checking options */
     /* Additional Checks */
     // "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
@@ -21,6 +20,7 @@
     // "noUnusedParameters": true,  /* Report errors on unused parameters. */
     "skipLibCheck": true,
   },
+  "include": ["src/**/*", "shared/**/*"],
   "exclude": ["./webview-ui", "./shared", "./node_modules", "./vite.config.ts", "./dist"],
   "references": [
     { "path": "./tsconfig.shared.json" }
