@@ -77,6 +77,7 @@ export class TypeScriptAlgorithm {
       token: getName(node),
       lineNumber: getLineNumber(node),
       parent,
+      filePath: ""
     });
 
     for (const node of nodeTrees) {

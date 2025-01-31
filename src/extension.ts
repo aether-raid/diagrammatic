@@ -8,6 +8,7 @@ import handleShowMVCDiagram from "./showMVCDiagram";
 import { runCodeToDiagramAlgorithm } from "./runCodeToDiagramAlgorithm";
 import { NodeEdgeData } from "./extension.types";
 import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
+import { lintActiveFile } from "./code-quality/linting";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -61,6 +62,10 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
   context.subscriptions.push(testMsg);
+
+  const code_qa = vscode.commands.registerCommand('diagrammatic.codeQa', lintActiveFile);
+  context.subscriptions.push(code_qa);
+
 }
 
 // This method is called when your extension is deactivated

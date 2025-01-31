@@ -10,7 +10,7 @@ import { Tree } from "tree-sitter";
 
 export const runCodeToDiagramAlgorithm = (): NodeEdgeData => {
   const astTrees = parseFilesToASTs(
-    "/Users/sharlenetio/Desktop/nestjs-realworld-example-app/src/article",
+    "C:/Users/bruce/SMU-work/y3/fyp/models/datasets/codebases/nestjs-realworld-example-app/src/article",
     true
   );
 
