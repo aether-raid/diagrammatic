@@ -72,6 +72,8 @@
     "@xyflow/react": "^12.3.6",
     "bootstrap": "^5.3.3",
     "eslint": "^9.19.0",
+    "eslint-plugin-security": "^3.0.1",
+    "eslint-plugin-sonarjs": "^3.0.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.7",
     "react-dom": "^18.2.0",
