@@ -4,10 +4,10 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 
 import { EntityNodeItem } from "./EntityNodeItem";
-import { type EntityNode } from "@shared/node.types";
+import { type EntityNode as EntityNodeType } from "@shared/node.types";
 
 
-export function EntityNode ({ id, data }: NodeProps<EntityNode>) {
+export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
   const [hoveredRow, setHoveredRow] = useState<string|undefined>('');
 
   useEffect(() => {

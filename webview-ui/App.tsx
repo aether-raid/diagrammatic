@@ -52,6 +52,7 @@ const getLayoutedElements = (nodes: AppNode[], edges: AppEdge[], options: Option
 }
 
 const LayoutFlow = () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const vscode = useRef<any>(null);
 
     const { fitView, getNode } = useReactFlow<AppNode, AppEdge>();
@@ -68,11 +69,12 @@ const LayoutFlow = () => {
 
             // TODO: Refactor this into a non switch-case if possible
             switch (command) {
-              case Commands.ACCEPT_NODE_EDGE_DATA:
+              case Commands.ACCEPT_NODE_EDGE_DATA: {
                 const msg = message as AcceptNodeEdgeDataPayload;
                 setNodes(msg.nodes);
                 setEdges(msg.edges);
                 break;
+              }
             }
         };
 
@@ -81,7 +83,6 @@ const LayoutFlow = () => {
         // Send message to inform extension that webview is ready to receive data.
         if (!vscode.current) {
             try {
-                // @ts-ignore: Expected, part of native VSCode API.
                 initVsCodeApi();
                 sendReadyMessageToExtension();
             } catch (error) {
@@ -124,7 +125,7 @@ const LayoutFlow = () => {
 
       const entityRepr = `${hoveredEntity.nodeId}-${hoveredEntity.rowId}`;
       setHighlightedNodes([entityRepr, ...toHighlight.entities]);
-    }, [hoveredEntity]);
+    }, [hoveredEntity, edges]);
 
     const prepareNode = (node: AppNode) => (node.type !== 'entity' ? node : {
       ...node,
