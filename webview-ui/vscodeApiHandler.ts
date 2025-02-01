@@ -9,7 +9,7 @@ export const initVsCodeApi = () => {
   return vscode;
 }
 
-export const sendReadyMessageToExtension = (vscode: any) => {
+export const sendReadyMessageToExtension = () => {
   const payload: ReadyPayload = {};
   vscode.postMessage({
     command: Commands.READY,
