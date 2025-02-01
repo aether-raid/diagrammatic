@@ -23,6 +23,8 @@ node_modules/**
 !node_modules/tree-sitter-javascript
 !node_modules/tree-sitter-typescript
 !node_modules/tree-sitter-python
+!node_modules/tree-sitter-java
+!node_modules/tree-sitter-cpp
 
 # eslint
 **/eslint.config.mjs

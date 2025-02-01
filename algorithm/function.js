@@ -3,6 +3,8 @@ import path from "path";
 import Parser from "tree-sitter";
 import TypeScript from "tree-sitter-typescript";
 import Python from "tree-sitter-python";
+import Java from "tree-sitter-java";
+import Cpp from "tree-sitter-cpp";
 
 import { Variable, Call, Group, Edge, GroupType } from "./model.js";
 import { Language } from "./language.js";
@@ -28,15 +30,18 @@ export function parseFilesToASTs(folderPath, skipParseErrors = true) {
         const subdirectoryFiles = parseFilesToASTs(filePath, skipParseErrors);
         fileASTTrees.push(...subdirectoryFiles);
       } else if (fs.statSync(filePath).isFile()) {
-
         if (filePath.endsWith(".ts")) {
           parser.setLanguage(TypeScript.typescript);
         } else if (filePath.endsWith(".tsx")) {
           parser.setLanguage(TypeScript.tsx);
         } else if (filePath.endsWith(".py")) {
           parser.setLanguage(Python);
+        } else if (filePath.endsWith(".java")) {
+          parser.setLanguage(Java);
+        } else if (filePath.endsWith(".cpp")) {
+          parser.setLanguage(Cpp);
         } else {
-          return [];
+          continue;
         }
 
         try {
@@ -146,6 +151,14 @@ export function processCallExpression(node) {
           token: propertyName,
           ownerToken: funcName,
           lineNumber: getLineNumber(node),
+        });
+      }
+    case "field_expression":
+      const identifier = getFirstChildOfType(func, "identifier");
+      if (identifier) {
+        return new Call({
+          token: identifier.text,
+          ownerToken: getFirstChildOfType(func, "field_identifier")?.text,
         });
       }
   }
@@ -334,35 +347,58 @@ export function getLineNumber(node) {
   return node.startPosition?.row + 1; // change to 1 index
 }
 
-export function getName(node) {
-  switch (node.type) {
-    case "export_statement":
-      const lexicalDeclaration = getFirstChildOfType(
-        node,
-        "lexical_declaration"
-      );
-      if (!lexicalDeclaration) {
-        break;
-      }
-      return getName(lexicalDeclaration);
-    case "lexical_declaration":
-      const variableDeclaration = getFirstChildOfType(
-        node,
-        "variable_declarator"
-      );
-      if (!variableDeclaration) {
-        break;
-      }
-      const identifier = variableDeclaration.childForFieldName("name");
-      return identifier?.text ?? null;
-    case "call_expression":
-      const member_expression = getFirstChildOfType(node, "member_expression");
-      if (!member_expression) {
-        break;
-      }
-      return member_expression.text;
+/**
+ * Extracts the name of a node based on configurable rules.
+ *
+ * - "childType" → Defines which child node to extract.
+ * - "delegate" → If true, recursively calls getName on the child node.
+ * - "fieldName" → Extracts text from a specific field within the child node.
+ * - "useText" → Uses the .text property directly if no specific field is needed.
+ * - "fallbackFields" → Specifies alternative field names to check if no rule matches.
+ *
+ * @param {SyntaxNode} node - The AST node to extract the name from.
+ * @param {Record<string, any>} getNameRules - Configuration defining node extraction rules
+ * @returns {string | null} - The extracted name or null if no match is found.
+ */
+export function getName(node, getNameRules) {
+  if (!getNameRules) {
+    throw new Error("getName rules not defined in JSON file!");
   }
-  return node.childForFieldName("name")?.text ?? null;
+  const nodeTypeConfig = getNameRules[node.type];
+
+  if (nodeTypeConfig) {
+    const child = getFirstChildOfType(node, nodeTypeConfig.childType);
+
+    if (!child) {
+      return null;
+    }
+
+    if (nodeTypeConfig.delegate) {
+      return getName(child, getNameRules);
+    }
+
+    if (nodeTypeConfig.useText) {
+      return child.text;
+    }
+
+    if (nodeTypeConfig.fieldName) {
+      return child.childForFieldName(nodeTypeConfig.fieldName)?.text ?? null;
+    }
+  }
+
+  for (const field of getNameRules.fallbackFields) {
+    const fieldText = node.childForFieldName(field)?.text;
+    if (fieldText) {
+      return fieldText;
+    }
+
+    const firstChild = getFirstChildOfType(node, field);
+    if (firstChild?.text) {
+      return firstChild.text;
+    }
+  }
+
+  return null;
 }
 
 /**

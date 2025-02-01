@@ -8,10 +8,22 @@ export type Rule = {
   child?: Rule;
 };
 
+export type NodeConfig = {
+  childType?: string;  
+  delegate?: boolean;  
+  fieldName?: string;  
+  useText?: boolean;   
+};
+
+export type getNameConfig = {
+  fallbackFields: string[];  
+} & Record<string, NodeConfig>; 
+
 export type LanguageRules = {
-  nodes: Rule[],
-  groups: Rule[]
-}
+  nodes: Rule[];
+  groups: Rule[];
+  getName: getNameConfig;
+};
 
 export class RuleEngine {
   static loadRules(filePath: string) {

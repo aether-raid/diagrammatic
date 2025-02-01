@@ -62,7 +62,7 @@ export class Language {
    * Generate all of the nodes internal to the group.
    */
   static makeClassGroup(
-    node: SyntaxNode,
+    tree: SyntaxNode,
     parent: Group,
     languageRules: LanguageRules
   ) {
@@ -70,11 +70,11 @@ export class Language {
       groups,
       nodes: nodeTrees,
       body,
-    } = this.separateNamespaces(node, languageRules);
+    } = this.separateNamespaces(tree, languageRules);
     const classGroup = new Group({
       groupType: GroupType.CLASS,
-      token: getName(node),
-      lineNumber: getLineNumber(node),
+      token: getName(tree, languageRules.getName),
+      lineNumber: getLineNumber(tree),
       parent,
     });
 
@@ -97,7 +97,7 @@ export class Language {
     languageRules: LanguageRules
   ): Node[] {
     const { nodes, body } = this.separateNamespaces(tree, languageRules);
-    const token = getName(tree);
+    const token = getName(tree, languageRules.getName);
     const calls = makeCalls(body);
     const variables = makeLocalVariables(body, parent);
 

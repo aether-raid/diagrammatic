@@ -6,8 +6,10 @@ import {
   getLineNumber,
   getAllChildrenOfType,
   processConstructorRequiredParameter,
+  getFirstChildOfType,
 } from "./function.js";
 import { RuleEngine } from "./rules.js";
+import { visualizeAST } from "./temp.js";
 
 export class Language {
   /**
@@ -53,16 +55,16 @@ export class Language {
    * Given an AST for the subgroup (a class), generate that subgroup.
    * Generate all of the nodes internal to the group.
    */
-  static makeClassGroup(node, parent, languageRules) {
+  static makeClassGroup(tree, parent, languageRules) {
     const {
       groups,
       nodes: nodeTrees,
       body,
-    } = this.separateNamespaces(node, languageRules);
+    } = this.separateNamespaces(tree, languageRules);
     const classGroup = new Group({
       groupType: GroupType.CLASS,
-      token: getName(node),
-      lineNumber: getLineNumber(node),
+      token: getName(tree, languageRules.getName),
+      lineNumber: getLineNumber(tree),
       parent,
     });
 
@@ -81,7 +83,7 @@ export class Language {
    */
   static makeNodes(tree, parent, languageRules) {
     const { nodes, body } = this.separateNamespaces(tree, languageRules);
-    const token = getName(tree);
+    const token = getName(tree, languageRules.getName);
     const calls = makeCalls(body);
     const variables = makeLocalVariables(body, parent);
 
@@ -116,7 +118,9 @@ export class Language {
       lineNumber: getLineNumber(tree),
       parent,
     });
-    const subnodes = nodes.flatMap((t) => this.makeNodes(t, node, languageRules));
+    const subnodes = nodes.flatMap((t) =>
+      this.makeNodes(t, node, languageRules)
+    );
     return [node, ...subnodes];
   }
 

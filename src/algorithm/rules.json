@@ -1,4 +1,42 @@
 {
+  ".cpp": {
+    "nodes": [
+      {
+        "type": "function_declarator"
+      }
+    ],
+    "groups": [
+      {
+        "type": "class_specifier"
+      }
+    ],
+    "getName": {
+      "call_expression": {
+        "childType": "member_expression",
+        "useText": true
+      },
+      "fallbackFields": ["name", "identifier", "field_identifier"]
+    }
+  },
+  ".java": {
+    "nodes": [
+      {
+        "type": "method_declaration"
+      }
+    ],
+    "groups": [
+      {
+        "type": "class_declaration"
+      }
+    ],
+    "getName": {
+      "call_expression": {
+        "childType": "member_expression",
+        "useText": true
+      },
+      "fallbackFields": ["name", "identifier", "field_identifier"]
+    }
+  },
   ".py": {
     "nodes": [
       {
@@ -9,7 +47,14 @@
       {
         "type": "class_definition"
       }
-    ]
+    ],
+    "getName": {
+      "call_expression": {
+        "childType": "member_expression",
+        "useText": true
+      },
+      "fallbackFields": ["name", "identifier", "field_identifier"]
+    }
   },
   ".ts": {
     "nodes": [
@@ -44,7 +89,22 @@
         "type": "function_declaration"
       }
     ],
-    "groups": [{ "type": "class_declaration" }]
+    "groups": [{ "type": "class_declaration" }],
+    "getName": {
+      "export_statement": {
+        "childType": "lexical_declaration",
+        "delegate": true
+      },
+      "lexical_declaration": {
+        "childType": "variable_declarator",
+        "fieldName": "name"
+      },
+      "call_expression": {
+        "childType": "member_expression",
+        "useText": true
+      },
+      "fallbackFields": ["name", "identifier"]
+    }
   },
   ".tsx": {
     "nodes": [
@@ -79,6 +139,21 @@
         "type": "function_declaration"
       }
     ],
-    "groups": [{ "type": "class_declaration" }]
+    "groups": [{ "type": "class_declaration" }],
+    "getName": {
+      "export_statement": {
+        "childType": "lexical_declaration",
+        "delegate": true
+      },
+      "lexical_declaration": {
+        "childType": "variable_declarator",
+        "fieldName": "name"
+      },
+      "call_expression": {
+        "childType": "member_expression",
+        "useText": true
+      },
+      "fallbackFields": ["name", "identifier"]
+    }
   }
 }
