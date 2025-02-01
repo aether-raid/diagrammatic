@@ -2,11 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 
-import { Commands, WebviewCommandMessage } from "@shared/message.types";
-
 import handleShowMVCDiagram from "./showMVCDiagram";
-import { runCodeToDiagramAlgorithm } from "./runCodeToDiagramAlgorithm";
-import { NodeEdgeData } from "./extension.types";
 import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
 
 // This method is called when your extension is activated
@@ -14,20 +10,53 @@ import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
 export function activate(context: vscode.ExtensionContext) {
   let currentPanel: vscode.WebviewPanel | undefined = undefined;
 
-  const showMVCDiagram = vscode.commands.registerCommand(
-    "diagrammatic.showMVCDiagram",
-    async () => {
-      currentPanel = await handleShowMVCDiagram(context, currentPanel);
-      currentPanel.onDidDispose(
-        () => {
-          currentPanel = undefined;
-        },
-        null,
-        context.subscriptions
-      );
-    }
-  );
-  context.subscriptions.push(showMVCDiagram);
+    const showMVCDiagram = vscode.commands.registerCommand(
+      "diagrammatic.showMVCDiagram",
+      async () => {
+        const filePath = await vscode.window.showInputBox({
+          prompt: "Enter your repository file path:",
+          placeHolder: "/path/to/your/file.ts",
+          ignoreFocusOut: true,
+          validateInput: (text) => {
+            return text.trim() ? null : "File path cannot be empty.";
+          },
+        });
+  
+        if (filePath) {
+          vscode.window.showInformationMessage(`Parsing file path: ${filePath}`);
+  
+          try {
+            currentPanel = await handleShowMVCDiagram(context, currentPanel, filePath);
+            currentPanel.onDidDispose(
+              () => {
+                currentPanel = undefined;
+              },
+              null,
+              context.subscriptions
+            );
+          } catch (error) {
+            vscode.window.showErrorMessage(`Error running algorithm: ${error}`);
+          }        
+        }
+      }
+    );
+  
+    context.subscriptions.push(showMVCDiagram);
+
+  // const showMVCDiagram = vscode.commands.registerCommand(
+  //   "diagrammatic.showMVCDiagram",
+  //   async () => {
+  //     currentPanel = await handleShowMVCDiagram(context, currentPanel);
+  //     currentPanel.onDidDispose(
+  //       () => {
+  //         currentPanel = undefined;
+  //       },
+  //       null,
+  //       context.subscriptions
+  //     );
+  //   }
+  // );
+  // context.subscriptions.push(showMVCDiagram);
 
   const testMsg = vscode.commands.registerCommand(
     "diagrammatic.testMsg",

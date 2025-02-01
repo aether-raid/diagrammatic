@@ -10,12 +10,13 @@ import { Tree } from "tree-sitter";
 import { RuleEngine } from "./algorithm/rules.js";
 import path from "path";
 
-export const runCodeToDiagramAlgorithm = (): NodeEdgeData => {
-  const rules = RuleEngine.loadRules("/Users/sharlenetio/Desktop/fyp/diagrammatic/src/algorithm/rules.json");
-  const astTrees = parseFilesToASTs(
-    "/Users/sharlenetio/Desktop/fyp/samples/node-express-realworld-example-app/src/app/routes/article",
-    true
+export const runCodeToDiagramAlgorithm = (
+  directoryPath: string
+): NodeEdgeData => {
+  const rules = RuleEngine.loadRules(
+    "/Users/sharlenetio/Desktop/fyp/diagrammatic/src/algorithm/rules.json"
   );
+  const astTrees = parseFilesToASTs(directoryPath, true);
 
   const fileGroups: Group[] = [];
   astTrees.forEach(([filePath, fileName, ast]: [string, string, Tree]) => {

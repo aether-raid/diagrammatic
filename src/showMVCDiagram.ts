@@ -8,14 +8,15 @@ import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
 
 const handleShowMVCDiagram = async (
   context: vscode.ExtensionContext,
-  panel: vscode.WebviewPanel | undefined
+  panel: vscode.WebviewPanel | undefined,
+  filePath: string
 ): Promise<vscode.WebviewPanel> => {
   if (panel) {
     panel.reveal();
     return Promise.resolve(panel);
   }
 
-  let nodeEdgeData: NodeEdgeData = runCodeToDiagramAlgorithm();
+  let nodeEdgeData: NodeEdgeData = runCodeToDiagramAlgorithm(filePath);
 
   panel = setupWebviewPanel(context);
   const waitWebviewReady: Promise<void> = new Promise((resolve) => {
