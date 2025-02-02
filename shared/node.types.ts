@@ -17,6 +17,7 @@ export type EntityNode = Node<{
   items: HighlightableEntityItem[];
 
   setHoveredEntity?: React.Dispatch<React.SetStateAction<NodeRow | undefined>>
+  description?: string;
   filePath?: string;
 }, 'entity'>;
 

@@ -5,3 +5,7 @@ export interface NodeEdgeData {
   nodes: AppNode[];
   edges: AppEdge[];
 }
+
+export interface NodeDescriptionData {
+  [nodeId: string]: string
+}
