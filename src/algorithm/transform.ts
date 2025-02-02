@@ -1,6 +1,10 @@
+import { MarkerType } from "@xyflow/react";
+
 import { AppNode } from "@shared/node.types";
-import { Node, Group, Edge } from "./model";
 import { AppEdge } from "@shared/edge.types";
+
+import { Node, Group, Edge } from "./model";
+
 
 /**
  * Transform list of edges to a format suitable for ReactFlow
@@ -17,7 +21,7 @@ export function transformEdges(allEdges: Edge[]): AppEdge[] {
         target: edge.target.parent.token ?? "",
         sourceHandle: edge.source.token,
         targetHandle: edge.target.token,
-        animated: true,
+        markerEnd: { type: MarkerType.ArrowClosed },
       });
     } else if (edge.target instanceof Group) {
       output.push({
@@ -25,7 +29,7 @@ export function transformEdges(allEdges: Edge[]): AppEdge[] {
         source: edge.source.parent?.token ?? "",
         target: edge.target.token ?? "",
         sourceHandle: edge.source.token,
-        animated: true,
+        markerEnd: { type: MarkerType.ArrowClosed }
       });
     }
   }
