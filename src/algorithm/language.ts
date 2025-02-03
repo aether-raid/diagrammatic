@@ -99,7 +99,7 @@ export class Language {
     const { nodes, body } = this.separateNamespaces(tree, languageRules);
     const token = getName(tree, languageRules.getName);
     const calls = makeCalls(body);
-    const variables = makeLocalVariables(body, parent);
+    const variables = makeLocalVariables(body, parent, languageRules);
 
     /**
      * For NestJS, convert constructor arguments to variables.
@@ -138,11 +138,11 @@ export class Language {
     return [node, ...subnodes];
   }
 
-  static makeRootNode(body: SyntaxNode[], parent: Group): Node {
+  static makeRootNode(body: SyntaxNode[], parent: Group, languageRules: LanguageRules): Node {
     return new Node({
       token: "(global)",
       calls: makeCalls(body),
-      variables: makeLocalVariables(body, parent),
+      variables: makeLocalVariables(body, parent, languageRules),
       lineNumber: 0,
       parent,
     });

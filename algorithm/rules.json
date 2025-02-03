@@ -2,7 +2,7 @@
   ".cpp": {
     "nodes": [
       {
-        "type": "function_declarator"
+        "type": "function_definition"
       }
     ],
     "groups": [
@@ -11,6 +11,10 @@
       }
     ],
     "getName": {
+      "function_definition": {
+        "childType": "function_declarator",
+        "delegate": true
+      },
       "call_expression": {
         "childType": "member_expression",
         "useText": true

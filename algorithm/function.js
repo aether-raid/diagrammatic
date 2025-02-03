@@ -153,12 +153,13 @@ export function processCallExpression(node) {
           lineNumber: getLineNumber(node),
         });
       }
+    // for C++
     case "field_expression":
       const identifier = getFirstChildOfType(func, "identifier");
       if (identifier) {
         return new Call({
-          token: identifier.text,
-          ownerToken: getFirstChildOfType(func, "field_identifier")?.text,
+          token: getFirstChildOfType(func, "field_identifier")?.text,
+          ownerToken: identifier.text,
         });
       }
   }
@@ -235,7 +236,7 @@ export function processVariableDeclaration(node) {
   return null;
 }
 
-export function makeLocalVariables(tree, parent) {
+export function makeLocalVariables(tree, parent, languageRules) {
   let variables = [];
 
   for (const node of walk(tree)) {
@@ -244,6 +245,40 @@ export function makeLocalVariables(tree, parent) {
         const result = processVariableDeclaration(node);
         if (result) {
           variables.push(result);
+        }
+      // A a;
+      // a.callB();
+      case "declaration":
+        const typeIdentifier = getFirstChildOfType(node, "type_identifier");
+        const identifier = getFirstChildOfType(node, "identifier");
+        if (typeIdentifier && identifier) {
+          variables.push(
+            new Variable(
+              identifier.text,
+              typeIdentifier.text,
+              getLineNumber(node)
+            )
+          );
+        }
+      case "import_statement":
+        const importClause = getFirstChildOfType(node, "import_clause");
+        const namedImports = getFirstChildOfType(importClause, "named_imports");
+        const importSpecifiers = getAllChildrenOfType(
+          namedImports,
+          "import_specifier"
+        );
+        const string = getFirstChildOfType(node, "string");
+        const stringFragment = getFirstChildOfType(string, "string_fragment");
+        if (stringFragment) {
+          for (const importSpecifier of importSpecifiers) {
+            const name = getName(importSpecifier, languageRules.getName);
+            const pointsTo = getName(stringFragment, languageRules.getName);
+            if (name && pointsTo) {
+              variables.push(
+                new Variable(name, pointsTo, getLineNumber(importSpecifier))
+              );
+            }
+          }
         }
     }
   }
@@ -334,6 +369,9 @@ export function getFirstChildOfType(node, target) {
 }
 
 export function getAllChildrenOfType(node, target) {
+  if (!node) {
+    return [];
+  }
   const ret = [];
   for (let i = 0; i < node.childCount; i++) {
     if (node.child(i)?.type === target) {
@@ -398,7 +436,7 @@ export function getName(node, getNameRules) {
     }
   }
 
-  return null;
+  return node.text ?? null;
 }
 
 /**
@@ -424,7 +462,7 @@ export function makeFileGroup(node, filePath, fileName, languageRules) {
     }
   }
 
-  const rootNode = Language.makeRootNode(body, fileGroup);
+  const rootNode = Language.makeRootNode(body, fileGroup, languageRules);
   if (rootNode) {
     fileGroup.addNode(rootNode, true);
   }

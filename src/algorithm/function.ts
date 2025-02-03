@@ -160,12 +160,14 @@ export function processCallExpression(node: SyntaxNode): Call | null {
           lineNumber: getLineNumber(node),
         });
       }
+    // for C++
     case "field_expression":
       const identifier = getFirstChildOfType(func, "identifier");
-      if (identifier) {
+      const fieldIdentifier = getFirstChildOfType(func, "field_identifier");
+      if (identifier && fieldIdentifier) {
         return new Call({
-          token: identifier.text,
-          ownerToken: getFirstChildOfType(func, "field_identifier")?.text,
+          token: fieldIdentifier.text,
+          ownerToken: identifier.text,
         });
       }
   }
@@ -242,7 +244,11 @@ export function processVariableDeclaration(node: SyntaxNode): Variable | null {
   return null;
 }
 
-export function makeLocalVariables(tree: SyntaxNode[], parent: Node | Group) {
+export function makeLocalVariables(
+  tree: SyntaxNode[],
+  parent: Node | Group,
+  languageRules: LanguageRules
+) {
   let variables: Variable[] = [];
 
   for (const node of walk(tree)) {
@@ -251,6 +257,40 @@ export function makeLocalVariables(tree: SyntaxNode[], parent: Node | Group) {
         const result = processVariableDeclaration(node);
         if (result) {
           variables.push(result);
+        }
+      // A a;
+      // a.callB();
+      case "declaration":
+        const typeIdentifier = getFirstChildOfType(node, "type_identifier");
+        const identifier = getFirstChildOfType(node, "identifier");
+        if (typeIdentifier && identifier) {
+          variables.push(
+            new Variable(
+              identifier.text,
+              typeIdentifier.text,
+              getLineNumber(node)
+            )
+          );
+        }
+      case "import_statement":
+        const importClause = getFirstChildOfType(node, "import_clause");
+        const namedImports = getFirstChildOfType(importClause, "named_imports");
+        const importSpecifiers = getAllChildrenOfType(
+          namedImports,
+          "import_specifier"
+        );
+        const string = getFirstChildOfType(node, "string");
+        const stringFragment = getFirstChildOfType(string, "string_fragment");
+        if (stringFragment) {
+          for (const importSpecifier of importSpecifiers) {
+            const name = getName(importSpecifier, languageRules.getName);
+            const pointsTo = getName(stringFragment, languageRules.getName);
+            if (name && pointsTo) {
+              variables.push(
+                new Variable(name, pointsTo, getLineNumber(importSpecifier))
+              );
+            }
+          }
         }
     }
   }
@@ -344,11 +384,18 @@ export function getFirstChildOfType(node: SyntaxNode | null, target: string) {
   return null;
 }
 
-export function getAllChildrenOfType(node: SyntaxNode, target: string) {
-  const ret = [];
+export function getAllChildrenOfType(
+  node: SyntaxNode | null,
+  target: string
+): SyntaxNode[] {
+  if (!node) {
+    return [];
+  }
+  const ret: SyntaxNode[] = [];
   for (let i = 0; i < node.childCount; i++) {
-    if (node.child(i)?.type === target) {
-      ret.push(node.child(i));
+    let child = node.child(i);
+    if (child && child.type === target) {
+      ret.push(child);
     }
   }
   return ret;
@@ -409,7 +456,7 @@ export function getName(node: SyntaxNode, getNameRules: Record<string, any>) {
     }
   }
 
-  return null;
+  return node.text ?? null;
 }
 
 /**
@@ -440,7 +487,7 @@ export function makeFileGroup(
     }
   }
 
-  const rootNode = Language.makeRootNode(body, fileGroup);
+  const rootNode = Language.makeRootNode(body, fileGroup, languageRules);
   if (rootNode) {
     fileGroup.addNode(rootNode, true);
   }
