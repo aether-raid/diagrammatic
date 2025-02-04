@@ -15,7 +15,7 @@
     "commands": [
       {
         "command": "diagrammatic.showMVCDiagram",
-        "title": "Show MVC Diagram",
+        "title": "Generate MVC Diagram",
         "category": "Diagrammatic"
       },
       {

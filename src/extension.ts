@@ -9,34 +9,39 @@ import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
   let currentPanel: vscode.WebviewPanel | undefined = undefined;
-
+  
   const showMVCDiagram = vscode.commands.registerCommand(
     "diagrammatic.showMVCDiagram",
     async () => {
-      const filePath = await vscode.window.showInputBox({
-        prompt: "Enter your repository file path:",
-        placeHolder: "/path/to/your/file.ts",
-        ignoreFocusOut: true,
-        validateInput: (text) => {
-          return text.trim() ? null : "File path cannot be empty.";
-        },
+      const folderUri = await vscode.window.showOpenDialog({
+        canSelectFiles: false,  // Only folders
+        canSelectFolders: true,
+        canSelectMany: false,
+        openLabel: 'Select Repository'
       });
 
-      if (filePath) {
-        vscode.window.showInformationMessage(`Parsing file path: ${filePath}`);
+      if (folderUri && folderUri.length > 0) {
+        const filePath = folderUri[0].fsPath;
 
-        try {
-          currentPanel = await handleShowMVCDiagram(context, currentPanel, filePath);
-          currentPanel.onDidDispose(
-            () => {
-              currentPanel = undefined;
-            },
-            null,
-            context.subscriptions
-          );
-        } catch (error) {
-          vscode.window.showErrorMessage(`Error running algorithm: ${error}`);
+        if (filePath && filePath.length > 0) {
+          vscode.window.showInformationMessage(`Parsing repository: ${filePath}`);
+
+          try {
+            currentPanel = await handleShowMVCDiagram(context, currentPanel, filePath);
+            currentPanel.onDidDispose(
+              () => {
+                currentPanel = undefined;
+              },
+              null,
+              context.subscriptions
+            );
+            vscode.window.showInformationMessage("Diagram generated!");
+          } catch (error) {
+            vscode.window.showErrorMessage(`Error running algorithm: ${error}`);
+          }
         }
+      } else {
+        vscode.window.showWarningMessage('No folder selected. Please try again.');
       }
     }
   );
