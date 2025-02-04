@@ -1,11 +1,10 @@
 import { ChangeEvent, useCallback } from "react"
 import { Handle, NodeProps, Position } from "@xyflow/react";
 
-import { type TextUpdaterNode } from "@shared/node.types";
+import { type TextUpdaterNode as TextUpdaterNodeType } from "@shared/node.types";
 
 
-
-export function TextUpdaterNode ({ isConnectable }: NodeProps<TextUpdaterNode>) {
+export function TextUpdaterNode ({ isConnectable }: NodeProps<TextUpdaterNodeType>) {
     const onChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         console.log(event.target.value);
     }, []);

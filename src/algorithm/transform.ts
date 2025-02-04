@@ -1,3 +1,5 @@
+import { MarkerType } from "@xyflow/react";
+
 import { AppNode } from "@shared/node.types";
 import { Node, Group, Edge, GroupType } from "./model";
 import { AppEdge } from "@shared/edge.types";
@@ -35,7 +37,7 @@ export function transformEdges(allEdges: Edge[]): AppEdge[] {
         target,
         sourceHandle: edge.source.token,
         targetHandle: edge.target.token,
-        animated: true,
+        markerEnd: { type: MarkerType.ArrowClosed },
       });
     } else if (edge.target instanceof Group) {
       output.push({
@@ -43,7 +45,7 @@ export function transformEdges(allEdges: Edge[]): AppEdge[] {
         source,
         target,
         sourceHandle: edge.source.token,
-        animated: true,
+        markerEnd: { type: MarkerType.ArrowClosed }
       });
     }
   }

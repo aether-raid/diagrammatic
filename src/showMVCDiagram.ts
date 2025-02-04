@@ -5,6 +5,7 @@ import { Commands, JumpToLinePayload, WebviewCommandMessage } from "@shared/mess
 import { runCodeToDiagramAlgorithm } from "./runCodeToDiagramAlgorithm";
 import { NodeEdgeData } from "./extension.types";
 import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
+import { runNodeDescriptionsAlgorithm } from "./runNodeDescriptionsAlgorithm";
 
 const handleShowMVCDiagram = async (
   context: vscode.ExtensionContext,
@@ -17,6 +18,7 @@ const handleShowMVCDiagram = async (
   }
 
   let nodeEdgeData: NodeEdgeData = runCodeToDiagramAlgorithm(filePath);
+  nodeEdgeData.nodes = runNodeDescriptionsAlgorithm(nodeEdgeData.nodes);
 
   panel = setupWebviewPanel(context);
   const waitWebviewReady: Promise<void> = new Promise((resolve) => {

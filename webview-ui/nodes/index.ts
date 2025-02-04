@@ -11,6 +11,7 @@ export const initialNodes: AppNode[] = [
     type: 'entity',
     position: { x:0, y:0 },
     data: {
+      description: 'This file serves as a central entity that manages multiple agricultural components. It coordinates the planting & harvesting processes.',
       entityName: 'Farm',
       entityType: 'file',
       filePath: 'path/to/farm',
@@ -25,6 +26,7 @@ export const initialNodes: AppNode[] = [
     type: 'entity',
     position: { x:0, y:0 },
     data: {
+      description: 'This class is responsible for crop planting. It encapsulates the various functions required to plant crops.',
       entityName: 'Planter',
       entityType: 'class',
       filePath: 'path/to/planter',
@@ -40,6 +42,7 @@ export const initialNodes: AppNode[] = [
     type: 'entity',
     position: { x:0, y:0 },
     data: {
+      description: 'This class is responsible for harvesting crops once they are ready. It encapsulates the various functions required to harvest different crops.',
       entityName: 'Harvester',
       entityType: 'class',
       filePath: 'path/to/harvester',

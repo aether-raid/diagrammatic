@@ -4,10 +4,10 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 
 import { EntityNodeItem } from "./EntityNodeItem";
-import { type EntityNode } from "@shared/node.types";
+import { type EntityNode as EntityNodeType } from "@shared/node.types";
 
 
-export function EntityNode ({ id, data }: NodeProps<EntityNode>) {
+export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
   const [hoveredRow, setHoveredRow] = useState<string|undefined>('');
 
   useEffect(() => {
@@ -26,8 +26,8 @@ export function EntityNode ({ id, data }: NodeProps<EntityNode>) {
         overlay={
           <Popover>
             <Popover.Header className="px-3">{ data.filePath }</Popover.Header>
-            <Popover.Body className="py-2 px-3">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            <Popover.Body className="py-2 px-3 fst-italic">
+              { data.description ?? 'No description available.' }
             </Popover.Body>
           </Popover>
         }

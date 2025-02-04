@@ -20,7 +20,6 @@
     // "noUnusedParameters": true,  /* Report errors on unused parameters. */
     "skipLibCheck": true,
   },
-  "include": ["src/**/*", "shared/**/*"],
   "exclude": ["./webview-ui", "./shared", "./node_modules", "./vite.config.ts", "./dist"],
   "references": [
     { "path": "./tsconfig.shared.json" }

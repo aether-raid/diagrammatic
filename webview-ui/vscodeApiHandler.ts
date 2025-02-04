@@ -1,15 +1,16 @@
 import { Commands, JumpToLinePayload, ReadyPayload } from "@shared/message.types";
 
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let vscode: any = undefined;
 
 export const initVsCodeApi = () => {
-  // @ts-ignore: Expected, part of native VSCode API.
+  // @ts-expect-error: Expected, part of native VSCode API.
+  // eslint-disable-next-line no-undef
   vscode = acquireVsCodeApi();
   return vscode;
 }
 
-export const sendReadyMessageToExtension = (vscode: any) => {
+export const sendReadyMessageToExtension = () => {
   const payload: ReadyPayload = {};
   vscode.postMessage({
     command: Commands.READY,
