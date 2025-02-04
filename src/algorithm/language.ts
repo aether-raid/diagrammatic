@@ -76,6 +76,7 @@ export class Language {
       token: getName(tree, languageRules.getName),
       lineNumber: getLineNumber(tree),
       parent,
+      filePath: parent.filePath,
     });
 
     for (const node of nodeTrees) {
@@ -138,7 +139,11 @@ export class Language {
     return [node, ...subnodes];
   }
 
-  static makeRootNode(body: SyntaxNode[], parent: Group, languageRules: LanguageRules): Node {
+  static makeRootNode(
+    body: SyntaxNode[],
+    parent: Group,
+    languageRules: LanguageRules
+  ): Node {
     return new Node({
       token: "(global)",
       calls: makeCalls(body),

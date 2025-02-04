@@ -323,6 +323,11 @@ export function findLinkForCall(call, nodeA, allNodes) {
       }
     }
 
+    // calling another function
+    if (!call.isAttribute() && call.token === node.token) {
+      return new Edge(nodeA, node);
+    }
+
     // calling a function in the file space
     if (
       !call.isAttribute() &&

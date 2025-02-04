@@ -74,15 +74,12 @@
       {
         "type": "export_statement",
         "child": {
-          "type": "lexical_declaration"
-        }
-      },
-      {
-        "type": "lexical_declaration",
-        "child": {
-          "type": "variable_declarator",
+          "type": "lexical_declaration",
           "child": {
-            "type": "arrow_function"
+            "type": "variable_declarator",
+            "child": {
+              "type": "arrow_function"
+            }
           }
         }
       },

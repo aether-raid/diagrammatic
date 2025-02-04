@@ -1,6 +1,21 @@
 import { AppNode } from "@shared/node.types";
-import { Node, Group, Edge } from "./model";
+import { Node, Group, Edge, GroupType } from "./model";
 import { AppEdge } from "@shared/edge.types";
+
+function getFilePath(parent: Node | Group | null): string {
+  if (!parent) {
+    return "";
+  }
+  if (parent instanceof Group) {
+    if (parent.groupType === GroupType.FILE) {
+      return parent?.filePath ?? "";
+    } else {
+      return `${parent?.filePath}.${parent?.token}`;
+    }
+  } else {
+    return getFilePath(parent.parent);
+  }
+}
 
 /**
  * Transform list of edges to a format suitable for ReactFlow
@@ -10,11 +25,14 @@ import { AppEdge } from "@shared/edge.types";
 export function transformEdges(allEdges: Edge[]): AppEdge[] {
   const output: AppEdge[] = [];
   for (const edge of allEdges) {
+    const source: string = getFilePath(edge.source.parent);
+    const target: string = getFilePath(edge.target.parent);
+
     if (edge.target instanceof Node) {
       output.push({
         id: `${edge.source.token}-${edge.target.token}`,
-        source: edge.source.parent?.token ?? "",
-        target: edge.target.parent.token ?? "",
+        source,
+        target,
         sourceHandle: edge.source.token,
         targetHandle: edge.target.token,
         animated: true,
@@ -22,8 +40,8 @@ export function transformEdges(allEdges: Edge[]): AppEdge[] {
     } else if (edge.target instanceof Group) {
       output.push({
         id: `${edge.source.token}-${edge.target.token}`,
-        source: edge.source.parent?.token ?? "",
-        target: edge.target.token ?? "",
+        source,
+        target,
         sourceHandle: edge.source.token,
         animated: true,
       });
@@ -47,7 +65,7 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
 
       if (fileGroupNodes.length > 0) {
         output.push({
-          id: fileGroup.token ?? "",
+          id: fileGroup.filePath ?? "",
           type: "entity",
           position: { x: 0, y: 0 },
           data: {
@@ -65,7 +83,7 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
       ]);
       if (subgroup.token) {
         output.push({
-          id: subgroup.token ?? "",
+          id: `${fileGroup.filePath}.${subgroup.token}`,
           type: "entity",
           position: { x: 0, y: 0 },
           data: {

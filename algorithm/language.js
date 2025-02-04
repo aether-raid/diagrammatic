@@ -66,6 +66,7 @@ export class Language {
       token: getName(tree, languageRules.getName),
       lineNumber: getLineNumber(tree),
       parent,
+      filePath: parent.filePath,
     });
 
     for (const node of nodeTrees) {
