@@ -14,10 +14,15 @@ function downloadImage(dataUrl: string) {
     a.click();
 }
 
-const imageWidth = 1024;
-const imageHeight = 768;
+const imageWidth = 3840;
+const imageHeight = 2160;
 
-function DownloadButton() {
+interface DownloadButtonProps {
+    minZoom?: number;
+    maxZoom?: number;
+}
+
+function DownloadButton({minZoom, maxZoom}: DownloadButtonProps) {
     const { getNodes } = useReactFlow();
 
     const onClick = () => {
@@ -29,13 +34,13 @@ function DownloadButton() {
             nodesBounds,
             imageWidth,
             imageHeight,
-            0.5,
-            2,
-            0
+            minZoom ?? 0.5,
+            maxZoom ?? 2,
+            0.02 // padding
         );
 
-        toPng(document.querySelector(".react-flow__viewport" as any), {
-            backgroundColor: "#1a365d",
+        toPng(document.querySelector<HTMLElement>('.react-flow__viewport')!, {
+            backgroundColor: "#000000",
             width: imageWidth,
             height: imageHeight,
             style: {

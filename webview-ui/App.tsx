@@ -87,6 +87,9 @@ const LayoutFlow = () => {
         undefined
     );
 
+    const MIN_ZOOM = 0.1;
+    const MAX_ZOOM = 2;
+
     useEffect(() => {
         // Setup message listener
         const onMessage = (event: MessageEvent<WebviewCommandMessage>) => {
@@ -199,7 +202,8 @@ const LayoutFlow = () => {
             onEdgesChange={onEdgesChange}
             fitView
             colorMode="dark"
-            className="download-image"
+            minZoom={MIN_ZOOM}
+            maxZoom={MAX_ZOOM}
         >
             <Panel position="top-center">
                 <button onClick={() => onLayout("TB")}>Vertical Layout</button>
@@ -209,7 +213,7 @@ const LayoutFlow = () => {
             </Panel>
             <MiniMap />
             <Controls />
-            <DownloadButton />
+            <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM}/>
             <Background />
         </ReactFlow>
     );
