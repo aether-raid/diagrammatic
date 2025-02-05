@@ -8,9 +8,9 @@ import { Edge, Group } from "./algorithm/model";
 import { transformEdges, transformFileGroups } from "./algorithm/transform";
 import { Tree } from "tree-sitter";
 
-export const runCodeToDiagramAlgorithm = (): NodeEdgeData => {
+export const runCodeToDiagramAlgorithm = (directoryPath: string): NodeEdgeData => {
   const astTrees = parseFilesToASTs(
-    "C:/Users/bruce/SMU-work/y3/fyp/models/datasets/codebases/nestjs-realworld-example-app/src/article",
+    directoryPath,
     true
   );
 

@@ -17,3 +17,7 @@ body,
   height: 100vh;
   height: 100vh;
 }
+
+.fs-7 {
+    font-size: 0.6rem;
+}

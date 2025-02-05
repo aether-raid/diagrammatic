@@ -2,11 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 
-// import { Commands, WebviewCommandMessage } from "@shared/message.types";
-
 import handleShowMVCDiagram from "./showMVCDiagram";
-// import { runCodeToDiagramAlgorithm } from "./runCodeToDiagramAlgorithm";
-// import { NodeEdgeData } from "./extension.types";
 import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
 import { lintActiveFile } from "./code-quality/linting";
 
@@ -14,18 +10,40 @@ import { lintActiveFile } from "./code-quality/linting";
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
   let currentPanel: vscode.WebviewPanel | undefined = undefined;
-
+  
   const showMVCDiagram = vscode.commands.registerCommand(
     "diagrammatic.showMVCDiagram",
     async () => {
-      currentPanel = await handleShowMVCDiagram(context, currentPanel);
-      currentPanel.onDidDispose(
-        () => {
-          currentPanel = undefined;
-        },
-        null,
-        context.subscriptions
-      );
+      const folderUri = await vscode.window.showOpenDialog({
+        canSelectFiles: false,  // Only folders
+        canSelectFolders: true,
+        canSelectMany: false,
+        openLabel: 'Select Repository'
+      });
+
+      if (folderUri && folderUri.length > 0) {
+        const filePath = folderUri[0].fsPath;
+
+        if (filePath && filePath.length > 0) {
+          vscode.window.showInformationMessage(`Parsing repository: ${filePath}`);
+
+          try {
+            currentPanel = await handleShowMVCDiagram(context, currentPanel, filePath);
+            currentPanel.onDidDispose(
+              () => {
+                currentPanel = undefined;
+              },
+              null,
+              context.subscriptions
+            );
+            vscode.window.showInformationMessage("Diagram generated!");
+          } catch (error) {
+            vscode.window.showErrorMessage(`Error running algorithm: ${error}`);
+          }
+        }
+      } else {
+        vscode.window.showWarningMessage('No folder selected. Please try again.');
+      }
     }
   );
   context.subscriptions.push(showMVCDiagram);
@@ -43,7 +61,7 @@ export function activate(context: vscode.ExtensionContext) {
           nodes: [
             {
               id: "1",
-              type: "entity",
+              type: "entity" as any,
               position: { x: 0, y: 0 },
               data: {
                 entityName: "Cloud",
