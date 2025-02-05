@@ -260,6 +260,7 @@ export function makeLocalVariables(tree, parent, languageRules) {
             )
           );
         }
+      // import { SyntaxNode } from 'tree-sitter'
       case "import_statement":
         const importClause = getFirstChildOfType(node, "import_clause");
         const namedImports = getFirstChildOfType(importClause, "named_imports");
@@ -269,13 +270,44 @@ export function makeLocalVariables(tree, parent, languageRules) {
         );
         const string = getFirstChildOfType(node, "string");
         const stringFragment = getFirstChildOfType(string, "string_fragment");
-        if (stringFragment) {
+        const fileGroup = parent.getFileGroup();
+        if (stringFragment && fileGroup) {
           for (const importSpecifier of importSpecifiers) {
             const name = getName(importSpecifier, languageRules.getName);
             const pointsTo = getName(stringFragment, languageRules.getName);
-            if (name && pointsTo) {
+            const relativeFilePathRegex = new RegExp(
+              '^(?:..?[\\/])[^<>:"|?*\n]+$'
+            );
+            // relative filepath
+            if (
+              name &&
+              pointsTo &&
+              relativeFilePathRegex.test(pointsTo) &&
+              fileGroup instanceof Group &&
+              fileGroup.filePath
+            ) {
+              let importedFilePath = path.resolve(
+                path.dirname(fileGroup.filePath),
+                pointsTo
+              );
+              const baseDirectory = path.dirname(importedFilePath);
+              // if file has no extension, search directory for matching filename
+              if (!path.extname(importedFilePath)) {
+                const files = fs.readdirSync(baseDirectory);
+                const fileNameWithoutExt = path.basename(pointsTo);
+                const matchedFile = files.find((file) =>
+                  file.startsWith(fileNameWithoutExt)
+                );
+                if (matchedFile) {
+                  importedFilePath = path.join(baseDirectory, matchedFile);
+                }
+              }
               variables.push(
-                new Variable(name, pointsTo, getLineNumber(importSpecifier))
+                new Variable(
+                  name,
+                  importedFilePath,
+                  getLineNumber(importSpecifier)
+                )
               );
             }
           }
@@ -304,6 +336,7 @@ export function makeLocalVariables(tree, parent, languageRules) {
 export function findLinkForCall(call, nodeA, allNodes) {
   for (const node of allNodes) {
     /**
+     * Class injection for NestJS
      * I have variable: articleService -> class ArticleService
      * I have call: findAll -> articleService
      */
@@ -318,6 +351,26 @@ export function findLinkForCall(call, nodeA, allNodes) {
         for (const node of classNode.nodes) {
           if (node.token === call.token) {
             return new Edge(nodeA, node);
+          }
+        }
+      }
+
+      /**
+       * for variables from import statements
+       * I have variable: findAll -> Group: article.service.ts
+       * I have call: findAll -> null
+       */
+      if (
+        !call.isAttribute() &&
+        variable.token === call.token &&
+        !call.ownerToken &&
+        variable.pointsTo instanceof Group &&
+        variable.pointsTo.groupType === GroupType.FILE
+      ) {
+        for (const fileNode of variable.pointsTo.nodes) {
+          if (fileNode.token === call.token) {
+            console.log(variable.toString());
+            return new Edge(nodeA, fileNode);
           }
         }
       }

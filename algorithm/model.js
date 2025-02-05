@@ -69,6 +69,13 @@ export class Node {
           if (variable.pointsTo === subgroup.token) {
             variable.pointsTo = subgroup;
           }
+
+          if (
+            subgroup.groupType === GroupType.FILE &&
+            variable.pointsTo === subgroup.filePath
+          ) {
+            variable.pointsTo = subgroup;
+          }
         }
 
         for (const node of allNodes) {
@@ -143,7 +150,7 @@ export class Group {
     token,
     lineNumber = null,
     parent = null,
-    filePath = null,
+    filePath,
   }) {
     this.nodes = [];
     this.subgroups = [];
@@ -153,6 +160,14 @@ export class Group {
     this.parent = parent;
     this.rootNode = null;
     this.filePath = filePath;
+  }
+
+  getFileGroup() {
+    let parent = this;
+    while (parent?.parent) {
+      parent = parent.parent;
+    }
+    return parent;
   }
 
   addNode(node, isRoot = false) {
