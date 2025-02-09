@@ -42,6 +42,7 @@
     "watch": "npm run prebuild && concurrently \"npm run watch:typecheck\" \"npm run watch:ext\" \"npm run watch:react\""
   },
   "devDependencies": {
+    "@types/chai": "^5.0.1",
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
     "@types/react": "^19.0.2",
@@ -68,6 +69,8 @@
     "@dagrejs/dagre": "^1.1.4",
     "@xyflow/react": "^12.3.6",
     "bootstrap": "^5.3.3",
+    "chai": "^5.1.2",
+    "mocha": "^11.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.7",
     "react-dom": "^18.2.0",
