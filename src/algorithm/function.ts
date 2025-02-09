@@ -4,7 +4,7 @@ import Parser, { SyntaxNode, Tree } from "tree-sitter";
 import TypeScript from "tree-sitter-typescript";
 import Python from "tree-sitter-python";
 import Java from "tree-sitter-java";
-import * as Cpp from "tree-sitter-cpp";
+import Cpp from "tree-sitter-cpp";
 
 import { Variable, Call, Group, Edge, GroupType, Node } from "./model";
 import { Language } from "./language.js";
@@ -288,10 +288,15 @@ export function makeLocalVariables(
             const name = getName(importSpecifier, languageRules.getName);
             const pointsTo = getName(stringFragment, languageRules.getName);
             const relativeFilePathRegex = new RegExp(
-              '^(?:\.\.?[\\/])[^<>:"|?*\n]+$'
+              '^(?:..?[\\/])[^<>:"|?*\n]+$'
             );
             // relative filepath
-            if (name && pointsTo && relativeFilePathRegex.test(pointsTo) && fileGroup instanceof Group) {
+            if (
+              name &&
+              pointsTo &&
+              relativeFilePathRegex.test(pointsTo) &&
+              fileGroup instanceof Group
+            ) {
               let importedFilePath = path.resolve(
                 path.dirname(fileGroup.filePath),
                 pointsTo
@@ -317,6 +322,7 @@ export function makeLocalVariables(
               );
             }
           }
+        }
     }
   }
 
