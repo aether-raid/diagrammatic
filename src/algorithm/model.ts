@@ -107,6 +107,13 @@ export class Node {
           if (variable.pointsTo === subgroup.token) {
             variable.pointsTo = subgroup;
           }
+
+          if (
+            subgroup.groupType === GroupType.FILE &&
+            variable.pointsTo === subgroup.filePath
+          ) {
+            variable.pointsTo = subgroup;
+          }
         }
 
         for (const node of allNodes) {
@@ -122,8 +129,8 @@ export class Node {
     return this.token === "constructor";
   }
 
-  getFileGroup(): Group | Node | null {
-    let parent: Group | Node | null = this.parent;
+  getFileGroup(): Group | Node {
+    let parent: Group | Node = this.parent;
     while (parent?.parent) {
       parent = parent.parent;
     }
@@ -183,20 +190,20 @@ export class Group {
   lineNumber: number | null;
   parent: Group | null;
   rootNode: Node | null;
-  filePath: string | null;
+  filePath: string;
 
   constructor({
     groupType,
     token,
     lineNumber = null,
     parent = null,
-    filePath = null,
+    filePath,
   }: {
     groupType: GroupType;
     token: string | null;
     lineNumber?: number | null;
     parent?: Group | null;
-    filePath?: string | null;
+    filePath: string;
   }) {
     this.nodes = [];
     this.subgroups = [];
@@ -206,6 +213,14 @@ export class Group {
     this.parent = parent;
     this.rootNode = null;
     this.filePath = filePath;
+  }
+
+  getFileGroup(): Group {
+    let parent: Group = this;
+    while (parent?.parent) {
+      parent = parent.parent;
+    }
+    return parent;
   }
 
   addNode(node: Node, isRoot = false): void {

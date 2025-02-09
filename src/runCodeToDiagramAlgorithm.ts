@@ -7,16 +7,30 @@ import {
 import { Edge, Group } from "./algorithm/model";
 import { transformEdges, transformFileGroups } from "./algorithm/transform";
 import { Tree } from "tree-sitter";
+import { RuleEngine } from "./algorithm/rules.js";
+import path from "path";
 
-export const runCodeToDiagramAlgorithm = (directoryPath: string): NodeEdgeData => {
-  const astTrees = parseFilesToASTs(
-    directoryPath,
-    true
+export const runCodeToDiagramAlgorithm = (
+  directoryPath: string
+): NodeEdgeData => {
+  const rules = RuleEngine.loadRules(
+    "/Users/sharlenetio/Desktop/fyp/diagrammatic/src/algorithm/rules.json"
   );
+  const astTrees = parseFilesToASTs(directoryPath, true);
 
   const fileGroups: Group[] = [];
   astTrees.forEach(([filePath, fileName, ast]: [string, string, Tree]) => {
-    const fileGroup = makeFileGroup(ast.rootNode, filePath, fileName);
+    const language = path.extname(fileName);
+    const languageRules = rules[language];
+    if (!languageRules) {
+      throw new Error("File type not configured in rules.json!");
+    }
+    const fileGroup = makeFileGroup(
+      ast.rootNode,
+      filePath,
+      fileName,
+      languageRules
+    );
     fileGroups.push(fileGroup);
   });
 

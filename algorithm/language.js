@@ -1,4 +1,4 @@
-import { Node, Group, GroupType } from "./model";
+import { Node, Group, GroupType } from "./model.js";
 import {
   makeCalls,
   makeLocalVariables,
@@ -6,11 +6,12 @@ import {
   getLineNumber,
   getAllChildrenOfType,
   processConstructorRequiredParameter,
-} from "./function";
-import { SyntaxNode } from "tree-sitter";
-import { getFirstChildOfType } from "./function.js";
+  getFirstChildOfType,
+} from "./function.js";
+import { RuleEngine } from "./rules.js";
+import { visualizeAST } from "./temp.js";
 
-export class TypeScriptAlgorithm {
+export class Language {
   /**
    * Recursively separates a Tree-sitter syntax tree node into groups, nodes, and body.
    * Group: FILE / CLASS
@@ -20,38 +21,22 @@ export class TypeScriptAlgorithm {
    * @param node - Tree-sitter node.
    * @returns - {groups, nodes, body}
    */
-  static separateNamespaces(node: SyntaxNode): {
-    groups: SyntaxNode[];
-    nodes: SyntaxNode[];
-    body: SyntaxNode[];
-  } {
-    const groups: SyntaxNode[] = [];
-    const nodes: SyntaxNode[] = [];
-    const body: SyntaxNode[] = [];
+  static separateNamespaces(node, languageRules) {
+    const groups = [];
+    const nodes = [];
+    const body = [];
 
     for (const child of node.children) {
-      const nodeType = child.type;
-
-      if (
-        (nodeType === "call_expression" &&
-          getFirstChildOfType(
-            child.childForFieldName("arguments"),
-            "arrow_function"
-          )) ||
-        (nodeType === "export_statement" &&
-          getFirstChildOfType(child, "lexical_declaration")) ||
-        nodeType === "method_definition" ||
-        nodeType === "function_declaration"
-      ) {
+      if (RuleEngine.processNode(child, languageRules.nodes)) {
         nodes.push(child);
-      } else if (nodeType === "class_declaration") {
+      } else if (RuleEngine.processNode(child, languageRules.groups)) {
         groups.push(child);
       } else {
         const {
           groups: subGroups,
           nodes: subNodes,
           body: subBody,
-        } = this.separateNamespaces(child);
+        } = this.separateNamespaces(child, languageRules);
 
         if (subGroups.length > 0 || subNodes.length > 0) {
           groups.push(...subGroups);
@@ -70,17 +55,22 @@ export class TypeScriptAlgorithm {
    * Given an AST for the subgroup (a class), generate that subgroup.
    * Generate all of the nodes internal to the group.
    */
-  static makeClassGroup(node: SyntaxNode, parent: Group) {
-    const { groups, nodes: nodeTrees, body } = this.separateNamespaces(node);
+  static makeClassGroup(tree, parent, languageRules) {
+    const {
+      groups,
+      nodes: nodeTrees,
+      body,
+    } = this.separateNamespaces(tree, languageRules);
     const classGroup = new Group({
       groupType: GroupType.CLASS,
-      token: getName(node),
-      lineNumber: getLineNumber(node),
+      token: getName(tree, languageRules.getName),
+      lineNumber: getLineNumber(tree),
       parent,
+      filePath: parent.filePath,
     });
 
     for (const node of nodeTrees) {
-      const nodeList = this.makeNodes(node, classGroup);
+      const nodeList = this.makeNodes(node, classGroup, languageRules);
       for (const subnode of nodeList) {
         classGroup.addNode(subnode);
       }
@@ -92,11 +82,11 @@ export class TypeScriptAlgorithm {
    * Given an AST of all the lines in a function, create the Node along with the
    * calls and variables internal to it. Also make the nested subnodes
    */
-  static makeNodes(tree: SyntaxNode, parent: Node | Group): Node[] {
-    const { nodes, body } = this.separateNamespaces(tree);
-    const token = getName(tree);
+  static makeNodes(tree, parent, languageRules) {
+    const { nodes, body } = this.separateNamespaces(tree, languageRules);
+    const token = getName(tree, languageRules.getName);
     const calls = makeCalls(body);
-    const variables = makeLocalVariables(body, parent);
+    const variables = makeLocalVariables(body, parent, languageRules);
 
     /**
      * For NestJS, convert constructor arguments to variables.
@@ -129,15 +119,17 @@ export class TypeScriptAlgorithm {
       lineNumber: getLineNumber(tree),
       parent,
     });
-    const subnodes = nodes.flatMap((t) => this.makeNodes(t, node));
+    const subnodes = nodes.flatMap((t) =>
+      this.makeNodes(t, node, languageRules)
+    );
     return [node, ...subnodes];
   }
 
-  static makeRootNode(body: SyntaxNode[], parent: Group): Node {
+  static makeRootNode(body, parent, languageRules) {
     return new Node({
       token: "(global)",
       calls: makeCalls(body),
-      variables: makeLocalVariables(body, parent),
+      variables: makeLocalVariables(body, parent, languageRules),
       lineNumber: 0,
       parent,
     });
