@@ -3,6 +3,7 @@ import * as vscode from "vscode";
 import { existsSync } from "fs";
 import path from "path";
 
+import { GLOBALS } from "./globals";
 import { NodeEdgeData } from "./extension.types";
 import {
   findLinks,
@@ -13,6 +14,7 @@ import { Edge, Group } from "./algorithm/model";
 import { transformEdges, transformFileGroups } from "./algorithm/transform";
 import { Tree } from "tree-sitter";
 import { RuleEngine } from "./algorithm/rules.js";
+
 
 const getDefaultRulesetPath = () => {
   const extension = vscode.extensions.getExtension('diagrammatic.diagrammatic')!;
@@ -25,7 +27,7 @@ const getDefaultRulesetPath = () => {
 const retrieveRuleset = () => {
   const config = vscode.workspace.getConfiguration();
 
-  let rulesetPath = config.get<string>('diagrammatic.codeToDiagramRulesetFile');
+  let rulesetPath = config.get<string>(GLOBALS.ruleset.configName);
 
   if (!rulesetPath || !existsSync(rulesetPath)) {
     vscode.window.showInformationMessage(`No ruleset file was found at '${rulesetPath}'. Using default rules.`);
@@ -41,7 +43,7 @@ export const runCodeToDiagramAlgorithm = (
 ): NodeEdgeData => {
   const rules = retrieveRuleset();
   if (!rules) {
-    throw new Error("Ruleset file not found. Please set 'diagrammatic.codeToDiagramRulesetFile' in settings! Btw this should not show up.. if you see this means you've messed with the default rules by accident!");
+    throw new Error(`Ruleset file not found. Please set '${GLOBALS.ruleset.configName}' in settings! Btw this should not show up.. if you see this means you've messed with the default rules by accident!`);
   }
 
   const astTrees = parseFilesToASTs(directoryPath, true);

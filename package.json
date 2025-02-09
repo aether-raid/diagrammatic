@@ -15,6 +15,11 @@
   "contributes": {
     "commands": [
       {
+        "command": "diagrammatic.selectRulesetFile",
+        "title": "Select Ruleset",
+        "category": "Diagrammatic"
+      },
+      {
         "command": "diagrammatic.showMVCDiagram",
         "title": "Generate MVC Diagram",
         "category": "Diagrammatic"
@@ -24,7 +29,16 @@
         "title": "Test Msg",
         "category": "Diagrammatic"
       }
-    ]
+    ],
+    "configuration": {
+        "properties": {
+            "diagrammatic.codeToDiagramRulesetFile": {
+                "type": "string",
+                "default": "",
+                "description": "Path to Diagrammatic's ruleset file. If none is set, the default ruleset will be used."
+            }
+        }
+    }
   },
   "scripts": {
     "dev": "vite dev",
