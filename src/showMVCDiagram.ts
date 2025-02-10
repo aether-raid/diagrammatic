@@ -6,6 +6,7 @@ import { runCodeToDiagramAlgorithm } from "./runCodeToDiagramAlgorithm";
 import { NodeEdgeData } from "./extension.types";
 import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
 import { runNodeDescriptionsAlgorithm } from "./runNodeDescriptionsAlgorithm";
+import { lintFile } from "./code-quality/linting";
 
 const handleShowMVCDiagram = async (
   context: vscode.ExtensionContext,
@@ -19,6 +20,49 @@ const handleShowMVCDiagram = async (
 
   let nodeEdgeData: NodeEdgeData = runCodeToDiagramAlgorithm(filePath);
   nodeEdgeData.nodes = runNodeDescriptionsAlgorithm(nodeEdgeData.nodes);
+
+// bruce linting
+
+  console.log("node edge data:", nodeEdgeData);
+  console.log("single node edge data:", nodeEdgeData.nodes[0].data);
+
+  let hasIssues = false;
+  for (let node of nodeEdgeData.nodes){
+    if (!('entityName' in node.data) || !('filePath' in node.data)) {continue;}
+    const {filePath, entityType } = node.data;
+    if (entityType !== 'file' ||!filePath){continue;}
+    const {diagnostics} = await lintFile(filePath);
+    if (!diagnostics){continue;}
+
+    node.data.security = node.data.security ?? {};
+    node.data.security.clean = node.data.security.clean ?? [];
+    node.data.security.vulnerability = node.data.security.vulnerability ?? [];
+    node.data.security.extras = node.data.security.extras ?? [];
+
+    for (const diag of diagnostics){
+        const { source } = diag;
+        switch (source) {
+            case "Group: clean-code":
+                node.data.security.clean.push(diag);
+                break;
+            case "Group: security":
+                node.data.security.vulnerability.push(diag);
+                break;
+            default:
+                node.data.security.extras.push(diag);
+                break;
+        }
+    }
+    hasIssues = true;
+    // console.log("node.data");
+    // console.log(node.data);
+  }
+  if (hasIssues){
+    vscode.window.showWarningMessage('ESLint issues found. Check the Problems panel.');
+  }
+
+  // bruce linting
+
 
   panel = setupWebviewPanel(context);
   const waitWebviewReady: Promise<void> = new Promise((resolve) => {

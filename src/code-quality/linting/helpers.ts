@@ -4,7 +4,6 @@ import { BLACKLISTED_SOURCES, WHITELISTED_SOURCES } from './definitions';
 
 export const getDiagnostics = (messages: Linter.LintMessage[]) => {
     const diagnostics: vscode.Diagnostic[] = [];
-    console.log(messages);
     messages.forEach((msg) => {
         if (!msg.ruleId){
             return;
@@ -28,7 +27,6 @@ export const getDiagnostics = (messages: Linter.LintMessage[]) => {
             diagnostics.push(diagnostic);
         }
     });
-    console.log(diagnostics);
     return diagnostics;
 };
 

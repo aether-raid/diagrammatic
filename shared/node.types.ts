@@ -1,5 +1,6 @@
 import { BuiltInNode, Node } from "@xyflow/react";
 import { NodeRow } from "./app.types";
+import {Diagnostic} from "vscode";
 
 interface EntityItem {
   name: string;
@@ -19,6 +20,11 @@ export type EntityNode = Node<{
   setHoveredEntity?: React.Dispatch<React.SetStateAction<NodeRow | undefined>>
   description?: string;
   filePath?: string;
+  security: {
+    clean?: Diagnostic[]
+    vulnerability?: Diagnostic[]
+    extras?: Diagnostic[]
+  } | undefined 
 }, 'entity'>;
 
 export type TextUpdaterNode = Node<{}, 'textUpdater'>;
