@@ -1,0 +1,17 @@
+:root {
+    /* Main colors*/
+    --app-blue: #0D6EFD;
+    --app-pink: #E000A1;
+    --app-green: #008A00;
+    --app-yellow: #FFC400; /* Use black text */
+    --app-orange: #FF6600; /* Use black text */
+    --app-cyan: #00DFFF; /* Use black text */
+    --app-red: #EB0027;
+    --app-purple: #8D00FF; 
+
+    /* Monochromes */
+    --app-white: #FFFFFF;
+    --app-black: #222222;
+
+}
+

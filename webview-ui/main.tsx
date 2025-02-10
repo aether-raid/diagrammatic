@@ -4,8 +4,9 @@ import App from './App';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import './reset.css';
-import './index.css';
+import './styles/reset.css';
+import './styles/index.css';
+import './styles/colors.css';
 import './nodes/nodes.css';
 import './edges/edges.css';
 

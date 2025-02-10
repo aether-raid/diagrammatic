@@ -33,7 +33,7 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
         }
       >
         <div className={`p-2 fw-bold rounded-top entity__${data.entityType}`}>
-          <p className={'fs-7 fw-light'}>{ data.entityType }</p>
+          <p className={'fs-7 fw-normal'}>{ data.entityType }</p>
           <p>{ data.entityName }</p>
         </div>
       </OverlayTrigger>
