@@ -4,39 +4,67 @@ import * as vscode from "vscode";
 
 import handleShowMVCDiagram from "./showMVCDiagram";
 import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
+import { GLOBALS } from "./globals";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
   let currentPanel: vscode.WebviewPanel | undefined = undefined;
 
+  const selectRulesetFile = vscode.commands.registerCommand(
+    "diagrammatic.selectRulesetFile",
+    async () => {
+      const fileUri = await vscode.window.showOpenDialog({
+        canSelectFiles: true,  // Only files
+        canSelectFolders: false,
+        canSelectMany: false,
+        openLabel: 'Select File'
+      });
+
+      if (!fileUri || fileUri.length <= 0) {
+        vscode.window.showWarningMessage('No file was selected. Please try again.');
+        return;
+      }
+
+      const config = vscode.workspace.getConfiguration();
+      await config.update(GLOBALS.ruleset.configName, fileUri[0].fsPath, vscode.ConfigurationTarget.Global);
+      vscode.window.showInformationMessage(`Ruleset updated to be at '${fileUri}'!`);
+    }
+  )
+  context.subscriptions.push(selectRulesetFile);
+  
   const showMVCDiagram = vscode.commands.registerCommand(
     "diagrammatic.showMVCDiagram",
     async () => {
-      const filePath = await vscode.window.showInputBox({
-        prompt: "Enter your repository file path:",
-        placeHolder: "/path/to/your/file.ts",
-        ignoreFocusOut: true,
-        validateInput: (text) => {
-          return text.trim() ? null : "File path cannot be empty.";
-        },
+      const folderUri = await vscode.window.showOpenDialog({
+        canSelectFiles: false,  // Only folders
+        canSelectFolders: true,
+        canSelectMany: false,
+        openLabel: 'Select Repository'
       });
 
-      if (filePath) {
-        vscode.window.showInformationMessage(`Parsing file path: ${filePath}`);
+      if (folderUri && folderUri.length > 0) {
+        const filePath = folderUri[0].fsPath;
 
-        try {
-          currentPanel = await handleShowMVCDiagram(context, currentPanel, filePath);
-          currentPanel.onDidDispose(
-            () => {
-              currentPanel = undefined;
-            },
-            null,
-            context.subscriptions
-          );
-        } catch (error) {
-          vscode.window.showErrorMessage(`Error running algorithm: ${error}`);
+        if (filePath && filePath.length > 0) {
+          vscode.window.showInformationMessage(`Parsing repository: ${filePath}`);
+
+          try {
+            currentPanel = await handleShowMVCDiagram(context, currentPanel, filePath);
+            currentPanel.onDidDispose(
+              () => {
+                currentPanel = undefined;
+              },
+              null,
+              context.subscriptions
+            );
+            vscode.window.showInformationMessage("Diagram generated!");
+          } catch (error) {
+            vscode.window.showErrorMessage(`Error running algorithm: ${error}`);
+          }
         }
+      } else {
+        vscode.window.showWarningMessage('No folder selected. Please try again.');
       }
     }
   );

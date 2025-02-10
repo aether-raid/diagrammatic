@@ -1,5 +1,6 @@
 {
   "name": "diagrammatic",
+  "publisher": "diagrammatic",
   "displayName": "Diagrammatic",
   "description": "Beautiful and concise MVC diagrams within seconds",
   "version": "0.0.1",
@@ -14,8 +15,13 @@
   "contributes": {
     "commands": [
       {
+        "command": "diagrammatic.selectRulesetFile",
+        "title": "Select Ruleset",
+        "category": "Diagrammatic"
+      },
+      {
         "command": "diagrammatic.showMVCDiagram",
-        "title": "Show MVC Diagram",
+        "title": "Generate MVC Diagram",
         "category": "Diagrammatic"
       },
       {
@@ -23,7 +29,16 @@
         "title": "Test Msg",
         "category": "Diagrammatic"
       }
-    ]
+    ],
+    "configuration": {
+        "properties": {
+            "diagrammatic.codeToDiagramRulesetFile": {
+                "type": "string",
+                "default": "",
+                "description": "Path to Diagrammatic's ruleset file. If none is set, the default ruleset will be used."
+            }
+        }
+    }
   },
   "scripts": {
     "dev": "vite dev",
@@ -68,14 +83,16 @@
     "@dagrejs/dagre": "^1.1.4",
     "@xyflow/react": "^12.3.6",
     "bootstrap": "^5.3.3",
+    "html-to-image": "^1.11.11",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.7",
     "react-dom": "^18.2.0",
     "tree-sitter": "^0.21.1",
-    "tree-sitter-cpp": "^0.23.4",
-    "tree-sitter-java": "^0.23.5",
-    "tree-sitter-javascript": "^0.23.1",
-    "tree-sitter-python": "^0.23.6",
-    "tree-sitter-typescript": "^0.23.2"
+    "tree-sitter-c": "0.23.2",
+    "tree-sitter-cpp": "0.23.4",
+    "tree-sitter-java": "0.23.5",
+    "tree-sitter-javascript": "0.23.1",
+    "tree-sitter-python": "0.23.4",
+    "tree-sitter-typescript": "0.23.2"
   }
 }
