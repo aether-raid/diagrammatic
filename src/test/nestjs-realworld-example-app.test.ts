@@ -1,3 +1,4 @@
+import exp from "constants";
 import { runCodeToDiagramAlgorithm } from "../runCodeToDiagramAlgorithm";
 import * as fs from "fs";
 import * as path from "path";
@@ -563,15 +564,60 @@ function countFilesAndLines(directory: string): {
   processDirectory(directory);
   return { fileCount, lineCount };
 }
+
+function countEntityTypes(
+  entities: { data: { entityType: string } }[]
+): Record<string, number> {
+  return entities.reduce((acc, entity) => {
+    const type = entity.data.entityType;
+    acc[type] = (acc[type] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+}
+
+function compareEntityCounts(
+  counts1: Record<string, number>,
+  counts2: Record<string, number>
+): void {
+  const allKeys = new Set([...Object.keys(counts1), ...Object.keys(counts2)]);
+
+  for (const key of allKeys) {
+    const count1 = counts1[key] || 0;
+    const count2 = counts2[key] || 0;
+
+    if (count1 !== count2) {
+      console.log(
+        `${key}:`,
+        "(expected)",
+        count1,
+        "(returned)",
+        count2,
+        ", precision:",
+        count1 / count2
+      );
+    }
+  }
+}
+
 const { fileCount, lineCount } = countFilesAndLines(mockDirectoryPath);
-console.log(`Total files: ${fileCount}`);
-console.log(`Total lines of code: ${lineCount}`);
+console.log("Total files:", fileCount);
+console.log("Total lines of code:", lineCount);
 
 const start = process.hrtime();
 const result = runCodeToDiagramAlgorithm(mockDirectoryPath);
 const [seconds, nanoseconds] = process.hrtime(start);
-console.log("Milliseconds: ", seconds * 1000 + nanoseconds / 1e6);
+console.log("Milliseconds:", seconds * 1000 + nanoseconds / 1e6);
+const numComponents = result.nodes.length;
 console.log(
-  "Ratio of source files to number of components: ",
-  result.nodes.length / fileCount
+  "Ratio of source files to number of components:",
+  numComponents / fileCount
 );
+console.log(
+  "Ratio of resulting components to expected components:",
+  numComponents / expectedNodes.length
+);
+const expectedEntityTypes = countEntityTypes(expectedNodes);
+const returnedEntityTypes = countEntityTypes(
+  result.nodes as { data: { entityType: string } }[]
+);
+compareEntityCounts(expectedEntityTypes, returnedEntityTypes);
