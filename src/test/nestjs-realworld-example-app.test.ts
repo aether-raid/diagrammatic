@@ -586,17 +586,37 @@ function compareEntityCounts(
     const count2 = counts2[key] || 0;
 
     if (count1 !== count2) {
-      console.log(
-        `${key}:`,
-        "(expected)",
-        count1,
-        "(returned)",
-        count2,
-        ", precision:",
-        count1 / count2
-      );
+      console.log(`${key}:`, "(expected)", count1, "(returned)", count2);
     }
   }
+}
+
+function calculateMetrics(
+  predicted: { data: { entityType: string; entityName: string } }[],
+  groundTruth: { data: { entityType: string; entityName: string } }[]
+) {
+  const predictedSet = new Set(
+    predicted.map((e) => `${e.data.entityType}:${e.data.entityName}`)
+  );
+  const groundTruthSet = new Set(
+    groundTruth.map((e) => `${e.data.entityType}:${e.data.entityName}`)
+  );
+
+  const truePositives = [...predictedSet].filter((item) =>
+    groundTruthSet.has(item)
+  ).length;
+  const falsePositives = [...predictedSet].filter(
+    (item) => !groundTruthSet.has(item)
+  ).length;
+  const falseNegatives = [...groundTruthSet].filter(
+    (item) => !predictedSet.has(item)
+  ).length;
+
+  const precision = truePositives / (truePositives + falsePositives || 1);
+  const recall = truePositives / (truePositives + falseNegatives || 1);
+  const f1 = (2 * (precision * recall)) / (precision + recall || 1);
+
+  return { precision, recall, f1 };
 }
 
 const { fileCount, lineCount } = countFilesAndLines(mockDirectoryPath);
@@ -607,6 +627,8 @@ const start = process.hrtime();
 const result = runCodeToDiagramAlgorithm(mockDirectoryPath);
 const [seconds, nanoseconds] = process.hrtime(start);
 console.log("Milliseconds:", seconds * 1000 + nanoseconds / 1e6);
+
+
 const numComponents = result.nodes.length;
 console.log(
   "Ratio of source files to number of components:",
@@ -621,3 +643,12 @@ const returnedEntityTypes = countEntityTypes(
   result.nodes as { data: { entityType: string } }[]
 );
 compareEntityCounts(expectedEntityTypes, returnedEntityTypes);
+
+
+const { precision, recall, f1 } = calculateMetrics(
+  result.nodes as { data: { entityType: string; entityName: string } }[],
+  expectedNodes
+);
+console.log("Precision:", precision);
+console.log("Recall:", recall);
+console.log("F1:", f1);
