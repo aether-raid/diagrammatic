@@ -180,6 +180,7 @@ export enum GroupType {
   CLASS = "class",
   FILE = "file",
   INTERFACE = "interface",
+  STRUCT = 'struct',
   NAMESPACE = "namespace",
 }
 
