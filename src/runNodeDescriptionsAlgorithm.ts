@@ -1,18 +1,42 @@
 import { AppNode } from "@shared/node.types";
 import { NodeDescriptionData } from "./extension.types";
+import axios from 'axios';
+import fs from 'fs';
 
-const getNodeDescriptions = (): NodeDescriptionData => {
+const getNodeDescriptions = async (nodes: AppNode[]): Promise<NodeDescriptionData> => {
   // Replace this function with the LLM/algorithm code @shawn to get the descriptions for each file
   // You probably need to discuss with Sharlene about how to sync the identifiers between your algorithms
   // i.e. How to identify which nodes are the same between both algorithms
   // Feel free to change the data shape below, it's just an example.
+  var description = "testing";
+  const descriptions: NodeDescriptionData = {};
 
-  // Mock descriptions (following the mock node data in webview-ui/nodes/index.ts)
-  const descriptions = {
-    '5': 'This file serves as a central entity that manages multiple agricultural components. It coordinates the planting & harvesting processes.',
-    '5a': 'This class is responsible for crop planting. It encapsulates the various functions required to plant crops.',
-    '5b': 'This class is responsible for harvesting crops once they are ready. It encapsulates the various functions required to harvest different crops.',
-  };
+  for (const node of nodes) {
+    try {
+      const filePath = node.id.slice(0, node.id.lastIndexOf("."));
+      const sourceCode = fs.readFileSync(filePath, "utf-8");
+      const response = await axios.post<{ response: string }>(
+        "http://localhost:5000/chat",
+        {
+          message:
+            "give purely a json response in the format {classes:[class_name:,class_description,functions:[function_name:,description:]]}" +
+            sourceCode,
+        }
+      );
+      const regex = /"class_description"\s*:\s*"([^"]+)"/;
+      const match = response.data.response.match(regex);
+      if (match && match[1]) {
+        description = match[1];
+      } else {
+        console.error("No class_description found.");
+      }
+  
+      descriptions[node.id] = description;
+  
+    } catch (error) {
+      console.error("Error fetching descriptions:", error);
+    }
+  }
 
   return descriptions;
 };
@@ -33,7 +57,7 @@ const addDescriptionToNodes = (nodes: AppNode[], descriptions: NodeDescriptionDa
   return nodes;
 };
 
-export const runNodeDescriptionsAlgorithm = (nodes: AppNode[]): AppNode[] => {
-  const descriptions = getNodeDescriptions();
-  return addDescriptionToNodes(nodes, descriptions);
+export const runNodeDescriptionsAlgorithm = async (nodes: AppNode[]): Promise<AppNode[]> => {
+  const descriptions = getNodeDescriptions(nodes);
+  return addDescriptionToNodes(nodes, await descriptions);
 }

@@ -31,13 +31,13 @@
       }
     ],
     "configuration": {
-        "properties": {
-            "diagrammatic.codeToDiagramRulesetFile": {
-                "type": "string",
-                "default": "",
-                "description": "Path to Diagrammatic's ruleset file. If none is set, the default ruleset will be used."
-            }
+      "properties": {
+        "diagrammatic.codeToDiagramRulesetFile": {
+          "type": "string",
+          "default": "",
+          "description": "Path to Diagrammatic's ruleset file. If none is set, the default ruleset will be used."
         }
+      }
     }
   },
   "scripts": {
@@ -82,6 +82,7 @@
   "dependencies": {
     "@dagrejs/dagre": "^1.1.4",
     "@xyflow/react": "^12.3.6",
+    "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
     "html-to-image": "^1.11.11",
     "react": "^18.2.0",
