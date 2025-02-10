@@ -1,4 +1,6 @@
-import { runCodeToDiagramAlgorithm } from "../runCodeToDiagramAlgorithm.js";
+import { runCodeToDiagramAlgorithm } from "../runCodeToDiagramAlgorithm";
+import * as fs from "fs";
+import * as path from "path";
 
 // https://github.com/lujakob/nestjs-realworld-example-app
 const mockDirectoryPath =
@@ -534,7 +536,42 @@ const expectedNodes = [
   },
 ];
 
+function countFilesAndLines(directory: string): {
+  fileCount: number;
+  lineCount: number;
+} {
+  let fileCount = 0;
+  let lineCount = 0;
+
+  function processDirectory(dir: string) {
+    const files = fs.readdirSync(dir);
+
+    for (const file of files) {
+      const fullPath = path.join(dir, file);
+      const stat = fs.statSync(fullPath);
+
+      if (stat.isDirectory()) {
+        processDirectory(fullPath);
+      } else {
+        fileCount++;
+        const fileContent = fs.readFileSync(fullPath, "utf8");
+        lineCount += fileContent.split("\n").length;
+      }
+    }
+  }
+
+  processDirectory(directory);
+  return { fileCount, lineCount };
+}
+const { fileCount, lineCount } = countFilesAndLines(mockDirectoryPath);
+console.log(`Total files: ${fileCount}`);
+console.log(`Total lines of code: ${lineCount}`);
+
 const start = process.hrtime();
 const result = runCodeToDiagramAlgorithm(mockDirectoryPath);
 const [seconds, nanoseconds] = process.hrtime(start);
 console.log("Milliseconds: ", seconds * 1000 + nanoseconds / 1e6);
+console.log(
+  "Ratio of source files to number of components: ",
+  result.nodes.length / fileCount
+);
