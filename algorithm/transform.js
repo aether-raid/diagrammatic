@@ -83,7 +83,7 @@ export function transformFileGroups(fileGroups) {
       if (subgroup.token) {
         output.push({
           id: `${fileGroup.filePath}.${subgroup.token}`,
-          type: "class",
+          type: subgroup.groupType,
           position: { x: 0, y: 0 },
           data: {
             fileName: subgroup.token ?? "",

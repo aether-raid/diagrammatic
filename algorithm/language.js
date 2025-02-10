@@ -6,10 +6,8 @@ import {
   getLineNumber,
   getAllChildrenOfType,
   processConstructorRequiredParameter,
-  getFirstChildOfType,
 } from "./function.js";
 import { RuleEngine } from "./rules.js";
-import { visualizeAST } from "./temp.js";
 
 export class Language {
   /**
@@ -61,8 +59,17 @@ export class Language {
       nodes: nodeTrees,
       body,
     } = this.separateNamespaces(tree, languageRules);
+    const matchingGroupRule = languageRules.groups.find(
+      (group) => group.type === tree.type
+    );
+    if (!matchingGroupRule || !matchingGroupRule.groupType) {
+      throw new Error("Group rule is missing groupType or does not exist!");
+    }
+    if (!GroupType[matchingGroupRule.groupType]) {
+      throw new Error("Group rule has invalid groupType!");
+    }
     const classGroup = new Group({
-      groupType: GroupType.CLASS,
+      groupType: GroupType[matchingGroupRule.groupType],
       token: getName(tree, languageRules.getName),
       lineNumber: getLineNumber(tree),
       parent,
