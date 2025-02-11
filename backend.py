@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 CORS(app)
 
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "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"
 
 from interpreter import interpreter
 

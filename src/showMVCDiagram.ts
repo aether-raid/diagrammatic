@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-
+import { TaskQueue, QueueError } from 'ts-async-queue';
 import { Commands, JumpToLinePayload, WebviewCommandMessage } from "@shared/message.types";
 
 import { runCodeToDiagramAlgorithm } from "./runCodeToDiagramAlgorithm";
@@ -19,8 +19,8 @@ const handleShowMVCDiagram = async (
   }
 
   let nodeEdgeData: NodeEdgeData = runCodeToDiagramAlgorithm(filePath);
-  // nodeEdgeData.nodes = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes);
-  const tempNodeEdgeData = await getComponentDiagram(nodeEdgeData)
+  nodeEdgeData.nodes = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes);
+  const componentNodeEdge = await getComponentDiagram(nodeEdgeData)
 
   panel = setupWebviewPanel(context);
   const waitWebviewReady: Promise<void> = new Promise((resolve) => {
