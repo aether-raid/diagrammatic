@@ -34,7 +34,7 @@ import {
 } from "./helper";
 import { initVsCodeApi, sendReadyMessageToExtension } from "./vscodeApiHandler";
 import DownloadButton from "./buttons/DownloadButton";
-import SearchBar from "./buttons/searchBar";
+import SearchBar from "./buttons/SearchBar";
 
 interface OptionProps {
     direction: string;
