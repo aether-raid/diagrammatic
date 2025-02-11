@@ -10,7 +10,7 @@ const astTrees = await parseFilesToASTs(
   // "/Users/sharlenetio/Desktop/fyp/samples/FinanceTracker/FinTech",
   // "/Users/sharlenetio/Desktop/fyp/samples/node-express-realworld-example-app/src/app/routes/article",
   // "/Users/sharlenetio/Desktop/fyp/samples/node-express-realworld-example-app/src/app/routes/test",
-  "/Users/sharlenetio/Desktop/fyp/samples/nestjs-realworld-example-app/src/article",
+  "/Users/ASUS/Desktop/FYP/nestjs-realworld-example-app/src/article",
   true
 );
 
@@ -43,10 +43,11 @@ for (const nodeA of allNodes) {
   allEdges = allEdges.concat(links);
 }
 
+console.log("nodes:")
 const outputNodes = transformFileGroups(fileGroups);
 for (const o of outputNodes) {
   console.log(o);
 }
 
 const outputEdges = transformEdges(allEdges);
-console.log(outputEdges);
+console.log("edges: ", outputEdges);

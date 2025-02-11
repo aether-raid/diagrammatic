@@ -6,6 +6,7 @@ import { runCodeToDiagramAlgorithm } from "./runCodeToDiagramAlgorithm";
 import { NodeEdgeData } from "./extension.types";
 import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
 import { runNodeDescriptionsAlgorithm } from "./runNodeDescriptionsAlgorithm";
+import { getComponentDiagram } from "./runComponentDiagramAlgorithm";
 
 const handleShowMVCDiagram = async (
   context: vscode.ExtensionContext,
@@ -18,7 +19,8 @@ const handleShowMVCDiagram = async (
   }
 
   let nodeEdgeData: NodeEdgeData = runCodeToDiagramAlgorithm(filePath);
-  nodeEdgeData.nodes = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes);
+  // nodeEdgeData.nodes = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes);
+  const tempNodeEdgeData = await getComponentDiagram(nodeEdgeData)
 
   panel = setupWebviewPanel(context);
   const waitWebviewReady: Promise<void> = new Promise((resolve) => {
