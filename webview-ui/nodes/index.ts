@@ -358,6 +358,34 @@ export const initialNodes: AppNode[] = [
         extras: []
     }
     }
+  },
+  {
+    id: '9',
+    type: 'entity',
+    position: { x:0, y:0 },
+    data: {
+      entityName: 'Food',
+      entityType: 'interface',
+      filePath: 'path/to/food',
+      items: [
+        { name: 'eatPotato', lineNumber: 0 },
+        { name: 'eatCorn', lineNumber: 32 },
+      ]
+    }
+  },
+  {
+    id: '10',
+    type: 'entity',
+    position: { x:0, y:0 },
+    data: {
+      entityName: 'Bin',
+      entityType: 'namespace',
+      filePath: 'path/to/bin',
+      items: [
+        { name: 'yeetPotato', lineNumber: 0 },
+        { name: 'yeetCorn', lineNumber: 32 },
+      ]
+    }
   }
 ];
 

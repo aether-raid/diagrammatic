@@ -5,11 +5,34 @@ import * as vscode from "vscode";
 import handleShowMVCDiagram from "./showMVCDiagram";
 import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
 import { lintActiveFile } from "./code-quality/linting";
+import { GLOBALS } from "./globals";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
   let currentPanel: vscode.WebviewPanel | undefined = undefined;
+
+  const selectRulesetFile = vscode.commands.registerCommand(
+    "diagrammatic.selectRulesetFile",
+    async () => {
+      const fileUri = await vscode.window.showOpenDialog({
+        canSelectFiles: true,  // Only files
+        canSelectFolders: false,
+        canSelectMany: false,
+        openLabel: 'Select File'
+      });
+
+      if (!fileUri || fileUri.length <= 0) {
+        vscode.window.showWarningMessage('No file was selected. Please try again.');
+        return;
+      }
+
+      const config = vscode.workspace.getConfiguration();
+      await config.update(GLOBALS.ruleset.configName, fileUri[0].fsPath, vscode.ConfigurationTarget.Global);
+      vscode.window.showInformationMessage(`Ruleset updated to be at '${fileUri}'!`);
+    }
+  )
+  context.subscriptions.push(selectRulesetFile);
   
   const showMVCDiagram = vscode.commands.registerCommand(
     "diagrammatic.showMVCDiagram",

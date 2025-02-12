@@ -19,12 +19,12 @@ const handleShowMVCDiagram = async (
   }
 
   let nodeEdgeData: NodeEdgeData = runCodeToDiagramAlgorithm(filePath);
-  nodeEdgeData.nodes = runNodeDescriptionsAlgorithm(nodeEdgeData.nodes);
+  nodeEdgeData.nodes = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes);
 
 // bruce linting
 
   console.log("node edge data:", nodeEdgeData);
-  console.log("single node edge data:", nodeEdgeData.nodes[0].data);
+  console.log("single node edge data:", nodeEdgeData.nodes[0]);
 
   let hasIssues = false;
   for (let node of nodeEdgeData.nodes){
@@ -63,7 +63,7 @@ const handleShowMVCDiagram = async (
 
   
   console.log("node edge data after linting:", nodeEdgeData);
-  console.log("single node edge data after linting:", nodeEdgeData.nodes[0].data);
+  console.log("single node edge data after linting:", nodeEdgeData.nodes[0]);
 
   // bruce linting
 

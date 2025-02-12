@@ -1,0 +1,160 @@
+{
+  ".cpp": {
+    "nodes": [
+      {
+        "type": "function_definition"
+      }
+    ],
+    "groups": [
+      {
+        "type": "class_specifier"
+      }
+    ],
+    "getName": {
+      "function_definition": {
+        "childType": "function_declarator",
+        "delegate": true
+      },
+      "call_expression": {
+        "childType": "member_expression",
+        "useText": true
+      },
+      "fallbackFields": ["name", "identifier", "field_identifier"]
+    }
+  },
+  ".java": {
+    "nodes": [
+      {
+        "type": "method_declaration"
+      }
+    ],
+    "groups": [
+      {
+        "type": "class_declaration"
+      }
+    ],
+    "getName": {
+      "call_expression": {
+        "childType": "member_expression",
+        "useText": true
+      },
+      "fallbackFields": ["name", "identifier", "field_identifier"]
+    }
+  },
+  ".py": {
+    "nodes": [
+      {
+        "type": "function_definition"
+      }
+    ],
+    "groups": [
+      {
+        "type": "class_definition"
+      }
+    ],
+    "getName": {
+      "call_expression": {
+        "childType": "member_expression",
+        "useText": true
+      },
+      "fallbackFields": ["name", "identifier", "field_identifier"]
+    }
+  },
+  ".ts": {
+    "nodes": [
+      {
+        "type": "call_expression",
+        "child": {
+          "field": "arguments",
+          "child": {
+            "type": "arrow_function"
+          }
+        }
+      },
+      {
+        "type": "export_statement",
+        "child": {
+          "type": "lexical_declaration",
+          "child": {
+            "type": "variable_declarator",
+            "child": {
+              "type": "arrow_function"
+            }
+          }
+        }
+      },
+      {
+        "type": "method_definition"
+      },
+      {
+        "type": "function_declaration"
+      }
+    ],
+    "groups": [{ "type": "class_declaration" }],
+    "getName": {
+      "export_statement": {
+        "childType": "lexical_declaration",
+        "delegate": true
+      },
+      "lexical_declaration": {
+        "childType": "variable_declarator",
+        "fieldName": "name"
+      },
+      "call_expression": {
+        "childType": "member_expression",
+        "useText": true
+      },
+      "fallbackFields": ["name", "identifier"]
+    }
+  },
+  ".tsx": {
+    "nodes": [
+      {
+        "type": "call_expression",
+        "child": {
+          "field": "arguments",
+          "child": {
+            "type": "arrow_function"
+          }
+        }
+      },
+      {
+        "type": "export_statement",
+        "child": {
+          "type": "lexical_declaration"
+        }
+      },
+      {
+        "type": "lexical_declaration",
+        "child": {
+          "type": "variable_declarator",
+          "child": {
+            "type": "arrow_function"
+          }
+        }
+      },
+      {
+        "type": "method_definition"
+      },
+      {
+        "type": "function_declaration"
+      }
+    ],
+    "groups": [{ "type": "class_declaration" }],
+    "getName": {
+      "export_statement": {
+        "childType": "lexical_declaration",
+        "delegate": true
+      },
+      "lexical_declaration": {
+        "childType": "variable_declarator",
+        "fieldName": "name"
+      },
+      "call_expression": {
+        "childType": "member_expression",
+        "useText": true
+      },
+      "fallbackFields": ["name", "identifier"]
+    }
+  }
+}
