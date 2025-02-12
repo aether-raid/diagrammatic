@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
     "paths": {
-      "@shared/*": ["../shared/*"]
+      "@shared/*": ["../shared/src/*"]
     },
 
     "noEmit": true,
-    "outDir": "./dist/webview",
+    "outDir": "../../dist/webview",
 
     "target": "ES2020",
     "useDefineForClassFields": true,
@@ -26,6 +26,6 @@
     "noFallthroughCasesInSwitch": true,
   },
   "references": [
-    { "path": "../tsconfig.shared.json" },
+    { "path": "../shared" },
   ]
 }

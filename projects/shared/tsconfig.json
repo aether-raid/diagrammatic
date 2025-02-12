@@ -2,9 +2,8 @@
     "compilerOptions": {
         "emitDeclarationOnly": true,
         "composite": true,
-        "rootDir": "./shared",
-        "outDir": "./dist/extension/shared",
+        "rootDir": ".",
+        "outDir": "../../dist/shared",
         "skipLibCheck": true,
     },
-    "include": ["./shared"],
 }

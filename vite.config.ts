@@ -8,7 +8,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        webview: './webview-ui/main.tsx'
+        webview: './projects/webview-ui/src/main.tsx'
       },
       external: ['vscode'],
       output: {
@@ -22,7 +22,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@shared': path.resolve(__dirname, 'shared')
+      '@shared': path.resolve(__dirname, 'projects/shared/src')
     }
   }
 })
