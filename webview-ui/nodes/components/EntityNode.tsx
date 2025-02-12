@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { Handle, NodeProps, Position } from "@xyflow/react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
-
 import { EntityNodeItem } from "./EntityNodeItem";
 import { type EntityNode as EntityNodeType } from "@shared/node.types";
-
+import NodeLints from "./NodeLints";
 
 export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
   const [hoveredRow, setHoveredRow] = useState<string|undefined>('');
@@ -48,7 +47,9 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
               lineNumber: item.lineNumber,
             }}
             setHoveredRow={setHoveredRow}
+            
           />)}
+          <NodeLints lints={data.security} filePath={data.filePath}/>
         </tbody>
       </table>
 
@@ -57,3 +58,5 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
     </div>
   )
 }
+
+
