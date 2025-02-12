@@ -5,7 +5,7 @@
     },
 
     "noEmit": true,
-    "module": "Node16",
+    "module": "CommonJS",
     "target": "ES2022",
     "lib": [
       "ES2022", "DOM"
@@ -13,6 +13,8 @@
     "sourceMap": true,
     "rootDir": "./src",
     "outDir": "./dist/extension",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "strict": true,   /* enable all strict type-checking options */
     /* Additional Checks */
     // "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
