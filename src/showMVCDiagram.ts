@@ -23,8 +23,8 @@ const handleShowMVCDiagram = async (
 
 // bruce linting
 
-  console.log("node edge data:", nodeEdgeData);
-  console.log("single node edge data:", nodeEdgeData.nodes[0]);
+//   console.log("node edge data before linting:", nodeEdgeData);
+//   console.log("single node edge data:", nodeEdgeData.nodes[0]);
 
   let hasIssues = false;
   for (let node of nodeEdgeData.nodes){
@@ -63,7 +63,7 @@ const handleShowMVCDiagram = async (
 
   
   console.log("node edge data after linting:", nodeEdgeData);
-  console.log("single node edge data after linting:", nodeEdgeData.nodes[0]);
+//   console.log("single node edge data after linting:", nodeEdgeData.nodes[0]);
 
   // bruce linting
 

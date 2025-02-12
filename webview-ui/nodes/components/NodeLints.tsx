@@ -24,7 +24,7 @@ const NodeItem = ({issue, filePath}: {issue: Diagnostic, filePath: string|undefi
     const {message, range, severity} = issue;
 
     try {
-        console.log("range ", range);
+        // console.log("range ", range);
         
         // not sure why it is not following the type definition
         const lineNumber = range[0].line
