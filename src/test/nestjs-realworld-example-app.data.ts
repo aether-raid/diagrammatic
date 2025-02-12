@@ -1,0 +1,529 @@
+export const expectedNodes = [
+    {
+      data: {
+        entityName: "ArticleService",
+        entityType: "class",
+        items: [
+          {
+            name: "findAll",
+            lineNumber: 26,
+          },
+          {
+            name: "findFeed",
+            lineNumber: 69,
+          },
+          {
+            name: "findOne",
+            lineNumber: 99,
+          },
+          {
+            name: "addComment",
+            lineNumber: 104,
+          },
+          {
+            name: "deleteComment",
+            lineNumber: 117,
+          },
+          {
+            name: "favorite",
+            lineNumber: 135,
+          },
+          {
+            name: "unFavorite",
+            lineNumber: 152,
+          },
+          {
+            name: "findComments",
+            lineNumber: 171,
+          },
+          {
+            name: "create",
+            lineNumber: 176,
+          },
+          {
+            name: "update",
+            lineNumber: 200,
+          },
+          {
+            name: "delete",
+            lineNumber: 207,
+          },
+          {
+            name: "slugify",
+            lineNumber: 211,
+          },
+        ],
+      },
+    },
+    {
+      data: {
+        entityName: "ArticleController",
+        entityType: "class",
+        items: [
+          {
+            name: "findAll",
+            lineNumber: 25,
+          },
+          {
+            name: "getFeed",
+            lineNumber: 34,
+          },
+          {
+            name: "findOne",
+            lineNumber: 39,
+          },
+          {
+            name: "findComments",
+            lineNumber: 44,
+          },
+          {
+            name: "create",
+            lineNumber: 52,
+          },
+          {
+            name: "update",
+            lineNumber: 60,
+          },
+          {
+            name: "delete",
+            lineNumber: 69,
+          },
+          {
+            name: "createComment",
+            lineNumber: 77,
+          },
+          {
+            name: "deleteComment",
+            lineNumber: 85,
+          },
+          {
+            name: "favorite",
+            lineNumber: 94,
+          },
+          {
+            name: "unFavorite",
+            lineNumber: 102,
+          },
+        ],
+      },
+    },
+    {
+      data: {
+        entityName: "ArticleEntity",
+        entityType: "class",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "Comment",
+        entityType: "interface",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "ArticleData",
+        entityType: "interface",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "CommentsRO",
+        entityType: "interface",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "ArticleRO",
+        entityType: "interface",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "ArticlesRO",
+        entityType: "interface",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "ArticleModule",
+        entityType: "class",
+        items: [
+          {
+            name: "configure",
+            lineNumber: 20,
+          },
+        ],
+      },
+    },
+    {
+      data: {
+        entityName: "Comment",
+        entityType: "class",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "CreateArticleDto",
+        entityType: "class",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "CreateCommentDto",
+        entityType: "class",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "FollowsEntity",
+        entityType: "class",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "ProfileController",
+        entityType: "class",
+        items: [
+          {
+            name: "getProfile",
+            lineNumber: 19,
+          },
+          {
+            name: "follow",
+            lineNumber: 24,
+          },
+          {
+            name: "unFollow",
+            lineNumber: 29,
+          },
+        ],
+      },
+    },
+    {
+      data: {
+        entityName: "ProfileData",
+        entityType: "interface",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "ProfileRO",
+        entityType: "interface",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "ProfileModule",
+        entityType: "class",
+        items: [
+          {
+            name: "configure",
+            lineNumber: 19,
+          },
+        ],
+      },
+    },
+    {
+      data: {
+        entityName: "ProfileService",
+        entityType: "class",
+        items: [
+          {
+            name: "findAll",
+            lineNumber: 19,
+          },
+          {
+            name: "findOne",
+            lineNumber: 23,
+          },
+          {
+            name: "findProfile",
+            lineNumber: 30,
+          },
+          {
+            name: "follow",
+            lineNumber: 50,
+          },
+          {
+            name: "unFollow",
+            lineNumber: 81,
+          },
+        ],
+      },
+    },
+    {
+      data: {
+        entityName: "BaseController",
+        entityType: "class",
+        items: [
+          {
+            name: "getUserIdFromToken",
+            lineNumber: 8,
+          },
+        ],
+      },
+    },
+    {
+      data: {
+        entityName: "ValidationPipe",
+        entityType: "class",
+        items: [
+          {
+            name: "transform",
+            lineNumber: 8,
+          },
+          {
+            name: "buildError",
+            lineNumber: 26,
+          },
+          {
+            name: "toValidate",
+            lineNumber: 37,
+          },
+        ],
+      },
+    },
+    {
+      data: {
+        entityName: "TagService",
+        entityType: "class",
+        items: [
+          {
+            name: "findAll",
+            lineNumber: 13,
+          },
+        ],
+      },
+    },
+    {
+      data: {
+        entityName: "TagModule",
+        entityType: "class",
+        items: [
+          {
+            name: "configure",
+            lineNumber: 17,
+          },
+        ],
+      },
+    },
+    {
+      data: {
+        entityName: "TagEntity",
+        entityType: "class",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "TagEntity",
+        entityType: "class",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "TagController",
+        entityType: "class",
+        items: [
+          {
+            name: "findAll",
+            lineNumber: 18,
+          },
+        ],
+      },
+    },
+    {
+      data: {
+        entityName: "UserService",
+        entityType: "class",
+        items: [
+          {
+            name: "findAll",
+            lineNumber: 21,
+          },
+          {
+            name: "findOne",
+            lineNumber: 25,
+          },
+          {
+            name: "create",
+            lineNumber: 38,
+          },
+          {
+            name: "update",
+            lineNumber: 74,
+          },
+          {
+            name: "delete",
+            lineNumber: 83,
+          },
+          {
+            name: "findById",
+            lineNumber: 87,
+          },
+          {
+            name: "findByEmail",
+            lineNumber: 98,
+          },
+          {
+            name: "generateJWT",
+            lineNumber: 103,
+          },
+          {
+            name: "buildUserRO",
+            lineNumber: 116,
+          },
+        ],
+      },
+    },
+    {
+      data: {
+        entityName: "UserModule",
+        entityType: "class",
+        items: [
+          {
+            name: "configure",
+            lineNumber: 17,
+          },
+        ],
+      },
+    },
+    {
+      data: {
+        entityName: "UserData",
+        entityType: "interface",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "UserRO",
+        entityType: "interface",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "UserEntity",
+        entityType: "class",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "user.decorator.ts",
+        entityType: "file",
+        items: [
+          {
+            name: "User",
+            lineNumber: 5,
+          },
+        ],
+      },
+    },
+    {
+      data: {
+        entityName: "UserController",
+        entityType: "class",
+        items: [
+          {
+            name: "findMe",
+            lineNumber: 22,
+          },
+          {
+            name: "update",
+            lineNumber: 27,
+          },
+          {
+            name: "create",
+            lineNumber: 33,
+          },
+          {
+            name: "delete",
+            lineNumber: 38,
+          },
+          {
+            name: "login",
+            lineNumber: 44,
+          },
+        ],
+      },
+    },
+    {
+      data: {
+        entityName: "AuthMiddleware",
+        entityType: "class",
+        items: [
+          {
+            name: "use",
+            lineNumber: 13,
+          },
+        ],
+      },
+    },
+    {
+      data: {
+        entityName: "UpdateUserDto",
+        entityType: "class",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "LoginUserDto",
+        entityType: "class",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "CreateUserDto",
+        entityType: "class",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "AppController",
+        entityType: "class",
+        items: [
+          {
+            name: "root",
+            lineNumber: 6,
+          },
+        ],
+      },
+    },
+    {
+      data: {
+        entityName: "ApplicationModule",
+        entityType: "class",
+        items: [],
+      },
+    },
+    {
+      data: {
+        entityName: "main.ts",
+        entityType: "file",
+        items: [
+          {
+            name: "bootstrap",
+            lineNumber: 5,
+          },
+        ],
+      },
+    },
+  ];
