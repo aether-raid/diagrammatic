@@ -31,7 +31,7 @@ const NodeItem = ({issue, filePath}: {issue: Diagnostic, filePath: string|undefi
         if (!lineNumber) {throw new Error('No line number found!');}
         const onRowClick = () => {
             if (!lineNumber || !filePath) {
-            console.error(`Unknown filePath (${filePath}) or lineNumber (${lineNumber})!`);
+            console.error(`Unknown filePath (${filePath}) or lineNumber (${lineNumber + 1})!`);
             return;
             }
             sendJumpToLineMessageToExtension(filePath, lineNumber);
