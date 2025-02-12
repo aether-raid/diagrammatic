@@ -588,3 +588,7 @@ export function processConstructorRequiredParameter(node: SyntaxNode) {
     getLineNumber(node)
   );
 }
+
+export function toGroupTypeIgnoreCase(value: string): GroupType {
+  return Object.values(GroupType).find(gt => gt.toLowerCase() === value.toLowerCase()) ?? GroupType.CLASS;
+}

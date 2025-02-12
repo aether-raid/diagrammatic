@@ -1,4 +1,4 @@
-import { Node, Group, GroupType } from "./model.js";
+import { Node, Group } from "./model.js";
 import {
   makeCalls,
   makeLocalVariables,
@@ -6,6 +6,7 @@ import {
   getLineNumber,
   getAllChildrenOfType,
   processConstructorRequiredParameter,
+  toGroupTypeIgnoreCase,
 } from "./function.js";
 import { SyntaxNode } from "tree-sitter";
 import { LanguageRules, RuleEngine } from "./rules.js";
@@ -78,7 +79,7 @@ export class Language {
       throw new Error("Group rule is missing groupType or does not exist!");
     }
     const classGroup = new Group({
-      groupType: matchingGroupRule.groupType,
+      groupType: toGroupTypeIgnoreCase(matchingGroupRule.groupType),
       token: getName(tree, languageRules.getName),
       lineNumber: getLineNumber(tree),
       parent,
