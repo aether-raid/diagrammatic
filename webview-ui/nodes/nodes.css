@@ -24,11 +24,20 @@
 }
 
 .entity-node > .entity__file {
-    background-color: #0D6EFD;
+    background-color: var(--app-blue);
 }
 
 .entity-node > .entity__class {
-    background-color: #FD0DE6;
+    background-color: var(--app-pink);
+}
+
+.entity-node > .entity__interface {
+    background-color: var(--app-green);
+}
+
+.entity-node > .entity__namespace {
+    background-color: var(--app-yellow);
+    color: var(--app-black);
 }
 
 /* Text Updater Node */
