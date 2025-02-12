@@ -61,6 +61,10 @@ const handleShowMVCDiagram = async (
     vscode.window.showWarningMessage('ESLint issues found. Check the Problems panel.');
   }
 
+  
+  console.log("node edge data after linting:", nodeEdgeData);
+  console.log("single node edge data after linting:", nodeEdgeData.nodes[0].data);
+
   // bruce linting
 
 
