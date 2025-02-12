@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "lib": ["ES2022"],
+    "outDir": "./dist-test/tests",
+    "types": ["mocha", "node"],
+    "resolveJsonModule": true
+  },
+
+  "exclude": ["!./src/algorithm-test"],
+  "include": ["./src/algorithm-test/**/*.ts"],
+  "references": [
+    { "path": "./tsconfig.shared.json" }
+  ]
+}

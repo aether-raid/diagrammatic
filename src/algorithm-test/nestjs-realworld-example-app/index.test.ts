@@ -1,6 +1,9 @@
-import { runCodeToDiagramAlgorithm } from "../runCodeToDiagramAlgorithm";
-import { expectedNodes } from "./nestjs-realworld-example-app.data";
-import { calculateMetrics, compareEntityCounts, countEntityTypes, countFilesAndLines } from "./helper";
+import * as fs from "fs";
+import * as path from "path";
+
+import * as expectedNodes from './expectedNodes.json';
+import { runCodeToDiagramAlgorithm } from "../../runCodeToDiagramAlgorithm";
+import { calculateMetrics, compareEntityCounts, countEntityTypes, countFilesAndLines } from "../helper";
 
 // Repository URL: https://github.com/lujakob/nestjs-realworld-example-app
 const mockDirectoryPath =
