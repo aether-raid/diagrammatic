@@ -90,7 +90,7 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
           position: { x: 0, y: 0 },
           data: {
             entityName: subgroup.token ?? "",
-            entityType: "class",
+            entityType: subgroup.groupType,
             filePath: fileGroup.filePath ?? "",
             items: subgroupNodes,
           },

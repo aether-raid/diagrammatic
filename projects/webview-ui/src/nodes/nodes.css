@@ -40,6 +40,10 @@
     color: var(--app-black);
 }
 
+.entity-node > .entity__struct {
+    background-color: var(--app-purple);
+}
+
 /* Text Updater Node */
 .text-updater-node label {
     display: block;

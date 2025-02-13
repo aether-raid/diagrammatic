@@ -10,17 +10,21 @@ interface HighlightableEntityItem extends EntityItem {
   highlighted?: boolean;
 }
 
+export type EntityNode = Node<
+  {
+    entityName: string;
+    entityType: "class" | "file" | "interface" | "namespace" | "struct";
+    items: HighlightableEntityItem[];
 
-export type EntityNode = Node<{
-  entityName: string;
-  entityType: 'class' | 'file' | 'interface' | 'namespace';
-  items: HighlightableEntityItem[];
+    setHoveredEntity?: React.Dispatch<
+      React.SetStateAction<NodeRow | undefined>
+    >;
+    description?: string;
+    filePath?: string;
+  },
+  "entity"
+>;
 
-  setHoveredEntity?: React.Dispatch<React.SetStateAction<NodeRow | undefined>>
-  description?: string;
-  filePath?: string;
-}, 'entity'>;
-
-export type TextUpdaterNode = Node<{}, 'textUpdater'>;
+export type TextUpdaterNode = Node<{}, "textUpdater">;
 
 export type AppNode = BuiltInNode | TextUpdaterNode | EntityNode;

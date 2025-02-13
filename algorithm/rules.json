@@ -7,10 +7,27 @@
     ],
     "groups": [
       {
-        "type": "class_specifier"
+        "type": "struct_specifier",
+        "groupType": "STRUCT"
+      },
+      {
+        "type": "class_specifier",
+        "groupType": "CLASS"
+      },
+      {
+        "type": "namespace_definition",
+        "groupType": "NAMESPACE"
       }
     ],
     "getName": {
+      "struct_specifier": {
+        "childType": "type_identifier",
+        "useText": true
+      },
+      "namespace_definition": {
+        "childType": "namespace_identifier",
+        "useText": true
+      },
       "function_definition": {
         "childType": "function_declarator",
         "delegate": true
@@ -30,7 +47,8 @@
     ],
     "groups": [
       {
-        "type": "class_declaration"
+        "type": "class_declaration",
+        "groupType": "CLASS"
       }
     ],
     "getName": {
@@ -49,7 +67,8 @@
     ],
     "groups": [
       {
-        "type": "class_definition"
+        "type": "class_definition",
+        "groupType": "CLASS"
       }
     ],
     "getName": {
@@ -90,8 +109,15 @@
         "type": "function_declaration"
       }
     ],
-    "groups": [{ "type": "class_declaration" }],
+    "groups": [
+      { "type": "class_declaration", "groupType": "CLASS" },
+      { "type": "interface_declaration", "groupType": "INTERFACE" }
+    ],
     "getName": {
+      "interface_declaration": {
+        "childType": "type_identifier",
+        "useText": true
+      },
       "export_statement": {
         "childType": "lexical_declaration",
         "delegate": true
@@ -140,7 +166,7 @@
         "type": "function_declaration"
       }
     ],
-    "groups": [{ "type": "class_declaration" }],
+    "groups": [{ "type": "class_declaration", "groupType": "CLASS" }],
     "getName": {
       "export_statement": {
         "childType": "lexical_declaration",

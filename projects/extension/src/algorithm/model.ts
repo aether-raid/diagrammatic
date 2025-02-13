@@ -177,9 +177,11 @@ export class Node {
  * Represent namespaces (classes and modules/files)
  */
 export enum GroupType {
-  CLASS,
-  FILE,
-  NAMESPACE,
+  CLASS = "class",
+  FILE = "file",
+  INTERFACE = "interface",
+  STRUCT = "struct",
+  NAMESPACE = "namespace",
 }
 
 export class Group {

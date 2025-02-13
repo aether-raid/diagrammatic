@@ -7,7 +7,8 @@
     ],
     "groups": [
       {
-        "type": "class_specifier"
+        "type": "class_specifier",
+        "groupType": "CLASS"
       }
     ],
     "getName": {
@@ -30,7 +31,8 @@
     ],
     "groups": [
       {
-        "type": "class_declaration"
+        "type": "class_declaration",
+        "groupType": "CLASS"
       }
     ],
     "getName": {
@@ -49,7 +51,8 @@
     ],
     "groups": [
       {
-        "type": "class_definition"
+        "type": "class_definition",
+        "groupType": "CLASS"
       }
     ],
     "getName": {
@@ -90,8 +93,15 @@
         "type": "function_declaration"
       }
     ],
-    "groups": [{ "type": "class_declaration" }],
+    "groups": [
+      { "type": "class_declaration", "groupType": "CLASS" },
+      { "type": "interface_declaration", "groupType": "INTERFACE" }
+    ],
     "getName": {
+      "interface_declaration": {
+        "childType": "type_identifier",
+        "useText": true
+      },
       "export_statement": {
         "childType": "lexical_declaration",
         "delegate": true
@@ -140,7 +150,7 @@
         "type": "function_declaration"
       }
     ],
-    "groups": [{ "type": "class_declaration" }],
+    "groups": [{ "type": "class_declaration", "groupType": "CLASS" }],
     "getName": {
       "export_statement": {
         "childType": "lexical_declaration",
