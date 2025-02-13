@@ -1,4 +1,4 @@
-import { getFirstChildOfType } from "./function.js";
+import { getFirstChildOfType } from "./function";
 import fs from "fs";
 import { SyntaxNode } from "tree-sitter";
 
