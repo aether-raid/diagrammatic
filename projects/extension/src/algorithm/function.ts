@@ -7,8 +7,8 @@ import Java from "tree-sitter-java";
 import Cpp from "tree-sitter-cpp";
 
 import { Variable, Call, Group, Edge, GroupType, Node } from "./model";
-import { Language } from "./language.js";
-import { LanguageRules } from "./rules.js";
+import { Language } from "./language";
+import { LanguageRules } from "./rules";
 
 /**
  * Parse files in a folder and convert them to ASTs.
