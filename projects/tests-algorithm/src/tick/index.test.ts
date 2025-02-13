@@ -10,11 +10,10 @@ import {
 } from "../helper";
 import { RuleEngine } from "@extension/algorithm/rules";
 
-// Repository URL: https://github.com/lujakob/nestjs-realworld-example-app
-const mockDirectoryPath =
-  "/Users/sharlenetio/Desktop/fyp/samples/nestjs-realworld-example-app/src";
+// Repository URL: https://github.com/Tick-CS203/tick
+const mockDirectoryPath = "/Users/sharlenetio/Desktop/fyp/samples/tick";
 
-describe("nestjs-realworld-example-app", () => {
+describe("tick", () => {
   let rulesetStub: sinon.SinonStub;
 
   let ruleset: any;
@@ -56,7 +55,6 @@ describe("nestjs-realworld-example-app", () => {
       "Ratio of resulting components to expected components:",
       numComponents / expectedNodes.length
     );
-    
     const expectedEntityTypes = countEntityTypes(expectedNodes);
     const returnedEntityTypes = countEntityTypes(
       result.nodes as { data: { entityType: string } }[]

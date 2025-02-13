@@ -39,8 +39,6 @@ export const runCodeToDiagramAlgorithm = (
     fileGroups.push(fileGroup);
   });
 
-  console.log(fileGroups);
-
   const allNodes = fileGroups.flatMap((group) => group.allNodes());
   const allGroups = fileGroups.flatMap((group) => group.allGroups());
 
@@ -56,9 +54,6 @@ export const runCodeToDiagramAlgorithm = (
 
   const outputNodes = transformFileGroups(fileGroups);
   const outputEdges = transformEdges(allEdges);
-
-  console.log(outputNodes);
-  console.log(outputEdges);
 
   return { nodes: outputNodes, edges: outputEdges };
 };
