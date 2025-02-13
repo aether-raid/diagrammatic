@@ -5,7 +5,7 @@
     },
     "composite": true,
 
-    "noEmit": true,
+    "emitDeclarationOnly": true,
     "module": "CommonJS",
     "target": "ES2022",
     "lib": [
