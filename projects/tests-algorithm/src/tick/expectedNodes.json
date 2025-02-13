@@ -72,11 +72,11 @@
       "entityName": "ExceptionCatcher",
       "entityType": "class",
       "items": [
-        { "name": "no_event", "lineNumber": 19 },
-        { "name": "no_body", "lineNumber": 19 },
-        { "name": "wrong_type", "lineNumber": 19 },
-        { "name": "not_valid", "lineNumber": 19 },
-        { "name": "generic_exception", "lineNumber": 19 }
+        { "name": "no_event", "lineNumber": 15 },
+        { "name": "no_body", "lineNumber": 20 },
+        { "name": "wrong_type", "lineNumber": 25 },
+        { "name": "not_valid", "lineNumber": 30 },
+        { "name": "generic_exception", "lineNumber": 35 }
       ]
     }
   },
@@ -412,6 +412,813 @@
       "entityName": "SessionServiceApplicationTests",
       "entityType": "class",
       "items": [{ "name": "contextLoads", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "BookmarkController",
+      "entityType": "class",
+      "items": [
+        { "name": "get_all_bookmarks", "lineNumber": 26 },
+        { "name": "user_bookmarks", "lineNumber": 32 },
+        { "name": "delete_bookmark", "lineNumber": 40 },
+        { "name": "add_bookmark", "lineNumber": 52 },
+        { "name": "verify_event", "lineNumber": 62 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ErrorMessage",
+      "entityType": "class",
+      "items": [
+        { "name": "getError", "lineNumber": 16 },
+        { "name": "getTimestamp", "lineNumber": 20 },
+        { "name": "getStatus", "lineNumber": 24 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ExceptionCatcher",
+      "entityType": "class",
+      "items": [
+        { "name": "no_event", "lineNumber": 13 },
+        { "name": "no_body", "lineNumber": 18 },
+        { "name": "wrong_type", "lineNumber": 23 },
+        { "name": "no_such_event", "lineNumber": 28 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Healthcheck",
+      "entityType": "class",
+      "items": [{ "name": "health_check", "lineNumber": 8 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Bookmark",
+      "entityType": "class",
+      "items": [
+        { "name": "getUserID", "lineNumber": 22 },
+        { "name": "getEventList", "lineNumber": 26 },
+        { "name": "addEvent", "lineNumber": 30 },
+        { "name": "removeEvent", "lineNumber": 35 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Token",
+      "entityType": "record",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenResponse",
+      "entityType": "record",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventNotFoundException",
+      "entityType": "class",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "BookmarkRepository",
+      "entityType": "interface",
+      "items": [{ "name": "findByUserID", "lineNumber": 11 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "CorsFilter",
+      "entityType": "class",
+      "items": [{ "name": "config", "lineNumber": 8 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SecurityConfig",
+      "entityType": "class",
+      "items": [{ "name": "filterChain", "lineNumber": 22 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenAuthentication",
+      "entityType": "class",
+      "items": [
+        { "name": "getAuthorities", "lineNumber": 17 },
+        { "name": "getCredentials", "lineNumber": 18 },
+        { "name": "getDetails", "lineNumber": 19 },
+        { "name": "getPrincipal", "lineNumber": 20 },
+        { "name": "setPrincipal", "lineNumber": 21 },
+        { "name": "getName", "lineNumber": 22 },
+        { "name": "isAuthenticated", "lineNumber": 23 },
+        { "name": "setAuthenticated", "lineNumber": 24 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenAuthProvider",
+      "entityType": "class",
+      "items": [
+        { "name": "authenticate", "lineNumber": 22 },
+        { "name": "supports", "lineNumber": 34 },
+        { "name": "webRequest", "lineNumber": 38 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenFilter",
+      "entityType": "class",
+      "items": [{ "name": "doFilterInternal", "lineNumber": 25 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "BookmarkService",
+      "entityType": "class",
+      "items": [
+        { "name": "findAll", "lineNumber": 19 },
+        { "name": "add_bookmark", "lineNumber": 23 },
+        { "name": "delete_bookmark", "lineNumber": 29 },
+        { "name": "findBookmark", "lineNumber": 37 },
+        { "name": "getBookmark", "lineNumber": 41 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventRequest",
+      "entityType": "class",
+      "items": [{ "name": "post", "lineNumber": 19 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "BookmarksApplication",
+      "entityType": "class",
+      "items": [{ "name": "main", "lineNumber": 9 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "BookmarksApplicationTests",
+      "entityType": "class",
+      "items": [{ "name": "contextLoads", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "BookmarkServiceTest",
+      "entityType": "class",
+      "items": [
+        { "name": "eventInBookmark", "lineNumber": 31 },
+        { "name": "addBookmark_Success", "lineNumber": 41 },
+        { "name": "deleteBookmark_Success", "lineNumber": 58 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "app.py",
+      "entityType": "file",
+      "items": [
+        { "name": "index", "lineNumber": 8 },
+        { "name": "get_artists", "lineNumber": 12 },
+        { "name": "get_recommendations", "lineNumber": 22 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "createModel.py",
+      "entityType": "file",
+      "items": [{ "name": "clean", "lineNumber": 14 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ErrorMessage",
+      "entityType": "class",
+      "items": [
+        { "name": "getError", "lineNumber": 22 },
+        { "name": "getTimestamp", "lineNumber": 26 },
+        { "name": "getStatus", "lineNumber": 30 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ExceptionCatcher",
+      "entityType": "class",
+      "items": [
+        { "name": "no_event", "lineNumber": 15 },
+        { "name": "no_body", "lineNumber": 20 },
+        { "name": "wrong_type", "lineNumber": 25 },
+        { "name": "not_valid", "lineNumber": 30 },
+        { "name": "generic_exception", "lineNumber": 35 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Healthcheck",
+      "entityType": "class",
+      "items": [{ "name": "health_check", "lineNumber": 7 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TicketController",
+      "entityType": "class",
+      "items": [
+        { "name": "getAllTickets", "lineNumber": 25 },
+        { "name": "createTicket", "lineNumber": 31 },
+        { "name": "modifyTicket", "lineNumber": 36 },
+        { "name": "deleteByTicketId", "lineNumber": 43 },
+        { "name": "getTicketByUserId", "lineNumber": 58 },
+        { "name": "ticketsMadeAvailable", "lineNumber": 64 },
+        { "name": "ticketByKey", "lineNumber": 69 },
+        { "name": "deleteByEventId", "lineNumber": 86 },
+        { "name": "verifyRecaptcha", "lineNumber": 91 },
+        { "name": "allocateSeats", "lineNumber": 96 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventDateExistsException",
+      "entityType": "class",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventDateNotFoundException",
+      "entityType": "class",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventNotFoundException",
+      "entityType": "class",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventUpdateException",
+      "entityType": "class",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "SeatSelectionException",
+      "entityType": "class",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "TicketNotFoundException",
+      "entityType": "class",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "WebException",
+      "entityType": "class",
+      "items": [{ "name": "getStatus", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Links",
+      "entityType": "class",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "Event",
+      "entityType": "class",
+      "items": [
+        { "name": "upsert", "lineNumber": 54 },
+        { "name": "addEventDate", "lineNumber": 70 },
+        { "name": "removeEventDate", "lineNumber": 80 },
+        { "name": "findEventDate", "lineNumber": 85 },
+        { "name": "setEventID", "lineNumber": 95 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventDate",
+      "entityType": "class",
+      "items": [{ "name": "populateEventDate", "lineNumber": 29 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Price",
+      "entityType": "class",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "RecaptchaObject",
+      "entityType": "class",
+      "items": [{ "name": "getSecret", "lineNumber": 19 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "RecaptchaRequest",
+      "entityType": "class",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "RecaptchaResponse",
+      "entityType": "class",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "SelectedRow",
+      "entityType": "class",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "Ticket",
+      "entityType": "class",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "Token",
+      "entityType": "record",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenResponse",
+      "entityType": "record",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "TicketRepository",
+      "entityType": "interface",
+      "items": [{ "name": "findByUser", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "CorsFilter",
+      "entityType": "class",
+      "items": [{ "name": "config", "lineNumber": 8 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SecurityConfig",
+      "entityType": "class",
+      "items": [{ "name": "filterChain", "lineNumber": 22 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenAuthentication",
+      "entityType": "class",
+      "items": [
+        { "name": "getAuthorities", "lineNumber": 20 },
+        { "name": "addAuthorities", "lineNumber": 24 },
+        { "name": "getCredentials", "lineNumber": 28 },
+        { "name": "getDetails", "lineNumber": 29 },
+        { "name": "getPrincipal", "lineNumber": 30 },
+        { "name": "setPrincipal", "lineNumber": 31 },
+        { "name": "getName", "lineNumber": 32 },
+        { "name": "isAuthenticated", "lineNumber": 33 },
+        { "name": "setAuthenticated", "lineNumber": 34 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenAuthProvider",
+      "entityType": "class",
+      "items": [
+        { "name": "authenticate", "lineNumber": 22 },
+        { "name": "supports", "lineNumber": 40 },
+        { "name": "webRequest", "lineNumber": 44 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenFilter",
+      "entityType": "class",
+      "items": [{ "name": "doFilterInternal", "lineNumber": 25 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventService",
+      "entityType": "class",
+      "items": [
+        { "name": "get", "lineNumber": 16 },
+        { "name": "put", "lineNumber": 29 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TicketService",
+      "entityType": "class",
+      "items": [
+        { "name": "getAllTickets", "lineNumber": 27 },
+        { "name": "addTicket", "lineNumber": 31 },
+        { "name": "getTicketByUserId", "lineNumber": 36 },
+        { "name": "getTicketByKey", "lineNumber": 40 },
+        { "name": "updateTicket", "lineNumber": 45 },
+        { "name": "releaseTicket", "lineNumber": 52 },
+        { "name": "deleteTicketByEvent", "lineNumber": 60 },
+        { "name": "deleteTicketByTicketId", "lineNumber": 72 },
+        { "name": "allocateSeats", "lineNumber": 79 },
+        { "name": "verifyRecaptcha", "lineNumber": 145 },
+        { "name": "createOrderId", "lineNumber": 157 },
+        { "name": "createOrderDate", "lineNumber": 161 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TicketsServiceApplication",
+      "entityType": "class",
+      "items": [
+        { "name": "main", "lineNumber": 11 },
+        { "name": "getWebClientBuilder", "lineNumber": 16 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "MongoDBContainer",
+      "entityType": "class",
+      "items": [{ "name": "setProperties", "lineNumber": 35 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "MongoDBContainer",
+      "entityType": "class",
+      "items": [{ "name": "setProperties", "lineNumber": 35 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TicketIntegrationTest",
+      "entityType": "class",
+      "items": [
+        { "name": "updateTicket_NoTicketID_Failure", "lineNumber": 49 },
+        { "name": "updateTicket_InvalidTicketID_Failure", "lineNumber": 60 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TicketServiceTest",
+      "entityType": "class",
+      "items": [
+        {
+          "name": "allocateSeats_AboveTicketQuantityLimit_ThrowException",
+          "lineNumber": 40
+        },
+        {
+          "name": "allocateSeats_InvalidCategory_ThrowException",
+          "lineNumber": 62
+        },
+        { "name": "updateTicket_ValidTicketID_Success", "lineNumber": 92 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TicketsServiceApplicationTests",
+      "entityType": "class",
+      "items": [{ "name": "contextLoads", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ErrorMessage",
+      "entityType": "record",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "KeyProvider",
+      "entityType": "class",
+      "items": [
+        { "name": "getPublicKeyById", "lineNumber": 27 },
+        { "name": "getPrivateKey", "lineNumber": 48 },
+        { "name": "getPrivateKeyId", "lineNumber": 52 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "JWKS",
+      "entityType": "record",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "KeyList",
+      "entityType": "record",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "Token",
+      "entityType": "record",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "User",
+      "entityType": "record",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "CorsFilter",
+      "entityType": "class",
+      "items": [{ "name": "config", "lineNumber": 6 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SecurityConfig",
+      "entityType": "class",
+      "items": [{ "name": "filterChain", "lineNumber": 13 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Healthcheck",
+      "entityType": "class",
+      "items": [{ "name": "health_check", "lineNumber": 8 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "JwtTokenUtil",
+      "entityType": "class",
+      "items": [
+        { "name": "generate_tok", "lineNumber": 36 },
+        { "name": "validate_tok", "lineNumber": 52 },
+        { "name": "get_claims", "lineNumber": 67 },
+        { "name": "get_expiry", "lineNumber": 82 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TickApplication",
+      "entityType": "class",
+      "items": [{ "name": "main", "lineNumber": 9 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenController",
+      "entityType": "class",
+      "items": [
+        { "name": "validate_token", "lineNumber": 15 },
+        { "name": "create_token", "lineNumber": 23 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenService",
+      "entityType": "class",
+      "items": [{ "name": "perform", "lineNumber": 9 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "WebExceptionHandler",
+      "entityType": "class",
+      "items": [
+        { "name": "no_token", "lineNumber": 9 },
+        { "name": "no_body", "lineNumber": 9 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TickApplicationTests",
+      "entityType": "class",
+      "items": [{ "name": "contextLoads", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenEndpointTest",
+      "entityType": "class",
+      "items": [
+        { "name": "create_token", "lineNumber": 24 },
+        { "name": "validate_token", "lineNumber": 34 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ErrorMessage",
+      "entityType": "class",
+      "items": [
+        { "name": "getError", "lineNumber": 22 },
+        { "name": "getTimestamp", "lineNumber": 26 },
+        { "name": "getStatus", "lineNumber": 30 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ExceptionCatcher",
+      "entityType": "class",
+      "items": [
+        { "name": "no_event", "lineNumber": 15 },
+        { "name": "no_body", "lineNumber": 20 },
+        { "name": "wrong_type", "lineNumber": 25 },
+        { "name": "not_valid", "lineNumber": 30 },
+        { "name": "generic_exception", "lineNumber": 35 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Healthcheck",
+      "entityType": "class",
+      "items": [{ "name": "health_check", "lineNumber": 8 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "VenueController",
+      "entityType": "class",
+      "items": [
+        { "name": "getAllVenue", "lineNumber": 24 },
+        { "name": "getVenue", "lineNumber": 29 },
+        { "name": "createVenue", "lineNumber": 34 },
+        { "name": "deleteVenue", "lineNumber": 39 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Venue",
+      "entityType": "class",
+      "items": [
+        { "name": "getName", "lineNumber": 22 },
+        { "name": "getSeatMap", "lineNumber": 26 },
+        { "name": "setName", "lineNumber": 30 },
+        { "name": "setSeatMap", "lineNumber": 34 },
+        { "name": "getVenueID", "lineNumber": 38 },
+        { "name": "setVenueID", "lineNumber": 42 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "VenueNotFoundException",
+      "entityType": "class",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "WebException",
+      "entityType": "class",
+      "items": [{ "name": "getStatus", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "VenueRepository",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "CorsFilter",
+      "entityType": "class",
+      "items": [{ "name": "config", "lineNumber": 8 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SecurityConfig",
+      "entityType": "class",
+      "items": [{ "name": "filterChain", "lineNumber": 12 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "VenueService",
+      "entityType": "class",
+      "items": [
+        { "name": "getAllVenue", "lineNumber": 19 },
+        { "name": "getVenue", "lineNumber": 23 },
+        { "name": "createVenue", "lineNumber": 28 },
+        { "name": "deleteVenue", "lineNumber": 32 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "VenueApplication",
+      "entityType": "class",
+      "items": [{ "name": "main", "lineNumber": 9 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "VenueApplicationTests",
+      "entityType": "class",
+      "items": [{ "name": "contextLoads", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "VenueServiceTest",
+      "entityType": "class",
+      "items": [
+        { "name": "getVenue_InvalidVenueID_ThrowException", "lineNumber": 26 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "LambdaRequestHandler",
+      "entityType": "class",
+      "items": [
+        { "name": "handleRequest", "lineNumber": 10 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "RequestClass",
+      "entityType": "class",
+      "items": [
+        { "name": "getFirstName", "lineNumber": 9 },
+        { "name": "setFirstName", "lineNumber": 13 },
+        { "name": "getLastName", "lineNumber": 17 },
+        { "name": "setLastName", "lineNumber": 21 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ResponseClass",
+      "entityType": "class",
+      "items": [
+        { "name": "getGreetings", "lineNumber": 8 },
+        { "name": "setGreetings", "lineNumber": 12 }
+      ]
     }
   }
 ]

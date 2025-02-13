@@ -1,7 +1,10 @@
 import * as fs from "fs";
 import * as path from "path";
 
-export function countFilesAndLines(directory: string): {
+export function countFilesAndLines(
+  directory: string,
+  allowedExtensions: string[] = [".ts", ".py", ".tsx", ".java", ".cpp"]
+): {
   fileCount: number;
   lineCount: number;
 } {
@@ -18,9 +21,12 @@ export function countFilesAndLines(directory: string): {
       if (stat.isDirectory()) {
         processDirectory(fullPath);
       } else {
-        fileCount++;
-        const fileContent = fs.readFileSync(fullPath, "utf8");
-        lineCount += fileContent.split("\n").length;
+        const ext = path.extname(file);
+        if (allowedExtensions.includes(ext)) {
+          fileCount++;
+          const fileContent = fs.readFileSync(fullPath, "utf8");
+          lineCount += fileContent.split("\n").length;
+        }
       }
     }
   }
@@ -55,7 +61,7 @@ export function compareEntityCounts(
   }
 }
 
-export function calculateMetrics(
+export function calculateNodeMetrics(
   predicted: { data: { entityType: string; entityName: string } }[],
   groundTruth: { data: { entityType: string; entityName: string } }[]
 ) {
@@ -71,14 +77,85 @@ export function calculateMetrics(
   ).length;
   const falsePositives = [...predictedSet].filter(
     (item) => !groundTruthSet.has(item)
-  ).length;
+  );
   const falseNegatives = [...groundTruthSet].filter(
     (item) => !predictedSet.has(item)
-  ).length;
+  );
 
-  const precision = truePositives / (truePositives + falsePositives || 1);
-  const recall = truePositives / (truePositives + falseNegatives || 1);
+  console.log(falsePositives);
+  console.log(falseNegatives);
+
+  const precision =
+    truePositives / (truePositives + falsePositives.length || 1);
+  const recall = truePositives / (truePositives + falseNegatives.length || 1);
   const f1 = (2 * (precision * recall)) / (precision + recall || 1);
 
   return { precision, recall, f1 };
+}
+
+export function calculateFunctionMetrics(
+  predictedList: {
+    data: {
+      entityType: string;
+      entityName: string;
+      items: { name: string; lineNumber: number }[];
+    };
+  }[],
+  actualList: {
+    data: {
+      entityType: string;
+      entityName: string;
+      items: { name: string; lineNumber: number }[];
+    };
+  }[]
+) {
+  let totalTP = 0,
+    totalFP = 0,
+    totalFN = 0;
+
+  actualList.forEach((actualEntity) => {
+    const predictedEntity = predictedList.find(
+      (p) => p.data.entityName === actualEntity.data.entityName
+    );
+
+    if (!predictedEntity) return;
+
+    const actualItems = new Set(
+      actualEntity.data.items.map(
+        (i) => `${actualEntity.data.entityName}:${i.name}:${i.lineNumber}`
+      )
+    );
+    const predictedItems = new Set(
+      predictedEntity.data.items.map(
+        (i) => `${predictedEntity.data.entityName}:${i.name}:${i.lineNumber}`
+      )
+    );
+
+    const truePositives = [...predictedItems].filter((name) =>
+      actualItems.has(name)
+    ).length;
+    const falsePositives = [...predictedItems].filter(
+      (name) => !actualItems.has(name)
+    );
+    const falseNegatives = [...actualItems].filter(
+      (name) => !predictedItems.has(name)
+    );
+
+    // console.log("falsePositives:", falsePositives);
+    // console.log("falseNegatives:", falseNegatives);
+
+    totalTP += truePositives;
+    totalFP += falsePositives.length;
+    totalFN += falseNegatives.length;
+  });
+
+  const precision = totalTP / (totalTP + totalFP || 1);
+  const recall = totalTP / (totalTP + totalFN || 1);
+  const f1 = (2 * precision * recall) / (precision + recall || 1);
+
+  return {
+    precision,
+    recall,
+    f1,
+  };
 }

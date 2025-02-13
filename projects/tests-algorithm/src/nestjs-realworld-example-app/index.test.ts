@@ -3,7 +3,8 @@ import * as sinon from "sinon";
 
 import expectedNodes from "./expectedNodes.json";
 import {
-  calculateMetrics,
+  calculateFunctionMetrics,
+  calculateNodeMetrics,
   compareEntityCounts,
   countEntityTypes,
   countFilesAndLines,
@@ -56,19 +57,39 @@ describe("nestjs-realworld-example-app", () => {
       "Ratio of resulting components to expected components:",
       numComponents / expectedNodes.length
     );
-    
+
     const expectedEntityTypes = countEntityTypes(expectedNodes);
     const returnedEntityTypes = countEntityTypes(
       result.nodes as { data: { entityType: string } }[]
     );
     compareEntityCounts(expectedEntityTypes, returnedEntityTypes);
 
-    const { precision, recall, f1 } = calculateMetrics(
+    const { precision, recall, f1 } = calculateNodeMetrics(
       result.nodes as { data: { entityType: string; entityName: string } }[],
       expectedNodes
     );
+    console.log("==== Metrics for Nodes ===");
     console.log("Precision:", precision);
     console.log("Recall:", recall);
     console.log("F1:", f1);
+
+    const {
+      precision: precision2,
+      recall: recall2,
+      f1: f12,
+    } = calculateFunctionMetrics(
+      result.nodes as {
+        data: {
+          entityType: string;
+          entityName: string;
+          items: { name: string; lineNumber: number }[];
+        };
+      }[],
+      expectedNodes
+    );
+    console.log("==== Metrics for Functions ===");
+    console.log("Precision:", precision2);
+    console.log("Recall:", recall2);
+    console.log("F1:", f12);
   });
 });
