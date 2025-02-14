@@ -103,6 +103,18 @@
         }
       },
       {
+        "type": "export_statement",
+        "child": {
+          "type": "lexical_declaration",
+          "child": {
+            "type": "variable_declarator",
+            "child": {
+              "type": "call_expression"
+            }
+          }
+        }
+      },
+      {
         "type": "method_definition"
       },
       {

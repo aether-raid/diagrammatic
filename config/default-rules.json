@@ -7,11 +7,27 @@
     ],
     "groups": [
       {
+        "type": "struct_specifier",
+        "groupType": "STRUCT"
+      },
+      {
         "type": "class_specifier",
         "groupType": "CLASS"
+      },
+      {
+        "type": "namespace_definition",
+        "groupType": "NAMESPACE"
       }
     ],
     "getName": {
+      "struct_specifier": {
+        "childType": "type_identifier",
+        "useText": true
+      },
+      "namespace_definition": {
+        "childType": "namespace_identifier",
+        "useText": true
+      },
       "function_definition": {
         "childType": "function_declarator",
         "delegate": true
@@ -82,6 +98,18 @@
             "type": "variable_declarator",
             "child": {
               "type": "arrow_function"
+            }
+          }
+        }
+      },
+      {
+        "type": "export_statement",
+        "child": {
+          "type": "lexical_declaration",
+          "child": {
+            "type": "variable_declarator",
+            "child": {
+              "type": "call_expression"
             }
           }
         }
