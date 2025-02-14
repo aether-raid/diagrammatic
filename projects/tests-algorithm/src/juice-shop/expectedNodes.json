@@ -1,0 +1,36 @@
+[
+  {
+    "data": {
+      "entityName": "SnippetRequestBody",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "VerdictRequestBody",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "vulnCodeSnippet.ts",
+      "entityType": "file",
+      "items": [
+        {
+          "name": "retrieveCodeSnippet",
+          "lineNumber": 33
+        },
+        {
+          "name": "retrieveChallengesWithCodeSnippet",
+          "lineNumber": 55
+        },
+        {
+          "name": "getVerdict",
+          "lineNumber": 65
+        }
+      ]
+    }
+  }
+]

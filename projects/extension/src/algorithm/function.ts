@@ -303,7 +303,7 @@ export function makeLocalVariables(
               );
               const baseDirectory = path.dirname(importedFilePath);
               // if file has no extension, search directory for matching filename
-              if (!path.extname(importedFilePath)) {
+              if (!path.extname(importedFilePath) && fs.existsSync(baseDirectory)) {
                 const files = fs.readdirSync(baseDirectory);
                 const fileNameWithoutExt = path.basename(pointsTo);
                 const matchedFile = files.find((file) =>
@@ -384,7 +384,6 @@ export function findLinkForCall(
       ) {
         for (const fileNode of variable.pointsTo.nodes) {
           if (fileNode.token === call.token) {
-            console.log(variable.toString());
             return new Edge(nodeA, fileNode);
           }
         }
@@ -590,5 +589,9 @@ export function processConstructorRequiredParameter(node: SyntaxNode) {
 }
 
 export function toGroupTypeIgnoreCase(value: string): GroupType {
-  return Object.values(GroupType).find(gt => gt.toLowerCase() === value.toLowerCase()) ?? GroupType.CLASS;
+  return (
+    Object.values(GroupType).find(
+      (gt) => gt.toLowerCase() === value.toLowerCase()
+    ) ?? GroupType.CLASS
+  );
 }
