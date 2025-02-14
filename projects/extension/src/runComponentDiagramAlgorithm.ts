@@ -1,9 +1,7 @@
-import { AppNode } from "@shared/node.types";
-import { AppEdge } from "@shared/edge.types"
 import { NodeEdgeData } from "./extension.types";
 import axios from 'axios';
 
-export const getComponentDiagram = async (nodeEdgeData: NodeEdgeData): Promise<NodeEdgeData> => {
+export const getComponentDiagram = async (nodeEdgeData: NodeEdgeData): Promise<string> => {
     const { nodes, edges } = nodeEdgeData;
     const prompt = `Group the nodes into functional components for C4 Level 3 component diagram. Return in json format:
                     "components":[
@@ -34,12 +32,12 @@ export const getComponentDiagram = async (nodeEdgeData: NodeEdgeData): Promise<N
 
             // Return the parsed response or update NodeEdgeData as needed
             // return JSON.parse(result) as NodeEdgeData;
-            return nodeEdgeData;
+            return result;
         } else {
             throw new Error("Invalid response from the server.");
         }
     } catch (error) {
         console.error("Error fetching component diagram:", error)
-        return nodeEdgeData;
+        return "Error fetching component diagram";
     }
 }
