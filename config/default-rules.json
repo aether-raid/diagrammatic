@@ -53,13 +53,13 @@
       {
         "type": "interface_declaration",
         "groupType": "INTERFACE"
+      },
+      {
+        "type": "record_declaration",
+        "groupType": "RECORD"
       }
     ],
     "getName": {
-      "interface_declaration": {
-        "childType": "identifier",
-        "useText": true
-      },
       "call_expression": {
         "childType": "member_expression",
         "useText": true

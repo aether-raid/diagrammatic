@@ -53,6 +53,10 @@
       {
         "type": "interface_declaration",
         "groupType": "INTERFACE"
+      },
+      {
+        "type": "record_declaration",
+        "groupType": "RECORD"
       }
     ],
     "getName": {

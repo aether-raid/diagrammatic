@@ -13,7 +13,7 @@ interface HighlightableEntityItem extends EntityItem {
 export type EntityNode = Node<
   {
     entityName: string;
-    entityType: "class" | "file" | "interface" | "namespace" | "struct";
+    entityType: "class" | "file" | "interface" | "namespace" | "struct" | 'record';
     items: HighlightableEntityItem[];
 
     setHoveredEntity?: React.Dispatch<
