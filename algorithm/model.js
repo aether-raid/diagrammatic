@@ -139,9 +139,12 @@ export class Node {
  * Represent namespaces (classes and modules/files)
  */
 export const GroupType = {
-  CLASS: "CLASS",
-  FILE: "FILE",
-  NAMESPACE: "NAMESPACE",
+  CLASS: "class",
+  FILE: "file",
+  INTERFACE: "interface",
+  STRUCT: "struct",
+  NAMESPACE: "namespace",
+  RECORD: "record",
 };
 
 export class Group {

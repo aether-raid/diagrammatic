@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@shared/*": ["../shared/src/*"],
+            "@extension/*": ["../extension/src/*"],
+        },
+        "composite": true,
+
+        "emitDeclarationOnly": true,
+        "module": "CommonJS",
+        "target": "ES2022",
+        "lib": [
+            "ES2022", "DOM"
+        ],
+        "sourceMap": true,
+        "rootDir": ".",
+        "outDir": "../../dist/tests-algorithm",
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+
+        // "moduleResolution": "node",
+        "skipLibCheck": true,
+        "types": ["vscode", "node", "mocha"]
+    },
+    "include": ["./src/**/*.ts", "./src/**/*.json"],
+    "references": [
+        { "path": "../shared" },
+        { "path": "../extension" },
+    ]
+}

@@ -1,0 +1,661 @@
+[
+  {
+    "data": {
+      "entityName": "SnippetRequestBody",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "VerdictRequestBody",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "vulnCodeSnippet.ts",
+      "entityType": "file",
+      "items": [
+        {
+          "name": "setStatusCode",
+          "lineNumber": 24
+        },
+        {
+          "name": "retrieveCodeSnippet",
+          "lineNumber": 33
+        },
+        {
+          "name": "retrieveChallengesWithCodeSnippet",
+          "lineNumber": 55
+        },
+        {
+          "name": "getVerdict",
+          "lineNumber": 65
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "OrderDetail",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "BasketService",
+      "entityType": "class",
+      "items": [
+        {
+          "name": "find",
+          "lineNumber": 28
+        },
+        {
+          "name": "get",
+          "lineNumber": 32
+        },
+        {
+          "name": "put",
+          "lineNumber": 36
+        },
+        {
+          "name": "del",
+          "lineNumber": 40
+        },
+        {
+          "name": "save",
+          "lineNumber": 44
+        },
+        {
+          "name": "checkout",
+          "lineNumber": 48
+        },
+        {
+          "name": "applyCoupon",
+          "lineNumber": 52
+        },
+        {
+          "name": "updateNumberOfCartItems",
+          "lineNumber": 56
+        },
+        {
+          "name": "getItemTotal",
+          "lineNumber": 63
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "AddressService",
+      "entityType": "class",
+      "items": [
+        {
+          "name": "get",
+          "lineNumber": 20
+        },
+        {
+          "name": "getById",
+          "lineNumber": 24
+        },
+        {
+          "name": "save",
+          "lineNumber": 29
+        },
+        {
+          "name": "put",
+          "lineNumber": 33
+        },
+        {
+          "name": "del",
+          "lineNumber": 38
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "AdministrationService",
+      "entityType": "class",
+      "items": [
+        {
+          "name": "getApplicationVersion",
+          "lineNumber": 20
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "CaptchaService",
+      "entityType": "class",
+      "items": [
+        {
+          "name": "getCaptcha",
+          "lineNumber": 20
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ChallengeService",
+      "entityType": "class",
+      "items": [
+        {
+          "name": "find",
+          "lineNumber": 21
+        },
+        {
+          "name": "repeatNotification",
+          "lineNumber": 25
+        },
+        {
+          "name": "continueCode",
+          "lineNumber": 29
+        },
+        {
+          "name": "continueCodeFindIt",
+          "lineNumber": 33
+        },
+        {
+          "name": "continueCodeFixIt",
+          "lineNumber": 37
+        },
+        {
+          "name": "restoreProgress",
+          "lineNumber": 41
+        },
+        {
+          "name": "restoreProgressFindIt",
+          "lineNumber": 45
+        },
+        {
+          "name": "restoreProgressFixIt",
+          "lineNumber": 49
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ChatbotService",
+      "entityType": "class",
+      "items": [
+        {
+          "name": "getChatbotStatus",
+          "lineNumber": 20
+        },
+        {
+          "name": "getResponse",
+          "lineNumber": 24
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "CodeFixesService",
+      "entityType": "class",
+      "items": [
+        {
+          "name": "get",
+          "lineNumber": 28
+        },
+        {
+          "name": "check",
+          "lineNumber": 32
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "result",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "Fixes",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "Solved",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "CodeSnippet",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "Solved",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "CodeSnippetService",
+      "entityType": "class",
+      "items": [
+        { "name": "get", "lineNumber": 30 },
+        { "name": "challenges", "lineNumber": 34 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ComplaintService",
+      "entityType": "class",
+      "items": [{ "name": "save", "lineNumber": 19 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ConfigResponse",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "Config",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "ConfigurationService",
+      "entityType": "class",
+      "items": [{ "name": "getApplicationConfiguration", "lineNumber": 105 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "CountryMappingService",
+      "entityType": "class",
+      "items": [{ "name": "getCountryMapping", "lineNumber": 18 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "DataSubjectService",
+      "entityType": "class",
+      "items": [
+        { "name": "erase", "lineNumber": 21 },
+        { "name": "dataExport", "lineNumber": 26 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "DeliveryMultipleMethodResponse",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "DeliverySingleMethodResponse",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "DeliveryService",
+      "entityType": "class",
+      "items": [
+        { "name": "get", "lineNumber": 31 },
+        { "name": "getById", "lineNumber": 35 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "FeedbackService",
+      "entityType": "class",
+      "items": [
+        { "name": "find", "lineNumber": 20 },
+        { "name": "save", "lineNumber": 26 },
+        { "name": "del", "lineNumber": 30 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "FormSubmitService",
+      "entityType": "class",
+      "items": [{ "name": "attachEnterKeyHandler", "lineNumber": 15 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ImageCaptchaService",
+      "entityType": "class",
+      "items": [{ "name": "getCaptcha", "lineNumber": 19 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "KeysService",
+      "entityType": "class",
+      "items": [
+        { "name": "nftUnlocked", "lineNumber": 15 },
+        { "name": "nftMintListen", "lineNumber": 24 },
+        { "name": "checkNftMinted", "lineNumber": 33 },
+        { "name": "submitKey", "lineNumber": 42 },
+        { "name": "verifyNFTWallet", "lineNumber": 53 },
+        { "name": "walletAddressSend", "lineNumber": 64 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "LanguagesService",
+      "entityType": "class",
+      "items": [{ "name": "getLanguages", "lineNumber": 18 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "LocalBackupService",
+      "entityType": "class",
+      "items": [
+        { "name": "save", "lineNumber": 23 },
+        { "name": "restore", "lineNumber": 51 },
+        { "name": "restoreCookie", "lineNumber": 82 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "OrderHistoryService",
+      "entityType": "class",
+      "items": [
+        { "name": "get", "lineNumber": 20 },
+        { "name": "getAll", "lineNumber": 24 },
+        { "name": "toggleDeliveryStatus", "lineNumber": 28 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "PaymentService",
+      "entityType": "class",
+      "items": [
+        { "name": "get", "lineNumber": 20 },
+        { "name": "getById", "lineNumber": 24 },
+        { "name": "save", "lineNumber": 29 },
+        { "name": "del", "lineNumber": 33 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "PhotoWallService",
+      "entityType": "class",
+      "items": [
+        { "name": "addMemory", "lineNumber": 20 },
+        { "name": "get", "lineNumber": 27 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ProductReviewService",
+      "entityType": "class",
+      "items": [
+        { "name": "get", "lineNumber": 20 },
+        { "name": "create", "lineNumber": 28 },
+        { "name": "patch", "lineNumber": 34 },
+        { "name": "like", "lineNumber": 38 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ProductService",
+      "entityType": "class",
+      "items": [
+        { "name": "search", "lineNumber": 20 },
+        { "name": "find", "lineNumber": 24 },
+        { "name": "get", "lineNumber": 28 },
+        { "name": "put", "lineNumber": 33 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "QuantityService",
+      "entityType": "class",
+      "items": [
+        { "name": "getAll", "lineNumber": 20 },
+        { "name": "put", "lineNumber": 24 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "RecycleService",
+      "entityType": "class",
+      "items": [
+        { "name": "find", "lineNumber": 20 },
+        { "name": "save", "lineNumber": 26 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "RequestInterceptor",
+      "entityType": "class",
+      "items": [{ "name": "intercept", "lineNumber": 12 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SecurityAnswerService",
+      "entityType": "class",
+      "items": [{ "name": "save", "lineNumber": 20 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SecurityQuestionService",
+      "entityType": "class",
+      "items": [
+        { "name": "find", "lineNumber": 20 },
+        { "name": "findBy", "lineNumber": 24 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SnackBarHelperService",
+      "entityType": "class",
+      "items": [{ "name": "open", "lineNumber": 17 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SocketIoService",
+      "entityType": "class",
+      "items": [{ "name": "socket", "lineNumber": 28 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TrackOrderService",
+      "entityType": "class",
+      "items": [{ "name": "find", "lineNumber": 20 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TwoFactorVerifyResponse",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "AuthenticationPayload",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "TwoFactorAuthStatusPayload",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "TwoFactorAuthService",
+      "entityType": "class",
+      "items": [
+        { "name": "verify", "lineNumber": 35 },
+        { "name": "status", "lineNumber": 42 },
+        { "name": "setup", "lineNumber": 47 },
+        { "name": "disable", "lineNumber": 55 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Passwords",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "UserService",
+      "entityType": "class",
+      "items": [
+        { "name": "find", "lineNumber": 28 },
+        { "name": "get", "lineNumber": 33 },
+        { "name": "save", "lineNumber": 37 },
+        { "name": "login", "lineNumber": 44 },
+        { "name": "getLoggedInState", "lineNumber": 49 },
+        { "name": "changePassword", "lineNumber": 53 },
+        { "name": "resetPassword", "lineNumber": 58 },
+        { "name": "whoAmI", "lineNumber": 62 },
+        { "name": "oauthLogin", "lineNumber": 66 },
+        { "name": "saveLastLoginIp", "lineNumber": 70 },
+        { "name": "deluxeStatus", "lineNumber": 74 },
+        { "name": "upgradeToDeluxe", "lineNumber": 78 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "result",
+      "entityType": "interface",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "VulnLinesService",
+      "entityType": "class",
+      "items": [{ "name": "check", "lineNumber": 20 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "WalletService",
+      "entityType": "class",
+      "items": [
+        { "name": "get", "lineNumber": 20 },
+        { "name": "put", "lineNumber": 24 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "WindowRefService",
+      "entityType": "class",
+      "items": [{ "name": "nativeWindow", "lineNumber": 12 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "window-ref.service.ts",
+      "entityType": "file",
+      "items": [{ "name": "getWindow", "lineNumber": 17 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "LoginGuard",
+      "entityType": "class",
+      "items": [
+        { "name": "canActivate", "lineNumber": 15 },
+        { "name": "forbidRoute", "lineNumber": 24 },
+        { "name": "tokenDecode", "lineNumber": 31 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "AdminGuard",
+      "entityType": "class",
+      "items": [{ "name": "canActivate", "lineNumber": 49 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "AdminGuard",
+      "entityType": "class",
+      "items": [{ "name": "canActivate", "lineNumber": 49 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "AccountingGuard",
+      "entityType": "class",
+      "items": [{ "name": "canActivate", "lineNumber": 64 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "AccountDeluxeGuardingGuard",
+      "entityType": "class",
+      "items": [{ "name": "isDeluxe", "lineNumber": 79 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "AdministrationComponent",
+      "entityType": "class",
+      "items": [
+        { "name": "ngOnInit", "lineNumber": 39 },
+        { "name": "findAllUsers", "lineNumber": 44 },
+        { "name": "findAllFeedbacks", "lineNumber": 60 },
+        { "name": "deleteFeedback", "lineNumber": 75 },
+        { "name": "showUserDetail", "lineNumber": 84 },
+        { "name": "showFeedbackDetails", "lineNumber": 92 },
+        { "name": "times", "lineNumber": 101 },
+        { "name": "doesUserHaveAnActiveSession", "lineNumber": 105 }
+      ]
+    }
+  }
+]

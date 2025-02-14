@@ -1,4 +1,4 @@
-import { Node, Group, GroupType } from "./model.js";
+import { Node, Group } from "./model";
 import {
   makeCalls,
   makeLocalVariables,
@@ -6,9 +6,10 @@ import {
   getLineNumber,
   getAllChildrenOfType,
   processConstructorRequiredParameter,
-} from "./function.js";
+  toGroupTypeIgnoreCase,
+} from "./function";
 import { SyntaxNode } from "tree-sitter";
-import { LanguageRules, RuleEngine } from "./rules.js";
+import { LanguageRules, RuleEngine } from "./rules";
 
 export class Language {
   /**
@@ -71,8 +72,14 @@ export class Language {
       nodes: nodeTrees,
       body,
     } = this.separateNamespaces(tree, languageRules);
+    const matchingGroupRule = languageRules.groups.find(
+      (group) => group.type === tree.type
+    );
+    if (!matchingGroupRule || !matchingGroupRule.groupType) {
+      throw new Error("Group rule is missing groupType or does not exist!");
+    }
     const classGroup = new Group({
-      groupType: GroupType.CLASS,
+      groupType: toGroupTypeIgnoreCase(matchingGroupRule.groupType),
       token: getName(tree, languageRules.getName),
       lineNumber: getLineNumber(tree),
       parent,
