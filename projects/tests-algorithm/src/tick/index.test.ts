@@ -3,8 +3,7 @@ import * as sinon from "sinon";
 
 import expectedNodes from "./expectedNodes.json";
 import {
-  calculateFunctionMetrics,
-  calculateNodeMetrics,
+  calculatePrecisionRecallF1,
   compareEntityCounts,
   countEntityTypes,
   countFilesAndLines,
@@ -62,20 +61,7 @@ describe("tick", () => {
     );
     compareEntityCounts(expectedEntityTypes, returnedEntityTypes);
 
-    const { precision, recall, f1 } = calculateNodeMetrics(
-      result.nodes as { data: { entityType: string; entityName: string } }[],
-      expectedNodes
-    );
-    console.log("==== Metrics for Nodes ===");
-    console.log("Precision:", precision);
-    console.log("Recall:", recall);
-    console.log("F1:", f1);
-
-    const {
-      precision: precision2,
-      recall: recall2,
-      f1: f12,
-    } = calculateFunctionMetrics(
+    calculatePrecisionRecallF1(
       result.nodes as {
         data: {
           entityType: string;
@@ -85,9 +71,5 @@ describe("tick", () => {
       }[],
       expectedNodes
     );
-    console.log("==== Metrics for Functions ===");
-    console.log("Precision:", precision2);
-    console.log("Recall:", recall2);
-    console.log("F1:", f12);
   });
 });

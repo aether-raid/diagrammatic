@@ -61,39 +61,7 @@ export function compareEntityCounts(
   }
 }
 
-export function calculateNodeMetrics(
-  predicted: { data: { entityType: string; entityName: string } }[],
-  groundTruth: { data: { entityType: string; entityName: string } }[]
-) {
-  const predictedSet = new Set(
-    predicted.map((e) => `${e.data.entityType}:${e.data.entityName}`)
-  );
-  const groundTruthSet = new Set(
-    groundTruth.map((e) => `${e.data.entityType}:${e.data.entityName}`)
-  );
-
-  const truePositives = [...predictedSet].filter((item) =>
-    groundTruthSet.has(item)
-  ).length;
-  const falsePositives = [...predictedSet].filter(
-    (item) => !groundTruthSet.has(item)
-  );
-  const falseNegatives = [...groundTruthSet].filter(
-    (item) => !predictedSet.has(item)
-  );
-
-  console.log(falsePositives);
-  console.log(falseNegatives);
-
-  const precision =
-    truePositives / (truePositives + falsePositives.length || 1);
-  const recall = truePositives / (truePositives + falseNegatives.length || 1);
-  const f1 = (2 * (precision * recall)) / (precision + recall || 1);
-
-  return { precision, recall, f1 };
-}
-
-export function calculateFunctionMetrics(
+export function calculatePrecisionRecallF1(
   predictedList: {
     data: {
       entityType: string;
@@ -101,7 +69,7 @@ export function calculateFunctionMetrics(
       items: { name: string; lineNumber: number }[];
     };
   }[],
-  actualList: {
+  groundTruthList: {
     data: {
       entityType: string;
       entityName: string;
@@ -109,16 +77,33 @@ export function calculateFunctionMetrics(
     };
   }[]
 ) {
-  let totalTP = 0,
-    totalFP = 0,
-    totalFN = 0;
+  const predictedSet = new Set(
+    predictedList.map((e) => `${e.data.entityType}:${e.data.entityName}`)
+  );
+  const groundTruthSet = new Set(
+    groundTruthList.map((e) => `${e.data.entityType}:${e.data.entityName}`)
+  );
 
-  actualList.forEach((actualEntity) => {
+  const nodeTP = [...predictedSet].filter((item) =>
+    groundTruthSet.has(item)
+  ).length;
+  const nodeFP = [...predictedSet].filter((item) => !groundTruthSet.has(item));
+  const nodeFN = [...groundTruthSet].filter((item) => !predictedSet.has(item));
+
+  let functionTP = 0,
+    functionFP = 0,
+    functionFN = 0;
+
+  groundTruthList.forEach((actualEntity) => {
     const predictedEntity = predictedList.find(
-      (p) => p.data.entityName === actualEntity.data.entityName
+      (p) =>
+        p.data.entityName === actualEntity.data.entityName &&
+        p.data.entityType === actualEntity.data.entityType
     );
 
-    if (!predictedEntity) return;
+    if (!predictedEntity) {
+      return;
+    }
 
     const actualItems = new Set(
       actualEntity.data.items.map(
@@ -133,7 +118,7 @@ export function calculateFunctionMetrics(
 
     const truePositives = [...predictedItems].filter((name) =>
       actualItems.has(name)
-    ).length;
+    );
     const falsePositives = [...predictedItems].filter(
       (name) => !actualItems.has(name)
     );
@@ -144,18 +129,47 @@ export function calculateFunctionMetrics(
     // console.log("falsePositives:", falsePositives);
     // console.log("falseNegatives:", falseNegatives);
 
-    totalTP += truePositives;
-    totalFP += falsePositives.length;
-    totalFN += falseNegatives.length;
+    functionTP += truePositives.length;
+    functionFP += falsePositives.length;
+    functionFN += falseNegatives.length;
   });
 
-  const precision = totalTP / (totalTP + totalFP || 1);
-  const recall = totalTP / (totalTP + totalFN || 1);
-  const f1 = (2 * precision * recall) / (precision + recall || 1);
+  console.log(nodeFP);
+  console.log(nodeFN);
 
-  return {
-    precision,
-    recall,
-    f1,
-  };
+  const nodePrecision = nodeTP / (nodeTP + nodeFP.length || 1);
+  const nodeRecall = nodeTP / (nodeTP + nodeFN.length || 1);
+  const nodeF1 =
+    (2 * (nodePrecision * nodeRecall)) / (nodePrecision + nodeRecall || 1);
+
+  console.log("==== Metrics for Nodes ===");
+  console.log("Precision:", nodePrecision);
+  console.log("Recall:", nodeRecall);
+  console.log("F1:", nodeF1);
+
+  const functionPrecision = functionTP / (functionTP + functionFP || 1);
+  const functionRecall = functionTP / (functionTP + functionFN || 1);
+  const functionF1 =
+    (2 * functionPrecision * functionRecall) /
+    (functionPrecision + functionRecall || 1);
+
+  console.log("==== Metrics for Functions ===");
+  console.log("Precision:", functionPrecision);
+  console.log("Recall:", functionRecall);
+  console.log("F1:", functionF1);
+
+  const overallPrecision =
+    (nodeTP + functionTP) /
+    (nodeTP + functionTP + (nodeFP.length + functionFP) || 1);
+  const overallRecall =
+    (nodeTP + functionTP) /
+    (nodeTP + functionTP + (nodeFN.length + functionFN) || 1);
+  const overallF1 =
+    (2 * overallPrecision * overallRecall) /
+    (overallPrecision + overallRecall || 1);
+
+  console.log("==== Overall Metrics ===");
+  console.log("Precision:", overallPrecision);
+  console.log("Recall:", overallRecall);
+  console.log("F1:", overallF1);
 }
