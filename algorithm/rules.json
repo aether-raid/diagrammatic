@@ -49,6 +49,10 @@
       {
         "type": "class_declaration",
         "groupType": "CLASS"
+      },
+      {
+        "type": "interface_declaration",
+        "groupType": "INTERFACE"
       }
     ],
     "getName": {

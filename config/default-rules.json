@@ -49,9 +49,17 @@
       {
         "type": "class_declaration",
         "groupType": "CLASS"
+      },
+      {
+        "type": "interface_declaration",
+        "groupType": "INTERFACE"
       }
     ],
     "getName": {
+      "interface_declaration": {
+        "childType": "identifier",
+        "useText": true
+      },
       "call_expression": {
         "childType": "member_expression",
         "useText": true
