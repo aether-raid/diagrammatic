@@ -34,6 +34,7 @@ import {
 } from "./helper";
 import { initVsCodeApi, sendReadyMessageToExtension } from "./vscodeApiHandler";
 import DownloadButton from "./buttons/DownloadButton";
+import SearchBar from "./buttons/SearchBar";
 
 interface OptionProps {
     direction: string;
@@ -78,7 +79,7 @@ const LayoutFlow = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const vscode = useRef<any>(null);
 
-    const { fitView, getNode } = useReactFlow<AppNode, AppEdge>();
+    const { fitView, getNode, setCenter } = useReactFlow<AppNode, AppEdge>();
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const [highlightedNodes, setHighlightedNodes] = useState<string[]>([]);
@@ -194,28 +195,33 @@ const LayoutFlow = () => {
     });
 
     return (
-        <ReactFlow
-            nodeTypes={nodeTypes}
-            nodes={nodes.map((n) => prepareNode(n))}
-            edges={edges.map((e) => prepareEdge(e))}
-            onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
-            fitView
-            colorMode="dark"
-            minZoom={MIN_ZOOM}
-            maxZoom={MAX_ZOOM}
-        >
-            <Panel position="top-center">
-                <button onClick={() => onLayout("TB")}>Vertical Layout</button>
-                <button onClick={() => onLayout("LR")}>
-                    Horizontal Layout
-                </button>
-            </Panel>
-            <MiniMap />
-            <Controls />
-            <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM}/>
-            <Background />
-        </ReactFlow>
+        <>
+            <SearchBar nodes={nodes} setCenter={setCenter} />
+            <ReactFlow
+                nodeTypes={nodeTypes}
+                nodes={nodes.map((n) => prepareNode(n))}
+                edges={edges.map((e) => prepareEdge(e))}
+                onNodesChange={onNodesChange}
+                onEdgesChange={onEdgesChange}
+                fitView
+                colorMode="dark"
+                minZoom={MIN_ZOOM}
+                maxZoom={MAX_ZOOM}
+            >
+                <Panel position="top-center">
+                    <button onClick={() => onLayout("TB")}>
+                        Vertical Layout
+                    </button>
+                    <button onClick={() => onLayout("LR")}>
+                        Horizontal Layout
+                    </button>
+                </Panel>
+                <MiniMap />
+                <Controls />
+                <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
+                <Background />
+            </ReactFlow>
+        </>
     );
 };
 
