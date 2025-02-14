@@ -107,12 +107,14 @@ export function calculatePrecisionRecallF1(
 
     const actualItems = new Set(
       actualEntity.data.items.map(
-        (i) => `${actualEntity.data.entityName}:${i.name}:${i.lineNumber}`
+        (i) =>
+          `${actualEntity.data.entityType}:${actualEntity.data.entityName}:${i.name}:${i.lineNumber}`
       )
     );
     const predictedItems = new Set(
       predictedEntity.data.items.map(
-        (i) => `${predictedEntity.data.entityName}:${i.name}:${i.lineNumber}`
+        (i) =>
+          `${predictedEntity.data.entityType}:${predictedEntity.data.entityName}:${i.name}:${i.lineNumber}`
       )
     );
 
@@ -126,8 +128,12 @@ export function calculatePrecisionRecallF1(
       (name) => !predictedItems.has(name)
     );
 
-    // console.log("falsePositives:", falsePositives);
-    // console.log("falseNegatives:", falseNegatives);
+    /* if (falsePositives.length > 0) {
+      console.log("falsePositives:", falsePositives);
+    }
+    if (falseNegatives.length > 0) {
+      console.log("falseNegatives:", falseNegatives);
+    } */
 
     functionTP += truePositives.length;
     functionFP += falsePositives.length;

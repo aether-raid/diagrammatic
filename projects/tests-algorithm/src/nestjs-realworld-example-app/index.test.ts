@@ -3,7 +3,6 @@ import * as sinon from "sinon";
 
 import expectedNodes from "./expectedNodes.json";
 import {
-  calculateFunctionMetrics,
   calculatePrecisionRecallF1,
   compareEntityCounts,
   countEntityTypes,

@@ -48,7 +48,7 @@ describe("juice-shop", () => {
     const numComponents = result.nodes.length;
     console.log("Number of components:", numComponents);
     console.log(
-      "Ratio of source files to number of components:",
+      "Ratio of number of components to source files:",
       numComponents / fileCount
     );
     console.log(
