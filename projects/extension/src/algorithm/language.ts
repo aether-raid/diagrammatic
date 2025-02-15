@@ -1,4 +1,4 @@
-import { Node, Group, NodeType } from "./model";
+import { Node, Group, NodeType, Variable } from "./model";
 import {
   makeCalls,
   makeLocalVariables,
@@ -134,6 +134,24 @@ export class Language {
         }
       }
     }
+
+    /**
+     * For Java, convert class attributes (field_declarations) to variables.
+     * e.g.  private VenueService service;
+     * Variable(token=service, pointsTo=VenueService)
+     * Since VenueService is a string, we need to resolve it to the actual Class node later.
+     */
+    if (tree.type === "field_declaration") {
+      const typeIdentifier = tree.childForFieldName("type");
+      const variableDeclarator = tree.childForFieldName("declarator");
+      if (variableDeclarator) {
+        const identifier = variableDeclarator.childForFieldName("name");
+        if (identifier && typeIdentifier) {
+          variables.push(new Variable(identifier.text, typeIdentifier.text));
+        }
+      }
+    }
+
     const matchingNodeRule = languageRules.nodes.find(
       (node) => node.type === tree.type
     );
@@ -165,6 +183,7 @@ export class Language {
       variables: makeLocalVariables(body, parent, languageRules),
       lineNumber: 0,
       parent,
+      nodeType: NodeType.BODY,
     });
   }
 }

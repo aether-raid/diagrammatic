@@ -86,6 +86,12 @@ export class Node {
             variable.pointsTo = subgroup;
           }
 
+          /**
+           * Resolve variables from relative import statements
+           * e.g. import { SyntaxNode } from 'tree-sitter'
+           * Variable(token=SyntaxNode, pointsTo=/User/samples/nestjs-real-example-app/src/article/ArticleService.ts)
+           * pointsTo should resolve from a filepath to the actual file Group
+           */
           if (
             subgroup.groupType === GroupType.FILE &&
             variable.pointsTo === subgroup.filePath

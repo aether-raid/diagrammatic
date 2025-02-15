@@ -1,4 +1,4 @@
-import { Node, Group, GroupType, NodeType } from "./model.js";
+import { Node, Group, GroupType, NodeType, Variable } from "./model.js";
 import {
   makeCalls,
   makeLocalVariables,
@@ -117,6 +117,21 @@ export class Language {
             }
           }
         }
+      }
+    }
+
+    /**
+     * For Java, convert class attributes (field_declarations) to variables.
+     * e.g.  private VenueService service;
+     * Variable(token=service, pointsTo=VenueService)
+     * Since VenueService is a string, we need to resolve it to the actual Class node later.
+     */
+    if (tree.type === "field_declaration") {
+      const typeIdentifier = tree.childForFieldName("type");
+      const variableDeclarator = tree.childForFieldName("declarator");
+      const identifier = variableDeclarator.childForFieldName("name");
+      if (identifier && typeIdentifier) {
+        variables.push(new Variable(identifier.text, typeIdentifier.text));
       }
     }
 

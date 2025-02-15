@@ -176,8 +176,47 @@ export function processCallExpression(node: SyntaxNode): Call | null {
         return new Call({
           token: fieldIdentifier.text,
           ownerToken: identifier.text,
+          lineNumber: getLineNumber(node),
         });
       }
+  }
+
+  return null;
+}
+
+/**
+ * For Java because the tree-sitter outputs method_invocation instead of call_expression
+ * And they have a different structure
+ * (1) getVenueById(id) => no objectNode
+ * (2) repo.findById(id).orElseThrow(() -> new VenueNotFoundException()) = method_invocation
+ * (3) repo.findAll() = objectNode.nameNode
+ *
+ * @param {*} node
+ * @returns {Call}
+ */
+export function processMethodInvocation(node: SyntaxNode): Call | null {
+  const objectNode = node.childForFieldName("object");
+  const nameNode = node.childForFieldName("name");
+
+  if (!nameNode) {
+    return null;
+  }
+  // getVenueById(id)
+  if (!objectNode) {
+    return new Call({ token: nameNode.text, lineNumber: getLineNumber(node) });
+  }
+
+  switch (objectNode.type) {
+    // repo.findById(id).orElseThrow(() -> new VenueNotFoundException())
+    case "method_invocation":
+      return processMethodInvocation(objectNode);
+    // repo.findAll()
+    case "identifier":
+      return new Call({
+        token: nameNode.text,
+        ownerToken: objectNode.text,
+        lineNumber: getLineNumber(node),
+      });
   }
 
   return null;
@@ -197,11 +236,17 @@ export function makeCalls(body: SyntaxNode[]) {
   const calls = [];
 
   for (const node of walk(body)) {
-    if (node.type === "call_expression") {
-      const call = processCallExpression(node);
-      if (call) {
-        calls.push(call);
-      }
+    switch (node.type) {
+      case "call_expression":
+        const call = processCallExpression(node);
+        if (call) {
+          calls.push(call);
+        }
+      case "method_invocation":
+        const mCall = processMethodInvocation(node);
+        if (mCall) {
+          calls.push(mCall);
+        }
     }
   }
   return calls;
