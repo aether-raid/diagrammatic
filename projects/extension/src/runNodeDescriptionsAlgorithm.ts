@@ -15,16 +15,36 @@ const getNodeDescriptions = async (nodes: AppNode[]): Promise<NodeDescriptionDat
     try {
       const filePath = node.id.slice(0, node.id.lastIndexOf("."));
       const sourceCode = fs.readFileSync(filePath, "utf-8");
-      const response = await axios.post<{ response: string }>(
-        "http://localhost:5000/chat",
+      const response = await axios.post(
+        "https://api.openai.com/v1/chat/completions",
         {
-          message:
-            "give purely a json response in the format {classes:[class_name:,class_description,functions:[function_name:,description:]]}" +
-            sourceCode,
+          model: "gpt-4-turbo", // Choose the appropriate model
+          messages: [
+            {
+              role: "system",
+              content: "You are an AI that provides structured JSON responses."
+            },
+            {
+              role: "user",
+              content:
+                "Give purely a JSON response in the format {classes:[{class_name:'', class_description:'', functions:[{function_name:'', description:''}]}]}. Here is the source code:\n" +
+                sourceCode
+            }
+          ],
+          temperature: 0
+        },
+        {
+          headers: {
+            Authorization: `Bearer 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`,
+            "Content-Type": "application/json"
+          }
         }
       );
       const regex = /"class_description"\s*:\s*"([^"]+)"/;
-      const match = response.data.response.match(regex);
+      const jsonResponse = response.data.choices[0].message.content;
+      const cleanedResponse = jsonResponse.replace(/```json\n?|\n?```/g, "");
+      const parsedResponse = JSON.stringify(JSON.parse(cleanedResponse));
+      const match = parsedResponse.match(regex);
       if (match && match[1]) {
         description = match[1];
       } else {
