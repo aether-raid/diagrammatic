@@ -1,4 +1,4 @@
-import { Node, Group } from "./model";
+import { Node, Group, NodeType } from "./model";
 import {
   makeCalls,
   makeLocalVariables,
@@ -7,6 +7,7 @@ import {
   getAllChildrenOfType,
   processConstructorRequiredParameter,
   toGroupTypeIgnoreCase,
+  toNodeTypeIgnoreCase,
 } from "./function";
 import { SyntaxNode } from "tree-sitter";
 import { LanguageRules, RuleEngine } from "./rules";
@@ -133,12 +134,19 @@ export class Language {
         }
       }
     }
+    const matchingNodeRule = languageRules.nodes.find(
+      (node) => node.type === tree.type
+    );
+    if (!matchingNodeRule || !matchingNodeRule.nodeType) {
+      throw new Error("Node rule is missing nodeType or does not exist!");
+    }
     const node = new Node({
       token,
       calls,
       variables,
       lineNumber: getLineNumber(tree),
       parent,
+      nodeType: toNodeTypeIgnoreCase(matchingNodeRule.nodeType),
     });
     const subnodes = nodes.flatMap((t) =>
       this.makeNodes(t, node, languageRules)

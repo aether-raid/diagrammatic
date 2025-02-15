@@ -6,7 +6,15 @@ import Python from "tree-sitter-python";
 import Java from "tree-sitter-java";
 import Cpp from "tree-sitter-cpp";
 
-import { Variable, Call, Group, Edge, GroupType, Node } from "./model";
+import {
+  Variable,
+  Call,
+  Group,
+  Edge,
+  GroupType,
+  Node,
+  NodeType,
+} from "./model";
 import { Language } from "./language";
 import { LanguageRules } from "./rules";
 
@@ -303,7 +311,10 @@ export function makeLocalVariables(
               );
               const baseDirectory = path.dirname(importedFilePath);
               // if file has no extension, search directory for matching filename
-              if (!path.extname(importedFilePath) && fs.existsSync(baseDirectory)) {
+              if (
+                !path.extname(importedFilePath) &&
+                fs.existsSync(baseDirectory)
+              ) {
                 const files = fs.readdirSync(baseDirectory);
                 const fileNameWithoutExt = path.basename(pointsTo);
                 const matchedFile = files.find((file) =>
@@ -589,9 +600,21 @@ export function processConstructorRequiredParameter(node: SyntaxNode) {
 }
 
 export function toGroupTypeIgnoreCase(value: string): GroupType {
-  return (
-    Object.values(GroupType).find(
-      (gt) => gt.toLowerCase() === value.toLowerCase()
-    ) ?? GroupType.CLASS
+  const groupType = Object.values(GroupType).find(
+    (gt) => gt.toLowerCase() === value.toLowerCase()
   );
+  if (!groupType) {
+    throw new Error("Invalid groupType in rules!");
+  }
+  return groupType;
+}
+
+export function toNodeTypeIgnoreCase(value: string): NodeType {
+  const nodeType = Object.values(NodeType).find(
+    (nt) => nt.toLowerCase() === value.toLowerCase()
+  );
+  if (!nodeType) {
+    throw new Error("Invalid nodeType in rules!");
+  }
+  return nodeType;
 }

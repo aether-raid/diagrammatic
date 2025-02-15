@@ -70,12 +70,21 @@ export class Call {
   }
 }
 
+/**
+ * Represent functions and class attributes
+ */
+export enum NodeType {
+  FUNCTION = "function",
+  ATTRIBUTE = "attribute",
+}
+
 export class Node {
   token: string | null;
   calls: Call[];
   variables: Variable[];
   lineNumber: number | null;
   parent: Node | Group;
+  nodeType: NodeType;
 
   constructor({
     token,
@@ -83,18 +92,21 @@ export class Node {
     variables,
     lineNumber = null,
     parent,
+    nodeType,
   }: {
     token: string | null;
     calls: Call[];
     variables: Variable[];
     lineNumber?: number | null;
     parent: Node | Group;
+    nodeType: NodeType;
   }) {
     this.token = token;
     this.calls = calls;
     this.variables = variables;
     this.lineNumber = lineNumber;
     this.parent = parent;
+    this.nodeType = nodeType;
   }
 
   /**
