@@ -19,7 +19,8 @@ const handleShowMVCDiagram = async (
   }
 
   let nodeEdgeData: NodeEdgeData = runCodeToDiagramAlgorithm(filePath);
-  nodeEdgeData.nodes = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes);
+  console.log(nodeEdgeData);
+  nodeEdgeData.nodes = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData);
   const componentNodeEdge = await getComponentDiagram(nodeEdgeData)
 
   panel = setupWebviewPanel(context);
