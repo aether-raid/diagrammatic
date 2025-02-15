@@ -3,7 +3,9 @@
     "data": {
       "entityName": "ArticleService",
       "entityType": "class",
+      "filePath": "/article/article.service.ts",
       "items": [
+        { "name": "constructor", "lineNumber": 15 },
         {
           "name": "findAll",
           "lineNumber": 26
@@ -59,7 +61,9 @@
     "data": {
       "entityName": "ArticleController",
       "entityType": "class",
+      "filePath": "/article/article.controller.ts",
       "items": [
+        { "name": "constructor", "lineNumber": 20 },
         {
           "name": "findAll",
           "lineNumber": 25
@@ -111,6 +115,7 @@
     "data": {
       "entityName": "ArticleEntity",
       "entityType": "class",
+      "filePath": "/article/article.entity.ts",
       "items": [
         {
           "name": "updateTimestamp",
@@ -123,6 +128,7 @@
     "data": {
       "entityName": "Comment",
       "entityType": "interface",
+      "filePath": "/article/article.interface.ts",
       "items": []
     }
   },
@@ -130,6 +136,7 @@
     "data": {
       "entityName": "ArticleData",
       "entityType": "interface",
+      "filePath": "/article/article.interface.ts",
       "items": []
     }
   },
@@ -137,6 +144,7 @@
     "data": {
       "entityName": "CommentsRO",
       "entityType": "interface",
+      "filePath": "/article/article.interface.ts",
       "items": []
     }
   },
@@ -144,6 +152,7 @@
     "data": {
       "entityName": "ArticleRO",
       "entityType": "interface",
+      "filePath": "/article/article.interface.ts",
       "items": []
     }
   },
@@ -151,6 +160,7 @@
     "data": {
       "entityName": "ArticlesRO",
       "entityType": "interface",
+      "filePath": "/article/article.interface.ts",
       "items": []
     }
   },
@@ -158,6 +168,7 @@
     "data": {
       "entityName": "ArticleModule",
       "entityType": "class",
+      "filePath": "/article/article.module.ts",
       "items": [
         {
           "name": "configure",
@@ -170,6 +181,7 @@
     "data": {
       "entityName": "Comment",
       "entityType": "class",
+      "filePath": "/article/comment.entity.ts",
       "items": []
     }
   },
@@ -177,6 +189,7 @@
     "data": {
       "entityName": "CreateArticleDto",
       "entityType": "class",
+      "filePath": "/article/dto/create-article.dto.ts",
       "items": []
     }
   },
@@ -184,6 +197,7 @@
     "data": {
       "entityName": "CreateCommentDto",
       "entityType": "class",
+      "filePath": "/article/dto/create-comment.ts",
       "items": []
     }
   },
@@ -191,6 +205,7 @@
     "data": {
       "entityName": "FollowsEntity",
       "entityType": "class",
+      "filePath": "/profile/follows.entity.ts",
       "items": []
     }
   },
@@ -198,7 +213,9 @@
     "data": {
       "entityName": "ProfileController",
       "entityType": "class",
+      "filePath": "/profile/profile.controller.ts",
       "items": [
+        { "name": "constructor", "lineNumber": 16 },
         {
           "name": "getProfile",
           "lineNumber": 19
@@ -218,6 +235,7 @@
     "data": {
       "entityName": "ProfileData",
       "entityType": "interface",
+      "filePath": "/profile/profile.interface.ts",
       "items": []
     }
   },
@@ -225,6 +243,7 @@
     "data": {
       "entityName": "ProfileRO",
       "entityType": "interface",
+      "filePath": "/profile/profile.interface.ts",
       "items": []
     }
   },
@@ -232,6 +251,7 @@
     "data": {
       "entityName": "ProfileModule",
       "entityType": "class",
+      "filePath": "/profile/profile.module.ts",
       "items": [
         {
           "name": "configure",
@@ -244,7 +264,9 @@
     "data": {
       "entityName": "ProfileService",
       "entityType": "class",
+      "filePath": "/profile/profile.service.ts",
       "items": [
+        { "name": "constructor", "lineNumber": 12 },
         {
           "name": "findAll",
           "lineNumber": 19
@@ -272,7 +294,9 @@
     "data": {
       "entityName": "BaseController",
       "entityType": "class",
+      "filePath": "/shared/base.controller.ts",
       "items": [
+        { "name": "constructor", "lineNumber": 6 },
         {
           "name": "getUserIdFromToken",
           "lineNumber": 8
@@ -284,6 +308,7 @@
     "data": {
       "entityName": "ValidationPipe",
       "entityType": "class",
+      "filePath": "/shared/pipes/validation.pipe.ts",
       "items": [
         {
           "name": "transform",
@@ -304,7 +329,9 @@
     "data": {
       "entityName": "TagService",
       "entityType": "class",
+      "filePath": "/tag/tag.service.ts",
       "items": [
+        { "name": "constructor", "lineNumber": 8 },
         {
           "name": "findAll",
           "lineNumber": 13
@@ -316,6 +343,7 @@
     "data": {
       "entityName": "TagModule",
       "entityType": "class",
+      "filePath": "/tag/tag.module.ts",
       "items": [
         {
           "name": "configure",
@@ -328,13 +356,7 @@
     "data": {
       "entityName": "TagEntity",
       "entityType": "class",
-      "items": []
-    }
-  },
-  {
-    "data": {
-      "entityName": "TagEntity",
-      "entityType": "class",
+      "filePath": "/tag/tag.entity.ts",
       "items": []
     }
   },
@@ -342,7 +364,9 @@
     "data": {
       "entityName": "TagController",
       "entityType": "class",
+      "filePath": "/tag/tag.controller.ts",
       "items": [
+        { "name": "constructor", "lineNumber": 15 },
         {
           "name": "findAll",
           "lineNumber": 18
@@ -354,7 +378,9 @@
     "data": {
       "entityName": "UserService",
       "entityType": "class",
+      "filePath": "/user/user.service.ts",
       "items": [
+        { "name": "constructor", "lineNumber": 16 },
         {
           "name": "findAll",
           "lineNumber": 21
@@ -398,6 +424,7 @@
     "data": {
       "entityName": "UserModule",
       "entityType": "class",
+      "filePath": "/user/user.module.ts",
       "items": [
         {
           "name": "configure",
@@ -410,6 +437,7 @@
     "data": {
       "entityName": "UserData",
       "entityType": "interface",
+      "filePath": "/user/user.interface.ts",
       "items": []
     }
   },
@@ -417,6 +445,7 @@
     "data": {
       "entityName": "UserRO",
       "entityType": "interface",
+      "filePath": "/user/user.interface.ts",
       "items": []
     }
   },
@@ -424,6 +453,7 @@
     "data": {
       "entityName": "UserEntity",
       "entityType": "class",
+      "filePath": "/user/user.entity.ts",
       "items": [
         {
           "name": "hashPassword",
@@ -436,6 +466,7 @@
     "data": {
       "entityName": "user.decorator.ts",
       "entityType": "file",
+      "filePath": "/user/user.decorator.ts",
       "items": [
         {
           "name": "User",
@@ -448,7 +479,9 @@
     "data": {
       "entityName": "UserController",
       "entityType": "class",
+      "filePath": "/user/user.controller.ts",
       "items": [
+        { "name": "constructor", "lineNumber": 19 },
         {
           "name": "findMe",
           "lineNumber": 22
@@ -476,7 +509,9 @@
     "data": {
       "entityName": "AuthMiddleware",
       "entityType": "class",
+      "filePath": "/user/auth.middleware.ts",
       "items": [
+        { "name": "constructor", "lineNumber": 11 },
         {
           "name": "use",
           "lineNumber": 13
@@ -488,6 +523,7 @@
     "data": {
       "entityName": "UpdateUserDto",
       "entityType": "class",
+      "filePath": "/user/dto/update-user.dto.ts",
       "items": []
     }
   },
@@ -495,6 +531,7 @@
     "data": {
       "entityName": "LoginUserDto",
       "entityType": "class",
+      "filePath": "/user/dto/login-user.dto.ts",
       "items": []
     }
   },
@@ -502,6 +539,7 @@
     "data": {
       "entityName": "CreateUserDto",
       "entityType": "class",
+      "filePath": "/user/dto/create-user.dto.ts",
       "items": []
     }
   },
@@ -509,6 +547,7 @@
     "data": {
       "entityName": "AppController",
       "entityType": "class",
+      "filePath": "/app.controller.ts",
       "items": [
         {
           "name": "root",
@@ -521,13 +560,15 @@
     "data": {
       "entityName": "ApplicationModule",
       "entityType": "class",
-      "items": []
+      "filePath": "/app.module.ts",
+      "items": [{ "name": "constructor", "lineNumber": 24 }]
     }
   },
   {
     "data": {
       "entityName": "main.ts",
       "entityType": "file",
+      "filePath": "/main.ts",
       "items": [
         {
           "name": "bootstrap",

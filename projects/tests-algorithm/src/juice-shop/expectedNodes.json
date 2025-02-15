@@ -3,6 +3,7 @@
     "data": {
       "entityName": "SnippetRequestBody",
       "entityType": "interface",
+      "filePath": "/routes/vulnCodeSnippet.ts",
       "items": []
     }
   },
@@ -10,6 +11,7 @@
     "data": {
       "entityName": "VerdictRequestBody",
       "entityType": "interface",
+      "filePath": "/routes/vulnCodeSnippet.ts",
       "items": []
     }
   },
@@ -17,6 +19,7 @@
     "data": {
       "entityName": "vulnCodeSnippet.ts",
       "entityType": "file",
+      "filePath": "/routes/vulnCodeSnippet.ts",
       "items": [
         {
           "name": "setStatusCode",
@@ -41,6 +44,7 @@
     "data": {
       "entityName": "OrderDetail",
       "entityType": "interface",
+      "filePath": "/frontend/src/app/Services/basket.service.ts",
       "items": []
     }
   },
@@ -48,6 +52,7 @@
     "data": {
       "entityName": "BasketService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/basket.service.ts",
       "items": [
         {
           "name": "find",
@@ -92,6 +97,7 @@
     "data": {
       "entityName": "AddressService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/address.service.ts",
       "items": [
         {
           "name": "get",
@@ -120,6 +126,7 @@
     "data": {
       "entityName": "AdministrationService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/administration.service.ts",
       "items": [
         {
           "name": "getApplicationVersion",
@@ -132,6 +139,7 @@
     "data": {
       "entityName": "CaptchaService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/captcha.service.ts",
       "items": [
         {
           "name": "getCaptcha",
@@ -144,6 +152,7 @@
     "data": {
       "entityName": "ChallengeService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/challenge.service.ts",
       "items": [
         {
           "name": "find",
@@ -184,6 +193,7 @@
     "data": {
       "entityName": "ChatbotService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/chatbot.service.ts",
       "items": [
         {
           "name": "getChatbotStatus",
@@ -200,6 +210,7 @@
     "data": {
       "entityName": "CodeFixesService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/code-fixes.service.ts",
       "items": [
         {
           "name": "get",
@@ -216,6 +227,7 @@
     "data": {
       "entityName": "result",
       "entityType": "interface",
+      "filePath": "/frontend/src/app/Services/code-fixes.service.ts",
       "items": []
     }
   },
@@ -223,6 +235,8 @@
     "data": {
       "entityName": "Fixes",
       "entityType": "interface",
+      "filePath": "/frontend/src/app/Services/code-fixes.service.ts",
+
       "items": []
     }
   },
@@ -230,6 +244,8 @@
     "data": {
       "entityName": "Solved",
       "entityType": "interface",
+      "filePath": "/frontend/src/app/Services/code-fixes.service.ts",
+
       "items": []
     }
   },
@@ -237,6 +253,7 @@
     "data": {
       "entityName": "CodeSnippet",
       "entityType": "interface",
+      "filePath": "/frontend/src/app/Services/code-snippet.service.ts",
       "items": []
     }
   },
@@ -244,6 +261,7 @@
     "data": {
       "entityName": "Solved",
       "entityType": "interface",
+      "filePath": "/frontend/src/app/Services/code-snippet.service.ts",
       "items": []
     }
   },
@@ -251,6 +269,7 @@
     "data": {
       "entityName": "CodeSnippetService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/code-snippet.service.ts",
       "items": [
         { "name": "get", "lineNumber": 30 },
         { "name": "challenges", "lineNumber": 34 }
@@ -261,6 +280,7 @@
     "data": {
       "entityName": "ComplaintService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/complaint.service.ts",
       "items": [{ "name": "save", "lineNumber": 19 }]
     }
   },
@@ -268,6 +288,7 @@
     "data": {
       "entityName": "ConfigResponse",
       "entityType": "interface",
+      "filePath": "/frontend/src/app/Services/configuration.service.ts",
       "items": []
     }
   },
@@ -275,6 +296,8 @@
     "data": {
       "entityName": "Config",
       "entityType": "interface",
+      "filePath": "/frontend/src/app/Services/configuration.service.ts",
+
       "items": []
     }
   },
@@ -282,6 +305,8 @@
     "data": {
       "entityName": "ConfigurationService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/configuration.service.ts",
+
       "items": [{ "name": "getApplicationConfiguration", "lineNumber": 105 }]
     }
   },
@@ -289,6 +314,7 @@
     "data": {
       "entityName": "CountryMappingService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/country-mapping.service.ts",
       "items": [{ "name": "getCountryMapping", "lineNumber": 18 }]
     }
   },
@@ -296,6 +322,8 @@
     "data": {
       "entityName": "DataSubjectService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/data-subject.service.ts",
+
       "items": [
         { "name": "erase", "lineNumber": 21 },
         { "name": "dataExport", "lineNumber": 26 }
@@ -306,6 +334,7 @@
     "data": {
       "entityName": "DeliveryMultipleMethodResponse",
       "entityType": "interface",
+      "filePath": "/frontend/src/app/Services/delivery.service.ts",
       "items": []
     }
   },
@@ -313,6 +342,8 @@
     "data": {
       "entityName": "DeliverySingleMethodResponse",
       "entityType": "interface",
+      "filePath": "/frontend/src/app/Services/delivery.service.ts",
+
       "items": []
     }
   },
@@ -320,6 +351,8 @@
     "data": {
       "entityName": "DeliveryService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/delivery.service.ts",
+
       "items": [
         { "name": "get", "lineNumber": 31 },
         { "name": "getById", "lineNumber": 35 }
@@ -330,6 +363,7 @@
     "data": {
       "entityName": "FeedbackService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/feedback.service.ts",
       "items": [
         { "name": "find", "lineNumber": 20 },
         { "name": "save", "lineNumber": 26 },
@@ -341,6 +375,7 @@
     "data": {
       "entityName": "FormSubmitService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/form-submit.service.ts",
       "items": [{ "name": "attachEnterKeyHandler", "lineNumber": 15 }]
     }
   },
@@ -348,6 +383,7 @@
     "data": {
       "entityName": "ImageCaptchaService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/image-captcha.service.ts",
       "items": [{ "name": "getCaptcha", "lineNumber": 19 }]
     }
   },
@@ -355,6 +391,7 @@
     "data": {
       "entityName": "KeysService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/keys.service.ts",
       "items": [
         { "name": "nftUnlocked", "lineNumber": 15 },
         { "name": "nftMintListen", "lineNumber": 24 },
@@ -369,6 +406,7 @@
     "data": {
       "entityName": "LanguagesService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/languages.service.ts",
       "items": [{ "name": "getLanguages", "lineNumber": 18 }]
     }
   },
@@ -376,6 +414,7 @@
     "data": {
       "entityName": "LocalBackupService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/local-backup.service.ts",
       "items": [
         { "name": "save", "lineNumber": 23 },
         { "name": "restore", "lineNumber": 51 },
@@ -387,6 +426,7 @@
     "data": {
       "entityName": "OrderHistoryService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/order-history.service.ts",
       "items": [
         { "name": "get", "lineNumber": 20 },
         { "name": "getAll", "lineNumber": 24 },
@@ -398,6 +438,7 @@
     "data": {
       "entityName": "PaymentService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/payment.service.ts",
       "items": [
         { "name": "get", "lineNumber": 20 },
         { "name": "getById", "lineNumber": 24 },
@@ -410,6 +451,7 @@
     "data": {
       "entityName": "PhotoWallService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/photo-wall.service.ts",
       "items": [
         { "name": "addMemory", "lineNumber": 20 },
         { "name": "get", "lineNumber": 27 }
@@ -420,6 +462,7 @@
     "data": {
       "entityName": "ProductReviewService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/product-review.service.ts",
       "items": [
         { "name": "get", "lineNumber": 20 },
         { "name": "create", "lineNumber": 28 },
@@ -432,6 +475,7 @@
     "data": {
       "entityName": "ProductService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/product.service.ts",
       "items": [
         { "name": "search", "lineNumber": 20 },
         { "name": "find", "lineNumber": 24 },
@@ -444,6 +488,7 @@
     "data": {
       "entityName": "QuantityService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/quantity.service.ts",
       "items": [
         { "name": "getAll", "lineNumber": 20 },
         { "name": "put", "lineNumber": 24 }
@@ -454,6 +499,7 @@
     "data": {
       "entityName": "RecycleService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/recycle.service.ts",
       "items": [
         { "name": "find", "lineNumber": 20 },
         { "name": "save", "lineNumber": 26 }
@@ -464,6 +510,7 @@
     "data": {
       "entityName": "RequestInterceptor",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/request.interceptor.ts",
       "items": [{ "name": "intercept", "lineNumber": 12 }]
     }
   },
@@ -471,6 +518,7 @@
     "data": {
       "entityName": "SecurityAnswerService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/security-answer.service.ts",
       "items": [{ "name": "save", "lineNumber": 20 }]
     }
   },
@@ -478,6 +526,7 @@
     "data": {
       "entityName": "SecurityQuestionService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/security-question.service.ts",
       "items": [
         { "name": "find", "lineNumber": 20 },
         { "name": "findBy", "lineNumber": 24 }
@@ -488,6 +537,7 @@
     "data": {
       "entityName": "SnackBarHelperService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/snack-bar-helper.service.ts",
       "items": [{ "name": "open", "lineNumber": 17 }]
     }
   },
@@ -495,6 +545,7 @@
     "data": {
       "entityName": "SocketIoService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/socket-io.service.ts",
       "items": [{ "name": "socket", "lineNumber": 28 }]
     }
   },
@@ -502,6 +553,7 @@
     "data": {
       "entityName": "TrackOrderService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/track-order.service.ts",
       "items": [{ "name": "find", "lineNumber": 20 }]
     }
   },
@@ -509,6 +561,7 @@
     "data": {
       "entityName": "TwoFactorVerifyResponse",
       "entityType": "interface",
+      "filePath": "/frontend/src/app/Services/two-factor-auth-service.ts",
       "items": []
     }
   },
@@ -516,6 +569,8 @@
     "data": {
       "entityName": "AuthenticationPayload",
       "entityType": "interface",
+      "filePath": "/frontend/src/app/Services/two-factor-auth-service.ts",
+
       "items": []
     }
   },
@@ -523,6 +578,8 @@
     "data": {
       "entityName": "TwoFactorAuthStatusPayload",
       "entityType": "interface",
+      "filePath": "/frontend/src/app/Services/two-factor-auth-service.ts",
+
       "items": []
     }
   },
@@ -530,6 +587,8 @@
     "data": {
       "entityName": "TwoFactorAuthService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/two-factor-auth-service.ts",
+
       "items": [
         { "name": "verify", "lineNumber": 35 },
         { "name": "status", "lineNumber": 42 },
@@ -542,6 +601,7 @@
     "data": {
       "entityName": "Passwords",
       "entityType": "interface",
+      "filePath": "/frontend/src/app/Services/user.service.ts",
       "items": []
     }
   },
@@ -549,6 +609,8 @@
     "data": {
       "entityName": "UserService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/user.service.ts",
+
       "items": [
         { "name": "find", "lineNumber": 28 },
         { "name": "get", "lineNumber": 33 },
@@ -569,6 +631,7 @@
     "data": {
       "entityName": "result",
       "entityType": "interface",
+      "filePath": "/frontend/src/app/Services/vuln-lines.service.ts",
       "items": []
     }
   },
@@ -576,6 +639,8 @@
     "data": {
       "entityName": "VulnLinesService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/vuln-lines.service.ts",
+
       "items": [{ "name": "check", "lineNumber": 20 }]
     }
   },
@@ -583,6 +648,7 @@
     "data": {
       "entityName": "WalletService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/wallet.service.ts",
       "items": [
         { "name": "get", "lineNumber": 20 },
         { "name": "put", "lineNumber": 24 }
@@ -593,6 +659,7 @@
     "data": {
       "entityName": "WindowRefService",
       "entityType": "class",
+      "filePath": "/frontend/src/app/Services/window-ref.service.ts",
       "items": [{ "name": "nativeWindow", "lineNumber": 12 }]
     }
   },
@@ -600,6 +667,7 @@
     "data": {
       "entityName": "window-ref.service.ts",
       "entityType": "file",
+      "filePath": "/frontend/src/app/Services/window-ref.service.ts",
       "items": [{ "name": "getWindow", "lineNumber": 17 }]
     }
   },
@@ -607,6 +675,7 @@
     "data": {
       "entityName": "LoginGuard",
       "entityType": "class",
+      "filePath": "/frontend/src/app/app.guard.ts",
       "items": [
         { "name": "canActivate", "lineNumber": 15 },
         { "name": "forbidRoute", "lineNumber": 24 },
@@ -618,6 +687,8 @@
     "data": {
       "entityName": "AdminGuard",
       "entityType": "class",
+      "filePath": "/frontend/src/app/app.guard.ts",
+
       "items": [{ "name": "canActivate", "lineNumber": 49 }]
     }
   },
@@ -625,6 +696,8 @@
     "data": {
       "entityName": "AdminGuard",
       "entityType": "class",
+      "filePath": "/frontend/src/app/app.guard.ts",
+
       "items": [{ "name": "canActivate", "lineNumber": 49 }]
     }
   },
@@ -632,13 +705,16 @@
     "data": {
       "entityName": "AccountingGuard",
       "entityType": "class",
+      "filePath": "/frontend/src/app/app.guard.ts",
+
       "items": [{ "name": "canActivate", "lineNumber": 64 }]
     }
   },
   {
     "data": {
-      "entityName": "AccountDeluxeGuardingGuard",
+      "entityName": "DeluxeGuard",
       "entityType": "class",
+      "filePath": "/frontend/src/app/app.guard.ts",
       "items": [{ "name": "isDeluxe", "lineNumber": 79 }]
     }
   },
@@ -646,6 +722,7 @@
     "data": {
       "entityName": "AdministrationComponent",
       "entityType": "class",
+      "filePath": "/frontend/src/app/administration/administration.component.ts",
       "items": [
         { "name": "ngOnInit", "lineNumber": 39 },
         { "name": "findAllUsers", "lineNumber": 44 },

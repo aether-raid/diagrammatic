@@ -1,0 +1,178 @@
+[
+  {
+    "id": "findAll-findAll",
+    "source": "/article/article.controller.ts.ArticleController",
+    "target": "/article/article.service.ts.ArticleService",
+    "sourceHandle": "findAll",
+    "targetHandle": "findAll",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "getFeed-findFeed",
+    "source": "/article/article.controller.ts.ArticleController",
+    "target": "/article/article.service.ts.ArticleService",
+    "sourceHandle": "getFeed",
+    "targetHandle": "findFeed",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "findOne-findOne",
+    "source": "/article/article.controller.ts.ArticleController",
+    "target": "/article/article.service.ts.ArticleService",
+    "sourceHandle": "findOne",
+    "targetHandle": "findOne",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "findComments-findComments",
+    "source": "/article/article.controller.ts.ArticleController",
+    "target": "/article/article.service.ts.ArticleService",
+    "sourceHandle": "findComments",
+    "targetHandle": "findComments",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "create-create",
+    "source": "/article/article.controller.ts.ArticleController",
+    "target": "/article/article.service.ts.ArticleService",
+    "sourceHandle": "create",
+    "targetHandle": "create",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "update-update",
+    "source": "/article/article.controller.ts.ArticleController",
+    "target": "/article/article.service.ts.ArticleService",
+    "sourceHandle": "update",
+    "targetHandle": "update",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "delete-delete",
+    "source": "/article/article.controller.ts.ArticleController",
+    "target": "/article/article.service.ts.ArticleService",
+    "sourceHandle": "delete",
+    "targetHandle": "delete",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createComment-addComment",
+    "source": "/article/article.controller.ts.ArticleController",
+    "target": "/article/article.service.ts.ArticleService",
+    "sourceHandle": "createComment",
+    "targetHandle": "addComment",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "deleteComment-deleteComment",
+    "source": "/article/article.controller.ts.ArticleController",
+    "target": "/article/article.service.ts.ArticleService",
+    "sourceHandle": "deleteComment",
+    "targetHandle": "deleteComment",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "favorite-favorite",
+    "source": "/article/article.controller.ts.ArticleController",
+    "target": "/article/article.service.ts.ArticleService",
+    "sourceHandle": "favorite",
+    "targetHandle": "favorite",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "unFavorite-unFavorite",
+    "source": "/article/article.controller.ts.ArticleController",
+    "target": "/article/article.service.ts.ArticleService",
+    "sourceHandle": "unFavorite",
+    "targetHandle": "unFavorite",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "getProfile-findProfile",
+    "source": "/profile/profile.controller.ts.ProfileController",
+    "target": "/profile/profile.service.ts.ProfileService",
+    "sourceHandle": "getProfile",
+    "targetHandle": "findProfile",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "follow-follow",
+    "source": "/profile/profile.controller.ts.ProfileController",
+    "target": "/profile/profile.service.ts.ProfileService",
+    "sourceHandle": "follow",
+    "targetHandle": "follow",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "unFollow-unFollow",
+    "source": "/profile/profile.controller.ts.ProfileController",
+    "target": "/profile/profile.service.ts.ProfileService",
+    "sourceHandle": "unFollow",
+    "targetHandle": "unFollow",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "findAll-findAll",
+    "source": "/tag/tag.controller.ts.TagController",
+    "target": "/tag/tag.service.ts.TagService",
+    "sourceHandle": "findAll",
+    "targetHandle": "findAll",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "use-findById",
+    "source": "/user/auth.middleware.ts.AuthMiddleware",
+    "target": "/user/user.service.ts.UserService",
+    "sourceHandle": "use",
+    "targetHandle": "findById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "findMe-findByEmail",
+    "source": "/user/user.controller.ts.UserController",
+    "target": "/user/user.service.ts.UserService",
+    "sourceHandle": "findMe",
+    "targetHandle": "findByEmail",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "update-update",
+    "source": "/user/user.controller.ts.UserController",
+    "target": "/user/user.service.ts.UserService",
+    "sourceHandle": "update",
+    "targetHandle": "update",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "create-create",
+    "source": "/user/user.controller.ts.UserController",
+    "target": "/user/user.service.ts.UserService",
+    "sourceHandle": "create",
+    "targetHandle": "create",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "delete-delete",
+    "source": "/user/user.controller.ts.UserController",
+    "target": "/user/user.service.ts.UserService",
+    "sourceHandle": "delete",
+    "targetHandle": "delete",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "login-findOne",
+    "source": "/user/user.controller.ts.UserController",
+    "target": "/user/user.service.ts.UserService",
+    "sourceHandle": "login",
+    "targetHandle": "findOne",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "login-generateJWT",
+    "source": "/user/user.controller.ts.UserController",
+    "target": "/user/user.service.ts.UserService",
+    "sourceHandle": "login",
+    "targetHandle": "generateJWT",
+    "markerEnd": { "type": "arrowclosed" }
+  }
+]

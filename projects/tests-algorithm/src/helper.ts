@@ -61,11 +61,12 @@ export function compareEntityCounts(
   }
 }
 
-export function calculatePrecisionRecallF1(
+export function calculatePrecisionRecallF1ForNodes(
   predictedList: {
     data: {
       entityType: string;
       entityName: string;
+      filePath: string;
       items: { name: string; lineNumber: number }[];
     };
   }[],
@@ -73,22 +74,39 @@ export function calculatePrecisionRecallF1(
     data: {
       entityType: string;
       entityName: string;
+      filePath: string;
       items: { name: string; lineNumber: number }[];
     };
   }[]
 ) {
   const predictedSet = new Set(
-    predictedList.map((e) => `${e.data.entityType}:${e.data.entityName}`)
+    predictedList.map(
+      (e) => `${e.data.entityType}:${e.data.entityName}:${e.data.filePath}`
+    )
   );
   const groundTruthSet = new Set(
-    groundTruthList.map((e) => `${e.data.entityType}:${e.data.entityName}`)
+    groundTruthList.map(
+      (e) => `${e.data.entityType}:${e.data.entityName}:${e.data.filePath}`
+    )
   );
 
   const nodeTP = [...predictedSet].filter((item) =>
     groundTruthSet.has(item)
   ).length;
-  const nodeFP = [...predictedSet].filter((item) => !groundTruthSet.has(item));
-  const nodeFN = [...groundTruthSet].filter((item) => !predictedSet.has(item));
+  const nodeFPSet = [...predictedSet].filter(
+    (item) => !groundTruthSet.has(item)
+  );
+  const nodeFNSet = [...groundTruthSet].filter(
+    (item) => !predictedSet.has(item)
+  );
+
+  /* 
+  console.log("falsePositives", nodeFPSet);
+  console.log("falseNegatives", nodeFNSet);
+  */
+
+  const nodeFP = nodeFPSet.length;
+  const nodeFN = nodeFNSet.length;
 
   let functionTP = 0,
     functionFP = 0,
@@ -98,10 +116,12 @@ export function calculatePrecisionRecallF1(
     const predictedEntity = predictedList.find(
       (p) =>
         p.data.entityName === actualEntity.data.entityName &&
-        p.data.entityType === actualEntity.data.entityType
+        p.data.entityType === actualEntity.data.entityType &&
+        p.data.filePath === actualEntity.data.filePath
     );
 
     if (!predictedEntity) {
+      functionFN += actualEntity.data.items.length; // all functions in entity not found
       return;
     }
 
@@ -140,11 +160,8 @@ export function calculatePrecisionRecallF1(
     functionFN += falseNegatives.length;
   });
 
-  console.log(nodeFP);
-  console.log(nodeFN);
-
-  const nodePrecision = nodeTP / (nodeTP + nodeFP.length || 1);
-  const nodeRecall = nodeTP / (nodeTP + nodeFN.length || 1);
+  const nodePrecision = nodeTP / (nodeTP + nodeFP || 1);
+  const nodeRecall = nodeTP / (nodeTP + nodeFN || 1);
   const nodeF1 =
     (2 * (nodePrecision * nodeRecall)) / (nodePrecision + nodeRecall || 1);
 
@@ -164,18 +181,60 @@ export function calculatePrecisionRecallF1(
   console.log("Recall:", functionRecall);
   console.log("F1:", functionF1);
 
-  const overallPrecision =
-    (nodeTP + functionTP) /
-    (nodeTP + functionTP + (nodeFP.length + functionFP) || 1);
-  const overallRecall =
-    (nodeTP + functionTP) /
-    (nodeTP + functionTP + (nodeFN.length + functionFN) || 1);
-  const overallF1 =
-    (2 * overallPrecision * overallRecall) /
-    (overallPrecision + overallRecall || 1);
+  return { nodeTP, nodeFP, nodeFN, functionTP, functionFP, functionFN };
+}
 
-  console.log("==== Overall Metrics ===");
-  console.log("Precision:", overallPrecision);
-  console.log("Recall:", overallRecall);
-  console.log("F1:", overallF1);
+export function calculatePrecisionRecallF1ForEdges(
+  predictedList: {
+    id: string;
+    source: string;
+    target: string;
+    sourceHandle: string;
+    targetHandle: string;
+    markerEnd: { type: string };
+  }[],
+  groundTruthList: {
+    id: string;
+    source: string;
+    target: string;
+    sourceHandle: string;
+    targetHandle: string;
+    markerEnd: { type: string };
+  }[]
+) {
+  const predictedSet = new Set(
+    predictedList.map(
+      (e) => `${e.source}:${e.sourceHandle}:${e.target}:${e.targetHandle}`
+    )
+  );
+  const groundTruthSet = new Set(
+    groundTruthList.map(
+      (e) => `${e.source}:${e.sourceHandle}:${e.target}:${e.targetHandle}`
+    )
+  );
+
+  const edgeTP = [...predictedSet].filter((item) =>
+    groundTruthSet.has(item)
+  ).length;
+  const edgeFPSet = [...predictedSet].filter(
+    (item) => !groundTruthSet.has(item)
+  );
+  const edgeFNSet = [...groundTruthSet].filter(
+    (item) => !predictedSet.has(item)
+  );
+
+  const edgeFP = edgeFPSet.length;
+  const edgeFN = edgeFNSet.length;
+
+  const edgePrecision = edgeTP / (edgeTP + edgeFP || 1);
+  const edgeRecall = edgeTP / (edgeTP + edgeFN || 1);
+  const edgeF1 =
+    (2 * (edgePrecision * edgeRecall)) / (edgePrecision + edgeRecall || 1);
+
+  console.log("==== Metrics for Edges ===");
+  console.log("Precision:", edgePrecision);
+  console.log("Recall:", edgeRecall);
+  console.log("F1:", edgeF1);
+
+  return { edgeTP, edgeFP, edgeFN };
 }
