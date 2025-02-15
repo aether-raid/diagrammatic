@@ -2,7 +2,8 @@
   ".cpp": {
     "nodes": [
       {
-        "type": "function_definition"
+        "type": "function_definition",
+        "nodeType": "FUNCTION"
       }
     ],
     "groups": [
@@ -42,7 +43,12 @@
   ".java": {
     "nodes": [
       {
-        "type": "method_declaration"
+        "type": "method_declaration",
+        "nodeType": "FUNCTION"
+      },
+      {
+        "type": "field_declaration",
+        "nodeType": "ATTRIBUTE"
       }
     ],
     "groups": [
@@ -52,6 +58,10 @@
       }
     ],
     "getName": {
+      "field_declaration": {
+        "childType": "variable_declarator",
+        "delegate": true
+      },
       "call_expression": {
         "childType": "member_expression",
         "useText": true
@@ -62,7 +72,8 @@
   ".py": {
     "nodes": [
       {
-        "type": "function_definition"
+        "type": "function_definition",
+        "nodeType": "FUNCTION"
       }
     ],
     "groups": [
@@ -81,6 +92,7 @@
   },
   ".ts": {
     "nodes": [
+      { "type": "public_field_definition", "nodeType": "ATTRIBUTE" },
       {
         "type": "call_expression",
         "child": {
@@ -88,7 +100,8 @@
           "child": {
             "type": "arrow_function"
           }
-        }
+        },
+        "nodeType": "FUNCTION"
       },
       {
         "type": "export_statement",
@@ -100,13 +113,29 @@
               "type": "arrow_function"
             }
           }
-        }
+        },
+        "nodeType": "FUNCTION"
       },
       {
-        "type": "method_definition"
+        "type": "export_statement",
+        "child": {
+          "type": "lexical_declaration",
+          "child": {
+            "type": "variable_declarator",
+            "child": {
+              "type": "call_expression"
+            }
+          }
+        },
+        "nodeType": "FUNCTION"
       },
       {
-        "type": "function_declaration"
+        "type": "method_definition",
+        "nodeType": "FUNCTION"
+      },
+      {
+        "type": "function_declaration",
+        "nodeType": "FUNCTION"
       }
     ],
     "groups": [
@@ -114,6 +143,10 @@
       { "type": "interface_declaration", "groupType": "INTERFACE" }
     ],
     "getName": {
+      "public_field_definition": {
+        "childType": "property_identifier",
+        "useText": true
+      },
       "interface_declaration": {
         "childType": "type_identifier",
         "useText": true
@@ -142,13 +175,15 @@
           "child": {
             "type": "arrow_function"
           }
-        }
+        },
+        "nodeType": "FUNCTION"
       },
       {
         "type": "export_statement",
         "child": {
           "type": "lexical_declaration"
-        }
+        },
+        "nodeType": "FUNCTION"
       },
       {
         "type": "lexical_declaration",
@@ -157,13 +192,16 @@
           "child": {
             "type": "arrow_function"
           }
-        }
+        },
+        "nodeType": "FUNCTION"
       },
       {
-        "type": "method_definition"
+        "type": "method_definition",
+        "nodeType": "FUNCTION"
       },
       {
-        "type": "function_declaration"
+        "type": "function_declaration",
+        "nodeType": "FUNCTION"
       }
     ],
     "groups": [{ "type": "class_declaration", "groupType": "CLASS" }],

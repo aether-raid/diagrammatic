@@ -1,4 +1,4 @@
-import { Node, Group, GroupType } from "./model.js";
+import { Node, Group, GroupType, NodeType } from "./model.js";
 import {
   makeCalls,
   makeLocalVariables,
@@ -119,12 +119,24 @@ export class Language {
         }
       }
     }
+
+    const matchingNodeRule = languageRules.nodes.find(
+      (node) => node.type === tree.type
+    );
+    if (!matchingNodeRule || !matchingNodeRule.nodeType) {
+      throw new Error("Node rule is missing nodeType or does not exist!");
+    }
+    if (!NodeType[matchingNodeRule.nodeType]) {
+      throw new Error("Node rule has invalid nodeType!");
+    }
+
     const node = new Node({
       token,
       calls,
       variables,
       lineNumber: getLineNumber(tree),
       parent,
+      nodeType: NodeType[matchingNodeRule.nodeType],
     });
     const subnodes = nodes.flatMap((t) =>
       this.makeNodes(t, node, languageRules)

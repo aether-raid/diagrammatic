@@ -50,13 +50,29 @@ export class Call {
   }
 }
 
+/**
+ * Represent functions and class attributes
+ */
+export const NodeType = {
+  FUNCTION: "function",
+  ATTRIBUTE: "attribute",
+};
+
 export class Node {
-  constructor({ token, calls, variables, lineNumber = null, parent }) {
+  constructor({
+    token,
+    calls,
+    variables,
+    lineNumber = null,
+    parent,
+    nodeType,
+  }) {
     this.token = token;
     this.calls = calls;
     this.variables = variables;
     this.lineNumber = lineNumber;
     this.parent = parent;
+    this.nodeType = nodeType;
   }
 
   /**

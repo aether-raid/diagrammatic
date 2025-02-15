@@ -57,7 +57,13 @@ export function transformFileGroups(fileGroups) {
     if (fileGroup.nodes) {
       const fileGroupNodes = fileGroup.nodes.flatMap((node) =>
         node.token !== "(global)"
-          ? [{ name: node.token ?? "", lineNumber: node.lineNumber ?? 0 }]
+          ? [
+              {
+                name: node.token ?? "",
+                lineNumber: node.lineNumber ?? 0,
+                type: node.nodeType,
+              },
+            ]
           : []
       );
 
@@ -78,7 +84,11 @@ export function transformFileGroups(fileGroups) {
 
     for (const subgroup of fileGroup.subgroups) {
       const subgroupNodes = subgroup.nodes.flatMap((node) => [
-        { name: node.token ?? "", lineNumber: node.lineNumber ?? 0 },
+        {
+          name: node.token ?? "",
+          lineNumber: node.lineNumber ?? 0,
+          type: node.nodeType,
+        },
       ]);
       if (subgroup.token) {
         output.push({
