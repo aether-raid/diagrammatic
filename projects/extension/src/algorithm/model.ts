@@ -182,6 +182,7 @@ export enum GroupType {
   INTERFACE = "interface",
   STRUCT = "struct",
   NAMESPACE = "namespace",
+  RECORD = "record",
 }
 
 export class Group {

@@ -1,0 +1,70 @@
+.custom__node {
+  /* Following default ReactFlow styling */
+  padding: 10px;
+  font-size: 12px;
+  text-align: center;
+
+  border: var(--xy-node-border, var(--xy-node-border-default));
+  border-radius: var(
+    --xy-node-border-radius,
+    var(--xy-node-border-radius-default)
+  );
+  color: var(--xy-node-color, var(--xy-node-color-default));
+  background-color: var(
+    --xy-node-background-color,
+    var(--xy-node-background-color-default)
+  );
+
+  /* Modified */
+  width: auto; /* Default is 150px */
+}
+
+/* Highlighted Nodes */
+.highlighted-row {
+  border: 1px solid greenyellow;
+}
+
+/* Entity Node */
+.entity-node {
+  padding: 0;
+}
+
+.entity-node > .entity__file {
+  background-color: var(--app-blue);
+}
+
+.entity-node > .entity__class {
+  background-color: var(--app-pink);
+}
+
+.entity-node > .entity__interface {
+  background-color: var(--app-green);
+}
+
+.entity-node > .entity__namespace {
+  background-color: var(--app-yellow);
+  color: var(--app-black);
+}
+
+.entity-node > .entity__struct {
+  background-color: var(--app-purple);
+}
+
+.entity-node > .entity__record {
+  background-color: var(--app-orange);
+  color: var(--app-black);
+}
+
+/* Text Updater Node */
+.text-updater-node label {
+  display: block;
+  font-size: 12px;
+}
+
+.text-updater-node [data-handleid="a"] {
+  left: 35%;
+}
+
+.text-updater-node [data-handleid="b"] {
+  left: 65%;
+}

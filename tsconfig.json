@@ -1,27 +1,8 @@
 {
-  "compilerOptions": {
-    "paths": {
-      "@shared/*": ["./shared/*"]
-    },
-
-    "noEmit": true,
-    "module": "Node16",
-    "target": "ES2022",
-    "lib": [
-      "ES2022", "DOM"
-    ],
-    "sourceMap": true,
-    "rootDir": "./src",
-    "outDir": "./dist/extension",
-    "strict": true,   /* enable all strict type-checking options */
-    /* Additional Checks */
-    // "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
-    // "noFallthroughCasesInSwitch": true, /* Report errors for fallthrough cases in switch statement. */
-    // "noUnusedParameters": true,  /* Report errors on unused parameters. */
-    "skipLibCheck": true,
-  },
-  "exclude": ["./webview-ui", "./shared", "./node_modules", "./vite.config.ts", "./dist"],
-  "references": [
-    { "path": "./tsconfig.shared.json" }
-  ]
+    "files": [],
+    "references": [
+        { "path": "./projects/shared" },
+        { "path": "./projects/extension" },
+        { "path": "./projects/tests-algorithm" },
+    ]
 }

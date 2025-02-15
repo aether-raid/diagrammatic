@@ -1,0 +1,1351 @@
+[
+  {
+    "data": {
+      "entityName": "EventService",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/service/EventService.java",
+      "items": [
+        { "name": "addEvent", "lineNumber": 30 },
+        { "name": "addEventDate", "lineNumber": 41 },
+        { "name": "deleteEventDate", "lineNumber": 48 },
+        { "name": "filterEvents", "lineNumber": 54 },
+        { "name": "getEventByID", "lineNumber": 73 },
+        { "name": "updateEvent", "lineNumber": 80 },
+        { "name": "deleteEvent", "lineNumber": 88 },
+        { "name": "eventHasAPriceLessThanOrEqualToMaxPrice", "lineNumber": 94 },
+        { "name": "eventHasFilteredDate", "lineNumber": 104 },
+        { "name": "upsert", "lineNumber": 116 },
+        { "name": "updateModified", "lineNumber": 122 },
+        { "name": "searchForEventName", "lineNumber": 127 },
+        { "name": "getRecommendedEvents", "lineNumber": 132 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventRepository",
+      "entityType": "interface",
+      "filePath": "/backend/event-service/src/main/java/com/tick/repository/EventRepository.java",
+      "items": [
+        { "name": "findByCategory", "lineNumber": 12 },
+        { "name": "findByNameRegex", "lineNumber": 15 },
+        { "name": "findFirstByArtistRegex", "lineNumber": 18 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventController",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/controller/EventController.java",
+      "items": [
+        { "name": "createEvent", "lineNumber": 26 },
+        { "name": "getEvents", "lineNumber": 31 },
+        { "name": "modifyEvent", "lineNumber": 40 },
+        { "name": "upsertEvent", "lineNumber": 46 },
+        { "name": "getEventByID", "lineNumber": 51 },
+        { "name": "deleteEvent", "lineNumber": 56 },
+        { "name": "addEventDate", "lineNumber": 62 },
+        { "name": "deleteEventDate", "lineNumber": 67 },
+        { "name": "searchForEventName", "lineNumber": 72 },
+        { "name": "getRecommendedEvents", "lineNumber": 77 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ErrorMessage",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/controller/ErrorMessage.java",
+      "items": [
+        { "name": "getError", "lineNumber": 22 },
+        { "name": "getTimestamp", "lineNumber": 26 },
+        { "name": "getStatus", "lineNumber": 30 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventApplication",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/EventApplication.java",
+      "items": [{ "name": "main", "lineNumber": 19 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ExceptionCatcher",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/controller/ExceptionCatcher.java",
+      "items": [
+        { "name": "no_event", "lineNumber": 15 },
+        { "name": "no_body", "lineNumber": 20 },
+        { "name": "wrong_type", "lineNumber": 25 },
+        { "name": "not_valid", "lineNumber": 30 },
+        { "name": "generic_exception", "lineNumber": 35 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Healthcheck",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/controller/Healthcheck.java",
+      "items": [{ "name": "health_check", "lineNumber": 7 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ArtistNotFoundException",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/exception/ArtistNotFoundException.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventDateExistsException",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/exception/EventDateExistsException.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventDateNotFoundException",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/exception/EventDateNotFoundException.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventNotFoundException",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/exception/EventNotFoundException.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "VenueNotFoundException",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/exception/VenueNotFoundException.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "WebException",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/exception/WebException.java",
+      "items": [{ "name": "getStatus", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Artist",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/model/Artist.java",
+      "items": [{ "name": "getName", "lineNumber": 6 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Links",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/model/Event.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "Event",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/model/Event.java",
+      "items": [
+        { "name": "upsert", "lineNumber": 57 },
+        { "name": "addEventDate", "lineNumber": 73 },
+        { "name": "removeEventDate", "lineNumber": 83 },
+        { "name": "findEventDate", "lineNumber": 88 },
+        { "name": "setEventID", "lineNumber": 98 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventDate",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/model/EventDate.java",
+      "items": [{ "name": "populateEventDate", "lineNumber": 29 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Price",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/model/Price.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "CorsFilter",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/security/CorsFilter.java",
+      "items": [{ "name": "config", "lineNumber": 6 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SecurityConfig",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/security/SecurityConfig.java",
+      "items": [{ "name": "filterChain", "lineNumber": 12 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "VenueRequest",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/main/java/com/tick/service/VenueRequest.java",
+      "items": [
+        { "name": "getVenue", "lineNumber": 20 },
+        { "name": "getSeatMap", "lineNumber": 36 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventApplicationTests",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/test/java/com/tick/event/EventApplicationTests.java",
+      "items": [{ "name": "contextLoads", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventIntegrationTest",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/test/java/com/tick/event/EventIntegrationTest.java",
+      "items": [
+        { "name": "getEvents_Success", "lineNumber": 42 },
+        { "name": "getEventByID_InvalidEventID_Failure", "lineNumber": 52 },
+        { "name": "deleteEvent_InvalidEventID_Failure", "lineNumber": 59 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventServiceTest",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/test/java/com/tick/event/EventServiceTest.java",
+      "items": [
+        { "name": "addEvent_ValidVenueID_Success", "lineNumber": 36 },
+        { "name": "addEvent_InvalidVenueID_ThrowException", "lineNumber": 53 },
+        {
+          "name": "updateEvent_InvalidEventID_ThrowException",
+          "lineNumber": 69
+        },
+        {
+          "name": "deleteEvent_InvalidEventID_ThrowException",
+          "lineNumber": 83
+        },
+        { "name": "updateEvent_ValidEventID_Success", "lineNumber": 97 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "MongoDBContainer",
+      "entityType": "class",
+      "filePath": "/backend/event-service/src/test/java/com/tick/event/container/MongoDBContainer.java",
+      "items": [{ "name": "setProperties", "lineNumber": 36 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "CorsFilter",
+      "entityType": "class",
+      "filePath": "/backend/payment-service/src/main/java/com/tick/paymentservice/security/CorsFilter.java",
+      "items": [{ "name": "config", "lineNumber": 6 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SecurityConfig",
+      "entityType": "class",
+      "filePath": "/backend/payment-service/src/main/java/com/tick/paymentservice/security/SecurityConfig.java",
+      "items": [{ "name": "filterChain", "lineNumber": 12 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "LineItemRequest",
+      "entityType": "class",
+      "filePath": "/backend/payment-service/src/main/java/com/tick/paymentservice/LineItemRequest.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "PaymentController",
+      "entityType": "class",
+      "filePath": "/backend/payment-service/src/main/java/com/tick/paymentservice/PaymentController.java",
+      "items": [
+        { "name": "health_check", "lineNumber": 21 },
+        { "name": "createSession", "lineNumber": 35 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "PaymentServiceApplication",
+      "entityType": "class",
+      "filePath": "/backend/payment-service/src/main/java/com/tick/paymentservice/PaymentServiceApplication.java",
+      "items": [{ "name": "main", "lineNumber": 9 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "PaymentServiceApplicationTests",
+      "entityType": "class",
+      "filePath": "/backend/payment-service/src/test/java/com/tick/paymentservice/PaymentServiceApplicationTests.java",
+      "items": [{ "name": "contextLoads", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "RedisConfig",
+      "entityType": "class",
+      "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/config/RedisConfig.java",
+      "items": [
+        { "name": "connectionFactory", "lineNumber": 36 },
+        { "name": "template", "lineNumber": 55 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ServerCommandLineRunner",
+      "entityType": "class",
+      "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/config/ServerCommandLineRunner.java",
+      "items": [{ "name": "run", "lineNumber": 16 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SocketIOConfig",
+      "entityType": "class",
+      "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/config/SocketIOConfig.java",
+      "items": [{ "name": "socketIOServer", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Message",
+      "entityType": "class",
+      "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/entity/Message.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "QueueNo",
+      "entityType": "class",
+      "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/entity/QueueNo.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "Session",
+      "entityType": "class",
+      "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/entity/Session.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "Token",
+      "entityType": "class",
+      "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/entity/Token.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenResponse",
+      "entityType": "class",
+      "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/entity/TokenResponse.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "UserData",
+      "entityType": "class",
+      "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/entity/UserData.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "UserDataRequest",
+      "entityType": "class",
+      "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/entity/UserDataRequest.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "UserDataResponse",
+      "entityType": "class",
+      "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/entity/UserDataResponse.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "SessionDAO",
+      "entityType": "class",
+      "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/repository/SessionDAO.java",
+      "items": [
+        { "name": "save", "lineNumber": 16 },
+        { "name": "findSessionById", "lineNumber": 20 },
+        { "name": "deleteSessionById", "lineNumber": 24 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SessionServiceApplication",
+      "entityType": "class",
+      "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/SessionServiceApplication.java",
+      "items": [
+        { "name": "getWebClientBuilder", "lineNumber": 23 },
+        { "name": "ping", "lineNumber": 28 },
+        { "name": "main", "lineNumber": 32 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SocketModule",
+      "entityType": "class",
+      "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/SocketModule.java",
+      "items": [
+        { "name": "onClientEnter", "lineNumber": 51 },
+        { "name": "onClientExit", "lineNumber": 106 },
+        { "name": "onConnected", "lineNumber": 151 },
+        { "name": "onDisconnected", "lineNumber": 160 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SocketService",
+      "entityType": "class",
+      "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/SocketService.java",
+      "items": [
+        { "name": "sendToken", "lineNumber": 11 },
+        { "name": "sendQueueNo", "lineNumber": 17 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SessionServiceApplicationTests",
+      "entityType": "class",
+      "filePath": "/backend/session-service/src/test/java/com/tick/sessionservice/SessionServiceApplicationTests.java",
+      "items": [{ "name": "contextLoads", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "BookmarkController",
+      "entityType": "class",
+      "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/controller/BookmarkController.java",
+      "items": [
+        { "name": "get_all_bookmarks", "lineNumber": 26 },
+        { "name": "user_bookmarks", "lineNumber": 32 },
+        { "name": "delete_bookmark", "lineNumber": 40 },
+        { "name": "add_bookmark", "lineNumber": 52 },
+        { "name": "verify_event", "lineNumber": 62 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ErrorMessage",
+      "entityType": "class",
+      "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/controller/ErrorMessage.java",
+      "items": [
+        { "name": "getError", "lineNumber": 16 },
+        { "name": "getTimestamp", "lineNumber": 20 },
+        { "name": "getStatus", "lineNumber": 24 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ExceptionCatcher",
+      "entityType": "class",
+      "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/controller/ExceptionCatcher.java",
+      "items": [
+        { "name": "no_event", "lineNumber": 13 },
+        { "name": "no_body", "lineNumber": 18 },
+        { "name": "wrong_type", "lineNumber": 23 },
+        { "name": "no_such_event", "lineNumber": 28 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Healthcheck",
+      "entityType": "class",
+      "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/controller/Healthcheck.java",
+      "items": [{ "name": "health_check", "lineNumber": 8 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Bookmark",
+      "entityType": "class",
+      "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/entity/Bookmark.java",
+      "items": [
+        { "name": "getUserID", "lineNumber": 22 },
+        { "name": "getEventList", "lineNumber": 26 },
+        { "name": "addEvent", "lineNumber": 30 },
+        { "name": "removeEvent", "lineNumber": 35 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Token",
+      "entityType": "record",
+      "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/entity/Token.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenResponse",
+      "entityType": "record",
+      "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/entity/TokenResponse.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventNotFoundException",
+      "entityType": "class",
+      "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/exceptions/EventNotFoundException.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "BookmarkRepository",
+      "entityType": "interface",
+      "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/repository/BookmarkRepository.java",
+      "items": [{ "name": "findByUserID", "lineNumber": 11 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "CorsFilter",
+      "entityType": "class",
+      "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/security/CorsFilter.java",
+      "items": [{ "name": "config", "lineNumber": 8 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SecurityConfig",
+      "entityType": "class",
+      "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/security/SecurityConfig.java",
+      "items": [{ "name": "filterChain", "lineNumber": 22 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenAuthentication",
+      "entityType": "class",
+      "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/security/TokenAuthentication.java",
+      "items": [
+        { "name": "getAuthorities", "lineNumber": 17 },
+        { "name": "getCredentials", "lineNumber": 18 },
+        { "name": "getDetails", "lineNumber": 19 },
+        { "name": "getPrincipal", "lineNumber": 20 },
+        { "name": "setPrincipal", "lineNumber": 21 },
+        { "name": "getName", "lineNumber": 22 },
+        { "name": "isAuthenticated", "lineNumber": 23 },
+        { "name": "setAuthenticated", "lineNumber": 24 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenAuthProvider",
+      "entityType": "class",
+      "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/security/TokenAuthProvider.java",
+      "items": [
+        { "name": "authenticate", "lineNumber": 22 },
+        { "name": "supports", "lineNumber": 34 },
+        { "name": "webRequest", "lineNumber": 38 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenFilter",
+      "entityType": "class",
+      "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/security/TokenFilter.java",
+      "items": [{ "name": "doFilterInternal", "lineNumber": 25 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "BookmarkService",
+      "entityType": "class",
+      "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/service/BookmarkService.java",
+      "items": [
+        { "name": "findAll", "lineNumber": 19 },
+        { "name": "add_bookmark", "lineNumber": 23 },
+        { "name": "delete_bookmark", "lineNumber": 29 },
+        { "name": "findBookmark", "lineNumber": 37 },
+        { "name": "getBookmark", "lineNumber": 41 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventRequest",
+      "entityType": "class",
+      "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/service/EventRequest.java",
+      "items": [{ "name": "post", "lineNumber": 19 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "BookmarksApplication",
+      "entityType": "class",
+      "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/BookmarksApplication.java",
+      "items": [{ "name": "main", "lineNumber": 9 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "BookmarksApplicationTests",
+      "entityType": "class",
+      "filePath": "/backend/bookmarks-service/src/test/java/com/tick/bookmarks/BookmarksApplicationTests.java",
+      "items": [{ "name": "contextLoads", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "BookmarkServiceTest",
+      "entityType": "class",
+      "filePath": "/backend/bookmarks-service/src/test/java/com/tick/bookmarks/BookmarkServiceTest.java",
+      "items": [
+        { "name": "eventInBookmark", "lineNumber": 31 },
+        { "name": "addBookmark_Success", "lineNumber": 41 },
+        { "name": "deleteBookmark_Success", "lineNumber": 58 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "app.py",
+      "entityType": "file",
+      "filePath": "/backend/artist-service/app.py",
+      "items": [
+        { "name": "index", "lineNumber": 8 },
+        { "name": "get_artists", "lineNumber": 12 },
+        { "name": "get_recommendations", "lineNumber": 22 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "createModel.py",
+      "entityType": "file",
+      "filePath": "/backend/artist-service/createModel.py",
+      "items": [{ "name": "clean", "lineNumber": 14 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ErrorMessage",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/controller/ErrorMessage.java",
+      "items": [
+        { "name": "getError", "lineNumber": 22 },
+        { "name": "getTimestamp", "lineNumber": 26 },
+        { "name": "getStatus", "lineNumber": 30 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ExceptionCatcher",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/controller/ExceptionCatcher.java",
+      "items": [
+        { "name": "no_event", "lineNumber": 15 },
+        { "name": "no_body", "lineNumber": 20 },
+        { "name": "wrong_type", "lineNumber": 25 },
+        { "name": "not_valid", "lineNumber": 30 },
+        { "name": "generic_exception", "lineNumber": 35 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "HealthCheck",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/controller/HealthCheck.java",
+      "items": [{ "name": "health_check", "lineNumber": 7 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TicketController",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/controller/TicketController.java",
+      "items": [
+        { "name": "getAllTickets", "lineNumber": 25 },
+        { "name": "createTicket", "lineNumber": 31 },
+        { "name": "modifyTicket", "lineNumber": 36 },
+        { "name": "deleteByTicketId", "lineNumber": 43 },
+        { "name": "getTicketByUserId", "lineNumber": 58 },
+        { "name": "ticketsMadeAvailable", "lineNumber": 64 },
+        { "name": "ticketByKey", "lineNumber": 69 },
+        { "name": "deleteByEventId", "lineNumber": 86 },
+        { "name": "verifyRecaptcha", "lineNumber": 91 },
+        { "name": "allocateSeats", "lineNumber": 96 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventDateExistsException",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/exception/EventDateExistsException.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventDateNotFoundException",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/exception/EventDateNotFoundException.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventNotFoundException",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/exception/EventNotFoundException.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventUpdateException",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/exception/EventUpdateException.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "SeatSelectionException",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/exception/SeatSelectionException.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "TicketNotFoundException",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/exception/TicketNotFoundException.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "WebException",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/exception/WebException.java",
+      "items": [{ "name": "getStatus", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Links",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/Event.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "Event",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/Event.java",
+      "items": [
+        { "name": "upsert", "lineNumber": 54 },
+        { "name": "addEventDate", "lineNumber": 70 },
+        { "name": "removeEventDate", "lineNumber": 80 },
+        { "name": "findEventDate", "lineNumber": 85 },
+        { "name": "setEventID", "lineNumber": 95 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventDate",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/EventDate.java",
+      "items": [{ "name": "populateEventDate", "lineNumber": 29 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Price",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/Price.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "RecaptchaObject",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/RecaptchaObject.java",
+      "items": [{ "name": "getSecret", "lineNumber": 19 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "RecaptchaRequest",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/RecaptchaRequest.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "RecaptchaResponse",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/RecaptchaResponse.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "SelectedRow",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/SelectedRow.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "Ticket",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/Ticket.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "Token",
+      "entityType": "record",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/Token.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenResponse",
+      "entityType": "record",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/TokenResponse.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "TicketRepository",
+      "entityType": "interface",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/repository/TicketRepository.java",
+      "items": [{ "name": "findByUser", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "CorsFilter",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/security/CorsFilter.java",
+      "items": [{ "name": "config", "lineNumber": 8 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SecurityConfig",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/security/SecurityConfig.java",
+      "items": [{ "name": "filterChain", "lineNumber": 22 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenAuthentication",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/security/TokenAuthentication.java",
+      "items": [
+        { "name": "getAuthorities", "lineNumber": 20 },
+        { "name": "addAuthorities", "lineNumber": 24 },
+        { "name": "getCredentials", "lineNumber": 28 },
+        { "name": "getDetails", "lineNumber": 29 },
+        { "name": "getPrincipal", "lineNumber": 30 },
+        { "name": "setPrincipal", "lineNumber": 31 },
+        { "name": "getName", "lineNumber": 32 },
+        { "name": "isAuthenticated", "lineNumber": 33 },
+        { "name": "setAuthenticated", "lineNumber": 34 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenAuthProvider",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/security/TokenAuthProvider.java",
+      "items": [
+        { "name": "authenticate", "lineNumber": 22 },
+        { "name": "supports", "lineNumber": 40 },
+        { "name": "webRequest", "lineNumber": 44 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenFilter",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/security/TokenFilter.java",
+      "items": [{ "name": "doFilterInternal", "lineNumber": 25 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "EventService",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/service/EventService.java",
+      "items": [
+        { "name": "get", "lineNumber": 16 },
+        { "name": "put", "lineNumber": 29 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TicketService",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/service/TicketService.java",
+      "items": [
+        { "name": "getAllTickets", "lineNumber": 27 },
+        { "name": "addTicket", "lineNumber": 31 },
+        { "name": "getTicketByUserId", "lineNumber": 36 },
+        { "name": "getTicketByKey", "lineNumber": 40 },
+        { "name": "updateTicket", "lineNumber": 45 },
+        { "name": "releaseTicket", "lineNumber": 52 },
+        { "name": "deleteTicketByEvent", "lineNumber": 60 },
+        { "name": "deleteTicketByTicketId", "lineNumber": 72 },
+        { "name": "allocateSeats", "lineNumber": 79 },
+        { "name": "verifyRecaptcha", "lineNumber": 145 },
+        { "name": "createOrderId", "lineNumber": 157 },
+        { "name": "createOrderDate", "lineNumber": 161 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TicketsServiceApplication",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/TicketsServiceApplication.java",
+      "items": [
+        { "name": "main", "lineNumber": 11 },
+        { "name": "getWebClientBuilder", "lineNumber": 16 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "MongoDBContainer",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/test/java/com/tick/ticketsservice/container/MongoDBContainer.java",
+      "items": [{ "name": "setProperties", "lineNumber": 35 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TicketIntegrationTest",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/test/java/com/tick/ticketsservice/TicketIntegrationTest.java",
+      "items": [
+        { "name": "updateTicket_NoTicketID_Failure", "lineNumber": 49 },
+        { "name": "updateTicket_InvalidTicketID_Failure", "lineNumber": 60 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TicketServiceTest",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/test/java/com/tick/ticketsservice/TicketServiceTest.java",
+      "items": [
+        {
+          "name": "allocateSeats_AboveTicketQuantityLimit_ThrowException",
+          "lineNumber": 40
+        },
+        {
+          "name": "allocateSeats_InvalidCategory_ThrowException",
+          "lineNumber": 62
+        },
+        { "name": "updateTicket_ValidTicketID_Success", "lineNumber": 92 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TicketsServiceApplicationTests",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/test/java/com/tick/ticketsservice/TicketsServiceApplicationTests.java",
+      "items": [{ "name": "contextLoads", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ErrorMessage",
+      "entityType": "record",
+      "filePath": "/backend/token-service/src/main/java/com/tick/entity/ErrorMessage.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "KeyProvider",
+      "entityType": "class",
+      "filePath": "/backend/token-service/src/main/java/com/tick/entity/KeyProvider.java",
+      "items": [
+        { "name": "getPublicKeyById", "lineNumber": 27 },
+        { "name": "getPrivateKey", "lineNumber": 48 },
+        { "name": "getPrivateKeyId", "lineNumber": 52 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "JWKS",
+      "entityType": "record",
+      "filePath": "/backend/token-service/src/main/java/com/tick/entity/KeyProvider.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "KeyList",
+      "entityType": "record",
+      "filePath": "/backend/token-service/src/main/java/com/tick/entity/KeyProvider.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "Token",
+      "entityType": "record",
+      "filePath": "/backend/token-service/src/main/java/com/tick/entity/Token.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "User",
+      "entityType": "record",
+      "filePath": "/backend/token-service/src/main/java/com/tick/entity/User.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "CorsFilter",
+      "entityType": "class",
+      "filePath": "/backend/token-service/src/main/java/com/tick/tokens/security/CorsFilter.java",
+      "items": [{ "name": "config", "lineNumber": 6 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SecurityConfig",
+      "entityType": "class",
+      "filePath": "/backend/token-service/src/main/java/com/tick/tokens/security/SecurityConfig.java",
+      "items": [{ "name": "filterChain", "lineNumber": 13 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "HealthCheck",
+      "entityType": "class",
+      "filePath": "/backend/token-service/src/main/java/com/tick/tokens/HealthCheck.java",
+      "items": [{ "name": "health_check", "lineNumber": 8 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "JwtTokenUtil",
+      "entityType": "class",
+      "filePath": "/backend/token-service/src/main/java/com/tick/tokens/JwtTokenUtil.java",
+      "items": [
+        { "name": "generate_tok", "lineNumber": 36 },
+        { "name": "validate_tok", "lineNumber": 52 },
+        { "name": "get_claims", "lineNumber": 67 },
+        { "name": "get_expiry", "lineNumber": 82 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TickApplication",
+      "entityType": "class",
+      "filePath": "/backend/token-service/src/main/java/com/tick/tokens/TickApplication.java",
+      "items": [{ "name": "main", "lineNumber": 9 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenController",
+      "entityType": "class",
+      "filePath": "/backend/token-service/src/main/java/com/tick/tokens/TokenController.java",
+      "items": [
+        { "name": "validate_token", "lineNumber": 15 },
+        { "name": "create_token", "lineNumber": 23 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenService",
+      "entityType": "class",
+      "filePath": "/backend/token-service/src/main/java/com/tick/tokens/TokenService.java",
+      "items": [{ "name": "perform", "lineNumber": 9 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "WebExceptionHandler",
+      "entityType": "class",
+      "filePath": "/backend/token-service/src/main/java/com/tick/tokens/WebExceptionHandler.java",
+      "items": [
+        { "name": "no_token", "lineNumber": 9 },
+        { "name": "no_body", "lineNumber": 9 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TickApplicationTests",
+      "entityType": "class",
+      "filePath": "/backend/token-service/src/test/java/com/tick/tokens/TickApplicationTests.java",
+      "items": [{ "name": "contextLoads", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "TokenEndpointTest",
+      "entityType": "class",
+      "filePath": "/backend/token-service/src/test/java/com/tick/tokens/TokenEndpointTest.java",
+      "items": [
+        { "name": "create_token", "lineNumber": 24 },
+        { "name": "validate_token", "lineNumber": 34 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ErrorMessage",
+      "entityType": "class",
+      "filePath": "/backend/venue-service/src/main/java/com/venue/controller/ErrorMessage.java",
+      "items": [
+        { "name": "getError", "lineNumber": 22 },
+        { "name": "getTimestamp", "lineNumber": 26 },
+        { "name": "getStatus", "lineNumber": 30 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ExceptionCatcher",
+      "entityType": "class",
+      "filePath": "/backend/venue-service/src/main/java/com/venue/controller/ExceptionCatcher.java",
+      "items": [
+        { "name": "no_event", "lineNumber": 15 },
+        { "name": "no_body", "lineNumber": 20 },
+        { "name": "wrong_type", "lineNumber": 25 },
+        { "name": "not_valid", "lineNumber": 30 },
+        { "name": "generic_exception", "lineNumber": 35 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Healthcheck",
+      "entityType": "class",
+      "filePath": "/backend/venue-service/src/main/java/com/venue/controller/HealthCheck.java",
+      "items": [{ "name": "health_check", "lineNumber": 8 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "VenueController",
+      "entityType": "class",
+      "filePath": "/backend/venue-service/src/main/java/com/venue/controller/VenueController.java",
+      "items": [
+        { "name": "getAllVenue", "lineNumber": 24 },
+        { "name": "getVenue", "lineNumber": 29 },
+        { "name": "createVenue", "lineNumber": 34 },
+        { "name": "deleteVenue", "lineNumber": 39 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Venue",
+      "entityType": "class",
+      "filePath": "/backend/venue-service/src/main/java/com/venue/entity/Venue.java",
+      "items": [
+        { "name": "getName", "lineNumber": 22 },
+        { "name": "getSeatMap", "lineNumber": 26 },
+        { "name": "setName", "lineNumber": 30 },
+        { "name": "setSeatMap", "lineNumber": 34 },
+        { "name": "getVenueID", "lineNumber": 38 },
+        { "name": "setVenueID", "lineNumber": 42 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "VenueNotFoundException",
+      "entityType": "class",
+      "filePath": "/backend/venue-service/src/main/java/com/venue/exception/VenueNotFoundException.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "WebException",
+      "entityType": "class",
+      "filePath": "/backend/venue-service/src/main/java/com/venue/exception/WebException.java",
+      "items": [{ "name": "getStatus", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "VenueRepository",
+      "entityType": "interface",
+      "filePath": "/backend/venue-service/src/main/java/com/venue/repository/VenueRepository.java",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "CorsFilter",
+      "entityType": "class",
+      "filePath": "/backend/venue-service/src/main/java/com/venue/security/CorsFilter.java",
+      "items": [{ "name": "config", "lineNumber": 8 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SecurityConfig",
+      "entityType": "class",
+      "filePath": "/backend/venue-service/src/main/java/com/venue/security/SecurityConfig.java",
+      "items": [{ "name": "filterChain", "lineNumber": 12 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "VenueService",
+      "entityType": "class",
+      "filePath": "/backend/venue-service/src/main/java/com/venue/service/VenueService.java",
+      "items": [
+        { "name": "getAllVenue", "lineNumber": 19 },
+        { "name": "getVenue", "lineNumber": 23 },
+        { "name": "createVenue", "lineNumber": 28 },
+        { "name": "deleteVenue", "lineNumber": 32 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "VenueApplication",
+      "entityType": "class",
+      "filePath": "/backend/venue-service/src/main/java/com/venue/VenueApplication.java",
+      "items": [{ "name": "main", "lineNumber": 9 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "VenueApplicationTests",
+      "entityType": "class",
+      "filePath": "/backend/venue-service/src/test/java/com/venue/VenueApplicationTests.java",
+      "items": [{ "name": "contextLoads", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "VenueServiceTest",
+      "entityType": "class",
+      "filePath": "/backend/venue-service/src/test/java/com/venue/VenueServiceTest.java",
+      "items": [
+        { "name": "getVenue_InvalidVenueID_ThrowException", "lineNumber": 26 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "LambdaRequestHandler",
+      "entityType": "class",
+      "filePath": "/frontend/amplify/backend/function/tickUsers/src/main/java/example/LambdaRequestHandler.java",
+      "items": [{ "name": "handleRequest", "lineNumber": 10 }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "RequestClass",
+      "entityType": "class",
+      "filePath": "/frontend/amplify/backend/function/tickUsers/src/main/java/example/RequestClass.java",
+      "items": [
+        { "name": "getFirstName", "lineNumber": 9 },
+        { "name": "setFirstName", "lineNumber": 13 },
+        { "name": "getLastName", "lineNumber": 17 },
+        { "name": "setLastName", "lineNumber": 21 }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ResponseClass",
+      "entityType": "class",
+      "filePath": "/frontend/amplify/backend/function/tickUsers/src/main/java/example/ResponseClass.java",
+      "items": [
+        { "name": "getGreetings", "lineNumber": 8 },
+        { "name": "setGreetings", "lineNumber": 12 }
+      ]
+    }
+  }
+]

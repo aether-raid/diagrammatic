@@ -1,4 +1,4 @@
-import { Node, Group } from "./model.js";
+import { Node, Group } from "./model";
 import {
   makeCalls,
   makeLocalVariables,
@@ -7,9 +7,9 @@ import {
   getAllChildrenOfType,
   processConstructorRequiredParameter,
   toGroupTypeIgnoreCase,
-} from "./function.js";
+} from "./function";
 import { SyntaxNode } from "tree-sitter";
-import { LanguageRules, RuleEngine } from "./rules.js";
+import { LanguageRules, RuleEngine } from "./rules";
 
 export class Language {
   /**
