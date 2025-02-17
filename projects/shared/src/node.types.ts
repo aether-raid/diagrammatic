@@ -22,11 +22,11 @@ export type EntityNode = Node<
     >;
     description?: string;
     filePath?: string;
-    security: {
+    security?: {
       clean?: Diagnostic[]
       vulnerability?: Diagnostic[]
       extras?: Diagnostic[]
-    } | undefined 
+    };
   },
   "entity"
 >;

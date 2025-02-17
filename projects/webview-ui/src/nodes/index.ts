@@ -3,6 +3,8 @@ import { NodeTypes } from "@xyflow/react";
 import { TextUpdaterNode } from "./components/TextUpdaterNode";
 import { EntityNode } from "./components/EntityNode";
 import { AppNode } from "@shared/node.types";
+
+// TODO: Refactor Postion/Range classes?
 class Position {
 
     /**

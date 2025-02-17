@@ -2,22 +2,29 @@ import { Accordion, AccordionTrigger, AccordionItem, AccordionContent, Accordion
 import { MdOutlineSecurity, MdOutlineCleaningServices, MdErrorOutline, MdOutlineWarningAmber } from "react-icons/md"; 
 import { BsChevronDown } from "react-icons/bs";
 import { type Diagnostic } from "vscode";
-import { ReactElement } from "react";
-import { sendJumpToLineMessageToExtension } from "../../vscodeApiHandler";
+
 import { DiagnosticSeverity } from "@shared/app.types";
 
-const NodeLints = ({lints, filePath}: {lints:{
+import { ReactElement } from "react";
+import { sendJumpToLineMessageToExtension } from "../../vscodeApiHandler";
+
+const NodeLints = ({lints, filePath}: {lints: {
     clean?: Diagnostic[];
     vulnerability?: Diagnostic[];
     extras?: Diagnostic[];
 } | undefined, filePath: string|undefined}) => {
-    if (!lints){return <></>}
+    if (!lints) {return <></>}
     const { clean, vulnerability } = lints;
 
-    return <>
-        {(clean && clean.length > 0) && <NodeIssue filePath={filePath} header="clean-code" issues={clean} Icon={<MdOutlineCleaningServices style={{ marginRight: '8px' }}/>}/>}
-        {(vulnerability && vulnerability.length > 0) && <NodeIssue filePath={filePath} header="Security" issues={vulnerability} Icon={<MdOutlineSecurity style={{ marginRight: '8px' }}/>}/>}
-    </>
+    return (
+        <>
+            {(clean && clean.length > 0)
+                && <NodeIssue filePath={filePath} header="clean-code" issues={clean} Icon={<MdOutlineCleaningServices style={{ marginRight: '8px' }}/>}/>}
+
+            {(vulnerability && vulnerability.length > 0)
+                && <NodeIssue filePath={filePath} header="Security" issues={vulnerability} Icon={<MdOutlineSecurity style={{ marginRight: '8px' }}/>}/>}
+        </>
+    );
 }
 
 const NodeItem = ({issue, filePath}: {issue: Diagnostic, filePath: string|undefined}) => {
@@ -26,6 +33,7 @@ const NodeItem = ({issue, filePath}: {issue: Diagnostic, filePath: string|undefi
     try {
         // console.log("range ", range);
         
+        // TODO: look into this
         // not sure why it is not following the type definition
         const lineNumber = range[0].line
         if (!lineNumber) {throw new Error('No line number found!');}
@@ -38,16 +46,27 @@ const NodeItem = ({issue, filePath}: {issue: Diagnostic, filePath: string|undefi
         }
 
         
-        return <div 
-        onClick={() => onRowClick()}
-        style={{ width: '100%', cursor: 'pointer', padding: '10px', border: '1px solid #ccc', margin: '5px 0', flexDirection: 'row', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
-        >
-            <p>{message}</p>
-            <p>Line: {lineNumber}</p>
-            {severity === DiagnosticSeverity.Error && <MdOutlineWarningAmber />}
-            {severity === DiagnosticSeverity.Warning && <MdErrorOutline />}
-        </div>
-        
+        return (
+            <div
+                onClick={() => onRowClick()}
+                style={{
+                    width: '100%',
+                    cursor: 'pointer',
+                    padding: '10px',
+                    border: '1px solid #ccc',
+                    margin: '5px 0',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
+                }}
+            >
+                <p>{message}</p>
+                <p>Line: {lineNumber}</p>
+                {severity === DiagnosticSeverity.Error && <MdOutlineWarningAmber />}
+                {severity === DiagnosticSeverity.Warning && <MdErrorOutline />}
+            </div>
+        )
     } catch (error) {
         console.error('Error rendering NodeItem: ', error);
         return <></>

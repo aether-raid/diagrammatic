@@ -6,8 +6,8 @@ import { runCodeToDiagramAlgorithm } from "./runCodeToDiagramAlgorithm";
 import { NodeEdgeData } from "./extension.types";
 import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
 import { runNodeDescriptionsAlgorithm } from "./runNodeDescriptionsAlgorithm";
-import { lintFile } from "./code-quality/linting";
 import { getComponentDiagram } from "./runComponentDiagramAlgorithm";
+import { runCodeLinting } from "./runCodeLinting";
 
 const handleShowMVCDiagram = async (
   context: vscode.ExtensionContext,
@@ -19,57 +19,19 @@ const handleShowMVCDiagram = async (
     return Promise.resolve(panel);
   }
 
+  // Tree-sitter Structure & LLM Descriptions
   let nodeEdgeData: NodeEdgeData = runCodeToDiagramAlgorithm(filePath);
-  console.log(nodeEdgeData);
   nodeEdgeData.nodes = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData);
-  const componentNodeEdge = await getComponentDiagram(nodeEdgeData)
 
-// bruce linting
-
-//   console.log("node edge data before linting:", nodeEdgeData);
-//   console.log("single node edge data:", nodeEdgeData.nodes[0]);
-
-  let hasIssues = false;
-  for (let node of nodeEdgeData.nodes){
-    if (!('entityName' in node.data) || !('filePath' in node.data)) {continue;}
-    const {filePath, entityType } = node.data;
-    if (entityType !== 'file' ||!filePath){continue;}
-    const {diagnostics} = await lintFile(filePath);
-    if (!diagnostics){continue;}
-
-    node.data.security = node.data.security ?? {};
-    node.data.security.clean = node.data.security.clean ?? [];
-    node.data.security.vulnerability = node.data.security.vulnerability ?? [];
-    node.data.security.extras = node.data.security.extras ?? [];
-
-    for (const diag of diagnostics){
-        const { source } = diag;
-        switch (source) {
-            case "Group: clean-code":
-                node.data.security.clean.push(diag);
-                break;
-            case "Group: security":
-                node.data.security.vulnerability.push(diag);
-                break;
-            default:
-                node.data.security.extras.push(diag);
-                break;
-        }
-    }
-    hasIssues = true;
-    // console.log("node.data");
-    // console.log(node.data);
-  }
-  if (hasIssues){
+  // Linting & security
+  const { lintedNodes, hasIssues } = await runCodeLinting(nodeEdgeData.nodes);
+  nodeEdgeData.nodes = lintedNodes;
+  if (hasIssues) {
     vscode.window.showWarningMessage('ESLint issues found. Check the Problems panel.');
   }
 
-  
-  console.log("node edge data after linting:", nodeEdgeData);
-//   console.log("single node edge data after linting:", nodeEdgeData.nodes[0]);
-
-  // bruce linting
-
+  // C4 Level 3 diagram?
+  const componentNodeEdge = await getComponentDiagram(nodeEdgeData)
 
   panel = setupWebviewPanel(context);
   const waitWebviewReady: Promise<void> = new Promise((resolve) => {
