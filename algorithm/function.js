@@ -356,10 +356,6 @@ export function makeLocalVariables(tree, parent, languageRules) {
     }
   }
 
-  if (parent instanceof Group && parent.groupType === GroupType.CLASS) {
-    variables.push(new Variable("this", parent.token, parent.lineNumber));
-  }
-
   return variables;
 }
 
@@ -444,12 +440,15 @@ export function findLinks(nodeA, allNodes) {
     }
   }
 
-  /* for (const variable of nodeA.variables) {
+  for (const variable of nodeA.variables) {
     // e.g. let article = new ArticleEntity()
-    if (variable.pointsTo instanceof Group) {
+    if (
+      variable.pointsTo instanceof Group &&
+      variable.pointsTo.groupType !== GroupType.FILE
+    ) {
       links.push(new Edge(nodeA, variable.pointsTo));
     }
-  } */
+  }
 
   return links;
 }

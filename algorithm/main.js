@@ -17,7 +17,7 @@ const astTrees = await parseFilesToASTs(
 
 const fileGroups = [];
 astTrees.forEach(([filePath, fileName, ast], index) => {
-  // visualizeAST(ast.rootNode);
+  visualizeAST(ast.rootNode);
   const language = path.extname(fileName);
   const languageRules = rules[language];
   if (!languageRules) {
@@ -37,7 +37,7 @@ const allGroups = fileGroups.flatMap((group) => group.allGroups());
 
 for (const nodeA of allNodes) {
   nodeA.resolveVariables(allGroups, allNodes);
-  // console.log(nodeA.toString())
+  console.log(nodeA.toString())
 }
 
 let allEdges = [];
