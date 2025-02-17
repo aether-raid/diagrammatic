@@ -4,6 +4,7 @@ import * as vscode from "vscode";
 
 import handleShowMVCDiagram from "./showMVCDiagram";
 import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
+import { lintActiveFile } from "./code-quality/linting";
 import { GLOBALS } from "./globals";
 
 // This method is called when your extension is activated
@@ -102,6 +103,10 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
   context.subscriptions.push(testMsg);
+
+  const code_qa = vscode.commands.registerCommand('diagrammatic.codeQa', lintActiveFile);
+  context.subscriptions.push(code_qa);
+
 }
 
 // This method is called when your extension is deactivated
