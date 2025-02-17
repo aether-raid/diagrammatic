@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-
+import { TaskQueue, QueueError } from 'ts-async-queue';
 import { Commands, JumpToLinePayload, WebviewCommandMessage } from "@shared/message.types";
 
 import { runCodeToDiagramAlgorithm } from "./runCodeToDiagramAlgorithm";
@@ -7,6 +7,7 @@ import { NodeEdgeData } from "./extension.types";
 import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
 import { runNodeDescriptionsAlgorithm } from "./runNodeDescriptionsAlgorithm";
 import { lintFile } from "./code-quality/linting";
+import { getComponentDiagram } from "./runComponentDiagramAlgorithm";
 
 const handleShowMVCDiagram = async (
   context: vscode.ExtensionContext,
@@ -19,7 +20,9 @@ const handleShowMVCDiagram = async (
   }
 
   let nodeEdgeData: NodeEdgeData = runCodeToDiagramAlgorithm(filePath);
-  nodeEdgeData.nodes = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes);
+  console.log(nodeEdgeData);
+  nodeEdgeData.nodes = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData);
+  const componentNodeEdge = await getComponentDiagram(nodeEdgeData)
 
 // bruce linting
 

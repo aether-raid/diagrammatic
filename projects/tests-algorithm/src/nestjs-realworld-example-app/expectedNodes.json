@@ -111,7 +111,12 @@
     "data": {
       "entityName": "ArticleEntity",
       "entityType": "class",
-      "items": []
+      "items": [
+        {
+          "name": "updateTimestamp",
+          "lineNumber": 30
+        }
+      ]
     }
   },
   {
@@ -419,7 +424,12 @@
     "data": {
       "entityName": "UserEntity",
       "entityType": "class",
-      "items": []
+      "items": [
+        {
+          "name": "hashPassword",
+          "lineNumber": 29
+        }
+      ]
     }
   },
   {

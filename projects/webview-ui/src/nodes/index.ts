@@ -386,6 +386,20 @@ export const initialNodes: AppNode[] = [
         { name: 'yeetCorn', lineNumber: 32 },
       ]
     }
+  },
+  {
+    id: '11',
+    type: 'entity',
+    position: { x:0, y:0 },
+    data: {
+      entityName: 'Bin',
+      entityType: 'struct',
+      filePath: 'path/to/bin',
+      items: [
+        { name: 'structPotato', lineNumber: 0 },
+        { name: 'structCorn', lineNumber: 32 },
+      ]
+    }
   }
 ];
 

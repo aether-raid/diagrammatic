@@ -10,11 +10,10 @@ import {
 } from "../helper";
 import { RuleEngine } from "@extension/algorithm/rules";
 
-// Repository URL: https://github.com/lujakob/nestjs-realworld-example-app
-const mockDirectoryPath =
-  "/Users/sharlenetio/Desktop/fyp/samples/nestjs-realworld-example-app/src";
+// Repository URL: https://github.com/juice-shop/juice-shop
+const mockDirectoryPath = "/Users/sharlenetio/Desktop/fyp/samples/juice-shop";
 
-describe("nestjs-realworld-example-app", () => {
+describe("juice-shop", () => {
   let rulesetStub: sinon.SinonStub;
 
   let ruleset: any;
