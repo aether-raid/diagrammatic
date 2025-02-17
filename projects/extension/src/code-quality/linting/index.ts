@@ -46,17 +46,17 @@ export const lintActiveFile = async() => {
     }
 };
 
-
-
 export const lintFile = async(filePath:string): Promise<{[key:string]: vscode.Diagnostic[]}> => {
     const ext = path.extname(filePath).toLowerCase();
-    if (ext !== '.ts' && ext !== 'js'){
+    if (ext !== '.ts' && ext !== '.js'){
         return {};
     };
+
     const document = await vscode.workspace.openTextDocument(filePath);
     if (!document){
         return {};
     }
+
     // Resolve the path to the eslint.config.mjs file
     const configFilePath = path.resolve(__dirname, '../eslint.config.mjs');
     const workspacePath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
@@ -84,8 +84,7 @@ export const lintFile = async(filePath:string): Promise<{[key:string]: vscode.Di
         }
         collection.set(document.uri , diagnostics);
         return {diagnostics: diagnostics};
-        }
-    catch (error) {
+    } catch (error) {
         vscode.window.showErrorMessage(`ESLint error: ${(error as Error).message}`);
         return {};
     }

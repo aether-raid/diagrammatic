@@ -1,17 +1,17 @@
 import { Accordion, AccordionTrigger, AccordionItem, AccordionContent, AccordionHeader } from "@radix-ui/react-accordion";
+import { ReactElement } from "react";
 import { MdOutlineSecurity, MdOutlineCleaningServices, MdErrorOutline, MdOutlineWarningAmber } from "react-icons/md"; 
 import { BsChevronDown } from "react-icons/bs";
-import { type Diagnostic } from "vscode";
 
-import { DiagnosticSeverity } from "@shared/app.types";
+import { DiagnosticSeverityEnum, SerializedDiagnostic } from "@shared/vscode.types";
 
-import { ReactElement } from "react";
 import { sendJumpToLineMessageToExtension } from "../../vscodeApiHandler";
 
+
 const NodeLints = ({lints, filePath}: {lints: {
-    clean?: Diagnostic[];
-    vulnerability?: Diagnostic[];
-    extras?: Diagnostic[];
+    clean?: SerializedDiagnostic[];
+    vulnerability?: SerializedDiagnostic[];
+    extras?: SerializedDiagnostic[];
 } | undefined, filePath: string|undefined}) => {
     if (!lints) {return <></>}
     const { clean, vulnerability } = lints;
@@ -27,7 +27,7 @@ const NodeLints = ({lints, filePath}: {lints: {
     );
 }
 
-const NodeItem = ({issue, filePath}: {issue: Diagnostic, filePath: string|undefined}) => {
+const NodeItem = ({issue, filePath}: {issue: SerializedDiagnostic, filePath: string|undefined}) => {
     const {message, range, severity} = issue;
 
     try {
@@ -35,17 +35,17 @@ const NodeItem = ({issue, filePath}: {issue: Diagnostic, filePath: string|undefi
         
         // TODO: look into this
         // not sure why it is not following the type definition
-        const lineNumber = range[0].line
-        if (!lineNumber) {throw new Error('No line number found!');}
+        const lineNumber = range.start.line;
+        if (!lineNumber) { throw new Error('No line number found!'); }
+
         const onRowClick = () => {
             if (!lineNumber || !filePath) {
-            console.error(`Unknown filePath (${filePath}) or lineNumber (${lineNumber + 1})!`);
-            return;
+                console.error(`Unknown filePath (${filePath}) or lineNumber (${lineNumber + 1})!`);
+                return;
             }
             sendJumpToLineMessageToExtension(filePath, lineNumber);
         }
 
-        
         return (
             <div
                 onClick={() => onRowClick()}
@@ -63,8 +63,8 @@ const NodeItem = ({issue, filePath}: {issue: Diagnostic, filePath: string|undefi
             >
                 <p>{message}</p>
                 <p>Line: {lineNumber}</p>
-                {severity === DiagnosticSeverity.Error && <MdOutlineWarningAmber />}
-                {severity === DiagnosticSeverity.Warning && <MdErrorOutline />}
+                {severity === DiagnosticSeverityEnum.Error && <MdOutlineWarningAmber />}
+                {severity === DiagnosticSeverityEnum.Warning && <MdErrorOutline />}
             </div>
         )
     } catch (error) {
@@ -74,7 +74,7 @@ const NodeItem = ({issue, filePath}: {issue: Diagnostic, filePath: string|undefi
 }
 
 
-const NodeIssue = ({issues, header, Icon, filePath}: {issues: Diagnostic[], header: string, Icon: ReactElement<any, any>, filePath: string|undefined}) => {
+const NodeIssue = ({issues, header, Icon, filePath}: {issues: SerializedDiagnostic[], header: string, Icon: ReactElement<any, any>, filePath: string|undefined}) => {
     if(!issues || issues.length < 1){return <></>}
     console.table(issues);
   return (
@@ -92,7 +92,7 @@ const NodeIssue = ({issues, header, Icon, filePath}: {issues: Diagnostic[], head
                     </AccordionHeader>
                     <AccordionContent>
                         {
-                            issues.map((issue) => <NodeItem issue={issue} filePath={filePath} key={`${filePath}-${issue.code?.toString}`}/>)
+                            issues.map((issue) => <NodeItem issue={issue} filePath={filePath} key={`${filePath}<line: ${issue.range.start.line}>-${issue.message}`}/>)
                         }
                     </AccordionContent>
                 </AccordionItem>
