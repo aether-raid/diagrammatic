@@ -2,14 +2,15 @@ import { NodeTypes } from "@xyflow/react";
 
 import { TextUpdaterNode } from "./components/TextUpdaterNode";
 import { EntityNode } from "./components/EntityNode";
+import { EntityCompNode } from "./components/EntityCompNode";
 import { AppNode } from "@shared/node.types";
-
+import { CompNode } from "@shared/compNode.types";
 
 export const initialNodes: AppNode[] = [
   {
     id: '5',
     type: 'entity',
-    position: { x:0, y:0 },
+    position: { x: 0, y: 0 },
     data: {
       description: 'This file serves as a central entity that manages multiple agricultural components. It coordinates the planting & harvesting processes.',
       entityName: 'Farm',
@@ -24,7 +25,7 @@ export const initialNodes: AppNode[] = [
   {
     id: '5a',
     type: 'entity',
-    position: { x:0, y:0 },
+    position: { x: 0, y: 0 },
     data: {
       description: 'This class is responsible for crop planting. It encapsulates the various functions required to plant crops.',
       entityName: 'Planter',
@@ -40,7 +41,7 @@ export const initialNodes: AppNode[] = [
   {
     id: '5b',
     type: 'entity',
-    position: { x:0, y:0 },
+    position: { x: 0, y: 0 },
     data: {
       description: 'This class is responsible for harvesting crops once they are ready. It encapsulates the various functions required to harvest different crops.',
       entityName: 'Harvester',
@@ -56,7 +57,7 @@ export const initialNodes: AppNode[] = [
   {
     id: '6',
     type: 'entity',
-    position: { x:0, y:0 },
+    position: { x: 0, y: 0 },
     data: {
       entityName: 'Grocer',
       entityType: 'file',
@@ -69,7 +70,7 @@ export const initialNodes: AppNode[] = [
   {
     id: '7',
     type: 'entity',
-    position: { x:0, y:0 },
+    position: { x: 0, y: 0 },
     data: {
       entityName: 'Customer',
       entityType: 'file',
@@ -83,7 +84,7 @@ export const initialNodes: AppNode[] = [
   {
     id: '8',
     type: 'entity',
-    position: { x:0, y:0 },
+    position: { x: 0, y: 0 },
     data: {
       entityName: 'Gift',
       entityType: 'file',
@@ -98,7 +99,7 @@ export const initialNodes: AppNode[] = [
   {
     id: '9',
     type: 'entity',
-    position: { x:0, y:0 },
+    position: { x: 0, y: 0 },
     data: {
       entityName: 'Food',
       entityType: 'interface',
@@ -112,7 +113,7 @@ export const initialNodes: AppNode[] = [
   {
     id: '10',
     type: 'entity',
-    position: { x:0, y:0 },
+    position: { x: 0, y: 0 },
     data: {
       entityName: 'Bin',
       entityType: 'namespace',
@@ -126,7 +127,7 @@ export const initialNodes: AppNode[] = [
   {
     id: '11',
     type: 'entity',
-    position: { x:0, y:0 },
+    position: { x: 0, y: 0 },
     data: {
       entityName: 'Bin',
       entityType: 'struct',
@@ -139,7 +140,105 @@ export const initialNodes: AppNode[] = [
   }
 ];
 
+export const initialCompNodes: CompNode[] = [
+  {
+    id: '0',
+    type: "comp", 
+    position: { x: 0, y: 0 },
+    data: {
+      name: "Article Component",
+      description: "Handles article related functionalities.",
+      files: [
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\article\\article.controller.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\article\\article.entity.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\article\\article.module.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\article\\article.service.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\article\\comment.entity.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\article\\dto\\create-article.dto.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\article\\dto\\create-comment.ts"
+      ]
+    }
+  },
+  {
+    id: '1',
+    type: "comp", 
+    position: { x: 0, y: 0 },
+    data: {
+      "name": "Profile Component",
+      "description": "Manages user profiles and following/unfollowing.",
+      "files": [
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\profile\\follows.entity.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\profile\\profile.controller.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\profile\\profile.module.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\profile\\profile.service.ts"
+      ]
+    }
+  },
+  {
+    id: '2',
+    type: "comp", 
+    position: { x: 0, y: 0 },
+    data: {
+      "name": "Tag Component",
+      "description": "Handles tag management.",
+      "files": [
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\tag\\tag.controller.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\tag\\tag.entity.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\tag\\tag.module.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\tag\\tag.service.ts"
+      ]
+    }
+  },
+  {
+    id: '3',
+    type: "comp", 
+    position: { x: 0, y: 0 },
+    data: {
+      "name": "User Component",
+      "description": "Handles user authentication and management.",
+      "files": [
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\user\\auth.middleware.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\user\\dto\\create-user.dto.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\user\\dto\\login-user.dto.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\user\\dto\\update-user.dto.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\user\\user.controller.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\user\\user.entity.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\user\\user.module.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\user\\user.service.ts"
+      ]
+    }
+  },
+  {
+    id: '4',
+    type: "comp", 
+    position: { x: 0, y: 0 },
+    data: {
+      "name": "Shared Component",
+      "description": "Contains shared components and utilities.",
+      "files": [
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\shared\\base.controller.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\shared\\pipes\\validation.pipe.ts"
+      ]
+    }
+  },
+  {
+    id: '5',
+    type: "comp",   
+    position: { x: 0, y: 0 },
+    data: {
+      "name": "Application Component",
+      "description": "Main application module.",
+      "files": [
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\app.controller.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\app.module.ts",
+        "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\main.ts"
+      ]
+    }
+  },
+]
+
 export const nodeTypes = {
-    'entity': EntityNode,
-    'textUpdater': TextUpdaterNode
+  'entity': EntityNode,
+  'textUpdater': TextUpdaterNode,
+  'comp': EntityCompNode,
 } satisfies NodeTypes;

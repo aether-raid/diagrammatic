@@ -5,17 +5,19 @@ export const getComponentDiagram = async (nodeEdgeData: NodeEdgeData): Promise<v
     const { nodes, edges } = nodeEdgeData;
     const prompt = `Group the nodes into functional components for C4 Level 3 component diagram. Return in json format:
                     "components":[
-                      {"name": component_name,
+                      { "id": component_id,
+                      "name": component_name,
                       "description": component_description,	
                       "files": [files in this component]	
                       },...
                     ]
                     "relationships":[
-                      {"source": component_name1, "target": component_name2, "type": type
+                      {"id": sourceId-targetId, "source": sourceId, "target": targetId ,"sourceName": component_name1, "targetName": component_name2, "type": type
                       
                       },....
                     ]
-                      
+                    
+                    Use the corresponding component ids for the sourceId and targetId of the relationships
                     nodes: ${JSON.stringify(nodes)}
                     edges: ${JSON.stringify(edges)}`
     console.log("Prompt:", prompt)

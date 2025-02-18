@@ -35,6 +35,7 @@ import {
 import { initVsCodeApi, sendReadyMessageToExtension } from "./vscodeApiHandler";
 import DownloadButton from "./buttons/DownloadButton";
 import SearchBar from "./buttons/SearchBar";
+import ComponentButton from "./buttons/CompButton";
 
 interface OptionProps {
     direction: string;
@@ -92,6 +93,7 @@ const LayoutFlow = () => {
     const MAX_ZOOM = 2;
 
     useEffect(() => {
+        console.log("Component Mounted");
         // Setup message listener
         const onMessage = (event: MessageEvent<WebviewCommandMessage>) => {
             const { command, message } = event.data;
@@ -126,6 +128,7 @@ const LayoutFlow = () => {
         }
 
         return () => {
+            console.log("Component Unmounted");
             // Remove event listener on component unmount
             window.removeEventListener("message", onMessage);
         };
@@ -219,6 +222,7 @@ const LayoutFlow = () => {
                 <MiniMap />
                 <Controls />
                 <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
+                <ComponentButton />
                 <Background />
             </ReactFlow>
         </>
