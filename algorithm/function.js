@@ -160,8 +160,43 @@ export function processCallExpression(node) {
         return new Call({
           token: getFirstChildOfType(func, "field_identifier")?.text,
           ownerToken: identifier.text,
+          lineNumber: getLineNumber(node),
         });
       }
+  }
+
+  return null;
+}
+
+/**
+ * For Java because the tree-sitter outputs method_invocation instead of call_expression
+ * And they have a different structure
+ * @param {*} node
+ * @returns {Call}
+ */
+export function processMethodInvocation(node) {
+  const objectNode = node.childForFieldName("object");
+  const nameNode = node.childForFieldName("name");
+
+  if (!nameNode) {
+    return null;
+  }
+  // getVenueById(id)
+  if (!objectNode) {
+    return new Call({ token: nameNode.text, lineNumber: getLineNumber(node) });
+  }
+
+  switch (objectNode.type) {
+    // repo.findById(id).orElseThrow(() -> new VenueNotFoundException())
+    case "method_invocation":
+      return processMethodInvocation(objectNode);
+    // repo.findAll()
+    case "identifier":
+      return new Call({
+        token: nameNode.text,
+        ownerToken: objectNode.text,
+        lineNumber: getLineNumber(node),
+      });
   }
 
   return null;
@@ -181,11 +216,17 @@ export function makeCalls(body) {
   const calls = [];
 
   for (const node of walk(body)) {
-    if (node.type === "call_expression") {
-      const call = processCallExpression(node);
-      if (call) {
-        calls.push(call);
-      }
+    switch (node.type) {
+      case "call_expression":
+        const call = processCallExpression(node);
+        if (call) {
+          calls.push(call);
+        }
+      case "method_invocation":
+        const mCall = processMethodInvocation(node);
+        if (mCall) {
+          calls.push(mCall);
+        }
     }
   }
   return calls;
@@ -278,7 +319,16 @@ export function makeLocalVariables(tree, parent, languageRules) {
             const relativeFilePathRegex = new RegExp(
               '^(?:..?[\\/])[^<>:"|?*\n]+$'
             );
-            // relative filepath
+            /**
+             * relative filepath
+             * e.g. "./article.service" => without extension
+             * e.g. "./dto" => folder
+             * (1) import classes from file
+             * (2) import functions from file
+             * (3) import from folder
+             * output variable.pointsTo: /User/fyp/samples/nestjs-realworld-example-app/src/article/article.service.ts
+             * output variable.pointsTo: User/fyp/samples/nestjs-realworld-example-app/src/article/dto
+             */
             if (
               name &&
               pointsTo &&
@@ -292,15 +342,14 @@ export function makeLocalVariables(tree, parent, languageRules) {
               );
               const baseDirectory = path.dirname(importedFilePath);
               // if file has no extension, search directory for matching filename
-              if (!path.extname(importedFilePath)) {
-                const files = fs.readdirSync(baseDirectory);
-                const fileNameWithoutExt = path.basename(pointsTo);
-                const matchedFile = files.find((file) =>
-                  file.startsWith(fileNameWithoutExt)
-                );
-                if (matchedFile) {
-                  importedFilePath = path.join(baseDirectory, matchedFile);
-                }
+              const files = fs.readdirSync(baseDirectory);
+              const fileNameWithoutExt = path.basename(pointsTo);
+              const matchedFile = files.find((file) => {
+                const baseFilePath = path.basename(file);
+                return baseFilePath.startsWith(fileNameWithoutExt);
+              });
+              if (matchedFile) {
+                importedFilePath = path.join(baseDirectory, matchedFile);
               }
               variables.push(
                 new Variable(
@@ -313,10 +362,6 @@ export function makeLocalVariables(tree, parent, languageRules) {
           }
         }
     }
-  }
-
-  if (parent instanceof Group && parent.groupType === GroupType.CLASS) {
-    variables.push(new Variable("this", parent.token, parent.lineNumber));
   }
 
   return variables;
@@ -403,12 +448,15 @@ export function findLinks(nodeA, allNodes) {
     }
   }
 
-  /* for (const variable of nodeA.variables) {
+  for (const variable of nodeA.variables) {
     // e.g. let article = new ArticleEntity()
-    if (variable.pointsTo instanceof Group) {
+    if (
+      variable.pointsTo instanceof Group &&
+      variable.pointsTo.groupType !== GroupType.FILE
+    ) {
       links.push(new Edge(nodeA, variable.pointsTo));
     }
-  } */
+  }
 
   return links;
 }

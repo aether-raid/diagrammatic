@@ -1,4 +1,4 @@
-import { Node, Group, GroupType } from "./model.js";
+import { Node, Group, GroupType, NodeType, Variable } from "./model.js";
 import {
   makeCalls,
   makeLocalVariables,
@@ -121,12 +121,39 @@ export class Language {
         }
       }
     }
+
+    /**
+     * For Java, convert class attributes (field_declarations) to variables.
+     * e.g.  private VenueService service;
+     * Variable(token=service, pointsTo=VenueService)
+     * Since VenueService is a string, we need to resolve it to the actual Class node later.
+     */
+    if (tree.type === "field_declaration") {
+      const typeIdentifier = tree.childForFieldName("type");
+      const variableDeclarator = tree.childForFieldName("declarator");
+      const identifier = variableDeclarator.childForFieldName("name");
+      if (identifier && typeIdentifier) {
+        variables.push(new Variable(identifier.text, typeIdentifier.text));
+      }
+    }
+
+    const matchingNodeRule = languageRules.nodes.find(
+      (node) => node.type === tree.type
+    );
+    if (!matchingNodeRule || !matchingNodeRule.nodeType) {
+      throw new Error("Node rule is missing nodeType or does not exist!");
+    }
+    if (!NodeType[matchingNodeRule.nodeType]) {
+      throw new Error("Node rule has invalid nodeType!");
+    }
+
     const node = new Node({
       token,
       calls,
       variables,
       lineNumber: getLineNumber(tree),
       parent,
+      nodeType: NodeType[matchingNodeRule.nodeType],
     });
     const subnodes = nodes.flatMap((t) =>
       this.makeNodes(t, node, languageRules)

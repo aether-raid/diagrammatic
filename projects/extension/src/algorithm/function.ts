@@ -6,7 +6,15 @@ import Python from "tree-sitter-python";
 import Java from "tree-sitter-java";
 import Cpp from "tree-sitter-cpp";
 
-import { Variable, Call, Group, Edge, GroupType, Node } from "./model";
+import {
+  Variable,
+  Call,
+  Group,
+  Edge,
+  GroupType,
+  Node,
+  NodeType,
+} from "./model";
 import { Language } from "./language";
 import { LanguageRules } from "./rules";
 
@@ -168,8 +176,47 @@ export function processCallExpression(node: SyntaxNode): Call | null {
         return new Call({
           token: fieldIdentifier.text,
           ownerToken: identifier.text,
+          lineNumber: getLineNumber(node),
         });
       }
+  }
+
+  return null;
+}
+
+/**
+ * For Java because the tree-sitter outputs method_invocation instead of call_expression
+ * And they have a different structure
+ * (1) getVenueById(id) => no objectNode
+ * (2) repo.findById(id).orElseThrow(() -> new VenueNotFoundException()) = method_invocation
+ * (3) repo.findAll() = objectNode.nameNode
+ *
+ * @param {*} node
+ * @returns {Call}
+ */
+export function processMethodInvocation(node: SyntaxNode): Call | null {
+  const objectNode = node.childForFieldName("object");
+  const nameNode = node.childForFieldName("name");
+
+  if (!nameNode) {
+    return null;
+  }
+  // getVenueById(id)
+  if (!objectNode) {
+    return new Call({ token: nameNode.text, lineNumber: getLineNumber(node) });
+  }
+
+  switch (objectNode.type) {
+    // repo.findById(id).orElseThrow(() -> new VenueNotFoundException())
+    case "method_invocation":
+      return processMethodInvocation(objectNode);
+    // repo.findAll()
+    case "identifier":
+      return new Call({
+        token: nameNode.text,
+        ownerToken: objectNode.text,
+        lineNumber: getLineNumber(node),
+      });
   }
 
   return null;
@@ -189,11 +236,17 @@ export function makeCalls(body: SyntaxNode[]) {
   const calls = [];
 
   for (const node of walk(body)) {
-    if (node.type === "call_expression") {
-      const call = processCallExpression(node);
-      if (call) {
-        calls.push(call);
-      }
+    switch (node.type) {
+      case "call_expression":
+        const call = processCallExpression(node);
+        if (call) {
+          calls.push(call);
+        }
+      case "method_invocation":
+        const mCall = processMethodInvocation(node);
+        if (mCall) {
+          calls.push(mCall);
+        }
     }
   }
   return calls;
@@ -303,7 +356,10 @@ export function makeLocalVariables(
               );
               const baseDirectory = path.dirname(importedFilePath);
               // if file has no extension, search directory for matching filename
-              if (!path.extname(importedFilePath) && fs.existsSync(baseDirectory)) {
+              if (
+                !path.extname(importedFilePath) &&
+                fs.existsSync(baseDirectory)
+              ) {
                 const files = fs.readdirSync(baseDirectory);
                 const fileNameWithoutExt = path.basename(pointsTo);
                 const matchedFile = files.find((file) =>
@@ -324,10 +380,6 @@ export function makeLocalVariables(
           }
         }
     }
-  }
-
-  if (parent instanceof Group && parent.groupType === GroupType.CLASS) {
-    variables.push(new Variable("this", parent.token, parent.lineNumber));
   }
 
   return variables;
@@ -417,12 +469,15 @@ export function findLinks(nodeA: Node, allNodes: Node[]) {
     }
   }
 
-  /* for (const variable of nodeA.variables) {
+  for (const variable of nodeA.variables) {
     // e.g. let article = new ArticleEntity()
-    if (variable.pointsTo instanceof Group) {
+    if (
+      variable.pointsTo instanceof Group &&
+      variable.pointsTo.groupType !== GroupType.FILE
+    ) {
       links.push(new Edge(nodeA, variable.pointsTo));
     }
-  } */
+  }
 
   return links;
 }
@@ -589,9 +644,21 @@ export function processConstructorRequiredParameter(node: SyntaxNode) {
 }
 
 export function toGroupTypeIgnoreCase(value: string): GroupType {
-  return (
-    Object.values(GroupType).find(
-      (gt) => gt.toLowerCase() === value.toLowerCase()
-    ) ?? GroupType.CLASS
+  const groupType = Object.values(GroupType).find(
+    (gt) => gt.toLowerCase() === value.toLowerCase()
   );
+  if (!groupType) {
+    throw new Error("Invalid groupType in rules!");
+  }
+  return groupType;
+}
+
+export function toNodeTypeIgnoreCase(value: string): NodeType {
+  const nodeType = Object.values(NodeType).find(
+    (nt) => nt.toLowerCase() === value.toLowerCase()
+  );
+  if (!nodeType) {
+    throw new Error("Invalid nodeType in rules!");
+  }
+  return nodeType;
 }

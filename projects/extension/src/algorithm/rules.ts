@@ -1,12 +1,16 @@
 import { getFirstChildOfType } from "./function";
 import fs from "fs";
 import { SyntaxNode } from "tree-sitter";
-import { GroupType } from "./model";
+import { GroupType, NodeType } from "./model";
 
 export type Rule = {
   type?: string;
   field?: string;
   child?: Rule;
+};
+
+export type NodeRule = Rule & {
+  nodeType: NodeType;
 };
 
 export type GroupRule = Rule & {
@@ -25,7 +29,7 @@ export type getNameConfig = {
 } & Record<string, NodeConfig>;
 
 export type LanguageRules = {
-  nodes: Rule[];
+  nodes: NodeRule[];
   groups: GroupRule[];
   getName: getNameConfig;
 };

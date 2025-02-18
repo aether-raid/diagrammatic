@@ -70,12 +70,22 @@ export class Call {
   }
 }
 
+/**
+ * Represent functions and class attributes
+ */
+export enum NodeType {
+  FUNCTION = "function",
+  ATTRIBUTE = "attribute",
+  BODY = "body",
+}
+
 export class Node {
   token: string | null;
   calls: Call[];
   variables: Variable[];
   lineNumber: number | null;
   parent: Node | Group;
+  nodeType: NodeType;
 
   constructor({
     token,
@@ -83,18 +93,21 @@ export class Node {
     variables,
     lineNumber = null,
     parent,
+    nodeType,
   }: {
     token: string | null;
     calls: Call[];
     variables: Variable[];
     lineNumber?: number | null;
     parent: Node | Group;
+    nodeType: NodeType;
   }) {
     this.token = token;
     this.calls = calls;
     this.variables = variables;
     this.lineNumber = lineNumber;
     this.parent = parent;
+    this.nodeType = nodeType;
   }
 
   /**
@@ -108,6 +121,12 @@ export class Node {
             variable.pointsTo = subgroup;
           }
 
+          /**
+           * Resolve variables from relative import statements
+           * e.g. import { SyntaxNode } from 'tree-sitter'
+           * Variable(token=SyntaxNode, pointsTo=/User/samples/nestjs-real-example-app/src/article/ArticleService.ts)
+           * pointsTo should resolve from a filepath to the actual file Group
+           */
           if (
             subgroup.groupType === GroupType.FILE &&
             variable.pointsTo === subgroup.filePath
