@@ -319,7 +319,16 @@ export function makeLocalVariables(tree, parent, languageRules) {
             const relativeFilePathRegex = new RegExp(
               '^(?:..?[\\/])[^<>:"|?*\n]+$'
             );
-            // relative filepath
+            /**
+             * relative filepath
+             * e.g. "./article.service" => without extension
+             * e.g. "./dto" => folder
+             * (1) import classes from file
+             * (2) import functions from file
+             * (3) import from folder
+             * output variable.pointsTo: /User/fyp/samples/nestjs-realworld-example-app/src/article/article.service.ts
+             * output variable.pointsTo: User/fyp/samples/nestjs-realworld-example-app/src/article/dto
+             */
             if (
               name &&
               pointsTo &&
@@ -333,15 +342,14 @@ export function makeLocalVariables(tree, parent, languageRules) {
               );
               const baseDirectory = path.dirname(importedFilePath);
               // if file has no extension, search directory for matching filename
-              if (!path.extname(importedFilePath)) {
-                const files = fs.readdirSync(baseDirectory);
-                const fileNameWithoutExt = path.basename(pointsTo);
-                const matchedFile = files.find((file) =>
-                  file.startsWith(fileNameWithoutExt)
-                );
-                if (matchedFile) {
-                  importedFilePath = path.join(baseDirectory, matchedFile);
-                }
+              const files = fs.readdirSync(baseDirectory);
+              const fileNameWithoutExt = path.basename(pointsTo);
+              const matchedFile = files.find((file) => {
+                const baseFilePath = path.basename(file);
+                return baseFilePath.startsWith(fileNameWithoutExt);
+              });
+              if (matchedFile) {
+                importedFilePath = path.join(baseDirectory, matchedFile);
               }
               variables.push(
                 new Variable(

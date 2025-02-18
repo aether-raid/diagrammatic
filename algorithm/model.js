@@ -1,3 +1,6 @@
+import path from "path";
+import fs from "fs";
+
 /**
  *  Variables represent named tokens that are accessible to their scope.
  *  They may either point to a string or, once resolved, a Group/Node.
@@ -84,25 +87,51 @@ export class Node {
         for (const subgroup of allSubgroups) {
           if (variable.pointsTo === subgroup.token) {
             variable.pointsTo = subgroup;
+            break;
           }
 
           /**
            * Resolve variables from relative import statements
-           * e.g. import { SyntaxNode } from 'tree-sitter'
-           * Variable(token=SyntaxNode, pointsTo=/User/samples/nestjs-real-example-app/src/article/ArticleService.ts)
-           * pointsTo should resolve from a filepath to the actual file Group
+           * e.g. import { ArticleService } from './article.service';
+           * Variable(token=ArticleService, pointsTo=/User/samples/nestjs-real-example-app/src/article/ArticleService.ts)
+           * Group(token=ArticleService)
+           * pointsTo should resolve from a filepath to the actual class Group
            */
           if (
-            subgroup.groupType === GroupType.FILE &&
+            subgroup.groupType === GroupType.CLASS &&
             variable.pointsTo === subgroup.filePath
           ) {
             variable.pointsTo = subgroup;
+            break;
+          }
+
+          /**
+           * Resolve variables from relative import statements
+           * e.g. import { CreateArticleDto, CreateCommentDto } from './dto';
+           * Variable(token=CreateArticleDto, pointsTo=/User/samples/nestjs-real-example-app/src/article/dto)
+           * pointsTo should resolve from a filepath to the actual class Group
+           */
+          if (
+            variable.pointsTo &&
+            path.isAbsolute(variable.pointsTo) &&
+            fs.existsSync(variable.pointsTo) &&
+            fs.statSync(variable.pointsTo).isDirectory()
+          ) {
+            const baseDirectory = path.dirname(subgroup.filePath);
+            if (
+              variable.pointsTo === baseDirectory &&
+              subgroup.token === variable.token
+            ) {
+              variable.pointsTo = subgroup;
+              break;
+            }
           }
         }
 
         for (const node of allNodes) {
           if (variable.pointsTo === node.token) {
             variable.pointsTo = node;
+            break;
           }
         }
       }
@@ -223,7 +252,7 @@ export class Group {
   }
 
   toString() {
-    return `Group: token=${this.token}`;
+    return `Group: token=${this.token}, groupType:${this.groupType}`;
   }
 }
 

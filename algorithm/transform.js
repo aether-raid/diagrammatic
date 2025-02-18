@@ -23,6 +23,11 @@ function getFilePath(parent) {
 export function transformEdges(allEdges) {
   const output = [];
   for (const edge of allEdges) {
+    // remove node to node edges
+    if (edge.source.token === "(global)") {
+      continue;
+    }
+
     const source = getFilePath(edge.source.parent);
     const target = getFilePath(edge.target.parent);
 
