@@ -1203,7 +1203,7 @@
   },
   {
     "data": {
-      "entityName": "Healthcheck",
+      "entityName": "HealthCheck",
       "entityType": "class",
       "filePath": "/backend/venue-service/src/main/java/com/venue/controller/HealthCheck.java",
       "items": [{ "name": "health_check", "lineNumber": 8 }]
