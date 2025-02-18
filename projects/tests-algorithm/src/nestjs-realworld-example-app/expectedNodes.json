@@ -5,54 +5,66 @@
       "entityType": "class",
       "filePath": "/article/article.service.ts",
       "items": [
-        { "name": "constructor", "lineNumber": 15 },
+        { "name": "constructor", "lineNumber": 15, "type": "function" },
         {
           "name": "findAll",
-          "lineNumber": 26
+          "lineNumber": 26,
+          "type": "function"
         },
         {
           "name": "findFeed",
-          "lineNumber": 69
+          "lineNumber": 69,
+          "type": "function"
         },
         {
           "name": "findOne",
-          "lineNumber": 99
+          "lineNumber": 99,
+          "type": "function"
         },
         {
           "name": "addComment",
-          "lineNumber": 104
+          "lineNumber": 104,
+          "type": "function"
         },
         {
           "name": "deleteComment",
-          "lineNumber": 117
+          "lineNumber": 117,
+          "type": "function"
         },
         {
           "name": "favorite",
-          "lineNumber": 135
+          "lineNumber": 135,
+          "type": "function"
         },
         {
           "name": "unFavorite",
-          "lineNumber": 152
+          "lineNumber": 152,
+          "type": "function"
         },
         {
           "name": "findComments",
-          "lineNumber": 171
+          "lineNumber": 171,
+          "type": "function"
         },
         {
           "name": "create",
-          "lineNumber": 176
+          "lineNumber": 176,
+          "type": "function"
         },
         {
           "name": "update",
-          "lineNumber": 200
+          "lineNumber": 200,
+          "type": "function"
         },
         {
           "name": "delete",
-          "lineNumber": 207
+          "lineNumber": 207,
+          "type": "function"
         },
         {
           "name": "slugify",
-          "lineNumber": 211
+          "lineNumber": 211,
+          "type": "function"
         }
       ]
     }
@@ -63,50 +75,61 @@
       "entityType": "class",
       "filePath": "/article/article.controller.ts",
       "items": [
-        { "name": "constructor", "lineNumber": 20 },
+        { "name": "constructor", "lineNumber": 20, "type": "function" },
         {
           "name": "findAll",
-          "lineNumber": 25
+          "lineNumber": 25,
+          "type": "function"
         },
         {
           "name": "getFeed",
-          "lineNumber": 34
+          "lineNumber": 34,
+          "type": "function"
         },
         {
           "name": "findOne",
-          "lineNumber": 39
+          "lineNumber": 39,
+          "type": "function"
         },
         {
           "name": "findComments",
-          "lineNumber": 44
+          "lineNumber": 44,
+          "type": "function"
         },
         {
           "name": "create",
-          "lineNumber": 52
+          "lineNumber": 52,
+          "type": "function"
         },
         {
           "name": "update",
-          "lineNumber": 60
+          "lineNumber": 60,
+          "type": "function"
         },
         {
           "name": "delete",
-          "lineNumber": 69
+          "lineNumber": 69,
+          "type": "function"
         },
         {
           "name": "createComment",
-          "lineNumber": 77
+          "lineNumber": 77,
+          "type": "function"
         },
         {
           "name": "deleteComment",
-          "lineNumber": 85
+          "lineNumber": 85,
+          "type": "function"
         },
         {
           "name": "favorite",
-          "lineNumber": 94
+          "lineNumber": 94,
+          "type": "function"
         },
         {
           "name": "unFavorite",
-          "lineNumber": 102
+          "lineNumber": 102,
+          "type": "function"
         }
       ]
     }
@@ -117,10 +140,18 @@
       "entityType": "class",
       "filePath": "/article/article.entity.ts",
       "items": [
-        {
-          "name": "updateTimestamp",
-          "lineNumber": 30
-        }
+        { "name": "id", "lineNumber": 8, "type": "attribute" },
+        { "name": "slug", "lineNumber": 11, "type": "attribute" },
+        { "name": "title", "lineNumber": 14, "type": "attribute" },
+        { "name": "description", "lineNumber": 17, "type": "attribute" },
+        { "name": "body", "lineNumber": 20, "type": "attribute" },
+        { "name": "created", "lineNumber": 23, "type": "attribute" },
+        { "name": "updated", "lineNumber": 26, "type": "attribute" },
+        { "name": "updateTimestamp", "lineNumber": 30, "type": "function" },
+        { "name": "tagList", "lineNumber": 34, "type": "attribute" },
+        { "name": "author", "lineNumber": 37, "type": "attribute" },
+        { "name": "comments", "lineNumber": 40, "type": "attribute" },
+        { "name": "favoriteCount", "lineNumber": 44, "type": "attribute" }
       ]
     }
   },
@@ -172,7 +203,8 @@
       "items": [
         {
           "name": "configure",
-          "lineNumber": 20
+          "lineNumber": 20,
+          "type": "function"
         }
       ]
     }
@@ -182,7 +214,11 @@
       "entityName": "Comment",
       "entityType": "class",
       "filePath": "/article/comment.entity.ts",
-      "items": []
+      "items": [
+        { "name": "id", "lineNumber": 7, "type": "attribute" },
+        { "name": "body", "lineNumber": 10, "type": "attribute" },
+        { "name": "article", "lineNumber": 13, "type": "attribute" }
+      ]
     }
   },
   {
@@ -190,7 +226,12 @@
       "entityName": "CreateArticleDto",
       "entityType": "class",
       "filePath": "/article/dto/create-article.dto.ts",
-      "items": []
+      "items": [
+        { "name": "title", "lineNumber": 2, "type": "attribute" },
+        { "name": "description", "lineNumber": 3, "type": "attribute" },
+        { "name": "body", "lineNumber": 4, "type": "attribute" },
+        { "name": "tagList", "lineNumber": 5, "type": "attribute" }
+      ]
     }
   },
   {
@@ -198,7 +239,7 @@
       "entityName": "CreateCommentDto",
       "entityType": "class",
       "filePath": "/article/dto/create-comment.ts",
-      "items": []
+      "items": [{ "name": "body", "lineNumber": 2, "type": "attribute" }]
     }
   },
   {
@@ -206,7 +247,11 @@
       "entityName": "FollowsEntity",
       "entityType": "class",
       "filePath": "/profile/follows.entity.ts",
-      "items": []
+      "items": [
+        { "name": "id", "lineNumber": 6, "type": "attribute" },
+        { "name": "followerId", "lineNumber": 9, "type": "attribute" },
+        { "name": "followingId", "lineNumber": 12, "type": "attribute" }
+      ]
     }
   },
   {
@@ -215,18 +260,21 @@
       "entityType": "class",
       "filePath": "/profile/profile.controller.ts",
       "items": [
-        { "name": "constructor", "lineNumber": 16 },
+        { "name": "constructor", "lineNumber": 16, "type": "function" },
         {
           "name": "getProfile",
-          "lineNumber": 19
+          "lineNumber": 19,
+          "type": "function"
         },
         {
           "name": "follow",
-          "lineNumber": 24
+          "lineNumber": 24,
+          "type": "function"
         },
         {
           "name": "unFollow",
-          "lineNumber": 29
+          "lineNumber": 29,
+          "type": "function"
         }
       ]
     }
@@ -255,7 +303,8 @@
       "items": [
         {
           "name": "configure",
-          "lineNumber": 19
+          "lineNumber": 19,
+          "type": "function"
         }
       ]
     }
@@ -266,26 +315,31 @@
       "entityType": "class",
       "filePath": "/profile/profile.service.ts",
       "items": [
-        { "name": "constructor", "lineNumber": 12 },
+        { "name": "constructor", "lineNumber": 12, "type": "function" },
         {
           "name": "findAll",
-          "lineNumber": 19
+          "lineNumber": 19,
+          "type": "function"
         },
         {
           "name": "findOne",
-          "lineNumber": 23
+          "lineNumber": 23,
+          "type": "function"
         },
         {
           "name": "findProfile",
-          "lineNumber": 30
+          "lineNumber": 30,
+          "type": "function"
         },
         {
           "name": "follow",
-          "lineNumber": 50
+          "lineNumber": 50,
+          "type": "function"
         },
         {
           "name": "unFollow",
-          "lineNumber": 81
+          "lineNumber": 81,
+          "type": "function"
         }
       ]
     }
@@ -296,10 +350,11 @@
       "entityType": "class",
       "filePath": "/shared/base.controller.ts",
       "items": [
-        { "name": "constructor", "lineNumber": 6 },
+        { "name": "constructor", "lineNumber": 6, "type": "function" },
         {
           "name": "getUserIdFromToken",
-          "lineNumber": 8
+          "lineNumber": 8,
+          "type": "function"
         }
       ]
     }
@@ -312,15 +367,18 @@
       "items": [
         {
           "name": "transform",
-          "lineNumber": 8
+          "lineNumber": 8,
+          "type": "function"
         },
         {
           "name": "buildError",
-          "lineNumber": 26
+          "lineNumber": 26,
+          "type": "function"
         },
         {
           "name": "toValidate",
-          "lineNumber": 37
+          "lineNumber": 37,
+          "type": "function"
         }
       ]
     }
@@ -331,10 +389,11 @@
       "entityType": "class",
       "filePath": "/tag/tag.service.ts",
       "items": [
-        { "name": "constructor", "lineNumber": 8 },
+        { "name": "constructor", "lineNumber": 8, "type": "function" },
         {
           "name": "findAll",
-          "lineNumber": 13
+          "lineNumber": 13,
+          "type": "function"
         }
       ]
     }
@@ -347,7 +406,8 @@
       "items": [
         {
           "name": "configure",
-          "lineNumber": 17
+          "lineNumber": 17,
+          "type": "function"
         }
       ]
     }
@@ -357,7 +417,10 @@
       "entityName": "TagEntity",
       "entityType": "class",
       "filePath": "/tag/tag.entity.ts",
-      "items": []
+      "items": [
+        { "name": "id", "lineNumber": 6, "type": "attribute" },
+        { "name": "tag", "lineNumber": 9, "type": "attribute" }
+      ]
     }
   },
   {
@@ -366,10 +429,11 @@
       "entityType": "class",
       "filePath": "/tag/tag.controller.ts",
       "items": [
-        { "name": "constructor", "lineNumber": 15 },
+        { "name": "constructor", "lineNumber": 15, "type": "function" },
         {
           "name": "findAll",
-          "lineNumber": 18
+          "lineNumber": 18,
+          "type": "function"
         }
       ]
     }
@@ -380,42 +444,51 @@
       "entityType": "class",
       "filePath": "/user/user.service.ts",
       "items": [
-        { "name": "constructor", "lineNumber": 16 },
+        { "name": "constructor", "lineNumber": 16, "type": "function" },
         {
           "name": "findAll",
-          "lineNumber": 21
+          "lineNumber": 21,
+          "type": "function"
         },
         {
           "name": "findOne",
-          "lineNumber": 25
+          "lineNumber": 25,
+          "type": "function"
         },
         {
           "name": "create",
-          "lineNumber": 38
+          "lineNumber": 38,
+          "type": "function"
         },
         {
           "name": "update",
-          "lineNumber": 74
+          "lineNumber": 74,
+          "type": "function"
         },
         {
           "name": "delete",
-          "lineNumber": 83
+          "lineNumber": 83,
+          "type": "function"
         },
         {
           "name": "findById",
-          "lineNumber": 87
+          "lineNumber": 87,
+          "type": "function"
         },
         {
           "name": "findByEmail",
-          "lineNumber": 98
+          "lineNumber": 98,
+          "type": "function"
         },
         {
           "name": "generateJWT",
-          "lineNumber": 103
+          "lineNumber": 103,
+          "type": "function"
         },
         {
           "name": "buildUserRO",
-          "lineNumber": 116
+          "lineNumber": 116,
+          "type": "function"
         }
       ]
     }
@@ -428,7 +501,8 @@
       "items": [
         {
           "name": "configure",
-          "lineNumber": 17
+          "lineNumber": 17,
+          "type": "function"
         }
       ]
     }
@@ -455,10 +529,15 @@
       "entityType": "class",
       "filePath": "/user/user.entity.ts",
       "items": [
-        {
-          "name": "hashPassword",
-          "lineNumber": 29
-        }
+        { "name": "id", "lineNumber": 9, "type": "attribute" },
+        { "name": "username", "lineNumber": 12, "type": "attribute" },
+        { "name": "email", "lineNumber": 15, "type": "attribute" },
+        { "name": "bio", "lineNumber": 19, "type": "attribute" },
+        { "name": "image", "lineNumber": 22, "type": "attribute" },
+        { "name": "password", "lineNumber": 25, "type": "attribute" },
+        { "name": "hashPassword", "lineNumber": 29, "type": "function" },
+        { "name": "favorites", "lineNumber": 33, "type": "attribute" },
+        { "name": "articles", "lineNumber": 37, "type": "attribute" }
       ]
     }
   },
@@ -470,7 +549,8 @@
       "items": [
         {
           "name": "User",
-          "lineNumber": 5
+          "lineNumber": 5,
+          "type": "function"
         }
       ]
     }
@@ -481,26 +561,31 @@
       "entityType": "class",
       "filePath": "/user/user.controller.ts",
       "items": [
-        { "name": "constructor", "lineNumber": 19 },
+        { "name": "constructor", "lineNumber": 19, "type": "function" },
         {
           "name": "findMe",
-          "lineNumber": 22
+          "lineNumber": 22,
+          "type": "function"
         },
         {
           "name": "update",
-          "lineNumber": 27
+          "lineNumber": 27,
+          "type": "function"
         },
         {
           "name": "create",
-          "lineNumber": 33
+          "lineNumber": 33,
+          "type": "function"
         },
         {
           "name": "delete",
-          "lineNumber": 38
+          "lineNumber": 38,
+          "type": "function"
         },
         {
           "name": "login",
-          "lineNumber": 44
+          "lineNumber": 44,
+          "type": "function"
         }
       ]
     }
@@ -511,10 +596,11 @@
       "entityType": "class",
       "filePath": "/user/auth.middleware.ts",
       "items": [
-        { "name": "constructor", "lineNumber": 11 },
+        { "name": "constructor", "lineNumber": 11, "type": "function" },
         {
           "name": "use",
-          "lineNumber": 13
+          "lineNumber": 13,
+          "type": "function"
         }
       ]
     }
@@ -524,7 +610,12 @@
       "entityName": "UpdateUserDto",
       "entityType": "class",
       "filePath": "/user/dto/update-user.dto.ts",
-      "items": []
+      "items": [
+        { "name": "username", "lineNumber": 2, "type": "attribute" },
+        { "name": "email", "lineNumber": 3, "type": "attribute" },
+        { "name": "bio", "lineNumber": 4, "type": "attribute" },
+        { "name": "image", "lineNumber": 5, "type": "attribute" }
+      ]
     }
   },
   {
@@ -532,7 +623,10 @@
       "entityName": "LoginUserDto",
       "entityType": "class",
       "filePath": "/user/dto/login-user.dto.ts",
-      "items": []
+      "items": [
+        { "name": "email", "lineNumber": 5, "type": "attribute" },
+        { "name": "password", "lineNumber": 8, "type": "attribute" }
+      ]
     }
   },
   {
@@ -540,7 +634,11 @@
       "entityName": "CreateUserDto",
       "entityType": "class",
       "filePath": "/user/dto/create-user.dto.ts",
-      "items": []
+      "items": [
+        { "name": "username", "lineNumber": 5, "type": "attribute" },
+        { "name": "email", "lineNumber": 8, "type": "attribute" },
+        { "name": "password", "lineNumber": 11, "type": "attribute" }
+      ]
     }
   },
   {
@@ -551,7 +649,8 @@
       "items": [
         {
           "name": "root",
-          "lineNumber": 6
+          "lineNumber": 6,
+          "type": "function"
         }
       ]
     }
@@ -561,7 +660,7 @@
       "entityName": "ApplicationModule",
       "entityType": "class",
       "filePath": "/app.module.ts",
-      "items": [{ "name": "constructor", "lineNumber": 24 }]
+      "items": [{ "name": "constructor", "lineNumber": 24, "type": "function" }]
     }
   },
   {
@@ -572,7 +671,8 @@
       "items": [
         {
           "name": "bootstrap",
-          "lineNumber": 5
+          "lineNumber": 5,
+          "type": "function"
         }
       ]
     }

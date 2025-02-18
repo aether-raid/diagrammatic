@@ -39,9 +39,12 @@ describe("tick", () => {
   });
 
   it("test node structure", () => {
-    const { fileCount, lineCount } = countFilesAndLines(mockDirectoryPath);
-    console.log("Total files:", fileCount);
-    console.log("Total lines of code:", lineCount);
+    const { totalFileCount, totalLineCount, fileCount, lineCount } =
+      countFilesAndLines(mockDirectoryPath);
+    console.log("Total files:", totalFileCount);
+    console.log("Total lines of code:", totalLineCount);
+    console.log("File count per extension:", fileCount);
+    console.log("Line count per extension:", lineCount);
 
     expectedNodes.forEach((node) => {
       node.data.filePath = path.join(mockDirectoryPath, node.data.filePath);
@@ -56,7 +59,7 @@ describe("tick", () => {
     console.log("Number of components:", numComponents);
     console.log(
       "Ratio of number of components to source files:",
-      numComponents / fileCount
+      numComponents / totalFileCount
     );
     console.log(
       "Ratio of resulting components to expected components:",
@@ -75,7 +78,7 @@ describe("tick", () => {
             entityType: string;
             entityName: string;
             filePath: string;
-            items: { name: string; lineNumber: number }[];
+            items: { name: string; lineNumber: number; type: string }[];
           };
         }[],
         expectedNodes

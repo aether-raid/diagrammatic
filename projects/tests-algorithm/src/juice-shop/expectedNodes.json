@@ -23,19 +23,23 @@
       "items": [
         {
           "name": "setStatusCode",
-          "lineNumber": 24
+          "lineNumber": 24,
+          "type": "function"
         },
         {
           "name": "retrieveCodeSnippet",
-          "lineNumber": 33
+          "lineNumber": 33,
+          "type": "function"
         },
         {
           "name": "retrieveChallengesWithCodeSnippet",
-          "lineNumber": 55
+          "lineNumber": 55,
+          "type": "function"
         },
         {
           "name": "getVerdict",
-          "lineNumber": 65
+          "lineNumber": 65,
+          "type": "function"
         }
       ]
     }
@@ -54,41 +58,54 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/basket.service.ts",
       "items": [
+        { "name": "hostServer", "lineNumber": 22, "type": "attribute" },
+        { "name": "itemTotal", "lineNumber": 23, "type": "attribute" },
+        { "name": "host", "lineNumber": 24, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 26, "type": "function" },
         {
           "name": "find",
-          "lineNumber": 28
+          "lineNumber": 28,
+          "type": "function"
         },
         {
           "name": "get",
-          "lineNumber": 32
+          "lineNumber": 32,
+          "type": "function"
         },
         {
           "name": "put",
-          "lineNumber": 36
+          "lineNumber": 36,
+          "type": "function"
         },
         {
           "name": "del",
-          "lineNumber": 40
+          "lineNumber": 40,
+          "type": "function"
         },
         {
           "name": "save",
-          "lineNumber": 44
+          "lineNumber": 44,
+          "type": "function"
         },
         {
           "name": "checkout",
-          "lineNumber": 48
+          "lineNumber": 48,
+          "type": "function"
         },
         {
           "name": "applyCoupon",
-          "lineNumber": 52
+          "lineNumber": 52,
+          "type": "function"
         },
         {
           "name": "updateNumberOfCartItems",
-          "lineNumber": 56
+          "lineNumber": 56,
+          "type": "function"
         },
         {
           "name": "getItemTotal",
-          "lineNumber": 63
+          "lineNumber": 63,
+          "type": "function"
         }
       ]
     }
@@ -99,25 +116,33 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/address.service.ts",
       "items": [
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "host", "lineNumber": 16, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 18, "type": "function" },
         {
           "name": "get",
-          "lineNumber": 20
+          "lineNumber": 20,
+          "type": "function"
         },
         {
           "name": "getById",
-          "lineNumber": 24
+          "lineNumber": 24,
+          "type": "function"
         },
         {
           "name": "save",
-          "lineNumber": 29
+          "lineNumber": 29,
+          "type": "function"
         },
         {
           "name": "put",
-          "lineNumber": 33
+          "lineNumber": 33,
+          "type": "function"
         },
         {
           "name": "del",
-          "lineNumber": 38
+          "lineNumber": 38,
+          "type": "function"
         }
       ]
     }
@@ -128,9 +153,13 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/administration.service.ts",
       "items": [
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "host", "lineNumber": 16, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 18, "type": "function" },
         {
           "name": "getApplicationVersion",
-          "lineNumber": 20
+          "lineNumber": 20,
+          "type": "function"
         }
       ]
     }
@@ -141,9 +170,13 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/captcha.service.ts",
       "items": [
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "host", "lineNumber": 16, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 18, "type": "function" },
         {
           "name": "getCaptcha",
-          "lineNumber": 20
+          "lineNumber": 20,
+          "type": "function"
         }
       ]
     }
@@ -154,37 +187,48 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/challenge.service.ts",
       "items": [
+        { "name": "hostServer", "lineNumber": 17, "type": "attribute" },
+        { "name": "host", "lineNumber": 18, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 19, "type": "function" },
         {
           "name": "find",
-          "lineNumber": 21
+          "lineNumber": 21,
+          "type": "function"
         },
         {
           "name": "repeatNotification",
-          "lineNumber": 25
+          "lineNumber": 25,
+          "type": "function"
         },
         {
           "name": "continueCode",
-          "lineNumber": 29
+          "lineNumber": 29,
+          "type": "function"
         },
         {
           "name": "continueCodeFindIt",
-          "lineNumber": 33
+          "lineNumber": 33,
+          "type": "function"
         },
         {
           "name": "continueCodeFixIt",
-          "lineNumber": 37
+          "lineNumber": 37,
+          "type": "function"
         },
         {
           "name": "restoreProgress",
-          "lineNumber": 41
+          "lineNumber": 41,
+          "type": "function"
         },
         {
           "name": "restoreProgressFindIt",
-          "lineNumber": 45
+          "lineNumber": 45,
+          "type": "function"
         },
         {
           "name": "restoreProgressFixIt",
-          "lineNumber": 49
+          "lineNumber": 49,
+          "type": "function"
         }
       ]
     }
@@ -195,13 +239,18 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/chatbot.service.ts",
       "items": [
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "host", "lineNumber": 16, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 18, "type": "function" },
         {
           "name": "getChatbotStatus",
-          "lineNumber": 20
+          "lineNumber": 20,
+          "type": "function"
         },
         {
           "name": "getResponse",
-          "lineNumber": 24
+          "lineNumber": 24,
+          "type": "function"
         }
       ]
     }
@@ -212,13 +261,18 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/code-fixes.service.ts",
       "items": [
+        { "name": "hostServer", "lineNumber": 23, "type": "attribute" },
+        { "name": "host", "lineNumber": 24, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 26, "type": "function" },
         {
           "name": "get",
-          "lineNumber": 28
+          "lineNumber": 28,
+          "type": "function"
         },
         {
           "name": "check",
-          "lineNumber": 32
+          "lineNumber": 32,
+          "type": "function"
         }
       ]
     }
@@ -236,7 +290,6 @@
       "entityName": "Fixes",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/code-fixes.service.ts",
-
       "items": []
     }
   },
@@ -254,7 +307,10 @@
       "entityName": "CodeSnippet",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/code-snippet.service.ts",
-      "items": []
+      "items": [
+        { "name": "vulnLines", "lineNumber": 13, "type": "attribute" },
+        { "name": "snippet", "lineNumber": 14, "type": "attribute" }
+      ]
     }
   },
   {
@@ -271,8 +327,11 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/code-snippet.service.ts",
       "items": [
-        { "name": "get", "lineNumber": 30 },
-        { "name": "challenges", "lineNumber": 34 }
+        { "name": "hostServer", "lineNumber": 25, "type": "attribute" },
+        { "name": "host", "lineNumber": 26, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 28, "type": "function" },
+        { "name": "get", "lineNumber": 30, "type": "function" },
+        { "name": "challenges", "lineNumber": 34, "type": "function" }
       ]
     }
   },
@@ -281,7 +340,12 @@
       "entityName": "ComplaintService",
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/complaint.service.ts",
-      "items": [{ "name": "save", "lineNumber": 19 }]
+      "items": [
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "host", "lineNumber": 16, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 17, "type": "function" },
+        { "name": "save", "lineNumber": 19, "type": "function" }
+      ]
     }
   },
   {
@@ -307,7 +371,17 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/configuration.service.ts",
 
-      "items": [{ "name": "getApplicationConfiguration", "lineNumber": 105 }]
+      "items": [
+        { "name": "hostServer", "lineNumber": 100, "type": "attribute" },
+        { "name": "host", "lineNumber": 101, "type": "attribute" },
+        { "name": "configObservable", "lineNumber": 102, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 103, "type": "function" },
+        {
+          "name": "getApplicationConfiguration",
+          "lineNumber": 105,
+          "type": "function"
+        }
+      ]
     }
   },
   {
@@ -315,7 +389,11 @@
       "entityName": "CountryMappingService",
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/country-mapping.service.ts",
-      "items": [{ "name": "getCountryMapping", "lineNumber": 18 }]
+      "items": [
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 16, "type": "function" },
+        { "name": "getCountryMapping", "lineNumber": 18, "type": "function" }
+      ]
     }
   },
   {
@@ -323,10 +401,12 @@
       "entityName": "DataSubjectService",
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/data-subject.service.ts",
-
       "items": [
-        { "name": "erase", "lineNumber": 21 },
-        { "name": "dataExport", "lineNumber": 26 }
+        { "name": "hostServer", "lineNumber": 16, "type": "attribute" },
+        { "name": "host", "lineNumber": 17, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 19, "type": "function" },
+        { "name": "erase", "lineNumber": 21, "type": "function" },
+        { "name": "dataExport", "lineNumber": 26, "type": "function" }
       ]
     }
   },
@@ -352,10 +432,12 @@
       "entityName": "DeliveryService",
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/delivery.service.ts",
-
       "items": [
-        { "name": "get", "lineNumber": 31 },
-        { "name": "getById", "lineNumber": 35 }
+        { "name": "hostServer", "lineNumber": 26, "type": "attribute" },
+        { "name": "host", "lineNumber": 27, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 29, "type": "function" },
+        { "name": "get", "lineNumber": 31, "type": "function" },
+        { "name": "getById", "lineNumber": 35, "type": "function" }
       ]
     }
   },
@@ -365,9 +447,12 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/feedback.service.ts",
       "items": [
-        { "name": "find", "lineNumber": 20 },
-        { "name": "save", "lineNumber": 26 },
-        { "name": "del", "lineNumber": 30 }
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "host", "lineNumber": 16, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 18, "type": "function" },
+        { "name": "find", "lineNumber": 20, "type": "function" },
+        { "name": "save", "lineNumber": 26, "type": "function" },
+        { "name": "del", "lineNumber": 30, "type": "function" }
       ]
     }
   },
@@ -376,7 +461,14 @@
       "entityName": "FormSubmitService",
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/form-submit.service.ts",
-      "items": [{ "name": "attachEnterKeyHandler", "lineNumber": 15 }]
+      "items": [
+        { "name": "constructor", "lineNumber": 13, "type": "function" },
+        {
+          "name": "attachEnterKeyHandler",
+          "lineNumber": 15,
+          "type": "function"
+        }
+      ]
     }
   },
   {
@@ -384,7 +476,11 @@
       "entityName": "ImageCaptchaService",
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/image-captcha.service.ts",
-      "items": [{ "name": "getCaptcha", "lineNumber": 19 }]
+      "items": [
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 17, "type": "function" },
+        { "name": "getCaptcha", "lineNumber": 19, "type": "function" }
+      ]
     }
   },
   {
@@ -393,12 +489,15 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/keys.service.ts",
       "items": [
-        { "name": "nftUnlocked", "lineNumber": 15 },
-        { "name": "nftMintListen", "lineNumber": 24 },
-        { "name": "checkNftMinted", "lineNumber": 33 },
-        { "name": "submitKey", "lineNumber": 42 },
-        { "name": "verifyNFTWallet", "lineNumber": 53 },
-        { "name": "walletAddressSend", "lineNumber": 64 }
+        { "name": "hostServer", "lineNumber": 10, "type": "attribute" },
+        { "name": "host", "lineNumber": 11, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 13, "type": "function" },
+        { "name": "nftUnlocked", "lineNumber": 15, "type": "function" },
+        { "name": "nftMintListen", "lineNumber": 24, "type": "function" },
+        { "name": "checkNftMinted", "lineNumber": 33, "type": "function" },
+        { "name": "submitKey", "lineNumber": 42, "type": "function" },
+        { "name": "verifyNFTWallet", "lineNumber": 53, "type": "function" },
+        { "name": "walletAddressSend", "lineNumber": 64, "type": "function" }
       ]
     }
   },
@@ -407,7 +506,11 @@
       "entityName": "LanguagesService",
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/languages.service.ts",
-      "items": [{ "name": "getLanguages", "lineNumber": 18 }]
+      "items": [
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 16, "type": "function" },
+        { "name": "getLanguages", "lineNumber": 18, "type": "function" }
+      ]
     }
   },
   {
@@ -416,9 +519,11 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/local-backup.service.ts",
       "items": [
-        { "name": "save", "lineNumber": 23 },
-        { "name": "restore", "lineNumber": 51 },
-        { "name": "restoreCookie", "lineNumber": 82 }
+        { "name": "VERSION", "lineNumber": 19, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 21, "type": "function" },
+        { "name": "save", "lineNumber": 23, "type": "function" },
+        { "name": "restore", "lineNumber": 51, "type": "function" },
+        { "name": "restoreCookie", "lineNumber": 82, "type": "function" }
       ]
     }
   },
@@ -428,9 +533,12 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/order-history.service.ts",
       "items": [
-        { "name": "get", "lineNumber": 20 },
-        { "name": "getAll", "lineNumber": 24 },
-        { "name": "toggleDeliveryStatus", "lineNumber": 28 }
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "host", "lineNumber": 16, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 18, "type": "function" },
+        { "name": "get", "lineNumber": 20, "type": "function" },
+        { "name": "getAll", "lineNumber": 24, "type": "function" },
+        { "name": "toggleDeliveryStatus", "lineNumber": 28, "type": "function" }
       ]
     }
   },
@@ -440,10 +548,13 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/payment.service.ts",
       "items": [
-        { "name": "get", "lineNumber": 20 },
-        { "name": "getById", "lineNumber": 24 },
-        { "name": "save", "lineNumber": 29 },
-        { "name": "del", "lineNumber": 33 }
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "host", "lineNumber": 16, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 18, "type": "function" },
+        { "name": "get", "lineNumber": 20, "type": "function" },
+        { "name": "getById", "lineNumber": 24, "type": "function" },
+        { "name": "save", "lineNumber": 29, "type": "function" },
+        { "name": "del", "lineNumber": 33, "type": "function" }
       ]
     }
   },
@@ -453,8 +564,11 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/photo-wall.service.ts",
       "items": [
-        { "name": "addMemory", "lineNumber": 20 },
-        { "name": "get", "lineNumber": 27 }
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "host", "lineNumber": 16, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 18, "type": "function" },
+        { "name": "addMemory", "lineNumber": 20, "type": "function" },
+        { "name": "get", "lineNumber": 27, "type": "function" }
       ]
     }
   },
@@ -464,10 +578,13 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/product-review.service.ts",
       "items": [
-        { "name": "get", "lineNumber": 20 },
-        { "name": "create", "lineNumber": 28 },
-        { "name": "patch", "lineNumber": 34 },
-        { "name": "like", "lineNumber": 38 }
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "host", "lineNumber": 16, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 18, "type": "function" },
+        { "name": "get", "lineNumber": 20, "type": "function" },
+        { "name": "create", "lineNumber": 28, "type": "function" },
+        { "name": "patch", "lineNumber": 34, "type": "function" },
+        { "name": "like", "lineNumber": 38, "type": "function" }
       ]
     }
   },
@@ -477,10 +594,13 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/product.service.ts",
       "items": [
-        { "name": "search", "lineNumber": 20 },
-        { "name": "find", "lineNumber": 24 },
-        { "name": "get", "lineNumber": 28 },
-        { "name": "put", "lineNumber": 33 }
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "host", "lineNumber": 16, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 18, "type": "function" },
+        { "name": "search", "lineNumber": 20, "type": "function" },
+        { "name": "find", "lineNumber": 24, "type": "function" },
+        { "name": "get", "lineNumber": 28, "type": "function" },
+        { "name": "put", "lineNumber": 33, "type": "function" }
       ]
     }
   },
@@ -490,8 +610,11 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/quantity.service.ts",
       "items": [
-        { "name": "getAll", "lineNumber": 20 },
-        { "name": "put", "lineNumber": 24 }
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "host", "lineNumber": 16, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 18, "type": "function" },
+        { "name": "getAll", "lineNumber": 20, "type": "function" },
+        { "name": "put", "lineNumber": 24, "type": "function" }
       ]
     }
   },
@@ -501,8 +624,11 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/recycle.service.ts",
       "items": [
-        { "name": "find", "lineNumber": 20 },
-        { "name": "save", "lineNumber": 26 }
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "host", "lineNumber": 16, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 18, "type": "function" },
+        { "name": "find", "lineNumber": 20, "type": "function" },
+        { "name": "save", "lineNumber": 26, "type": "function" }
       ]
     }
   },
@@ -511,7 +637,7 @@
       "entityName": "RequestInterceptor",
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/request.interceptor.ts",
-      "items": [{ "name": "intercept", "lineNumber": 12 }]
+      "items": [{ "name": "intercept", "lineNumber": 12, "type": "function" }]
     }
   },
   {
@@ -519,7 +645,12 @@
       "entityName": "SecurityAnswerService",
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/security-answer.service.ts",
-      "items": [{ "name": "save", "lineNumber": 20 }]
+      "items": [
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "host", "lineNumber": 16, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 18, "type": "function" },
+        { "name": "save", "lineNumber": 20, "type": "function" }
+      ]
     }
   },
   {
@@ -528,8 +659,11 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/security-question.service.ts",
       "items": [
-        { "name": "find", "lineNumber": 20 },
-        { "name": "findBy", "lineNumber": 24 }
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "host", "lineNumber": 16, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 18, "type": "function" },
+        { "name": "find", "lineNumber": 20, "type": "function" },
+        { "name": "findBy", "lineNumber": 24, "type": "function" }
       ]
     }
   },
@@ -538,7 +672,10 @@
       "entityName": "SnackBarHelperService",
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/snack-bar-helper.service.ts",
-      "items": [{ "name": "open", "lineNumber": 17 }]
+      "items": [
+        { "name": "constructor", "lineNumber": 14, "type": "function" },
+        { "name": "open", "lineNumber": 17, "type": "function" }
+      ]
     }
   },
   {
@@ -546,7 +683,11 @@
       "entityName": "SocketIoService",
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/socket-io.service.ts",
-      "items": [{ "name": "socket", "lineNumber": 28 }]
+      "items": [
+        { "name": "_socket", "lineNumber": 14, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 16, "type": "function" },
+        { "name": "socket", "lineNumber": 28, "type": "function" }
+      ]
     }
   },
   {
@@ -554,7 +695,12 @@
       "entityName": "TrackOrderService",
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/track-order.service.ts",
-      "items": [{ "name": "find", "lineNumber": 20 }]
+      "items": [
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "host", "lineNumber": 16, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 18, "type": "function" },
+        { "name": "find", "lineNumber": 20, "type": "function" }
+      ]
     }
   },
   {
@@ -588,12 +734,12 @@
       "entityName": "TwoFactorAuthService",
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/two-factor-auth-service.ts",
-
       "items": [
-        { "name": "verify", "lineNumber": 35 },
-        { "name": "status", "lineNumber": 42 },
-        { "name": "setup", "lineNumber": 47 },
-        { "name": "disable", "lineNumber": 55 }
+        { "name": "constructor", "lineNumber": 33, "type": "function" },
+        { "name": "verify", "lineNumber": 35, "type": "function" },
+        { "name": "status", "lineNumber": 42, "type": "function" },
+        { "name": "setup", "lineNumber": 47, "type": "function" },
+        { "name": "disable", "lineNumber": 55, "type": "function" }
       ]
     }
   },
@@ -612,18 +758,22 @@
       "filePath": "/frontend/src/app/Services/user.service.ts",
 
       "items": [
-        { "name": "find", "lineNumber": 28 },
-        { "name": "get", "lineNumber": 33 },
-        { "name": "save", "lineNumber": 37 },
-        { "name": "login", "lineNumber": 44 },
-        { "name": "getLoggedInState", "lineNumber": 49 },
-        { "name": "changePassword", "lineNumber": 53 },
-        { "name": "resetPassword", "lineNumber": 58 },
-        { "name": "whoAmI", "lineNumber": 62 },
-        { "name": "oauthLogin", "lineNumber": 66 },
-        { "name": "saveLastLoginIp", "lineNumber": 70 },
-        { "name": "deluxeStatus", "lineNumber": 74 },
-        { "name": "upgradeToDeluxe", "lineNumber": 78 }
+        { "name": "isLoggedIn", "lineNumber": 22, "type": "attribute" },
+        { "name": "hostServer", "lineNumber": 23, "type": "attribute" },
+        { "name": "host", "lineNumber": 24, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 26, "type": "function" },
+        { "name": "find", "lineNumber": 28, "type": "function" },
+        { "name": "get", "lineNumber": 33, "type": "function" },
+        { "name": "save", "lineNumber": 37, "type": "function" },
+        { "name": "login", "lineNumber": 44, "type": "function" },
+        { "name": "getLoggedInState", "lineNumber": 49, "type": "function" },
+        { "name": "changePassword", "lineNumber": 53, "type": "function" },
+        { "name": "resetPassword", "lineNumber": 58, "type": "function" },
+        { "name": "whoAmI", "lineNumber": 62, "type": "function" },
+        { "name": "oauthLogin", "lineNumber": 66, "type": "function" },
+        { "name": "saveLastLoginIp", "lineNumber": 70, "type": "function" },
+        { "name": "deluxeStatus", "lineNumber": 74, "type": "function" },
+        { "name": "upgradeToDeluxe", "lineNumber": 78, "type": "function" }
       ]
     }
   },
@@ -641,7 +791,12 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/vuln-lines.service.ts",
 
-      "items": [{ "name": "check", "lineNumber": 20 }]
+      "items": [
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "host", "lineNumber": 16, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 18, "type": "function" },
+        { "name": "check", "lineNumber": 20, "type": "function" }
+      ]
     }
   },
   {
@@ -650,8 +805,11 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/wallet.service.ts",
       "items": [
-        { "name": "get", "lineNumber": 20 },
-        { "name": "put", "lineNumber": 24 }
+        { "name": "hostServer", "lineNumber": 15, "type": "attribute" },
+        { "name": "host", "lineNumber": 16, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 18, "type": "function" },
+        { "name": "get", "lineNumber": 20, "type": "function" },
+        { "name": "put", "lineNumber": 24, "type": "function" }
       ]
     }
   },
@@ -660,7 +818,9 @@
       "entityName": "WindowRefService",
       "entityType": "class",
       "filePath": "/frontend/src/app/Services/window-ref.service.ts",
-      "items": [{ "name": "nativeWindow", "lineNumber": 12 }]
+      "items": [
+        { "name": "nativeWindow", "lineNumber": 12, "type": "function" }
+      ]
     }
   },
   {
@@ -668,7 +828,7 @@
       "entityName": "window-ref.service.ts",
       "entityType": "file",
       "filePath": "/frontend/src/app/Services/window-ref.service.ts",
-      "items": [{ "name": "getWindow", "lineNumber": 17 }]
+      "items": [{ "name": "getWindow", "lineNumber": 17, "type": "function" }]
     }
   },
   {
@@ -677,9 +837,10 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/app.guard.ts",
       "items": [
-        { "name": "canActivate", "lineNumber": 15 },
-        { "name": "forbidRoute", "lineNumber": 24 },
-        { "name": "tokenDecode", "lineNumber": 31 }
+        { "name": "constructor", "lineNumber": 13, "type": "function" },
+        { "name": "canActivate", "lineNumber": 15, "type": "function" },
+        { "name": "forbidRoute", "lineNumber": 24, "type": "function" },
+        { "name": "tokenDecode", "lineNumber": 31, "type": "function" }
       ]
     }
   },
@@ -689,16 +850,10 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/app.guard.ts",
 
-      "items": [{ "name": "canActivate", "lineNumber": 49 }]
-    }
-  },
-  {
-    "data": {
-      "entityName": "AdminGuard",
-      "entityType": "class",
-      "filePath": "/frontend/src/app/app.guard.ts",
-
-      "items": [{ "name": "canActivate", "lineNumber": 49 }]
+      "items": [
+        { "name": "constructor", "lineNumber": 47, "type": "function" },
+        { "name": "canActivate", "lineNumber": 49, "type": "function" }
+      ]
     }
   },
   {
@@ -707,7 +862,10 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/app.guard.ts",
 
-      "items": [{ "name": "canActivate", "lineNumber": 64 }]
+      "items": [
+        { "name": "constructor", "lineNumber": 62, "type": "function" },
+        { "name": "canActivate", "lineNumber": 64, "type": "function" }
+      ]
     }
   },
   {
@@ -715,7 +873,10 @@
       "entityName": "DeluxeGuard",
       "entityType": "class",
       "filePath": "/frontend/src/app/app.guard.ts",
-      "items": [{ "name": "isDeluxe", "lineNumber": 79 }]
+      "items": [
+        { "name": "constructor", "lineNumber": 77, "type": "function" },
+        { "name": "isDeluxe", "lineNumber": 79, "type": "function" }
+      ]
     }
   },
   {
@@ -724,14 +885,37 @@
       "entityType": "class",
       "filePath": "/frontend/src/app/administration/administration.component.ts",
       "items": [
-        { "name": "ngOnInit", "lineNumber": 39 },
-        { "name": "findAllUsers", "lineNumber": 44 },
-        { "name": "findAllFeedbacks", "lineNumber": 60 },
-        { "name": "deleteFeedback", "lineNumber": 75 },
-        { "name": "showUserDetail", "lineNumber": 84 },
-        { "name": "showFeedbackDetails", "lineNumber": 92 },
-        { "name": "times", "lineNumber": 101 },
-        { "name": "doesUserHaveAnActiveSession", "lineNumber": 105 }
+        { "name": "userDataSource", "lineNumber": 26, "type": "attribute" },
+        {
+          "name": "userDataSourceHidden",
+          "lineNumber": 27,
+          "type": "attribute"
+        },
+        { "name": "userColumns", "lineNumber": 28, "type": "attribute" },
+        { "name": "feedbackDataSource", "lineNumber": 29, "type": "attribute" },
+        { "name": "feedbackColumns", "lineNumber": 30, "type": "attribute" },
+        { "name": "error", "lineNumber": 31, "type": "attribute" },
+        { "name": "resultsLengthUser", "lineNumber": 32, "type": "attribute" },
+        {
+          "name": "resultsLengthFeedback",
+          "lineNumber": 33,
+          "type": "attribute"
+        },
+        { "name": "paginatorUsers", "lineNumber": 34, "type": "attribute" },
+        { "name": "paginatorFeedb", "lineNumber": 35, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 36, "type": "function" },
+        { "name": "ngOnInit", "lineNumber": 39, "type": "function" },
+        { "name": "findAllUsers", "lineNumber": 44, "type": "function" },
+        { "name": "findAllFeedbacks", "lineNumber": 60, "type": "function" },
+        { "name": "deleteFeedback", "lineNumber": 75, "type": "function" },
+        { "name": "showUserDetail", "lineNumber": 84, "type": "function" },
+        { "name": "showFeedbackDetails", "lineNumber": 92, "type": "function" },
+        { "name": "times", "lineNumber": 101, "type": "function" },
+        {
+          "name": "doesUserHaveAnActiveSession",
+          "lineNumber": 105,
+          "type": "function"
+        }
       ]
     }
   }

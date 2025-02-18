@@ -5,11 +5,20 @@ export function countFilesAndLines(
   directory: string,
   allowedExtensions: string[] = [".ts", ".py", ".tsx", ".java", ".cpp"]
 ): {
-  fileCount: number;
-  lineCount: number;
+  totalFileCount: number;
+  totalLineCount: number;
+  fileCount: { [key: string]: number };
+  lineCount: { [key: string]: number };
 } {
-  let fileCount = 0;
-  let lineCount = 0;
+  let totalFileCount = 0;
+  let totalLineCount = 0;
+  let fileCount: { [key: string]: number } = {};
+  let lineCount: { [key: string]: number } = {};
+
+  allowedExtensions.forEach((ext) => {
+    fileCount[ext] = 0;
+    lineCount[ext] = 0;
+  });
 
   function processDirectory(dir: string) {
     const files = fs.readdirSync(dir);
@@ -23,16 +32,19 @@ export function countFilesAndLines(
       } else {
         const ext = path.extname(file);
         if (allowedExtensions.includes(ext)) {
-          fileCount++;
+          fileCount[ext]++;
+          totalFileCount++;
           const fileContent = fs.readFileSync(fullPath, "utf8");
-          lineCount += fileContent.split("\n").length;
+          const lineCountForFile = fileContent.split("\n").length;
+          lineCount[ext] += lineCountForFile;
+          totalLineCount += lineCountForFile;
         }
       }
     }
   }
 
   processDirectory(directory);
-  return { fileCount, lineCount };
+  return { totalFileCount, totalLineCount, fileCount, lineCount };
 }
 
 export function countEntityTypes(
@@ -67,7 +79,7 @@ export function calculatePrecisionRecallF1ForNodes(
       entityType: string;
       entityName: string;
       filePath: string;
-      items: { name: string; lineNumber: number }[];
+      items: { name: string; lineNumber: number; type: string }[];
     };
   }[],
   groundTruthList: {
@@ -75,7 +87,7 @@ export function calculatePrecisionRecallF1ForNodes(
       entityType: string;
       entityName: string;
       filePath: string;
-      items: { name: string; lineNumber: number }[];
+      items: { name: string; lineNumber: number; type: string }[];
     };
   }[]
 ) {
@@ -128,13 +140,13 @@ export function calculatePrecisionRecallF1ForNodes(
     const actualItems = new Set(
       actualEntity.data.items.map(
         (i) =>
-          `${actualEntity.data.entityType}:${actualEntity.data.entityName}:${i.name}:${i.lineNumber}`
+          `${actualEntity.data.entityType}:${actualEntity.data.entityName}:${i.name}:${i.lineNumber}:${i.type}`
       )
     );
     const predictedItems = new Set(
       predictedEntity.data.items.map(
         (i) =>
-          `${predictedEntity.data.entityType}:${predictedEntity.data.entityName}:${i.name}:${i.lineNumber}`
+          `${predictedEntity.data.entityType}:${predictedEntity.data.entityName}:${i.name}:${i.lineNumber}:${i.type}`
       )
     );
 
@@ -148,12 +160,14 @@ export function calculatePrecisionRecallF1ForNodes(
       (name) => !predictedItems.has(name)
     );
 
-    /* if (falsePositives.length > 0) {
+    /* 
+    if (falsePositives.length > 0 || falseNegatives.length > 0) {
+      console.log(predictedEntity.data.items);
+      console.log(predictedEntity.data.filePath);
       console.log("falsePositives:", falsePositives);
-    }
-    if (falseNegatives.length > 0) {
       console.log("falseNegatives:", falseNegatives);
-    } */
+    } 
+    */
 
     functionTP += truePositives.length;
     functionFP += falsePositives.length;

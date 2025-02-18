@@ -5,19 +5,46 @@
       "entityType": "class",
       "filePath": "/backend/event-service/src/main/java/com/tick/service/EventService.java",
       "items": [
-        { "name": "addEvent", "lineNumber": 30 },
-        { "name": "addEventDate", "lineNumber": 41 },
-        { "name": "deleteEventDate", "lineNumber": 48 },
-        { "name": "filterEvents", "lineNumber": 54 },
-        { "name": "getEventByID", "lineNumber": 73 },
-        { "name": "updateEvent", "lineNumber": 80 },
-        { "name": "deleteEvent", "lineNumber": 88 },
-        { "name": "eventHasAPriceLessThanOrEqualToMaxPrice", "lineNumber": 94 },
-        { "name": "eventHasFilteredDate", "lineNumber": 104 },
-        { "name": "upsert", "lineNumber": 116 },
-        { "name": "updateModified", "lineNumber": 122 },
-        { "name": "searchForEventName", "lineNumber": 127 },
-        { "name": "getRecommendedEvents", "lineNumber": 131 }
+        { "name": "addEvent", "lineNumber": 30, "type": "function" },
+        { "name": "addEventDate", "lineNumber": 41, "type": "function" },
+        { "name": "deleteEventDate", "lineNumber": 48, "type": "function" },
+        { "name": "filterEvents", "lineNumber": 54, "type": "function" },
+        { "name": "getEventByID", "lineNumber": 73, "type": "function" },
+        { "name": "updateEvent", "lineNumber": 80, "type": "function" },
+        { "name": "deleteEvent", "lineNumber": 88, "type": "function" },
+        {
+          "name": "eventHasAPriceLessThanOrEqualToMaxPrice",
+          "lineNumber": 94,
+          "type": "function"
+        },
+        {
+          "name": "eventHasFilteredDate",
+          "lineNumber": 104,
+          "type": "function"
+        },
+        { "name": "upsert", "lineNumber": 116, "type": "function" },
+        { "name": "updateModified", "lineNumber": 122, "type": "function" },
+        { "name": "searchForEventName", "lineNumber": 127, "type": "function" },
+        {
+          "name": "getRecommendedEvents",
+          "lineNumber": 131,
+          "type": "function"
+        },
+        {
+          "name": "eventRepository",
+          "lineNumber": 19,
+          "type": "attribute"
+        },
+        {
+          "name": "venue",
+          "lineNumber": 20,
+          "type": "attribute"
+        },
+        {
+          "name": "artist_host",
+          "lineNumber": 21,
+          "type": "attribute"
+        }
       ]
     }
   },
@@ -27,9 +54,13 @@
       "entityType": "interface",
       "filePath": "/backend/event-service/src/main/java/com/tick/repository/EventRepository.java",
       "items": [
-        { "name": "findByCategory", "lineNumber": 12 },
-        { "name": "findByNameRegex", "lineNumber": 14 },
-        { "name": "findFirstByArtistRegex", "lineNumber": 17 }
+        { "name": "findByCategory", "lineNumber": 12, "type": "function" },
+        { "name": "findByNameRegex", "lineNumber": 14, "type": "function" },
+        {
+          "name": "findFirstByArtistRegex",
+          "lineNumber": 17,
+          "type": "function"
+        }
       ]
     }
   },
@@ -39,16 +70,17 @@
       "entityType": "class",
       "filePath": "/backend/event-service/src/main/java/com/tick/controller/EventController.java",
       "items": [
-        { "name": "createEvent", "lineNumber": 24 },
-        { "name": "getEvents", "lineNumber": 30 },
-        { "name": "modifyEvent", "lineNumber": 39 },
-        { "name": "upsertEvent", "lineNumber": 44 },
-        { "name": "getEventByID", "lineNumber": 50 },
-        { "name": "deleteEvent", "lineNumber": 55 },
-        { "name": "addEventDate", "lineNumber": 60 },
-        { "name": "deleteEventDate", "lineNumber": 66 },
-        { "name": "searchForEventName", "lineNumber": 71 },
-        { "name": "getRecommendedEvents", "lineNumber": 76 }
+        { "name": "eventService", "lineNumber": 21, "type": "attribute" },
+        { "name": "createEvent", "lineNumber": 24, "type": "function" },
+        { "name": "getEvents", "lineNumber": 30, "type": "function" },
+        { "name": "modifyEvent", "lineNumber": 39, "type": "function" },
+        { "name": "upsertEvent", "lineNumber": 44, "type": "function" },
+        { "name": "getEventByID", "lineNumber": 50, "type": "function" },
+        { "name": "deleteEvent", "lineNumber": 55, "type": "function" },
+        { "name": "addEventDate", "lineNumber": 60, "type": "function" },
+        { "name": "deleteEventDate", "lineNumber": 66, "type": "function" },
+        { "name": "searchForEventName", "lineNumber": 71, "type": "function" },
+        { "name": "getRecommendedEvents", "lineNumber": 76, "type": "function" }
       ]
     }
   },
@@ -58,9 +90,12 @@
       "entityType": "class",
       "filePath": "/backend/event-service/src/main/java/com/tick/controller/ErrorMessage.java",
       "items": [
-        { "name": "getError", "lineNumber": 22 },
-        { "name": "getTimestamp", "lineNumber": 26 },
-        { "name": "getStatus", "lineNumber": 30 }
+        { "name": "timestamp", "lineNumber": 8, "type": "attribute" },
+        { "name": "error", "lineNumber": 9, "type": "attribute" },
+        { "name": "status", "lineNumber": 10, "type": "attribute" },
+        { "name": "getError", "lineNumber": 22, "type": "function" },
+        { "name": "getTimestamp", "lineNumber": 26, "type": "function" },
+        { "name": "getStatus", "lineNumber": 30, "type": "function" }
       ]
     }
   },
@@ -69,7 +104,7 @@
       "entityName": "EventApplication",
       "entityType": "class",
       "filePath": "/backend/event-service/src/main/java/com/tick/EventApplication.java",
-      "items": [{ "name": "main", "lineNumber": 19 }]
+      "items": [{ "name": "main", "lineNumber": 19, "type": "function" }]
     }
   },
   {
@@ -78,11 +113,11 @@
       "entityType": "class",
       "filePath": "/backend/event-service/src/main/java/com/tick/controller/ExceptionCatcher.java",
       "items": [
-        { "name": "no_event", "lineNumber": 14 },
-        { "name": "no_body", "lineNumber": 19 },
-        { "name": "wrong_type", "lineNumber": 24 },
-        { "name": "not_valid", "lineNumber": 29 },
-        { "name": "generic_exception", "lineNumber": 34 }
+        { "name": "no_event", "lineNumber": 14, "type": "function" },
+        { "name": "no_body", "lineNumber": 19, "type": "function" },
+        { "name": "wrong_type", "lineNumber": 24, "type": "function" },
+        { "name": "not_valid", "lineNumber": 29, "type": "function" },
+        { "name": "generic_exception", "lineNumber": 34, "type": "function" }
       ]
     }
   },
@@ -91,7 +126,7 @@
       "entityName": "Healthcheck",
       "entityType": "class",
       "filePath": "/backend/event-service/src/main/java/com/tick/controller/Healthcheck.java",
-      "items": [{ "name": "health_check", "lineNumber": 6 }]
+      "items": [{ "name": "health_check", "lineNumber": 6, "type": "function" }]
     }
   },
   {
@@ -139,7 +174,10 @@
       "entityName": "WebException",
       "entityType": "class",
       "filePath": "/backend/event-service/src/main/java/com/tick/exception/WebException.java",
-      "items": [{ "name": "getStatus", "lineNumber": 10 }]
+      "items": [
+        { "name": "status", "lineNumber": 4, "type": "attribute" },
+        { "name": "getStatus", "lineNumber": 10, "type": "function" }
+      ]
     }
   },
   {
@@ -147,7 +185,10 @@
       "entityName": "Artist",
       "entityType": "class",
       "filePath": "/backend/event-service/src/main/java/com/tick/model/Artist.java",
-      "items": [{ "name": "getName", "lineNumber": 6 }]
+      "items": [
+        { "name": "name", "lineNumber": 4, "type": "attribute" },
+        { "name": "getName", "lineNumber": 6, "type": "function" }
+      ]
     }
   },
   {
@@ -155,7 +196,15 @@
       "entityName": "Links",
       "entityType": "class",
       "filePath": "/backend/event-service/src/main/java/com/tick/model/Event.java",
-      "items": []
+      "items": [
+        { "name": "websiteURL", "lineNumber": 18, "type": "attribute" },
+        { "name": "instagramURL", "lineNumber": 19, "type": "attribute" },
+        { "name": "youtubeURL", "lineNumber": 20, "type": "attribute" },
+        { "name": "facebookURL", "lineNumber": 21, "type": "attribute" },
+        { "name": "spotifyURL", "lineNumber": 22, "type": "attribute" },
+        { "name": "twitterURL", "lineNumber": 23, "type": "attribute" },
+        { "name": "appleMusicURL", "lineNumber": 24, "type": "attribute" }
+      ]
     }
   },
   {
@@ -164,11 +213,24 @@
       "entityType": "class",
       "filePath": "/backend/event-service/src/main/java/com/tick/model/Event.java",
       "items": [
-        { "name": "upsert", "lineNumber": 57 },
-        { "name": "addEventDate", "lineNumber": 73 },
-        { "name": "removeEventDate", "lineNumber": 83 },
-        { "name": "findEventDate", "lineNumber": 88 },
-        { "name": "setEventID", "lineNumber": 98 }
+        { "name": "upsert", "lineNumber": 57, "type": "function" },
+        { "name": "addEventDate", "lineNumber": 73, "type": "function" },
+        { "name": "removeEventDate", "lineNumber": 83, "type": "function" },
+        { "name": "findEventDate", "lineNumber": 88, "type": "function" },
+        { "name": "setEventID", "lineNumber": 98, "type": "function" },
+        { "name": "eventID", "lineNumber": 32, "type": "attribute" },
+        { "name": "name", "lineNumber": 35, "type": "attribute" },
+        { "name": "description", "lineNumber": 36, "type": "attribute" },
+        { "name": "category", "lineNumber": 37, "type": "attribute" },
+        { "name": "banner", "lineNumber": 39, "type": "attribute" },
+        { "name": "artist", "lineNumber": 40, "type": "attribute" },
+        { "name": "lastUpdated", "lineNumber": 42, "type": "attribute" },
+        { "name": "prices", "lineNumber": 44, "type": "attribute" },
+        { "name": "ticketLimit", "lineNumber": 46, "type": "attribute" },
+        { "name": "venueID", "lineNumber": 49, "type": "attribute" },
+        { "name": "seatMap", "lineNumber": 51, "type": "attribute" },
+        { "name": "date", "lineNumber": 53, "type": "attribute" },
+        { "name": "links", "lineNumber": 55, "type": "attribute" }
       ]
     }
   },
@@ -177,7 +239,13 @@
       "entityName": "EventDate",
       "entityType": "class",
       "filePath": "/backend/event-service/src/main/java/com/tick/model/EventDate.java",
-      "items": [{ "name": "populateEventDate", "lineNumber": 29 }]
+      "items": [
+        { "name": "populateEventDate", "lineNumber": 29, "type": "function" },
+        { "name": "eventDateID", "lineNumber": 18, "type": "attribute" },
+        { "name": "eventID", "lineNumber": 22, "type": "attribute" },
+        { "name": "eventDateTime", "lineNumber": 24, "type": "attribute" },
+        { "name": "seatAvailability", "lineNumber": 26, "type": "attribute" }
+      ]
     }
   },
   {
@@ -185,7 +253,11 @@
       "entityName": "Price",
       "entityType": "class",
       "filePath": "/backend/event-service/src/main/java/com/tick/model/Price.java",
-      "items": []
+      "items": [
+        { "name": "category", "lineNumber": 7, "type": "attribute" },
+        { "name": "priceID", "lineNumber": 8, "type": "attribute" },
+        { "name": "price", "lineNumber": 9, "type": "attribute" }
+      ]
     }
   },
   {
@@ -193,7 +265,7 @@
       "entityName": "CorsFilter",
       "entityType": "class",
       "filePath": "/backend/event-service/src/main/java/com/tick/security/CorsFilter.java",
-      "items": [{ "name": "config", "lineNumber": 6 }]
+      "items": [{ "name": "config", "lineNumber": 6, "type": "function" }]
     }
   },
   {
@@ -201,7 +273,7 @@
       "entityName": "SecurityConfig",
       "entityType": "class",
       "filePath": "/backend/event-service/src/main/java/com/tick/security/SecurityConfig.java",
-      "items": [{ "name": "filterChain", "lineNumber": 11 }]
+      "items": [{ "name": "filterChain", "lineNumber": 11, "type": "function" }]
     }
   },
   {
@@ -210,8 +282,9 @@
       "entityType": "class",
       "filePath": "/backend/event-service/src/main/java/com/tick/service/VenueRequest.java",
       "items": [
-        { "name": "getVenue", "lineNumber": 20 },
-        { "name": "getSeatMap", "lineNumber": 36 }
+        { "name": "getVenue", "lineNumber": 20, "type": "function" },
+        { "name": "getSeatMap", "lineNumber": 36, "type": "function" },
+        { "name": "host", "lineNumber": 14, "type": "attribute" }
       ]
     }
   },
@@ -220,7 +293,7 @@
       "entityName": "EventApplicationTests",
       "entityType": "class",
       "filePath": "/backend/event-service/src/test/java/com/tick/event/EventApplicationTests.java",
-      "items": [{ "name": "contextLoads", "lineNumber": 9 }]
+      "items": [{ "name": "contextLoads", "lineNumber": 9, "type": "function" }]
     }
   },
   {
@@ -229,9 +302,20 @@
       "entityType": "class",
       "filePath": "/backend/event-service/src/test/java/com/tick/event/EventIntegrationTest.java",
       "items": [
-        { "name": "getEvents_Success", "lineNumber": 41 },
-        { "name": "getEventByID_InvalidEventID_Failure", "lineNumber": 51 },
-        { "name": "deleteEvent_InvalidEventID_Failure", "lineNumber": 58 }
+        { "name": "port", "lineNumber": 28, "type": "attribute" },
+        { "name": "baseUrl", "lineNumber": 31, "type": "attribute" },
+        { "name": "restTemplate", "lineNumber": 38, "type": "attribute" },
+        { "name": "getEvents_Success", "lineNumber": 41, "type": "function" },
+        {
+          "name": "getEventByID_InvalidEventID_Failure",
+          "lineNumber": 51,
+          "type": "function"
+        },
+        {
+          "name": "deleteEvent_InvalidEventID_Failure",
+          "lineNumber": 58,
+          "type": "function"
+        }
       ]
     }
   },
@@ -241,17 +325,34 @@
       "entityType": "class",
       "filePath": "/backend/event-service/src/test/java/com/tick/event/EventServiceTest.java",
       "items": [
-        { "name": "addEvent_ValidVenueID_Success", "lineNumber": 35 },
-        { "name": "addEvent_InvalidVenueID_ThrowException", "lineNumber": 52 },
+        {
+          "name": "addEvent_ValidVenueID_Success",
+          "lineNumber": 35,
+          "type": "function"
+        },
+        {
+          "name": "addEvent_InvalidVenueID_ThrowException",
+          "lineNumber": 52,
+          "type": "function"
+        },
         {
           "name": "updateEvent_InvalidEventID_ThrowException",
-          "lineNumber": 68
+          "lineNumber": 68,
+          "type": "function"
         },
         {
           "name": "deleteEvent_InvalidEventID_ThrowException",
-          "lineNumber": 82
+          "lineNumber": 82,
+          "type": "function"
         },
-        { "name": "updateEvent_ValidEventID_Success", "lineNumber": 96 }
+        {
+          "name": "updateEvent_ValidEventID_Success",
+          "lineNumber": 96,
+          "type": "function"
+        },
+        { "name": "eventRepository", "lineNumber": 26, "type": "attribute" },
+        { "name": "venueRequest", "lineNumber": 29, "type": "attribute" },
+        { "name": "eventService", "lineNumber": 32, "type": "attribute" }
       ]
     }
   },
@@ -260,7 +361,10 @@
       "entityName": "MongoDBContainer",
       "entityType": "class",
       "filePath": "/backend/event-service/src/test/java/com/tick/event/container/MongoDBContainer.java",
-      "items": [{ "name": "setProperties", "lineNumber": 35 }]
+      "items": [
+        { "name": "setProperties", "lineNumber": 35, "type": "function" },
+        { "name": "MONGO_DB_CONTAINER", "lineNumber": 22, "type": "attribute" }
+      ]
     }
   },
   {
@@ -268,7 +372,7 @@
       "entityName": "CorsFilter",
       "entityType": "class",
       "filePath": "/backend/payment-service/src/main/java/com/tick/paymentservice/security/CorsFilter.java",
-      "items": [{ "name": "config", "lineNumber": 6 }]
+      "items": [{ "name": "config", "lineNumber": 6, "type": "function" }]
     }
   },
   {
@@ -276,7 +380,7 @@
       "entityName": "SecurityConfig",
       "entityType": "class",
       "filePath": "/backend/payment-service/src/main/java/com/tick/paymentservice/security/SecurityConfig.java",
-      "items": [{ "name": "filterChain", "lineNumber": 11 }]
+      "items": [{ "name": "filterChain", "lineNumber": 11, "type": "function" }]
     }
   },
   {
@@ -284,7 +388,10 @@
       "entityName": "LineItemRequest",
       "entityType": "class",
       "filePath": "/backend/payment-service/src/main/java/com/tick/paymentservice/LineItemRequest.java",
-      "items": []
+      "items": [
+        { "name": "quantity", "lineNumber": 7, "type": "attribute" },
+        { "name": "priceID", "lineNumber": 8, "type": "attribute" }
+      ]
     }
   },
   {
@@ -293,8 +400,11 @@
       "entityType": "class",
       "filePath": "/backend/payment-service/src/main/java/com/tick/paymentservice/PaymentController.java",
       "items": [
-        { "name": "health_check", "lineNumber": 20 },
-        { "name": "createSession", "lineNumber": 33 }
+        { "name": "health_check", "lineNumber": 20, "type": "function" },
+        { "name": "createSession", "lineNumber": 33, "type": "function" },
+        { "name": "apiKey", "lineNumber": 16, "type": "attribute" },
+        { "name": "successURL", "lineNumber": 17, "type": "attribute" },
+        { "name": "canceledURL", "lineNumber": 18, "type": "attribute" }
       ]
     }
   },
@@ -303,7 +413,7 @@
       "entityName": "PaymentServiceApplication",
       "entityType": "class",
       "filePath": "/backend/payment-service/src/main/java/com/tick/paymentservice/PaymentServiceApplication.java",
-      "items": [{ "name": "main", "lineNumber": 9 }]
+      "items": [{ "name": "main", "lineNumber": 9, "type": "function" }]
     }
   },
   {
@@ -311,7 +421,7 @@
       "entityName": "PaymentServiceApplicationTests",
       "entityType": "class",
       "filePath": "/backend/payment-service/src/test/java/com/tick/paymentservice/PaymentServiceApplicationTests.java",
-      "items": [{ "name": "contextLoads", "lineNumber": 9 }]
+      "items": [{ "name": "contextLoads", "lineNumber": 9, "type": "function" }]
     }
   },
   {
@@ -320,8 +430,13 @@
       "entityType": "class",
       "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/config/RedisConfig.java",
       "items": [
-        { "name": "connectionFactory", "lineNumber": 35 },
-        { "name": "template", "lineNumber": 54 }
+        { "name": "connectionFactory", "lineNumber": 35, "type": "function" },
+        { "name": "template", "lineNumber": 54, "type": "function" },
+        { "name": "cluster_mode", "lineNumber": 14, "type": "attribute" },
+        { "name": "redis_host", "lineNumber": 15, "type": "attribute" },
+        { "name": "redis_port", "lineNumber": 16, "type": "attribute" },
+        { "name": "redis_user", "lineNumber": 17, "type": "attribute" },
+        { "name": "redis_pw", "lineNumber": 18, "type": "attribute" }
       ]
     }
   },
@@ -330,7 +445,10 @@
       "entityName": "ServerCommandLineRunner",
       "entityType": "class",
       "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/config/ServerCommandLineRunner.java",
-      "items": [{ "name": "run", "lineNumber": 15 }]
+      "items": [
+        { "name": "run", "lineNumber": 15, "type": "function" },
+        { "name": "server", "lineNumber": 13, "type": "attribute" }
+      ]
     }
   },
   {
@@ -338,7 +456,9 @@
       "entityName": "SocketIOConfig",
       "entityType": "class",
       "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/config/SocketIOConfig.java",
-      "items": [{ "name": "socketIOServer", "lineNumber": 9 }]
+      "items": [
+        { "name": "socketIOServer", "lineNumber": 9, "type": "function" }
+      ]
     }
   },
   {
@@ -346,7 +466,10 @@
       "entityName": "Message",
       "entityType": "class",
       "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/entity/Message.java",
-      "items": []
+      "items": [
+        { "name": "type", "lineNumber": 8, "type": "attribute" },
+        { "name": "room", "lineNumber": 9, "type": "attribute" }
+      ]
     }
   },
   {
@@ -354,7 +477,7 @@
       "entityName": "QueueNo",
       "entityType": "class",
       "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/entity/QueueNo.java",
-      "items": []
+      "items": [{ "name": "queue_no", "lineNumber": 9, "type": "attribute" }]
     }
   },
   {
@@ -362,7 +485,11 @@
       "entityName": "Session",
       "entityType": "class",
       "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/entity/Session.java",
-      "items": []
+      "items": [
+        { "name": "id", "lineNumber": 19, "type": "attribute" },
+        { "name": "userQueue", "lineNumber": 21, "type": "attribute" },
+        { "name": "userSet", "lineNumber": 22, "type": "attribute" }
+      ]
     }
   },
   {
@@ -370,7 +497,7 @@
       "entityName": "Token",
       "entityType": "class",
       "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/entity/Token.java",
-      "items": []
+      "items": [{ "name": "token", "lineNumber": 9, "type": "attribute" }]
     }
   },
   {
@@ -378,7 +505,10 @@
       "entityName": "TokenResponse",
       "entityType": "class",
       "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/entity/TokenResponse.java",
-      "items": []
+      "items": [
+        { "name": "token", "lineNumber": 7, "type": "attribute" },
+        { "name": "validity", "lineNumber": 8, "type": "attribute" }
+      ]
     }
   },
   {
@@ -386,7 +516,7 @@
       "entityName": "UserData",
       "entityType": "class",
       "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/entity/UserData.java",
-      "items": []
+      "items": [{ "name": "token", "lineNumber": 9, "type": "attribute" }]
     }
   },
   {
@@ -394,7 +524,7 @@
       "entityName": "UserDataRequest",
       "entityType": "class",
       "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/entity/UserDataRequest.java",
-      "items": []
+      "items": [{ "name": "token", "lineNumber": 9, "type": "attribute" }]
     }
   },
   {
@@ -402,7 +532,10 @@
       "entityName": "UserDataResponse",
       "entityType": "class",
       "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/entity/UserDataResponse.java",
-      "items": []
+      "items": [
+        { "name": "id", "lineNumber": 9, "type": "attribute" },
+        { "name": "expiry", "lineNumber": 10, "type": "attribute" }
+      ]
     }
   },
   {
@@ -411,9 +544,11 @@
       "entityType": "class",
       "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/repository/SessionDAO.java",
       "items": [
-        { "name": "save", "lineNumber": 16 },
-        { "name": "findSessionById", "lineNumber": 20 },
-        { "name": "deleteSessionById", "lineNumber": 24 }
+        { "name": "save", "lineNumber": 16, "type": "function" },
+        { "name": "findSessionById", "lineNumber": 20, "type": "function" },
+        { "name": "deleteSessionById", "lineNumber": 24, "type": "function" },
+        { "name": "HASH_KEY", "lineNumber": 11, "type": "attribute" },
+        { "name": "template", "lineNumber": 13, "type": "attribute" }
       ]
     }
   },
@@ -423,9 +558,11 @@
       "entityType": "class",
       "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/SessionServiceApplication.java",
       "items": [
-        { "name": "getWebClientBuilder", "lineNumber": 22 },
-        { "name": "ping", "lineNumber": 27 },
-        { "name": "main", "lineNumber": 32 }
+        { "name": "getWebClientBuilder", "lineNumber": 22, "type": "function" },
+        { "name": "ping", "lineNumber": 27, "type": "function" },
+        { "name": "main", "lineNumber": 32, "type": "function" },
+        { "name": "tokenHost", "lineNumber": 13, "type": "attribute" },
+        { "name": "tokenPort", "lineNumber": 14, "type": "attribute" }
       ]
     }
   },
@@ -435,10 +572,15 @@
       "entityType": "class",
       "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/SocketModule.java",
       "items": [
-        { "name": "onClientEnter", "lineNumber": 51 },
-        { "name": "onClientExit", "lineNumber": 106 },
-        { "name": "onConnected", "lineNumber": 151 },
-        { "name": "onDisconnected", "lineNumber": 160 }
+        { "name": "onClientEnter", "lineNumber": 51, "type": "function" },
+        { "name": "onClientExit", "lineNumber": 106, "type": "function" },
+        { "name": "onConnected", "lineNumber": 151, "type": "function" },
+        { "name": "onDisconnected", "lineNumber": 160, "type": "function" },
+        { "name": "server", "lineNumber": 26, "type": "attribute" },
+        { "name": "socketService", "lineNumber": 27, "type": "attribute" },
+        { "name": "dao", "lineNumber": 29, "type": "attribute" },
+        { "name": "webClient", "lineNumber": 32, "type": "attribute" },
+        { "name": "session_max", "lineNumber": 35, "type": "attribute" }
       ]
     }
   },
@@ -448,8 +590,8 @@
       "entityType": "class",
       "filePath": "/backend/session-service/src/main/java/com/tick/sessionservice/SocketService.java",
       "items": [
-        { "name": "sendToken", "lineNumber": 11 },
-        { "name": "sendQueueNo", "lineNumber": 17 }
+        { "name": "sendToken", "lineNumber": 11, "type": "function" },
+        { "name": "sendQueueNo", "lineNumber": 17, "type": "function" }
       ]
     }
   },
@@ -458,7 +600,7 @@
       "entityName": "SessionServiceApplicationTests",
       "entityType": "class",
       "filePath": "/backend/session-service/src/test/java/com/tick/sessionservice/SessionServiceApplicationTests.java",
-      "items": [{ "name": "contextLoads", "lineNumber": 9 }]
+      "items": [{ "name": "contextLoads", "lineNumber": 9, "type": "function" }]
     }
   },
   {
@@ -467,11 +609,13 @@
       "entityType": "class",
       "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/controller/BookmarkController.java",
       "items": [
-        { "name": "get_all_bookmarks", "lineNumber": 25 },
-        { "name": "user_bookmarks", "lineNumber": 31 },
-        { "name": "delete_bookmark", "lineNumber": 39 },
-        { "name": "add_bookmark", "lineNumber": 50 },
-        { "name": "verify_event", "lineNumber": 62 }
+        { "name": "get_all_bookmarks", "lineNumber": 25, "type": "function" },
+        { "name": "user_bookmarks", "lineNumber": 31, "type": "function" },
+        { "name": "delete_bookmark", "lineNumber": 39, "type": "function" },
+        { "name": "add_bookmark", "lineNumber": 50, "type": "function" },
+        { "name": "verify_event", "lineNumber": 62, "type": "function" },
+        { "name": "svc", "lineNumber": 16, "type": "attribute" },
+        { "name": "req", "lineNumber": 17, "type": "attribute" }
       ]
     }
   },
@@ -481,9 +625,12 @@
       "entityType": "class",
       "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/controller/ErrorMessage.java",
       "items": [
-        { "name": "getError", "lineNumber": 16 },
-        { "name": "getTimestamp", "lineNumber": 20 },
-        { "name": "getStatus", "lineNumber": 24 }
+        { "name": "timestamp", "lineNumber": 6, "type": "attribute" },
+        { "name": "error", "lineNumber": 7, "type": "attribute" },
+        { "name": "status", "lineNumber": 8, "type": "attribute" },
+        { "name": "getError", "lineNumber": 16, "type": "function" },
+        { "name": "getTimestamp", "lineNumber": 20, "type": "function" },
+        { "name": "getStatus", "lineNumber": 24, "type": "function" }
       ]
     }
   },
@@ -493,10 +640,10 @@
       "entityType": "class",
       "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/controller/ExceptionCatcher.java",
       "items": [
-        { "name": "no_event", "lineNumber": 13 },
-        { "name": "no_body", "lineNumber": 18 },
-        { "name": "wrong_type", "lineNumber": 23 },
-        { "name": "no_such_event", "lineNumber": 28 }
+        { "name": "no_event", "lineNumber": 13, "type": "function" },
+        { "name": "no_body", "lineNumber": 18, "type": "function" },
+        { "name": "wrong_type", "lineNumber": 23, "type": "function" },
+        { "name": "no_such_event", "lineNumber": 28, "type": "function" }
       ]
     }
   },
@@ -505,7 +652,7 @@
       "entityName": "Healthcheck",
       "entityType": "class",
       "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/controller/Healthcheck.java",
-      "items": [{ "name": "health_check", "lineNumber": 7 }]
+      "items": [{ "name": "health_check", "lineNumber": 7, "type": "function" }]
     }
   },
   {
@@ -514,10 +661,12 @@
       "entityType": "class",
       "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/entity/Bookmark.java",
       "items": [
-        { "name": "getUserID", "lineNumber": 22 },
-        { "name": "getEventList", "lineNumber": 26 },
-        { "name": "addEvent", "lineNumber": 30 },
-        { "name": "removeEvent", "lineNumber": 35 }
+        { "name": "getUserID", "lineNumber": 22, "type": "function" },
+        { "name": "getEventList", "lineNumber": 26, "type": "function" },
+        { "name": "addEvent", "lineNumber": 30, "type": "function" },
+        { "name": "removeEvent", "lineNumber": 35, "type": "function" },
+        { "name": "userID", "lineNumber": 10, "type": "attribute" },
+        { "name": "eventList", "lineNumber": 12, "type": "attribute" }
       ]
     }
   },
@@ -550,7 +699,9 @@
       "entityName": "BookmarkRepository",
       "entityType": "interface",
       "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/repository/BookmarkRepository.java",
-      "items": [{ "name": "findByUserID", "lineNumber": 11 }]
+      "items": [
+        { "name": "findByUserID", "lineNumber": 11, "type": "function" }
+      ]
     }
   },
   {
@@ -558,7 +709,7 @@
       "entityName": "CorsFilter",
       "entityType": "class",
       "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/security/CorsFilter.java",
-      "items": [{ "name": "config", "lineNumber": 8 }]
+      "items": [{ "name": "config", "lineNumber": 8, "type": "function" }]
     }
   },
   {
@@ -566,7 +717,10 @@
       "entityName": "SecurityConfig",
       "entityType": "class",
       "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/security/SecurityConfig.java",
-      "items": [{ "name": "filterChain", "lineNumber": 21 }]
+      "items": [
+        { "name": "filterChain", "lineNumber": 21, "type": "function" },
+        { "name": "filter", "lineNumber": 14, "type": "attribute" }
+      ]
     }
   },
   {
@@ -575,14 +729,17 @@
       "entityType": "class",
       "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/security/TokenAuthentication.java",
       "items": [
-        { "name": "getAuthorities", "lineNumber": 17 },
-        { "name": "getCredentials", "lineNumber": 18 },
-        { "name": "getDetails", "lineNumber": 19 },
-        { "name": "getPrincipal", "lineNumber": 20 },
-        { "name": "setPrincipal", "lineNumber": 21 },
-        { "name": "getName", "lineNumber": 22 },
-        { "name": "isAuthenticated", "lineNumber": 23 },
-        { "name": "setAuthenticated", "lineNumber": 24 }
+        { "name": "getAuthorities", "lineNumber": 17, "type": "function" },
+        { "name": "getCredentials", "lineNumber": 18, "type": "function" },
+        { "name": "getDetails", "lineNumber": 19, "type": "function" },
+        { "name": "getPrincipal", "lineNumber": 20, "type": "function" },
+        { "name": "setPrincipal", "lineNumber": 21, "type": "function" },
+        { "name": "getName", "lineNumber": 22, "type": "function" },
+        { "name": "isAuthenticated", "lineNumber": 23, "type": "function" },
+        { "name": "setAuthenticated", "lineNumber": 24, "type": "function" },
+        { "name": "authenticated", "lineNumber": 9, "type": "attribute" },
+        { "name": "principal", "lineNumber": 10, "type": "attribute" },
+        { "name": "name", "lineNumber": 11, "type": "attribute" }
       ]
     }
   },
@@ -592,9 +749,10 @@
       "entityType": "class",
       "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/security/TokenAuthProvider.java",
       "items": [
-        { "name": "authenticate", "lineNumber": 22 },
-        { "name": "supports", "lineNumber": 34 },
-        { "name": "webRequest", "lineNumber": 38 }
+        { "name": "authenticate", "lineNumber": 22, "type": "function" },
+        { "name": "supports", "lineNumber": 34, "type": "function" },
+        { "name": "webRequest", "lineNumber": 38, "type": "function" },
+        { "name": "host", "lineNumber": 15, "type": "attribute" }
       ]
     }
   },
@@ -603,7 +761,10 @@
       "entityName": "TokenFilter",
       "entityType": "class",
       "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/security/TokenFilter.java",
-      "items": [{ "name": "doFilterInternal", "lineNumber": 24 }]
+      "items": [
+        { "name": "doFilterInternal", "lineNumber": 24, "type": "function" },
+        { "name": "provider", "lineNumber": 17, "type": "attribute" }
+      ]
     }
   },
   {
@@ -612,11 +773,12 @@
       "entityType": "class",
       "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/service/BookmarkService.java",
       "items": [
-        { "name": "findAll", "lineNumber": 19 },
-        { "name": "add_bookmark", "lineNumber": 23 },
-        { "name": "delete_bookmark", "lineNumber": 29 },
-        { "name": "findBookmark", "lineNumber": 37 },
-        { "name": "getBookmark", "lineNumber": 41 }
+        { "name": "findAll", "lineNumber": 19, "type": "function" },
+        { "name": "add_bookmark", "lineNumber": 23, "type": "function" },
+        { "name": "delete_bookmark", "lineNumber": 29, "type": "function" },
+        { "name": "findBookmark", "lineNumber": 37, "type": "function" },
+        { "name": "getBookmark", "lineNumber": 41, "type": "function" },
+        { "name": "repo", "lineNumber": 12, "type": "attribute" }
       ]
     }
   },
@@ -625,7 +787,10 @@
       "entityName": "EventRequest",
       "entityType": "class",
       "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/service/EventRequest.java",
-      "items": [{ "name": "post", "lineNumber": 19 }]
+      "items": [
+        { "name": "post", "lineNumber": 19, "type": "function" },
+        { "name": "host", "lineNumber": 12, "type": "attribute" }
+      ]
     }
   },
   {
@@ -633,7 +798,7 @@
       "entityName": "BookmarksApplication",
       "entityType": "class",
       "filePath": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/BookmarksApplication.java",
-      "items": [{ "name": "main", "lineNumber": 9 }]
+      "items": [{ "name": "main", "lineNumber": 9, "type": "function" }]
     }
   },
   {
@@ -641,7 +806,7 @@
       "entityName": "BookmarksApplicationTests",
       "entityType": "class",
       "filePath": "/backend/bookmarks-service/src/test/java/com/tick/bookmarks/BookmarksApplicationTests.java",
-      "items": [{ "name": "contextLoads", "lineNumber": 9 }]
+      "items": [{ "name": "contextLoads", "lineNumber": 9, "type": "function" }]
     }
   },
   {
@@ -650,9 +815,15 @@
       "entityType": "class",
       "filePath": "/backend/bookmarks-service/src/test/java/com/tick/bookmarks/BookmarkServiceTest.java",
       "items": [
-        { "name": "eventInBookmark", "lineNumber": 31 },
-        { "name": "addBookmark_Success", "lineNumber": 40 },
-        { "name": "deleteBookmark_Success", "lineNumber": 57 }
+        { "name": "eventInBookmark", "lineNumber": 31, "type": "function" },
+        { "name": "addBookmark_Success", "lineNumber": 40, "type": "function" },
+        {
+          "name": "deleteBookmark_Success",
+          "lineNumber": 57,
+          "type": "function"
+        },
+        { "name": "bookmarkRepository", "lineNumber": 25, "type": "attribute" },
+        { "name": "bookmarkService", "lineNumber": 28, "type": "attribute" }
       ]
     }
   },
@@ -662,9 +833,9 @@
       "entityType": "file",
       "filePath": "/backend/artist-service/app.py",
       "items": [
-        { "name": "index", "lineNumber": 8 },
-        { "name": "get_artists", "lineNumber": 12 },
-        { "name": "get_recommendations", "lineNumber": 22 }
+        { "name": "index", "lineNumber": 8, "type": "function" },
+        { "name": "get_artists", "lineNumber": 12, "type": "function" },
+        { "name": "get_recommendations", "lineNumber": 22, "type": "function" }
       ]
     }
   },
@@ -673,7 +844,7 @@
       "entityName": "createModel.py",
       "entityType": "file",
       "filePath": "/backend/artist-service/createModel.py",
-      "items": [{ "name": "clean", "lineNumber": 14 }]
+      "items": [{ "name": "clean", "lineNumber": 14, "type": "function" }]
     }
   },
   {
@@ -682,9 +853,12 @@
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/controller/ErrorMessage.java",
       "items": [
-        { "name": "getError", "lineNumber": 22 },
-        { "name": "getTimestamp", "lineNumber": 26 },
-        { "name": "getStatus", "lineNumber": 30 }
+        { "name": "getError", "lineNumber": 22, "type": "function" },
+        { "name": "getTimestamp", "lineNumber": 26, "type": "function" },
+        { "name": "getStatus", "lineNumber": 30, "type": "function" },
+        { "name": "timestamp", "lineNumber": 8, "type": "attribute" },
+        { "name": "error", "lineNumber": 9, "type": "attribute" },
+        { "name": "status", "lineNumber": 10, "type": "attribute" }
       ]
     }
   },
@@ -694,11 +868,11 @@
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/controller/ExceptionCatcher.java",
       "items": [
-        { "name": "no_event", "lineNumber": 14 },
-        { "name": "no_body", "lineNumber": 19 },
-        { "name": "wrong_type", "lineNumber": 24 },
-        { "name": "not_valid", "lineNumber": 29 },
-        { "name": "generic_exception", "lineNumber": 34 }
+        { "name": "no_event", "lineNumber": 14, "type": "function" },
+        { "name": "no_body", "lineNumber": 19, "type": "function" },
+        { "name": "wrong_type", "lineNumber": 24, "type": "function" },
+        { "name": "not_valid", "lineNumber": 29, "type": "function" },
+        { "name": "generic_exception", "lineNumber": 34, "type": "function" }
       ]
     }
   },
@@ -707,7 +881,7 @@
       "entityName": "HealthCheck",
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/controller/HealthCheck.java",
-      "items": [{ "name": "health_check", "lineNumber": 7 }]
+      "items": [{ "name": "health_check", "lineNumber": 7, "type": "function" }]
     }
   },
   {
@@ -716,16 +890,21 @@
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/controller/TicketController.java",
       "items": [
-        { "name": "getAllTickets", "lineNumber": 24 },
-        { "name": "createTicket", "lineNumber": 29 },
-        { "name": "modifyTicket", "lineNumber": 35 },
-        { "name": "deleteByTicketId", "lineNumber": 42 },
-        { "name": "getTicketByUserId", "lineNumber": 57 },
-        { "name": "ticketsMadeAvailable", "lineNumber": 63 },
-        { "name": "ticketByKey", "lineNumber": 68 },
-        { "name": "deleteByEventId", "lineNumber": 85 },
-        { "name": "verifyRecaptcha", "lineNumber": 90 },
-        { "name": "allocateSeats", "lineNumber": 95 }
+        { "name": "getAllTickets", "lineNumber": 24, "type": "function" },
+        { "name": "createTicket", "lineNumber": 29, "type": "function" },
+        { "name": "modifyTicket", "lineNumber": 35, "type": "function" },
+        { "name": "deleteByTicketId", "lineNumber": 42, "type": "function" },
+        { "name": "getTicketByUserId", "lineNumber": 57, "type": "function" },
+        {
+          "name": "ticketsMadeAvailable",
+          "lineNumber": 63,
+          "type": "function"
+        },
+        { "name": "ticketByKey", "lineNumber": 68, "type": "function" },
+        { "name": "deleteByEventId", "lineNumber": 85, "type": "function" },
+        { "name": "verifyRecaptcha", "lineNumber": 90, "type": "function" },
+        { "name": "allocateSeats", "lineNumber": 95, "type": "function" },
+        { "name": "ticketService", "lineNumber": 21, "type": "attribute" }
       ]
     }
   },
@@ -782,7 +961,10 @@
       "entityName": "WebException",
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/exception/WebException.java",
-      "items": [{ "name": "getStatus", "lineNumber": 10 }]
+      "items": [
+        { "name": "status", "lineNumber": 4, "type": "attribute" },
+        { "name": "getStatus", "lineNumber": 10, "type": "function" }
+      ]
     }
   },
   {
@@ -790,7 +972,15 @@
       "entityName": "Links",
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/Event.java",
-      "items": []
+      "items": [
+        { "name": "websiteURL", "lineNumber": 18, "type": "attribute" },
+        { "name": "instagramURL", "lineNumber": 19, "type": "attribute" },
+        { "name": "youtubeURL", "lineNumber": 20, "type": "attribute" },
+        { "name": "facebookURL", "lineNumber": 21, "type": "attribute" },
+        { "name": "spotifyURL", "lineNumber": 22, "type": "attribute" },
+        { "name": "twitterURL", "lineNumber": 23, "type": "attribute" },
+        { "name": "appleMusicURL", "lineNumber": 24, "type": "attribute" }
+      ]
     }
   },
   {
@@ -799,11 +989,24 @@
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/Event.java",
       "items": [
-        { "name": "upsert", "lineNumber": 54 },
-        { "name": "addEventDate", "lineNumber": 70 },
-        { "name": "removeEventDate", "lineNumber": 80 },
-        { "name": "findEventDate", "lineNumber": 85 },
-        { "name": "setEventID", "lineNumber": 95 }
+        { "name": "eventID", "lineNumber": 32, "type": "attribute" },
+        { "name": "name", "lineNumber": 35, "type": "attribute" },
+        { "name": "description", "lineNumber": 36, "type": "attribute" },
+        { "name": "category", "lineNumber": 37, "type": "attribute" },
+        { "name": "banner", "lineNumber": 38, "type": "attribute" },
+        { "name": "artist", "lineNumber": 39, "type": "attribute" },
+        { "name": "lastUpdated", "lineNumber": 40, "type": "attribute" },
+        { "name": "prices", "lineNumber": 42, "type": "attribute" },
+        { "name": "ticketLimit", "lineNumber": 43, "type": "attribute" },
+        { "name": "venueID", "lineNumber": 46, "type": "attribute" },
+        { "name": "seatMap", "lineNumber": 48, "type": "attribute" },
+        { "name": "date", "lineNumber": 50, "type": "attribute" },
+        { "name": "links", "lineNumber": 52, "type": "attribute" },
+        { "name": "upsert", "lineNumber": 54, "type": "function" },
+        { "name": "addEventDate", "lineNumber": 70, "type": "function" },
+        { "name": "removeEventDate", "lineNumber": 80, "type": "function" },
+        { "name": "findEventDate", "lineNumber": 85, "type": "function" },
+        { "name": "setEventID", "lineNumber": 95, "type": "function" }
       ]
     }
   },
@@ -812,7 +1015,13 @@
       "entityName": "EventDate",
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/EventDate.java",
-      "items": [{ "name": "populateEventDate", "lineNumber": 29 }]
+      "items": [
+        { "name": "eventDateID", "lineNumber": 18, "type": "attribute" },
+        { "name": "eventID", "lineNumber": 22, "type": "attribute" },
+        { "name": "eventDateTime", "lineNumber": 24, "type": "attribute" },
+        { "name": "seatAvailability", "lineNumber": 26, "type": "attribute" },
+        { "name": "populateEventDate", "lineNumber": 29, "type": "function" }
+      ]
     }
   },
   {
@@ -820,7 +1029,11 @@
       "entityName": "Price",
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/Price.java",
-      "items": []
+      "items": [
+        { "name": "category", "lineNumber": 7, "type": "attribute" },
+        { "name": "priceID", "lineNumber": 8, "type": "attribute" },
+        { "name": "price", "lineNumber": 9, "type": "attribute" }
+      ]
     }
   },
   {
@@ -828,7 +1041,10 @@
       "entityName": "RecaptchaObject",
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/RecaptchaObject.java",
-      "items": [{ "name": "getSecret", "lineNumber": 19 }]
+      "items": [
+        { "name": "secret", "lineNumber": 11, "type": "attribute" },
+        { "name": "getSecret", "lineNumber": 19, "type": "function" }
+      ]
     }
   },
   {
@@ -836,7 +1052,9 @@
       "entityName": "RecaptchaRequest",
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/RecaptchaRequest.java",
-      "items": []
+      "items": [
+        { "name": "recaptchaToken", "lineNumber": 8, "type": "attribute" }
+      ]
     }
   },
   {
@@ -844,7 +1062,11 @@
       "entityName": "RecaptchaResponse",
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/RecaptchaResponse.java",
-      "items": []
+      "items": [
+        { "name": "success", "lineNumber": 9, "type": "attribute" },
+        { "name": "challenge_ts", "lineNumber": 10, "type": "attribute" },
+        { "name": "error", "lineNumber": 11, "type": "attribute" }
+      ]
     }
   },
   {
@@ -852,7 +1074,12 @@
       "entityName": "SelectedRow",
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/SelectedRow.java",
-      "items": []
+      "items": [
+        { "name": "category", "lineNumber": 9, "type": "attribute" },
+        { "name": "section", "lineNumber": 10, "type": "attribute" },
+        { "name": "row", "lineNumber": 11, "type": "attribute" },
+        { "name": "quantity", "lineNumber": 12, "type": "attribute" }
+      ]
     }
   },
   {
@@ -860,7 +1087,13 @@
       "entityName": "Ticket",
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/Ticket.java",
-      "items": []
+      "items": [
+        { "name": "key", "lineNumber": 21, "type": "attribute" },
+        { "name": "user", "lineNumber": 25, "type": "attribute" },
+        { "name": "category", "lineNumber": 27, "type": "attribute" },
+        { "name": "orderId", "lineNumber": 29, "type": "attribute" },
+        { "name": "orderDateTime", "lineNumber": 31, "type": "attribute" }
+      ]
     }
   },
   {
@@ -884,7 +1117,7 @@
       "entityName": "TicketRepository",
       "entityType": "interface",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/repository/TicketRepository.java",
-      "items": [{ "name": "findByUser", "lineNumber": 10 }]
+      "items": [{ "name": "findByUser", "lineNumber": 10, "type": "function" }]
     }
   },
   {
@@ -892,7 +1125,7 @@
       "entityName": "CorsFilter",
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/security/CorsFilter.java",
-      "items": [{ "name": "config", "lineNumber": 8 }]
+      "items": [{ "name": "config", "lineNumber": 8, "type": "function" }]
     }
   },
   {
@@ -900,7 +1133,10 @@
       "entityName": "SecurityConfig",
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/security/SecurityConfig.java",
-      "items": [{ "name": "filterChain", "lineNumber": 21 }]
+      "items": [
+        { "name": "filter", "lineNumber": 14, "type": "attribute" },
+        { "name": "filterChain", "lineNumber": 21, "type": "function" }
+      ]
     }
   },
   {
@@ -909,15 +1145,19 @@
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/security/TokenAuthentication.java",
       "items": [
-        { "name": "getAuthorities", "lineNumber": 20 },
-        { "name": "addAuthorities", "lineNumber": 24 },
-        { "name": "getCredentials", "lineNumber": 28 },
-        { "name": "getDetails", "lineNumber": 29 },
-        { "name": "getPrincipal", "lineNumber": 30 },
-        { "name": "setPrincipal", "lineNumber": 31 },
-        { "name": "getName", "lineNumber": 32 },
-        { "name": "isAuthenticated", "lineNumber": 33 },
-        { "name": "setAuthenticated", "lineNumber": 34 }
+        { "name": "authenticated", "lineNumber": 10, "type": "attribute" },
+        { "name": "principal", "lineNumber": 11, "type": "attribute" },
+        { "name": "name", "lineNumber": 12, "type": "attribute" },
+        { "name": "authorities", "lineNumber": 13, "type": "attribute" },
+        { "name": "getAuthorities", "lineNumber": 20, "type": "function" },
+        { "name": "addAuthorities", "lineNumber": 24, "type": "function" },
+        { "name": "getCredentials", "lineNumber": 28, "type": "function" },
+        { "name": "getDetails", "lineNumber": 29, "type": "function" },
+        { "name": "getPrincipal", "lineNumber": 30, "type": "function" },
+        { "name": "setPrincipal", "lineNumber": 31, "type": "function" },
+        { "name": "getName", "lineNumber": 32, "type": "function" },
+        { "name": "isAuthenticated", "lineNumber": 33, "type": "function" },
+        { "name": "setAuthenticated", "lineNumber": 34, "type": "function" }
       ]
     }
   },
@@ -927,9 +1167,10 @@
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/security/TokenAuthProvider.java",
       "items": [
-        { "name": "authenticate", "lineNumber": 22 },
-        { "name": "supports", "lineNumber": 40 },
-        { "name": "webRequest", "lineNumber": 44 }
+        { "name": "host", "lineNumber": 15, "type": "attribute" },
+        { "name": "authenticate", "lineNumber": 22, "type": "function" },
+        { "name": "supports", "lineNumber": 40, "type": "function" },
+        { "name": "webRequest", "lineNumber": 44, "type": "function" }
       ]
     }
   },
@@ -938,7 +1179,10 @@
       "entityName": "TokenFilter",
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/security/TokenFilter.java",
-      "items": [{ "name": "doFilterInternal", "lineNumber": 24 }]
+      "items": [
+        { "name": "provider", "lineNumber": 17, "type": "attribute" },
+        { "name": "doFilterInternal", "lineNumber": 24, "type": "function" }
+      ]
     }
   },
   {
@@ -947,8 +1191,9 @@
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/service/EventService.java",
       "items": [
-        { "name": "get", "lineNumber": 16 },
-        { "name": "put", "lineNumber": 29 }
+        { "name": "host", "lineNumber": 10, "type": "attribute" },
+        { "name": "get", "lineNumber": 16, "type": "function" },
+        { "name": "put", "lineNumber": 29, "type": "function" }
       ]
     }
   },
@@ -958,18 +1203,24 @@
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/service/TicketService.java",
       "items": [
-        { "name": "getAllTickets", "lineNumber": 27 },
-        { "name": "addTicket", "lineNumber": 31 },
-        { "name": "getTicketByUserId", "lineNumber": 36 },
-        { "name": "getTicketByKey", "lineNumber": 40 },
-        { "name": "updateTicket", "lineNumber": 45 },
-        { "name": "releaseTicket", "lineNumber": 52 },
-        { "name": "deleteTicketByEvent", "lineNumber": 60 },
-        { "name": "deleteTicketByTicketId", "lineNumber": 72 },
-        { "name": "allocateSeats", "lineNumber": 79 },
-        { "name": "verifyRecaptcha", "lineNumber": 145 },
-        { "name": "createOrderId", "lineNumber": 157 },
-        { "name": "createOrderDate", "lineNumber": 161 }
+        { "name": "ticketRepository", "lineNumber": 17, "type": "attribute" },
+        { "name": "eventsvc", "lineNumber": 18, "type": "attribute" },
+        { "name": "getAllTickets", "lineNumber": 27, "type": "function" },
+        { "name": "addTicket", "lineNumber": 31, "type": "function" },
+        { "name": "getTicketByUserId", "lineNumber": 36, "type": "function" },
+        { "name": "getTicketByKey", "lineNumber": 40, "type": "function" },
+        { "name": "updateTicket", "lineNumber": 45, "type": "function" },
+        { "name": "releaseTicket", "lineNumber": 52, "type": "function" },
+        { "name": "deleteTicketByEvent", "lineNumber": 60, "type": "function" },
+        {
+          "name": "deleteTicketByTicketId",
+          "lineNumber": 72,
+          "type": "function"
+        },
+        { "name": "allocateSeats", "lineNumber": 79, "type": "function" },
+        { "name": "verifyRecaptcha", "lineNumber": 145, "type": "function" },
+        { "name": "createOrderId", "lineNumber": 157, "type": "function" },
+        { "name": "createOrderDate", "lineNumber": 161, "type": "function" }
       ]
     }
   },
@@ -979,8 +1230,8 @@
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/TicketsServiceApplication.java",
       "items": [
-        { "name": "main", "lineNumber": 11 },
-        { "name": "getWebClientBuilder", "lineNumber": 15 }
+        { "name": "main", "lineNumber": 11, "type": "function" },
+        { "name": "getWebClientBuilder", "lineNumber": 15, "type": "function" }
       ]
     }
   },
@@ -989,7 +1240,10 @@
       "entityName": "MongoDBContainer",
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/test/java/com/tick/ticketsservice/container/MongoDBContainer.java",
-      "items": [{ "name": "setProperties", "lineNumber": 34 }]
+      "items": [
+        { "name": "MONGO_DB_CONTAINER", "lineNumber": 23, "type": "attribute" },
+        { "name": "setProperties", "lineNumber": 34, "type": "function" }
+      ]
     }
   },
   {
@@ -998,8 +1252,19 @@
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/test/java/com/tick/ticketsservice/TicketIntegrationTest.java",
       "items": [
-        { "name": "updateTicket_NoTicketID_Failure", "lineNumber": 48 },
-        { "name": "updateTicket_InvalidTicketID_Failure", "lineNumber": 59 }
+        { "name": "port", "lineNumber": 35, "type": "attribute" },
+        { "name": "baseUrl", "lineNumber": 38, "type": "attribute" },
+        { "name": "restTemplate", "lineNumber": 45, "type": "attribute" },
+        {
+          "name": "updateTicket_NoTicketID_Failure",
+          "lineNumber": 48,
+          "type": "function"
+        },
+        {
+          "name": "updateTicket_InvalidTicketID_Failure",
+          "lineNumber": 59,
+          "type": "function"
+        }
       ]
     }
   },
@@ -1009,15 +1274,24 @@
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/test/java/com/tick/ticketsservice/TicketServiceTest.java",
       "items": [
+        { "name": "ticketRepository", "lineNumber": 30, "type": "attribute" },
+        { "name": "eventService", "lineNumber": 33, "type": "attribute" },
+        { "name": "ticketService", "lineNumber": 36, "type": "attribute" },
         {
           "name": "allocateSeats_AboveTicketQuantityLimit_ThrowException",
-          "lineNumber": 39
+          "lineNumber": 39,
+          "type": "function"
         },
         {
           "name": "allocateSeats_InvalidCategory_ThrowException",
-          "lineNumber": 61
+          "lineNumber": 61,
+          "type": "function"
         },
-        { "name": "updateTicket_ValidTicketID_Success", "lineNumber": 91 }
+        {
+          "name": "updateTicket_ValidTicketID_Success",
+          "lineNumber": 91,
+          "type": "function"
+        }
       ]
     }
   },
@@ -1026,7 +1300,7 @@
       "entityName": "TicketsServiceApplicationTests",
       "entityType": "class",
       "filePath": "/backend/ticket-service/src/test/java/com/tick/ticketsservice/TicketsServiceApplicationTests.java",
-      "items": [{ "name": "contextLoads", "lineNumber": 9 }]
+      "items": [{ "name": "contextLoads", "lineNumber": 9, "type": "function" }]
     }
   },
   {
@@ -1043,9 +1317,10 @@
       "entityType": "class",
       "filePath": "/backend/token-service/src/main/java/com/tick/entity/KeyProvider.java",
       "items": [
-        { "name": "getPublicKeyById", "lineNumber": 27 },
-        { "name": "getPrivateKey", "lineNumber": 48 },
-        { "name": "getPrivateKeyId", "lineNumber": 52 }
+        { "name": "url", "lineNumber": 18, "type": "attribute" },
+        { "name": "getPublicKeyById", "lineNumber": 27, "type": "function" },
+        { "name": "getPrivateKey", "lineNumber": 48, "type": "function" },
+        { "name": "getPrivateKeyId", "lineNumber": 52, "type": "function" }
       ]
     }
   },
@@ -1086,7 +1361,7 @@
       "entityName": "CorsFilter",
       "entityType": "class",
       "filePath": "/backend/token-service/src/main/java/com/tick/tokens/security/CorsFilter.java",
-      "items": [{ "name": "config", "lineNumber": 8 }]
+      "items": [{ "name": "config", "lineNumber": 8, "type": "function" }]
     }
   },
   {
@@ -1094,7 +1369,7 @@
       "entityName": "SecurityConfig",
       "entityType": "class",
       "filePath": "/backend/token-service/src/main/java/com/tick/tokens/security/SecurityConfig.java",
-      "items": [{ "name": "filterChain", "lineNumber": 12 }]
+      "items": [{ "name": "filterChain", "lineNumber": 12, "type": "function" }]
     }
   },
   {
@@ -1102,7 +1377,7 @@
       "entityName": "HealthCheck",
       "entityType": "class",
       "filePath": "/backend/token-service/src/main/java/com/tick/tokens/HealthCheck.java",
-      "items": [{ "name": "health_check", "lineNumber": 7 }]
+      "items": [{ "name": "health_check", "lineNumber": 7, "type": "function" }]
     }
   },
   {
@@ -1111,10 +1386,12 @@
       "entityType": "class",
       "filePath": "/backend/token-service/src/main/java/com/tick/tokens/JwtTokenUtil.java",
       "items": [
-        { "name": "generate_tok", "lineNumber": 36 },
-        { "name": "validate_tok", "lineNumber": 52 },
-        { "name": "get_claims", "lineNumber": 67 },
-        { "name": "get_expiry", "lineNumber": 82 }
+        { "name": "expiry_map", "lineNumber": 20, "type": "attribute" },
+        { "name": "key_map", "lineNumber": 21, "type": "attribute" },
+        { "name": "generate_tok", "lineNumber": 36, "type": "function" },
+        { "name": "validate_tok", "lineNumber": 52, "type": "function" },
+        { "name": "get_claims", "lineNumber": 67, "type": "function" },
+        { "name": "get_expiry", "lineNumber": 82, "type": "function" }
       ]
     }
   },
@@ -1123,7 +1400,7 @@
       "entityName": "TickApplication",
       "entityType": "class",
       "filePath": "/backend/token-service/src/main/java/com/tick/tokens/TickApplication.java",
-      "items": [{ "name": "main", "lineNumber": 9 }]
+      "items": [{ "name": "main", "lineNumber": 9, "type": "function" }]
     }
   },
   {
@@ -1132,8 +1409,9 @@
       "entityType": "class",
       "filePath": "/backend/token-service/src/main/java/com/tick/tokens/TokenController.java",
       "items": [
-        { "name": "validate_token", "lineNumber": 14 },
-        { "name": "create_token", "lineNumber": 22 }
+        { "name": "svc", "lineNumber": 12, "type": "attribute" },
+        { "name": "validate_token", "lineNumber": 14, "type": "function" },
+        { "name": "create_token", "lineNumber": 22, "type": "function" }
       ]
     }
   },
@@ -1142,7 +1420,7 @@
       "entityName": "TokenService",
       "entityType": "class",
       "filePath": "/backend/token-service/src/main/java/com/tick/tokens/TokenService.java",
-      "items": [{ "name": "perform", "lineNumber": 9 }]
+      "items": [{ "name": "perform", "lineNumber": 9, "type": "function" }]
     }
   },
   {
@@ -1151,8 +1429,8 @@
       "entityType": "class",
       "filePath": "/backend/token-service/src/main/java/com/tick/tokens/WebExceptionHandler.java",
       "items": [
-        { "name": "no_token", "lineNumber": 11 },
-        { "name": "no_body", "lineNumber": 16 }
+        { "name": "no_token", "lineNumber": 11, "type": "function" },
+        { "name": "no_body", "lineNumber": 16, "type": "function" }
       ]
     }
   },
@@ -1161,7 +1439,7 @@
       "entityName": "TickApplicationTests",
       "entityType": "class",
       "filePath": "/backend/token-service/src/test/java/com/tick/tokens/TickApplicationTests.java",
-      "items": [{ "name": "contextLoads", "lineNumber": 9 }]
+      "items": [{ "name": "contextLoads", "lineNumber": 9, "type": "function" }]
     }
   },
   {
@@ -1170,8 +1448,9 @@
       "entityType": "class",
       "filePath": "/backend/token-service/src/test/java/com/tick/tokens/TokenEndpointTest.java",
       "items": [
-        { "name": "create_token", "lineNumber": 24 },
-        { "name": "validate_token", "lineNumber": 34 }
+        { "name": "mvc", "lineNumber": 20, "type": "attribute" },
+        { "name": "create_token", "lineNumber": 24, "type": "function" },
+        { "name": "validate_token", "lineNumber": 34, "type": "function" }
       ]
     }
   },
@@ -1181,9 +1460,12 @@
       "entityType": "class",
       "filePath": "/backend/venue-service/src/main/java/com/venue/controller/ErrorMessage.java",
       "items": [
-        { "name": "getError", "lineNumber": 22 },
-        { "name": "getTimestamp", "lineNumber": 26 },
-        { "name": "getStatus", "lineNumber": 30 }
+        { "name": "timestamp", "lineNumber": 8, "type": "attribute" },
+        { "name": "error", "lineNumber": 9, "type": "attribute" },
+        { "name": "status", "lineNumber": 10, "type": "attribute" },
+        { "name": "getError", "lineNumber": 22, "type": "function" },
+        { "name": "getTimestamp", "lineNumber": 26, "type": "function" },
+        { "name": "getStatus", "lineNumber": 30, "type": "function" }
       ]
     }
   },
@@ -1193,11 +1475,11 @@
       "entityType": "class",
       "filePath": "/backend/venue-service/src/main/java/com/venue/controller/ExceptionCatcher.java",
       "items": [
-        { "name": "no_event", "lineNumber": 14 },
-        { "name": "no_body", "lineNumber": 19 },
-        { "name": "wrong_type", "lineNumber": 24 },
-        { "name": "not_valid", "lineNumber": 29 },
-        { "name": "generic_exception", "lineNumber": 34 }
+        { "name": "no_event", "lineNumber": 14, "type": "function" },
+        { "name": "no_body", "lineNumber": 19, "type": "function" },
+        { "name": "wrong_type", "lineNumber": 24, "type": "function" },
+        { "name": "not_valid", "lineNumber": 29, "type": "function" },
+        { "name": "generic_exception", "lineNumber": 34, "type": "function" }
       ]
     }
   },
@@ -1206,7 +1488,7 @@
       "entityName": "HealthCheck",
       "entityType": "class",
       "filePath": "/backend/venue-service/src/main/java/com/venue/controller/HealthCheck.java",
-      "items": [{ "name": "health_check", "lineNumber": 7 }]
+      "items": [{ "name": "health_check", "lineNumber": 7, "type": "function" }]
     }
   },
   {
@@ -1215,10 +1497,11 @@
       "entityType": "class",
       "filePath": "/backend/venue-service/src/main/java/com/venue/controller/VenueController.java",
       "items": [
-        { "name": "getAllVenue", "lineNumber": 23 },
-        { "name": "getVenue", "lineNumber": 28 },
-        { "name": "createVenue", "lineNumber": 33 },
-        { "name": "deleteVenue", "lineNumber": 38 }
+        { "name": "service", "lineNumber": 16, "type": "attribute" },
+        { "name": "getAllVenue", "lineNumber": 23, "type": "function" },
+        { "name": "getVenue", "lineNumber": 28, "type": "function" },
+        { "name": "createVenue", "lineNumber": 33, "type": "function" },
+        { "name": "deleteVenue", "lineNumber": 38, "type": "function" }
       ]
     }
   },
@@ -1228,12 +1511,15 @@
       "entityType": "class",
       "filePath": "/backend/venue-service/src/main/java/com/venue/entity/Venue.java",
       "items": [
-        { "name": "getName", "lineNumber": 22 },
-        { "name": "getSeatMap", "lineNumber": 26 },
-        { "name": "setName", "lineNumber": 30 },
-        { "name": "setSeatMap", "lineNumber": 34 },
-        { "name": "getVenueID", "lineNumber": 38 },
-        { "name": "setVenueID", "lineNumber": 42 }
+        { "name": "venueID", "lineNumber": 12, "type": "attribute" },
+        { "name": "name", "lineNumber": 16, "type": "attribute" },
+        { "name": "seatMap", "lineNumber": 19, "type": "attribute" },
+        { "name": "getName", "lineNumber": 22, "type": "function" },
+        { "name": "getSeatMap", "lineNumber": 26, "type": "function" },
+        { "name": "setName", "lineNumber": 30, "type": "function" },
+        { "name": "setSeatMap", "lineNumber": 34, "type": "function" },
+        { "name": "getVenueID", "lineNumber": 38, "type": "function" },
+        { "name": "setVenueID", "lineNumber": 42, "type": "function" }
       ]
     }
   },
@@ -1250,7 +1536,10 @@
       "entityName": "WebException",
       "entityType": "class",
       "filePath": "/backend/venue-service/src/main/java/com/venue/exception/WebException.java",
-      "items": [{ "name": "getStatus", "lineNumber": 10 }]
+      "items": [
+        { "name": "status", "lineNumber": 4, "type": "attribute" },
+        { "name": "getStatus", "lineNumber": 10, "type": "function" }
+      ]
     }
   },
   {
@@ -1266,7 +1555,7 @@
       "entityName": "CorsFilter",
       "entityType": "class",
       "filePath": "/backend/venue-service/src/main/java/com/venue/security/CorsFilter.java",
-      "items": [{ "name": "config", "lineNumber": 8 }]
+      "items": [{ "name": "config", "lineNumber": 8, "type": "function" }]
     }
   },
   {
@@ -1274,7 +1563,7 @@
       "entityName": "SecurityConfig",
       "entityType": "class",
       "filePath": "/backend/venue-service/src/main/java/com/venue/security/SecurityConfig.java",
-      "items": [{ "name": "filterChain", "lineNumber": 11 }]
+      "items": [{ "name": "filterChain", "lineNumber": 11, "type": "function" }]
     }
   },
   {
@@ -1283,10 +1572,11 @@
       "entityType": "class",
       "filePath": "/backend/venue-service/src/main/java/com/venue/service/VenueService.java",
       "items": [
-        { "name": "getAllVenue", "lineNumber": 19 },
-        { "name": "getVenue", "lineNumber": 23 },
-        { "name": "createVenue", "lineNumber": 28 },
-        { "name": "deleteVenue", "lineNumber": 32 }
+        { "name": "repo", "lineNumber": 13, "type": "attribute" },
+        { "name": "getAllVenue", "lineNumber": 19, "type": "function" },
+        { "name": "getVenue", "lineNumber": 23, "type": "function" },
+        { "name": "createVenue", "lineNumber": 28, "type": "function" },
+        { "name": "deleteVenue", "lineNumber": 32, "type": "function" }
       ]
     }
   },
@@ -1295,7 +1585,7 @@
       "entityName": "VenueApplication",
       "entityType": "class",
       "filePath": "/backend/venue-service/src/main/java/com/venue/VenueApplication.java",
-      "items": [{ "name": "main", "lineNumber": 9 }]
+      "items": [{ "name": "main", "lineNumber": 9, "type": "function" }]
     }
   },
   {
@@ -1303,7 +1593,7 @@
       "entityName": "VenueApplicationTests",
       "entityType": "class",
       "filePath": "/backend/venue-service/src/test/java/com/venue/VenueApplicationTests.java",
-      "items": [{ "name": "contextLoads", "lineNumber": 9 }]
+      "items": [{ "name": "contextLoads", "lineNumber": 9, "type": "function" }]
     }
   },
   {
@@ -1312,7 +1602,13 @@
       "entityType": "class",
       "filePath": "/backend/venue-service/src/test/java/com/venue/VenueServiceTest.java",
       "items": [
-        { "name": "getVenue_InvalidVenueID_ThrowException", "lineNumber": 25 }
+        { "name": "venueRepository", "lineNumber": 19, "type": "attribute" },
+        { "name": "venueService", "lineNumber": 22, "type": "attribute" },
+        {
+          "name": "getVenue_InvalidVenueID_ThrowException",
+          "lineNumber": 25,
+          "type": "function"
+        }
       ]
     }
   },
@@ -1321,7 +1617,9 @@
       "entityName": "LambdaRequestHandler",
       "entityType": "class",
       "filePath": "/frontend/amplify/backend/function/tickUsers/src/main/java/example/LambdaRequestHandler.java",
-      "items": [{ "name": "handleRequest", "lineNumber": 10 }]
+      "items": [
+        { "name": "handleRequest", "lineNumber": 10, "type": "function" }
+      ]
     }
   },
   {
@@ -1330,10 +1628,12 @@
       "entityType": "class",
       "filePath": "/frontend/amplify/backend/function/tickUsers/src/main/java/example/RequestClass.java",
       "items": [
-        { "name": "getFirstName", "lineNumber": 9 },
-        { "name": "setFirstName", "lineNumber": 13 },
-        { "name": "getLastName", "lineNumber": 17 },
-        { "name": "setLastName", "lineNumber": 21 }
+        { "name": "firstName", "lineNumber": 6, "type": "attribute" },
+        { "name": "lastName", "lineNumber": 7, "type": "attribute" },
+        { "name": "getFirstName", "lineNumber": 9, "type": "function" },
+        { "name": "setFirstName", "lineNumber": 13, "type": "function" },
+        { "name": "getLastName", "lineNumber": 17, "type": "function" },
+        { "name": "setLastName", "lineNumber": 21, "type": "function" }
       ]
     }
   },
@@ -1343,8 +1643,9 @@
       "entityType": "class",
       "filePath": "/frontend/amplify/backend/function/tickUsers/src/main/java/example/ResponseClass.java",
       "items": [
-        { "name": "getGreetings", "lineNumber": 8 },
-        { "name": "setGreetings", "lineNumber": 12 }
+        { "name": "greetings", "lineNumber": 6, "type": "attribute" },
+        { "name": "getGreetings", "lineNumber": 8, "type": "function" },
+        { "name": "setGreetings", "lineNumber": 12, "type": "function" }
       ]
     }
   }
