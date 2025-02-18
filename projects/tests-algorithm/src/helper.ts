@@ -223,6 +223,9 @@ export function calculatePrecisionRecallF1ForEdges(
     (item) => !predictedSet.has(item)
   );
 
+  /* console.log("false positives:", edgeFPSet);
+  console.log("false negatives:", edgeFNSet); */
+
   const edgeFP = edgeFPSet.length;
   const edgeFN = edgeFNSet.length;
 

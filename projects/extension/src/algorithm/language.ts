@@ -11,6 +11,8 @@ import {
 import { SyntaxNode } from "tree-sitter";
 import { LanguageRules, RuleEngine } from "./rules";
 
+export const GLOBAL = "(global)";
+
 export class Language {
   /**
    * Recursively separates a Tree-sitter syntax tree node into groups, nodes, and body.
@@ -152,7 +154,7 @@ export class Language {
     languageRules: LanguageRules
   ): Node {
     return new Node({
-      token: "(global)",
+      token: GLOBAL,
       calls: makeCalls(body),
       variables: makeLocalVariables(body, parent, languageRules),
       lineNumber: 0,

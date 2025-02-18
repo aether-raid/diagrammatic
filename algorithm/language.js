@@ -9,6 +9,8 @@ import {
 } from "./function.js";
 import { RuleEngine } from "./rules.js";
 
+export const GLOBAL = "(global)";
+
 export class Language {
   /**
    * Recursively separates a Tree-sitter syntax tree node into groups, nodes, and body.
@@ -134,7 +136,7 @@ export class Language {
 
   static makeRootNode(body, parent, languageRules) {
     return new Node({
-      token: "(global)",
+      token: GLOBAL,
       calls: makeCalls(body),
       variables: makeLocalVariables(body, parent, languageRules),
       lineNumber: 0,

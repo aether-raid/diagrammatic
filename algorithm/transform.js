@@ -1,3 +1,4 @@
+import { GLOBAL } from "./language.js";
 import { Node, Group, GroupType } from "./model.js";
 
 function getFilePath(parent) {
@@ -23,6 +24,9 @@ function getFilePath(parent) {
 export function transformEdges(allEdges) {
   const output = [];
   for (const edge of allEdges) {
+    if (edge.source.token === GLOBAL) {
+      continue;
+    }
     const source = getFilePath(edge.source.parent);
     const target = getFilePath(edge.target.parent);
 
@@ -56,7 +60,7 @@ export function transformFileGroups(fileGroups) {
   for (const fileGroup of fileGroups) {
     if (fileGroup.nodes) {
       const fileGroupNodes = fileGroup.nodes.flatMap((node) =>
-        node.token !== "(global)"
+        node.token !== GLOBAL
           ? [{ name: node.token ?? "", lineNumber: node.lineNumber ?? 0 }]
           : []
       );

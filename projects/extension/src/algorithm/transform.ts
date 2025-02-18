@@ -3,6 +3,7 @@ import { MarkerType } from "@xyflow/react";
 import { AppNode } from "@shared/node.types";
 import { Node, Group, Edge, GroupType } from "./model";
 import { AppEdge } from "@shared/edge.types";
+import { GLOBAL } from "./language";
 
 function getFilePath(parent: Node | Group | null): string {
   if (!parent) {
@@ -27,6 +28,9 @@ function getFilePath(parent: Node | Group | null): string {
 export function transformEdges(allEdges: Edge[]): AppEdge[] {
   const output: AppEdge[] = [];
   for (const edge of allEdges) {
+    if (edge.source.token === GLOBAL) {
+      continue;
+    }
     const source: string = getFilePath(edge.source.parent);
     const target: string = getFilePath(edge.target.parent);
 
@@ -45,7 +49,7 @@ export function transformEdges(allEdges: Edge[]): AppEdge[] {
         source,
         target,
         sourceHandle: edge.source.token,
-        markerEnd: { type: MarkerType.ArrowClosed }
+        markerEnd: { type: MarkerType.ArrowClosed },
       });
     }
   }
@@ -60,7 +64,7 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
   for (const fileGroup of fileGroups) {
     if (fileGroup.nodes) {
       const fileGroupNodes = fileGroup.nodes.flatMap((node: Node) =>
-        node.token !== "(global)"
+        node.token !== GLOBAL
           ? [{ name: node.token ?? "", lineNumber: node.lineNumber ?? 0 }]
           : []
       );
