@@ -21,6 +21,7 @@ export function EntityNodeItem ({ itemName, highlighted, location, setHoveredRow
       console.error(`Unknown filePath (${location.filePath}) or lineNumber (${location.lineNumber})!`);
       return;
     }
+    console.log(`filePath (${location.filePath}) and lineNumber (${location.lineNumber})!`);
     sendJumpToLineMessageToExtension(location.filePath, location.lineNumber);
   }
 

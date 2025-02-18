@@ -7,6 +7,7 @@ import { NodeEdgeData } from "./extension.types";
 import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
 import { runNodeDescriptionsAlgorithm } from "./runNodeDescriptionsAlgorithm";
 import { getComponentDiagram } from "./runComponentDiagramAlgorithm";
+import { runCodeLinting } from "./runCodeLinting";
 
 const handleShowMVCDiagram = async (
   context: vscode.ExtensionContext,
@@ -18,9 +19,18 @@ const handleShowMVCDiagram = async (
     return Promise.resolve(panel);
   }
 
+  // Tree-sitter Structure & LLM Descriptions
   let nodeEdgeData: NodeEdgeData = runCodeToDiagramAlgorithm(filePath);
-  console.log(nodeEdgeData);
   nodeEdgeData.nodes = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData);
+
+  // Linting & security
+  const { lintedNodes, hasIssues } = await runCodeLinting(nodeEdgeData.nodes);
+  nodeEdgeData.nodes = lintedNodes;
+  if (hasIssues) {
+    vscode.window.showWarningMessage('ESLint issues found. Check the Problems panel.');
+  }
+
+  // C4 Level 3 diagram?
   const componentNodeEdge = await getComponentDiagram(nodeEdgeData)
 
   panel = setupWebviewPanel(context);

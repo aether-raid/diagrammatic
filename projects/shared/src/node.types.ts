@@ -1,5 +1,7 @@
 import { BuiltInNode, Node } from "@xyflow/react";
 import { NodeRow } from "./app.types";
+import { SerializedDiagnostic } from "./vscode.types";
+
 
 interface EntityItem {
   name: string;
@@ -21,6 +23,11 @@ export type EntityNode = Node<
     >;
     description?: string;
     filePath?: string;
+    security?: {
+      clean?: SerializedDiagnostic[]
+      vulnerability?: SerializedDiagnostic[]
+      extras?: SerializedDiagnostic[]
+    };
   },
   "entity"
 >;

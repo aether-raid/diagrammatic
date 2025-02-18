@@ -19,7 +19,21 @@ export const initialNodes: AppNode[] = [
       items: [
         { name: 'Planter', lineNumber: 15 },
         { name: 'Harvester', lineNumber: 45 },
-      ]
+      ],
+    security: {
+        clean: [],
+        vulnerability: [{ range: {
+          start: {
+            line: 26,
+            character: 32,
+          },
+          end: {
+            line: 3,
+            character: 3,
+          }
+        }, message: 'Variable Assigned to Object Injection Sink', severity: 1, source: 'Group: security' }],
+        extras: []
+    }
     }
   },
   {
@@ -35,7 +49,12 @@ export const initialNodes: AppNode[] = [
         { name: 'plantPotato', lineNumber: 0 },
         { name: 'plantCorn', lineNumber: 20 },
         { name: 'plantCarrot', lineNumber: 40 }
-      ]
+      ],
+      security: {
+        clean: [],
+        vulnerability: [],
+        extras: []
+    }
     }
   },
   {
@@ -51,7 +70,12 @@ export const initialNodes: AppNode[] = [
         { name: 'harvestPotato', lineNumber: 0 },
         { name: 'harvestCorn', lineNumber: 20 },
         { name: 'harvestCarrot', lineNumber: 40 }
-      ]
+      ],
+      security: {
+        clean: [],
+        vulnerability: [],
+        extras: []
+    }
     }
   },
   {
@@ -64,7 +88,12 @@ export const initialNodes: AppNode[] = [
       filePath: 'path/to/grocer',
       items: [
         { name: 'sellProduct', lineNumber: 0 }
-      ]
+      ],
+      security: {
+        clean: [],
+        vulnerability: [],
+        extras: []
+    }
     }
   },
   {
@@ -78,7 +107,12 @@ export const initialNodes: AppNode[] = [
       items: [
         { name: 'consumePotato', lineNumber: 15 },
         { name: 'consumeCorn', lineNumber: 36 }
-      ]
+      ],
+      security: {
+        clean: [],
+        vulnerability: [],
+        extras: []
+    }
     }
   },
   {
@@ -93,7 +127,12 @@ export const initialNodes: AppNode[] = [
         { name: 'givePotato', lineNumber: 0 },
         { name: 'giveCorn', lineNumber: 32 },
         { name: 'cookAndGiveDish', lineNumber: 77 }
-      ]
+      ],
+      security: {
+        clean: [],
+        vulnerability: [],
+        extras: []
+    }
     }
   },
   {
