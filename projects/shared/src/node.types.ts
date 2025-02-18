@@ -18,6 +18,7 @@ export type EntityNode = Node<
     entityType: "class" | "file" | "interface" | "namespace" | "struct" | 'record';
     items: HighlightableEntityItem[];
 
+    matchesSearchTerm?: boolean;
     setHoveredEntity?: React.Dispatch<
       React.SetStateAction<NodeRow | undefined>
     >;

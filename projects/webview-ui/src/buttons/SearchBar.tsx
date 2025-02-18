@@ -5,11 +5,15 @@ import { Panel } from "@xyflow/react";
 interface SearchBarProps {
     nodes: AppNode[];
     setCenter: (x: number, y: number, options?: { zoom?: number }) => void;
+    matchedNodesState: [AppNode[], React.Dispatch<React.SetStateAction<AppNode[]>>];
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ nodes, setCenter }) => {
+const SearchBar: React.FC<SearchBarProps> = ({
+  nodes,
+  setCenter,
+  matchedNodesState: [matchedNodes, setMatchedNodes],
+}) => {
     const [searchInput, setSearchInput] = useState<string>("");
-    const [matchedNodes, setMatchedNodes] = useState<AppNode[]>([]);
     const [currentMatchIndex, setCurrentMatchIndex] = useState<number>(0);
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {

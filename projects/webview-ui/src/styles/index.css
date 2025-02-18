@@ -18,6 +18,12 @@ body,
   height: 100vh;
 }
 
+/* Font sizes */
 .fs-7 {
     font-size: 0.6rem;
+}
+
+/* Background colors */
+.bg-highlighter {
+    background-color: var(--app-highlighter-yellow);
 }

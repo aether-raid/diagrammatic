@@ -80,15 +80,22 @@ const LayoutFlow = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const vscode = useRef<any>(null);
 
+    // General ReactFlow states
     const { fitView, getNode, setCenter } = useReactFlow<AppNode, AppEdge>();
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+
+    // Hover Highlighting states
     const [highlightedNodes, setHighlightedNodes] = useState<string[]>([]);
     const [highlightedEdges, setHighlightedEdges] = useState<string[]>([]);
     const [hoveredEntity, setHoveredEntity] = useState<NodeRow | undefined>(
         undefined
     );
 
+    // Search Highlighting states
+    const [matchedNodes, setMatchedNodes] = useState<AppNode[]>([]);
+
+    // General constants
     const MIN_ZOOM = 0.1;
     const MAX_ZOOM = 2;
 
@@ -179,17 +186,18 @@ const LayoutFlow = () => {
         node.type !== "entity"
             ? node
             : {
-                  ...node,
-                  data: {
-                      ...node.data,
-                      items: node.data.items.map((item) => {
-                          item.highlighted = highlightedNodes.includes(
-                              `${node.id}-${item.name}`
-                          );
-                          return item;
-                      }),
-                      setHoveredEntity,
-                  },
+                ...node,
+                data: {
+                    ...node.data,
+                    items: node.data.items.map((item) => {
+                        item.highlighted = highlightedNodes.includes(
+                            `${node.id}-${item.name}`
+                        );
+                        return item;
+                    }),
+                    matchesSearchTerm: matchedNodes.map(match => match.id).includes(node.id),
+                    setHoveredEntity,
+                },
               };
 
     const prepareEdge = (edge: AppEdge) => ({
@@ -199,7 +207,11 @@ const LayoutFlow = () => {
 
     return (
         <>
-            <SearchBar nodes={nodes} setCenter={setCenter} />
+            <SearchBar
+                nodes={nodes}
+                setCenter={setCenter}
+                matchedNodesState={[matchedNodes, setMatchedNodes]}
+            />
             <ReactFlow
                 nodeTypes={nodeTypes}
                 nodes={nodes.map((n) => prepareNode(n))}
