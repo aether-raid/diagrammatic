@@ -5,19 +5,21 @@ import { Node, Group, Edge, GroupType } from "./model";
 import { AppEdge } from "@shared/edge.types";
 import { GLOBAL } from "./language";
 
-function getFilePath(parent: Node | Group | null): string {
-  if (!parent) {
-    return "";
-  }
-  if (parent instanceof Group) {
-    if (parent.groupType === GroupType.FILE) {
-      return parent?.filePath ?? "";
+function getFilePath(node: Node | Group | null): string {
+  if (node instanceof Node) {
+    const parent = node.parent;
+    if (parent instanceof Group && parent.groupType === GroupType.FILE) {
+      return parent.filePath;
     } else {
-      return `${parent?.filePath}.${parent?.token}`;
+      return `${parent.filePath}.${parent.token}`;
     }
-  } else {
-    return getFilePath(parent.parent);
   }
+
+  if (node instanceof Group) {
+    return `${node.filePath}.${node.token}`;
+  }
+
+  return "";
 }
 
 /**
@@ -31,8 +33,8 @@ export function transformEdges(allEdges: Edge[]): AppEdge[] {
     if (edge.source.token === GLOBAL) {
       continue;
     }
-    const source: string = getFilePath(edge.source.parent);
-    const target: string = getFilePath(edge.target.parent);
+    const source: string = getFilePath(edge.source);
+    const target: string = getFilePath(edge.target);
 
     if (edge.target instanceof Node) {
       output.push({
@@ -49,6 +51,7 @@ export function transformEdges(allEdges: Edge[]): AppEdge[] {
         source,
         target,
         sourceHandle: edge.source.token,
+        targetHandle: "entity",
         markerEnd: { type: MarkerType.ArrowClosed },
       });
     }

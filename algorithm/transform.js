@@ -1,19 +1,26 @@
 import { GLOBAL } from "./language.js";
 import { Node, Group, GroupType } from "./model.js";
 
-function getFilePath(parent) {
-  if (!parent) {
-    return "";
-  }
-  if (parent instanceof Group) {
-    if (parent.groupType === GroupType.FILE) {
-      return parent?.filePath ?? "";
+/**
+ * case 1: node
+ * case 2: group but not file
+ * @param {} node
+ */
+function getFilePath(node) {
+  if (node instanceof Node) {
+    const parent = node.parent;
+    if (parent instanceof Group && parent.groupType === GroupType.FILE) {
+      return parent.filePath;
     } else {
-      return `${parent?.filePath}.${parent?.token}`;
+      return `${parent.filePath}.${parent.token}`;
     }
-  } else {
-    return getFilePath(parent.parent);
   }
+
+  if (node instanceof Group) {
+    return `${node.filePath}.${node.token}`;
+  }
+
+  return "";
 }
 
 /**
@@ -27,8 +34,8 @@ export function transformEdges(allEdges) {
     if (edge.source.token === GLOBAL) {
       continue;
     }
-    const source = getFilePath(edge.source.parent);
-    const target = getFilePath(edge.target.parent);
+    const source = getFilePath(edge.source);
+    const target = getFilePath(edge.target);
 
     if (edge.target instanceof Node) {
       output.push({

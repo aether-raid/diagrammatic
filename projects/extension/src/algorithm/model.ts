@@ -84,7 +84,7 @@ export class Node {
   calls: Call[];
   variables: Variable[];
   lineNumber: number | null;
-  parent: Node | Group;
+  parent: Group;
   nodeType: NodeType;
 
   constructor({
@@ -99,7 +99,7 @@ export class Node {
     calls: Call[];
     variables: Variable[];
     lineNumber?: number | null;
-    parent: Node | Group;
+    parent: Group;
     nodeType: NodeType;
   }) {
     this.token = token;
@@ -148,8 +148,8 @@ export class Node {
     return this.token === "constructor";
   }
 
-  getFileGroup(): Group | Node {
-    let parent: Group | Node = this.parent;
+  getFileGroup(): Group {
+    let parent: Group = this.parent;
     while (parent?.parent) {
       parent = parent.parent;
     }
