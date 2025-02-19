@@ -1,5 +1,10 @@
 import { NodeEdgeData } from "./extension.types";
 import axios from 'axios';
+import * as dotenv from "dotenv";
+import * as path from "path";
+
+dotenv.config({ path: path.resolve(__dirname, ".env") });
+const apikey = process.env.SECRET_KEY;
 
 export const getComponentDiagram = async (nodeEdgeData: NodeEdgeData): Promise<void> => {
     const { nodes, edges } = nodeEdgeData;
@@ -40,7 +45,7 @@ export const getComponentDiagram = async (nodeEdgeData: NodeEdgeData): Promise<v
             },
             {
                 headers: {
-                    Authorization: `Bearer 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`,
+                    // Authorization: apikey,
                     "Content-Type": "application/json"
                 }
             }
