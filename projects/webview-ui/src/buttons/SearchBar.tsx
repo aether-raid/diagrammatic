@@ -1,24 +1,35 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { Panel, XYPosition } from "@xyflow/react";
+
 import { AppNode } from "@shared/node.types";
-import { Panel } from "@xyflow/react";
 
 interface SearchBarProps {
     nodes: AppNode[];
     setCenter: (x: number, y: number, options?: { zoom?: number }) => void;
+    matchedNodesState: [AppNode[], React.Dispatch<React.SetStateAction<AppNode[]>>];
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ nodes, setCenter }) => {
+const SearchBar: React.FC<SearchBarProps> = ({
+  nodes,
+  setCenter,
+  matchedNodesState: [matchedNodes, setMatchedNodes],
+}) => {
     const [searchInput, setSearchInput] = useState<string>("");
-    const [matchedNodes, setMatchedNodes] = useState<AppNode[]>([]);
     const [currentMatchIndex, setCurrentMatchIndex] = useState<number>(0);
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchInput(e.target.value);
     };
 
+    const zoomAndCenterPosition = (position: XYPosition, zoomLevel: number = 1.5) => {
+        const { x, y } = position;
+        setCenter(x, y, { zoom: zoomLevel });
+    }
+
     const performSearch = useCallback(() => {
         if (!searchInput) {
-            alert("Please enter a node title to search");
+            // TODO: better indication on no matches found.
+            // alert("Please enter a node title to search");
             return;
         }
 
@@ -32,38 +43,32 @@ const SearchBar: React.FC<SearchBarProps> = ({ nodes, setCenter }) => {
             return false;
         });
 
-        if (matches.length === 0) {
-            alert("Node not found.");
-            setMatchedNodes([]);
-            setCurrentMatchIndex(0);
-        } else {
-            setMatchedNodes(matches);
-            setCurrentMatchIndex(0);
-            // Immediately center on the first match
-            const { x, y } = matches[0].position;
-            setCenter(x, y, { zoom: 1.5 });
-        }
+        setMatchedNodes(matches);
+        setCurrentMatchIndex(0);
+
+        // Immediately center on first match
+        if (matches.length !== 0) { zoomAndCenterPosition(matches[0].position) }
     }, [nodes, searchInput, setCenter]);
 
     // Navigate to the previous match in the list
-    const handlePrevMatch = useCallback(() => {
+    const jumpToPrevMatch = useCallback(() => {
         if (matchedNodes.length === 0) return;
-        // Use modulo arithmetic for circular navigation
-        const newIndex =
-            (currentMatchIndex - 1 + matchedNodes.length) % matchedNodes.length;
-        setCurrentMatchIndex(newIndex);
-        const { x, y } = matchedNodes[newIndex].position;
-        setCenter(x, y, { zoom: 1.5 });
+        const prevIndex = (currentMatchIndex - 1 + matchedNodes.length) % matchedNodes.length;
+        setCurrentMatchIndex(prevIndex);
     }, [matchedNodes, currentMatchIndex, setCenter]);
 
     // Navigate to the next match in the list
-    const handleNextMatch = useCallback(() => {
+    const jumpToNextMatch = useCallback(() => {
         if (matchedNodes.length === 0) return;
-        const newIndex = (currentMatchIndex + 1) % matchedNodes.length;
-        setCurrentMatchIndex(newIndex);
-        const { x, y } = matchedNodes[newIndex].position;
-        setCenter(x, y, { zoom: 1.5 });
+        const nextIndex = (currentMatchIndex + 1) % matchedNodes.length;
+        setCurrentMatchIndex(nextIndex);
     }, [matchedNodes, currentMatchIndex, setCenter]);
+
+    // Auto-center & zoom upon changing match index
+    useEffect(() => {
+        if (matchedNodes.length === 0) { return; }
+        zoomAndCenterPosition(matchedNodes[currentMatchIndex].position);
+    }, [currentMatchIndex]);
 
     return (
         <Panel position="top-left">
@@ -103,7 +108,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ nodes, setCenter }) => {
                         }}
                     >
                         <button
-                            onClick={handlePrevMatch}
+                            onClick={jumpToPrevMatch}
                             style={{
                                 padding: "5px",
                                 marginRight: "5px",
@@ -121,7 +126,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ nodes, setCenter }) => {
                             {currentMatchIndex + 1} / {matchedNodes.length}
                         </span>
                         <button
-                            onClick={handleNextMatch}
+                            onClick={jumpToNextMatch}
                             style={{
                                 padding: "5px",
                                 cursor: "pointer",

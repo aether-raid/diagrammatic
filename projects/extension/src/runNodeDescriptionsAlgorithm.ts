@@ -2,11 +2,15 @@ import { AppNode } from "@shared/node.types";
 import { NodeDescriptionData } from "./extension.types";
 import axios from 'axios';
 import { NodeEdgeData } from "./extension.types";
+import * as dotenv from "dotenv";
+import * as path from "path";
 
 interface JsonData {
   node_id: string;
   class_description: string;
 }
+dotenv.config({ path: path.resolve(__dirname, ".env") });
+const apikey = process.env.SECRET_KEY;
 
 const getNodeDescriptions = async (nodeEdgeData: NodeEdgeData): Promise<NodeDescriptionData> => {
   // Replace this function with the LLM/algorithm code @shawn to get the descriptions for each file
@@ -17,8 +21,6 @@ const getNodeDescriptions = async (nodeEdgeData: NodeEdgeData): Promise<NodeDesc
   const descriptions: NodeDescriptionData = {};
 
     try {
-      // const filePath = node.id.slice(0, node.id.lastIndexOf("."));
-      // const sourceCode = fs.readFileSync(filePath, "utf-8");
       const response = await axios.post(
         "https://api.openai.com/v1/chat/completions",
         {
@@ -42,7 +44,7 @@ const getNodeDescriptions = async (nodeEdgeData: NodeEdgeData): Promise<NodeDesc
         },
         {
           headers: {
-            Authorization: `Bearer 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`,
+            // Authorization: apikey,
             "Content-Type": "application/json"
           }
         }
