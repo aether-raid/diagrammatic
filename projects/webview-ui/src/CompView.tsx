@@ -28,6 +28,7 @@ const getLayoutedElements = (
     options: OptionProps
 ) => {
     const g = new Dagre.graphlib.Graph();
+    g.setDefaultEdgeLabel(() => ({}));
     g.setGraph({ rankdir: options.direction });
 
     edges.forEach((edge) => g.setEdge(edge.source, edge.target));
@@ -61,10 +62,6 @@ const LayoutFlow = () => {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialCompNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialCompEdges);
 
-    console.log("Initial Nodes:", nodes);
-    console.log("Initial Edges:", edges);
-
-
     const MIN_ZOOM = 0.1;
     const MAX_ZOOM = 2;
 
@@ -97,6 +94,7 @@ const LayoutFlow = () => {
     const prepareEdge = (edge: CompEdge) => ({
         ...edge,
     });
+    edges.forEach((e) => console.log("Prepared Edge:", prepareEdge(e)));
 
     return (
         <ReactFlow
