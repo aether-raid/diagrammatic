@@ -6,7 +6,7 @@ import Python from "tree-sitter-python";
 import Java from "tree-sitter-java";
 import Cpp from "tree-sitter-cpp";
 
-import { Variable, Call, Group, Edge, GroupType } from "./model.js";
+import { Variable, Call, Group, Edge, GroupType, NodeType } from "./model.js";
 import { Language } from "./language.js";
 
 /**
@@ -342,22 +342,24 @@ export function makeLocalVariables(tree, parent, languageRules) {
               );
               const baseDirectory = path.dirname(importedFilePath);
               // if file has no extension, search directory for matching filename
-              const files = fs.readdirSync(baseDirectory);
-              const fileNameWithoutExt = path.basename(pointsTo);
-              const matchedFile = files.find((file) => {
-                const baseFilePath = path.basename(file);
-                return baseFilePath.startsWith(fileNameWithoutExt);
-              });
-              if (matchedFile) {
-                importedFilePath = path.join(baseDirectory, matchedFile);
+              if (fs.existsSync(baseDirectory)) {
+                const files = fs.readdirSync(baseDirectory);
+                const fileNameWithoutExt = path.basename(pointsTo);
+                const matchedFile = files.find((file) => {
+                  const baseFilePath = path.basename(file);
+                  return baseFilePath.startsWith(fileNameWithoutExt);
+                });
+                if (matchedFile) {
+                  importedFilePath = path.join(baseDirectory, matchedFile);
+                }
+                variables.push(
+                  new Variable(
+                    name,
+                    importedFilePath,
+                    getLineNumber(importSpecifier)
+                  )
+                );
               }
-              variables.push(
-                new Variable(
-                  name,
-                  importedFilePath,
-                  getLineNumber(importSpecifier)
-                )
-              );
             }
           }
         }
@@ -414,7 +416,6 @@ export function findLinkForCall(call, nodeA, allNodes) {
       ) {
         for (const fileNode of variable.pointsTo.nodes) {
           if (fileNode.token === call.token) {
-            console.log(variable.toString());
             return new Edge(nodeA, fileNode);
           }
         }
@@ -422,7 +423,11 @@ export function findLinkForCall(call, nodeA, allNodes) {
     }
 
     // calling another function
-    if (!call.isAttribute() && call.token === node.token) {
+    if (
+      !call.isAttribute() &&
+      call.token === node.token &&
+      node.nodeType === NodeType.FUNCTION
+    ) {
       return new Edge(nodeA, node);
     }
 
@@ -430,6 +435,7 @@ export function findLinkForCall(call, nodeA, allNodes) {
     if (
       !call.isAttribute() &&
       call.token === node.token &&
+      node.nodeType === NodeType.FUNCTION &&
       node.parent instanceof Group &&
       node.parent.groupType === GroupType.FILE
     ) {
@@ -448,6 +454,7 @@ export function findLinks(nodeA, allNodes) {
     }
   }
 
+  /* 
   for (const variable of nodeA.variables) {
     // e.g. let article = new ArticleEntity()
     if (
@@ -456,7 +463,7 @@ export function findLinks(nodeA, allNodes) {
     ) {
       links.push(new Edge(nodeA, variable.pointsTo));
     }
-  }
+  } */
 
   return links;
 }

@@ -443,7 +443,11 @@ export function findLinkForCall(
     }
 
     // calling another function
-    if (!call.isAttribute() && call.token === node.token) {
+    if (
+      !call.isAttribute() &&
+      call.token === node.token &&
+      node.nodeType === NodeType.FUNCTION
+    ) {
       return new Edge(nodeA, node);
     }
 
@@ -451,6 +455,7 @@ export function findLinkForCall(
     if (
       !call.isAttribute() &&
       call.token === node.token &&
+      node.nodeType === NodeType.FUNCTION &&
       node.parent instanceof Group &&
       node.parent.groupType === GroupType.FILE
     ) {
@@ -469,6 +474,7 @@ export function findLinks(nodeA: Node, allNodes: Node[]) {
     }
   }
 
+  /* 
   for (const variable of nodeA.variables) {
     // e.g. let article = new ArticleEntity()
     if (
@@ -477,7 +483,8 @@ export function findLinks(nodeA: Node, allNodes: Node[]) {
     ) {
       links.push(new Edge(nodeA, variable.pointsTo));
     }
-  }
+  } 
+  */
 
   return links;
 }
