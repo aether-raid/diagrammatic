@@ -31,7 +31,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import {
     getEdgesEntitiesToHighlightBFS,
     getOutgoingEdgesFromEntityRow,
-} from "./helper";
+} from "./helpers/diagramBFS";
 import { initVsCodeApi, sendReadyMessageToExtension } from "./vscodeApiHandler";
 import DownloadButton from "./buttons/DownloadButton";
 import SearchBar from "./buttons/SearchBar";
