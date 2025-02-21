@@ -918,5 +918,3021 @@
         }
       ]
     }
+  },
+  {
+    "data": {
+      "entityName": "StaticUser",
+      "entityType": "interface",
+      "filePath": "/data/staticData.ts",
+      "items": [
+        { "name": "email", "lineNumber": 14, "type": "attribute" },
+        { "name": "password", "lineNumber": 15, "type": "attribute" },
+        { "name": "key", "lineNumber": 16, "type": "attribute" },
+        { "name": "role", "lineNumber": 17, "type": "attribute" },
+        { "name": "username", "lineNumber": 19, "type": "attribute" },
+        { "name": "profileImage", "lineNumber": 20, "type": "attribute" },
+        { "name": "walletBalance", "lineNumber": 21, "type": "attribute" },
+        { "name": "lastLoginIp", "lineNumber": 22, "type": "attribute" },
+        { "name": "deletedFlag", "lineNumber": 23, "type": "attribute" },
+        { "name": "totpSecret", "lineNumber": 24, "type": "attribute" },
+        { "name": "customDomain", "lineNumber": 25, "type": "attribute" },
+        { "name": "securityQuestion", "lineNumber": 26, "type": "attribute" },
+        { "name": "feedback", "lineNumber": 27, "type": "attribute" },
+        { "name": "address", "lineNumber": 28, "type": "attribute" },
+        { "name": "card", "lineNumber": 29, "type": "attribute" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "StaticUserSecurityQuestion",
+      "entityType": "interface",
+      "filePath": "/data/staticData.ts",
+      "items": [
+        { "name": "id", "lineNumber": 32, "type": "attribute" },
+        { "name": "answer", "lineNumber": 33, "type": "attribute" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "StaticUserFeedback",
+      "entityType": "interface",
+      "filePath": "/data/staticData.ts",
+      "items": [
+        { "name": "comment", "lineNumber": 36, "type": "attribute" },
+        { "name": "rating", "lineNumber": 37, "type": "attribute" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "StaticUserAddress",
+      "entityType": "interface",
+      "filePath": "/data/staticData.ts",
+      "items": [
+        { "name": "fullName", "lineNumber": 40, "type": "attribute" },
+        { "name": "mobileNum", "lineNumber": 41, "type": "attribute" },
+        { "name": "zipCode", "lineNumber": 42, "type": "attribute" },
+        { "name": "streetAddress", "lineNumber": 43, "type": "attribute" },
+        { "name": "city", "lineNumber": 44, "type": "attribute" },
+        { "name": "state", "lineNumber": 45, "type": "attribute" },
+        { "name": "country", "lineNumber": 46, "type": "attribute" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "StaticUserCard",
+      "entityType": "interface",
+      "filePath": "/data/staticData.ts",
+      "items": [
+        { "name": "fullName", "lineNumber": 49, "type": "attribute" },
+        { "name": "cardNum", "lineNumber": 50, "type": "attribute" },
+        { "name": "expMonth", "lineNumber": 51, "type": "attribute" },
+        { "name": "expYear", "lineNumber": 52, "type": "attribute" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "StaticChallenge",
+      "entityType": "interface",
+      "filePath": "/data/staticData.ts",
+      "items": [
+        { "name": "name", "lineNumber": 59, "type": "attribute" },
+        { "name": "category", "lineNumber": 60, "type": "attribute" },
+        { "name": "tags", "lineNumber": 61, "type": "attribute" },
+        { "name": "description", "lineNumber": 62, "type": "attribute" },
+        { "name": "difficulty", "lineNumber": 63, "type": "attribute" },
+        { "name": "hint", "lineNumber": 64, "type": "attribute" },
+        { "name": "hintUrl", "lineNumber": 65, "type": "attribute" },
+        { "name": "mitigationUrl", "lineNumber": 66, "type": "attribute" },
+        { "name": "key", "lineNumber": 67, "type": "attribute" },
+        { "name": "disabledEnv", "lineNumber": 68, "type": "attribute" },
+        { "name": "tutorial", "lineNumber": 69, "type": "attribute" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "StaticDelivery",
+      "entityType": "interface",
+      "filePath": "/data/staticData.ts",
+      "items": [
+        { "name": "name", "lineNumber": 78, "type": "attribute" },
+        { "name": "price", "lineNumber": 79, "type": "attribute" },
+        { "name": "deluxePrice", "lineNumber": 80, "type": "attribute" },
+        { "name": "eta", "lineNumber": 81, "type": "attribute" },
+        { "name": "icon", "lineNumber": 82, "type": "attribute" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "StaticSecurityQuestions",
+      "entityType": "interface",
+      "filePath": "/data/staticData.ts",
+      "items": [{ "name": "question", "lineNumber": 89, "type": "attribute" }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "staticData.ts",
+      "entityType": "file",
+      "filePath": "/data/staticData.ts",
+      "items": [
+        { "name": "loadStaticData", "lineNumber": 6, "type": "function" },
+        { "name": "loadStaticUserData", "lineNumber": 54, "type": "function" },
+        {
+          "name": "loadStaticChallengeData",
+          "lineNumber": 73,
+          "type": "function"
+        },
+        {
+          "name": "loadStaticDeliveryData",
+          "lineNumber": 84,
+          "type": "function"
+        },
+        {
+          "name": "loadStaticSecurityQuestionsData",
+          "lineNumber": 91,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Review",
+      "entityType": "interface",
+      "filePath": "/data/types.ts",
+      "items": [
+        { "name": "test", "lineNumber": 28, "type": "attribute" },
+        { "name": "author", "lineNumber": 29, "type": "attribute" },
+        {
+          "name": "liked",
+          "lineNumber": 30,
+          "type": "attribute"
+        },
+        {
+          "name": "likedBy",
+          "lineNumber": 31,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "datacreator.ts",
+      "entityType": "file",
+      "filePath": "/data/datacreator.ts",
+      "items": [
+        { "name": "createChallenges", "lineNumber": 63, "type": "function" },
+        { "name": "createUsers", "lineNumber": 102, "type": "function" },
+        { "name": "createWallet", "lineNumber": 132, "type": "function" },
+        {
+          "name": "createDeliveryMethods",
+          "lineNumber": 146,
+          "type": "function"
+        },
+        { "name": "createAddresses", "lineNumber": 166, "type": "function" },
+        { "name": "createCards", "lineNumber": 185, "type": "function" },
+        { "name": "deleteUser", "lineNumber": 199, "type": "function" },
+        { "name": "deleteProduct", "lineNumber": 205, "type": "function" },
+        {
+          "name": "createRandomFakeUsers",
+          "lineNumber": 211,
+          "type": "function"
+        },
+        { "name": "createQuantity", "lineNumber": 234, "type": "function" },
+        { "name": "createMemories", "lineNumber": 248, "type": "function" },
+        { "name": "createProducts", "lineNumber": 295, "type": "function" },
+        { "name": "createBaskets", "lineNumber": 406, "type": "function" },
+        { "name": "createBasketItems", "lineNumber": 426, "type": "function" },
+        {
+          "name": "createAnonymousFeedback",
+          "lineNumber": 479,
+          "type": "function"
+        },
+        { "name": "createFeedback", "lineNumber": 504, "type": "function" },
+        { "name": "createComplaints", "lineNumber": 511, "type": "function" },
+        { "name": "createRecycle", "lineNumber": 520, "type": "function" },
+        { "name": "createRecycleItem", "lineNumber": 591, "type": "function" },
+        {
+          "name": "createSecurityQuestions",
+          "lineNumber": 603,
+          "type": "function"
+        },
+        {
+          "name": "createSecurityAnswer",
+          "lineNumber": 617,
+          "type": "function"
+        },
+        { "name": "createOrders", "lineNumber": 623, "type": "function" },
+        { "name": "prepareFilesystem", "lineNumber": 722, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "datacache.ts",
+      "entityType": "file",
+      "filePath": "/data/datacache.ts",
+      "items": [
+        {
+          "name": "setRetrieveBlueprintChallengeFile",
+          "lineNumber": 34,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Notification",
+      "entityType": "interface",
+      "filePath": "/data/datacache.ts",
+      "items": [
+        { "name": "key", "lineNumber": 24, "type": "attribute" },
+        { "name": "name", "lineNumber": 25, "type": "attribute" },
+        { "name": "challenge", "lineNumber": 26, "type": "attribute" },
+        { "name": "flag", "lineNumber": 27, "type": "attribute" },
+        { "name": "hidden", "lineNumber": 28, "type": "attribute" },
+        { "name": "isRestore", "lineNumber": 29, "type": "attribute" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "exposedMetricsChallenge_1.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/exposedMetricsChallenge_1.ts",
+      "items": [
+        { "name": "start", "lineNumber": 7, "type": "function" },
+        { "name": "close", "lineNumber": 31, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "exposedMetricsChallenge_2.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/exposedMetricsChallenge_2.ts",
+      "items": [
+        { "name": "start", "lineNumber": 6, "type": "function" },
+        { "name": "close", "lineNumber": 28, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "exposedMetricsChallenge_3_correct.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/exposedMetricsChallenge_3_correct.ts",
+      "items": [
+        { "name": "start", "lineNumber": 7, "type": "function" },
+        { "name": "close", "lineNumber": 31, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "forgedReviewChallenge_1.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/forgedReviewChallenge_1.ts",
+      "items": [
+        { "name": "productReviews", "lineNumber": 1, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "forgedReviewChallenge_2_correct.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/forgedReviewChallenge_2_correct.ts",
+      "items": [
+        { "name": "productReviews", "lineNumber": 1, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "forgedReviewChallenge_3.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/forgedReviewChallenge_3.ts",
+      "items": [
+        { "name": "productReviews", "lineNumber": 1, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "loginAdminChallenge_1.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/loginAdminChallenge_1.ts",
+      "items": [{ "name": "login", "lineNumber": 3, "type": "function" }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "loginAdminChallenge_2.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/loginAdminChallenge_2.ts",
+      "items": [{ "name": "login", "lineNumber": 3, "type": "function" }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "loginAdminChallenge_3.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/loginAdminChallenge_3.ts",
+      "items": [{ "name": "login", "lineNumber": 3, "type": "function" }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "loginAdminChallenge_4_correct.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/loginAdminChallenge_4_correct.ts",
+      "items": [{ "name": "login", "lineNumber": 3, "type": "function" }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "loginBenderChallenge_1.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/loginBenderChallenge_1.ts",
+      "items": [{ "name": "login", "lineNumber": 3, "type": "function" }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "loginBenderChallenge_2_correct.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/loginBenderChallenge_2_correct.ts",
+      "items": [{ "name": "login", "lineNumber": 3, "type": "function" }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "loginBenderChallenge_3.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/loginBenderChallenge_3.ts",
+      "items": [{ "name": "login", "lineNumber": 3, "type": "function" }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "loginBenderChallenge_4.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/loginBenderChallenge_4.ts",
+      "items": [{ "name": "login", "lineNumber": 3, "type": "function" }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "loginJimChallenge_1_correct.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/loginJimChallenge_1_correct.ts",
+      "items": [{ "name": "login", "lineNumber": 3, "type": "function" }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "loginJimChallenge_2.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/loginJimChallenge_2.ts",
+      "items": [{ "name": "login", "lineNumber": 3, "type": "function" }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "loginJimChallenge_3.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/loginJimChallenge_3.ts",
+      "items": [{ "name": "login", "lineNumber": 3, "type": "function" }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "loginJimChallenge_4.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/loginJimChallenge_4.ts",
+      "items": [{ "name": "login", "lineNumber": 3, "type": "function" }]
+    }
+  },
+  {
+    "data": {
+      "entityName": "noSqlReviewsChallenge_1.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/noSqlReviewsChallenge_1.ts",
+      "items": [
+        { "name": "productReviews", "lineNumber": 1, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "noSqlReviewsChallenge_2.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/noSqlReviewsChallenge_2.ts",
+      "items": [
+        { "name": "productReviews", "lineNumber": 1, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "noSqlReviewsChallenge_3_correct.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/noSqlReviewsChallenge_3_correct.ts",
+      "items": [
+        { "name": "productReviews", "lineNumber": 1, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "redirectChallenge_1.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/redirectChallenge_1.ts",
+      "items": [
+        { "name": "isRedirectAllowed", "lineNumber": 12, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "redirectChallenge_2.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/redirectChallenge_2.ts",
+      "items": [
+        { "name": "isRedirectAllowed", "lineNumber": 12, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "redirectChallenge_3.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/redirectChallenge_3.ts",
+      "items": [
+        { "name": "isRedirectAllowed", "lineNumber": 12, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "redirectChallenge_4_correct.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/redirectChallenge_4_correct.ts",
+      "items": [
+        { "name": "isRedirectAllowed", "lineNumber": 12, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "redirectCryptoCurrencyChallenge_1.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/redirectCryptoCurrencyChallenge_1.ts",
+      "items": [
+        { "name": "isRedirectAllowed", "lineNumber": 11, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "redirectCryptoCurrencyChallenge_2.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/redirectCryptoCurrencyChallenge_2.ts",
+      "items": [
+        { "name": "isRedirectAllowed", "lineNumber": 11, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "redirectCryptoCurrencyChallenge_3_correct.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/redirectCryptoCurrencyChallenge_3_correct.ts",
+      "items": [
+        { "name": "isRedirectAllowed", "lineNumber": 9, "type": "function" }
+      ]
+    }
+  },
+  {
+    "id": "/data/static/codefixes/redirectCryptoCurrencyChallenge_4.ts",
+    "type": "entity",
+    "position": { "x": 0, "y": 0 },
+    "data": {
+      "entityName": "redirectCryptoCurrencyChallenge_4.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/redirectCryptoCurrencyChallenge_4.ts",
+      "items": [
+        { "name": "isRedirectAllowed", "lineNumber": 11, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "tokenSaleChallenge_1.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/tokenSaleChallenge_1.ts",
+      "items": [
+        { "name": "oauthMatcher", "lineNumber": 22, "type": "function" },
+        { "name": "tokenMatcher", "lineNumber": 34, "type": "function" },
+        { "name": "token1", "lineNumber": 48, "type": "function" },
+        { "name": "token2", "lineNumber": 56, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "tokenSaleChallenge_2.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/tokenSaleChallenge_2.ts",
+      "items": [
+        { "name": "oauthMatcher", "lineNumber": 23, "type": "function" },
+        { "name": "tokenMatcher", "lineNumber": 35, "type": "function" },
+        { "name": "token1", "lineNumber": 49, "type": "function" },
+        { "name": "token2", "lineNumber": 57, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "tokenSaleChallenge_3_correct.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/tokenSaleChallenge_3_correct.ts",
+      "items": [
+        { "name": "oauthMatcher", "lineNumber": 18, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "unionSqlInjectionChallenge_1.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/unionSqlInjectionChallenge_1.ts",
+      "items": [
+        { "name": "searchProducts", "lineNumber": 1, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "unionSqlInjectionChallenge_2_correct.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/unionSqlInjectionChallenge_2_correct.ts",
+      "items": [
+        { "name": "searchProducts", "lineNumber": 1, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "unionSqlInjectionChallenge_3.ts",
+      "entityType": "file",
+      "filePath": "/data/static/codefixes/unionSqlInjectionChallenge_3.ts",
+      "items": [
+        { "name": "searchProducts", "lineNumber": 1, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "AboutComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/about/about.component.ts",
+      "items": [
+        {
+          "name": "twitterUrl",
+          "lineNumber": 24,
+          "type": "attribute"
+        },
+        {
+          "name": "facebookUrl",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "slackUrl",
+          "lineNumber": 26,
+          "type": "attribute"
+        },
+        {
+          "name": "redditUrl",
+          "lineNumber": 27,
+          "type": "attribute"
+        },
+        {
+          "name": "pressKitUrl",
+          "lineNumber": 28,
+          "type": "attribute"
+        },
+        {
+          "name": "nftUrl",
+          "lineNumber": 29,
+          "type": "attribute"
+        },
+        {
+          "name": "slideshowDataSource",
+          "lineNumber": 30,
+          "type": "attribute"
+        },
+        {
+          "name": "images",
+          "lineNumber": 32,
+          "type": "attribute"
+        },
+        {
+          "name": "stars",
+          "lineNumber": 42,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 51,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 53,
+          "type": "function"
+        },
+        {
+          "name": "populateSlideshowFromFeedbacks",
+          "lineNumber": 79,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "AccountingComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/accounting/accounting.component.ts",
+      "items": [
+        {
+          "name": "orderHistoryColumns",
+          "lineNumber": 32,
+          "type": "attribute"
+        },
+        {
+          "name": "orderData",
+          "lineNumber": 34,
+          "type": "attribute"
+        },
+        {
+          "name": "orderSource",
+          "lineNumber": 35,
+          "type": "attribute"
+        },
+        {
+          "name": "displayedColumns",
+          "lineNumber": 36,
+          "type": "attribute"
+        },
+        {
+          "name": "tableData",
+          "lineNumber": 37,
+          "type": "attribute"
+        },
+        {
+          "name": "dataSource",
+          "lineNumber": 38,
+          "type": "attribute"
+        },
+        {
+          "name": "productSubscription",
+          "lineNumber": 40,
+          "type": "attribute"
+        },
+        {
+          "name": "quantitySubscription",
+          "lineNumber": 41,
+          "type": "attribute"
+        },
+        {
+          "name": "quantityMap",
+          "lineNumber": 42,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 43,
+          "type": "function"
+        },
+        {
+          "name": "ngAfterViewInit",
+          "lineNumber": 45,
+          "type": "function"
+        },
+        {
+          "name": "loadQuantity",
+          "lineNumber": 51,
+          "type": "function"
+        },
+        {
+          "name": "loadProducts",
+          "lineNumber": 63,
+          "type": "function"
+        },
+        {
+          "name": "loadOrders",
+          "lineNumber": 71,
+          "type": "function"
+        },
+        {
+          "name": "ngOnDestroy",
+          "lineNumber": 87,
+          "type": "function"
+        },
+        {
+          "name": "modifyQuantity",
+          "lineNumber": 96,
+          "type": "function"
+        },
+        {
+          "name": "modifyPrice",
+          "lineNumber": 110,
+          "type": "function"
+        },
+        {
+          "name": "changeDeliveryStatus",
+          "lineNumber": 121,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Order",
+      "entityType": "interface",
+      "filePath": "/frontend/src/app/accounting/accounting.component.ts",
+      "items": [
+        {
+          "name": "id",
+          "lineNumber": 20,
+          "type": "attribute"
+        },
+        {
+          "name": "orderId",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "totalPrice",
+          "lineNumber": 22,
+          "type": "attribute"
+        },
+        {
+          "name": "delivered",
+          "lineNumber": 23,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "AddressComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/address/address.component.ts",
+      "items": [
+        {
+          "name": "addressId",
+          "lineNumber": 28,
+          "type": "attribute"
+        },
+        {
+          "name": "displayedColumns",
+          "lineNumber": 29,
+          "type": "attribute"
+        },
+        {
+          "name": "storedAddresses",
+          "lineNumber": 31,
+          "type": "attribute"
+        },
+        {
+          "name": "dataSource",
+          "lineNumber": 32,
+          "type": "attribute"
+        },
+        {
+          "name": "confirmation",
+          "lineNumber": 33,
+          "type": "attribute"
+        },
+        {
+          "name": "error",
+          "lineNumber": 34,
+          "type": "attribute"
+        },
+        {
+          "name": "addressExist",
+          "lineNumber": 35,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 37,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 40,
+          "type": "function"
+        },
+        {
+          "name": "load",
+          "lineNumber": 49,
+          "type": "function"
+        },
+        {
+          "name": "emitSelectionToParent",
+          "lineNumber": 60,
+          "type": "function"
+        },
+        {
+          "name": "chooseAddress",
+          "lineNumber": 70,
+          "type": "function"
+        },
+        {
+          "name": "deleteAddress",
+          "lineNumber": 75,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "AddressCreateComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/address-create/address-create.component.ts",
+      "items": [
+        {
+          "name": "countryControl",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "nameControl",
+          "lineNumber": 22,
+          "type": "attribute"
+        },
+        {
+          "name": "numberControl",
+          "lineNumber": 23,
+          "type": "attribute"
+        },
+        {
+          "name": "pinControl",
+          "lineNumber": 24,
+          "type": "attribute"
+        },
+        {
+          "name": "addressControl",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "cityControl",
+          "lineNumber": 26,
+          "type": "attribute"
+        },
+        {
+          "name": "stateControl",
+          "lineNumber": 27,
+          "type": "attribute"
+        },
+        {
+          "name": "address",
+          "lineNumber": 28,
+          "type": "attribute"
+        },
+        {
+          "name": "mode",
+          "lineNumber": 29,
+          "type": "attribute"
+        },
+        {
+          "name": "addressId",
+          "lineNumber": 30,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 32,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 36,
+          "type": "function"
+        },
+        {
+          "name": "save",
+          "lineNumber": 53,
+          "type": "function"
+        },
+        {
+          "name": "initializeForm",
+          "lineNumber": 96,
+          "type": "function"
+        },
+        {
+          "name": "routeToPreviousUrl",
+          "lineNumber": 106,
+          "type": "function"
+        },
+        {
+          "name": "resetForm",
+          "lineNumber": 110,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "AddressSelectComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/address-select/address-select.component.ts",
+      "items": [
+        {
+          "name": "addressId",
+          "lineNumber": 15,
+          "type": "attribute"
+        },
+        {
+          "name": "showNextButton",
+          "lineNumber": 16,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 18,
+          "type": "function"
+        },
+        {
+          "name": "getMessage",
+          "lineNumber": 20,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "AdministrationComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/administration/administration.component.ts",
+      "items": [
+        {
+          "name": "userDataSource",
+          "lineNumber": 26,
+          "type": "attribute"
+        },
+        {
+          "name": "userDataSourceHidden",
+          "lineNumber": 27,
+          "type": "attribute"
+        },
+        {
+          "name": "userColumns",
+          "lineNumber": 28,
+          "type": "attribute"
+        },
+        {
+          "name": "feedbackDataSource",
+          "lineNumber": 29,
+          "type": "attribute"
+        },
+        {
+          "name": "feedbackColumns",
+          "lineNumber": 30,
+          "type": "attribute"
+        },
+        {
+          "name": "error",
+          "lineNumber": 31,
+          "type": "attribute"
+        },
+        {
+          "name": "resultsLengthUser",
+          "lineNumber": 32,
+          "type": "attribute"
+        },
+        {
+          "name": "resultsLengthFeedback",
+          "lineNumber": 33,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 20,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 39,
+          "type": "function"
+        },
+        {
+          "name": "findAllUsers",
+          "lineNumber": 44,
+          "type": "function"
+        },
+        {
+          "name": "findAllFeedbacks",
+          "lineNumber": 60,
+          "type": "function"
+        },
+        {
+          "name": "deleteFeedback",
+          "lineNumber": 75,
+          "type": "function"
+        },
+        {
+          "name": "showUserDetail",
+          "lineNumber": 84,
+          "type": "function"
+        },
+        {
+          "name": "showFeedbackDetails",
+          "lineNumber": 92,
+          "type": "function"
+        },
+        {
+          "name": "times",
+          "lineNumber": 101,
+          "type": "function"
+        },
+        {
+          "name": "doesUserHaveAnActiveSession",
+          "lineNumber": 105,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "BasketComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/basket/basket.component.ts",
+      "items": [
+        {
+          "name": "productCount",
+          "lineNumber": 19,
+          "type": "attribute"
+        },
+        {
+          "name": "bonus",
+          "lineNumber": 20,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 22,
+          "type": "function"
+        },
+        {
+          "name": "checkout",
+          "lineNumber": 24,
+          "type": "function"
+        },
+        {
+          "name": "getProductCount",
+          "lineNumber": 28,
+          "type": "function"
+        },
+        {
+          "name": "checkout",
+          "lineNumber": 32,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ChallengeSolvedMessage",
+      "entityType": "interface",
+      "filePath": "/frontend/src/app/challenge-solved-notification/challenge-solved-notification.component.ts",
+      "items": [
+        {
+          "name": "challenge",
+          "lineNumber": 15,
+          "type": "attribute"
+        },
+        {
+          "name": "hidden",
+          "lineNumber": 16,
+          "type": "attribute"
+        },
+        {
+          "name": "isRestore",
+          "lineNumber": 17,
+          "type": "attribute"
+        },
+        {
+          "name": "flag",
+          "lineNumber": 18,
+          "type": "attribute"
+        },
+        {
+          "name": "key",
+          "lineNumber": 19,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ChallengeSolvedNotification",
+      "entityType": "interface",
+      "filePath": "/frontend/src/app/challenge-solved-notification/challenge-solved-notification.component.ts",
+      "items": [
+        {
+          "name": "message",
+          "lineNumber": 23,
+          "type": "attribute"
+        },
+        {
+          "name": "flag",
+          "lineNumber": 24,
+          "type": "attribute"
+        },
+        {
+          "name": "country",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "copied",
+          "lineNumber": 26,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ChallengeSolvedNotificationComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/challenge-solved-notification/challenge-solved-notification.component.ts",
+      "items": [
+        {
+          "name": "notifications",
+          "lineNumber": 35,
+          "type": "attribute"
+        },
+        {
+          "name": "showCtfFlagsInNotifications",
+          "lineNumber": 36,
+          "type": "attribute"
+        },
+        {
+          "name": "showCtfCountryDetailsInNotifications",
+          "lineNumber": 37,
+          "type": "attribute"
+        },
+        {
+          "name": "countryMap",
+          "lineNumber": 38,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 40,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 43,
+          "type": "function"
+        },
+        {
+          "name": "closeNotification",
+          "lineNumber": 86,
+          "type": "function"
+        },
+        {
+          "name": "showNotification",
+          "lineNumber": 98,
+          "type": "function"
+        },
+        {
+          "name": "saveProgress",
+          "lineNumber": 115,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ChallengeStatusBadgeComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/challenge-status-badge/challenge-status-badge.component.ts",
+      "items": [
+        {
+          "name": "challenge",
+          "lineNumber": 22,
+          "type": "attribute"
+        },
+        {
+          "name": "allowRepeatNotifications",
+          "lineNumber": 23,
+          "type": "attribute"
+        },
+        {
+          "name": "showChallengeHints",
+          "lineNumber": 24,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 26,
+          "type": "function"
+        },
+        {
+          "name": "repeatNotification",
+          "lineNumber": 28,
+          "type": "function"
+        },
+        {
+          "name": "openHint",
+          "lineNumber": 36,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ChangePasswordComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/change-password/change-password.component.ts",
+      "items": [
+        {
+          "name": "passwordControl",
+          "lineNumber": 23,
+          "type": "attribute"
+        },
+        {
+          "name": "newPasswordControl",
+          "lineNumber": 24,
+          "type": "attribute"
+        },
+        {
+          "name": "repeatNewPasswordControl",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "error",
+          "lineNumber": 26,
+          "type": "attribute"
+        },
+        {
+          "name": "confirmation",
+          "lineNumber": 27,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 29,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 28,
+          "type": "function"
+        },
+        {
+          "name": "changePassword",
+          "lineNumber": 35,
+          "type": "function"
+        },
+        {
+          "name": "resetForm",
+          "lineNumber": 59,
+          "type": "function"
+        },
+        {
+          "name": "resetPasswords",
+          "lineNumber": 64,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "change-password.component.ts",
+      "entityType": "file",
+      "filePath": "/frontend/src/app/change-password/change-password.component.ts",
+      "items": [
+        {
+          "name": "matchValidator",
+          "lineNumber": 76,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ChatMessage",
+      "entityType": "interface",
+      "filePath": "/frontend/src/app/chatbot/chatbot.component.ts",
+      "items": [
+        {
+          "name": "author",
+          "lineNumber": 24,
+          "type": "attribute"
+        },
+        {
+          "name": "body",
+          "lineNumber": 25,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "MessageActions",
+      "entityType": "interface",
+      "filePath": "/frontend/src/app/chatbot/chatbot.component.ts",
+      "items": [
+        {
+          "name": "response",
+          "lineNumber": 29,
+          "type": "attribute"
+        },
+        {
+          "name": "namequery",
+          "lineNumber": 30,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ChatbotComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/chatbot/chatbot.component.ts",
+      "items": [
+        {
+          "name": "messageControl",
+          "lineNumber": 39,
+          "type": "attribute"
+        },
+        {
+          "name": "messages",
+          "lineNumber": 40,
+          "type": "attribute"
+        },
+        {
+          "name": "juicyImageSrc",
+          "lineNumber": 41,
+          "type": "attribute"
+        },
+        {
+          "name": "profileImageSrc",
+          "lineNumber": 42,
+          "type": "attribute"
+        },
+        {
+          "name": "messageActions",
+          "lineNumber": 43,
+          "type": "attribute"
+        },
+        {
+          "name": "currentAction",
+          "lineNumber": 48,
+          "type": "attribute"
+        },
+        {
+          "name": "chatScrollDownTimeoutId",
+          "lineNumber": 50,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 52,
+          "type": "function"
+        },
+        {
+          "name": "ngOnDestroy",
+          "lineNumber": 54,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 60,
+          "type": "function"
+        },
+        {
+          "name": "handleResponse",
+          "lineNumber": 78,
+          "type": "function"
+        },
+        {
+          "name": "sendMessage",
+          "lineNumber": 92,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "LineMarker",
+      "entityType": "interface",
+      "filePath": "/frontend/src/app/code-area/code-area.component.ts",
+      "items": [
+        {
+          "name": "marked",
+          "lineNumber": 10,
+          "type": "attribute"
+        },
+        {
+          "name": "lineNumber",
+          "lineNumber": 11,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "CodeAreaComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/code-area/code-area.component.ts",
+      "items": [
+        {
+          "name": "code",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "vulnLines",
+          "lineNumber": 24,
+          "type": "attribute"
+        },
+        {
+          "name": "lineMarkers",
+          "lineNumber": 26,
+          "type": "attribute"
+        },
+        {
+          "name": "langs",
+          "lineNumber": 31,
+          "type": "attribute"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 31,
+          "type": "function"
+        },
+        {
+          "name": "selectLines",
+          "lineNumber": 42,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "CodeFixesComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/code-fixes/code-fixes.component.ts",
+      "items": [
+        {
+          "name": "differ",
+          "lineNumber": 13,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 15,
+          "type": "function"
+        },
+        {
+          "name": "snippet",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "fixes",
+          "lineNumber": 24,
+          "type": "attribute"
+        },
+        {
+          "name": "selectedFix",
+          "lineNumber": 27,
+          "type": "attribute"
+        },
+        {
+          "name": "randomFixes",
+          "lineNumber": 30,
+          "type": "attribute"
+        },
+        {
+          "name": "format",
+          "lineNumber": 33,
+          "type": "attribute"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 37,
+          "type": "function"
+        },
+        {
+          "name": "ngDoCheck",
+          "lineNumber": 46,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "DeluxeUserComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/deluxe-user/deluxe-user.component.ts",
+      "items": [
+        {
+          "name": "membershipCost",
+          "lineNumber": 20,
+          "type": "attribute"
+        },
+        {
+          "name": "error",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "applicationName",
+          "lineNumber": 22,
+          "type": "attribute"
+        },
+        {
+          "name": "logoSrc",
+          "lineNumber": 23,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 25,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 28,
+          "type": "function"
+        },
+        {
+          "name": "upgradeToDeluxe",
+          "lineNumber": 57,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ErrorPageComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/error-page/error-page.component.ts",
+      "items": [
+        {
+          "name": "error",
+          "lineNumber": 20,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 22,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 25,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "FaucetModule",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/faucet/faucet.module.ts",
+      "items": [
+        {
+          "name": "constructor",
+          "lineNumber": 38,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "FeedbackDetailsComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/feedback-details/feedback-details.component.ts",
+      "items": [
+        {
+          "name": "feedback",
+          "lineNumber": 15,
+          "type": "attribute"
+        },
+        {
+          "name": "id",
+          "lineNumber": 16,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 17,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 19,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ForgotPasswordComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/forgot-password/forgot-password.component.ts",
+      "items": [
+        {
+          "name": "emailControl",
+          "lineNumber": 24,
+          "type": "attribute"
+        },
+        {
+          "name": "securityQuestionControl",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "passwordControl",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "repeatPasswordControl",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "securityQuestion",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "error",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "confirmation",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "timeoutDuration",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "timeout",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 34,
+          "type": "function"
+        },
+        {
+          "name": "findSecurityQuestion",
+          "lineNumber": 36,
+          "type": "function"
+        },
+        {
+          "name": "resetPassword",
+          "lineNumber": 63,
+          "type": "function"
+        },
+        {
+          "name": "resetForm",
+          "lineNumber": 84,
+          "type": "function"
+        },
+        {
+          "name": "resetErrorForm",
+          "lineNumber": 99,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "forgot-password.component.ts",
+      "entityType": "file",
+      "filePath": "/frontend/src/app/forgot-password/forgot-password.component.ts",
+      "items": [
+        {
+          "name": "matchValidator",
+          "lineNumber": 114,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "LastLoginIpComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/last-login-ip/last-login-ip.component.ts",
+      "items": [
+        {
+          "name": "lastLoginIp",
+          "lineNumber": 18,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 19,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 21,
+          "type": "function"
+        },
+        {
+          "name": "parseAuthToken",
+          "lineNumber": 29,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "LoginComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/login/login.component.ts",
+      "items": [
+        {
+          "name": "emailControl",
+          "lineNumber": 30,
+          "type": "attribute"
+        },
+        {
+          "name": "passwordControl",
+          "lineNumber": 32,
+          "type": "attribute"
+        },
+        {
+          "name": "hide",
+          "lineNumber": 34,
+          "type": "attribute"
+        },
+        {
+          "name": "user",
+          "lineNumber": 35,
+          "type": "attribute"
+        },
+        {
+          "name": "rememberMe",
+          "lineNumber": 36,
+          "type": "attribute"
+        },
+        {
+          "name": "error",
+          "lineNumber": 37,
+          "type": "attribute"
+        },
+        {
+          "name": "clientId",
+          "lineNumber": 38,
+          "type": "attribute"
+        },
+        {
+          "name": "oauthUnavailable",
+          "lineNumber": 39,
+          "type": "attribute"
+        },
+        {
+          "name": "redirectUri",
+          "lineNumber": 40,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 41,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 43,
+          "type": "function"
+        },
+        {
+          "name": "login",
+          "lineNumber": 72,
+          "type": "function"
+        },
+        {
+          "name": "googleLogin",
+          "lineNumber": 107,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Backup",
+      "entityType": "interface",
+      "filePath": "/frontend/src/app/Models/backup.model.ts",
+      "items": [
+        {
+          "name": "version",
+          "lineNumber": 7,
+          "type": "attribute"
+        },
+        {
+          "name": "continueCode",
+          "lineNumber": 8,
+          "type": "attribute"
+        },
+        {
+          "name": "continueCodeFindIt",
+          "lineNumber": 9,
+          "type": "attribute"
+        },
+        {
+          "name": "continueCodeFixIt",
+          "lineNumber": 10,
+          "type": "attribute"
+        },
+        {
+          "name": "language",
+          "lineNumber": 11,
+          "type": "attribute"
+        },
+        {
+          "name": "banners",
+          "lineNumber": 12,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Challenge",
+      "entityType": "interface",
+      "filePath": "/frontend/src/app/Models/challenge.model.ts",
+      "items": [
+        {
+          "name": "name",
+          "lineNumber": 9,
+          "type": "attribute"
+        },
+        {
+          "name": "key",
+          "lineNumber": 10,
+          "type": "attribute"
+        },
+        {
+          "name": "category",
+          "lineNumber": 11,
+          "type": "attribute"
+        },
+        {
+          "name": "tags",
+          "lineNumber": 12,
+          "type": "attribute"
+        },
+        {
+          "name": "description",
+          "lineNumber": 13,
+          "type": "attribute"
+        },
+        {
+          "name": "difficulty",
+          "lineNumber": 14,
+          "type": "attribute"
+        },
+        {
+          "name": "hint",
+          "lineNumber": 15,
+          "type": "attribute"
+        },
+        {
+          "name": "hintUrl",
+          "lineNumber": 16,
+          "type": "attribute"
+        },
+        {
+          "name": "disabledEnv",
+          "lineNumber": 17,
+          "type": "attribute"
+        },
+        {
+          "name": "solved",
+          "lineNumber": 18,
+          "type": "attribute"
+        },
+        {
+          "name": "tutorialOrder",
+          "lineNumber": 19,
+          "type": "attribute"
+        },
+        {
+          "name": "hasTutorial",
+          "lineNumber": 20,
+          "type": "attribute"
+        },
+        {
+          "name": "hasSnippet",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "codingChallengeStatus",
+          "lineNumber": 22,
+          "type": "attribute"
+        },
+        {
+          "name": "mitigationUrl",
+          "lineNumber": 23,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "DeliveryMethod",
+      "entityType": "interface",
+      "filePath": "/frontend/src/app/Models/deliveryMethod.model.ts",
+      "items": [
+        {
+          "name": "id",
+          "lineNumber": 7,
+          "type": "attribute"
+        },
+        {
+          "name": "name",
+          "lineNumber": 8,
+          "type": "attribute"
+        },
+        {
+          "name": "price",
+          "lineNumber": 9,
+          "type": "attribute"
+        },
+        {
+          "name": "eta",
+          "lineNumber": 10,
+          "type": "attribute"
+        },
+        {
+          "name": "icon",
+          "lineNumber": 11,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Product",
+      "entityType": "interface",
+      "filePath": "/frontend/src/app/Models/product.model.ts",
+      "items": [
+        {
+          "name": "id",
+          "lineNumber": 7,
+          "type": "attribute"
+        },
+        {
+          "name": "name",
+          "lineNumber": 8,
+          "type": "attribute"
+        },
+        {
+          "name": "description",
+          "lineNumber": 9,
+          "type": "attribute"
+        },
+        {
+          "name": "image",
+          "lineNumber": 10,
+          "type": "attribute"
+        },
+        {
+          "name": "price",
+          "lineNumber": 11,
+          "type": "attribute"
+        },
+        {
+          "name": "points",
+          "lineNumber": 12,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Review",
+      "entityType": "interface",
+      "filePath": "/frontend/src/app/Models/review.model.ts",
+      "items": [
+        {
+          "name": "_id",
+          "lineNumber": 7,
+          "type": "attribute"
+        },
+        {
+          "name": "message",
+          "lineNumber": 8,
+          "type": "attribute"
+        },
+        {
+          "name": "author",
+          "lineNumber": 9,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SecurityQuestion",
+      "entityType": "interface",
+      "filePath": "/frontend/src/app/Models/securityQuestion.model.ts",
+      "items": [
+        {
+          "name": "id",
+          "lineNumber": 7,
+          "type": "attribute"
+        },
+        {
+          "name": "question",
+          "lineNumber": 8,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "NavbarComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/navbar/navbar.component.ts",
+      "items": [
+        {
+          "name": "userEmail",
+          "lineNumber": 54,
+          "type": "attribute"
+        },
+        {
+          "name": "languages",
+          "lineNumber": 55,
+          "type": "attribute"
+        },
+        {
+          "name": "selectedLanguage",
+          "lineNumber": 56,
+          "type": "attribute"
+        },
+        {
+          "name": "version",
+          "lineNumber": 57,
+          "type": "attribute"
+        },
+        {
+          "name": "applicationName",
+          "lineNumber": 58,
+          "type": "attribute"
+        },
+        {
+          "name": "showGitHubLink",
+          "lineNumber": 59,
+          "type": "attribute"
+        },
+        {
+          "name": "logoSrc",
+          "lineNumber": 60,
+          "type": "attribute"
+        },
+        {
+          "name": "scoreBoardVisible",
+          "lineNumber": 61,
+          "type": "attribute"
+        },
+        {
+          "name": "shortKeyLang",
+          "lineNumber": 62,
+          "type": "attribute"
+        },
+        {
+          "name": "itemTotal",
+          "lineNumber": 63,
+          "type": "attribute"
+        },
+        {
+          "name": "sidenavToggle",
+          "lineNumber": 65,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 67,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 73,
+          "type": "function"
+        },
+        {
+          "name": "checkLanguage",
+          "lineNumber": 126,
+          "type": "function"
+        },
+        {
+          "name": "search",
+          "lineNumber": 139,
+          "type": "function"
+        },
+        {
+          "name": "getUserDetails",
+          "lineNumber": 148,
+          "type": "function"
+        },
+        {
+          "name": "isLoggedIn",
+          "lineNumber": 154,
+          "type": "function"
+        },
+        {
+          "name": "logout",
+          "lineNumber": 158,
+          "type": "function"
+        },
+        {
+          "name": "changeLanguage",
+          "lineNumber": 168,
+          "type": "function"
+        },
+        {
+          "name": "getScoreBoardStatus",
+          "lineNumber": 186,
+          "type": "function"
+        },
+        {
+          "name": "goToProfilePage",
+          "lineNumber": 194,
+          "type": "function"
+        },
+        {
+          "name": "goToDataErasurePage",
+          "lineNumber": 198,
+          "type": "function"
+        },
+        {
+          "name": "onToggleSidenav",
+          "lineNumber": 202,
+          "type": "function"
+        },
+        {
+          "name": "noop",
+          "lineNumber": 207,
+          "type": "function"
+        },
+        {
+          "name": "getLanguages",
+          "lineNumber": 209,
+          "type": "function"
+        },
+        {
+          "name": "isAccounting",
+          "lineNumber": 216,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "NFTUnlockComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/navbar/navbar.component.ts",
+      "items": [
+        {
+          "name": "privateKey",
+          "lineNumber": 10,
+          "type": "attribute"
+        },
+        {
+          "name": "formSubmitted",
+          "lineNumber": 11,
+          "type": "attribute"
+        },
+        {
+          "name": "successResponse",
+          "lineNumber": 12,
+          "type": "attribute"
+        },
+        {
+          "name": "errorMessage",
+          "lineNumber": 13,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 15,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 17,
+          "type": "function"
+        },
+        {
+          "name": "checkChallengeStatus",
+          "lineNumber": 21,
+          "type": "function"
+        },
+        {
+          "name": "submitForm",
+          "lineNumber": 33,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "OAuthComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/navbar/navbar.component.ts",
+      "items": [
+        {
+          "name": "constructor",
+          "lineNumber": 17,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 19,
+          "type": "function"
+        },
+        {
+          "name": "login",
+          "lineNumber": 31,
+          "type": "function"
+        },
+        {
+          "name": "invalidateSession",
+          "lineNumber": 46,
+          "type": "function"
+        },
+        {
+          "name": "parseRedirectUrlParams",
+          "lineNumber": 53,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "OrderCompletionComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/order-completion/order-completion.component.ts",
+      "items": [
+        {
+          "name": "tableColumns",
+          "lineNumber": 24,
+          "type": "attribute"
+        },
+        {
+          "name": "dataSource",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "orderId",
+          "lineNumber": 26,
+          "type": "attribute"
+        },
+        {
+          "name": "orderDetails",
+          "lineNumber": 27,
+          "type": "attribute"
+        },
+        {
+          "name": "deliveryPrice",
+          "lineNumber": 28,
+          "type": "attribute"
+        },
+        {
+          "name": "promotionalDsicount",
+          "lineNumber": 29,
+          "type": "attribute"
+        },
+        {
+          "name": "address",
+          "lineNumber": 30,
+          "type": "attribute"
+        },
+        {
+          "name": "tweetText",
+          "lineNumber": 31,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 33,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 35,
+          "type": "function"
+        },
+        {
+          "name": "openConfirmationPDF",
+          "lineNumber": 72,
+          "type": "function"
+        },
+        {
+          "name": "truncateTweet",
+          "lineNumber": 77,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "StrippedProduct",
+      "entityType": "interface",
+      "filePath": "/frontend/src/app/order-history/order-history.component.ts",
+      "items": [
+        {
+          "name": "id",
+          "lineNumber": 17,
+          "type": "attribute"
+        },
+        {
+          "name": "name",
+          "lineNumber": 18,
+          "type": "attribute"
+        },
+        {
+          "name": "price",
+          "lineNumber": 19,
+          "type": "attribute"
+        },
+        {
+          "name": "quantity",
+          "lineNumber": 20,
+          "type": "attribute"
+        },
+        {
+          "name": "total",
+          "lineNumber": 21,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Order",
+      "entityType": "interface",
+      "filePath": "/frontend/src/app/order-history/order-history.component.ts",
+      "items": [
+        {
+          "name": "orderId",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "totalPrice",
+          "lineNumber": 26,
+          "type": "attribute"
+        },
+        {
+          "name": "bonus",
+          "lineNumber": 27,
+          "type": "attribute"
+        },
+        {
+          "name": "products",
+          "lineNumber": 28,
+          "type": "attribute"
+        },
+        {
+          "name": "delivered",
+          "lineNumber": 29,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "OrderHistoryComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/order-history/order-history.component.ts",
+      "items": [
+        {
+          "name": "tableColumns",
+          "lineNumber": 38,
+          "type": "attribute"
+        },
+        {
+          "name": "orders",
+          "lineNumber": 39,
+          "type": "attribute"
+        },
+        {
+          "name": "emptyState",
+          "lineNumber": 40,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 42,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 44,
+          "type": "function"
+        },
+        {
+          "name": "showDetail",
+          "lineNumber": 74,
+          "type": "function"
+        },
+        {
+          "name": "openConfirmationPDF",
+          "lineNumber": 94,
+          "type": "function"
+        },
+        {
+          "name": "trackOrder",
+          "lineNumber": 99,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "OrderSummaryComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/order-summary/order-summary.component.ts",
+      "items": [
+        {
+          "name": "bonus",
+          "lineNumber": 20,
+          "type": "attribute"
+        },
+        {
+          "name": "itemTotal",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "deliveryPrice",
+          "lineNumber": 22,
+          "type": "attribute"
+        },
+        {
+          "name": "promotionalDsicount",
+          "lineNumber": 23,
+          "type": "attribute"
+        },
+        {
+          "name": "address",
+          "lineNumber": 24,
+          "type": "attribute"
+        },
+        {
+          "name": "paymentMethod",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 26,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 28,
+          "type": "function"
+        },
+        {
+          "name": "getMessage",
+          "lineNumber": 47,
+          "type": "function"
+        },
+        {
+          "name": "placeOrder",
+          "lineNumber": 53,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "app.ts",
+      "entityType": "file",
+      "filePath": "/app.ts",
+      "items": [
+        {
+          "name": "app",
+          "lineNumber": 6,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "app.module.ts",
+      "entityType": "file",
+      "filePath": "/frontend/src/app/app.module.ts",
+      "items": [
+        {
+          "name": "HttpLoaderFactory",
+          "lineNumber": 142,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "AppModule",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/app.module.ts",
+      "items": [
+        {
+          "name": "constructor",
+          "lineNumber": 317,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "app.routing.ts",
+      "entityType": "file",
+      "filePath": "/frontend/src/app/app.routing.ts",
+      "items": [
+        {
+          "name": "loadFaucetModule",
+          "lineNumber": 46,
+          "type": "function"
+        },
+        {
+          "name": "loadWeb3WalletModule",
+          "lineNumber": 50,
+          "type": "function"
+        },
+        {
+          "name": "loadWeb3SandboxtModule",
+          "lineNumber": 55,
+          "type": "function"
+        },
+        {
+          "name": "oauthMatcher",
+          "lineNumber": 256,
+          "type": "function"
+        },
+        {
+          "name": "tokenMatcher",
+          "lineNumber": 268,
+          "type": "function"
+        },
+        {
+          "name": "token1",
+          "lineNumber": 282,
+          "type": "function"
+        },
+        {
+          "name": "oauttoken2hMatcher",
+          "lineNumber": 290,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "MockSocket",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/challenge-solved-notification/challenge-solved-notification.component.spec.ts",
+      "items": [
+        {
+          "name": "on",
+          "lineNumber": 24,
+          "type": "function"
+        },
+        {
+          "name": "emit",
+          "lineNumber": 28,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Solved",
+      "entityType": "interface",
+      "filePath": "/frontend/src/app/code-snippet/code-snippet.component.ts",
+      "items": [
+        {
+          "name": "findIt",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "fixIt",
+          "lineNumber": 26,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "RandomFixes",
+      "entityType": "interface",
+      "filePath": "/frontend/src/app/code-snippet/code-snippet.component.ts",
+      "items": [
+        {
+          "name": "fix",
+          "lineNumber": 30,
+          "type": "attribute"
+        },
+        {
+          "name": "index",
+          "lineNumber": 31,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "CodeSnippetComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/code-snippet/code-snippet.component.ts",
+      "items": [
+        {
+          "name": "snippet",
+          "lineNumber": 41,
+          "type": "attribute"
+        },
+        {
+          "name": "fixes",
+          "lineNumber": 42,
+          "type": "attribute"
+        },
+        {
+          "name": "selectedLines",
+          "lineNumber": 43,
+          "type": "attribute"
+        },
+        {
+          "name": "selectedFix",
+          "lineNumber": 44,
+          "type": "attribute"
+        },
+        {
+          "name": "tab",
+          "lineNumber": 45,
+          "type": "attribute"
+        },
+        {
+          "name": "lock",
+          "lineNumber": 46,
+          "type": "attribute"
+        },
+        {
+          "name": "result",
+          "lineNumber": 47,
+          "type": "attribute"
+        },
+        {
+          "name": "hint",
+          "lineNumber": 48,
+          "type": "attribute"
+        },
+        {
+          "name": "explanation",
+          "lineNumber": 49,
+          "type": "attribute"
+        },
+        {
+          "name": "solved",
+          "lineNumber": 50,
+          "type": "attribute"
+        },
+        {
+          "name": "showFeedbackButtons",
+          "lineNumber": 51,
+          "type": "attribute"
+        },
+        {
+          "name": "randomFixes",
+          "lineNumber": 52,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 54,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 56,
+          "type": "function"
+        },
+        {
+          "name": "addLine",
+          "lineNumber": 83,
+          "type": "function"
+        },
+        {
+          "name": "setFix",
+          "lineNumber": 87,
+          "type": "function"
+        },
+        {
+          "name": "changeFix",
+          "lineNumber": 92,
+          "type": "function"
+        },
+        {
+          "name": "toggleTab",
+          "lineNumber": 96,
+          "type": "function"
+        },
+        {
+          "name": "checkFix",
+          "lineNumber": 107,
+          "type": "function"
+        },
+        {
+          "name": "checkLines",
+          "lineNumber": 114,
+          "type": "function"
+        },
+        {
+          "name": "lockIcon",
+          "lineNumber": 121,
+          "type": "function"
+        },
+        {
+          "name": "lockColor",
+          "lineNumber": 135,
+          "type": "function"
+        },
+        {
+          "name": "shuffle",
+          "lineNumber": 144,
+          "type": "function"
+        },
+        {
+          "name": "setVerdict",
+          "lineNumber": 151,
+          "type": "function"
+        },
+        {
+          "name": "resultIcon",
+          "lineNumber": 188,
+          "type": "function"
+        },
+        {
+          "name": "resultColor",
+          "lineNumber": 199,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ComplaintComponent",
+      "entityType": "class",
+      "filePath": "/Users/sharlenetio/Desktop/fyp/samples/juice-shop/frontend/src/app/complaint/complaint.component.ts",
+      "items": [
+        {
+          "name": "customerControl",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "messageControl",
+          "lineNumber": 26,
+          "type": "attribute"
+        },
+        {
+          "name": "fileUploadError",
+          "lineNumber": 28,
+          "type": "attribute"
+        },
+        {
+          "name": "uploader",
+          "lineNumber": 29,
+          "type": "attribute"
+        },
+        {
+          "name": "userEmail",
+          "lineNumber": 36,
+          "type": "attribute"
+        },
+        {
+          "name": "complaint",
+          "lineNumber": 37,
+          "type": "attribute"
+        },
+        {
+          "name": "confirmation",
+          "lineNumber": 38,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 40,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 42,
+          "type": "function"
+        },
+        {
+          "name": "initComplaint",
+          "lineNumber": 59,
+          "type": "function"
+        },
+        {
+          "name": "save",
+          "lineNumber": 71,
+          "type": "function"
+        },
+        {
+          "name": "saveComplaint",
+          "lineNumber": 80,
+          "type": "function"
+        },
+        {
+          "name": "resetForm",
+          "lineNumber": 94,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ContactComponent",
+      "entityType": "class",
+      "filePath": "/Users/sharlenetio/Desktop/fyp/samples/juice-shop/frontend/src/app/contact/contact.component.ts",
+      "items": [
+        {
+          "name": "authorControl",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "feedbackControl",
+          "lineNumber": 26,
+          "type": "attribute"
+        },
+        {
+          "name": "captchaControl",
+          "lineNumber": 27,
+          "type": "attribute"
+        },
+        {
+          "name": "userIdControl",
+          "lineNumber": 28,
+          "type": "attribute"
+        },
+        {
+          "name": "rating",
+          "lineNumber": 29,
+          "type": "attribute"
+        },
+        {
+          "name": "feedback",
+          "lineNumber": 30,
+          "type": "attribute"
+        },
+        {
+          "name": "captcha",
+          "lineNumber": 31,
+          "type": "attribute"
+        },
+        {
+          "name": "captchaId",
+          "lineNumber": 32,
+          "type": "attribute"
+        },
+        {
+          "name": "confirmation",
+          "lineNumber": 33,
+          "type": "attribute"
+        },
+        {
+          "name": "error",
+          "lineNumber": 34,
+          "type": "attribute"
+        },
+        {
+          "name": "constructor",
+          "lineNumber": 36,
+          "type": "function"
+        },
+        {
+          "name": "ngOnInit",
+          "lineNumber": 39,
+          "type": "function"
+        },
+        {
+          "name": "getNewCaptcha",
+          "lineNumber": 55,
+          "type": "function"
+        },
+        {
+          "name": "save",
+          "lineNumber": 62,
+          "type": "function"
+        },
+        {
+          "name": "resetForm",
+          "lineNumber": 94,
+          "type": "function"
+        },
+        {
+          "name": "resetCaptcha",
+          "lineNumber": 107,
+          "type": "function"
+        },
+        {
+          "name": "formatRating",
+          "lineNumber": 113,
+          "type": "function"
+        }
+      ]
+    }
   }
 ]

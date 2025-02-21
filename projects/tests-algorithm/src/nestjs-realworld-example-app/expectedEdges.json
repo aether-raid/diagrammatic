@@ -174,5 +174,37 @@
     "sourceHandle": "login",
     "targetHandle": "generateJWT",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addComment-Comment",
+    "source": "/article/article.service.ts.ArticleService",
+    "target": "/article/comment.entity.ts.CommentEntity",
+    "sourceHandle": "addComment",
+    "targetHandle": "entity",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "create-ArticleEntity",
+    "source": "/article/article.service.ts.ArticleService",
+    "target": "/article/article.entity.ts.ArticleEntity",
+    "sourceHandle": "create",
+    "targetHandle": "entity",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "follow-FollowsEntity",
+    "source": "/profile/profile.service.ts.ProfileService",
+    "target": "/profile/follows.entity.ts.FollowsEntity",
+    "sourceHandle": "follow",
+    "targetHandle": "entity",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "create-UserEntity",
+    "source": "/user/user.service.ts.UserService",
+    "target": "/user/user.entity.ts.UserEntity",
+    "sourceHandle": "create",
+    "targetHandle": "entity",
+    "markerEnd": { "type": "arrowclosed" }
   }
 ]

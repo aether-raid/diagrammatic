@@ -80,38 +80,6 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
-    "id": "add_bookmark-getBookmark",
-    "source": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/service/BookmarkService.java.BookmarkService",
-    "target": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/service/BookmarkService.java.BookmarkService",
-    "sourceHandle": "add_bookmark",
-    "targetHandle": "getBookmark",
-    "markerEnd": { "type": "arrowclosed" }
-  },
-  {
-    "id": "add_bookmark-getBookmark",
-    "source": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/service/BookmarkService.java.BookmarkService",
-    "target": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/service/BookmarkService.java.BookmarkService",
-    "sourceHandle": "add_bookmark",
-    "targetHandle": "getBookmark",
-    "markerEnd": { "type": "arrowclosed" }
-  },
-  {
-    "id": "delete_bookmark-getBookmark",
-    "source": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/service/BookmarkService.java.BookmarkService",
-    "target": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/service/BookmarkService.java.BookmarkService",
-    "sourceHandle": "delete_bookmark",
-    "targetHandle": "getBookmark",
-    "markerEnd": { "type": "arrowclosed" }
-  },
-  {
-    "id": "delete_bookmark-getBookmark",
-    "source": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/service/BookmarkService.java.BookmarkService",
-    "target": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/service/BookmarkService.java.BookmarkService",
-    "sourceHandle": "delete_bookmark",
-    "targetHandle": "getBookmark",
-    "markerEnd": { "type": "arrowclosed" }
-  },
-  {
     "id": "delete_bookmark-getBookmark",
     "source": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/service/BookmarkService.java.BookmarkService",
     "target": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/service/BookmarkService.java.BookmarkService",
@@ -128,11 +96,27 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
-    "id": "findBookmark-getBookmark",
+    "id": "findAll-findAll",
     "source": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/service/BookmarkService.java.BookmarkService",
-    "target": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/service/BookmarkService.java.BookmarkService",
-    "sourceHandle": "findBookmark",
-    "targetHandle": "getBookmark",
+    "target": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/repository/BookmarkRepository.java.BookmarkRepository",
+    "sourceHandle": "findAll",
+    "targetHandle": "findAll",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "add_bookmark-save",
+    "source": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/service/BookmarkService.java.BookmarkService",
+    "target": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/repository/BookmarkRepository.java.BookmarkRepository",
+    "sourceHandle": "add_bookmark",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "delete_bookmark-save",
+    "source": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/service/BookmarkService.java.BookmarkService",
+    "target": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/repository/BookmarkRepository.java.BookmarkRepository",
+    "sourceHandle": "delete_bookmark",
+    "targetHandle": "save",
     "markerEnd": { "type": "arrowclosed" }
   },
   {
@@ -149,6 +133,14 @@
     "target": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/repository/BookmarkRepository.java.BookmarkRepository",
     "sourceHandle": "addBookmark_Success",
     "targetHandle": "findByUserID",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addBookmark_Success-save",
+    "source": "/backend/bookmarks-service/src/test/java/com/tick/bookmarks/BookmarkServiceTest.java.BookmarkServiceTest",
+    "target": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/repository/BookmarkRepository.java.BookmarkRepository",
+    "sourceHandle": "addBookmark_Success",
+    "targetHandle": "save",
     "markerEnd": { "type": "arrowclosed" }
   },
   {
@@ -173,6 +165,14 @@
     "target": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/repository/BookmarkRepository.java.BookmarkRepository",
     "sourceHandle": "deleteBookmark_Success",
     "targetHandle": "findByUserID",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "deleteBookmark_Success-save",
+    "source": "/backend/bookmarks-service/src/test/java/com/tick/bookmarks/BookmarkServiceTest.java.BookmarkServiceTest",
+    "target": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/repository/BookmarkRepository.java.BookmarkRepository",
+    "sourceHandle": "deleteBookmark_Success",
+    "targetHandle": "save",
     "markerEnd": { "type": "arrowclosed" }
   },
   {
@@ -376,6 +376,78 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "addEvent-save",
+    "source": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
+    "target": "/backend/event-service/src/main/java/com/tick/repository/EventRepository.java.EventRepository",
+    "sourceHandle": "addEvent",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addEventDate-save",
+    "source": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
+    "target": "/backend/event-service/src/main/java/com/tick/repository/EventRepository.java.EventRepository",
+    "sourceHandle": "addEventDate",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "deleteEventDate-save",
+    "source": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
+    "target": "/backend/event-service/src/main/java/com/tick/repository/EventRepository.java.EventRepository",
+    "sourceHandle": "deleteEventDate",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "filterEvents-findAll",
+    "source": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
+    "target": "/backend/event-service/src/main/java/com/tick/repository/EventRepository.java.EventRepository",
+    "sourceHandle": "filterEvents",
+    "targetHandle": "findAll",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "getEventByID-findById",
+    "source": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
+    "target": "/backend/event-service/src/main/java/com/tick/repository/EventRepository.java.EventRepository",
+    "sourceHandle": "getEventByID",
+    "targetHandle": "findById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "updateEvent-findById",
+    "source": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
+    "target": "/backend/event-service/src/main/java/com/tick/repository/EventRepository.java.EventRepository",
+    "sourceHandle": "updateEvent",
+    "targetHandle": "findById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "updateEvent-save",
+    "source": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
+    "target": "/backend/event-service/src/main/java/com/tick/repository/EventRepository.java.EventRepository",
+    "sourceHandle": "updateEvent",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "deleteEvent-deleteById",
+    "source": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
+    "target": "/backend/event-service/src/main/java/com/tick/repository/EventRepository.java.EventRepository",
+    "sourceHandle": "deleteEvent",
+    "targetHandle": "deleteById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "upsert-save",
+    "source": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
+    "target": "/backend/event-service/src/main/java/com/tick/repository/EventRepository.java.EventRepository",
+    "sourceHandle": "upsert",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
     "id": "searchForEventName-findByNameRegex",
     "source": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
     "target": "/backend/event-service/src/main/java/com/tick/repository/EventRepository.java.EventRepository",
@@ -392,22 +464,6 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
-    "id": "getRecommendedEvents-findFirstByArtistRegex",
-    "source": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
-    "target": "/backend/event-service/src/main/java/com/tick/repository/EventRepository.java.EventRepository",
-    "sourceHandle": "getRecommendedEvents",
-    "targetHandle": "findFirstByArtistRegex",
-    "markerEnd": { "type": "arrowclosed" }
-  },
-  {
-    "id": "getSeatMap-getVenue",
-    "source": "/backend/event-service/src/main/java/com/tick/service/VenueRequest.java.VenueRequest",
-    "target": "/backend/event-service/src/main/java/com/tick/service/VenueRequest.java.VenueRequest",
-    "sourceHandle": "getSeatMap",
-    "targetHandle": "getVenue",
-    "markerEnd": { "type": "arrowclosed" }
-  },
-  {
     "id": "getSeatMap-getVenue",
     "source": "/backend/event-service/src/main/java/com/tick/service/VenueRequest.java.VenueRequest",
     "target": "/backend/event-service/src/main/java/com/tick/service/VenueRequest.java.VenueRequest",
@@ -421,6 +477,14 @@
     "target": "/backend/event-service/src/main/java/com/tick/service/VenueRequest.java.VenueRequest",
     "sourceHandle": "addEvent_ValidVenueID_Success",
     "targetHandle": "getSeatMap",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addEvent_ValidVenueID_Success-save",
+    "source": "/backend/event-service/src/test/java/com/tick/event/EventServiceTest.java.EventServiceTest",
+    "target": "/backend/event-service/src/main/java/com/tick/repository/EventRepository.java.EventRepository",
+    "sourceHandle": "addEvent_ValidVenueID_Success",
+    "targetHandle": "save",
     "markerEnd": { "type": "arrowclosed" }
   },
   {
@@ -456,6 +520,14 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "updateEvent_InvalidEventID_ThrowException-findById",
+    "source": "/backend/event-service/src/test/java/com/tick/event/EventServiceTest.java.EventServiceTest",
+    "target": "/backend/event-service/src/main/java/com/tick/repository/EventRepository.java.EventRepository",
+    "sourceHandle": "updateEvent_InvalidEventID_ThrowException",
+    "targetHandle": "findById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
     "id": "deleteEvent_InvalidEventID_ThrowException-deleteEvent",
     "source": "/backend/event-service/src/test/java/com/tick/event/EventServiceTest.java.EventServiceTest",
     "target": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
@@ -464,11 +536,35 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "deleteEvent_InvalidEventID_ThrowException-findById",
+    "source": "/backend/event-service/src/test/java/com/tick/event/EventServiceTest.java.EventServiceTest",
+    "target": "/backend/event-service/src/main/java/com/tick/repository/EventRepository.java.EventRepository",
+    "sourceHandle": "deleteEvent_InvalidEventID_ThrowException",
+    "targetHandle": "findById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
     "id": "updateEvent_ValidEventID_Success-updateEvent",
     "source": "/backend/event-service/src/test/java/com/tick/event/EventServiceTest.java.EventServiceTest",
     "target": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
     "sourceHandle": "updateEvent_ValidEventID_Success",
     "targetHandle": "updateEvent",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "updateEvent_ValidEventID_Success-findById",
+    "source": "/backend/event-service/src/test/java/com/tick/event/EventServiceTest.java.EventServiceTest",
+    "target": "/backend/event-service/src/main/java/com/tick/repository/EventRepository.java.EventRepository",
+    "sourceHandle": "updateEvent_ValidEventID_Success",
+    "targetHandle": "findById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "updateEvent_ValidEventID_Success-save",
+    "source": "/backend/event-service/src/test/java/com/tick/event/EventServiceTest.java.EventServiceTest",
+    "target": "/backend/event-service/src/main/java/com/tick/repository/EventRepository.java.EventRepository",
+    "sourceHandle": "updateEvent_ValidEventID_Success",
+    "targetHandle": "save",
     "markerEnd": { "type": "arrowclosed" }
   },
   {
@@ -664,6 +760,22 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "getAllTickets-findAll",
+    "source": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/service/TicketService.java.TicketService",
+    "target": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/repository/TicketRepository.java.TicketRepository",
+    "sourceHandle": "getAllTickets",
+    "targetHandle": "findAll",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addTicket-save",
+    "source": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/service/TicketService.java.TicketService",
+    "target": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/repository/TicketRepository.java.TicketRepository",
+    "sourceHandle": "addTicket",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
     "id": "getTicketByUserId-findByUser",
     "source": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/service/TicketService.java.TicketService",
     "target": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/repository/TicketRepository.java.TicketRepository",
@@ -672,11 +784,67 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "getTicketByKey-findById",
+    "source": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/service/TicketService.java.TicketService",
+    "target": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/repository/TicketRepository.java.TicketRepository",
+    "sourceHandle": "getTicketByKey",
+    "targetHandle": "findById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "updateTicket-save",
+    "source": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/service/TicketService.java.TicketService",
+    "target": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/repository/TicketRepository.java.TicketRepository",
+    "sourceHandle": "updateTicket",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "updateTicket-findById",
+    "source": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/service/TicketService.java.TicketService",
+    "target": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/repository/TicketRepository.java.TicketRepository",
+    "sourceHandle": "updateTicket",
+    "targetHandle": "findById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
     "id": "releaseTicket-findByUser",
     "source": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/service/TicketService.java.TicketService",
     "target": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/repository/TicketRepository.java.TicketRepository",
     "sourceHandle": "releaseTicket",
     "targetHandle": "findByUser",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "releaseTicket-saveAll",
+    "source": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/service/TicketService.java.TicketService",
+    "target": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/repository/TicketRepository.java.TicketRepository",
+    "sourceHandle": "releaseTicket",
+    "targetHandle": "saveAll",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "deleteTicketByEvent-findAll",
+    "source": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/service/TicketService.java.TicketService",
+    "target": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/repository/TicketRepository.java.TicketRepository",
+    "sourceHandle": "deleteTicketByEvent",
+    "targetHandle": "findAll",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "deleteTicketByEvent-deleteById",
+    "source": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/service/TicketService.java.TicketService",
+    "target": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/repository/TicketRepository.java.TicketRepository",
+    "sourceHandle": "deleteTicketByEvent",
+    "targetHandle": "deleteById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "deleteTicketByTicketId-deleteById",
+    "source": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/service/TicketService.java.TicketService",
+    "target": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/repository/TicketRepository.java.TicketRepository",
+    "sourceHandle": "deleteTicketByTicketId",
+    "targetHandle": "deleteById",
     "markerEnd": { "type": "arrowclosed" }
   },
   {
@@ -728,6 +896,22 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "updateTicket_ValidTicketID_Success-findById",
+    "source": "/backend/ticket-service/src/test/java/com/tick/ticketsservice/TicketServiceTest.java.TicketServiceTest",
+    "target": "/backend/ticket-service/src/test/java/com/tick/ticketsservice/repository/TicketRepository.java.TicketRepository",
+    "sourceHandle": "updateTicket_ValidTicketID_Success",
+    "targetHandle": "findById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "updateTicket_ValidTicketID_Success-save",
+    "source": "/backend/ticket-service/src/test/java/com/tick/ticketsservice/TicketServiceTest.java.TicketServiceTest",
+    "target": "/backend/ticket-service/src/test/java/com/tick/ticketsservice/repository/TicketRepository.java.TicketRepository",
+    "sourceHandle": "updateTicket_ValidTicketID_Success",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
     "id": "generate_tok-get_expiry",
     "source": "/backend/token-service/src/main/java/com/tick/tokens/JwtTokenUtil.java.JwtTokenUtil",
     "target": "/backend/token-service/src/main/java/com/tick/tokens/JwtTokenUtil.java.JwtTokenUtil",
@@ -765,38 +949,6 @@
     "target": "/backend/token-service/src/main/java/com/tick/tokens/TokenService.java.TokenService",
     "sourceHandle": "create_token",
     "targetHandle": "perform",
-    "markerEnd": { "type": "arrowclosed" }
-  },
-  {
-    "id": "create_token-status",
-    "source": "/backend/token-service/src/test/java/com/tick/tokens/TokenEndpointTest.java.TokenEndpointTest",
-    "target": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/controller/ErrorMessage.java.ErrorMessage",
-    "sourceHandle": "create_token",
-    "targetHandle": "status",
-    "markerEnd": { "type": "arrowclosed" }
-  },
-  {
-    "id": "create_token-status",
-    "source": "/backend/token-service/src/test/java/com/tick/tokens/TokenEndpointTest.java.TokenEndpointTest",
-    "target": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/controller/ErrorMessage.java.ErrorMessage",
-    "sourceHandle": "create_token",
-    "targetHandle": "status",
-    "markerEnd": { "type": "arrowclosed" }
-  },
-  {
-    "id": "validate_token-status",
-    "source": "/backend/token-service/src/test/java/com/tick/tokens/TokenEndpointTest.java.TokenEndpointTest",
-    "target": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/controller/ErrorMessage.java.ErrorMessage",
-    "sourceHandle": "validate_token",
-    "targetHandle": "status",
-    "markerEnd": { "type": "arrowclosed" }
-  },
-  {
-    "id": "validate_token-status",
-    "source": "/backend/token-service/src/test/java/com/tick/tokens/TokenEndpointTest.java.TokenEndpointTest",
-    "target": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/controller/ErrorMessage.java.ErrorMessage",
-    "sourceHandle": "validate_token",
-    "targetHandle": "status",
     "markerEnd": { "type": "arrowclosed" }
   },
   {
@@ -840,11 +992,51 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "getAllVenue-findAll",
+    "source": "/backend/venue-service/src/main/java/com/venue/service/VenueService.java.VenueService",
+    "target": "/backend/venue-service/src/main/java/com/venue/repository/VenueRepository.java.VenueRepository",
+    "sourceHandle": "getAllVenue",
+    "targetHandle": "findAll",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "getVenue-findById",
+    "source": "/backend/venue-service/src/main/java/com/venue/service/VenueService.java.VenueService",
+    "target": "/backend/venue-service/src/main/java/com/venue/repository/VenueRepository.java.VenueRepository",
+    "sourceHandle": "getVenue",
+    "targetHandle": "findById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createVenue-save",
+    "source": "/backend/venue-service/src/main/java/com/venue/service/VenueService.java.VenueService",
+    "target": "/backend/venue-service/src/main/java/com/venue/repository/VenueRepository.java.VenueRepository",
+    "sourceHandle": "createVenue",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "deleteVenue-deleteById",
+    "source": "/backend/venue-service/src/main/java/com/venue/service/VenueService.java.VenueService",
+    "target": "/backend/venue-service/src/main/java/com/venue/repository/VenueRepository.java.VenueRepository",
+    "sourceHandle": "deleteVenue",
+    "targetHandle": "deleteById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
     "id": "getVenue_InvalidVenueID_ThrowException-getVenue",
     "source": "/backend/venue-service/src/test/java/com/venue/VenueServiceTest.java.VenueServiceTest",
     "target": "/backend/venue-service/src/main/java/com/venue/service/VenueService.java.VenueService",
     "sourceHandle": "getVenue_InvalidVenueID_ThrowException",
     "targetHandle": "getVenue",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "getVenue_InvalidVenueID_ThrowException-findById",
+    "source": "/backend/venue-service/src/test/java/com/venue/VenueServiceTest.java.VenueServiceTest",
+    "target": "/backend/venue-service/src/main/java/com/venue/repository/VenueRepository.java.VenueRepository",
+    "sourceHandle": "getVenue_InvalidVenueID_ThrowException",
+    "targetHandle": "findById",
     "markerEnd": { "type": "arrowclosed" }
   }
 ]
