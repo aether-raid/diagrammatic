@@ -144,6 +144,10 @@
       {
         "type": "function_declaration",
         "nodeType": "FUNCTION"
+      },
+      {
+        "type": "property_signature",
+        "nodeType": "ATTRIBUTE"
       }
     ],
     "groups": [
