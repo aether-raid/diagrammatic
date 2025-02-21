@@ -17,33 +17,38 @@ export const getOutgoingEdgesFromEntityRow = (node: AppNode, rowId: string, edge
 
 // TODO: Check against explored nodes in case there is a loop
 export const getEdgesEntitiesToHighlightBFS = (initialEdges: AppEdge[], globalEdges: AppEdge[], getNode: (id: string) => AppNode | undefined) => {
-  // console.log('Initial to explore: ', initialEdges);
 
-  // Treat these "unexploredXX" arrays as Queue objects (push & shift)
-  let unexploredEdges = [...initialEdges];
-  let unexploredEntities: NodeRow[] = [];
+  // Treat edgesToExplore & entitiesToExplore as Queue objects (push & shift)
+  let edgesToExplore = [...initialEdges];
+  let entitiesToExplore: NodeRow[] = [];
+
+  let exploredEntities: NodeRow[] = [];
 
   let edgesToHighlight = [...initialEdges];
   let entitiesToHighlight: NodeRow[] = [];
 
-  while(unexploredEdges.length !== 0 || unexploredEntities.length !== 0) {
-    while(unexploredEdges.length !== 0) {
-      const edge = unexploredEdges.shift()!; // Since length is not 0, can safely assume it will exist
+  while(edgesToExplore.length !== 0 || entitiesToExplore.length !== 0) {
+    while(edgesToExplore.length !== 0) {
+      const edge = edgesToExplore.shift()!; // Since length is not 0, can safely assume it will exist
       const targetEntity: NodeRow = {
         nodeId: edge.target,
         rowId: edge.targetHandle! // Safe to assume it exists
       }
 
-      unexploredEntities.push(targetEntity);
-      entitiesToHighlight.push(targetEntity);
+      // Prevent infinite loops, ignore previously explored nodes
+      if (!exploredEntities.some(e => e.nodeId === targetEntity.nodeId && e.rowId === targetEntity.rowId)) {
+        exploredEntities.push(targetEntity);
+        entitiesToExplore.push(targetEntity);
+        entitiesToHighlight.push(targetEntity);
+      }
     }
 
-    while(unexploredEntities.length !== 0) {
-      const entity = unexploredEntities.shift()!; // Since length is not 0, can safely assume it will exist
+    while(entitiesToExplore.length !== 0) {
+      const entity = entitiesToExplore.shift()!; // Since length is not 0, can safely assume it will exist
       const node = getNode(entity.nodeId)!; // Can safely assume it exists since it's part of the graph
       const outgoingEdges = getOutgoingEdgesFromEntityRow(node, entity.rowId, globalEdges);
 
-      unexploredEdges.push(...outgoingEdges);
+      edgesToExplore.push(...outgoingEdges);
       edgesToHighlight.push(...outgoingEdges);
     }
   }
