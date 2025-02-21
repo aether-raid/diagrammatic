@@ -1,6 +1,8 @@
 import { useState, useCallback, useEffect } from "react";
 import { Panel, XYPosition } from "@xyflow/react";
 
+import Button from 'react-bootstrap/Button';
+
 import { AppNode } from "@shared/node.types";
 
 interface SearchBarProps {
@@ -17,23 +19,29 @@ const SearchBar: React.FC<SearchBarProps> = ({
     const [searchInput, setSearchInput] = useState<string>("");
     const [currentMatchIndex, setCurrentMatchIndex] = useState<number>(0);
 
-    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchInput(e.target.value);
-    };
-
     const zoomAndCenterPosition = (position: XYPosition, zoomLevel: number = 1.5) => {
         const { x, y } = position;
         setCenter(x, y, { zoom: zoomLevel });
     }
 
-    const performSearch = useCallback(() => {
+    const handleSearchKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            jumpToNextMatch();
+        }
+    }
+
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchInput(e.target.value);
+    };
+
+    useEffect(() => {
         if (!searchInput) {
-            // TODO: better indication on no matches found.
-            // alert("Please enter a node title to search");
+            setMatchedNodes([]);
             return;
         }
 
-        // Find the node by title, currently it will search for the first node that contains the search input
+        // Search nodes by title
         const matches = nodes.filter((node) => {
             if (node.data && "entityName" in node.data) {
                 return node.data.entityName
@@ -44,11 +52,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
         });
 
         setMatchedNodes(matches);
-        setCurrentMatchIndex(0);
-
-        // Immediately center on first match
-        if (matches.length !== 0) { zoomAndCenterPosition(matches[0].position) }
-    }, [nodes, searchInput, setCenter]);
+        setCurrentMatchIndex(-1); // Handled & reset to 0 by the useEffect for currentMatchIndex below
+    }, [nodes, searchInput]);
 
     // Navigate to the previous match in the list
     const jumpToPrevMatch = useCallback(() => {
@@ -66,79 +71,50 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
     // Auto-center & zoom upon changing match index
     useEffect(() => {
+        if (currentMatchIndex < 0) {
+            setCurrentMatchIndex(0);
+            return;
+        }
         if (matchedNodes.length === 0) { return; }
+
         zoomAndCenterPosition(matchedNodes[currentMatchIndex].position);
     }, [currentMatchIndex]);
 
     return (
         <Panel position="top-left">
-            <div
-                className="search-bar"
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    background: "#20232a",
-                    borderRadius: "4px",
-                    color: "white",
-                }}
-            >
+            <div className="d-flex gap-2 align-items-center rounded text-white bg-charcoal">
                 <input
                     type="text"
                     value={searchInput}
                     onChange={handleSearchChange}
+                    onKeyDown={handleSearchKeyDown}
                     placeholder="Search node by title"
-                    style={{
-                        padding: "5px",
-                        width: "300px",
-                        marginRight: "10px",
-                    }}
+                    className="w-auto p-1"
                 />
-                <button
-                    onClick={performSearch}
-                    style={{ padding: "5px", marginRight: "10px" }}
-                >
-                    Search
-                </button>
-                {matchedNodes.length > 0 && (
-                    <div
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            fontSize: "14px",
-                        }}
-                    >
-                        <button
+                {searchInput && (
+                    <div className="d-flex gap-2 align-items-center">
+                        <Button
+                            variant="secondary"
+                            size="sm"
+                            title="Previous Match"
+                            onKeyDown={handleSearchKeyDown}
                             onClick={jumpToPrevMatch}
-                            style={{
-                                padding: "5px",
-                                marginRight: "5px",
-                                cursor: "pointer",
-                                backgroundColor: "#444",
-                                border: "none",
-                                borderRadius: "2px",
-                                color: "white",
-                            }}
-                            title="Previous match"
                         >
                             &#8592;
-                        </button>
-                        <span style={{ marginRight: "5px" }}>
-                            {currentMatchIndex + 1} / {matchedNodes.length}
+                        </Button>
+                        <span>
+                            {Math.min(currentMatchIndex + 1, matchedNodes.length)}
+                            / {matchedNodes.length}
                         </span>
-                        <button
+                        <Button
+                            variant="secondary"
+                            size="sm"
+                            title="Next Match"
+                            onKeyDown={handleSearchKeyDown}
                             onClick={jumpToNextMatch}
-                            style={{
-                                padding: "5px",
-                                cursor: "pointer",
-                                backgroundColor: "#444",
-                                border: "none",
-                                borderRadius: "2px",
-                                color: "white",
-                            }}
-                            title="Next match"
                         >
                             &#8594;
-                        </button>
+                        </Button>
                     </div>
                 )}
             </div>
