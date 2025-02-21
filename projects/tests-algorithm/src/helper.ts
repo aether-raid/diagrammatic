@@ -115,7 +115,7 @@ export function calculatePrecisionRecallF1ForNodes(
   /* const falsePositives = predictedList.filter(e => 
     nodeFPSet.includes(`${e.data.entityType}:${e.data.entityName}:${e.data.filePath}`)
   );
-  console.log(falsePositives)
+  console.log(JSON.stringify(falsePositives, null, 2))
   console.log("falsePositives", nodeFPSet);
   console.log("falseNegatives", nodeFNSet); */
 

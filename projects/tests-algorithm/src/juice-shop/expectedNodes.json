@@ -3771,7 +3771,7 @@
     "data": {
       "entityName": "ComplaintComponent",
       "entityType": "class",
-      "filePath": "/Users/sharlenetio/Desktop/fyp/samples/juice-shop/frontend/src/app/complaint/complaint.component.ts",
+      "filePath": "/frontend/src/app/complaint/complaint.component.ts",
       "items": [
         {
           "name": "customerControl",
@@ -3845,7 +3845,7 @@
     "data": {
       "entityName": "ContactComponent",
       "entityType": "class",
-      "filePath": "/Users/sharlenetio/Desktop/fyp/samples/juice-shop/frontend/src/app/contact/contact.component.ts",
+      "filePath": "/frontend/src/app/contact/contact.component.ts",
       "items": [
         {
           "name": "authorControl",
@@ -3931,6 +3931,1569 @@
           "name": "formatRating",
           "lineNumber": 113,
           "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "DataExportComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/data-export/data-export.component.ts",
+      "items": [
+        { "name": "captchaControl", "lineNumber": 18, "type": "attribute" },
+        { "name": "formatControl", "lineNumber": 19, "type": "attribute" },
+        { "name": "captcha", "lineNumber": 20, "type": "attribute" },
+        { "name": "dataRequest", "lineNumber": 21, "type": "attribute" },
+        { "name": "confirmation", "lineNumber": 22, "type": "attribute" },
+        { "name": "error", "lineNumber": 23, "type": "attribute" },
+        { "name": "lastSuccessfulTry", "lineNumber": 24, "type": "attribute" },
+        { "name": "presenceOfCaptcha", "lineNumber": 25, "type": "attribute" },
+        { "name": "userData", "lineNumber": 26, "type": "attribute" },
+        { "name": "constructor", "lineNumber": 28, "type": "function" },
+        { "name": "ngOnInit", "lineNumber": 29, "type": "function" },
+        { "name": "needCaptcha", "lineNumber": 34, "type": "function" },
+        { "name": "getNewCaptcha", "lineNumber": 43, "type": "function" },
+        { "name": "save", "lineNumber": 49, "type": "function" },
+        { "name": "resetForm", "lineNumber": 70, "type": "function" },
+        { "name": "resetFormError", "lineNumber": 79, "type": "function" }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "OAuthComponent",
+      "entityType": "class",
+      "filePath": "/frontend/src/app/oauth/oauth.component.ts",
+      "items": [
+        { "name": "constructor", "lineNumber": 17, "type": "function" },
+        { "name": "ngOnInit", "lineNumber": 19, "type": "function" },
+        { "name": "login", "lineNumber": 31, "type": "function" },
+        { "name": "invalidateSession", "lineNumber": 46, "type": "function" },
+        {
+          "name": "parseRedirectUrlParams",
+          "lineNumber": 53,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "blueprintSpec.ts",
+      "entityType": "file",
+      "filePath": "/test/server/blueprintSpec.ts",
+      "items": [
+        {
+          "name": "parseExifData",
+          "lineNumber": 16,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "2faSpec.ts",
+      "entityType": "file",
+      "filePath": "/test/api/2faSpec.ts",
+      "items": [
+        {
+          "name": "login",
+          "lineNumber": 19,
+          "type": "function"
+        },
+        {
+          "name": "register",
+          "lineNumber": 46,
+          "type": "function"
+        },
+        {
+          "name": "getStatus",
+          "lineNumber": 86,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "rsnUtil.ts",
+      "entityType": "file",
+      "filePath": "/rsn/rsnUtil.ts",
+      "items": [
+        {
+          "name": "readFiles",
+          "lineNumber": 13,
+          "type": "function"
+        },
+        {
+          "name": "writeToFile",
+          "lineNumber": 19,
+          "type": "function"
+        },
+        {
+          "name": "getDataFromFile",
+          "lineNumber": 23,
+          "type": "function"
+        },
+        {
+          "name": "filterString",
+          "lineNumber": 28,
+          "type": "function"
+        },
+        {
+          "name": "checkDiffs",
+          "lineNumber": 33,
+          "type": "function"
+        },
+        {
+          "name": "seePatch",
+          "lineNumber": 102,
+          "type": "function"
+        },
+        {
+          "name": "checkData",
+          "lineNumber": 122,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "VerdictRequestBody",
+      "entityType": "interface",
+      "filePath": "/routes/vulnCodeFixes.ts",
+      "items": [
+        {
+          "name": "key",
+          "lineNumber": 51,
+          "type": "attribute"
+        },
+        {
+          "name": "selectedFix",
+          "lineNumber": 52,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "FixesRequestParams",
+      "entityType": "interface",
+      "filePath": "/routes/vulnCodeFixes.ts",
+      "items": [
+        {
+          "name": "key",
+          "lineNumber": 47,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "codeFix",
+      "entityType": "interface",
+      "filePath": "/routes/vulnCodeFixes.ts",
+      "items": [
+        {
+          "name": "fixes",
+          "lineNumber": 11,
+          "type": "attribute"
+        },
+        {
+          "name": "correct",
+          "lineNumber": 12,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "vulnCodeFixes.ts",
+      "entityType": "file",
+      "filePath": "/routes/vulnCodeFixes.ts",
+      "items": [
+        {
+          "name": "readFixes",
+          "lineNumber": 19,
+          "type": "function"
+        },
+        {
+          "name": "serveCodeFixes",
+          "lineNumber": 55,
+          "type": "function"
+        },
+        {
+          "name": "checkCorrectFix",
+          "lineNumber": 69,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "videoHandler.ts",
+      "entityType": "file",
+      "filePath": "/routes/videoHandler.ts",
+      "items": [
+        {
+          "name": "getVideo",
+          "lineNumber": 18,
+          "type": "function"
+        },
+        {
+          "name": "promotionVideo",
+          "lineNumber": 50,
+          "type": "function"
+        },
+        {
+          "name": "getSubsFromFile",
+          "lineNumber": 78,
+          "type": "function"
+        },
+        {
+          "name": "videoPath",
+          "lineNumber": 84,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "verify.ts",
+      "entityType": "file",
+      "filePath": "/routes/verify.ts",
+      "items": [
+        {
+          "name": "emptyUserRegistration",
+          "lineNumber": 24,
+          "type": "function"
+        },
+        {
+          "name": "forgedFeedbackChallenge",
+          "lineNumber": 31,
+          "type": "function"
+        },
+        {
+          "name": "captchaBypassChallenge",
+          "lineNumber": 40,
+          "type": "function"
+        },
+        {
+          "name": "registerAdminChallenge",
+          "lineNumber": 53,
+          "type": "function"
+        },
+        {
+          "name": "passwordRepeatChallenge",
+          "lineNumber": 60,
+          "type": "function"
+        },
+        {
+          "name": "accessControlChallenges",
+          "lineNumber": 65,
+          "type": "function"
+        },
+        {
+          "name": "errorHandlingChallenge",
+          "lineNumber": 79,
+          "type": "function"
+        },
+        {
+          "name": "jwtChallenges",
+          "lineNumber": 84,
+          "type": "function"
+        },
+        {
+          "name": "serverSideChallenges",
+          "lineNumber": 94,
+          "type": "function"
+        },
+        {
+          "name": "jwtChallenge",
+          "lineNumber": 111,
+          "type": "function"
+        },
+        {
+          "name": "hasAlgorithm",
+          "lineNumber": 123,
+          "type": "function"
+        },
+        {
+          "name": "hasEmail",
+          "lineNumber": 128,
+          "type": "function"
+        },
+        {
+          "name": "changeProductChallenge",
+          "lineNumber": 166,
+          "type": "function"
+        },
+        {
+          "name": "feedbackChallenge",
+          "lineNumber": 185,
+          "type": "function"
+        },
+        {
+          "name": "knownVulnerableComponentChallenge",
+          "lineNumber": 195,
+          "type": "function"
+        },
+        {
+          "name": "knownVulnerableComponents",
+          "lineNumber": 224,
+          "type": "function"
+        },
+        {
+          "name": "weirdCryptoChallenge",
+          "lineNumber": 241,
+          "type": "function"
+        },
+        {
+          "name": "weirdCryptos",
+          "lineNumber": 270,
+          "type": "function"
+        },
+        {
+          "name": "typosquattingNpmChallenge",
+          "lineNumber": 280,
+          "type": "function"
+        },
+        {
+          "name": "typosquattingAngularChallenge",
+          "lineNumber": 299,
+          "type": "function"
+        },
+        {
+          "name": "hiddenImageChallenge",
+          "lineNumber": 318,
+          "type": "function"
+        },
+        {
+          "name": "supplyChainAttackChallenge",
+          "lineNumber": 337,
+          "type": "function"
+        },
+        {
+          "name": "eslintScopeVulnIds",
+          "lineNumber": 356,
+          "type": "function"
+        },
+        {
+          "name": "dlpPastebinDataLeakChallenge",
+          "lineNumber": 363,
+          "type": "function"
+        },
+        {
+          "name": "csafChallenge",
+          "lineNumber": 388,
+          "type": "function"
+        },
+        {
+          "name": "dangerousIngredients",
+          "lineNumber": 407,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "userProfile.ts",
+      "entityType": "file",
+      "filePath": "/routes/userProfile.ts",
+      "items": [
+        {
+          "name": "getUserProfile",
+          "lineNumber": 20,
+          "type": "function"
+        },
+        {
+          "name": "favicon",
+          "lineNumber": 75,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "commands.ts",
+      "entityType": "file",
+      "filePath": "/test/cypress/support/commands.ts",
+      "items": [
+        {
+          "name": "walkRecursivelyInArray",
+          "lineNumber": 52,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "FixesRequestParams",
+      "entityType": "interface",
+      "filePath": "/routes/vulnCodeFixes.ts",
+      "items": [
+        {
+          "name": "key",
+          "lineNumber": 47,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "codeFix",
+      "entityType": "interface",
+      "filePath": "/routes/vulnCodeFixes.ts",
+      "items": [
+        {
+          "name": "fixes",
+          "lineNumber": 11,
+          "type": "attribute"
+        },
+        {
+          "name": "correct",
+          "lineNumber": 12,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "updateProductReviews.ts",
+      "entityType": "file",
+      "filePath": "/routes/updateProductReviews.ts",
+      "items": [
+        {
+          "name": "productReviews",
+          "lineNumber": 14,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "resetPassword.ts",
+      "entityType": "file",
+      "filePath": "/routes/resetPassword.ts",
+      "items": [
+        {
+          "name": "resetPassword",
+          "lineNumber": 17,
+          "type": "function"
+        },
+        {
+          "name": "verifySecurityAnswerChallenges",
+          "lineNumber": 57,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "redirect.ts",
+      "entityType": "file",
+      "filePath": "/routes/redirect.ts",
+      "items": [
+        {
+          "name": "performRedirect",
+          "lineNumber": 13,
+          "type": "function"
+        },
+        {
+          "name": "isUnintendedRedirect",
+          "lineNumber": 27,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "displayCard",
+      "entityType": "interface",
+      "filePath": "/routes/payment.ts",
+      "items": [
+        {
+          "name": "UserId",
+          "lineNumber": 10,
+          "type": "attribute"
+        },
+        {
+          "name": "id",
+          "lineNumber": 11,
+          "type": "attribute"
+        },
+        {
+          "name": "fullName",
+          "lineNumber": 12,
+          "type": "attribute"
+        },
+        {
+          "name": "cardNum",
+          "lineNumber": 13,
+          "type": "attribute"
+        },
+        {
+          "name": "expMonth",
+          "lineNumber": 14,
+          "type": "attribute"
+        },
+        {
+          "name": "expYear",
+          "lineNumber": 15,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Product",
+      "entityType": "interface",
+      "filePath": "/routes/order.ts",
+      "items": [
+        {
+          "name": "quantity",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "id",
+          "lineNumber": 26,
+          "type": "attribute"
+        },
+        {
+          "name": "name",
+          "lineNumber": 27,
+          "type": "attribute"
+        },
+        {
+          "name": "price",
+          "lineNumber": 28,
+          "type": "attribute"
+        },
+        {
+          "name": "total",
+          "lineNumber": 29,
+          "type": "attribute"
+        },
+        {
+          "name": "bonus",
+          "lineNumber": 30,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "order.ts",
+      "entityType": "file",
+      "filePath": "/routes/order.ts",
+      "items": [
+        {
+          "name": "placeOrder",
+          "lineNumber": 33,
+          "type": "function"
+        },
+        {
+          "name": "calculateApplicableDiscount",
+          "lineNumber": 178,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "login.ts",
+      "entityType": "file",
+      "filePath": "/routes/login.ts",
+      "items": [
+        {
+          "name": "afterLogin",
+          "lineNumber": 21,
+          "type": "function"
+        },
+        {
+          "name": "verifyPreLoginChallenges",
+          "lineNumber": 61,
+          "type": "function"
+        },
+        {
+          "name": "verifyPostLoginChallenges",
+          "lineNumber": 70,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "imageCaptcha.ts",
+      "entityType": "file",
+      "filePath": "/routes/imageCaptcha.ts",
+      "items": [
+        {
+          "name": "imageCaptchas",
+          "lineNumber": 13,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "fileUpload.ts",
+      "entityType": "file",
+      "filePath": "/routes/fileUpload.ts",
+      "items": [
+        {
+          "name": "ensureFileIsPassed",
+          "lineNumber": 18,
+          "type": "function"
+        },
+        {
+          "name": "handleZipFileUpload",
+          "lineNumber": 24,
+          "type": "function"
+        },
+        {
+          "name": "checkUploadSize",
+          "lineNumber": 57,
+          "type": "function"
+        },
+        {
+          "name": "checkFileType",
+          "lineNumber": 64,
+          "type": "function"
+        },
+        {
+          "name": "handleXmlUpload",
+          "lineNumber": 72,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "fileServer.ts",
+      "entityType": "file",
+      "filePath": "/routes/fileServer.ts",
+      "items": [
+        {
+          "name": "servePublicFiles",
+          "lineNumber": 26,
+          "type": "function"
+        },
+        {
+          "name": "verify",
+          "lineNumber": 26,
+          "type": "function"
+        },
+        {
+          "name": "verifySuccessfulPoisonNullByteExploit",
+          "lineNumber": 40,
+          "type": "function"
+        },
+        {
+          "name": "endsWithAllowlistedFileType",
+          "lineNumber": 52,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "DataErasureRequestParams",
+      "entityType": "interface",
+      "filePath": "/routes/dataErasure.ts",
+      "items": [
+        {
+          "name": "layout",
+          "lineNumber": 48,
+          "type": "attribute"
+        },
+        {
+          "name": "email",
+          "lineNumber": 49,
+          "type": "attribute"
+        },
+        {
+          "name": "securityAnswer",
+          "lineNumber": 50,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "chatbot.ts",
+      "entityType": "file",
+      "filePath": "/routes/chatbot.ts",
+      "items": [
+        {
+          "name": "initialize",
+          "lineNumber": 27,
+          "type": "function"
+        },
+        {
+          "name": "processQuery",
+          "lineNumber": 50,
+          "type": "function"
+        },
+        {
+          "name": "setUserName",
+          "lineNumber": 128,
+          "type": "function"
+        },
+        {
+          "name": "status",
+          "lineNumber": 158,
+          "type": "function"
+        },
+        {
+          "name": "respond",
+          "lineNumber": 106,
+          "type": "function"
+        },
+        {
+          "name": "getUserFromJwt",
+          "lineNumber": 238,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "basketItems.ts",
+      "entityType": "file",
+      "filePath": "/routes/basketItems.ts",
+      "items": [
+        {
+          "name": "addBasketItem",
+          "lineNumber": 19,
+          "type": "function"
+        },
+        {
+          "name": "quantityCheckBeforeBasketItemAddition",
+          "lineNumber": 57,
+          "type": "function"
+        },
+        {
+          "name": "quantityCheckBeforeBasketItemUpdate",
+          "lineNumber": 65,
+          "type": "function"
+        },
+        {
+          "name": "quantityCheck",
+          "lineNumber": 84,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "basketItems.ts",
+      "entityType": "file",
+      "filePath": "/routes/basketItems.ts",
+      "items": [
+        {
+          "name": "addBasketItem",
+          "lineNumber": 19,
+          "type": "function"
+        },
+        {
+          "name": "quantityCheckBeforeBasketItemAddition",
+          "lineNumber": 57,
+          "type": "function"
+        },
+        {
+          "name": "quantityCheckBeforeBasketItemUpdate",
+          "lineNumber": 65,
+          "type": "function"
+        },
+        {
+          "name": "quantityCheck",
+          "lineNumber": 84,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "authenticatedUsers.ts",
+      "entityType": "file",
+      "filePath": "/routes/authenticatedUsers.ts",
+      "items": [
+        {
+          "name": "retrieveUserList",
+          "lineNumber": 10,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "2fa.ts",
+      "entityType": "file",
+      "filePath": "/routes/2fa.ts",
+      "items": [
+        {
+          "name": "verify",
+          "lineNumber": 23,
+          "type": "function"
+        },
+        {
+          "name": "status",
+          "lineNumber": 65,
+          "type": "function"
+        },
+        {
+          "name": "setup",
+          "lineNumber": 104,
+          "type": "function"
+        },
+        {
+          "name": "disable",
+          "lineNumber": 149,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Wallet",
+      "entityType": "class",
+      "filePath": "/models/wallet.ts",
+      "items": [
+        {
+          "name": "UserId",
+          "lineNumber": 20,
+          "type": "attribute"
+        },
+        {
+          "name": "id",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "balance",
+          "lineNumber": 22,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "User",
+      "entityType": "class",
+      "filePath": "/models/user.ts",
+      "items": [
+        {
+          "name": "id",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "username",
+          "lineNumber": 26,
+          "type": "attribute"
+        },
+        {
+          "name": "email",
+          "lineNumber": 27,
+          "type": "attribute"
+        },
+        {
+          "name": "password",
+          "lineNumber": 28,
+          "type": "attribute"
+        },
+        {
+          "name": "role",
+          "lineNumber": 29,
+          "type": "attribute"
+        },
+        {
+          "name": "deluxeToken",
+          "lineNumber": 30,
+          "type": "attribute"
+        },
+        {
+          "name": "lastLoginIp",
+          "lineNumber": 31,
+          "type": "attribute"
+        },
+        {
+          "name": "profileImage",
+          "lineNumber": 32,
+          "type": "attribute"
+        },
+        {
+          "name": "totpSecret",
+          "lineNumber": 33,
+          "type": "attribute"
+        },
+        {
+          "name": "isActive",
+          "lineNumber": 34,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SecurityQuestion",
+      "entityType": "class",
+      "filePath": "/models/securityQuestion.ts",
+      "items": [
+        {
+          "name": "id",
+          "lineNumber": 20,
+          "type": "attribute"
+        },
+        {
+          "name": "question",
+          "lineNumber": 21,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "SecurityAnswer",
+      "entityType": "class",
+      "filePath": "/models/securityAnswer.ts",
+      "items": [
+        {
+          "name": "SecurityQuestionId",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "UserId",
+          "lineNumber": 22,
+          "type": "attribute"
+        },
+        {
+          "name": "id",
+          "lineNumber": 23,
+          "type": "attribute"
+        },
+        {
+          "name": "answer",
+          "lineNumber": 24,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Recycle",
+      "entityType": "class",
+      "filePath": "/models/recycle.ts",
+      "items": [
+        {
+          "name": "id",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "UserId",
+          "lineNumber": 22,
+          "type": "attribute"
+        },
+        {
+          "name": "AddressId",
+          "lineNumber": 23,
+          "type": "attribute"
+        },
+        {
+          "name": "quantity",
+          "lineNumber": 24,
+          "type": "attribute"
+        },
+        {
+          "name": "isPickup",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "date",
+          "lineNumber": 26,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Quantity",
+      "entityType": "class",
+      "filePath": "/models/quantity.ts",
+      "items": [
+        {
+          "name": "ProductId",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "id",
+          "lineNumber": 22,
+          "type": "attribute"
+        },
+        {
+          "name": "quantity",
+          "lineNumber": 23,
+          "type": "attribute"
+        },
+        {
+          "name": "limitPerUser",
+          "lineNumber": 24,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Product",
+      "entityType": "class",
+      "filePath": "/models/product.ts",
+      "items": [
+        {
+          "name": "id",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "name",
+          "lineNumber": 26,
+          "type": "attribute"
+        },
+        {
+          "name": "description",
+          "lineNumber": 27,
+          "type": "attribute"
+        },
+        {
+          "name": "price",
+          "lineNumber": 28,
+          "type": "attribute"
+        },
+        {
+          "name": "deluxePrice",
+          "lineNumber": 29,
+          "type": "attribute"
+        },
+        {
+          "name": "image",
+          "lineNumber": 30,
+          "type": "attribute"
+        },
+        {
+          "name": "BasketItem",
+          "lineNumber": 31,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "PrivacyRequestModel",
+      "entityType": "class",
+      "filePath": "/models/privacyRequests.ts",
+      "items": [
+        {
+          "name": "id",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "UserId",
+          "lineNumber": 22,
+          "type": "attribute"
+        },
+        {
+          "name": "deletionRequested",
+          "lineNumber": 23,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Memory",
+      "entityType": "class",
+      "filePath": "/models/memory.ts",
+      "items": [
+        {
+          "name": "UserId",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "id",
+          "lineNumber": 22,
+          "type": "attribute"
+        },
+        {
+          "name": "caption",
+          "lineNumber": 23,
+          "type": "attribute"
+        },
+        {
+          "name": "imagePath",
+          "lineNumber": 24,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ImageCaptcha",
+      "entityType": "class",
+      "filePath": "/models/imageCaptcha.ts",
+      "items": [
+        {
+          "name": "id",
+          "lineNumber": 19,
+          "type": "attribute"
+        },
+        {
+          "name": "image",
+          "lineNumber": 20,
+          "type": "attribute"
+        },
+        {
+          "name": "answer",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "UserId",
+          "lineNumber": 22,
+          "type": "attribute"
+        },
+        {
+          "name": "createdAt",
+          "lineNumber": 23,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Feedback",
+      "entityType": "class",
+      "filePath": "/models/feedback.ts",
+      "items": [
+        {
+          "name": "UserId",
+          "lineNumber": 24,
+          "type": "attribute"
+        },
+        {
+          "name": "id",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "comment",
+          "lineNumber": 26,
+          "type": "attribute"
+        },
+        {
+          "name": "rating",
+          "lineNumber": 27,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Delivery",
+      "entityType": "class",
+      "filePath": "/models/delivery.ts",
+      "items": [
+        {
+          "name": "id",
+          "lineNumber": 19,
+          "type": "attribute"
+        },
+        {
+          "name": "name",
+          "lineNumber": 20,
+          "type": "attribute"
+        },
+        {
+          "name": "price",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "deluxePrice",
+          "lineNumber": 22,
+          "type": "attribute"
+        },
+        {
+          "name": "eta",
+          "lineNumber": 23,
+          "type": "attribute"
+        },
+        {
+          "name": "icon",
+          "lineNumber": 24,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Complaint",
+      "entityType": "class",
+      "filePath": "/models/complaint.ts",
+      "items": [
+        {
+          "name": "UserId",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "id",
+          "lineNumber": 22,
+          "type": "attribute"
+        },
+        {
+          "name": "message",
+          "lineNumber": 23,
+          "type": "attribute"
+        },
+        {
+          "name": "file",
+          "lineNumber": 24,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Challenge",
+      "entityType": "class",
+      "filePath": "/models/challenge.ts",
+      "items": [
+        {
+          "name": "id",
+          "lineNumber": 19,
+          "type": "attribute"
+        },
+        {
+          "name": "name",
+          "lineNumber": 20,
+          "type": "attribute"
+        },
+        {
+          "name": "category",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "description",
+          "lineNumber": 22,
+          "type": "attribute"
+        },
+        {
+          "name": "difficulty",
+          "lineNumber": 23,
+          "type": "attribute"
+        },
+        {
+          "name": "hint",
+          "lineNumber": 24,
+          "type": "attribute"
+        },
+        {
+          "name": "hintUrl",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "mitigationUrl",
+          "lineNumber": 26,
+          "type": "attribute"
+        },
+        {
+          "name": "key",
+          "lineNumber": 27,
+          "type": "attribute"
+        },
+        {
+          "name": "disabledEnv",
+          "lineNumber": 28,
+          "type": "attribute"
+        },
+        {
+          "name": "tutorialOrder",
+          "lineNumber": 29,
+          "type": "attribute"
+        },
+        {
+          "name": "tags",
+          "lineNumber": 30,
+          "type": "attribute"
+        },
+        {
+          "name": "solved",
+          "lineNumber": 31,
+          "type": "attribute"
+        },
+        {
+          "name": "codingChallengeStatus",
+          "lineNumber": 32,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Card",
+      "entityType": "class",
+      "filePath": "/models/card.ts",
+      "items": [
+        {
+          "name": "UserId",
+          "lineNumber": 19,
+          "type": "attribute"
+        },
+        {
+          "name": "id",
+          "lineNumber": 20,
+          "type": "attribute"
+        },
+        {
+          "name": "fullName",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "cardNum",
+          "lineNumber": 22,
+          "type": "attribute"
+        },
+        {
+          "name": "expMonth",
+          "lineNumber": 23,
+          "type": "attribute"
+        },
+        {
+          "name": "expYear",
+          "lineNumber": 24,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Captcha",
+      "entityType": "class",
+      "filePath": "/models/captcha.ts",
+      "items": [
+        {
+          "name": "captchaId",
+          "lineNumber": 18,
+          "type": "attribute"
+        },
+        {
+          "name": "captcha",
+          "lineNumber": 19,
+          "type": "attribute"
+        },
+        {
+          "name": "answer",
+          "lineNumber": 20,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "BasketItem",
+      "entityType": "class",
+      "filePath": "/models/basketitem.ts",
+      "items": [
+        {
+          "name": "ProductId",
+          "lineNumber": 20,
+          "type": "attribute"
+        },
+        {
+          "name": "BasketId",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "id",
+          "lineNumber": 22,
+          "type": "attribute"
+        },
+        {
+          "name": "quantity",
+          "lineNumber": 23,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Basket",
+      "entityType": "class",
+      "filePath": "/models/basket.ts",
+      "items": [
+        {
+          "name": "UserId",
+          "lineNumber": 23,
+          "type": "attribute"
+        },
+        {
+          "name": "id",
+          "lineNumber": 24,
+          "type": "attribute"
+        },
+        {
+          "name": "coupon",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "Products",
+          "lineNumber": 26,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "Address",
+      "entityType": "class",
+      "filePath": "/models/address.ts",
+      "items": [
+        {
+          "name": "UserId",
+          "lineNumber": 19,
+          "type": "attribute"
+        },
+        {
+          "name": "id",
+          "lineNumber": 20,
+          "type": "attribute"
+        },
+        {
+          "name": "fullName",
+          "lineNumber": 21,
+          "type": "attribute"
+        },
+        {
+          "name": "mobileNum",
+          "lineNumber": 22,
+          "type": "attribute"
+        },
+        {
+          "name": "zipCode",
+          "lineNumber": 23,
+          "type": "attribute"
+        },
+        {
+          "name": "streetAddress",
+          "lineNumber": 24,
+          "type": "attribute"
+        },
+        {
+          "name": "city",
+          "lineNumber": 25,
+          "type": "attribute"
+        },
+        {
+          "name": "state",
+          "lineNumber": 26,
+          "type": "attribute"
+        },
+        {
+          "name": "country",
+          "lineNumber": 27,
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "webhook.ts",
+      "entityType": "file",
+      "filePath": "/lib/webhook.ts",
+      "items": [
+        {
+          "name": "notify",
+          "lineNumber": 18,
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "ChallengeEnablementStatus",
+      "entityType": "interface",
+      "filePath": "/lib/utils.ts",
+      "items": [
+        {
+          "name": "enabled",
+          "lineNumber": 150,
+          "type": "attribute"
+        },
+        {
+          "name": "disabledBecause",
+          "lineNumber": 151,
+          "type": "attribute"
         }
       ]
     }
