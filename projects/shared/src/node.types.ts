@@ -12,6 +12,12 @@ interface HighlightableEntityItem extends EntityItem {
   highlighted?: boolean;
 }
 
+export interface EntityLintData {
+  clean?: SerializedDiagnostic[];
+  vulnerability?: SerializedDiagnostic[];
+  extras?: SerializedDiagnostic[];
+}
+
 export type EntityNode = Node<
   {
     entityName: string;
@@ -24,11 +30,7 @@ export type EntityNode = Node<
     >;
     description?: string;
     filePath?: string;
-    security?: {
-      clean?: SerializedDiagnostic[]
-      vulnerability?: SerializedDiagnostic[]
-      extras?: SerializedDiagnostic[]
-    };
+    security?: EntityLintData;
   },
   "entity"
 >;

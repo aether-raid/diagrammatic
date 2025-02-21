@@ -21,7 +21,16 @@ export const initialNodes: AppNode[] = [
         { name: 'Harvester', lineNumber: 45 },
       ],
     security: {
-        clean: [],
+        clean: [{ range: {
+          start: {
+            line: 26,
+            character: 32,
+          },
+          end: {
+            line: 3,
+            character: 3,
+          }
+        }, message: 'Security.clean Object', severity: 1, source: 'Group: security' }],
         vulnerability: [{ range: {
           start: {
             line: 26,
@@ -31,7 +40,7 @@ export const initialNodes: AppNode[] = [
             line: 3,
             character: 3,
           }
-        }, message: 'Variable Assigned to Object Injection Sink', severity: 1, source: 'Group: security' }],
+        }, message: 'Variable Assigned to Object Injection Sink', severity: 1, source: 'Group: vulnerability' }],
         extras: []
     }
     }
