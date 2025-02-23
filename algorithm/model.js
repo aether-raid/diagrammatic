@@ -155,8 +155,8 @@ export class Node {
             node.getFileGroup().filePath === fileGroup.filePath
         );
         if (
-          globalNode &&
-          variableA.variableType === VariableType.OBJECT_INSTANTIATION
+          variableA.variableType === VariableType.OBJECT_INSTANTIATION &&
+          globalNode
         ) {
           for (const variable of globalNode.variables) {
             if (

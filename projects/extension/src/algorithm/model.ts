@@ -1,6 +1,7 @@
 import path from "path";
 import fs from "fs";
 import { GLOBAL } from "./language";
+import assert from "assert";
 
 /**
  *  Variables represent named tokens that are accessible to their scope.
@@ -103,7 +104,7 @@ export class Node {
   calls: Call[];
   variables: Variable[];
   lineNumber: number | null;
-  parent: Group;
+  parent: Node | Group;
   nodeType: NodeType;
 
   constructor({
@@ -118,7 +119,7 @@ export class Node {
     calls: Call[];
     variables: Variable[];
     lineNumber?: number | null;
-    parent: Group;
+    parent: Node | Group;
     nodeType: NodeType;
   }) {
     this.token = token;
@@ -199,11 +200,11 @@ export class Node {
         const globalNode = allNodes.find(
           (node) =>
             node.token === GLOBAL &&
-            node.getFileGroup().filePath === fileGroup.filePath
+            node.getFileGroup()?.filePath === fileGroup?.filePath
         );
         if (
-          globalNode &&
-          variableA.variableType === VariableType.OBJECT_INSTANTIATION
+          variableA.variableType === VariableType.OBJECT_INSTANTIATION &&
+          globalNode
         ) {
           for (const variable of globalNode.variables) {
             if (
@@ -230,12 +231,17 @@ export class Node {
     return this.token === "constructor";
   }
 
-  getFileGroup(): Group {
-    let parent: Group = this.parent;
+  getFileGroup(): Group | null {
+    let parent: Node | Group = this.parent;
     while (parent?.parent) {
       parent = parent.parent;
     }
-    return parent;
+
+    if (parent instanceof Group) {
+      return parent;
+    }
+
+    return null;
   }
 
   /* 
