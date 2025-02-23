@@ -1,11 +1,15 @@
 import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
+import sonarjs from "eslint-plugin-sonarjs";
+import pluginSecurity from 'eslint-plugin-security'; 
 
 export default [{
     files: ["**/*.ts"],
 }, {
     plugins: {
         "@typescript-eslint": typescriptEslint,
+        sonarjs,
+        "security":pluginSecurity,
     },
 
     languageOptions: {
@@ -24,5 +28,7 @@ export default [{
         eqeqeq: "warn",
         "no-throw-literal": "warn",
         semi: "warn",
+        ...sonarjs.configs.recommended.rules,
+        ...pluginSecurity.configs.recommended.rules
     },
 }];

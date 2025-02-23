@@ -31,9 +31,11 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import {
     getEdgesEntitiesToHighlightBFS,
     getOutgoingEdgesFromEntityRow,
-} from "./helper";
+} from "./helpers/diagramBFS";
 import { initVsCodeApi, sendReadyMessageToExtension } from "./vscodeApiHandler";
 import DownloadButton from "./buttons/DownloadButton";
+import SearchBar from "./buttons/SearchBar";
+import ComponentButton from "./buttons/CompButton";
 
 interface OptionProps {
     direction: string;
@@ -78,19 +80,27 @@ const LayoutFlow = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const vscode = useRef<any>(null);
 
-    const { fitView, getNode } = useReactFlow<AppNode, AppEdge>();
+    // General ReactFlow states
+    const { fitView, getNode, setCenter } = useReactFlow<AppNode, AppEdge>();
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+
+    // Hover Highlighting states
     const [highlightedNodes, setHighlightedNodes] = useState<string[]>([]);
     const [highlightedEdges, setHighlightedEdges] = useState<string[]>([]);
     const [hoveredEntity, setHoveredEntity] = useState<NodeRow | undefined>(
         undefined
     );
 
+    // Search Highlighting states
+    const [matchedNodes, setMatchedNodes] = useState<AppNode[]>([]);
+
+    // General constants
     const MIN_ZOOM = 0.1;
     const MAX_ZOOM = 2;
 
     useEffect(() => {
+        console.log("Component Mounted");
         // Setup message listener
         const onMessage = (event: MessageEvent<WebviewCommandMessage>) => {
             const { command, message } = event.data;
@@ -125,6 +135,7 @@ const LayoutFlow = () => {
         }
 
         return () => {
+            console.log("Component Unmounted");
             // Remove event listener on component unmount
             window.removeEventListener("message", onMessage);
         };
@@ -175,17 +186,18 @@ const LayoutFlow = () => {
         node.type !== "entity"
             ? node
             : {
-                  ...node,
-                  data: {
-                      ...node.data,
-                      items: node.data.items.map((item) => {
-                          item.highlighted = highlightedNodes.includes(
-                              `${node.id}-${item.name}`
-                          );
-                          return item;
-                      }),
-                      setHoveredEntity,
-                  },
+                ...node,
+                data: {
+                    ...node.data,
+                    items: node.data.items.map((item) => {
+                        item.highlighted = highlightedNodes.includes(
+                            `${node.id}-${item.name}`
+                        );
+                        return item;
+                    }),
+                    matchesSearchTerm: matchedNodes.map(match => match.id).includes(node.id),
+                    setHoveredEntity,
+                },
               };
 
     const prepareEdge = (edge: AppEdge) => ({
@@ -194,28 +206,38 @@ const LayoutFlow = () => {
     });
 
     return (
-        <ReactFlow
-            nodeTypes={nodeTypes}
-            nodes={nodes.map((n) => prepareNode(n))}
-            edges={edges.map((e) => prepareEdge(e))}
-            onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
-            fitView
-            colorMode="dark"
-            minZoom={MIN_ZOOM}
-            maxZoom={MAX_ZOOM}
-        >
-            <Panel position="top-center">
-                <button onClick={() => onLayout("TB")}>Vertical Layout</button>
-                <button onClick={() => onLayout("LR")}>
-                    Horizontal Layout
-                </button>
-            </Panel>
-            <MiniMap />
-            <Controls />
-            <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM}/>
-            <Background />
-        </ReactFlow>
+        <>
+            <SearchBar
+                nodes={nodes}
+                setCenter={setCenter}
+                matchedNodesState={[matchedNodes, setMatchedNodes]}
+            />
+            <ReactFlow
+                nodeTypes={nodeTypes}
+                nodes={nodes.map((n) => prepareNode(n))}
+                edges={edges.map((e) => prepareEdge(e))}
+                onNodesChange={onNodesChange}
+                onEdgesChange={onEdgesChange}
+                fitView
+                colorMode="dark"
+                minZoom={MIN_ZOOM}
+                maxZoom={MAX_ZOOM}
+            >
+                <Panel position="top-center">
+                    <button onClick={() => onLayout("TB")}>
+                        Vertical Layout
+                    </button>
+                    <button onClick={() => onLayout("LR")}>
+                        Horizontal Layout
+                    </button>
+                </Panel>
+                <MiniMap />
+                <Controls />
+                <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
+                <ComponentButton />
+                <Background />
+            </ReactFlow>
+        </>
     );
 };
 

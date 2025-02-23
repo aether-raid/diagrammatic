@@ -3,9 +3,10 @@ import { Handle, NodeProps, Position } from "@xyflow/react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 
-import { EntityNodeItem } from "./EntityNodeItem";
 import { type EntityNode as EntityNodeType } from "@shared/node.types";
 
+import { EntityNodeItem } from "./EntityNodeItem";
+import NodeLints from "./NodeLints";
 
 export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
   const [hoveredRow, setHoveredRow] = useState<string|undefined>('');
@@ -34,9 +35,14 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
       >
         <div className={`p-2 fw-bold rounded-top entity__${data.entityType}`}>
           <p className={'fs-7 fw-normal'}>{ data.entityType }</p>
-          <p>{ data.entityName }</p>
+          <p>
+            <span className={data.matchesSearchTerm ? "bg-highlighter text-black" : ""}>
+              { data.entityName }
+            </span>
+          </p>
         </div>
       </OverlayTrigger>
+
       <table className='w-100'>
         <tbody>
           {data.items.map(item => <EntityNodeItem
@@ -48,7 +54,9 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
               lineNumber: item.lineNumber,
             }}
             setHoveredRow={setHoveredRow}
+            
           />)}
+          <NodeLints lints={data.security} filePath={data.filePath}/>
         </tbody>
       </table>
 
@@ -57,3 +65,5 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
     </div>
   )
 }
+
+
