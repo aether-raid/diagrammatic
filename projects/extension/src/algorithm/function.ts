@@ -361,12 +361,22 @@ export function makeLocalVariables(
             const relativeFilePathRegex = new RegExp(
               '^(?:..?[\\/])[^<>:"|?*\n]+$'
             );
-            // relative filepath
+            /**
+             * relative filepath
+             * e.g. "./article.service" => without extension
+             * e.g. "./dto" => folder
+             * (1) import classes from file
+             * (2) import functions from file
+             * (3) import from folder
+             * output variable.pointsTo: /User/fyp/samples/nestjs-realworld-example-app/src/article/article.service.ts
+             * output variable.pointsTo: User/fyp/samples/nestjs-realworld-example-app/src/article/dto
+             */
             if (
               name &&
               pointsTo &&
               relativeFilePathRegex.test(pointsTo) &&
-              fileGroup instanceof Group
+              fileGroup instanceof Group &&
+              fileGroup.filePath
             ) {
               let importedFilePath = path.resolve(
                 path.dirname(fileGroup.filePath),
@@ -374,27 +384,25 @@ export function makeLocalVariables(
               );
               const baseDirectory = path.dirname(importedFilePath);
               // if file has no extension, search directory for matching filename
-              if (
-                !path.extname(importedFilePath) &&
-                fs.existsSync(baseDirectory)
-              ) {
+              if (fs.existsSync(baseDirectory)) {
                 const files = fs.readdirSync(baseDirectory);
                 const fileNameWithoutExt = path.basename(pointsTo);
-                const matchedFile = files.find((file) =>
-                  file.startsWith(fileNameWithoutExt)
-                );
+                const matchedFile = files.find((file) => {
+                  const baseFilePath = path.basename(file);
+                  return baseFilePath.startsWith(fileNameWithoutExt);
+                });
                 if (matchedFile) {
                   importedFilePath = path.join(baseDirectory, matchedFile);
                 }
+                variables.push(
+                  new Variable({
+                    token: name,
+                    pointsTo: importedFilePath,
+                    lineNumber: getLineNumber(importSpecifier),
+                    variableType: VariableType.RELATIVE_IMPORT,
+                  })
+                );
               }
-              variables.push(
-                new Variable({
-                  token: name,
-                  pointsTo: importedFilePath,
-                  lineNumber: getLineNumber(importSpecifier),
-                  variableType: VariableType.RELATIVE_IMPORT,
-                })
-              );
             }
           }
         }

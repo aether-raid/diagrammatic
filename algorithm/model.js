@@ -1,5 +1,6 @@
 import path from "path";
 import fs from "fs";
+import { GLOBAL } from "./language.js";
 
 /**
  *  Variables represent named tokens that are accessible to their scope.
@@ -24,7 +25,7 @@ export class Variable {
   toString() {
     return `Variable: token=${this.token}, pointsTo=${
       this.pointsTo?.toString() ?? null
-    }`;
+    }, type=${this.variableType}`;
   }
 }
 
@@ -90,14 +91,10 @@ export class Node {
    * Resolve the Node/Group for the pointsTo field
    */
   resolveVariables(allSubgroups, allNodes) {
-    for (const variable of this.variables) {
-      if (typeof variable.pointsTo === "string") {
+    const fileGroup = this.getFileGroup();
+    for (const variableA of this.variables) {
+      if (typeof variableA.pointsTo === "string") {
         for (const subgroup of allSubgroups) {
-          if (variable.pointsTo === subgroup.token) {
-            variable.pointsTo = subgroup;
-            break;
-          }
-
           /**
            * Resolve variables from relative import statements
            * e.g. import { ArticleService } from './article.service';
@@ -106,10 +103,11 @@ export class Node {
            * pointsTo should resolve from a filepath to the actual class Group
            */
           if (
+            variableA.variableType === VariableType.RELATIVE_IMPORT &&
             subgroup.groupType === GroupType.CLASS &&
-            variable.pointsTo === subgroup.filePath
+            variableA.pointsTo === subgroup.filePath
           ) {
-            variable.pointsTo = subgroup;
+            variableA.pointsTo = subgroup;
             break;
           }
 
@@ -120,25 +118,60 @@ export class Node {
            * pointsTo should resolve from a filepath to the actual class Group
            */
           if (
-            variable.pointsTo &&
-            path.isAbsolute(variable.pointsTo) &&
-            fs.existsSync(variable.pointsTo) &&
-            fs.statSync(variable.pointsTo).isDirectory()
+            variableA.variableType === VariableType.RELATIVE_IMPORT &&
+            variableA.pointsTo &&
+            path.isAbsolute(variableA.pointsTo) &&
+            fs.existsSync(variableA.pointsTo) &&
+            fs.statSync(variableA.pointsTo).isDirectory()
           ) {
             const baseDirectory = path.dirname(subgroup.filePath);
             if (
-              variable.pointsTo === baseDirectory &&
-              subgroup.token === variable.token
+              variableA.pointsTo === baseDirectory &&
+              subgroup.token === variableA.token
             ) {
-              variable.pointsTo = subgroup;
+              variableA.pointsTo = subgroup;
+              break;
+            }
+          }
+
+          if (
+            variableA.variableType === VariableType.INJECTION &&
+            variableA.pointsTo === subgroup.token
+          ) {
+            variableA.pointsTo = subgroup;
+            break;
+          }
+        }
+
+        /**
+         * For the corresponding global node of the file, search for the imported class
+         * example:
+         *  Group(article.service.ts), Node(token=(global), variables=[Variable(token=Comment, pointsTo=Group(token=Comment))]
+         *  Group=(ArticleService), Node=(token=addComment, variables=[Variable(token=comment, pointsTo=Comment, type="object_instantiation")])
+         */
+        const globalNode = allNodes.find(
+          (node) =>
+            node.token === GLOBAL &&
+            node.getFileGroup().filePath === fileGroup.filePath
+        );
+        if (
+          globalNode &&
+          variableA.variableType === VariableType.OBJECT_INSTANTIATION
+        ) {
+          for (const variable of globalNode.variables) {
+            if (
+              variable.variableType === VariableType.RELATIVE_IMPORT &&
+              variableA.pointsTo === variable.token
+            ) {
+              variableA.pointsTo = variable.pointsTo;
               break;
             }
           }
         }
 
         for (const node of allNodes) {
-          if (variable.pointsTo === node.token) {
-            variable.pointsTo = node;
+          if (variableA.pointsTo === node.token) {
+            variableA.pointsTo = node;
             break;
           }
         }

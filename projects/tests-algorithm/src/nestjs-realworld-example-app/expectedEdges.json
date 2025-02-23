@@ -178,7 +178,7 @@
   {
     "id": "addComment-Comment",
     "source": "/article/article.service.ts.ArticleService",
-    "target": "/article/comment.entity.ts.CommentEntity",
+    "target": "/article/comment.entity.ts.Comment",
     "sourceHandle": "addComment",
     "targetHandle": "entity",
     "markerEnd": { "type": "arrowclosed" }
