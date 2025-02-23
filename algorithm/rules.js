@@ -42,6 +42,13 @@ export class RuleEngine {
       return false;
     }
 
+    if (rule.parent) {
+      const parentNode = node.parent;
+      if (!parentNode || parentNode.type !== rule.parent) {
+        return false;
+      }
+    }
+
     // Recursively check for child rules
     if (rule.child) {
       const field = rule.child.field || null;

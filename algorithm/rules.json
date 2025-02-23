@@ -146,7 +146,12 @@
         "nodeType": "FUNCTION"
       },
       {
+        "type": "function_expression",
+        "nodeType": "FUNCTION"
+      },
+      {
         "type": "property_signature",
+        "parent": "interface_body",
         "nodeType": "ATTRIBUTE"
       }
     ],

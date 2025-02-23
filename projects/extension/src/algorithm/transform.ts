@@ -5,13 +5,24 @@ import { Node, Group, Edge, GroupType } from "./model";
 import { AppEdge } from "@shared/edge.types";
 import { GLOBAL } from "./language";
 
-function getFilePath(node: Node | Group | null): string {
+/**
+ * case 1: node => filePath.class / filePath
+ * case 2: group => filePath.class
+ * case 3: node in a node => filePath.class
+ * @param {Node | Group | undefined} node
+ */
+function getEntityId(node: Node | Group | null): string {
   if (node instanceof Node) {
     const parent = node.parent;
+    // case 1: points to node in file group
     if (parent instanceof Group && parent.groupType === GroupType.FILE) {
       return parent.filePath;
-    } else {
+      // case 1: points to node in class/interface group
+    } else if (parent instanceof Group) {
       return `${parent.filePath}.${parent.token}`;
+      // case 3: points to node in node
+    } else {
+      return getEntityId(parent);
     }
   }
 
@@ -33,8 +44,8 @@ export function transformEdges(allEdges: Edge[]): AppEdge[] {
     if (edge.source.token === GLOBAL) {
       continue;
     }
-    const source: string = getFilePath(edge.source);
-    const target: string = getFilePath(edge.target);
+    const source: string = getEntityId(edge.source);
+    const target: string = getEntityId(edge.target);
 
     if (edge.target instanceof Node) {
       output.push({

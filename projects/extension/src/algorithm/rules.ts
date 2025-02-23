@@ -7,6 +7,7 @@ export type Rule = {
   type?: string;
   field?: string;
   child?: Rule;
+  parent?: string;
 };
 
 export type NodeRule = Rule & {
@@ -73,6 +74,14 @@ export class RuleEngine {
     // Match the node type
     if (node.type !== rule.type) {
       return false;
+    }
+
+    // Check for the parent node type if specified in the rule
+    if (rule.parent) {
+      const parentNode = node.parent;
+      if (!parentNode || parentNode.type !== rule.parent) {
+        return false;
+      }
     }
 
     // Recursively check for child rules
