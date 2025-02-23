@@ -59,6 +59,7 @@ export function activate(context: vscode.ExtensionContext) {
               null,
               context.subscriptions
             );
+            
             vscode.window.showInformationMessage("Diagram generated!");
           } catch (error) {
             vscode.window.showErrorMessage(`Error running algorithm: ${error}`);

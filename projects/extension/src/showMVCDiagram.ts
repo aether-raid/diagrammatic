@@ -21,7 +21,7 @@ const handleShowMVCDiagram = async (
 
   // Tree-sitter Structure & LLM Descriptions
   let nodeEdgeData: NodeEdgeData = runCodeToDiagramAlgorithm(filePath);
-  nodeEdgeData.nodes = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData);
+  
 
   // Linting & security
   const { lintedNodes, hasIssues } = await runCodeLinting(nodeEdgeData.nodes);
@@ -34,6 +34,13 @@ const handleShowMVCDiagram = async (
   const componentNodeEdge = await getComponentDiagram(nodeEdgeData)
 
   panel = setupWebviewPanel(context);
+  runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData)
+  .then(
+    (data) => {
+      nodeEdgeData.nodes = data;
+      sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
+    }
+  );
   const waitWebviewReady: Promise<void> = new Promise((resolve) => {
     panel.webview.onDidReceiveMessage(async (message: WebviewCommandMessage) => {
       switch (message.command) {
