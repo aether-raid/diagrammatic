@@ -600,7 +600,7 @@ export function getName(node: SyntaxNode, getNameRules: Record<string, any>) {
     }
   }
 
-  return node.text ?? null;
+  return null;
 }
 
 /**

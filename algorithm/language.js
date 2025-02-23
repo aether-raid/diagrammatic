@@ -101,6 +101,9 @@ export class Language {
   static makeNodes(tree, parent, languageRules) {
     const { nodes, body } = this.separateNamespaces(tree, languageRules);
     const token = getName(tree, languageRules.getName);
+    if (!token) {
+      return [];
+    }
     const calls = makeCalls(body);
     const variables = makeLocalVariables(body, parent, languageRules);
 

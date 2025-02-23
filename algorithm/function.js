@@ -575,7 +575,7 @@ export function getName(node, getNameRules) {
     }
   }
 
-  return node.text ?? null;
+  return null;
 }
 
 /**
