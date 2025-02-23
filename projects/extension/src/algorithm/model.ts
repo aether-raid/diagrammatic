@@ -3,19 +3,34 @@
  *  They may either point to a string or, once resolved, a Group/Node.
  *  Not all variables can be resolved
  */
+export enum VariableType {
+  OBJECT_INSTANTIATION = "object_instantiation",
+  CALL_EXPRESSION = "call_expression",
+  RELATIVE_IMPORT = "relative_import",
+  INJECTION = "injection",
+}
+
 export class Variable {
   token: string;
   pointsTo: string | Call | Node | Group | null;
   lineNumber: number | null;
+  variableType: VariableType;
 
-  constructor(
-    token: string,
-    pointsTo: string | Call | Node | Group | null = null,
-    lineNumber: number | null = null
-  ) {
+  constructor({
+    token,
+    pointsTo = null,
+    lineNumber = null,
+    variableType,
+  }: {
+    token: string;
+    pointsTo: string | Call | Node | Group | null;
+    lineNumber: number | null;
+    variableType: VariableType;
+  }) {
     this.token = token;
     this.pointsTo = pointsTo;
     this.lineNumber = lineNumber;
+    this.variableType = variableType;
   }
 
   toString(): string {

@@ -1,4 +1,4 @@
-import { Node, Group, NodeType, Variable } from "./model";
+import { Node, Group, NodeType, Variable, VariableType } from "./model";
 import {
   makeCalls,
   makeLocalVariables,
@@ -149,7 +149,14 @@ export class Language {
       if (variableDeclarator) {
         const identifier = variableDeclarator.childForFieldName("name");
         if (identifier && typeIdentifier) {
-          variables.push(new Variable(identifier.text, typeIdentifier.text));
+          variables.push(
+            new Variable({
+              token: identifier.text,
+              pointsTo: typeIdentifier.text,
+              lineNumber: getLineNumber(tree),
+              variableType: VariableType.INJECTION,
+            })
+          );
         }
       }
     }

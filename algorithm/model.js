@@ -6,11 +6,19 @@ import fs from "fs";
  *  They may either point to a string or, once resolved, a Group/Node.
  *  Not all variables can be resolved
  */
+export const VariableType = {
+  OBJECT_INSTANTIATION: "object_instantiation",
+  CALL_EXPRESSION: "call_expression",
+  RELATIVE_IMPORT: "relative_import",
+  INJECTION: "injection",
+};
+
 export class Variable {
-  constructor(token, pointsTo, lineNumber) {
+  constructor({ token, pointsTo, lineNumber, variableType }) {
     this.token = token;
     this.pointsTo = pointsTo;
     this.lineNumber = lineNumber;
+    this.variableType = variableType;
   }
 
   toString() {

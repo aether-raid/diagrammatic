@@ -59,6 +59,7 @@ export function transformEdges(allEdges) {
         source,
         target,
         sourceHandle: edge.source.token,
+        targetHandle: "entity",
         animated: true,
       });
     }
