@@ -160,7 +160,7 @@
       "entityName": "Comment",
       "entityType": "interface",
       "filePath": "/article/article.interface.ts",
-      "items": []
+      "items": [{ "name": "body", "lineNumber": 4, "type": "attribute" }]
     }
   },
   {
@@ -168,7 +168,18 @@
       "entityName": "ArticleData",
       "entityType": "interface",
       "filePath": "/article/article.interface.ts",
-      "items": []
+      "items": [
+        { "name": "slug", "lineNumber": 8, "type": "attribute" },
+        { "name": "title", "lineNumber": 9, "type": "attribute" },
+        { "name": "description", "lineNumber": 10, "type": "attribute" },
+        { "name": "body", "lineNumber": 11, "type": "attribute" },
+        { "name": "tagList", "lineNumber": 12, "type": "attribute" },
+        { "name": "createdAt", "lineNumber": 13, "type": "attribute" },
+        { "name": "updatedAt", "lineNumber": 14, "type": "attribute" },
+        { "name": "favorited", "lineNumber": 15, "type": "attribute" },
+        { "name": "favoritesCount", "lineNumber": 16, "type": "attribute" },
+        { "name": "author", "lineNumber": 17, "type": "attribute" }
+      ]
     }
   },
   {
@@ -176,7 +187,7 @@
       "entityName": "CommentsRO",
       "entityType": "interface",
       "filePath": "/article/article.interface.ts",
-      "items": []
+      "items": [{ "name": "comments", "lineNumber": 21, "type": "attribute" }]
     }
   },
   {
@@ -184,7 +195,7 @@
       "entityName": "ArticleRO",
       "entityType": "interface",
       "filePath": "/article/article.interface.ts",
-      "items": []
+      "items": [{ "name": "article", "lineNumber": 25, "type": "attribute" }]
     }
   },
   {
@@ -192,7 +203,10 @@
       "entityName": "ArticlesRO",
       "entityType": "interface",
       "filePath": "/article/article.interface.ts",
-      "items": []
+      "items": [
+        { "name": "articles", "lineNumber": 29, "type": "attribute" },
+        { "name": "articlesCount", "lineNumber": 30, "type": "attribute" }
+      ]
     }
   },
   {
@@ -284,7 +298,12 @@
       "entityName": "ProfileData",
       "entityType": "interface",
       "filePath": "/profile/profile.interface.ts",
-      "items": []
+      "items": [
+        { "name": "username", "lineNumber": 2, "type": "attribute" },
+        { "name": "bio", "lineNumber": 3, "type": "attribute" },
+        { "name": "image", "lineNumber": 4, "type": "attribute" },
+        { "name": "following", "lineNumber": 5, "type": "attribute" }
+      ]
     }
   },
   {
@@ -292,7 +311,7 @@
       "entityName": "ProfileRO",
       "entityType": "interface",
       "filePath": "/profile/profile.interface.ts",
-      "items": []
+      "items": [{ "name": "profile", "lineNumber": 9, "type": "attribute" }]
     }
   },
   {
@@ -512,7 +531,13 @@
       "entityName": "UserData",
       "entityType": "interface",
       "filePath": "/user/user.interface.ts",
-      "items": []
+      "items": [
+        { "name": "username", "lineNumber": 2, "type": "attribute" },
+        { "name": "email", "lineNumber": 3, "type": "attribute" },
+        { "name": "token", "lineNumber": 4, "type": "attribute" },
+        { "name": "bio", "lineNumber": 5, "type": "attribute" },
+        { "name": "image", "lineNumber": 6, "type": "attribute" }
+      ]
     }
   },
   {
@@ -520,7 +545,7 @@
       "entityName": "UserRO",
       "entityType": "interface",
       "filePath": "/user/user.interface.ts",
-      "items": []
+      "items": [{ "name": "user", "lineNumber": 10, "type": "attribute" }]
     }
   },
   {
