@@ -1,6 +1,7 @@
 // *********************************
 // Layout using Dagre.js
 // *********************************
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import Dagre from "@dagrejs/dagre";
 import {
@@ -17,7 +18,7 @@ import {
 import "@xyflow/react/dist/style.css"; // Must import this, else React Flow will not work!
 
 import { NodeRow } from "@shared/app.types";
-import { AppNode } from "@shared/node.types";
+import { AppNode, EntityNode } from "@shared/node.types";
 import { AppEdge } from "@shared/edge.types";
 import {
     AcceptNodeEdgeDataPayload,
@@ -27,7 +28,7 @@ import {
 
 import { initialNodes, nodeTypes } from "./nodes";
 import { initialEdges } from "./edges";
-import { useCallback, useEffect, useRef, useState } from "react";
+
 import {
     getEdgesEntitiesToHighlightBFS,
     getOutgoingEdgesFromEntityRow,
@@ -36,6 +37,7 @@ import { initVsCodeApi, sendReadyMessageToExtension } from "./vscodeApiHandler";
 import DownloadButton from "./buttons/DownloadButton";
 import SearchBar from "./buttons/SearchBar";
 import ComponentButton from "./buttons/CompButton";
+import NodeInfoPanel from "./buttons/NodePanel";
 
 interface OptionProps {
     direction: string;
@@ -94,6 +96,10 @@ const LayoutFlow = () => {
 
     // Search Highlighting states
     const [matchedNodes, setMatchedNodes] = useState<AppNode[]>([]);
+
+    // Collapsible Side Panel for node data
+    const [showNodeInfoPanel, setShowNodeInfoPanel] = useState<boolean>(false);
+    const [panelNode, setPanelNode] = useState<EntityNode>();
 
     // General constants
     const MIN_ZOOM = 0.1;
@@ -218,6 +224,12 @@ const LayoutFlow = () => {
                 edges={edges.map((e) => prepareEdge(e))}
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
+                onNodeClick={(_event, node) => {
+                    if (node.type === 'entity') {
+                        setPanelNode(node);
+                        setShowNodeInfoPanel(true);
+                    }
+                }}
                 fitView
                 colorMode="dark"
                 minZoom={MIN_ZOOM}
@@ -236,6 +248,12 @@ const LayoutFlow = () => {
                 <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
                 <ComponentButton />
                 <Background />
+
+                <NodeInfoPanel
+                    show={showNodeInfoPanel}
+                    setShow={setShowNodeInfoPanel}
+                    entity={panelNode}
+                />
             </ReactFlow>
         </>
     );
