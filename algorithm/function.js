@@ -39,21 +39,13 @@ function getLanguageForFile(filePath) {
  * @param skipParseErrors 
  * @returns 
  */
-function parseFileToAST(
-  parser,
-  filePath,
-  file,
-  skipParseErrors
-) {
+function parseFileToAST(parser, filePath, file, skipParseErrors) {
   try {
     const sourceCode = fs.readFileSync(filePath, "utf-8");
     return parser.parse(sourceCode);
   } catch (ex) {
     if (skipParseErrors) {
-      console.warn(
-        `Could not parse ${file}. Skipping...`,
-        ex.message
-      );
+      console.warn(`Could not parse ${file}. Skipping...`, ex.message);
       return null;
     }
     throw ex;
@@ -338,6 +330,7 @@ export function makeLocalVariables(tree, parent, languageRules) {
         if (result) {
           variables.push(result);
         }
+        break;
       // A a;
       // a.callB();
       case "declaration":
@@ -353,6 +346,7 @@ export function makeLocalVariables(tree, parent, languageRules) {
             })
           );
         }
+        break;
       // import { SyntaxNode } from 'tree-sitter'
       case "import_statement":
         const importClause = getFirstChildOfType(node, "import_clause");
@@ -367,7 +361,7 @@ export function makeLocalVariables(tree, parent, languageRules) {
         if (stringFragment && fileGroup) {
           for (const importSpecifier of importSpecifiers) {
             const name = getName(importSpecifier, languageRules.getName);
-            const pointsTo = getName(stringFragment, languageRules.getName);
+            const pointsTo = stringFragment.text;
             const relativeFilePathRegex = new RegExp(
               '^(?:..?[\\/])[^<>:"|?*\n]+$'
             );
@@ -416,9 +410,9 @@ export function makeLocalVariables(tree, parent, languageRules) {
             }
           }
         }
+        break;
     }
   }
-
   return variables;
 }
 

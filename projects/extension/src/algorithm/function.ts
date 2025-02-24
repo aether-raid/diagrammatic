@@ -242,7 +242,7 @@ export function processMethodInvocation(node: SyntaxNode): Call | null {
         lineNumber: getLineNumber(node),
       });
     default:
-      return null
+      return null;
   }
 }
 
@@ -351,6 +351,7 @@ export function makeLocalVariables(
         if (result) {
           variables.push(result);
         }
+        break;
       // A a;
       // a.callB();
       case "declaration":
@@ -366,6 +367,7 @@ export function makeLocalVariables(
             })
           );
         }
+        break;
       // import { SyntaxNode } from 'tree-sitter'
       case "import_statement":
         const importClause = getFirstChildOfType(node, "import_clause");
@@ -380,7 +382,7 @@ export function makeLocalVariables(
         if (stringFragment && fileGroup) {
           for (const importSpecifier of importSpecifiers) {
             const name = getName(importSpecifier, languageRules.getName);
-            const pointsTo = getName(stringFragment, languageRules.getName);
+            const pointsTo = stringFragment.text;
             const relativeFilePathRegex = new RegExp(
               '^(?:..?[\\/])[^<>:"|?*\n]+$'
             );
@@ -429,6 +431,7 @@ export function makeLocalVariables(
             }
           }
         }
+        break;
     }
   }
 
