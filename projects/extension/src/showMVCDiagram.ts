@@ -4,7 +4,7 @@ import { Commands, JumpToLinePayload, WebviewCommandMessage } from "@shared/mess
 
 import { runCodeToDiagramAlgorithm } from "./runCodeToDiagramAlgorithm";
 import { NodeEdgeData } from "./extension.types";
-import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
+import { sendAcceptNodeEdgeMessageToWebview, sendAcceptCompNodeEdgeMessageToWebview } from "./messageHandler";
 import { runNodeDescriptionsAlgorithm } from "./runNodeDescriptionsAlgorithm";
 import { getComponentDiagram } from "./runComponentDiagramAlgorithm";
 import { runCodeLinting } from "./runCodeLinting";
@@ -30,14 +30,16 @@ const handleShowMVCDiagram = async (
     vscode.window.showWarningMessage('ESLint issues found. Check the Problems panel.');
   }
 
-  // C4 Level 3 diagram?
-  const componentNodeEdge = await getComponentDiagram(nodeEdgeData)
+  // C4 Level 3 diagram
+  const componentNodesEdges = await getComponentDiagram(nodeEdgeData)
 
   panel = setupWebviewPanel(context);
   const waitWebviewReady: Promise<void> = new Promise((resolve) => {
     panel.webview.onDidReceiveMessage(async (message: WebviewCommandMessage) => {
       switch (message.command) {
         case Commands.READY:
+          sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
+          sendAcceptCompNodeEdgeMessageToWebview(componentNodesEdges, panel)
           resolve();
           break;
         case Commands.JUMP_TO_LINE:
@@ -54,6 +56,7 @@ const handleShowMVCDiagram = async (
 
   await waitWebviewReady;
   sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
+  sendAcceptCompNodeEdgeMessageToWebview(componentNodesEdges, panel)  
   return Promise.resolve(panel);
 };
 

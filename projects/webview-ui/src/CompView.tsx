@@ -11,12 +11,15 @@ import {
     useNodesState,
     useReactFlow,
 } from "@xyflow/react";
-import { CompNode } from '@shared/compNode.types';
-import { CompEdge } from '@shared/compEdge.types';
+import { CompNode } from "@shared/compNode.types";
+import { CompEdge } from "@shared/compEdge.types";
+import { AcceptCompNodeEdgeDataPayload, Commands, WebviewCommandMessage, } from "@shared/message.types";
 import { initialCompNodes, nodeTypes } from "./nodes";
 import { initialCompEdges } from "./edges";
-import { useCallback } from "react";
-// import HomeButton from "./buttons/HomeButton";
+import { useCallback, useEffect } from "react";
+import HomeButton from "./buttons/HomeButton";
+import { sendReadyMessageToExtension } from "./vscodeApiHandler";
+import DownloadButton from "./buttons/DownloadButton";
 
 interface OptionProps {
     direction: string;
@@ -65,9 +68,44 @@ const LayoutFlow = () => {
     const MIN_ZOOM = 0.1;
     const MAX_ZOOM = 2;
 
+    useEffect(() => {
+            // Setup message listener
+            const onMessage = (event: MessageEvent<WebviewCommandMessage>) => {
+                const { command, message } = event.data;
+                // TODO: Refactor this into a non switch-case if possible
+                switch (command) {
+                    case Commands.COMPONENT_DIAGRAM: {
+                        const msg = message as AcceptCompNodeEdgeDataPayload;
+                        setNodes(msg.compNodes);
+                        setEdges(msg.compEdges);
+                        break;
+                    }
+                }
+            };
+    
+            window.addEventListener("message", onMessage);
+           
+            try {
+                sendReadyMessageToExtension();
+            } catch (error) {
+                if (
+                    (error as Error).message !==
+                    "acquireVsCodeApi is not defined"
+                ) {
+                    // Only catch the above error, throw all else
+                    throw error;
+                }
+            }
+      
+    
+            return () => {
+                // Remove event listener on component unmount
+                window.removeEventListener("message", onMessage);
+            };
+        }, []);
+
     const onLayout = useCallback(
         (direction: string) => {
-            console.log(nodes);
             const layouted = getLayoutedElements(nodes, edges, { direction });
 
             setNodes([...layouted.nodes]);
@@ -94,7 +132,6 @@ const LayoutFlow = () => {
     const prepareEdge = (edge: CompEdge) => ({
         ...edge,
     });
-    edges.forEach((e) => console.log("Prepared Edge:", prepareEdge(e)));
 
     return (
         <ReactFlow
@@ -118,8 +155,8 @@ const LayoutFlow = () => {
             </Panel>
             <MiniMap />
             <Controls />
-            {/* <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} /> */}
-            {/* <HomeButton /> TO FIX THIS */}
+            <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
+            <HomeButton />
             <Background />
         </ReactFlow>
     );
@@ -128,7 +165,7 @@ const LayoutFlow = () => {
 const CompView = () => {
     return (
         <ReactFlowProvider>
-            <LayoutFlow />
+            <LayoutFlow/>
         </ReactFlowProvider>
     )
 }
