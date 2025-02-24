@@ -10,9 +10,6 @@ export const runCodeLinting = async (
 }> => {
   const nodes = structuredClone(inputNodes);
 
-  // console.log("node edge data before linting:", nodeEdgeData);
-  // console.log("single node edge data before linting:", nodes[0]);
-
   let hasIssues = false;
   for (let node of nodes) {
     if (!("entityName" in node.data) || !("filePath" in node.data)) {
@@ -54,9 +51,6 @@ export const runCodeLinting = async (
     }
     hasIssues = true;
   }
-
-  console.log("node edge data after linting:", nodes);
-  // console.log("single node edge data after linting:", nodes[0]);
 
   return {
     lintedNodes: nodes,

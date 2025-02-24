@@ -20,26 +20,36 @@ import { Language } from "./language";
 import { LanguageRules } from "./rules";
 
 /**
- * Determines the appropriate language for a file 
- * @param filePath 
+ * Determines the appropriate language for a file
+ * @param filePath
  * @returns Language
  */
 function getLanguageForFile(filePath: string): any | null {
-  if (filePath.endsWith(".ts")) return TypeScript.typescript;
-  if (filePath.endsWith(".tsx")) return TypeScript.tsx;
-  if (filePath.endsWith(".py")) return Python;
-  if (filePath.endsWith(".java")) return Java;
-  if (filePath.endsWith(".cpp")) return Cpp;
+  if (filePath.endsWith(".ts")) {
+    return TypeScript.typescript;
+  }
+  if (filePath.endsWith(".tsx")) {
+    return TypeScript.tsx;
+  }
+  if (filePath.endsWith(".py")) {
+    return Python;
+  }
+  if (filePath.endsWith(".java")) {
+    return Java;
+  }
+  if (filePath.endsWith(".cpp")) {
+    return Cpp;
+  }
   return null;
 }
 
 /**
  * Parses a file into an AST with error handling
- * @param parser 
- * @param filePath 
- * @param file 
- * @param skipParseErrors 
- * @returns 
+ * @param parser
+ * @param filePath
+ * @param file
+ * @param skipParseErrors
+ * @returns
  */
 function parseFileToAST(
   parser: Parser,
@@ -90,11 +100,15 @@ export function parseFilesToASTs(
       } else if (fileStat.isFile()) {
         // check if we support the language
         const language = getLanguageForFile(filePath);
-        if (!language) continue;
+        if (!language) {
+          continue;
+        }
         parser.setLanguage(language);
 
         const ast = parseFileToAST(parser, filePath, file, skipParseErrors);
-        if (ast) fileASTTrees.push([filePath, file, ast]);
+        if (ast) {
+          fileASTTrees.push([filePath, file, ast]);
+        }
       }
     }
   } catch (err) {
@@ -271,6 +285,8 @@ export function makeCalls(body: SyntaxNode[]) {
         if (mCall) {
           calls.push(mCall);
         }
+      default:
+        continue;
     }
   }
   return calls;
@@ -337,6 +353,86 @@ export function processVariableDeclaration(node: SyntaxNode): Variable | null {
   return null;
 }
 
+function makeLocalVariablesDeclaration(node: SyntaxNode) {
+  const typeIdentifier = getFirstChildOfType(node, "type_identifier");
+  const identifier = getFirstChildOfType(node, "identifier");
+  if (typeIdentifier && identifier) {
+    return new Variable({
+      token: identifier.text,
+      pointsTo: typeIdentifier.text,
+      lineNumber: getLineNumber(node),
+      variableType: VariableType.CALL_EXPRESSION,
+    });
+  }
+  return null;
+}
+
+function makeLocalVariablesImportStatement(
+  node: SyntaxNode,
+  parent: Node | Group,
+  languageRules: LanguageRules
+) {
+  const importClause = getFirstChildOfType(node, "import_clause");
+  const namedImports = getFirstChildOfType(importClause, "named_imports");
+  const importSpecifiers = getAllChildrenOfType(
+    namedImports,
+    "import_specifier"
+  );
+  const string = getFirstChildOfType(node, "string");
+  const stringFragment = getFirstChildOfType(string, "string_fragment");
+  const fileGroup = parent.getFileGroup();
+  if (stringFragment && fileGroup) {
+    for (const importSpecifier of importSpecifiers) {
+      const name = getName(importSpecifier, languageRules.getName);
+      const pointsTo = stringFragment.text;
+      const relativeFilePathRegex = new RegExp('^(?:..?[\\/])[^<>:"|?*\n]+$');
+      /**
+       * relative filepath
+       * e.g. "./article.service" => without extension
+       * e.g. "./dto" => folder
+       * (1) import classes from file
+       * (2) import functions from file
+       * (3) import from folder
+       * output variable.pointsTo: /User/fyp/samples/nestjs-realworld-example-app/src/article/article.service.ts
+       * output variable.pointsTo: User/fyp/samples/nestjs-realworld-example-app/src/article/dto
+       */
+      if (
+        name &&
+        pointsTo &&
+        relativeFilePathRegex.test(pointsTo) &&
+        fileGroup instanceof Group &&
+        fileGroup.filePath
+      ) {
+        let importedFilePath = path.resolve(
+          path.dirname(fileGroup.filePath),
+          pointsTo
+        );
+        const baseDirectory = path.dirname(importedFilePath);
+        // if file has no extension, search directory for matching filename
+        if (fs.existsSync(baseDirectory)) {
+          const files = fs.readdirSync(baseDirectory);
+          const fileNameWithoutExt = path.basename(pointsTo);
+          const matchedFile = files.find((file) => {
+            const baseFilePath = path.basename(file);
+            return baseFilePath.startsWith(fileNameWithoutExt);
+          });
+          if (matchedFile) {
+            importedFilePath = path.join(baseDirectory, matchedFile);
+          }
+
+          return new Variable({
+            token: name,
+            pointsTo: importedFilePath,
+            lineNumber: getLineNumber(importSpecifier),
+            variableType: VariableType.RELATIVE_IMPORT,
+          });
+        }
+      }
+    }
+  }
+  return null;
+}
+
 export function makeLocalVariables(
   tree: SyntaxNode[],
   parent: Node | Group,
@@ -347,95 +443,98 @@ export function makeLocalVariables(
   for (const node of walk(tree)) {
     switch (node.type) {
       case "variable_declarator":
-        const result = processVariableDeclaration(node);
-        if (result) {
-          variables.push(result);
+        const var1 = processVariableDeclaration(node);
+        if (var1) {
+          variables.push(var1);
         }
         break;
       // A a;
       // a.callB();
       case "declaration":
-        const typeIdentifier = getFirstChildOfType(node, "type_identifier");
-        const identifier = getFirstChildOfType(node, "identifier");
-        if (typeIdentifier && identifier) {
-          variables.push(
-            new Variable({
-              token: identifier.text,
-              pointsTo: typeIdentifier.text,
-              lineNumber: getLineNumber(node),
-              variableType: VariableType.CALL_EXPRESSION,
-            })
-          );
+        const var2 = makeLocalVariablesDeclaration(node);
+        if (var2) {
+          variables.push(var2);
         }
         break;
       // import { SyntaxNode } from 'tree-sitter'
       case "import_statement":
-        const importClause = getFirstChildOfType(node, "import_clause");
-        const namedImports = getFirstChildOfType(importClause, "named_imports");
-        const importSpecifiers = getAllChildrenOfType(
-          namedImports,
-          "import_specifier"
+        const var3 = makeLocalVariablesImportStatement(
+          node,
+          parent,
+          languageRules
         );
-        const string = getFirstChildOfType(node, "string");
-        const stringFragment = getFirstChildOfType(string, "string_fragment");
-        const fileGroup = parent.getFileGroup();
-        if (stringFragment && fileGroup) {
-          for (const importSpecifier of importSpecifiers) {
-            const name = getName(importSpecifier, languageRules.getName);
-            const pointsTo = stringFragment.text;
-            const relativeFilePathRegex = new RegExp(
-              '^(?:..?[\\/])[^<>:"|?*\n]+$'
-            );
-            /**
-             * relative filepath
-             * e.g. "./article.service" => without extension
-             * e.g. "./dto" => folder
-             * (1) import classes from file
-             * (2) import functions from file
-             * (3) import from folder
-             * output variable.pointsTo: /User/fyp/samples/nestjs-realworld-example-app/src/article/article.service.ts
-             * output variable.pointsTo: User/fyp/samples/nestjs-realworld-example-app/src/article/dto
-             */
-            if (
-              name &&
-              pointsTo &&
-              relativeFilePathRegex.test(pointsTo) &&
-              fileGroup instanceof Group &&
-              fileGroup.filePath
-            ) {
-              let importedFilePath = path.resolve(
-                path.dirname(fileGroup.filePath),
-                pointsTo
-              );
-              const baseDirectory = path.dirname(importedFilePath);
-              // if file has no extension, search directory for matching filename
-              if (fs.existsSync(baseDirectory)) {
-                const files = fs.readdirSync(baseDirectory);
-                const fileNameWithoutExt = path.basename(pointsTo);
-                const matchedFile = files.find((file) => {
-                  const baseFilePath = path.basename(file);
-                  return baseFilePath.startsWith(fileNameWithoutExt);
-                });
-                if (matchedFile) {
-                  importedFilePath = path.join(baseDirectory, matchedFile);
-                }
-                variables.push(
-                  new Variable({
-                    token: name,
-                    pointsTo: importedFilePath,
-                    lineNumber: getLineNumber(importSpecifier),
-                    variableType: VariableType.RELATIVE_IMPORT,
-                  })
-                );
-              }
-            }
-          }
+        if (var3) {
+          variables.push(var3);
         }
         break;
     }
   }
 
   return variables;
+}
+
+function findLinkForCallClassInjection(
+  call: Call,
+  nodeA: Node,
+  variable: Variable
+) {
+  /**
+   * Class injection for NestJS
+   * I have variable: articleService -> class ArticleService
+   * I have call: findAll -> articleService
+   */
+  if (
+    call.isAttribute() &&
+    variable.token === call.ownerToken &&
+    variable.pointsTo instanceof Group
+  ) {
+    // search through class methods
+    const classNode: Group = variable.pointsTo;
+    for (const node of classNode.nodes) {
+      if (node.token === call.token) {
+        return new Edge(nodeA, node);
+      }
+    }
+  }
+  return null;
+}
+
+function findLinkForCallImportStatement(
+  call: Call,
+  nodeA: Node,
+  variable: Variable
+) {
+  /**
+   * for variables from import statements
+   * I have variable: findAll -> Group: article.service.ts
+   * I have call: findAll -> null
+   */
+  if (
+    !call.isAttribute() &&
+    variable.token === call.token &&
+    !call.ownerToken &&
+    variable.pointsTo instanceof Group &&
+    variable.pointsTo.groupType === GroupType.FILE
+  ) {
+    for (const fileNode of variable.pointsTo.nodes) {
+      if (fileNode.token === call.token) {
+        return new Edge(nodeA, fileNode);
+      }
+    }
+  }
+  return null;
+}
+
+function findLinkForCallFunctionCall(call: Call, nodeA: Node, node: Node) {
+  // calling another function
+  if (
+    !call.isAttribute() &&
+    call.token === node.token &&
+    node.nodeType === NodeType.FUNCTION
+  ) {
+    return new Edge(nodeA, node);
+  }
+  return null;
 }
 
 /**
@@ -455,53 +554,19 @@ export function findLinkForCall(
   allNodes: Node[]
 ): Edge | null {
   for (const node of allNodes) {
-    /**
-     * Class injection for NestJS
-     * I have variable: articleService -> class ArticleService
-     * I have call: findAll -> articleService
-     */
     for (const variable of node.variables) {
-      if (
-        call.isAttribute() &&
-        variable.token === call.ownerToken &&
-        variable.pointsTo instanceof Group
-      ) {
-        // search through class methods
-        const classNode: Group = variable.pointsTo;
-        for (const node of classNode.nodes) {
-          if (node.token === call.token) {
-            return new Edge(nodeA, node);
-          }
-        }
+      const link1 = findLinkForCallClassInjection(call, nodeA, variable);
+      if (link1) {
+        return link1;
       }
-
-      /**
-       * for variables from import statements
-       * I have variable: findAll -> Group: article.service.ts
-       * I have call: findAll -> null
-       */
-      if (
-        !call.isAttribute() &&
-        variable.token === call.token &&
-        !call.ownerToken &&
-        variable.pointsTo instanceof Group &&
-        variable.pointsTo.groupType === GroupType.FILE
-      ) {
-        for (const fileNode of variable.pointsTo.nodes) {
-          if (fileNode.token === call.token) {
-            return new Edge(nodeA, fileNode);
-          }
-        }
+      const link2 = findLinkForCallImportStatement(call, nodeA, variable);
+      if (link2) {
+        return link2;
       }
     }
-
-    // calling another function
-    if (
-      !call.isAttribute() &&
-      call.token === node.token &&
-      node.nodeType === NodeType.FUNCTION
-    ) {
-      return new Edge(nodeA, node);
+    const link3 = findLinkForCallFunctionCall(call, nodeA, node);
+    if (link3) {
+      return link3;
     }
 
     // calling a function in the file space

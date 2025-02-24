@@ -18,8 +18,8 @@ import {
 import { Language } from "./language.js";
 
 /**
- * Determines the appropriate language for a file 
- * @param filePath 
+ * Determines the appropriate language for a file
+ * @param filePath
  * @returns Language
  */
 function getLanguageForFile(filePath) {
@@ -33,11 +33,11 @@ function getLanguageForFile(filePath) {
 
 /**
  * Parses a file into an AST with error handling
- * @param parser 
- * @param filePath 
- * @param file 
- * @param skipParseErrors 
- * @returns 
+ * @param parser
+ * @param filePath
+ * @param file
+ * @param skipParseErrors
+ * @returns
  */
 function parseFileToAST(parser, filePath, file, skipParseErrors) {
   try {
@@ -254,6 +254,8 @@ export function makeCalls(body) {
         if (mCall) {
           calls.push(mCall);
         }
+      default:
+        continue;
     }
   }
   return calls;
