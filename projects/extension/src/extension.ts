@@ -16,42 +16,56 @@ export function activate(context: vscode.ExtensionContext) {
     "diagrammatic.selectRulesetFile",
     async () => {
       const fileUri = await vscode.window.showOpenDialog({
-        canSelectFiles: true,  // Only files
+        canSelectFiles: true, // Only files
         canSelectFolders: false,
         canSelectMany: false,
-        openLabel: 'Select File'
+        openLabel: "Select File",
       });
 
       if (!fileUri || fileUri.length <= 0) {
-        vscode.window.showWarningMessage('No file was selected. Please try again.');
+        vscode.window.showWarningMessage(
+          "No file was selected. Please try again."
+        );
         return;
       }
 
       const config = vscode.workspace.getConfiguration();
-      await config.update(GLOBALS.ruleset.configName, fileUri[0].fsPath, vscode.ConfigurationTarget.Global);
-      vscode.window.showInformationMessage(`Ruleset updated to be at '${fileUri}'!`);
+      await config.update(
+        GLOBALS.ruleset.configName,
+        fileUri[0].fsPath,
+        vscode.ConfigurationTarget.Global
+      );
+      vscode.window.showInformationMessage(
+        `Ruleset updated to be at '${fileUri}'!`
+      );
     }
-  )
+  );
   context.subscriptions.push(selectRulesetFile);
-  
+
   const showMVCDiagram = vscode.commands.registerCommand(
     "diagrammatic.showMVCDiagram",
     async () => {
       const folderUri = await vscode.window.showOpenDialog({
-        canSelectFiles: false,  // Only folders
+        canSelectFiles: false, // Only folders
         canSelectFolders: true,
         canSelectMany: false,
-        openLabel: 'Select Repository'
+        openLabel: "Select Repository",
       });
 
       if (folderUri && folderUri.length > 0) {
         const filePath = folderUri[0].fsPath;
 
         if (filePath && filePath.length > 0) {
-          vscode.window.showInformationMessage(`Parsing repository: ${filePath}`);
+          vscode.window.showInformationMessage(
+            `Parsing repository: ${filePath}`
+          );
 
           try {
-            currentPanel = await handleShowMVCDiagram(context, currentPanel, filePath);
+            currentPanel = await handleShowMVCDiagram(
+              context,
+              currentPanel,
+              filePath
+            );
             currentPanel.onDidDispose(
               () => {
                 currentPanel = undefined;
@@ -66,7 +80,9 @@ export function activate(context: vscode.ExtensionContext) {
           }
         }
       } else {
-        vscode.window.showWarningMessage('No folder selected. Please try again.');
+        vscode.window.showWarningMessage(
+          "No folder selected. Please try again."
+        );
       }
     }
   );
@@ -89,11 +105,8 @@ export function activate(context: vscode.ExtensionContext) {
               position: { x: 0, y: 0 },
               data: {
                 entityName: "Cloud",
-                entityType: 'file',
-                items: [
-                  { name: "fira" },
-                  { name: "firaga" }
-                ],
+                entityType: "file",
+                items: [{ name: "fira" }, { name: "firaga" }],
               },
             },
           ],
