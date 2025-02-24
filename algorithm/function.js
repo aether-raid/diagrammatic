@@ -18,6 +18,49 @@ import {
 import { Language } from "./language.js";
 
 /**
+ * Determines the appropriate language for a file 
+ * @param filePath 
+ * @returns Language
+ */
+function getLanguageForFile(filePath) {
+  if (filePath.endsWith(".ts")) return TypeScript.typescript;
+  if (filePath.endsWith(".tsx")) return TypeScript.tsx;
+  if (filePath.endsWith(".py")) return Python;
+  if (filePath.endsWith(".java")) return Java;
+  if (filePath.endsWith(".cpp")) return Cpp;
+  return null;
+}
+
+/**
+ * Parses a file into an AST with error handling
+ * @param parser 
+ * @param filePath 
+ * @param file 
+ * @param skipParseErrors 
+ * @returns 
+ */
+function parseFileToAST(
+  parser,
+  filePath,
+  file,
+  skipParseErrors
+) {
+  try {
+    const sourceCode = fs.readFileSync(filePath, "utf-8");
+    return parser.parse(sourceCode);
+  } catch (ex) {
+    if (skipParseErrors) {
+      console.warn(
+        `Could not parse ${file}. Skipping...`,
+        ex.message
+      );
+      return null;
+    }
+    throw ex;
+  }
+}
+
+/**
  * Parse files in a folder and convert them to ASTs.
  *
  * @param folderPath - The folder containing the source files.
@@ -33,36 +76,20 @@ export function parseFilesToASTs(folderPath, skipParseErrors = true) {
 
     for (const file of files) {
       const filePath = path.join(folderPath, file);
+      const fileStat = fs.statSync(filePath);
 
-      if (fs.statSync(filePath).isDirectory()) {
+      if (fileStat.isDirectory()) {
+        // If it's a directory, recurse into it
         const subdirectoryFiles = parseFilesToASTs(filePath, skipParseErrors);
         fileASTTrees.push(...subdirectoryFiles);
-      } else if (fs.statSync(filePath).isFile()) {
-        if (filePath.endsWith(".ts")) {
-          parser.setLanguage(TypeScript.typescript);
-        } else if (filePath.endsWith(".tsx")) {
-          parser.setLanguage(TypeScript.tsx);
-        } else if (filePath.endsWith(".py")) {
-          parser.setLanguage(Python);
-        } else if (filePath.endsWith(".java")) {
-          parser.setLanguage(Java);
-        } else if (filePath.endsWith(".cpp")) {
-          parser.setLanguage(Cpp);
-        } else {
-          continue;
-        }
+      } else if (fileStat.isFile()) {
+        // check if we support the language
+        const language = getLanguageForFile(filePath);
+        if (!language) continue;
+        parser.setLanguage(language);
 
-        try {
-          const sourceCode = fs.readFileSync(filePath, "utf-8");
-          const ast = parser.parse(sourceCode);
-          fileASTTrees.push([filePath, file, ast]);
-        } catch (ex) {
-          if (skipParseErrors) {
-            console.warn(`Could not parse ${file}. Skipping...`, ex.message);
-          } else {
-            throw ex;
-          }
-        }
+        const ast = parseFileToAST(parser, filePath, file, skipParseErrors);
+        if (ast) fileASTTrees.push([filePath, file, ast]);
       }
     }
   } catch (err) {
@@ -135,7 +162,7 @@ export function processMemberExpression(node) {
  * (1) const total = sum(a+b) = Identifier
  * (2) const users = this.userRepository.getUsers() = MemberExpression
  *
- * @returns {Call}
+ * @returns {Call | null}
  */
 export function processCallExpression(node) {
   const func = node.childForFieldName("function");
@@ -171,16 +198,16 @@ export function processCallExpression(node) {
           lineNumber: getLineNumber(node),
         });
       }
+    default:
+      return null;
   }
-
-  return null;
 }
 
 /**
  * For Java because the tree-sitter outputs method_invocation instead of call_expression
  * And they have a different structure
  * @param {*} node
- * @returns {Call}
+ * @returns {Call | null}
  */
 export function processMethodInvocation(node) {
   const objectNode = node.childForFieldName("object");
@@ -205,9 +232,9 @@ export function processMethodInvocation(node) {
         ownerToken: objectNode.text,
         lineNumber: getLineNumber(node),
       });
+    default:
+      return null;
   }
-
-  return null;
 }
 
 /**

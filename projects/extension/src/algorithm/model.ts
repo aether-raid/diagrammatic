@@ -1,7 +1,6 @@
 import path from "path";
 import fs from "fs";
 import { GLOBAL } from "./language";
-import assert from "assert";
 
 /**
  *  Variables represent named tokens that are accessible to their scope.

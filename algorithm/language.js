@@ -64,9 +64,7 @@ export class Language {
    */
   static makeClassGroup(tree, parent, languageRules) {
     const {
-      groups,
       nodes: nodeTrees,
-      body,
     } = this.separateNamespaces(tree, languageRules);
     const matchingGroupRule = languageRules.groups.find(
       (group) => group.type === tree.type

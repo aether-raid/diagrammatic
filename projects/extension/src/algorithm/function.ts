@@ -20,6 +20,49 @@ import { Language } from "./language";
 import { LanguageRules } from "./rules";
 
 /**
+ * Determines the appropriate language for a file 
+ * @param filePath 
+ * @returns Language
+ */
+function getLanguageForFile(filePath: string): any | null {
+  if (filePath.endsWith(".ts")) return TypeScript.typescript;
+  if (filePath.endsWith(".tsx")) return TypeScript.tsx;
+  if (filePath.endsWith(".py")) return Python;
+  if (filePath.endsWith(".java")) return Java;
+  if (filePath.endsWith(".cpp")) return Cpp;
+  return null;
+}
+
+/**
+ * Parses a file into an AST with error handling
+ * @param parser 
+ * @param filePath 
+ * @param file 
+ * @param skipParseErrors 
+ * @returns 
+ */
+function parseFileToAST(
+  parser: Parser,
+  filePath: string,
+  file: string,
+  skipParseErrors: boolean
+): Tree | null {
+  try {
+    const sourceCode = fs.readFileSync(filePath, "utf-8");
+    return parser.parse(sourceCode);
+  } catch (ex) {
+    if (skipParseErrors) {
+      console.warn(
+        `Could not parse ${file}. Skipping...`,
+        (ex as Error).message
+      );
+      return null;
+    }
+    throw ex;
+  }
+}
+
+/**
  * Parse files in a folder and convert them to ASTs.
  *
  * @param folderPath - The folder containing the source files.
@@ -38,39 +81,20 @@ export function parseFilesToASTs(
 
     for (const file of files) {
       const filePath = path.join(folderPath, file);
+      const fileStat = fs.statSync(filePath);
 
-      if (fs.statSync(filePath).isDirectory()) {
+      if (fileStat.isDirectory()) {
         // If it's a directory, recurse into it
         const subdirectoryFiles = parseFilesToASTs(filePath, skipParseErrors);
         fileASTTrees.push(...subdirectoryFiles);
-      } else if (fs.statSync(filePath).isFile()) {
-        if (filePath.endsWith(".ts")) {
-          parser.setLanguage(TypeScript.typescript);
-        } else if (filePath.endsWith(".tsx")) {
-          parser.setLanguage(TypeScript.tsx);
-        } else if (filePath.endsWith(".py")) {
-          parser.setLanguage(Python);
-        } else if (filePath.endsWith(".java")) {
-          parser.setLanguage(Java);
-        } else if (filePath.endsWith(".cpp")) {
-          parser.setLanguage(Cpp);
-        } else {
-          continue;
-        }
-        try {
-          const sourceCode = fs.readFileSync(filePath, "utf-8");
-          const ast = parser.parse(sourceCode);
-          fileASTTrees.push([filePath, file, ast]);
-        } catch (ex) {
-          if (skipParseErrors) {
-            console.warn(
-              `Could not parse ${file}. Skipping...`,
-              (ex as Error).message
-            );
-          } else {
-            throw ex;
-          }
-        }
+      } else if (fileStat.isFile()) {
+        // check if we support the language
+        const language = getLanguageForFile(filePath);
+        if (!language) continue;
+        parser.setLanguage(language);
+
+        const ast = parseFileToAST(parser, filePath, file, skipParseErrors);
+        if (ast) fileASTTrees.push([filePath, file, ast]);
       }
     }
   } catch (err) {
@@ -83,7 +107,6 @@ export function parseFilesToASTs(
 
 /**
  * Walk through the ast tree and return all nodes except decorators and their children
- * TODO: only return certain node types
  */
 export function walk(body: SyntaxNode[] | SyntaxNode): SyntaxNode[] {
   let ret: SyntaxNode[] = [];
@@ -114,7 +137,7 @@ export function walk(body: SyntaxNode[] | SyntaxNode): SyntaxNode[] {
  *    - propertyNode: userRepository = PropertyIdentifier
  * - propertyNode: getUsers() = PropertyIdentifier
  *
- * TODO: label calls that have 'this'
+ * MAYBE: label calls that have 'this'
  *
  * @returns {string}
  */
@@ -143,7 +166,7 @@ export function processMemberExpression(node: SyntaxNode) {
  * (1) const total = sum(a+b) = Identifier
  * (2) const users = this.userRepository.getUsers() = MemberExpression
  *
- * @returns {Call}
+ * @returns {Call | null}
  */
 export function processCallExpression(node: SyntaxNode): Call | null {
   const func = node.childForFieldName("function");
@@ -193,7 +216,7 @@ export function processCallExpression(node: SyntaxNode): Call | null {
  * (3) repo.findAll() = objectNode.nameNode
  *
  * @param {*} node
- * @returns {Call}
+ * @returns {Call | null}
  */
 export function processMethodInvocation(node: SyntaxNode): Call | null {
   const objectNode = node.childForFieldName("object");
@@ -218,9 +241,9 @@ export function processMethodInvocation(node: SyntaxNode): Call | null {
         ownerToken: objectNode.text,
         lineNumber: getLineNumber(node),
       });
+    default:
+      return null
   }
-
-  return null;
 }
 
 /**

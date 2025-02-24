@@ -89,11 +89,13 @@ export class RuleEngine {
       const field = rule.child.field || null;
       const type = rule.child.type || null;
 
-      const childNode = field
-        ? node.childForFieldName(field)
-        : type
-        ? getFirstChildOfType(node, type)
-        : null;
+      let childNode: SyntaxNode | null = null;
+
+      if (field) {
+        childNode = node.childForFieldName(field);
+      } else if (type) {
+        childNode = getFirstChildOfType(node, type);
+      }
 
       if (!childNode || !this.matchNode(childNode, rule.child)) {
         return false;
