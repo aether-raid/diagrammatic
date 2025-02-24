@@ -129,100 +129,114 @@ export class Node {
     this.nodeType = nodeType;
   }
 
+  private resolveRelativeImport(variableA: Variable, allSubgroups: Group[]) {
+    for (const subgroup of allSubgroups) {
+      /**
+       * Resolve variables from relative import statements
+       * e.g. import { ArticleService } from './article.service';
+       * Variable(token=ArticleService, pointsTo=/User/samples/nestjs-real-example-app/src/article/ArticleService.ts)
+       * Group(token=ArticleService)
+       * pointsTo should resolve from a filepath to the actual class Group
+       */
+      if (
+        variableA.variableType === VariableType.RELATIVE_IMPORT &&
+        subgroup.groupType === GroupType.CLASS &&
+        variableA.pointsTo === subgroup.filePath
+      ) {
+        variableA.pointsTo = subgroup;
+        break;
+      }
+
+      /**
+       * Resolve variables from relative import statements
+       * e.g. import { CreateArticleDto, CreateCommentDto } from './dto';
+       * Variable(token=CreateArticleDto, pointsTo=/User/samples/nestjs-real-example-app/src/article/dto)
+       * pointsTo should resolve from a filepath to the actual class Group
+       */
+      if (
+        variableA.variableType === VariableType.RELATIVE_IMPORT &&
+        variableA.pointsTo &&
+        typeof variableA.pointsTo === "string" &&
+        path.isAbsolute(variableA.pointsTo) &&
+        fs.existsSync(variableA.pointsTo) &&
+        fs.statSync(variableA.pointsTo).isDirectory()
+      ) {
+        const baseDirectory = path.dirname(subgroup.filePath);
+        if (
+          variableA.pointsTo === baseDirectory &&
+          subgroup.token === variableA.token
+        ) {
+          variableA.pointsTo = subgroup;
+          break;
+        }
+      }
+
+      /**
+       * resolve NestJS / Java constructor injection from the variable name to class
+       * e.g. variable: articleService => class ArticleService
+       * findLinkForCall will resolve articleService.findAll to ArticleService.findAll
+       */
+      if (
+        variableA.variableType === VariableType.INJECTION &&
+        variableA.pointsTo === subgroup.token
+      ) {
+        variableA.pointsTo = subgroup;
+        break;
+      }
+    }
+  }
+
+  private resolveGlobalNodeImport(
+    variableA: Variable,
+    allNodes: Node[],
+    fileGroup: Group | null
+  ) {
+    /**
+     * For the corresponding global node of the file, search for the imported class
+     * example:
+     *  Group(article.service.ts), Node(token=(global), variables=[Variable(token=Comment, pointsTo=Group(token=Comment))]
+     *  Group=(ArticleService), Node=(token=addComment, variables=[Variable(token=comment, pointsTo=Comment, type="object_instantiation")])
+     */
+    const globalNode = allNodes.find(
+      (node) =>
+        node.token === GLOBAL &&
+        node.getFileGroup()?.filePath === fileGroup?.filePath
+    );
+
+    if (
+      variableA.variableType === VariableType.OBJECT_INSTANTIATION &&
+      globalNode
+    ) {
+      for (const variable of globalNode.variables) {
+        if (
+          variable.variableType === VariableType.RELATIVE_IMPORT &&
+          variable.token === variableA.pointsTo
+        ) {
+          variableA.pointsTo = variable.pointsTo;
+          return;
+        }
+      }
+    }
+  }
+
+  private resolveNodeReference(variableA: Variable, allNodes: Node[]) {
+    for (const node of allNodes) {
+      if (variableA.pointsTo === node.token) {
+        variableA.pointsTo = node;
+        break;
+      }
+    }
+  }
+
   /**
    * Resolve the Node/Group for the pointsTo field
    */
   resolveVariables(allSubgroups: Group[], allNodes: Node[]): void {
     const fileGroup = this.getFileGroup();
     for (const variableA of this.variables) {
-      if (typeof variableA.pointsTo === "string") {
-        for (const subgroup of allSubgroups) {
-          /**
-           * Resolve variables from relative import statements
-           * e.g. import { ArticleService } from './article.service';
-           * Variable(token=ArticleService, pointsTo=/User/samples/nestjs-real-example-app/src/article/ArticleService.ts)
-           * Group(token=ArticleService)
-           * pointsTo should resolve from a filepath to the actual class Group
-           */
-          if (
-            variableA.variableType === VariableType.RELATIVE_IMPORT &&
-            subgroup.groupType === GroupType.CLASS &&
-            variableA.pointsTo === subgroup.filePath
-          ) {
-            variableA.pointsTo = subgroup;
-            break;
-          }
-
-          /**
-           * Resolve variables from relative import statements
-           * e.g. import { CreateArticleDto, CreateCommentDto } from './dto';
-           * Variable(token=CreateArticleDto, pointsTo=/User/samples/nestjs-real-example-app/src/article/dto)
-           * pointsTo should resolve from a filepath to the actual class Group
-           */
-          if (
-            variableA.variableType === VariableType.RELATIVE_IMPORT &&
-            variableA.pointsTo &&
-            path.isAbsolute(variableA.pointsTo) &&
-            fs.existsSync(variableA.pointsTo) &&
-            fs.statSync(variableA.pointsTo).isDirectory()
-          ) {
-            const baseDirectory = path.dirname(subgroup.filePath);
-            if (
-              variableA.pointsTo === baseDirectory &&
-              subgroup.token === variableA.token
-            ) {
-              variableA.pointsTo = subgroup;
-              break;
-            }
-          }
-
-          /**
-           * resolve NestJS / Java constructor injection from the variable name to class
-           * e.g. variable: articleService => class ArticleService
-           * findLinkForCall will resolve articleService.findAll to ArticleService.findAll
-           */
-          if (
-            variableA.variableType === VariableType.INJECTION &&
-            variableA.pointsTo === subgroup.token
-          ) {
-            variableA.pointsTo = subgroup;
-            break;
-          }
-        }
-
-        /**
-         * For the corresponding global node of the file, search for the imported class
-         * example:
-         *  Group(article.service.ts), Node(token=(global), variables=[Variable(token=Comment, pointsTo=Group(token=Comment))]
-         *  Group=(ArticleService), Node=(token=addComment, variables=[Variable(token=comment, pointsTo=Comment, type="object_instantiation")])
-         */
-        const globalNode = allNodes.find(
-          (node) =>
-            node.token === GLOBAL &&
-            node.getFileGroup()?.filePath === fileGroup?.filePath
-        );
-        if (
-          variableA.variableType === VariableType.OBJECT_INSTANTIATION &&
-          globalNode
-        ) {
-          for (const variable of globalNode.variables) {
-            if (
-              variable.variableType === VariableType.RELATIVE_IMPORT &&
-              variable.token === variableA.pointsTo
-            ) {
-              variableA.pointsTo = variable.pointsTo;
-              break;
-            }
-          }
-        }
-
-        for (const node of allNodes) {
-          if (variableA.pointsTo === node.token) {
-            variableA.pointsTo = node;
-            break;
-          }
-        }
-      }
+      this.resolveRelativeImport(variableA, allSubgroups);
+      this.resolveGlobalNodeImport(variableA, allNodes, fileGroup);
+      this.resolveNodeReference(variableA, allNodes);
     }
   }
 

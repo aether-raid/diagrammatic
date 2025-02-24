@@ -280,13 +280,13 @@ export function makeCalls(body: SyntaxNode[]) {
         if (call) {
           calls.push(call);
         }
+        break;
       case "method_invocation":
         const mCall = processMethodInvocation(node);
         if (mCall) {
           calls.push(mCall);
         }
-      default:
-        continue;
+        break;
     }
   }
   return calls;
@@ -367,6 +367,57 @@ function makeLocalVariablesDeclaration(node: SyntaxNode) {
   return null;
 }
 
+function isRelativeFilePath(path: string): boolean {
+  const relativeFilePathRegex = /^(?:..?[\\/])[^<>:"|?*\n]+$/;
+  return relativeFilePathRegex.test(path);
+}
+
+function createImportVariable(
+  importSpecifier: SyntaxNode,
+  pointsTo: string,
+  fileGroup: Group,
+  languageRules: LanguageRules
+) {
+  /**
+   * relative filepath
+   * e.g. "./article.service" => without extension
+   * e.g. "./dto" => folder
+   * (1) import classes from file
+   * (2) import functions from file
+   * (3) import from folder
+   * output variable.pointsTo: /User/fyp/samples/nestjs-realworld-example-app/src/article/article.service.ts
+   * output variable.pointsTo: User/fyp/samples/nestjs-realworld-example-app/src/article/dto
+   */
+  const name = getName(importSpecifier, languageRules.getName);
+  if (!name || !fileGroup.filePath) return;
+
+  let importedFilePath = path.resolve(
+    path.dirname(fileGroup.filePath),
+    pointsTo
+  );
+  const baseDirectory = path.dirname(importedFilePath);
+  // if file has no extension, search directory for matching filename
+  if (fs.existsSync(baseDirectory)) {
+    const files = fs.readdirSync(baseDirectory);
+    const fileNameWithoutExt = path.basename(pointsTo);
+    const matchedFile = files.find((file) => {
+      const baseFilePath = path.basename(file);
+      return baseFilePath.startsWith(fileNameWithoutExt);
+    });
+    if (matchedFile) {
+      importedFilePath = path.join(baseDirectory, matchedFile);
+    }
+
+    return new Variable({
+      token: name,
+      pointsTo: importedFilePath,
+      lineNumber: getLineNumber(importSpecifier),
+      variableType: VariableType.RELATIVE_IMPORT,
+    });
+  }
+  return null;
+}
+
 function makeLocalVariablesImportStatement(
   node: SyntaxNode,
   parent: Node | Group,
@@ -381,51 +432,19 @@ function makeLocalVariablesImportStatement(
   const string = getFirstChildOfType(node, "string");
   const stringFragment = getFirstChildOfType(string, "string_fragment");
   const fileGroup = parent.getFileGroup();
+  
   if (stringFragment && fileGroup) {
+    const pointsTo = stringFragment.text;
     for (const importSpecifier of importSpecifiers) {
-      const name = getName(importSpecifier, languageRules.getName);
-      const pointsTo = stringFragment.text;
-      const relativeFilePathRegex = new RegExp('^(?:..?[\\/])[^<>:"|?*\n]+$');
-      /**
-       * relative filepath
-       * e.g. "./article.service" => without extension
-       * e.g. "./dto" => folder
-       * (1) import classes from file
-       * (2) import functions from file
-       * (3) import from folder
-       * output variable.pointsTo: /User/fyp/samples/nestjs-realworld-example-app/src/article/article.service.ts
-       * output variable.pointsTo: User/fyp/samples/nestjs-realworld-example-app/src/article/dto
-       */
-      if (
-        name &&
-        pointsTo &&
-        relativeFilePathRegex.test(pointsTo) &&
-        fileGroup instanceof Group &&
-        fileGroup.filePath
-      ) {
-        let importedFilePath = path.resolve(
-          path.dirname(fileGroup.filePath),
-          pointsTo
+      if (pointsTo && isRelativeFilePath(pointsTo)) {
+        const variable = createImportVariable(
+          importSpecifier,
+          pointsTo,
+          fileGroup,
+          languageRules
         );
-        const baseDirectory = path.dirname(importedFilePath);
-        // if file has no extension, search directory for matching filename
-        if (fs.existsSync(baseDirectory)) {
-          const files = fs.readdirSync(baseDirectory);
-          const fileNameWithoutExt = path.basename(pointsTo);
-          const matchedFile = files.find((file) => {
-            const baseFilePath = path.basename(file);
-            return baseFilePath.startsWith(fileNameWithoutExt);
-          });
-          if (matchedFile) {
-            importedFilePath = path.join(baseDirectory, matchedFile);
-          }
-
-          return new Variable({
-            token: name,
-            pointsTo: importedFilePath,
-            lineNumber: getLineNumber(importSpecifier),
-            variableType: VariableType.RELATIVE_IMPORT,
-          });
+        if (variable) {
+          return variable;
         }
       }
     }
