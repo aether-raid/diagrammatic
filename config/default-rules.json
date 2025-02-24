@@ -150,6 +150,19 @@
         "nodeType": "FUNCTION"
       },
       {
+        "type": "export_statement",
+        "child": {
+          "type": "lexical_declaration",
+          "child": {
+            "type": "variable_declarator",
+            "child": {
+              "type": "function_expression"
+            }
+          }
+        },
+        "nodeType": "FUNCTION"
+      },
+      {
         "type": "property_signature",
         "parent": "interface_body",
         "nodeType": "ATTRIBUTE"
