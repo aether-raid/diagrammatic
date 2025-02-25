@@ -10,6 +10,7 @@ import { NodeEdgeData } from "./extension.types";
 import { sendAcceptNodeEdgeMessageToWebview, sendAcceptCompNodeEdgeMessageToWebview } from "./messageHandler";
 import { runNodeDescriptionsAlgorithm } from "./runNodeDescriptionsAlgorithm";
 import { runCodeLinting } from "./runCodeLinting";
+import { getComponentDiagram } from "./runComponentDiagramAlgorithm";
 
 const handleShowMVCDiagram = async (
   context: vscode.ExtensionContext,
