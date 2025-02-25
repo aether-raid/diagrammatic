@@ -6,7 +6,6 @@ import Popover from "react-bootstrap/Popover";
 import { type EntityNode as EntityNodeType } from "@shared/node.types";
 
 import { EntityNodeItem } from "./EntityNodeItem";
-import NodeLints from "./NodeLints";
 
 export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
   const [hoveredRow, setHoveredRow] = useState<string|undefined>('');

@@ -33,7 +33,7 @@ import {
     getEdgesEntitiesToHighlightBFS,
     getOutgoingEdgesFromEntityRow,
 } from "./helpers/diagramBFS";
-import { initVsCodeApi, sendReadyMessageToExtension } from "./vscodeApiHandler";
+import { sendReadyMessageToExtension } from "./vscodeApiHandler";
 import DownloadButton from "./buttons/DownloadButton";
 import SearchBar from "./buttons/SearchBar";
 import ComponentButton from "./buttons/CompButton";
@@ -104,9 +104,10 @@ const LayoutFlow = () => {
     // General constants
     const MIN_ZOOM = 0.1;
     const MAX_ZOOM = 2;
+    
 
     useEffect(() => {
-        console.log("Component Mounted");
+        console.log("Component Mounted");   
         // Setup message listener
         const onMessage = (event: MessageEvent<WebviewCommandMessage>) => {
             const { command, message } = event.data;
@@ -127,7 +128,6 @@ const LayoutFlow = () => {
         // Send message to inform extension that webview is ready to receive data.
         if (!vscode.current) {
             try {
-                initVsCodeApi();
                 sendReadyMessageToExtension();
             } catch (error) {
                 if (

@@ -11,12 +11,15 @@ import {
     useNodesState,
     useReactFlow,
 } from "@xyflow/react";
-import { CompNode } from '@shared/compNode.types';
-import { CompEdge } from '@shared/compEdge.types';
+import { CompNode } from "@shared/compNode.types";
+import { CompEdge } from "@shared/compEdge.types";
+import { AcceptCompNodeEdgeDataPayload, Commands, WebviewCommandMessage, } from "@shared/message.types";
 import { initialCompNodes, nodeTypes } from "./nodes";
 import { initialCompEdges } from "./edges";
-import { useCallback } from "react";
-// import HomeButton from "./buttons/HomeButton";
+import { useCallback, useEffect } from "react";
+import HomeButton from "./buttons/HomeButton";
+import { sendReadyMessageToExtension } from "./vscodeApiHandler";
+import DownloadButton from "./buttons/DownloadButton";
 
 interface OptionProps {
     direction: string;
@@ -28,6 +31,7 @@ const getLayoutedElements = (
     options: OptionProps
 ) => {
     const g = new Dagre.graphlib.Graph();
+    g.setDefaultEdgeLabel(() => ({}));
     g.setGraph({ rankdir: options.direction });
 
     edges.forEach((edge) => g.setEdge(edge.source, edge.target));
@@ -61,16 +65,47 @@ const LayoutFlow = () => {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialCompNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialCompEdges);
 
-    console.log("Initial Nodes:", nodes);
-    console.log("Initial Edges:", edges);
-
-
     const MIN_ZOOM = 0.1;
     const MAX_ZOOM = 2;
 
+    useEffect(() => {
+            // Setup message listener
+            const onMessage = (event: MessageEvent<WebviewCommandMessage>) => {
+                const { command, message } = event.data;
+                // TODO: Refactor this into a non switch-case if possible
+                switch (command) {
+                    case Commands.COMPONENT_DIAGRAM: {
+                        const msg = message as AcceptCompNodeEdgeDataPayload;
+                        setNodes(msg.compNodes);
+                        setEdges(msg.compEdges);
+                        break;
+                    }
+                }
+            };
+    
+            window.addEventListener("message", onMessage);
+           
+            try {
+                sendReadyMessageToExtension();
+            } catch (error) {
+                if (
+                    (error as Error).message !==
+                    "acquireVsCodeApi is not defined"
+                ) {
+                    // Only catch the above error, throw all else
+                    throw error;
+                }
+            }
+      
+    
+            return () => {
+                // Remove event listener on component unmount
+                window.removeEventListener("message", onMessage);
+            };
+        }, []);
+
     const onLayout = useCallback(
         (direction: string) => {
-            console.log(nodes);
             const layouted = getLayoutedElements(nodes, edges, { direction });
 
             setNodes([...layouted.nodes]);
@@ -120,8 +155,8 @@ const LayoutFlow = () => {
             </Panel>
             <MiniMap />
             <Controls />
-            {/* <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} /> */}
-            {/* <HomeButton /> TO FIX THIS */}
+            <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
+            <HomeButton />
             <Background />
         </ReactFlow>
     );
@@ -130,7 +165,7 @@ const LayoutFlow = () => {
 const CompView = () => {
     return (
         <ReactFlowProvider>
-            <LayoutFlow />
+            <LayoutFlow/>
         </ReactFlowProvider>
     )
 }
