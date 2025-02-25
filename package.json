@@ -94,6 +94,10 @@
   },
   "dependencies": {
     "@dagrejs/dagre": "^1.1.4",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.5",
+    "@mui/material": "^6.4.5",
     "@radix-ui/react-accordion": "^1.2.3",
     "@typescript-eslint/eslint-plugin": "^8.22.0",
     "@typescript-eslint/parser": "^8.22.0",

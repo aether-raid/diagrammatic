@@ -4,6 +4,8 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 
 import { type EntityNode as EntityNodeType } from "@shared/node.types";
+import DangerousRoundedIcon from '@mui/icons-material/DangerousRounded';
+import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 
 import { EntityNodeItem } from "./EntityNodeItem";
 
@@ -32,13 +34,25 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
           </Popover>
         }
       >
-        <div className={`p-2 fw-bold rounded-top entity__${data.entityType}`}>
-          <p className={'fs-7 fw-normal'}>{ data.entityType }</p>
-          <p>
-            <span className={data.matchesSearchTerm ? "bg-highlighter text-black" : ""}>
-              { data.entityName }
-            </span>
-          </p>
+        <div className={`d-flex flex-column rounded-top entity__${data.entityType}`}>
+          <div className="py-2">
+            <p className="fs-7">{ data.entityType }</p>
+            <p className="fw-bold">
+              <span className={data.matchesSearchTerm ? "bg-highlighter text-black" : ""}>
+                { data.entityName }
+              </span>
+            </p>
+          </div>
+          <div className="d-flex justify-content-evenly bg-warning-subtle">
+            <div className="text-warning">
+              <WarningRoundedIcon fontSize="small" />
+              <span className="align-middle">5</span>
+            </div>
+            <div className="text-danger">
+              <DangerousRoundedIcon fontSize="small" />
+              <span className="align-middle">5</span>
+            </div>
+          </div>
         </div>
       </OverlayTrigger>
 
