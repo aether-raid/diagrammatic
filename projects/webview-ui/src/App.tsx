@@ -1,7 +1,7 @@
 // *********************************
 // Layout using Dagre.js
 // *********************************
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import Dagre from "@dagrejs/dagre";
 import {
@@ -79,9 +79,6 @@ const getLayoutedElements = (
 };
 
 const LayoutFlow = () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const vscode = useRef<any>(null);
-
     // General ReactFlow states
     const { fitView, getNode, setCenter } = useReactFlow<AppNode, AppEdge>();
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -126,17 +123,15 @@ const LayoutFlow = () => {
         window.addEventListener("message", onMessage);
 
         // Send message to inform extension that webview is ready to receive data.
-        if (!vscode.current) {
-            try {
-                sendReadyMessageToExtension();
-            } catch (error) {
-                if (
-                    (error as Error).message !==
-                    "acquireVsCodeApi is not defined"
-                ) {
-                    // Only catch the above error, throw all else
-                    throw error;
-                }
+        try {
+            sendReadyMessageToExtension();
+        } catch (error) {
+            if (
+                (error as Error).message !==
+                "acquireVsCodeApi is not defined"
+            ) {
+                // Only catch the above error, throw all else
+                throw error;
             }
         }
 
