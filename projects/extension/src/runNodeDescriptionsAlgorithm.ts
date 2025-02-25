@@ -4,27 +4,25 @@ import axios from 'axios';
 import { NodeEdgeData } from "./extension.types";
 import * as dotenv from "dotenv";
 import * as path from "path";
+import * as vscode from 'vscode';
 
 interface JsonData {
   node_id: string;
   class_description: string;
 }
-dotenv.config({ path: path.resolve(__dirname, ".env") });
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 const apikey = process.env.SECRET_KEY;
 
 const getNodeDescriptions = async (nodeEdgeData: NodeEdgeData): Promise<NodeDescriptionData> => {
-  // Replace this function with the LLM/algorithm code @shawn to get the descriptions for each file
-  // You probably need to discuss with Sharlene about how to sync the identifiers between your algorithms
-  // i.e. How to identify which nodes are the same between both algorithms
-  // Feel free to change the data shape below, it's just an example.
   const { nodes, edges } = nodeEdgeData;
   const descriptions: NodeDescriptionData = {};
 
     try {
+      vscode.window.showInformationMessage("Loading descriptions...");
       const response = await axios.post(
         "https://api.openai.com/v1/chat/completions",
         {
-          model: "gpt-4-turbo", // Choose the appropriate model
+          model: "gpt-4-turbo",
           messages: [
             {
               role: "system",
@@ -36,15 +34,13 @@ const getNodeDescriptions = async (nodeEdgeData: NodeEdgeData): Promise<NodeDesc
                 `Give purely a JSON response in the format [{node_id:, class_description:<describe what the class does>},]. Here are the ast details:\n
                 nodes: ${JSON.stringify(nodes)}
                 edges: ${JSON.stringify(edges)}`
-                // "Give purely a JSON response in the format {classes:[{class_name:'', class_description:'', functions:[{function_name:'', description:''}]}]}. Here is the source code:\n" +
-                // sourceCode
             }
           ],
           temperature: 0
         },
         {
           headers: {
-            // Authorization: apikey,
+            Authorization: apikey,
             "Content-Type": "application/json"
           }
         }
@@ -58,8 +54,10 @@ const getNodeDescriptions = async (nodeEdgeData: NodeEdgeData): Promise<NodeDesc
             descriptions[node.id] = match.class_description;
         }
       });
+      vscode.window.showInformationMessage("Descriptions loaded!");
   
     } catch (error) {
+      vscode.window.showErrorMessage("Error fetching descriptions");
       console.error("Error fetching descriptions:", error);
     }
 
@@ -77,7 +75,7 @@ const addDescriptionToNodes = (nodes: AppNode[], descriptions: NodeDescriptionDa
       description: descriptions[node.id]
     };
     return node;
-  })
+  });
 
   return nodes;
 };
@@ -85,4 +83,4 @@ const addDescriptionToNodes = (nodes: AppNode[], descriptions: NodeDescriptionDa
 export const runNodeDescriptionsAlgorithm = async (nodes: AppNode[], nodeEdgeData: NodeEdgeData): Promise<AppNode[]> => {
   const descriptions = getNodeDescriptions(nodeEdgeData);
   return addDescriptionToNodes(nodes, await descriptions);
-}
+};

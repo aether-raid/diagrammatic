@@ -24,6 +24,10 @@ body,
 }
 
 /* Background colors */
+.bg-charcoal {
+    background-color: var(--app-black)
+}
+
 .bg-highlighter {
     background-color: var(--app-highlighter-yellow);
 }

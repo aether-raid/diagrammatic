@@ -1,12 +1,17 @@
 import { getFirstChildOfType } from "./function";
 import fs from "fs";
 import { SyntaxNode } from "tree-sitter";
-import { GroupType } from "./model";
+import { GroupType, NodeType } from "./model";
 
 export type Rule = {
   type?: string;
   field?: string;
   child?: Rule;
+  parent?: string;
+};
+
+export type NodeRule = Rule & {
+  nodeType: NodeType;
 };
 
 export type GroupRule = Rule & {
@@ -25,7 +30,7 @@ export type getNameConfig = {
 } & Record<string, NodeConfig>;
 
 export type LanguageRules = {
-  nodes: Rule[];
+  nodes: NodeRule[];
   groups: GroupRule[];
   getName: getNameConfig;
 };
@@ -71,16 +76,26 @@ export class RuleEngine {
       return false;
     }
 
+    // Check for the parent node type if specified in the rule
+    if (rule.parent) {
+      const parentNode = node.parent;
+      if (!parentNode || parentNode.type !== rule.parent) {
+        return false;
+      }
+    }
+
     // Recursively check for child rules
     if (rule.child) {
       const field = rule.child.field || null;
       const type = rule.child.type || null;
 
-      const childNode = field
-        ? node.childForFieldName(field)
-        : type
-        ? getFirstChildOfType(node, type)
-        : null;
+      let childNode: SyntaxNode | null = null;
+
+      if (field) {
+        childNode = node.childForFieldName(field);
+      } else if (type) {
+        childNode = getFirstChildOfType(node, type);
+      }
 
       if (!childNode || !this.matchNode(childNode, rule.child)) {
         return false;

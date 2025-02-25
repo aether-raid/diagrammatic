@@ -1,21 +1,40 @@
+import path from "path";
+import fs from "fs";
+import { GLOBAL } from "./language";
+
 /**
  *  Variables represent named tokens that are accessible to their scope.
  *  They may either point to a string or, once resolved, a Group/Node.
  *  Not all variables can be resolved
  */
+export enum VariableType {
+  OBJECT_INSTANTIATION = "object_instantiation",
+  CALL_EXPRESSION = "call_expression",
+  RELATIVE_IMPORT = "relative_import",
+  INJECTION = "injection",
+}
+
 export class Variable {
   token: string;
   pointsTo: string | Call | Node | Group | null;
   lineNumber: number | null;
+  variableType: VariableType;
 
-  constructor(
-    token: string,
-    pointsTo: string | Call | Node | Group | null = null,
-    lineNumber: number | null = null
-  ) {
+  constructor({
+    token,
+    pointsTo = null,
+    lineNumber = null,
+    variableType,
+  }: {
+    token: string;
+    pointsTo: string | Call | Node | Group | null;
+    lineNumber: number | null;
+    variableType: VariableType;
+  }) {
     this.token = token;
     this.pointsTo = pointsTo;
     this.lineNumber = lineNumber;
+    this.variableType = variableType;
   }
 
   toString(): string {
@@ -70,12 +89,22 @@ export class Call {
   }
 }
 
+/**
+ * Represent functions and class attributes
+ */
+export enum NodeType {
+  FUNCTION = "function",
+  ATTRIBUTE = "attribute",
+  BODY = "body",
+}
+
 export class Node {
   token: string | null;
   calls: Call[];
   variables: Variable[];
   lineNumber: number | null;
   parent: Node | Group;
+  nodeType: NodeType;
 
   constructor({
     token,
@@ -83,45 +112,131 @@ export class Node {
     variables,
     lineNumber = null,
     parent,
+    nodeType,
   }: {
     token: string | null;
     calls: Call[];
     variables: Variable[];
     lineNumber?: number | null;
     parent: Node | Group;
+    nodeType: NodeType;
   }) {
     this.token = token;
     this.calls = calls;
     this.variables = variables;
     this.lineNumber = lineNumber;
     this.parent = parent;
+    this.nodeType = nodeType;
+  }
+
+  private resolveRelativeImport(variableA: Variable, allSubgroups: Group[]) {
+    for (const subgroup of allSubgroups) {
+      /**
+       * Resolve variables from relative import statements
+       * e.g. import { ArticleService } from './article.service';
+       * Variable(token=ArticleService, pointsTo=/User/samples/nestjs-real-example-app/src/article/ArticleService.ts)
+       * Group(token=ArticleService)
+       * pointsTo should resolve from a filepath to the actual class Group
+       */
+      if (
+        variableA.variableType === VariableType.RELATIVE_IMPORT &&
+        subgroup.groupType === GroupType.CLASS &&
+        variableA.pointsTo === subgroup.filePath
+      ) {
+        variableA.pointsTo = subgroup;
+        break;
+      }
+
+      /**
+       * Resolve variables from relative import statements
+       * e.g. import { CreateArticleDto, CreateCommentDto } from './dto';
+       * Variable(token=CreateArticleDto, pointsTo=/User/samples/nestjs-real-example-app/src/article/dto)
+       * pointsTo should resolve from a filepath to the actual class Group
+       */
+      if (
+        variableA.variableType === VariableType.RELATIVE_IMPORT &&
+        variableA.pointsTo &&
+        typeof variableA.pointsTo === "string" &&
+        path.isAbsolute(variableA.pointsTo) &&
+        fs.existsSync(variableA.pointsTo) &&
+        fs.statSync(variableA.pointsTo).isDirectory()
+      ) {
+        const baseDirectory = path.dirname(subgroup.filePath);
+        if (
+          variableA.pointsTo === baseDirectory &&
+          subgroup.token === variableA.token
+        ) {
+          variableA.pointsTo = subgroup;
+          break;
+        }
+      }
+
+      /**
+       * resolve NestJS / Java constructor injection from the variable name to class
+       * e.g. variable: articleService => class ArticleService
+       * findLinkForCall will resolve articleService.findAll to ArticleService.findAll
+       */
+      if (
+        variableA.variableType === VariableType.INJECTION &&
+        variableA.pointsTo === subgroup.token
+      ) {
+        variableA.pointsTo = subgroup;
+        break;
+      }
+    }
+  }
+
+  private resolveGlobalNodeImport(
+    variableA: Variable,
+    allNodes: Node[],
+    fileGroup: Group | null
+  ) {
+    /**
+     * For the corresponding global node of the file, search for the imported class
+     * example:
+     *  Group(article.service.ts), Node(token=(global), variables=[Variable(token=Comment, pointsTo=Group(token=Comment))]
+     *  Group=(ArticleService), Node=(token=addComment, variables=[Variable(token=comment, pointsTo=Comment, type="object_instantiation")])
+     */
+    const globalNode = allNodes.find(
+      (node) =>
+        node.token === GLOBAL &&
+        node.getFileGroup()?.filePath === fileGroup?.filePath
+    );
+
+    if (
+      variableA.variableType === VariableType.OBJECT_INSTANTIATION &&
+      globalNode
+    ) {
+      for (const variable of globalNode.variables) {
+        if (
+          variable.variableType === VariableType.RELATIVE_IMPORT &&
+          variable.token === variableA.pointsTo
+        ) {
+          variableA.pointsTo = variable.pointsTo;
+          return;
+        }
+      }
+    }
+  }
+
+  private resolveNodeReference(variableA: Variable, allNodes: Node[]) {
+    for (const node of allNodes) {
+      if (variableA.pointsTo === node.token) {
+        variableA.pointsTo = node;
+        break;
+      }
+    }
   }
 
   /**
    * Resolve the Node/Group for the pointsTo field
    */
   resolveVariables(allSubgroups: Group[], allNodes: Node[]): void {
-    for (const variable of this.variables) {
-      if (typeof variable.pointsTo === "string") {
-        for (const subgroup of allSubgroups) {
-          if (variable.pointsTo === subgroup.token) {
-            variable.pointsTo = subgroup;
-          }
-
-          if (
-            subgroup.groupType === GroupType.FILE &&
-            variable.pointsTo === subgroup.filePath
-          ) {
-            variable.pointsTo = subgroup;
-          }
-        }
-
-        for (const node of allNodes) {
-          if (variable.pointsTo === node.token) {
-            variable.pointsTo = node;
-          }
-        }
-      }
+    const fileGroup = this.getFileGroup();
+    for (const variableA of this.variables) {
+      this.resolveRelativeImport(variableA, allSubgroups);
+      this.resolveGlobalNodeImport(variableA, allNodes, fileGroup);
+      this.resolveNodeReference(variableA, allNodes);
     }
   }
 
@@ -129,12 +244,17 @@ export class Node {
     return this.token === "constructor";
   }
 
-  getFileGroup(): Group | Node {
-    let parent: Group | Node = this.parent;
+  getFileGroup(): Group | null {
+    let parent: Node | Group = this.parent;
     while (parent?.parent) {
       parent = parent.parent;
     }
-    return parent;
+
+    if (parent instanceof Group) {
+      return parent;
+    }
+
+    return null;
   }
 
   /* 

@@ -56,7 +56,6 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
             setHoveredRow={setHoveredRow}
             
           />)}
-          <NodeLints lints={data.security} filePath={data.filePath}/>
         </tbody>
       </table>
 
