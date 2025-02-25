@@ -33,11 +33,11 @@ import {
     getEdgesEntitiesToHighlightBFS,
     getOutgoingEdgesFromEntityRow,
 } from "./helpers/diagramBFS";
-import { sendReadyMessageToExtension } from "./vscodeApiHandler";
-import DownloadButton from "./buttons/DownloadButton";
-import SearchBar from "./buttons/SearchBar";
-import ComponentButton from "./buttons/CompButton";
-import NodeInfoPanel from "./buttons/NodePanel";
+import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
+import DownloadButton from "./components/DownloadButton";
+import SearchBar from "./components/SearchBar";
+import ComponentButton from "./components/CompButton";
+import NodeInfoPanel from "./components/NodePanel";
 
 interface OptionProps {
     direction: string;

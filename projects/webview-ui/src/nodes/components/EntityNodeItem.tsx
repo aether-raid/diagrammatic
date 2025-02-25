@@ -1,7 +1,7 @@
 import React from "react";
 import { Handle, Position } from "@xyflow/react";
 
-import { sendJumpToLineMessageToExtension } from "../../vscodeApiHandler";
+import { sendJumpToLineMessageToExtension } from "../../helpers/vscodeApiHandler";
 import { CodeLocation } from "../../App.types";
 
 

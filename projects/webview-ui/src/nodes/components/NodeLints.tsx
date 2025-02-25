@@ -5,7 +5,7 @@ import { BsChevronDown } from "react-icons/bs";
 
 import { DiagnosticSeverityEnum, SerializedDiagnostic } from "@shared/vscode.types";
 
-import { sendJumpToLineMessageToExtension } from "../../vscodeApiHandler";
+import { sendJumpToLineMessageToExtension } from "../../helpers/vscodeApiHandler";
 
 
 const NodeLints = ({lints, filePath}: {lints: {

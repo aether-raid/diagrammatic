@@ -17,9 +17,9 @@ import { AcceptCompNodeEdgeDataPayload, Commands, WebviewCommandMessage, } from 
 import { initialCompNodes, nodeTypes } from "./nodes";
 import { initialCompEdges } from "./edges";
 import { useCallback, useEffect } from "react";
-import HomeButton from "./buttons/HomeButton";
-import { sendReadyMessageToExtension } from "./vscodeApiHandler";
-import DownloadButton from "./buttons/DownloadButton";
+import HomeButton from "./components/HomeButton";
+import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
+import DownloadButton from "./components/DownloadButton";
 
 interface OptionProps {
     direction: string;
