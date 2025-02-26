@@ -298,7 +298,7 @@
   {
     "id": "addEventDate-getEventByID",
     "source": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
-    "target": "/backend/event-service/src/main/java/com/tick/controller/EventController.java.EventController",
+    "target": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
     "sourceHandle": "addEventDate",
     "targetHandle": "getEventByID",
     "markerEnd": { "type": "arrowclosed" }
@@ -322,7 +322,7 @@
   {
     "id": "deleteEventDate-getEventByID",
     "source": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
-    "target": "/backend/event-service/src/main/java/com/tick/controller/EventController.java.EventController",
+    "target": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
     "sourceHandle": "deleteEventDate",
     "targetHandle": "getEventByID",
     "markerEnd": { "type": "arrowclosed" }
@@ -354,7 +354,7 @@
   {
     "id": "deleteEvent-getEventByID",
     "source": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
-    "target": "/backend/event-service/src/main/java/com/tick/controller/EventController.java.EventController",
+    "target": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
     "sourceHandle": "deleteEvent",
     "targetHandle": "getEventByID",
     "markerEnd": { "type": "arrowclosed" }
@@ -362,7 +362,7 @@
   {
     "id": "upsert-getEventByID",
     "source": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
-    "target": "/backend/event-service/src/main/java/com/tick/controller/EventController.java.EventController",
+    "target": "/backend/event-service/src/main/java/com/tick/service/EventService.java.EventService",
     "sourceHandle": "upsert",
     "targetHandle": "getEventByID",
     "markerEnd": { "type": "arrowclosed" }
@@ -730,7 +730,7 @@
   {
     "id": "addEventDate-findEventDate",
     "source": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/Event.java.Event",
-    "target": "/backend/event-service/src/main/java/com/tick/model/Event.java.Event",
+    "target": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/Event.java.Event",
     "sourceHandle": "addEventDate",
     "targetHandle": "findEventDate",
     "markerEnd": { "type": "arrowclosed" }
@@ -738,7 +738,7 @@
   {
     "id": "removeEventDate-findEventDate",
     "source": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/Event.java.Event",
-    "target": "/backend/event-service/src/main/java/com/tick/model/Event.java.Event",
+    "target": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/Event.java.Event",
     "sourceHandle": "removeEventDate",
     "targetHandle": "findEventDate",
     "markerEnd": { "type": "arrowclosed" }
@@ -746,7 +746,7 @@
   {
     "id": "authenticate-webRequest",
     "source": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/security/TokenAuthProvider.java.TokenAuthProvider",
-    "target": "/backend/bookmarks-service/src/main/java/com/tick/bookmarks/security/TokenAuthProvider.java.TokenAuthProvider",
+    "target": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/security/TokenAuthProvider.java.TokenAuthProvider",
     "sourceHandle": "authenticate",
     "targetHandle": "webRequest",
     "markerEnd": { "type": "arrowclosed" }
@@ -986,7 +986,7 @@
   {
     "id": "deleteVenue-getVenue",
     "source": "/backend/venue-service/src/main/java/com/venue/service/VenueService.java.VenueService",
-    "target": "/backend/event-service/src/main/java/com/tick/service/VenueRequest.java.VenueRequest",
+    "target": "/backend/venue-service/src/main/java/com/venue/service/VenueService.java.VenueService",
     "sourceHandle": "deleteVenue",
     "targetHandle": "getVenue",
     "markerEnd": { "type": "arrowclosed" }

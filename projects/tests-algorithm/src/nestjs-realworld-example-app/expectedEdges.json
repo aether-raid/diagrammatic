@@ -206,5 +206,75 @@
     "sourceHandle": "create",
     "targetHandle": "entity",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "create-slugify",
+    "source": "/article/article.service.ts.ArticleService",
+    "target": "/article/article.service.ts.ArticleService",
+    "sourceHandle": "create",
+    "targetHandle": "slugify",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "transform-toValidate",
+    "source": "/shared/pipes/validation.pipe.ts.ValidationPipe",
+    "target": "/shared/pipes/validation.pipe.ts.ValidationPipe",
+    "sourceHandle": "transform",
+    "targetHandle": "toValidate",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "transform-buildError",
+    "source": "/shared/pipes/validation.pipe.ts.ValidationPipe",
+    "target": "/shared/pipes/validation.pipe.ts.ValidationPipe",
+    "sourceHandle": "transform",
+    "targetHandle": "buildError",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "create-buildUserRO",
+    "source": "/user/user.service.ts.UserService",
+    "target": "/user/user.service.ts.UserService",
+    "sourceHandle": "create",
+    "targetHandle": "buildUserRO",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "findById-buildUserRO",
+    "source": "/user/user.service.ts.UserService",
+    "target": "/user/user.service.ts.UserService",
+    "sourceHandle": "findById",
+    "targetHandle": "buildUserRO",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "findByEmail-buildUserRO",
+    "source": "/user/user.service.ts.UserService",
+    "target": "/user/user.service.ts.UserService",
+    "sourceHandle": "findByEmail",
+    "targetHandle": "buildUserRO",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "buildUserRO-generateJWT",
+    "source": "/user/user.service.ts.UserService",
+    "target": "/user/user.service.ts.UserService",
+    "sourceHandle": "buildUserRO",
+    "targetHandle": "generateJWT",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   }
 ]
