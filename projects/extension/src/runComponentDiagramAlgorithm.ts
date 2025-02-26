@@ -32,7 +32,8 @@ function transformEdge(input: InputComponentEdge): CompEdge {
         target: input.target.toString(),
         sourceHandle: "comp",
         targetHandle: "comp",
-        markerEnd: { type: MarkerType.ArrowClosed }
+        markerEnd: { type: MarkerType.ArrowClosed },
+        label: input.type
     };
 }
 
@@ -108,6 +109,241 @@ export const getComponentDiagram = async (nodeEdgeData: NodeEdgeData): Promise<C
         
     } catch (error) {
         console.error("Error fetching component diagram:", error)
+        // For development purposes
+        const sample = JSON.parse(JSON.stringify({
+          "compNodes": [
+              {
+                  "id": "1",
+                  "type": "comp",
+                  "position": {
+                      "x": 0,
+                      "y": 0
+                  },
+                  "data": {
+                      "name": "Article Management",
+                      "description": "Handles all article related operations including CRUD operations, comments, and favorites.",
+                      "files": [
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\article\\article.controller.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\article\\article.entity.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\article\\article.interface.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\article\\article.module.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\article\\article.service.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\article\\comment.entity.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\article\\dto\\create-article.dto.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\article\\dto\\create-comment.ts"
+                      ]
+                  }
+              },
+              {
+                  "id": "2",
+                  "type": "comp",
+                  "position": {
+                      "x": 0,
+                      "y": 0
+                  },
+                  "data": {
+                      "name": "Profile Management",
+                      "description": "Manages user profiles, including follow and unfollow functionalities.",
+                      "files": [
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\profile\\follows.entity.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\profile\\profile.controller.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\profile\\profile.interface.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\profile\\profile.module.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\profile\\profile.service.ts"
+                      ]
+                  }
+              },
+              {
+                  "id": "3",
+                  "type": "comp",
+                  "position": {
+                      "x": 0,
+                      "y": 0
+                  },
+                  "data": {
+                      "name": "Tag Management",
+                      "description": "Handles operations related to tags.",
+                      "files": [
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\tag\\tag.controller.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\tag\\tag.entity.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\tag\\tag.module.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\tag\\tag.service.ts"
+                      ]
+                  }
+              },
+              {
+                  "id": "4",
+                  "type": "comp",
+                  "position": {
+                      "x": 0,
+                      "y": 0
+                  },
+                  "data": {
+                      "name": "User Management",
+                      "description": "Manages user authentication and user data.",
+                      "files": [
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\user\\auth.middleware.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\user\\dto\\create-user.dto.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\user\\dto\\login-user.dto.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\user\\dto\\update-user.dto.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\user\\user.controller.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\user\\user.decorator.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\user\\user.entity.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\user\\user.interface.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\user\\user.module.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\user\\user.service.ts"
+                      ]
+                  }
+              },
+              {
+                  "id": "5",
+                  "type": "comp",
+                  "position": {
+                      "x": 0,
+                      "y": 0
+                  },
+                  "data": {
+                      "name": "Application Setup",
+                      "description": "Initial setup and configuration of the application.",
+                      "files": [
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\app.controller.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\app.module.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\main.ts"
+                      ]
+                  }
+              },
+              {
+                  "id": "6",
+                  "type": "comp",
+                  "position": {
+                      "x": 0,
+                      "y": 0
+                  },
+                  "data": {
+                      "name": "Shared Utilities",
+                      "description": "Shared utilities and base classes for the application.",
+                      "files": [
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\shared\\base.controller.ts",
+                          "c:\\Users\\ASUS\\Desktop\\FYP\\nestjs-realworld-example-app\\src\\shared\\pipes\\validation.pipe.ts"
+                      ]
+                  }
+              }
+          ],
+          "compEdges": [
+              {
+                  "id": "1-2",
+                  "source": "1",
+                  "target": "2",
+                  "sourceHandle": "comp",
+                  "targetHandle": "comp",
+                  "markerEnd": {
+                      "type": "arrowclosed"
+                  },
+                  "label": "uses"
+              },
+              {
+                  "id": "1-3",
+                  "source": "1",
+                  "target": "3",
+                  "sourceHandle": "comp",
+                  "targetHandle": "comp",
+                  "markerEnd": {
+                      "type": "arrowclosed"
+                  },
+                   "label": "uses"
+              },
+              {
+                  "id": "1-4",
+                  "source": "1",
+                  "target": "4",
+                  "sourceHandle": "comp",
+                  "targetHandle": "comp",
+                  "markerEnd": {
+                      "type": "arrowclosed"
+                  },
+                   "label": "uses"
+              },
+              {
+                  "id": "2-4",
+                  "source": "2",
+                  "target": "4",
+                  "sourceHandle": "comp",
+                  "targetHandle": "comp",
+                  "markerEnd": {
+                      "type": "arrowclosed"
+                  },
+                   "label": "uses"
+              },
+              {
+                  "id": "3-4",
+                  "source": "3",
+                  "target": "4",
+                  "sourceHandle": "comp",
+                  "targetHandle": "comp",
+                  "markerEnd": {
+                      "type": "arrowclosed"
+                  },
+                   "label": "uses"
+              },
+              {
+                  "id": "5-1",
+                  "source": "5",
+                  "target": "1",
+                  "sourceHandle": "comp",
+                  "targetHandle": "comp",
+                  "markerEnd": {
+                      "type": "arrowclosed"
+                  },
+                   "label": "contains"
+              },
+              {
+                  "id": "5-2",
+                  "source": "5",
+                  "target": "2",
+                  "sourceHandle": "comp",
+                  "targetHandle": "comp",
+                  "markerEnd": {
+                      "type": "arrowclosed"
+                  },
+                   "label": "contains"
+              },
+              {
+                  "id": "5-3",
+                  "source": "5",
+                  "target": "3",
+                  "sourceHandle": "comp",
+                  "targetHandle": "comp",
+                  "markerEnd": {
+                      "type": "arrowclosed"
+                  },
+                  "label": "contains"
+              },
+              {
+                  "id": "5-4",
+                  "source": "5",
+                  "target": "4",
+                  "sourceHandle": "comp",
+                  "targetHandle": "comp",
+                  "markerEnd": {
+                      "type": "arrowclosed"
+                  },
+                  "label": "contains"
+              },
+              {
+                  "id": "5-6",
+                  "source": "5",
+                  "target": "6",
+                  "sourceHandle": "comp",
+                  "targetHandle": "comp",
+                  "markerEnd": {
+                      "type": "arrowclosed"
+                  },
+                  "label": "contains"
+              }
+          ]
+      }))
+      componentNodesEdges.compNodes = sample.compNodes
+      componentNodesEdges.compEdges = sample.compEdges
     }
     return componentNodesEdges
 }   

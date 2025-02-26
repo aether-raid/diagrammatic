@@ -23,8 +23,8 @@ export function EntityCompNode({ data }: NodeProps<EntityCompNodeType>) {
 
 
             {/* Handles */}
-            <Handle type='source' position={Position.Top} id='comp' />
-            <Handle type='target' position={Position.Bottom} id='comp' />
+            <Handle type='source' position={Position.Right} id='comp' />
+            <Handle type='target' position={Position.Left} id='comp' />
         </div>
     )
 }

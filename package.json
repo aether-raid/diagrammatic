@@ -67,7 +67,7 @@
     "@types/mocha": "^10.0.10",
     "@types/mock-require": "^3.0.0",
     "@types/node": "20.x",
-    "@types/react": "^19.0.2",
+    "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.2",
     "@types/sinon": "^17.0.3",
     "@types/vscode": "^1.96.0",
