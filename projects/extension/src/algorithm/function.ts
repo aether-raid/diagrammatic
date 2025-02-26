@@ -551,6 +551,14 @@ function findLinkForCallFunctionCall(call: Call, nodeA: Node) {
   }
 }
 
+function findGlobalNode(fileGroup: Group | null, allNodes: Node[]) {
+  return allNodes.find(
+    (node) =>
+      node.token === GLOBAL &&
+      node.getFileGroup()?.filePath === fileGroup?.filePath
+  );
+}
+
 function findLinkForCallImportStatement(
   call: Call,
   nodeA: Node,
@@ -562,11 +570,7 @@ function findLinkForCallImportStatement(
    * I have variable: findAll -> Group: article.service.ts under (global)
    * I have call: findAll -> null
    */
-  const globalNode = allNodes.find(
-    (node) =>
-      node.token === GLOBAL &&
-      node.getFileGroup()?.filePath === fileGroup?.filePath
-  );
+  const globalNode = findGlobalNode(fileGroup, allNodes);
   if (globalNode) {
     for (const variable of globalNode.variables) {
       if (
@@ -624,12 +628,6 @@ export function findLinkForCall(
     if (edge4) {
       return edge4;
     }
-    // calling another function
-    /* for (const node of allNodes) {
-      if (call.token === node.token && node.nodeType === NodeType.FUNCTION) {
-        return new Edge(nodeA, node);
-      }
-    }  */
   }
 
   return null;
