@@ -4,6 +4,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 
 import { EntityNode } from '@shared/node.types';
 import { SerializedDiagnostic } from '@shared/vscode.types';
+import { SecurityTypeAccordion } from './SecurityTypeAccordion';
 
 
 interface NodeInfoPanelProps {
@@ -12,7 +13,7 @@ interface NodeInfoPanelProps {
     entity?: EntityNode;
 }
 
-const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => {
+export const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => {
     const onHide = () => setShow(false);
 
     return (
@@ -54,27 +55,10 @@ const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => {
                             </Accordion.Item>
                         </Accordion>
 
-
                         {(Object.entries(entity.data.security ?? []) as [string, SerializedDiagnostic[]][])
                             .map(([type, issues]) => {
                                 if (issues.length === 0) return;
-                                return (
-                                    <Accordion alwaysOpen>
-                                        <Accordion.Item eventKey='0'>
-                                            <Accordion.Header>
-                                                <div className="d-flex flex-column gap-1">
-                                                    <div className="fs-7 fst-italic">Warning</div>
-                                                    <div className="fw-bold">Linting: { type }</div>
-                                                </div>
-                                            </Accordion.Header>
-                                            <Accordion.Body>
-                                                { issues.map(issue => (
-                                                    issue.message
-                                                ))}
-                                            </Accordion.Body>
-                                        </Accordion.Item>
-                                    </Accordion>
-                                );
+                                return (<SecurityTypeAccordion type={type} issues={issues} filePath={entity.data.filePath} />);
                             })
                         }
                     </div>
@@ -85,5 +69,3 @@ const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => {
         </Offcanvas>
     )
 }
-
-export default NodeInfoPanel;

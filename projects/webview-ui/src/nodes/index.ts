@@ -20,29 +20,38 @@ export const initialNodes: AppNode[] = [
         { name: 'Planter', lineNumber: 15 },
         { name: 'Harvester', lineNumber: 45 },
       ],
-    security: {
-        clean: [{ range: {
-          start: {
-            line: 26,
-            character: 32,
-          },
-          end: {
-            line: 3,
-            character: 3,
-          }
-        }, message: 'Security.clean Object', severity: 1, source: 'Group: security' }],
-        vulnerability: [{ range: {
-          start: {
-            line: 26,
-            character: 32,
-          },
-          end: {
-            line: 3,
-            character: 3,
-          }
-        }, message: 'Variable Assigned to Object Injection Sink', severity: 1, source: 'Group: vulnerability' }],
-        extras: []
-    }
+      security: {
+          clean: [
+            { range: {
+                start: { line: 26, character: 32 },
+                end: { line: 3, character: 3 },
+              },
+              message: 'Security.clean Object',
+              severity: 1,
+              source: 'Group: security'
+            },
+            { range: {
+                start: { line: 26, character: 32 },
+                end: { line: 3, character: 3 },
+              },
+              message: 'Security.dirty Object',
+              severity: 1,
+              source: 'Group: security'
+            },
+          ],
+          vulnerability: [
+            {
+              range: {
+                start: { line: 26, character: 32 },
+                end: { line: 3, character: 3 },
+              },
+              message: 'Variable Assigned to Object Injection Sink Lorem ipsum potato ramen I like long issues what the testing data', 
+              severity: 1,
+              source: 'Group: vulnerability'
+            }
+          ],
+          extras: []
+      }
     }
   },
   {
