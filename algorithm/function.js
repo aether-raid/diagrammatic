@@ -15,7 +15,7 @@ import {
   NodeType,
   VariableType,
 } from "./model.js";
-import { Language } from "./language.js";
+import { Language, GLOBAL } from "./language.js";
 
 /**
  * Determines the appropriate language for a file
@@ -430,15 +430,25 @@ export function makeLocalVariables(tree, parent, languageRules) {
  * @returns {Edge}
  */
 export function findLinkForCall(call, nodeA, allNodes) {
-  for (const node of allNodes) {
-    /**
-     * Class injection for NestJS
-     * I have variable: articleService -> class ArticleService
-     * I have call: findAll -> articleService
-     */
-    for (const variable of node.variables) {
+  const fileGroup = nodeA.getFileGroup();
+
+  /**
+   * Class injection for NestJS
+   * I have variable: articleService -> class ArticleService under constructor
+   * I have call: findAll -> articleService
+   *
+   * Class injection for Java
+   * I have variable: service -> class VenueService
+   * I have call: findAll -> service
+   */
+  if (
+    call.isAttribute() &&
+    nodeA.parent instanceof Group &&
+    nodeA.parent.groupType !== GroupType.FILE
+  ) {
+    for (const variable of nodeA.parent.variables) {
       if (
-        call.isAttribute() &&
+        variable.variableType === VariableType.INJECTION &&
         variable.token === call.ownerToken &&
         variable.pointsTo instanceof Group
       ) {
@@ -450,16 +460,23 @@ export function findLinkForCall(call, nodeA, allNodes) {
           }
         }
       }
+    }
+  }
 
-      /**
-       * for variables from import statements
-       * I have variable: findAll -> Group: article.service.ts
-       * I have call: findAll -> null
-       */
+  if (!call.isAttribute()) {
+    /**
+     * calling a function from import statements
+     * I have variable: findAll -> Group: article.service.ts under (global)
+     * I have call: findAll -> null
+     */
+    const globalNode = allNodes.find(
+      (node) =>
+        node.token === GLOBAL &&
+        node.getFileGroup().filePath === fileGroup.filePath
+    );
+    for (const variable of globalNode.variables) {
       if (
-        !call.isAttribute() &&
         variable.token === call.token &&
-        !call.ownerToken &&
         variable.pointsTo instanceof Group &&
         variable.pointsTo.groupType === GroupType.FILE
       ) {
@@ -471,26 +488,29 @@ export function findLinkForCall(call, nodeA, allNodes) {
       }
     }
 
-    // calling another function
-    if (
-      !call.isAttribute() &&
-      call.token === node.token &&
-      node.nodeType === NodeType.FUNCTION
-    ) {
-      return new Edge(nodeA, node);
+    // calling another function in the same file (priority)
+    if (nodeA.parent instanceof Group) {
+      for (const node2 of nodeA.parent.nodes) {
+        if (
+          call.token === node2.token &&
+          node2.nodeType === NodeType.FUNCTION
+        ) {
+          return new Edge(nodeA, node2);
+        }
+      }
     }
 
-    // calling a function in the file space
-    if (
-      !call.isAttribute() &&
-      call.token === node.token &&
-      node.nodeType === NodeType.FUNCTION &&
-      node.parent instanceof Group &&
-      node.parent.groupType === GroupType.FILE
-    ) {
-      return new Edge(nodeA, node);
+    // calling another function
+    for (const node of allNodes) {
+      if (
+        call.token === node.token &&
+        node.nodeType === NodeType.FUNCTION
+      ) {
+        return new Edge(nodeA, node);
+      }
     }
   }
+
   return null;
 }
 

@@ -16,7 +16,7 @@ import {
   NodeType,
   VariableType,
 } from "./model";
-import { Language } from "./language";
+import { Language, GLOBAL } from "./language";
 import { LanguageRules } from "./rules";
 
 /**
@@ -432,7 +432,7 @@ function makeLocalVariablesImportStatement(
   const string = getFirstChildOfType(node, "string");
   const stringFragment = getFirstChildOfType(string, "string_fragment");
   const fileGroup = parent.getFileGroup();
-  
+
   if (stringFragment && fileGroup) {
     const pointsTo = stringFragment.text;
     for (const importSpecifier of importSpecifiers) {
@@ -492,68 +492,79 @@ export function makeLocalVariables(
   return variables;
 }
 
-function findLinkForCallClassInjection(
-  call: Call,
-  nodeA: Node,
-  variable: Variable
-) {
+function findLinkForCallClassInjection(call: Call, nodeA: Node) {
   /**
    * Class injection for NestJS
-   * I have variable: articleService -> class ArticleService
+   * I have variable: articleService -> class ArticleService under constructor
    * I have call: findAll -> articleService
+   *
+   * Class injection for Java
+   * I have variable: service -> class VenueService
+   * I have call: findAll -> service
    */
-  if (
-    call.isAttribute() &&
-    variable.token === call.ownerToken &&
-    variable.pointsTo instanceof Group
-  ) {
-    // search through class methods
-    const classNode: Group = variable.pointsTo;
-    for (const node of classNode.nodes) {
-      if (node.token === call.token) {
-        return new Edge(nodeA, node);
+  if (call.isAttribute() && nodeA.parent instanceof Group) {
+    for (const node of nodeA.parent.nodes) {
+      for (const variable of node.variables) {
+        if (
+          variable.variableType === VariableType.INJECTION &&
+          variable.token === call.ownerToken &&
+          variable.pointsTo instanceof Group
+        ) {
+          // search through class methods
+          const classNode = variable.pointsTo;
+          for (const node of classNode.nodes) {
+            if (node.token === call.token) {
+              return new Edge(nodeA, node);
+            }
+          }
+        }
       }
     }
   }
-  return null;
+}
+
+function findLinkForCallFunctionCall(call: Call, nodeA: Node) {
+  // calling another function in the same file (priority)
+  if (nodeA.parent instanceof Group) {
+    for (const node2 of nodeA.parent.nodes) {
+      if (call.token === node2.token && node2.nodeType === NodeType.FUNCTION) {
+        return new Edge(nodeA, node2);
+      }
+    }
+  }
 }
 
 function findLinkForCallImportStatement(
   call: Call,
   nodeA: Node,
-  variable: Variable
+  fileGroup: Group | null,
+  allNodes: Node[]
 ) {
   /**
-   * for variables from import statements
-   * I have variable: findAll -> Group: article.service.ts
+   * calling a function from import statements
+   * I have variable: findAll -> Group: article.service.ts under (global)
    * I have call: findAll -> null
    */
-  if (
-    !call.isAttribute() &&
-    variable.token === call.token &&
-    !call.ownerToken &&
-    variable.pointsTo instanceof Group &&
-    variable.pointsTo.groupType === GroupType.FILE
-  ) {
-    for (const fileNode of variable.pointsTo.nodes) {
-      if (fileNode.token === call.token) {
-        return new Edge(nodeA, fileNode);
+  const globalNode = allNodes.find(
+    (node) =>
+      node.token === GLOBAL &&
+      node.getFileGroup()?.filePath === fileGroup?.filePath
+  );
+  if (globalNode) {
+    for (const variable of globalNode.variables) {
+      if (
+        variable.token === call.token &&
+        variable.pointsTo instanceof Group &&
+        variable.pointsTo.groupType === GroupType.FILE
+      ) {
+        for (const fileNode of variable.pointsTo.nodes) {
+          if (fileNode.token === call.token) {
+            return new Edge(nodeA, fileNode);
+          }
+        }
       }
     }
   }
-  return null;
-}
-
-function findLinkForCallFunctionCall(call: Call, nodeA: Node, node: Node) {
-  // calling another function
-  if (
-    !call.isAttribute() &&
-    call.token === node.token &&
-    node.nodeType === NodeType.FUNCTION
-  ) {
-    return new Edge(nodeA, node);
-  }
-  return null;
 }
 
 /**
@@ -572,33 +583,33 @@ export function findLinkForCall(
   nodeA: Node,
   allNodes: Node[]
 ): Edge | null {
-  for (const node of allNodes) {
-    for (const variable of node.variables) {
-      const link1 = findLinkForCallClassInjection(call, nodeA, variable);
-      if (link1) {
-        return link1;
-      }
-      const link2 = findLinkForCallImportStatement(call, nodeA, variable);
-      if (link2) {
-        return link2;
-      }
+  const fileGroup = nodeA.getFileGroup();
+  const edge1 = findLinkForCallClassInjection(call, nodeA);
+  if (edge1) {
+    return edge1;
+  }
+  if (!call.isAttribute()) {
+    const edge2 = findLinkForCallFunctionCall(call, nodeA);
+    if (edge2) {
+      return edge2;
     }
-    const link3 = findLinkForCallFunctionCall(call, nodeA, node);
-    if (link3) {
-      return link3;
+    const edge3 = findLinkForCallImportStatement(
+      call,
+      nodeA,
+      fileGroup,
+      allNodes
+    );
+    if (edge3) {
+      return edge3;
     }
-
-    // calling a function in the file space
-    if (
-      !call.isAttribute() &&
-      call.token === node.token &&
-      node.nodeType === NodeType.FUNCTION &&
-      node.parent instanceof Group &&
-      node.parent.groupType === GroupType.FILE
-    ) {
-      return new Edge(nodeA, node);
+    // calling another function
+    for (const node of allNodes) {
+      if (call.token === node.token && node.nodeType === NodeType.FUNCTION) {
+        return new Edge(nodeA, node);
+      }
     }
   }
+
   return null;
 }
 
