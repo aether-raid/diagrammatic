@@ -559,6 +559,26 @@ function findGlobalNode(fileGroup: Group | null, allNodes: Node[]) {
   );
 }
 
+function findCalledFunctionInImportedFunctions(
+  call: Call,
+  nodeA: Node,
+  globalNode: Node
+) {
+  for (const variable of globalNode.variables) {
+    if (
+      variable.token === call.token &&
+      variable.pointsTo instanceof Group &&
+      variable.pointsTo.groupType === GroupType.FILE
+    ) {
+      for (const fileNode of variable.pointsTo.nodes) {
+        if (fileNode.token === call.token) {
+          return new Edge(nodeA, fileNode);
+        }
+      }
+    }
+  }
+}
+
 function findLinkForCallImportStatement(
   call: Call,
   nodeA: Node,
@@ -572,19 +592,7 @@ function findLinkForCallImportStatement(
    */
   const globalNode = findGlobalNode(fileGroup, allNodes);
   if (globalNode) {
-    for (const variable of globalNode.variables) {
-      if (
-        variable.token === call.token &&
-        variable.pointsTo instanceof Group &&
-        variable.pointsTo.groupType === GroupType.FILE
-      ) {
-        for (const fileNode of variable.pointsTo.nodes) {
-          if (fileNode.token === call.token) {
-            return new Edge(nodeA, fileNode);
-          }
-        }
-      }
-    }
+    return findCalledFunctionInImportedFunctions(call, nodeA, globalNode);
   }
 }
 
