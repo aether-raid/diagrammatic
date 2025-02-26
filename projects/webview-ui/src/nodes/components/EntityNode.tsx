@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { Handle, NodeProps, Position } from "@xyflow/react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 
+import { Handle, NodeProps, Position } from "@xyflow/react";
+
 import { type EntityNode as EntityNodeType } from "@shared/node.types";
-import DangerousRoundedIcon from '@mui/icons-material/DangerousRounded';
-import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 
 import { EntityNodeItem } from "./EntityNodeItem";
+import { NodeSecurityBanner } from "./NodeSecurityBanner";
+
 
 export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
   const [hoveredRow, setHoveredRow] = useState<string|undefined>('');
@@ -43,16 +44,7 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
               </span>
             </p>
           </div>
-          <div className="d-flex justify-content-evenly bg-warning-subtle">
-            <div className="text-warning">
-              <WarningRoundedIcon fontSize="small" />
-              <span className="align-middle">5</span>
-            </div>
-            <div className="text-danger">
-              <DangerousRoundedIcon fontSize="small" />
-              <span className="align-middle">5</span>
-            </div>
-          </div>
+          <NodeSecurityBanner security={data.security}/>
         </div>
       </OverlayTrigger>
 
