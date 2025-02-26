@@ -8,7 +8,7 @@ import { sendJumpToLineMessageToExtension } from '../../helpers/vscodeApiHandler
 
 interface IssueItemProps {
   issue: SerializedDiagnostic;
-  filePath: string;
+  filePath?: string;
 }
 
 export const IssueItem = ({ issue, filePath }: IssueItemProps) => {
@@ -19,6 +19,11 @@ export const IssueItem = ({ issue, filePath }: IssueItemProps) => {
     : 'bg-warning-subtle';
 
   const handleClick = () => {
+    if (!filePath) {
+      console.error(`Unknown filePath (${filePath})`);
+      return;
+    }
+
     sendJumpToLineMessageToExtension(filePath, range.start.line);
   };
 

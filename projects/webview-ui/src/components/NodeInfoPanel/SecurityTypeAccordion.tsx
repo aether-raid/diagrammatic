@@ -7,7 +7,7 @@ import { IssueItem } from './IssueItem';
 interface SecurityTypeAccordionProps {
     type: string;
     issues: SerializedDiagnostic[];
-    filePath: string;
+    filePath?: string;
 }
 
 export const SecurityTypeAccordion = ({ type, issues, filePath }: SecurityTypeAccordionProps) => {
