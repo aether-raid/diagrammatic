@@ -133,20 +133,21 @@ export function processMemberExpression(node) {
   const objectNode = node.childForFieldName("object");
   const propertyNode = node.childForFieldName("property");
 
-  if (!objectNode || !propertyNode) {
-    return null;
+  if (!objectNode) {
+    return {};
   }
 
   switch (objectNode.type) {
     case "identifier":
-      return objectNode.text + "." + propertyNode.text;
+      return { pointsTo: objectNode.text, token: propertyNode.text };
     case "this":
-      return propertyNode.text;
+      return { pointsTo: "this", token: propertyNode.text };
     case "member_expression":
-      return processMemberExpression(objectNode);
+      const { token } = processMemberExpression(objectNode);
+      return { token: propertyNode.text, pointsTo: token };
   }
 
-  return null;
+  return {};
 }
 
 /**
@@ -167,19 +168,12 @@ export function processCallExpression(node) {
     case "identifier":
       return new Call({ token: func.text, lineNumber: getLineNumber(node) });
     case "member_expression":
-      const funcName = processMemberExpression(func);
-      const property = func.childForFieldName("property");
-      if (!property) {
-        return null;
-      }
-      const propertyName = property.text;
-      if (funcName && propertyName) {
-        return new Call({
-          token: propertyName,
-          ownerToken: funcName,
-          lineNumber: getLineNumber(node),
-        });
-      }
+      const { token, pointsTo } = processMemberExpression(func);
+      return new Call({
+        token,
+        ownerToken: pointsTo,
+        lineNumber: getLineNumber(node),
+      });
     // for C++
     case "field_expression":
       const identifier = getFirstChildOfType(func, "identifier");
@@ -311,9 +305,10 @@ export function processVariableDeclaration(node) {
         variableType: VariableType.CALL_EXPRESSION,
       });
     case "member_expression":
+      const { token, pointsTo } = processMemberExpression(value);
       return new Variable({
-        token: name.text,
-        pointsTo: processMemberExpression(value),
+        token,
+        pointsTo,
         lineNumber: getLineNumber(node),
         variableType: VariableType.CALL_EXPRESSION,
       });
@@ -432,31 +427,43 @@ export function makeLocalVariables(tree, parent, languageRules) {
 export function findLinkForCall(call, nodeA, allNodes) {
   const fileGroup = nodeA.getFileGroup();
 
-  /**
-   * Class injection for NestJS
-   * I have variable: articleService -> class ArticleService under constructor
-   * I have call: findAll -> articleService
-   *
-   * Class injection for Java
-   * I have variable: service -> class VenueService
-   * I have call: findAll -> service
-   */
-  if (
-    call.isAttribute() &&
-    nodeA.parent instanceof Group &&
-    nodeA.parent.groupType !== GroupType.FILE
-  ) {
-    for (const variable of nodeA.parent.variables) {
-      if (
-        variable.variableType === VariableType.INJECTION &&
-        variable.token === call.ownerToken &&
-        variable.pointsTo instanceof Group
-      ) {
-        // search through class methods
-        const classNode = variable.pointsTo;
-        for (const node of classNode.nodes) {
-          if (node.token === call.token) {
-            return new Edge(nodeA, node);
+  if (call.isAttribute()) {
+    /**
+     * Call functions in the same class
+     * e.g. this.fetchBeeBalance()
+     */
+    if (call.ownerToken === "this") {
+      for (const node of nodeA.parent.nodes) {
+        if (node.token === call.token) {
+          return new Edge(nodeA, node);
+        }
+      }
+    }
+
+    if (nodeA.parent instanceof Group) {
+      /**
+       * Class injection for NestJS
+       * I have variable: articleService -> class ArticleService under constructor
+       * I have call: findAll -> articleService
+       *
+       * Class injection for Java
+       * I have variable: service -> class VenueService
+       * I have call: findAll -> service
+       */
+      for (const node of nodeA.parent.nodes) {
+        for (const variable of node.variables) {
+          if (
+            variable.variableType === VariableType.INJECTION &&
+            variable.token === call.ownerToken &&
+            variable.pointsTo instanceof Group
+          ) {
+            // search through class methods
+            const classNode = variable.pointsTo;
+            for (const node of classNode.nodes) {
+              if (node.token === call.token) {
+                return new Edge(nodeA, node);
+              }
+            }
           }
         }
       }
@@ -502,10 +509,7 @@ export function findLinkForCall(call, nodeA, allNodes) {
 
     // calling another function
     for (const node of allNodes) {
-      if (
-        call.token === node.token &&
-        node.nodeType === NodeType.FUNCTION
-      ) {
+      if (call.token === node.token && node.nodeType === NodeType.FUNCTION) {
         return new Edge(nodeA, node);
       }
     }

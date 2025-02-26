@@ -264,6 +264,66 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "restore-restoreCookie",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "sourceHandle": "restore",
+    "targetHandle": "restoreCookie",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "restore-restoreCookie",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "sourceHandle": "restore",
+    "targetHandle": "restoreCookie",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "restore-restoreCookie",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "sourceHandle": "restore",
+    "targetHandle": "restoreCookie",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "restore-restoreCookie",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "sourceHandle": "restore",
+    "targetHandle": "restoreCookie",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "restore-restoreCookie",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "sourceHandle": "restore",
+    "targetHandle": "restoreCookie",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "restore-restoreCookie",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "sourceHandle": "restore",
+    "targetHandle": "restoreCookie",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "restore-restoreProgress",
     "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
     "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
@@ -336,6 +396,36 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "ngAfterViewInit-loadQuantity",
+    "source": "//frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "//frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "sourceHandle": "ngAfterViewInit",
+    "targetHandle": "loadQuantity",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "ngAfterViewInit-loadProducts",
+    "source": "//frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "//frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "sourceHandle": "ngAfterViewInit",
+    "targetHandle": "loadProducts",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "ngAfterViewInit-loadOrders",
+    "source": "//frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "//frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "sourceHandle": "ngAfterViewInit",
+    "targetHandle": "loadOrders",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "loadQuantity-getAll",
     "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
     "target": "/frontend/src/app/Services/quantity.service.ts.QuantityService",
@@ -368,6 +458,16 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "modifyQuantity-loadQuantity",
+    "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "sourceHandle": "modifyQuantity",
+    "targetHandle": "loadQuantity",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "modifyQuantity-open",
     "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
     "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
@@ -390,6 +490,16 @@
     "sourceHandle": "modifyPrice",
     "targetHandle": "put",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "modifyPrice-loadProducts",
+    "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "sourceHandle": "modifyPrice",
+    "targetHandle": "loadProducts",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "modifyPrice-open",
@@ -416,12 +526,32 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "changeDeliveryStatus-loadOrders",
+    "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "sourceHandle": "changeDeliveryStatus",
+    "targetHandle": "loadOrders",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "changeDeliveryStatus-open",
     "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
     "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
     "sourceHandle": "changeDeliveryStatus",
     "targetHandle": "open",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-load",
+    "source": "/frontend/src/app/address/address.component.ts.AddressComponent",
+    "target": "/frontend/src/app/address/address.component.ts.AddressComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "load",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "load-get",
@@ -464,6 +594,16 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "deleteAddress-load",
+    "source": "/frontend/src/app/address/address.component.ts.AddressComponent",
+    "target": "/frontend/src/app/address/address.component.ts.AddressComponent",
+    "sourceHandle": "deleteAddress",
+    "targetHandle": "load",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "deleteAddress-open",
     "source": "/frontend/src/app/address/address.component.ts.AddressComponent",
     "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
@@ -478,6 +618,26 @@
     "sourceHandle": "ngOnInit",
     "targetHandle": "getById",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-initializeForm",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "initializeForm",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "ngOnInit-save",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "save",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "ngOnInit-attachEnterKeyHandler",
@@ -496,12 +656,34 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
-    "id": "save-open",
+    "id": "save-ngOnInit",
     "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
-    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
     "sourceHandle": "save",
-    "targetHandle": "open",
-    "markerEnd": { "type": "arrowclosed" }
+    "targetHandle": "ngOnInit",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "save-resetForm",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "sourceHandle": "save",
+    "targetHandle": "resetForm",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "save-routeToPreviousUrl",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "sourceHandle": "save",
+    "targetHandle": "routeToPreviousUrl",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "save-open",
@@ -518,6 +700,24 @@
     "sourceHandle": "save",
     "targetHandle": "open",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-resetForm",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "sourceHandle": "save",
+    "targetHandle": "resetForm",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "save-save",
@@ -528,12 +728,34 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
-    "id": "save-open",
+    "id": "save-ngOnInit",
     "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
-    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
     "sourceHandle": "save",
-    "targetHandle": "open",
-    "markerEnd": { "type": "arrowclosed" }
+    "targetHandle": "ngOnInit",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "save-resetForm",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "sourceHandle": "save",
+    "targetHandle": "resetForm",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "save-routeToPreviousUrl",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "sourceHandle": "save",
+    "targetHandle": "routeToPreviousUrl",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "save-open",
@@ -550,6 +772,24 @@
     "sourceHandle": "save",
     "targetHandle": "open",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-resetForm",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "sourceHandle": "save",
+    "targetHandle": "resetForm",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "ngOnInit-findAllUsers",
@@ -576,6 +816,16 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "findAllUsers-doesUserHaveAnActiveSession",
+    "source": "/frontend/src/app/administration/administration.component.ts.AdministrationComponent",
+    "target": "/frontend/src/app/administration/administration.component.ts.AdministrationComponent",
+    "sourceHandle": "findAllUsers",
+    "targetHandle": "doesUserHaveAnActiveSession",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "findAllFeedbacks-find",
     "source": "/frontend/src/app/administration/administration.component.ts.AdministrationComponent",
     "target": "/frontend/src/app/Services/feedback.service.ts.FeedbackService",
@@ -590,6 +840,16 @@
     "sourceHandle": "deleteFeedback",
     "targetHandle": "del",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "deleteFeedback-findAllFeedbacks",
+    "source": "/frontend/src/app/administration/administration.component.ts.AdministrationComponent",
+    "target": "/frontend/src/app/administration/administration.component.ts.AdministrationComponent",
+    "sourceHandle": "deleteFeedback",
+    "targetHandle": "findAllFeedbacks",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "canActivate-forbidRoute",
@@ -638,6 +898,16 @@
     "sourceHandle": "isDeluxe",
     "targetHandle": "tokenDecode",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "constructor-getApplicationConfiguration",
+    "source": "/frontend/src/app/app.module.ts.AppModule",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "constructor",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "tokenMatcher-token1",
@@ -728,12 +998,32 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "ngOnInit-changePassword",
+    "source": "/frontend/src/app/change-password/change-password.component.ts.ChangePasswordComponent",
+    "target": "/frontend/src/app/change-password/change-password.component.ts.ChangePasswordComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "changePassword",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "repeatNewPasswordControl-matchValidator",
     "source": "/frontend/src/app/change-password/change-password.component.ts.ChangePasswordComponent",
     "target": "/frontend/src/app/change-password/change-password.component.ts",
     "sourceHandle": "repeatNewPasswordControl",
     "targetHandle": "matchValidator",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "resetForm-resetPasswords",
+    "source": "/frontend/src/app/change-password/change-password.component.ts.ChangePasswordComponent",
+    "target": "/frontend/src/app/change-password/change-password.component.ts.ChangePasswordComponent",
+    "sourceHandle": "resetForm",
+    "targetHandle": "resetPasswords",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "ngOnInit-attachEnterKeyHandler",
@@ -800,6 +1090,16 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "sendMessage-handleResponse",
+    "source": "/frontend/src/app/chatbot/chatbot.component.ts.ChatbotComponent",
+    "target": "/frontend/src/app/chatbot/chatbot.component.ts.ChatbotComponent",
+    "sourceHandle": "sendMessage",
+    "targetHandle": "handleResponse",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "ngOnInit-getApplicationConfiguration",
     "source": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
     "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
@@ -822,6 +1122,26 @@
     "sourceHandle": "ngOnInit",
     "targetHandle": "get",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-shuffle",
+    "source": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "target": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "shuffle",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "changeFix-setFix",
+    "source": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "target": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "sourceHandle": "changeFix",
+    "targetHandle": "setFix",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "checkFix-check",
@@ -922,6 +1242,16 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "ngOnInit-save",
+    "source": "/frontend/src/app/complaint/complaint.component.ts.ComplaintComponent",
+    "target": "/frontend/src/app/complaint/complaint.component.ts.ComplaintComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "save",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "initComplaint-whoAmI",
     "source": "/frontend/src/app/complaint/complaint.component.ts.ComplaintComponent",
     "target": "/frontend/src/app/Services/user.service.ts.UserService",
@@ -984,6 +1314,16 @@
     "sourceHandle": "ngOnInit",
     "targetHandle": "attachEnterKeyHandler",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-save",
+    "source": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "target": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "save",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "getNewCaptcha-getCaptcha",
@@ -1253,7 +1593,7 @@
     "id": "extractBEETokens-fetchBeeBalance",
     "source": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
     "target": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
-    "sourceHandle": "handleAuth",
+    "sourceHandle": "extractBEETokens",
     "targetHandle": "fetchBeeBalance",
     "markerEnd": { "type": "arrowclosed" }
   },
@@ -1261,7 +1601,7 @@
     "id": "extractBEETokens-fetchMyBeeBalance",
     "source": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
     "target": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
-    "sourceHandle": "handleAuth",
+    "sourceHandle": "extractBEETokens",
     "targetHandle": "fetchMyBeeBalance",
     "markerEnd": { "type": "arrowclosed" }
   },
@@ -1280,6 +1620,16 @@
     "sourceHandle": "mintNFT",
     "targetHandle": "verifyNFTWallet",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "constructor-getApplicationConfiguration",
+    "source": "/frontend/src/app/faucet/faucet.module.ts.FaucetModule",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "constructor",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "repeatPasswordControl-matchValidator",
@@ -1344,6 +1694,16 @@
     "sourceHandle": "ngOnInit",
     "targetHandle": "attachEnterKeyHandler",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-login",
+    "source": "/frontend/src/app/login/login.component.ts.LoginComponent",
+    "target": "/frontend/src/app/login/login.component.ts.LoginComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "login",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "login-login",
@@ -1450,6 +1810,16 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "logout-noop",
+    "source": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "target": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "sourceHandle": "logout",
+    "targetHandle": "noop",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "getScoreBoardStatus-find",
     "source": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
     "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
@@ -1522,6 +1892,16 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "ngOnInit-parseRedirectUrlParams",
+    "source": "/frontend/src/app/oauth/oauth.component.ts.OAuthComponent",
+    "target": "/frontend/src/app/oauth/oauth.component.ts.OAuthComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "parseRedirectUrlParams",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "ngOnInit-login",
     "source": "/frontend/src/app/oauth/oauth.component.ts.OAuthComponent",
     "target": "/frontend/src/app/oauth/oauth.component.ts.OAuthComponent",
@@ -1560,6 +1940,16 @@
     "sourceHandle": "ngOnInit",
     "targetHandle": "find",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-truncateTweet",
+    "source": "/frontend/src/app/order-completion/order-completion.component.ts.OrderCompletionComponent",
+    "target": "/frontend/src/app/order-completion/order-completion.component.ts.OrderCompletionComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "truncateTweet",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "ngOnInit-getApplicationConfiguration",
@@ -1776,6 +2166,36 @@
     "sourceHandle": "ngOnInit",
     "targetHandle": "load",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-load",
+    "source": "/frontend/src/app/payment-method/payment-method.component.ts.PaymentMethodComponent",
+    "target": "/frontend/src/app/payment-method/payment-method.component.ts.PaymentMethodComponent",
+    "sourceHandle": "save",
+    "targetHandle": "load",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "save-resetForm",
+    "source": "/frontend/src/app/photo-wall/photo-wall.component.ts.PhotoWallComponent",
+    "target": "/frontend/src/app/photo-wall/photo-wall.component.ts.PhotoWallComponent",
+    "sourceHandle": "save",
+    "targetHandle": "resetForm",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "save-ngOnInit",
+    "source": "/frontend/src/app/photo-wall/photo-wall.component.ts.PhotoWallComponent",
+    "target": "/frontend/src/app/photo-wall/photo-wall.component.ts.PhotoWallComponent",
+    "sourceHandle": "save",
+    "targetHandle": "ngOnInit",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "load-get",
@@ -2018,6 +2438,16 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "delete-load",
+    "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "target": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "sourceHandle": "delete",
+    "targetHandle": "load",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "delete-updateNumberOfCartItems",
     "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
     "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
@@ -2058,6 +2488,16 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "addToQuantity-load",
+    "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "target": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "sourceHandle": "addToQuantity",
+    "targetHandle": "load",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "addToQuantity-updateNumberOfCartItems",
     "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
     "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
@@ -2090,12 +2530,42 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "ngOnInit-initRecycle",
+    "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "target": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "initRecycle",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "ngOnInit-findAll",
+    "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "target": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "findAll",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "ngOnInit-attachEnterKeyHandler",
     "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
     "target": "/frontend/src/app/Services/form-submit.service.ts.FormSubmitService",
     "sourceHandle": "ngOnInit",
     "targetHandle": "attachEnterKeyHandler",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-save",
+    "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "target": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "save",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "initRecycle-whoAmI",
@@ -2202,6 +2672,16 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "ngOnInit-save",
+    "source": "/frontend/src/app/register/register.component.ts.RegisterComponent",
+    "target": "/frontend/src/app/register/register.component.ts.RegisterComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "save",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "save-save",
     "source": "/frontend/src/app/register/register.component.ts.RegisterComponent",
     "target": "/frontend/src/app/Services/user.service.ts.UserService",
@@ -2256,6 +2736,16 @@
     "sourceHandle": "ngOnChanges",
     "targetHandle": "updatedNumberOfSolvedChallenges",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "toggleCategorySelected-isCategorySelected",
+    "source": "/frontend/src/app/score-board/components/filter-settings/components/category-filter/category-filter.component.ts.CategoryFilterComponent",
+    "target": "/frontend/src/app/score-board/components/filter-settings/components/category-filter/category-filter.component.ts.CategoryFilterComponent",
+    "sourceHandle": "toggleCategorySelected",
+    "targetHandle": "isCategorySelected",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "transform-breakDifficultiesIntoNeighboringGroups",
@@ -2706,6 +3196,16 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "logout-noop",
+    "source": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "target": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "sourceHandle": "logout",
+    "targetHandle": "noop",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "getScoreBoardStatus-find",
     "source": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
     "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
@@ -2850,6 +3350,16 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "constructor-getApplicationConfiguration",
+    "source": "/frontend/src/app/wallet-web3/wallet-web3.module.ts.WalletWeb3Module",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "constructor",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "ngOnInit-handleAuth",
     "source": "/frontend/src/app/wallet-web3/wallet-web3.component.ts.WalletWeb3Component",
     "target": "/frontend/src/app/wallet-web3/wallet-web3.component.ts.WalletWeb3Component",
@@ -2930,12 +3440,32 @@
     "markerEnd": { "type": "arrowclosed" }
   },
   {
+    "id": "deploySelectedContract-getInputHints",
+    "source": "/frontend/src/app/web3-sandbox/web3-sandbox.component.ts.Web3SandboxComponent",
+    "target": "/frontend/src/app/web3-sandbox/web3-sandbox.component.ts.Web3SandboxComponent",
+    "sourceHandle": "deploySelectedContract",
+    "targetHandle": "getInputHints",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "invokeFunction-open",
     "source": "/frontend/src/app/web3-sandbox/web3-sandbox.component.ts.Web3SandboxComponent",
     "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
     "sourceHandle": "invokeFunction",
     "targetHandle": "open",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "invokeFunction-parseInputValue",
+    "source": "/frontend/src/app/web3-sandbox/web3-sandbox.component.ts.Web3SandboxComponent",
+    "target": "/frontend/src/app/web3-sandbox/web3-sandbox.component.ts.Web3SandboxComponent",
+    "sourceHandle": "invokeFunction",
+    "targetHandle": "parseInputValue",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "handleChainChanged-handleAuth",
@@ -2960,6 +3490,16 @@
     "sourceHandle": "handleAuth",
     "targetHandle": "open",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "constructor-getApplicationConfiguration",
+    "source": "/frontend/src/app/web3-sandbox/web3-sandbox.module.ts.FaucetModule",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "constructor",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   },
   {
     "id": "ngOnInit-getApplicationConfiguration",
@@ -3652,7 +4192,7 @@
   {
     "id": "servePublicFiles-verify",
     "source": "/routes/fileServer.ts",
-    "target": "/frontend/src/app/Services/two-factor-auth-service.ts.TwoFactorAuthService",
+    "target": "/routes/fileServer.ts",
     "sourceHandle": "servePublicFiles",
     "targetHandle": "verify",
     "markerEnd": { "type": "arrowclosed" }
@@ -3692,7 +4232,7 @@
   {
     "id": "login-afterLogin",
     "source": "/routes/login.ts",
-    "target": "/data/static/codefixes/loginAdminChallenge_1.ts",
+    "target": "/routes/login.ts",
     "sourceHandle": "login",
     "targetHandle": "afterLogin",
     "markerEnd": { "type": "arrowclosed" }
@@ -3884,7 +4424,7 @@
   {
     "id": "register-login",
     "source": "/test/api/2faSpec.ts",
-    "target":  "/test/api/2faSpec.ts",
+    "target": "/test/api/2faSpec.ts",
     "sourceHandle": "register",
     "targetHandle": "login",
     "markerEnd": { "type": "arrowclosed" }

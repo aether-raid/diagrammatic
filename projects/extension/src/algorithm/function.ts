@@ -155,24 +155,28 @@ export function walk(body: SyntaxNode[] | SyntaxNode): SyntaxNode[] {
  *
  * @returns {string}
  */
-export function processMemberExpression(node: SyntaxNode) {
+export function processMemberExpression(node: SyntaxNode): {
+  token?: string;
+  pointsTo?: string;
+} {
   const objectNode = node.childForFieldName("object");
   const propertyNode = node.childForFieldName("property");
 
   if (!objectNode || !propertyNode) {
-    return null;
+    return {};
   }
 
   switch (objectNode.type) {
     case "identifier":
-      return objectNode.text + "." + propertyNode.text;
+      return { pointsTo: objectNode.text, token: propertyNode.text };
     case "this":
-      return propertyNode.text;
+      return { pointsTo: "this", token: propertyNode.text };
     case "member_expression":
-      return processMemberExpression(objectNode);
+      const { token } = processMemberExpression(objectNode);
+      return { token: propertyNode.text, pointsTo: token };
   }
 
-  return null;
+  return {};
 }
 
 /**
@@ -193,19 +197,15 @@ export function processCallExpression(node: SyntaxNode): Call | null {
     case "identifier":
       return new Call({ token: func.text, lineNumber: getLineNumber(node) });
     case "member_expression":
-      const funcName = processMemberExpression(func);
-      const property = func.childForFieldName("property");
-      if (!property) {
-        return null;
-      }
-      const propertyName = property.text;
-      if (funcName && propertyName) {
+      const { token, pointsTo } = processMemberExpression(func);
+      if (token && pointsTo) {
         return new Call({
-          token: propertyName,
-          ownerToken: funcName,
+          token,
+          ownerToken: pointsTo,
           lineNumber: getLineNumber(node),
         });
       }
+
     // for C++
     case "field_expression":
       const identifier = getFirstChildOfType(func, "identifier");
@@ -342,12 +342,15 @@ export function processVariableDeclaration(node: SyntaxNode): Variable | null {
         variableType: VariableType.CALL_EXPRESSION,
       });
     case "member_expression":
-      return new Variable({
-        token: name.text,
-        pointsTo: processMemberExpression(value),
-        lineNumber: getLineNumber(node),
-        variableType: VariableType.CALL_EXPRESSION,
-      });
+      const { token, pointsTo } = processMemberExpression(value);
+      if (token && pointsTo) {
+        return new Variable({
+          token,
+          pointsTo,
+          lineNumber: getLineNumber(node),
+          variableType: VariableType.CALL_EXPRESSION,
+        });
+      }
   }
 
   return null;
@@ -492,6 +495,24 @@ export function makeLocalVariables(
   return variables;
 }
 
+function findLinkForCallThis(call: Call, nodeA: Node) {
+  if (call.ownerToken === "this" && nodeA.parent instanceof Group) {
+    for (const node of nodeA.parent.nodes) {
+      if (node.token === call.token) {
+        return new Edge(nodeA, node);
+      }
+    }
+  }
+}
+
+function findMethod(call: Call, nodeA: Node, classNode: Group) {
+  for (const node of classNode.nodes) {
+    if (node.token === call.token) {
+      return new Edge(nodeA, node);
+    }
+  }
+}
+
 function findLinkForCallClassInjection(call: Call, nodeA: Node) {
   /**
    * Class injection for NestJS
@@ -502,7 +523,7 @@ function findLinkForCallClassInjection(call: Call, nodeA: Node) {
    * I have variable: service -> class VenueService
    * I have call: findAll -> service
    */
-  if (call.isAttribute() && nodeA.parent instanceof Group) {
+  if (nodeA.parent instanceof Group) {
     for (const node of nodeA.parent.nodes) {
       for (const variable of node.variables) {
         if (
@@ -512,11 +533,7 @@ function findLinkForCallClassInjection(call: Call, nodeA: Node) {
         ) {
           // search through class methods
           const classNode = variable.pointsTo;
-          for (const node of classNode.nodes) {
-            if (node.token === call.token) {
-              return new Edge(nodeA, node);
-            }
-          }
+          return findMethod(call, nodeA, classNode);
         }
       }
     }
@@ -584,30 +601,35 @@ export function findLinkForCall(
   allNodes: Node[]
 ): Edge | null {
   const fileGroup = nodeA.getFileGroup();
-  const edge1 = findLinkForCallClassInjection(call, nodeA);
-  if (edge1) {
-    return edge1;
-  }
-  if (!call.isAttribute()) {
-    const edge2 = findLinkForCallFunctionCall(call, nodeA);
+  if (call.isAttribute()) {
+    const edge1 = findLinkForCallThis(call, nodeA);
+    if (edge1) {
+      return edge1;
+    }
+    const edge2 = findLinkForCallClassInjection(call, nodeA);
     if (edge2) {
       return edge2;
     }
-    const edge3 = findLinkForCallImportStatement(
+  } else {
+    const edge3 = findLinkForCallFunctionCall(call, nodeA);
+    if (edge3) {
+      return edge3;
+    }
+    const edge4 = findLinkForCallImportStatement(
       call,
       nodeA,
       fileGroup,
       allNodes
     );
-    if (edge3) {
-      return edge3;
+    if (edge4) {
+      return edge4;
     }
     // calling another function
-    for (const node of allNodes) {
+    /* for (const node of allNodes) {
       if (call.token === node.token && node.nodeType === NodeType.FUNCTION) {
         return new Edge(nodeA, node);
       }
-    }
+    }  */
   }
 
   return null;
