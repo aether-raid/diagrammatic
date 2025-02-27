@@ -41,6 +41,11 @@
           "type": "string",
           "default": "",
           "description": "Path to Diagrammatic's ruleset file. If none is set, the default ruleset will be used."
+        },
+        "diagrammatic.openAiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "OpenAI API key. Used to generate node descriptions & the C4 diagram. If none is given, these features will not work."
         }
       }
     }

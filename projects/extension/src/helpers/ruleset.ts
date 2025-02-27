@@ -3,6 +3,7 @@ import { existsSync } from "fs";
 
 import { RuleEngine } from "../algorithm/rules";
 import { GLOBALS } from "../globals";
+import { retrieveExtensionConfig } from "./common";
 
 const getDefaultRulesetPath = () => {
   const extension = vscode.extensions.getExtension(
@@ -15,10 +16,7 @@ const getDefaultRulesetPath = () => {
 };
 
 export const retrieveRuleset = () => {
-  const config = vscode.workspace.getConfiguration();
-
-  let rulesetPath = config.get<string>(GLOBALS.ruleset.configName);
-
+  let rulesetPath = retrieveExtensionConfig(GLOBALS.ruleset.configName);
   if (!rulesetPath || !existsSync(rulesetPath)) {
     vscode.window.showInformationMessage(
       `No ruleset file was found at '${rulesetPath}'. Using default rules.`
