@@ -15,7 +15,7 @@ export const initialNodes: AppNode[] = [
       description: 'This file serves as a central entity that manages multiple agricultural components. It coordinates the planting & harvesting processes.',
       entityName: 'Farm',
       entityType: 'file',
-      filePath: 'path/to/farm',
+      filePath: 'path/to/farm/this/is/an/intentionally/very/long/path/lets/see/how/this/looks/like',
       items: [
         { name: 'Planter', lineNumber: 15 },
         { name: 'Harvester', lineNumber: 45 },

@@ -17,6 +17,12 @@ interface NodeInfoPanelProps {
 export const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => {
     const onHide = () => setShow(false);
 
+    const metadata = [
+      ["Filepath", entity?.data.filePath],
+      ["Metadata", "placeholder text"],
+      ["Metadata", "placeholder text"]
+    ];
+
     return (
         <Offcanvas
             backdrop={false}
@@ -39,18 +45,14 @@ export const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => 
                         <Accordion alwaysOpen>
                             <Accordion.Item eventKey='0'>
                                 <Accordion.Header>Metadata</Accordion.Header>
-                                <Accordion.Body>
-                                    <div className="d-flex gap-3">
-                                        <div className="d-flex flex-column gap-3 fw-bold text-end">
-                                            <div>Filepath</div>
-                                            <div>Metadata</div>
-                                            <div>Metadata</div>
-                                        </div>
-                                        <div className="d-flex flex-column flex-grow-1 gap-3 fst-italic">
-                                            <div>{entity.data.filePath}</div>
-                                            <div>placeholder text</div>
-                                            <div>placeholder text</div>
-                                        </div>
+                                <Accordion.Body className="p-0">
+                                    <div className="d-flex flex-column fs-7">
+                                        { metadata.map(item => (
+                                            <div className="d-flex gap-3 border-bottom p-2 px-3">
+                                                <div className="w-25 text-break fw-bold">{item[0]}</div>
+                                                <div className="w-75 text-break">{item[1]}</div>
+                                            </div>
+                                        ))}
                                     </div>
                                 </Accordion.Body>
                             </Accordion.Item>
