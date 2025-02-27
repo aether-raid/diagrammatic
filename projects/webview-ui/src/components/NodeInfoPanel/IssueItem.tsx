@@ -15,8 +15,8 @@ export const IssueItem = ({ issue, filePath }: IssueItemProps) => {
   const { message, range, severity } = issue;
 
   const bgColor = severity === DiagnosticSeverityEnum.Error
-    ? 'bg-danger-subtle'
-    : 'bg-warning-subtle';
+    ? 'bg-danger'
+    : 'bg-warning';
 
   const handleClick = () => {
     if (!filePath) {
@@ -30,7 +30,8 @@ export const IssueItem = ({ issue, filePath }: IssueItemProps) => {
   return (
     <div
       onClick={handleClick}
-      className={`d-flex justify-content-between gap-3 p-3 border-bottom ${bgColor}`}
+      className={
+        `d-flex justify-content-between gap-3 px-3 p-2 border-bottom ${bgColor} bg-opacity-25 user-select-none cursor-pointer issue-text-hover fs-7`}
     >
       <div className='d-flex gap-2 align-items-center'>
         { severity === DiagnosticSeverityEnum.Warning && <WarningRoundedIcon /> }

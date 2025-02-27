@@ -6,6 +6,7 @@ import { EntityNode } from '@shared/node.types';
 import { SerializedDiagnostic } from '@shared/vscode.types';
 import { SecurityTypeAccordion } from './SecurityTypeAccordion';
 
+import "./NodeInfoPanel.css";
 
 interface NodeInfoPanelProps {
     show: boolean;

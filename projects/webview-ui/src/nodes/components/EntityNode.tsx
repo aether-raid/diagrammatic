@@ -37,7 +37,7 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
       >
         <div className={`d-flex flex-column rounded-top entity__${data.entityType}`}>
           <div className="py-2">
-            <p className="fs-7">{ data.entityType }</p>
+            <p className="fs-8">{ data.entityType }</p>
             <p className="fw-bold">
               <span className={data.matchesSearchTerm ? "bg-highlighter text-black" : ""}>
                 { data.entityName }

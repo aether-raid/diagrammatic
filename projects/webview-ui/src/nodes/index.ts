@@ -38,6 +38,14 @@ export const initialNodes: AppNode[] = [
               severity: 1,
               source: 'Group: security'
             },
+            { range: {
+              start: { line: 52, character: 32 },
+              end: { line: 3, character: 3 },
+            },
+            message: 'About to implode...',
+            severity: 0,
+            source: 'Group: security'
+          },
           ],
           vulnerability: [
             {

@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/reset.css';
 import './styles/index.css';
 import './styles/colors.css';
+import './styles/bs-overrides.css';
 import './nodes/nodes.css';
 import './edges/edges.css';
 
