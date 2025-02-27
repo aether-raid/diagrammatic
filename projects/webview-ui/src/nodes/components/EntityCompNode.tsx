@@ -34,7 +34,7 @@ export function EntityCompNode({ data }: NodeProps<EntityCompNodeType>) {
                             <p style={{ color: "#FFFFFF" }}>
                                 {data.files && (
                                     <ul>
-                                        {data.files.map((file, index) => (
+                                        {data.files.map((file) => (
                                             <li key={extractFileName(file)} style={{color: "#FFFFFF", margin:"2px 0px"}}>{extractFileName(file)}</li>
                                         ))}
                                     </ul>

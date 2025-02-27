@@ -1,3 +1,5 @@
+import React from "react";
+
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import Offcanvas from 'react-bootstrap/Offcanvas';
@@ -47,8 +49,8 @@ export const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => 
                                 <Accordion.Header>Metadata</Accordion.Header>
                                 <Accordion.Body className="p-0">
                                     <div className="d-flex flex-column fs-7">
-                                        { metadata.map(item => (
-                                            <div className="d-flex gap-3 border-bottom p-2 px-3">
+                                        { metadata.map((item, idx) => (
+                                            <div key={idx} className="d-flex gap-3 border-bottom p-2 px-3">
                                                 <div className="w-25 text-break fw-bold">{item[0]}</div>
                                                 <div className="w-75 text-break">{item[1]}</div>
                                             </div>
@@ -59,9 +61,9 @@ export const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => 
                         </Accordion>
 
                         {(Object.entries(entity.data.security ?? []) as [string, SerializedDiagnostic[]][])
-                            .map(([type, issues]) => {
+                            .map(([type, issues], idx) => {
                                 if (issues.length === 0) return;
-                                return (<SecurityTypeAccordion type={type} issues={issues} filePath={entity.data.filePath} />);
+                                return (<SecurityTypeAccordion key={idx} type={type} issues={issues} filePath={entity.data.filePath} />);
                             })
                         }
                     </div>

@@ -21,7 +21,7 @@ export const SecurityTypeAccordion = ({ type, issues, filePath }: SecurityTypeAc
                 </div>
             </Accordion.Header>
             <Accordion.Body className="p-0">
-                { issues.map(issue => <IssueItem issue={issue} filePath={filePath} />) }
+                { issues.map((issue, idx) => <IssueItem key={idx} issue={issue} filePath={filePath} />) }
             </Accordion.Body>
         </Accordion.Item>
     </Accordion>
