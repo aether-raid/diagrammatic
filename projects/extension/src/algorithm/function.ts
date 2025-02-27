@@ -636,6 +636,12 @@ export function findLinkForCall(
     if (edge4) {
       return edge4;
     }
+
+    for (const node of allNodes) {
+      if (call.token === node.token && node.nodeType === NodeType.FUNCTION) {
+        return new Edge(nodeA, node);
+      }
+    }
   }
 
   return null;
