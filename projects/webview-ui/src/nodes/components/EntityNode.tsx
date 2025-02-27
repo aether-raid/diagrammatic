@@ -21,7 +21,7 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
       ? { nodeId: id, rowId: hoveredRow }
       : undefined
     );
-  }, [hoveredRow, data, id])
+  }, [hoveredRow, id])
 
   return (
     <div className='custom__node entity-node'>
