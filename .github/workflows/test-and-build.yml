@@ -42,15 +42,14 @@ jobs:
 
             - name: Deploy on Visual Studio Marketplace
               run: |
-                - |
-                  COMMIT_MSG=$(git log -1 --pretty=%B)
-                  if [[ "$COMMIT_MSG" == *"#major"* ]]; then
-                    VERSION_BUMP=major
-                  elif [[ "$COMMIT_MSG" == *"#minor"* ]]; then
-                    VERSION_BUMP=minor
-                  else
-                    VERSION_BUMP=patch
-                  fi
-                  vsce publish $VERSION_BUMP
+                COMMIT_MSG=$(git log -1 --pretty=%B)
+                if [[ "$COMMIT_MSG" == *"#major"* ]]; then
+                  VERSION_BUMP=major
+                elif [[ "$COMMIT_MSG" == *"#minor"* ]]; then
+                  VERSION_BUMP=minor
+                else
+                  VERSION_BUMP=patch
+                fi
+                vsce publish $VERSION_BUMP
               env:
                 VSCE_PAT: ${{ secrets.VSCE_PAT }}
