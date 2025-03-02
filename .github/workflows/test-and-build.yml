@@ -50,6 +50,6 @@ jobs:
                 else
                   VERSION_BUMP=patch
                 fi
-                vsce publish $VERSION_BUMP
+                npx vsce publish $VERSION_BUMP
               env:
                 VSCE_PAT: ${{ secrets.VSCE_PAT }}
