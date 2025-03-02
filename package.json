@@ -65,7 +65,8 @@
     "watch:typecheck": "concurrently \"tsc -b --watch ./\" \"tsc -b --watch ./projects/webview-ui\"",
     "watch:ext": "node esbuild.js --watch",
     "watch:react": "vite build --watch",
-    "watch": "npm run prebuild && concurrently \"npm run watch:typecheck\" \"npm run watch:ext\" \"npm run watch:react\""
+    "watch": "npm run prebuild && concurrently \"npm run watch:typecheck\" \"npm run watch:ext\" \"npm run watch:react\"",
+    "deploy": "vsce publish --yarn"
   },
   "devDependencies": {
     "@types/chai": "^5.0.1",
@@ -109,6 +110,7 @@
     "@xyflow/react": "^12.3.6",
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
+    "diagrammatic": "file:",
     "dotenv": "^16.4.7",
     "eslint": "^9.19.0",
     "eslint-plugin-security": "^3.0.1",
