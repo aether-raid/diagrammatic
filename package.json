@@ -67,7 +67,7 @@
     "watch:ext": "node esbuild.js --watch",
     "watch:react": "vite build --watch",
     "watch": "npm run prebuild && concurrently \"npm run watch:typecheck\" \"npm run watch:ext\" \"npm run watch:react\"",
-    "deploy": "vsce publish --yarn"
+    "deploy": "vsce publish"
   },
   "devDependencies": {
     "@types/chai": "^5.0.1",
