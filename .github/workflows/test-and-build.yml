@@ -1,13 +1,5 @@
 name: Test and Build
 
-on:
-    push:
-        branches:
-            - "*"
-    # pull_request:
-    #   branches:
-    #     - '*'
-
 jobs:
     test:
         runs-on: ubuntu-latest
@@ -27,5 +19,23 @@ jobs:
             - name: Run tests
               run: npm test
 
-            - name: Compile and build
-              run: npm run build
+    deploy:
+        runs-on: ubuntu-latest
+        if: github.ref == 'refs/heads/master'
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20.x"
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Deploy on Visual Studio Marketplace
+              run: npm run deploy
+              env:
+                VSCE_PAT: ${{ secrets.VSCE_PAT }}
