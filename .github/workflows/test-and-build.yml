@@ -59,9 +59,14 @@ jobs:
                   VERSION_BUMP=patch
                 fi
 
-                # Force version increment regardless of package.json
-                npm version $VERSION_BUMP --no-git-tag-version
+                # Force version increment in package.json
+                npm version $VERSION_BUMP --no-git-tag-version --force
                 
-                npx vsce publish $VERSION_BUMP
+                # Get the new version from package.json after the increment
+                NEW_VERSION=$(node -p "require('./package.json').version")
+                
+                # Publish using the exact version, not a bump type
+                npx vsce publish $NEW_VERSION
+    
               env:
                 VSCE_PAT: ${{ secrets.VSCE_PAT }}
