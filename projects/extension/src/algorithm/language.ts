@@ -99,7 +99,9 @@ export class Language {
     token: string,
     variables: Variable[]
   ) {
-    if (token !== "constructor") return;
+    if (token !== "constructor") {
+      return;
+    }
     /**
      * For NestJS, convert constructor arguments to variables.
      * e.g. constructor(private readonly articleService: ArticleService) {}
@@ -108,7 +110,9 @@ export class Language {
      */
 
     const parameters = tree.childForFieldName("parameters");
-    if (!parameters) return;
+    if (!parameters) {
+      return;
+    }
 
     const requiredParameters = getAllChildrenOfType(
       parameters,
@@ -135,14 +139,20 @@ export class Language {
      * Variable(token=service, pointsTo=VenueService)
      * Since VenueService is a string, we need to resolve it to the actual Class node later.
      */
-    if (tree.type !== "field_declaration") return;
+    if (tree.type !== "field_declaration") {
+      return;
+    }
 
     const typeIdentifier = tree.childForFieldName("type");
     const variableDeclarator = tree.childForFieldName("declarator");
-    if (!variableDeclarator) return;
+    if (!variableDeclarator) {
+      return;
+    }
 
     const identifier = variableDeclarator.childForFieldName("name");
-    if (!identifier || !typeIdentifier) return;
+    if (!identifier || !typeIdentifier) {
+      return;
+    }
 
     variables.push(
       new Variable({
