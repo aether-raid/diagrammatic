@@ -61,7 +61,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
     setMatchedNodes(matches);
     setCurrentMatchIndex(-1); // Handled & reset to 0 by the useEffect for currentMatchIndex below
-  }, [nodes, searchInput]);
+  }, [searchInput]);
 
   // Navigate to the previous match in the list
   const jumpToPrevMatch = useCallback(() => {

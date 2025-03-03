@@ -8,8 +8,7 @@ on:
       types: [opened, synchronize, reopened]
 
 jobs:
-  build:
-    name: Build
+  sonarqube-scan:
     runs-on: ubuntu-latest
     permissions: read-all
     steps:

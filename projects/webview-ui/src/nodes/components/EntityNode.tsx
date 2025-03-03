@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { Handle, NodeProps, Position } from "@xyflow/react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 
+import { Handle, NodeProps, Position } from "@xyflow/react";
+
 import { type EntityNode as EntityNodeType } from "@shared/node.types";
-import DangerousRoundedIcon from '@mui/icons-material/DangerousRounded';
-import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 
 import { EntityNodeItem } from "./EntityNodeItem";
+import { NodeSecurityBanner } from "./NodeSecurityBanner";
+
 
 export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
   const [hoveredRow, setHoveredRow] = useState<string|undefined>('');
@@ -20,7 +21,7 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
       ? { nodeId: id, rowId: hoveredRow }
       : undefined
     );
-  }, [hoveredRow])
+  }, [hoveredRow, id])
 
   return (
     <div className='custom__node entity-node'>
@@ -36,23 +37,14 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
       >
         <div className={`d-flex flex-column rounded-top entity__${data.entityType}`}>
           <div className="py-2">
-            <p className="fs-7">{ data.entityType }</p>
+            <p className="fs-8">{ data.entityType }</p>
             <p className="fw-bold">
               <span className={data.matchesSearchTerm ? "bg-highlighter text-black" : ""}>
                 { data.entityName }
               </span>
             </p>
           </div>
-          <div className="d-flex justify-content-evenly bg-warning-subtle">
-            <div className="text-warning">
-              <WarningRoundedIcon fontSize="small" />
-              <span className="align-middle">5</span>
-            </div>
-            <div className="text-danger">
-              <DangerousRoundedIcon fontSize="small" />
-              <span className="align-middle">5</span>
-            </div>
-          </div>
+          <NodeSecurityBanner security={data.security}/>
         </div>
       </OverlayTrigger>
 

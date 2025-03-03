@@ -7,7 +7,10 @@ import {
 
 import { runCodeToDiagramAlgorithm } from "./runCodeToDiagramAlgorithm";
 import { NodeEdgeData } from "./extension.types";
-import { sendAcceptNodeEdgeMessageToWebview, sendAcceptCompNodeEdgeMessageToWebview } from "./messageHandler";
+import {
+  sendAcceptNodeEdgeMessageToWebview,
+  sendAcceptCompNodeEdgeMessageToWebview,
+} from "./messageHandler";
 import { runNodeDescriptionsAlgorithm } from "./runNodeDescriptionsAlgorithm";
 import { runCodeLinting } from "./runCodeLinting";
 import { getComponentDiagram } from "./runComponentDiagramAlgorithm";
@@ -35,7 +38,7 @@ const handleShowMVCDiagram = async (
   }
 
   // C4 Level 3 diagram
-  const componentNodesEdges = await getComponentDiagram(nodeEdgeData)
+  const componentNodesEdges = await getComponentDiagram(nodeEdgeData);
 
   panel = setupWebviewPanel(context);
   runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData).then(
@@ -45,28 +48,30 @@ const handleShowMVCDiagram = async (
     }
   );
   const waitWebviewReady: Promise<void> = new Promise((resolve) => {
-    panel.webview.onDidReceiveMessage(async (message: WebviewCommandMessage) => {
-      switch (message.command) {
-        case Commands.READY:
-          sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
-          sendAcceptCompNodeEdgeMessageToWebview(componentNodesEdges, panel)
-          resolve();
-          break;
-        case Commands.JUMP_TO_LINE:
-          const msg = message.message as JumpToLinePayload;
-          const fileUri = vscode.Uri.file(msg.filePath);
-          const position = new vscode.Position(msg.lineNumber-1, 0);
-          await vscode.commands.executeCommand('vscode.open', fileUri, {
-            selection: new vscode.Range(position, position),
-          });
-          break;
+    panel.webview.onDidReceiveMessage(
+      async (message: WebviewCommandMessage) => {
+        switch (message.command) {
+          case Commands.READY:
+            sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
+            sendAcceptCompNodeEdgeMessageToWebview(componentNodesEdges, panel);
+            resolve();
+            break;
+          case Commands.JUMP_TO_LINE:
+            const msg = message.message as JumpToLinePayload;
+            const fileUri = vscode.Uri.file(msg.filePath);
+            const position = new vscode.Position(msg.lineNumber - 1, 0);
+            await vscode.commands.executeCommand("vscode.open", fileUri, {
+              selection: new vscode.Range(position, position),
+            });
+            break;
+        }
       }
-    });
+    );
   });
 
   await waitWebviewReady;
   sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
-  sendAcceptCompNodeEdgeMessageToWebview(componentNodesEdges, panel)  
+  sendAcceptCompNodeEdgeMessageToWebview(componentNodesEdges, panel);
   return Promise.resolve(panel);
 };
 

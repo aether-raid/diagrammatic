@@ -37,7 +37,8 @@ import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
 import DownloadButton from "./components/DownloadButton";
 import SearchBar from "./components/SearchBar";
 import ComponentButton from "./components/CompButton";
-import NodeInfoPanel from "./components/NodePanel";
+import { NodeInfoPanel } from "./components/NodeInfoPanel/NodeInfoPanel";
+
 
 interface OptionProps {
     direction: string;

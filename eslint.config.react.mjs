@@ -29,11 +29,14 @@ export default [
       ...tsLint.configs["recommended"].rules,
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_" }
+      ],
       "react-refresh/only-export-components": [
         "warn",
         { allowConstantExport: true },
       ],
-
       "react/react-in-jsx-scope": "off",
     },
   },
