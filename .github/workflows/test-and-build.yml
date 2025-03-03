@@ -52,21 +52,19 @@ jobs:
               run: |
                 COMMIT_MSG=$(git log -1 --pretty=%B)
                 if [[ "$COMMIT_MSG" == *"#major"* ]]; then
-                  VERSION_BUMP=major
+                  npm version major --no-git-tag-version --force
                 elif [[ "$COMMIT_MSG" == *"#minor"* ]]; then
-                  VERSION_BUMP=minor
+                  npm version minor --no-git-tag-version --force
                 else
-                  VERSION_BUMP=patch
+                  npm version patch --no-git-tag-version --force
                 fi
+                
+                npx vsce publish
 
-                # Force version increment in package.json
-                npm version $VERSION_BUMP --no-git-tag-version --force
-                
-                # Get the new version from package.json after the increment
-                NEW_VERSION=$(node -p "require('./package.json').version")
-                
-                # Publish using the exact version, not a bump type
-                npx vsce publish $NEW_VERSION
-    
+                # Commit the version change back to the repository
+                git add package.json
+                git commit -m "Bump version [skip ci]"
+                git push
               env:
                 VSCE_PAT: ${{ secrets.VSCE_PAT }}
+                GITHUB_TOKEN: ${{ github.token }}
