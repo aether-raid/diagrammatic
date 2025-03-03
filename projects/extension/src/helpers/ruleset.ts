@@ -11,7 +11,9 @@ const getDefaultRulesetPath = () => {
   )!;
   const path = `${extension.extensionPath}\\config\\default-rules.json`;
 
-  if (!path || !existsSync(path)) return;
+  if (!path || !existsSync(path)) {
+    return;
+  }
   return path;
 };
 
@@ -22,7 +24,10 @@ export const retrieveRuleset = () => {
       `No ruleset file was found at '${rulesetPath}'. Using default rules.`
     );
     rulesetPath = getDefaultRulesetPath();
-    if (!rulesetPath) return; // Oh no, someone messed with default-rules.json :(
+    if (!rulesetPath) {
+      // Oh no, someone messed with default-rules.json :(
+      return;
+    }
   }
 
   return RuleEngine.loadRules(rulesetPath);

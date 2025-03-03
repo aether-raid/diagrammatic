@@ -596,6 +596,14 @@ function findLinkForCallImportStatement(
   }
 }
 
+function findLinkForCallFunction(call: Call, nodeA: Node, allNodes: Node[]) {
+  for (const node of allNodes) {
+    if (call.token === node.token && node.nodeType === NodeType.FUNCTION) {
+      return new Edge(nodeA, node);
+    }
+  }
+}
+
 /**
  * Find the Node that the Call is related to.
  * Create an Edge between the 2 Nodes.
@@ -636,11 +644,9 @@ export function findLinkForCall(
     if (edge4) {
       return edge4;
     }
-
-    for (const node of allNodes) {
-      if (call.token === node.token && node.nodeType === NodeType.FUNCTION) {
-        return new Edge(nodeA, node);
-      }
+    const edge5 = findLinkForCallFunction(call, nodeA, allNodes);
+    if (edge5) {
+      return edge5;
     }
   }
 
