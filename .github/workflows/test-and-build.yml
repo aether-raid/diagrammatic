@@ -58,6 +58,10 @@ jobs:
                 else
                   VERSION_BUMP=patch
                 fi
+
+                # Force version increment regardless of package.json
+                npm version $VERSION_BUMP --no-git-tag-version
+                
                 npx vsce publish $VERSION_BUMP
               env:
                 VSCE_PAT: ${{ secrets.VSCE_PAT }}
