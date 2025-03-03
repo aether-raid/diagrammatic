@@ -16,7 +16,7 @@ import { CompEdge } from "@shared/compEdge.types";
 import { AcceptCompNodeEdgeDataPayload, Commands, WebviewCommandMessage, } from "@shared/message.types";
 import { initialCompNodes, nodeTypes } from "./nodes";
 import { initialCompEdges } from "./edges";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import HomeButton from "./components/HomeButton";
 import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
 import DownloadButton from "./components/DownloadButton";
@@ -64,9 +64,32 @@ const LayoutFlow = () => {
     const { fitView } = useReactFlow<CompNode, CompEdge>();
     const [nodes, setNodes, onNodesChange] = useNodesState(initialCompNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialCompEdges);
-
+    // Hover Highlighting states
+    const [highlightedNodes, setHighlightedNodes] = useState<string[]>([]);
+    const [highlightedEdges, setHighlightedEdges] = useState<string[]>([]);
     const MIN_ZOOM = 0.1;
     const MAX_ZOOM = 2;
+
+    const onEdgeMouseEnter = (event: React.MouseEvent, edgeId: string) => {
+        setHighlightedEdges([edgeId]);
+    };
+    const onEdgeMouseLeave = () => {
+        setHighlightedEdges([]);
+    };
+    const onNodeMouseEnter = (event: React.MouseEvent, nodeId: string) => {
+        // Find edges connected to this node
+        const relatedEdges = edges.filter(edge => edge.source === nodeId || edge.target === nodeId)
+                                  .map(edge => edge.id);
+    
+        setHighlightedNodes([nodeId]);  // Highlight the hovered node
+        setHighlightedEdges(relatedEdges); // Highlight connected edges
+    };
+    
+    const onNodeMouseLeave = () => {
+        setHighlightedNodes([]);
+        setHighlightedEdges([]);
+    };
+    
 
     useEffect(() => {
             // Setup message listener
@@ -127,10 +150,14 @@ const LayoutFlow = () => {
                 data: {
                     ...node.data,
                 },
+                style: {border: highlightedNodes.includes(node.id) ? "1px solid greenyellow": "",
+                        borderRadius: highlightedNodes.includes(node.id) ? "5px": "",
+                }
             };
 
     const prepareEdge = (edge: CompEdge) => ({
         ...edge,
+        className: highlightedEdges.includes(edge.id) ? "highlighted-edge" : ""
     });
 
     return (
@@ -140,6 +167,10 @@ const LayoutFlow = () => {
             edges={edges.map((e) => prepareEdge(e))}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
+            onEdgeMouseEnter={(event, edge) => onEdgeMouseEnter(event, edge.id)}
+            onEdgeMouseLeave={onEdgeMouseLeave}
+            onNodeMouseEnter={(event, node) => onNodeMouseEnter(event, node.id)}
+            onNodeMouseLeave={onNodeMouseLeave}
             fitView
             colorMode="dark"
             minZoom={MIN_ZOOM}
