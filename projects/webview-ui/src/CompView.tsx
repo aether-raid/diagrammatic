@@ -20,7 +20,7 @@ import {
 } from "@shared/message.types";
 import { initialCompNodes, nodeTypes } from "./nodes";
 import { initialCompEdges } from "./edges";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import HomeButton from "./components/HomeButton";
 import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
 import DownloadButton from "./components/DownloadButton";
