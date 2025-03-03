@@ -43,21 +43,28 @@ jobs:
             - name: Install dependencies
               run: npm install
 
+            - name: Set Git Identity
+              run: |
+                git config --global user.email "github-actions@github.com"
+                git config --global user.name "GitHub Actions"
+
             - name: Deploy on Visual Studio Marketplace
               run: |
-                # Get the current version from package.json
-                CURRENT_VERSION=$(node -p "require('./package.json').version")
+                COMMIT_MSG=$(git log -1 --pretty=%B)
+                if [[ "$COMMIT_MSG" == *"#major"* ]]; then
+                  npm version major --no-git-tag-version --force
+                elif [[ "$COMMIT_MSG" == *"#minor"* ]]; then
+                  npm version minor --no-git-tag-version --force
+                else
+                  npm version patch --no-git-tag-version --force
+                fi
                 
-                # Split version into major.minor components
-                VERSION_PREFIX=$(echo $CURRENT_VERSION | cut -d. -f1-2)
-                
-                # Create new version with commit SHA as patch version
-                NEW_VERSION="${VERSION_PREFIX}.${{ github.sha }}"
-                
-                # Update package.json with the new version
-                npm version $NEW_VERSION --no-git-tag-version --force
-                
-                # Publish with the updated version
                 npx vsce publish
+
+                # Commit the version change back to the repository
+                git add package.json
+                git commit -m "[GitHub Actions] Bump version"
+                git push
               env:
                 VSCE_PAT: ${{ secrets.VSCE_PAT }}
+                GITHUB_TOKEN: ${{ github.token }}
