@@ -1,6 +1,11 @@
 import { AppNode } from "@shared/node.types";
-import { lintFile } from "./code-quality/linting";
+import { getDiagnosticsFromFile } from "./code-quality/linting";
 import { serializeDiagnostics } from "./code-quality/linting/helpers";
+import path from 'path';
+import * as vscode from "vscode";
+import { hasLinter } from "./code-quality/linters/index";
+import { linters, SupportedLanguages } from "./code-quality/linters/definitions";
+import { SerializedDiagnostic } from "@shared/vscode.types";
 
 
 export const runCodeLinting = async (inputNodes: AppNode[]): Promise<{
@@ -8,49 +13,87 @@ export const runCodeLinting = async (inputNodes: AppNode[]): Promise<{
     hasIssues: boolean,
 }> => {
     const nodes = structuredClone(inputNodes);
-
-    // console.log("node edge data before linting:", nodeEdgeData);
-    // console.log("single node edge data before linting:", nodes[0]);
-
     let hasIssues = false;
+    const seenExtension =  new Set<string>();
+    const workspacePath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+    const promises: Promise<void>[] = [];
+    if (!workspacePath) { return { lintedNodes: nodes, hasIssues}};
+
+// this loop gets the diagnostics for each file and puts the promises in an array
     for (let node of nodes){
+// fields must exist
         if (!('entityName' in node.data) || !('filePath' in node.data)) { continue; }
-
         const { filePath, entityType } = node.data;
-        if (entityType !== 'file' ||!filePath) { continue; }
+// only lint files
+        if (entityType !== 'file' || !filePath) { continue; }
+// check if file is supported
+        const ext = path.extname(filePath).toLowerCase().replace('.', '') as string;
+        if (!(ext in SupportedLanguages)) { continue; }
+        const casted_ext = ext as keyof typeof SupportedLanguages;
+        const linter = linters[casted_ext];
 
-        const { diagnostics } = await lintFile(filePath);
-        if (!diagnostics) { continue; }
+        const promise = getDiagnosticsFromFile(linter, filePath)
+            .then(({diagnostics}) => {
+                if (!diagnostics || !Array.isArray(diagnostics)) { 
+                    return []; 
+                }
+                console.log("before serialise:", diagnostics);
 
-        const serializedDiagnostics = diagnostics.map(diag => serializeDiagnostics(diag));
+                return diagnostics.map(diag => serializeDiagnostics(diag));
+            })
+            .then((diagnostics) => {
+                if (!diagnostics) { return {}; }
+                
+                const security : {
+                    clean: SerializedDiagnostic[],
+                    vulnerability: SerializedDiagnostic[],
+                    extras: SerializedDiagnostic[]
+                } = { clean: [], vulnerability: [], extras: [] };
 
-        // Initialize the security object in data
-        node.data.security = node.data.security ?? {};
-        node.data.security.clean = node.data.security.clean ?? [];
-        node.data.security.vulnerability = node.data.security.vulnerability ?? [];
-        node.data.security.extras = node.data.security.extras ?? [];
-
-        for (const diag of serializedDiagnostics){
-            switch (diag.source) {
-                case "Group: clean-code":
-                    node.data.security.clean.push(diag);
-                    break;
-                case "Group: security":
-                    node.data.security.vulnerability.push(diag);
-                    break;
-                default:
-                    node.data.security.extras.push(diag);
-                    break;
-            }
-        }
-        hasIssues = true;
+                for (const diag of diagnostics){
+                    switch (diag.source) {
+                        case "Group: clean-code":
+                            security.clean.push(diag);
+                            break;
+                        case "Group: security":
+                            security.vulnerability.push(diag);
+                            break;
+                        default:
+                            security.extras.push(diag);
+                            break;
+                    }
+                }
+                return security;
+            })
+            .then((security) => {
+                if (Object.keys(security).length < 1) {
+                    return;
+                }
+                node.data = {...node.data, security: security};
+                hasIssues = true;
+            })
+        promises.push(promise);
     }
-
+    await Promise.allSettled(promises)
     console.log("node edge data after linting:", nodes);
-    // console.log("single node edge data after linting:", nodes[0]);
-
     return {
         lintedNodes: nodes,
         hasIssues: hasIssues
     };
 };
+
+
+// // if file seen before, continue, else check if linter installed
+//         if (!seenExtension.has(casted_ext)){
+//             if(!hasLinter(workspacePath, casted_ext)){
+// // if we dont have permission to install linter, return
+//             // if (!promptInstallLinter(ext)){
+//             //     vscode.window.showErrorMessage(`Require Linter for ${ext} files`);
+//             //     return {
+//             //         lintedNodes: inputNodes,
+//             //         hasIssues: false
+//             //     };
+//             // };
+//             }
+//             seenExtension.add(ext);
+//         }

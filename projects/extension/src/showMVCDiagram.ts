@@ -21,7 +21,7 @@ const handleShowMVCDiagram = async (
 
   // Tree-sitter Structure & LLM Descriptions
   let nodeEdgeData: NodeEdgeData = runCodeToDiagramAlgorithm(filePath);
-  nodeEdgeData.nodes = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData);
+//   nodeEdgeData.nodes = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData);
 
   // Linting & security
   const { lintedNodes, hasIssues } = await runCodeLinting(nodeEdgeData.nodes);
@@ -31,7 +31,7 @@ const handleShowMVCDiagram = async (
   }
 
   // C4 Level 3 diagram?
-  const componentNodeEdge = await getComponentDiagram(nodeEdgeData)
+//   const componentNodeEdge = await getComponentDiagram(nodeEdgeData)
 
   panel = setupWebviewPanel(context);
   const waitWebviewReady: Promise<void> = new Promise((resolve) => {

@@ -36,3 +36,4 @@ export type EntityNode = Node<
 export type TextUpdaterNode = Node<{}, "textUpdater">;
 
 export type AppNode = BuiltInNode | TextUpdaterNode | EntityNode;
+
