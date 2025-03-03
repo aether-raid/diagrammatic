@@ -13,7 +13,11 @@ import {
 } from "@xyflow/react";
 import { CompNode } from "@shared/compNode.types";
 import { CompEdge } from "@shared/compEdge.types";
-import { AcceptCompNodeEdgeDataPayload, Commands, WebviewCommandMessage, } from "@shared/message.types";
+import {
+    AcceptCompNodeEdgeDataPayload,
+    Commands,
+    WebviewCommandMessage,
+} from "@shared/message.types";
 import { initialCompNodes, nodeTypes } from "./nodes";
 import { initialCompEdges } from "./edges";
 import { useCallback, useEffect, useState } from "react";
@@ -58,7 +62,7 @@ const getLayoutedElements = (
         }),
         edges,
     };
-}
+};
 
 const LayoutFlow = () => {
     const { fitView } = useReactFlow<CompNode, CompEdge>();
@@ -70,62 +74,60 @@ const LayoutFlow = () => {
     const MIN_ZOOM = 0.1;
     const MAX_ZOOM = 2;
 
-    const onEdgeMouseEnter = (event: React.MouseEvent, edgeId: string) => {
+    const onEdgeMouseEnter = (_event: React.MouseEvent, edgeId: string) => {
         setHighlightedEdges([edgeId]);
     };
     const onEdgeMouseLeave = () => {
         setHighlightedEdges([]);
     };
-    const onNodeMouseEnter = (event: React.MouseEvent, nodeId: string) => {
+    const onNodeMouseEnter = (_event: React.MouseEvent, nodeId: string) => {
         // Find edges connected to this node
-        const relatedEdges = edges.filter(edge => edge.source === nodeId || edge.target === nodeId)
-                                  .map(edge => edge.id);
-    
-        setHighlightedNodes([nodeId]);  // Highlight the hovered node
+        const relatedEdges = edges
+            .filter((edge) => edge.source === nodeId || edge.target === nodeId)
+            .map((edge) => edge.id);
+
+        setHighlightedNodes([nodeId]); // Highlight the hovered node
         setHighlightedEdges(relatedEdges); // Highlight connected edges
     };
-    
+
     const onNodeMouseLeave = () => {
         setHighlightedNodes([]);
         setHighlightedEdges([]);
     };
-    
 
     useEffect(() => {
-            // Setup message listener
-            const onMessage = (event: MessageEvent<WebviewCommandMessage>) => {
-                const { command, message } = event.data;
-                // TODO: Refactor this into a non switch-case if possible
-                switch (command) {
-                    case Commands.COMPONENT_DIAGRAM: {
-                        const msg = message as AcceptCompNodeEdgeDataPayload;
-                        setNodes(msg.compNodes);
-                        setEdges(msg.compEdges);
-                        break;
-                    }
-                }
-            };
-    
-            window.addEventListener("message", onMessage);
-           
-            try {
-                sendReadyMessageToExtension();
-            } catch (error) {
-                if (
-                    (error as Error).message !==
-                    "acquireVsCodeApi is not defined"
-                ) {
-                    // Only catch the above error, throw all else
-                    throw error;
+        // Setup message listener
+        const onMessage = (event: MessageEvent<WebviewCommandMessage>) => {
+            const { command, message } = event.data;
+            // TODO: Refactor this into a non switch-case if possible
+            switch (command) {
+                case Commands.COMPONENT_DIAGRAM: {
+                    const msg = message as AcceptCompNodeEdgeDataPayload;
+                    setNodes(msg.compNodes);
+                    setEdges(msg.compEdges);
+                    break;
                 }
             }
-      
-    
-            return () => {
-                // Remove event listener on component unmount
-                window.removeEventListener("message", onMessage);
-            };
-        }, []);
+        };
+
+        window.addEventListener("message", onMessage);
+
+        try {
+            sendReadyMessageToExtension();
+        } catch (error) {
+            if (
+                (error as Error).message !== "acquireVsCodeApi is not defined"
+            ) {
+                // Only catch the above error, throw all else
+                throw error;
+            }
+        }
+
+        return () => {
+            // Remove event listener on component unmount
+            window.removeEventListener("message", onMessage);
+        };
+    }, []);
 
     const onLayout = useCallback(
         (direction: string) => {
@@ -146,18 +148,23 @@ const LayoutFlow = () => {
         node.type !== "comp"
             ? node
             : {
-                ...node,
-                data: {
-                    ...node.data,
-                },
-                style: {border: highlightedNodes.includes(node.id) ? "1px solid greenyellow": "",
-                        borderRadius: highlightedNodes.includes(node.id) ? "5px": "",
-                }
-            };
+                  ...node,
+                  data: {
+                      ...node.data,
+                  },
+                  style: {
+                      border: highlightedNodes.includes(node.id)
+                          ? "1px solid greenyellow"
+                          : "",
+                      borderRadius: highlightedNodes.includes(node.id)
+                          ? "5px"
+                          : "",
+                  },
+              };
 
     const prepareEdge = (edge: CompEdge) => ({
         ...edge,
-        className: highlightedEdges.includes(edge.id) ? "highlighted-edge" : ""
+        className: highlightedEdges.includes(edge.id) ? "highlighted-edge" : "",
     });
 
     return (
@@ -177,9 +184,7 @@ const LayoutFlow = () => {
             maxZoom={MAX_ZOOM}
         >
             <Panel position="top-center">
-                <button onClick={() => onLayout("TB")}>
-                    Vertical Layout
-                </button>
+                <button onClick={() => onLayout("TB")}>Vertical Layout</button>
                 <button onClick={() => onLayout("LR")}>
                     Horizontal Layout
                 </button>
@@ -196,9 +201,9 @@ const LayoutFlow = () => {
 const CompView = () => {
     return (
         <ReactFlowProvider>
-            <LayoutFlow/>
+            <LayoutFlow />
         </ReactFlowProvider>
-    )
-}
+    );
+};
 
 export default CompView;
