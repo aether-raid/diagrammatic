@@ -58,13 +58,13 @@ jobs:
                 else
                   npm version patch --no-git-tag-version --force
                 fi
+
+                # Commit the version change to the repository
+                git add package.json
+                git commit -m "[GitHub Actions] Modified app version on package.json"
+                git push
                 
                 npx vsce publish
-
-                # Commit the version change back to the repository
-                git add package.json
-                git commit -m "[GitHub Actions] Bump version"
-                git push
               env:
                 VSCE_PAT: ${{ secrets.VSCE_PAT }}
-                GITHUB_TOKEN: ${{ github.token }}
+                GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
