@@ -43,11 +43,6 @@ jobs:
             - name: Install dependencies
               run: npm install
 
-            - name: Set Git Identity
-              run: |
-                git config --global user.email "github-actions@github.com"
-                git config --global user.name "GitHub Actions"
-
             - name: Deploy on Visual Studio Marketplace
               run: |
                 COMMIT_MSG=$(git log -1 --pretty=%B)
@@ -60,8 +55,11 @@ jobs:
                 fi
 
                 # Commit the version change to the repository
+                git config --global user.email "github-actions@github.com"
+                git config --global user.name "GitHub Actions"
                 git add package.json
                 git commit -m "[GitHub Actions] Modified app version on package.json"
+                git remote set-url origin https://${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/kahliya/diagrammatic.git
                 git push
                 
                 npx vsce publish
