@@ -191,8 +191,12 @@ const LayoutFlow = () => {
             </Panel>
             <MiniMap />
             <Controls />
-            <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
-            <HomeButton />
+            <Panel position="top-right">
+                <div className="d-flex flex-column gap-2">
+                    <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
+                    <HomeButton />
+                </div>
+            </Panel>
             <Background />
         </ReactFlow>
     );
