@@ -30,6 +30,11 @@
         "category": "Diagrammatic"
       },
       {
+        "command": "diagrammatic.testRunScript",
+        "title": "Test Run Script",
+        "category": "Diagrammatic"
+      },
+      {
         "command": "diagrammatic.codeQa",
         "title": "Lint open file",
         "category": "Diagrammatic"

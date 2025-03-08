@@ -5,6 +5,7 @@ import * as vscode from "vscode";
 import handleShowMVCDiagram from "./showMVCDiagram";
 import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
 import { GLOBALS } from "./globals";
+import { exec, spawn } from "child_process";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed

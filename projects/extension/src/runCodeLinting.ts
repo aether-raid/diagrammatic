@@ -3,8 +3,7 @@ import { getDiagnosticsFromFile } from "./code-quality/linting";
 import { serializeDiagnostics } from "./code-quality/linting/helpers";
 import path from 'path';
 import * as vscode from "vscode";
-import { hasLinter } from "./code-quality/linters/index";
-import { linters, SupportedLanguages } from "./code-quality/linters/definitions";
+import { Linters, SupportedLanguages } from "./code-quality/linters/definitions";
 import { SerializedDiagnostic } from "@shared/vscode.types";
 
 
@@ -30,14 +29,17 @@ export const runCodeLinting = async (inputNodes: AppNode[]): Promise<{
         const ext = path.extname(filePath).toLowerCase().replace('.', '') as string;
         if (!(ext in SupportedLanguages)) { continue; }
         const casted_ext = ext as keyof typeof SupportedLanguages;
-        const linter = linters[casted_ext];
+        const linter = Linters[casted_ext];
+        const extension = vscode.extensions.getExtension('diagrammatic.diagrammatic')!;
+        const configFilePath = `${extension.extensionPath}\\config\\linting-configs\\eslint.config.mjs`
 
-        const promise = getDiagnosticsFromFile(linter, filePath)
+
+        const promise = getDiagnosticsFromFile(linter, filePath, configFilePath)
             .then(({diagnostics}) => {
                 if (!diagnostics || !Array.isArray(diagnostics)) { 
                     return []; 
                 }
-                console.log("before serialise:", diagnostics);
+                // console.log("before serialise:", diagnostics);
 
                 return diagnostics.map(diag => serializeDiagnostics(diag));
             })
@@ -81,19 +83,3 @@ export const runCodeLinting = async (inputNodes: AppNode[]): Promise<{
         hasIssues: hasIssues
     };
 };
-
-
-// // if file seen before, continue, else check if linter installed
-//         if (!seenExtension.has(casted_ext)){
-//             if(!hasLinter(workspacePath, casted_ext)){
-// // if we dont have permission to install linter, return
-//             // if (!promptInstallLinter(ext)){
-//             //     vscode.window.showErrorMessage(`Require Linter for ${ext} files`);
-//             //     return {
-//             //         lintedNodes: inputNodes,
-//             //         hasIssues: false
-//             //     };
-//             // };
-//             }
-//             seenExtension.add(ext);
-//         }

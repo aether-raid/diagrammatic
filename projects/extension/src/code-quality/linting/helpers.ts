@@ -1,13 +1,13 @@
 import * as vscode from 'vscode';
 import { Linter } from "eslint";
-
 import { DiagnosticSeverityEnum, SerializedDiagnostic } from '@shared/vscode.types';
-
 import { BLACKLISTED_SOURCES, WHITELISTED_SOURCES } from './definitions';
+import type{ CppLintResult, CppLintMessage } from '../linters/definitions';
 
-export const getDiagnostics = (messages: Linter.LintMessage[]) => {
+export const getDiagnostics = (messages: Linter.LintMessage[] | CppLintMessage[]) => {
     const diagnostics: vscode.Diagnostic[] = [];
     messages.forEach((msg) => {
+        console.log("msg:", msg);
         if (!msg.ruleId){
             return;
         }
@@ -54,3 +54,27 @@ const filterSources = (ruleId: string) => {
     }
     return source;
 };
+
+
+export const processCpplintOutput = (output: string): CppLintResult[] =>  {
+    // (cpp filename):(line number): message [category] [column number]
+    const regex = /(.+\.cpp):(\d+):\s+(.+)\s\[(.+)\]\s+\[(\d+)\]/g;
+    let match;
+    let filePath = "";
+    const diagnostics:CppLintMessage[] = [];
+    while ((match = regex.exec(output)) !== null) {
+        const [_,file, line, message, messageId, column] = match;
+        filePath = file;
+        diagnostics.push({
+            // 1 based index
+            line: parseInt(line, 10) + 1,
+            messageId: messageId,
+            message,
+            column: parseInt(column, 10),
+            ruleId: messageId,
+            // warning: 1, error: 2
+            severity: 1
+        });
+    }
+    return [{ filePath, messages: diagnostics }];
+}
