@@ -36,34 +36,23 @@ export const lintFileES = (filePath:string, configFilePath:string): Promise<ESLi
 
 export const lintFileCpp = (filePath:string, configFilePath:string): Promise<string> => {
     return new Promise((resolve, reject) => {
-        const extension = vscode.extensions.getExtension('diagrammatic.diagrammatic')!;
-        const scriptPath = `${extension.extensionPath}\\config\\linting-configs\\cpplint.py`
-        let output = "";
-        const pythonProcess = spawn("python", [scriptPath, filePath], { shell: true })
-        pythonProcess.stderr.on("data", (data) => {
-            output += data.toString()
-        });
-        pythonProcess.stderr.on("end", () => {
-            resolve(output)
-        })
+        try{
+            const extension = vscode.extensions.getExtension('diagrammatic.diagrammatic')!;
+            const linterPath = `${extension.extensionPath}\\config\\linters\\cpplint.exe`
+            let output = "";
+            const pythonProcess = spawn(linterPath, [filePath])
+            pythonProcess.stderr.on("data", (data) => {
+                output += data.toString()
+            });
+            pythonProcess.stderr.on("end", () => {
+                resolve(output)
+            })
+        }catch(error){
+            if (error instanceof Error){
+                reject("Error running cpplint, error: " + error.message);
+                vscode.window.showErrorMessage(`Error running cpplint: ${error.message}`);
+            }
+            console.error(error);
+        }
     })
 }
-
-// const projectRoot = 'c:/Users/bruce/SMU-work/y3/fyp/models/datasets/codebases/juice-shop-goof'; // Adjust as needed
-// process.chdir(projectRoot);  // Change working directory to project root
-// console.log('Current working directory:', process.cwd());
-// console.log('config:', configFilePath);
-// console.log('File to lint:', filePath);
-
-// return new Promise((resolve, reject) => {
-//     exec(`npx ${linter} ${filePath.replace(/\\/g, '/')} --format json --config ${configFilePath.replace(/\\/g, '/')}`
-//         , (error, stdout, stderr) => {
-//     // if (error) {
-//     //     console.error(`Linting error:`, error);
-//     //     console.error(`Linting stderr:`, stderr);
-//     //     reject(stderr || error.message);
-//     // } else {
-//             resolve(JSON.parse(stdout) as LintResult[]);
-//         // }
-//     });
-// });
