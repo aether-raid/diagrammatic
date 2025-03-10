@@ -11,12 +11,19 @@ import {
     useNodesState,
     useReactFlow,
 } from "@xyflow/react";
-import { CompNode } from '@shared/compNode.types';
-import { CompEdge } from '@shared/compEdge.types';
+import { CompNode } from "@shared/compNode.types";
+import { CompEdge } from "@shared/compEdge.types";
+import {
+    AcceptCompNodeEdgeDataPayload,
+    Commands,
+    WebviewCommandMessage,
+} from "@shared/message.types";
 import { initialCompNodes, nodeTypes } from "./nodes";
 import { initialCompEdges } from "./edges";
-import { useCallback } from "react";
-// import HomeButton from "./buttons/HomeButton";
+import React, { useCallback, useEffect, useState } from "react";
+import HomeButton from "./components/HomeButton";
+import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
+import DownloadButton from "./components/DownloadButton";
 
 interface OptionProps {
     direction: string;
@@ -28,6 +35,7 @@ const getLayoutedElements = (
     options: OptionProps
 ) => {
     const g = new Dagre.graphlib.Graph();
+    g.setDefaultEdgeLabel(() => ({}));
     g.setGraph({ rankdir: options.direction });
 
     edges.forEach((edge) => g.setEdge(edge.source, edge.target));
@@ -54,23 +62,75 @@ const getLayoutedElements = (
         }),
         edges,
     };
-}
+};
 
 const LayoutFlow = () => {
     const { fitView } = useReactFlow<CompNode, CompEdge>();
     const [nodes, setNodes, onNodesChange] = useNodesState(initialCompNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialCompEdges);
-
-    console.log("Initial Nodes:", nodes);
-    console.log("Initial Edges:", edges);
-
-
+    // Hover Highlighting states
+    const [highlightedNodes, setHighlightedNodes] = useState<string[]>([]);
+    const [highlightedEdges, setHighlightedEdges] = useState<string[]>([]);
     const MIN_ZOOM = 0.1;
     const MAX_ZOOM = 2;
 
+    const onEdgeMouseEnter = (_event: React.MouseEvent, edgeId: string) => {
+        setHighlightedEdges([edgeId]);
+    };
+    const onEdgeMouseLeave = () => {
+        setHighlightedEdges([]);
+    };
+    const onNodeMouseEnter = (_event: React.MouseEvent, nodeId: string) => {
+        // Find edges connected to this node
+        const relatedEdges = edges
+            .filter((edge) => edge.source === nodeId || edge.target === nodeId)
+            .map((edge) => edge.id);
+
+        setHighlightedNodes([nodeId]); // Highlight the hovered node
+        setHighlightedEdges(relatedEdges); // Highlight connected edges
+    };
+
+    const onNodeMouseLeave = () => {
+        setHighlightedNodes([]);
+        setHighlightedEdges([]);
+    };
+
+    useEffect(() => {
+        // Setup message listener
+        const onMessage = (event: MessageEvent<WebviewCommandMessage>) => {
+            const { command, message } = event.data;
+            // TODO: Refactor this into a non switch-case if possible
+            switch (command) {
+                case Commands.COMPONENT_DIAGRAM: {
+                    const msg = message as AcceptCompNodeEdgeDataPayload;
+                    setNodes(msg.compNodes);
+                    setEdges(msg.compEdges);
+                    break;
+                }
+            }
+        };
+
+        window.addEventListener("message", onMessage);
+
+        try {
+            sendReadyMessageToExtension();
+        } catch (error) {
+            if (
+                (error as Error).message !== "acquireVsCodeApi is not defined"
+            ) {
+                // Only catch the above error, throw all else
+                throw error;
+            }
+        }
+
+        return () => {
+            // Remove event listener on component unmount
+            window.removeEventListener("message", onMessage);
+        };
+    }, []);
+
     const onLayout = useCallback(
         (direction: string) => {
-            console.log(nodes);
             const layouted = getLayoutedElements(nodes, edges, { direction });
 
             setNodes([...layouted.nodes]);
@@ -88,14 +148,23 @@ const LayoutFlow = () => {
         node.type !== "comp"
             ? node
             : {
-                ...node,
-                data: {
-                    ...node.data,
-                },
-            };
+                  ...node,
+                  data: {
+                      ...node.data,
+                  },
+                  style: {
+                      border: highlightedNodes.includes(node.id)
+                          ? "1px solid greenyellow"
+                          : "",
+                      borderRadius: highlightedNodes.includes(node.id)
+                          ? "5px"
+                          : "",
+                  },
+              };
 
     const prepareEdge = (edge: CompEdge) => ({
         ...edge,
+        className: highlightedEdges.includes(edge.id) ? "highlighted-edge" : "",
     });
 
     return (
@@ -105,23 +174,29 @@ const LayoutFlow = () => {
             edges={edges.map((e) => prepareEdge(e))}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
+            onEdgeMouseEnter={(event, edge) => onEdgeMouseEnter(event, edge.id)}
+            onEdgeMouseLeave={onEdgeMouseLeave}
+            onNodeMouseEnter={(event, node) => onNodeMouseEnter(event, node.id)}
+            onNodeMouseLeave={onNodeMouseLeave}
             fitView
             colorMode="dark"
             minZoom={MIN_ZOOM}
             maxZoom={MAX_ZOOM}
         >
             <Panel position="top-center">
-                <button onClick={() => onLayout("TB")}>
-                    Vertical Layout
-                </button>
+                <button onClick={() => onLayout("TB")}>Vertical Layout</button>
                 <button onClick={() => onLayout("LR")}>
                     Horizontal Layout
                 </button>
             </Panel>
             <MiniMap />
             <Controls />
-            {/* <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} /> */}
-            {/* <HomeButton /> TO FIX THIS */}
+            <Panel position="top-right">
+                <div className="d-flex flex-column gap-2">
+                    <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
+                    <HomeButton />
+                </div>
+            </Panel>
             <Background />
         </ReactFlow>
     );
@@ -132,7 +207,7 @@ const CompView = () => {
         <ReactFlowProvider>
             <LayoutFlow />
         </ReactFlowProvider>
-    )
-}
+    );
+};
 
 export default CompView;

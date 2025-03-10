@@ -42,16 +42,25 @@ export class RuleEngine {
       return false;
     }
 
+    if (rule.parent) {
+      const parentNode = node.parent;
+      if (!parentNode || parentNode.type !== rule.parent) {
+        return false;
+      }
+    }
+
     // Recursively check for child rules
     if (rule.child) {
       const field = rule.child.field || null;
       const type = rule.child.type || null;
 
-      const childNode = field
-        ? node.childForFieldName(field)
-        : type
-        ? getFirstChildOfType(node, type)
-        : null;
+      let childNode = null;
+
+      if (field) {
+        childNode = node.childForFieldName(field);
+      } else if (type) {
+        childNode = getFirstChildOfType(node, type);
+      }
 
       if (!childNode || !this.matchNode(childNode, rule.child)) {
         return false;

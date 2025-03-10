@@ -1,4 +1,4 @@
-import { Node, Group } from "./model";
+import { Node, Group, NodeType, Variable, VariableType } from "./model";
 import {
   makeCalls,
   makeLocalVariables,
@@ -7,9 +7,12 @@ import {
   getAllChildrenOfType,
   processConstructorRequiredParameter,
   toGroupTypeIgnoreCase,
+  toNodeTypeIgnoreCase,
 } from "./function";
 import { SyntaxNode } from "tree-sitter";
 import { LanguageRules, RuleEngine } from "./rules";
+
+export const GLOBAL = "(global)";
 
 export class Language {
   /**
@@ -67,11 +70,7 @@ export class Language {
     parent: Group,
     languageRules: LanguageRules
   ) {
-    const {
-      groups,
-      nodes: nodeTrees,
-      body,
-    } = this.separateNamespaces(tree, languageRules);
+    const { nodes: nodeTrees } = this.separateNamespaces(tree, languageRules);
     const matchingGroupRule = languageRules.groups.find(
       (group) => group.type === tree.type
     );
@@ -95,6 +94,76 @@ export class Language {
     return classGroup;
   }
 
+  private static processConstructorInjection(
+    tree: SyntaxNode,
+    token: string,
+    variables: Variable[]
+  ) {
+    if (token !== "constructor") {
+      return;
+    }
+    /**
+     * For NestJS, convert constructor arguments to variables.
+     * e.g. constructor(private readonly articleService: ArticleService) {}
+     * Variable(token=articleService, pointsTo=ArticleService)
+     * Since ArticleService is a string, we need to resolve it to the actual Class node later.
+     */
+
+    const parameters = tree.childForFieldName("parameters");
+    if (!parameters) {
+      return;
+    }
+
+    const requiredParameters = getAllChildrenOfType(
+      parameters,
+      "required_parameter"
+    );
+    for (const parameter of requiredParameters) {
+      if (parameter) {
+        const dependencyInjection =
+          processConstructorRequiredParameter(parameter);
+        if (dependencyInjection) {
+          variables.push(dependencyInjection);
+        }
+      }
+    }
+  }
+
+  private static processFieldDeclaration(
+    tree: SyntaxNode,
+    variables: Variable[]
+  ) {
+    /**
+     * For Java, convert class attributes (field_declarations) to variables.
+     * e.g.  private VenueService service;
+     * Variable(token=service, pointsTo=VenueService)
+     * Since VenueService is a string, we need to resolve it to the actual Class node later.
+     */
+    if (tree.type !== "field_declaration") {
+      return;
+    }
+
+    const typeIdentifier = tree.childForFieldName("type");
+    const variableDeclarator = tree.childForFieldName("declarator");
+    if (!variableDeclarator) {
+      return;
+    }
+
+    const identifier = variableDeclarator.childForFieldName("name");
+    if (!identifier || !typeIdentifier) {
+      return;
+    }
+
+    variables.push(
+      new Variable({
+        token: identifier.text,
+        pointsTo: typeIdentifier.text,
+        lineNumber: getLineNumber(tree),
+        variableType: VariableType.INJECTION,
+      })
+    );
+  }
+
   /**
    * Given an AST of all the lines in a function, create the Node along with the
    * calls and variables internal to it. Also make the nested subnodes
@@ -106,32 +175,20 @@ export class Language {
   ): Node[] {
     const { nodes, body } = this.separateNamespaces(tree, languageRules);
     const token = getName(tree, languageRules.getName);
+    if (!token) {
+      return [];
+    }
     const calls = makeCalls(body);
     const variables = makeLocalVariables(body, parent, languageRules);
 
-    /**
-     * For NestJS, convert constructor arguments to variables.
-     * e.g. constructor(private readonly articleService: ArticleService) {}
-     * Variable(token=articleService, pointsTo=ArticleService)
-     * Since ArticleService is a string, we need to resolve it to the actual Class node later.
-     */
-    if (token === "constructor") {
-      const parameters = tree.childForFieldName("parameters");
-      if (parameters) {
-        const requiredParameters = getAllChildrenOfType(
-          parameters,
-          "required_parameter"
-        );
-        for (const parameter of requiredParameters) {
-          if (parameter) {
-            const dependencyInjection =
-              processConstructorRequiredParameter(parameter);
-            if (dependencyInjection) {
-              variables.push(dependencyInjection);
-            }
-          }
-        }
-      }
+    this.processConstructorInjection(tree, token, variables);
+    this.processFieldDeclaration(tree, variables);
+
+    const matchingNodeRule = languageRules.nodes.find(
+      (node) => node.type === tree.type
+    );
+    if (!matchingNodeRule || !matchingNodeRule.nodeType) {
+      throw new Error("Node rule is missing nodeType or does not exist!");
     }
     const node = new Node({
       token,
@@ -139,6 +196,7 @@ export class Language {
       variables,
       lineNumber: getLineNumber(tree),
       parent,
+      nodeType: toNodeTypeIgnoreCase(matchingNodeRule.nodeType),
     });
     const subnodes = nodes.flatMap((t) =>
       this.makeNodes(t, node, languageRules)
@@ -152,11 +210,12 @@ export class Language {
     languageRules: LanguageRules
   ): Node {
     return new Node({
-      token: "(global)",
+      token: GLOBAL,
       calls: makeCalls(body),
       variables: makeLocalVariables(body, parent, languageRules),
       lineNumber: 0,
       parent,
+      nodeType: NodeType.BODY,
     });
   }
 }

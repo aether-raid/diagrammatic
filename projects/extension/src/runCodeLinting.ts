@@ -6,10 +6,11 @@ import * as vscode from "vscode";
 import { Linters, SupportedLanguages } from "./code-quality/linters/definitions";
 import { SerializedDiagnostic } from "@shared/vscode.types";
 
-
-export const runCodeLinting = async (inputNodes: AppNode[]): Promise<{
-    lintedNodes: AppNode[],
-    hasIssues: boolean,
+export const runCodeLinting = async (
+  inputNodes: AppNode[]
+): Promise<{
+  lintedNodes: AppNode[];
+  hasIssues: boolean;
 }> => {
     const nodes = structuredClone(inputNodes);
     let hasIssues = false;

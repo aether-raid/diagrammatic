@@ -1,5 +1,3 @@
-import { Panel } from "@xyflow/react";
-
 import { useNavigate } from "react-router-dom";
 
 
@@ -10,11 +8,9 @@ function ComponentButton(){
     };
 
     return (
-        <Panel position="top-right">
-            <button style={{marginTop: "24px"}} onClick={onNavigateClick} >
-                Component View
-            </button>
-        </Panel>
+        <button onClick={onNavigateClick} >
+            Component View
+        </button>
     )
 };
 

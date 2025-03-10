@@ -20,6 +20,10 @@ body,
 
 /* Font sizes */
 .fs-7 {
+    font-size: 0.85rem;
+}
+
+.fs-8 {
     font-size: 0.6rem;
 }
 
@@ -30,4 +34,9 @@ body,
 
 .bg-highlighter {
     background-color: var(--app-highlighter-yellow);
+}
+
+/* Generic hover effects */
+.cursor-pointer:hover {
+    cursor: pointer;
 }

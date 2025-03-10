@@ -1,6 +1,7 @@
 // *********************************
 // Layout using Dagre.js
 // *********************************
+import { useCallback, useEffect, useState } from "react";
 
 import Dagre from "@dagrejs/dagre";
 import {
@@ -17,7 +18,7 @@ import {
 import "@xyflow/react/dist/style.css"; // Must import this, else React Flow will not work!
 
 import { NodeRow } from "@shared/app.types";
-import { AppNode } from "@shared/node.types";
+import { AppNode, EntityNode } from "@shared/node.types";
 import { AppEdge } from "@shared/edge.types";
 import {
     AcceptNodeEdgeDataPayload,
@@ -27,15 +28,17 @@ import {
 
 import { initialNodes, nodeTypes } from "./nodes";
 import { initialEdges } from "./edges";
-import { useCallback, useEffect, useRef, useState } from "react";
+
 import {
     getEdgesEntitiesToHighlightBFS,
     getOutgoingEdgesFromEntityRow,
-} from "./helper";
-import { initVsCodeApi, sendReadyMessageToExtension } from "./vscodeApiHandler";
-import DownloadButton from "./buttons/DownloadButton";
-import SearchBar from "./buttons/SearchBar";
-import ComponentButton from "./buttons/CompButton";
+} from "./helpers/diagramBFS";
+import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
+import DownloadButton from "./components/DownloadButton";
+import SearchBar from "./components/SearchBar";
+import ComponentButton from "./components/CompButton";
+import { NodeInfoPanel } from "./components/NodeInfoPanel/NodeInfoPanel";
+
 
 interface OptionProps {
     direction: string;
@@ -77,9 +80,6 @@ const getLayoutedElements = (
 };
 
 const LayoutFlow = () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const vscode = useRef<any>(null);
-
     // General ReactFlow states
     const { fitView, getNode, setCenter } = useReactFlow<AppNode, AppEdge>();
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -95,12 +95,17 @@ const LayoutFlow = () => {
     // Search Highlighting states
     const [matchedNodes, setMatchedNodes] = useState<AppNode[]>([]);
 
+    // Collapsible Side Panel for node data
+    const [showNodeInfoPanel, setShowNodeInfoPanel] = useState<boolean>(false);
+    const [panelNode, setPanelNode] = useState<EntityNode>();
+
     // General constants
     const MIN_ZOOM = 0.1;
     const MAX_ZOOM = 2;
+    
 
     useEffect(() => {
-        console.log("Component Mounted");
+        console.log("Component Mounted");   
         // Setup message listener
         const onMessage = (event: MessageEvent<WebviewCommandMessage>) => {
             const { command, message } = event.data;
@@ -119,18 +124,15 @@ const LayoutFlow = () => {
         window.addEventListener("message", onMessage);
 
         // Send message to inform extension that webview is ready to receive data.
-        if (!vscode.current) {
-            try {
-                initVsCodeApi();
-                sendReadyMessageToExtension();
-            } catch (error) {
-                if (
-                    (error as Error).message !==
-                    "acquireVsCodeApi is not defined"
-                ) {
-                    // Only catch the above error, throw all else
-                    throw error;
-                }
+        try {
+            sendReadyMessageToExtension();
+        } catch (error) {
+            if (
+                (error as Error).message !==
+                "acquireVsCodeApi is not defined"
+            ) {
+                // Only catch the above error, throw all else
+                throw error;
             }
         }
 
@@ -218,6 +220,12 @@ const LayoutFlow = () => {
                 edges={edges.map((e) => prepareEdge(e))}
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
+                onNodeClick={(_event, node) => {
+                    if (node.type === 'entity') {
+                        setPanelNode(node);
+                        setShowNodeInfoPanel(true);
+                    }
+                }}
                 fitView
                 colorMode="dark"
                 minZoom={MIN_ZOOM}
@@ -233,9 +241,19 @@ const LayoutFlow = () => {
                 </Panel>
                 <MiniMap />
                 <Controls />
-                <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
-                <ComponentButton />
+                <Panel position="top-right">
+                    <div className="d-flex flex-column gap-2">
+                        <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
+                        <ComponentButton />
+                    </div>
+                </Panel>
                 <Background />
+
+                <NodeInfoPanel
+                    show={showNodeInfoPanel}
+                    setShow={setShowNodeInfoPanel}
+                    entity={panelNode}
+                />
             </ReactFlow>
         </>
     );

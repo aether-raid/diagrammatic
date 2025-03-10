@@ -15,25 +15,51 @@ export const initialNodes: AppNode[] = [
       description: 'This file serves as a central entity that manages multiple agricultural components. It coordinates the planting & harvesting processes.',
       entityName: 'Farm',
       entityType: 'file',
-      filePath: 'path/to/farm',
+      filePath: 'path/to/farm/this/is/an/intentionally/very/long/path/lets/see/how/this/looks/like',
       items: [
         { name: 'Planter', lineNumber: 15 },
         { name: 'Harvester', lineNumber: 45 },
       ],
-    security: {
-        clean: [],
-        vulnerability: [{ range: {
-          start: {
-            line: 26,
-            character: 32,
+      security: {
+          clean: [
+            { range: {
+                start: { line: 26, character: 32 },
+                end: { line: 3, character: 3 },
+              },
+              message: 'Security.clean Object',
+              severity: 1,
+              source: 'Group: security'
+            },
+            { range: {
+                start: { line: 26, character: 32 },
+                end: { line: 3, character: 3 },
+              },
+              message: 'Security.dirty Object',
+              severity: 1,
+              source: 'Group: security'
+            },
+            { range: {
+              start: { line: 52, character: 32 },
+              end: { line: 3, character: 3 },
+            },
+            message: 'About to implode...',
+            severity: 0,
+            source: 'Group: security'
           },
-          end: {
-            line: 3,
-            character: 3,
-          }
-        }, message: 'Variable Assigned to Object Injection Sink', severity: 1, source: 'Group: security' }],
-        extras: []
-    }
+          ],
+          vulnerability: [
+            {
+              range: {
+                start: { line: 26, character: 32 },
+                end: { line: 3, character: 3 },
+              },
+              message: 'Variable Assigned to Object Injection Sink Lorem ipsum potato ramen I like long issues what the testing data', 
+              severity: 1,
+              source: 'Group: vulnerability'
+            }
+          ],
+          extras: []
+      }
     }
   },
   {

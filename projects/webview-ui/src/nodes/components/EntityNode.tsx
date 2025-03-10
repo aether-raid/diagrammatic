@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { Handle, NodeProps, Position } from "@xyflow/react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
+
+import { Handle, NodeProps, Position } from "@xyflow/react";
 
 import { type EntityNode as EntityNodeType } from "@shared/node.types";
 
 import { EntityNodeItem } from "./EntityNodeItem";
-import NodeLints from "./NodeLints";
+import { NodeSecurityBanner } from "./NodeSecurityBanner";
+
 
 export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
   const [hoveredRow, setHoveredRow] = useState<string|undefined>('');
@@ -19,7 +21,7 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
       ? { nodeId: id, rowId: hoveredRow }
       : undefined
     );
-  }, [hoveredRow])
+  }, [hoveredRow, id])
 
   return (
     <div className='custom__node entity-node'>
@@ -33,13 +35,16 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
           </Popover>
         }
       >
-        <div className={`p-2 fw-bold rounded-top entity__${data.entityType}`}>
-          <p className={'fs-7 fw-normal'}>{ data.entityType }</p>
-          <p>
-            <span className={data.matchesSearchTerm ? "bg-highlighter text-black" : ""}>
-              { data.entityName }
-            </span>
-          </p>
+        <div className={`d-flex flex-column rounded-top entity__${data.entityType}`}>
+          <div className="py-2">
+            <p className="fs-8">{ data.entityType }</p>
+            <p className="fw-bold">
+              <span className={data.matchesSearchTerm ? "bg-highlighter text-black" : ""}>
+                { data.entityName }
+              </span>
+            </p>
+          </div>
+          <NodeSecurityBanner security={data.security}/>
         </div>
       </OverlayTrigger>
 
@@ -56,7 +61,6 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
             setHoveredRow={setHoveredRow}
             
           />)}
-          <NodeLints lints={data.security} filePath={data.filePath}/>
         </tbody>
       </table>
 

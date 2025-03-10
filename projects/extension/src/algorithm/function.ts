@@ -6,9 +6,71 @@ import Python from "tree-sitter-python";
 import Java from "tree-sitter-java";
 import Cpp from "tree-sitter-cpp";
 
-import { Variable, Call, Group, Edge, GroupType, Node } from "./model";
-import { Language } from "./language";
+import {
+  Variable,
+  Call,
+  Group,
+  Edge,
+  GroupType,
+  Node,
+  NodeType,
+  VariableType,
+} from "./model";
+import { Language, GLOBAL } from "./language";
 import { LanguageRules } from "./rules";
+
+/**
+ * Determines the appropriate language for a file
+ * @param filePath
+ * @returns Language
+ */
+function getLanguageForFile(filePath: string): any | null {
+  if (filePath.endsWith(".ts")) {
+    return TypeScript.typescript;
+  }
+  if (filePath.endsWith(".tsx")) {
+    return TypeScript.tsx;
+  }
+  if (filePath.endsWith(".py")) {
+    return Python;
+  }
+  if (filePath.endsWith(".java")) {
+    return Java;
+  }
+  if (filePath.endsWith(".cpp")) {
+    return Cpp;
+  }
+  return null;
+}
+
+/**
+ * Parses a file into an AST with error handling
+ * @param parser
+ * @param filePath
+ * @param file
+ * @param skipParseErrors
+ * @returns
+ */
+function parseFileToAST(
+  parser: Parser,
+  filePath: string,
+  file: string,
+  skipParseErrors: boolean
+): Tree | null {
+  try {
+    const sourceCode = fs.readFileSync(filePath, "utf-8");
+    return parser.parse(sourceCode);
+  } catch (ex) {
+    if (skipParseErrors) {
+      console.warn(
+        `Could not parse ${file}. Skipping...`,
+        (ex as Error).message
+      );
+      return null;
+    }
+    throw ex;
+  }
+}
 
 /**
  * Parse files in a folder and convert them to ASTs.
@@ -29,38 +91,23 @@ export function parseFilesToASTs(
 
     for (const file of files) {
       const filePath = path.join(folderPath, file);
+      const fileStat = fs.statSync(filePath);
 
-      if (fs.statSync(filePath).isDirectory()) {
+      if (fileStat.isDirectory()) {
         // If it's a directory, recurse into it
         const subdirectoryFiles = parseFilesToASTs(filePath, skipParseErrors);
         fileASTTrees.push(...subdirectoryFiles);
-      } else if (fs.statSync(filePath).isFile()) {
-        if (filePath.endsWith(".ts")) {
-          parser.setLanguage(TypeScript.typescript);
-        } else if (filePath.endsWith(".tsx")) {
-          parser.setLanguage(TypeScript.tsx);
-        } else if (filePath.endsWith(".py")) {
-          parser.setLanguage(Python);
-        } else if (filePath.endsWith(".java")) {
-          parser.setLanguage(Java);
-        } else if (filePath.endsWith(".cpp")) {
-          parser.setLanguage(Cpp);
-        } else {
+      } else if (fileStat.isFile()) {
+        // check if we support the language
+        const language = getLanguageForFile(filePath);
+        if (!language) {
           continue;
         }
-        try {
-          const sourceCode = fs.readFileSync(filePath, "utf-8");
-          const ast = parser.parse(sourceCode);
+        parser.setLanguage(language);
+
+        const ast = parseFileToAST(parser, filePath, file, skipParseErrors);
+        if (ast) {
           fileASTTrees.push([filePath, file, ast]);
-        } catch (ex) {
-          if (skipParseErrors) {
-            console.warn(
-              `Could not parse ${file}. Skipping...`,
-              (ex as Error).message
-            );
-          } else {
-            throw ex;
-          }
         }
       }
     }
@@ -74,7 +121,6 @@ export function parseFilesToASTs(
 
 /**
  * Walk through the ast tree and return all nodes except decorators and their children
- * TODO: only return certain node types
  */
 export function walk(body: SyntaxNode[] | SyntaxNode): SyntaxNode[] {
   let ret: SyntaxNode[] = [];
@@ -105,28 +151,32 @@ export function walk(body: SyntaxNode[] | SyntaxNode): SyntaxNode[] {
  *    - propertyNode: userRepository = PropertyIdentifier
  * - propertyNode: getUsers() = PropertyIdentifier
  *
- * TODO: label calls that have 'this'
+ * MAYBE: label calls that have 'this'
  *
  * @returns {string}
  */
-export function processMemberExpression(node: SyntaxNode) {
+export function processMemberExpression(node: SyntaxNode): {
+  token?: string;
+  pointsTo?: string;
+} {
   const objectNode = node.childForFieldName("object");
   const propertyNode = node.childForFieldName("property");
 
   if (!objectNode || !propertyNode) {
-    return null;
+    return {};
   }
 
   switch (objectNode.type) {
     case "identifier":
-      return objectNode.text + "." + propertyNode.text;
+      return { pointsTo: objectNode.text, token: propertyNode.text };
     case "this":
-      return propertyNode.text;
+      return { pointsTo: "this", token: propertyNode.text };
     case "member_expression":
-      return processMemberExpression(objectNode);
+      const { token } = processMemberExpression(objectNode);
+      return { token: propertyNode.text, pointsTo: token };
   }
 
-  return null;
+  return {};
 }
 
 /**
@@ -134,7 +184,7 @@ export function processMemberExpression(node: SyntaxNode) {
  * (1) const total = sum(a+b) = Identifier
  * (2) const users = this.userRepository.getUsers() = MemberExpression
  *
- * @returns {Call}
+ * @returns {Call | null}
  */
 export function processCallExpression(node: SyntaxNode): Call | null {
   const func = node.childForFieldName("function");
@@ -147,19 +197,15 @@ export function processCallExpression(node: SyntaxNode): Call | null {
     case "identifier":
       return new Call({ token: func.text, lineNumber: getLineNumber(node) });
     case "member_expression":
-      const funcName = processMemberExpression(func);
-      const property = func.childForFieldName("property");
-      if (!property) {
-        return null;
-      }
-      const propertyName = property.text;
-      if (funcName && propertyName) {
+      const { token, pointsTo } = processMemberExpression(func);
+      if (token && pointsTo) {
         return new Call({
-          token: propertyName,
-          ownerToken: funcName,
+          token,
+          ownerToken: pointsTo,
           lineNumber: getLineNumber(node),
         });
       }
+
     // for C++
     case "field_expression":
       const identifier = getFirstChildOfType(func, "identifier");
@@ -168,11 +214,50 @@ export function processCallExpression(node: SyntaxNode): Call | null {
         return new Call({
           token: fieldIdentifier.text,
           ownerToken: identifier.text,
+          lineNumber: getLineNumber(node),
         });
       }
   }
 
   return null;
+}
+
+/**
+ * For Java because the tree-sitter outputs method_invocation instead of call_expression
+ * And they have a different structure
+ * (1) getVenueById(id) => no objectNode
+ * (2) repo.findById(id).orElseThrow(() -> new VenueNotFoundException()) = method_invocation
+ * (3) repo.findAll() = objectNode.nameNode
+ *
+ * @param {*} node
+ * @returns {Call | null}
+ */
+export function processMethodInvocation(node: SyntaxNode): Call | null {
+  const objectNode = node.childForFieldName("object");
+  const nameNode = node.childForFieldName("name");
+
+  if (!nameNode) {
+    return null;
+  }
+  // getVenueById(id)
+  if (!objectNode) {
+    return new Call({ token: nameNode.text, lineNumber: getLineNumber(node) });
+  }
+
+  switch (objectNode.type) {
+    // repo.findById(id).orElseThrow(() -> new VenueNotFoundException())
+    case "method_invocation":
+      return processMethodInvocation(objectNode);
+    // repo.findAll()
+    case "identifier":
+      return new Call({
+        token: nameNode.text,
+        ownerToken: objectNode.text,
+        lineNumber: getLineNumber(node),
+      });
+    default:
+      return null;
+  }
 }
 
 /**
@@ -189,11 +274,19 @@ export function makeCalls(body: SyntaxNode[]) {
   const calls = [];
 
   for (const node of walk(body)) {
-    if (node.type === "call_expression") {
-      const call = processCallExpression(node);
-      if (call) {
-        calls.push(call);
-      }
+    switch (node.type) {
+      case "call_expression":
+        const call = processCallExpression(node);
+        if (call) {
+          calls.push(call);
+        }
+        break;
+      case "method_invocation":
+        const mCall = processMethodInvocation(node);
+        if (mCall) {
+          calls.push(mCall);
+        }
+        break;
     }
   }
   return calls;
@@ -222,25 +315,143 @@ export function processVariableDeclaration(node: SyntaxNode): Variable | null {
       if (!identifierNode) {
         return null;
       }
-      return new Variable(name.text, identifierNode.text, getLineNumber(node));
+      return new Variable({
+        token: name.text,
+        pointsTo: identifierNode.text,
+        lineNumber: getLineNumber(node),
+        variableType: VariableType.OBJECT_INSTANTIATION,
+      });
     case "call_expression":
       const call = processCallExpression(value);
-      return new Variable(name.text, call, getLineNumber(node));
+      return new Variable({
+        token: name.text,
+        pointsTo: call,
+        lineNumber: getLineNumber(node),
+        variableType: VariableType.CALL_EXPRESSION,
+      });
     case "await_expression":
       const callExpressionNode = getFirstChildOfType(value, "call_expression");
       if (!callExpressionNode) {
         return null;
       }
       const awaitCall = processCallExpression(callExpressionNode);
-      return new Variable(name.text, awaitCall, getLineNumber(node));
+      return new Variable({
+        token: name.text,
+        pointsTo: awaitCall,
+        lineNumber: getLineNumber(node),
+        variableType: VariableType.CALL_EXPRESSION,
+      });
     case "member_expression":
-      return new Variable(
-        name.text,
-        processMemberExpression(value),
-        getLineNumber(node)
-      );
+      const { token, pointsTo } = processMemberExpression(value);
+      if (token && pointsTo) {
+        return new Variable({
+          token,
+          pointsTo,
+          lineNumber: getLineNumber(node),
+          variableType: VariableType.CALL_EXPRESSION,
+        });
+      }
   }
 
+  return null;
+}
+
+function makeLocalVariablesDeclaration(node: SyntaxNode) {
+  const typeIdentifier = getFirstChildOfType(node, "type_identifier");
+  const identifier = getFirstChildOfType(node, "identifier");
+  if (typeIdentifier && identifier) {
+    return new Variable({
+      token: identifier.text,
+      pointsTo: typeIdentifier.text,
+      lineNumber: getLineNumber(node),
+      variableType: VariableType.CALL_EXPRESSION,
+    });
+  }
+  return null;
+}
+
+function isRelativeFilePath(path: string): boolean {
+  const relativeFilePathRegex = /^(?:..?[\\/])[^<>:"|?*\n]+$/;
+  return relativeFilePathRegex.test(path);
+}
+
+function createImportVariable(
+  importSpecifier: SyntaxNode,
+  pointsTo: string,
+  fileGroup: Group,
+  languageRules: LanguageRules
+) {
+  /**
+   * relative filepath
+   * e.g. "./article.service" => without extension
+   * e.g. "./dto" => folder
+   * (1) import classes from file
+   * (2) import functions from file
+   * (3) import from folder
+   * output variable.pointsTo: /User/fyp/samples/nestjs-realworld-example-app/src/article/article.service.ts
+   * output variable.pointsTo: User/fyp/samples/nestjs-realworld-example-app/src/article/dto
+   */
+  const name = getName(importSpecifier, languageRules.getName);
+  if (!name || !fileGroup.filePath) return;
+
+  let importedFilePath = path.resolve(
+    path.dirname(fileGroup.filePath),
+    pointsTo
+  );
+  const baseDirectory = path.dirname(importedFilePath);
+  // if file has no extension, search directory for matching filename
+  if (fs.existsSync(baseDirectory)) {
+    const files = fs.readdirSync(baseDirectory);
+    const fileNameWithoutExt = path.basename(pointsTo);
+    const matchedFile = files.find((file) => {
+      const baseFilePath = path.basename(file);
+      return baseFilePath.startsWith(fileNameWithoutExt);
+    });
+    if (matchedFile) {
+      importedFilePath = path.join(baseDirectory, matchedFile);
+    }
+
+    return new Variable({
+      token: name,
+      pointsTo: importedFilePath,
+      lineNumber: getLineNumber(importSpecifier),
+      variableType: VariableType.RELATIVE_IMPORT,
+    });
+  }
+  return null;
+}
+
+function makeLocalVariablesImportStatement(
+  node: SyntaxNode,
+  parent: Node | Group,
+  languageRules: LanguageRules
+) {
+  const importClause = getFirstChildOfType(node, "import_clause");
+  const namedImports = getFirstChildOfType(importClause, "named_imports");
+  const importSpecifiers = getAllChildrenOfType(
+    namedImports,
+    "import_specifier"
+  );
+  const string = getFirstChildOfType(node, "string");
+  const stringFragment = getFirstChildOfType(string, "string_fragment");
+  const fileGroup = parent.getFileGroup();
+
+  if (stringFragment && fileGroup) {
+    const pointsTo = stringFragment.text;
+    for (const importSpecifier of importSpecifiers) {
+      if (pointsTo && isRelativeFilePath(pointsTo)) {
+        const variable = createImportVariable(
+          importSpecifier,
+          pointsTo,
+          fileGroup,
+          languageRules
+        );
+        if (variable) {
+          return variable;
+        }
+      }
+    }
+  }
   return null;
 }
 
@@ -254,83 +465,143 @@ export function makeLocalVariables(
   for (const node of walk(tree)) {
     switch (node.type) {
       case "variable_declarator":
-        const result = processVariableDeclaration(node);
-        if (result) {
-          variables.push(result);
+        const var1 = processVariableDeclaration(node);
+        if (var1) {
+          variables.push(var1);
         }
+        break;
       // A a;
       // a.callB();
       case "declaration":
-        const typeIdentifier = getFirstChildOfType(node, "type_identifier");
-        const identifier = getFirstChildOfType(node, "identifier");
-        if (typeIdentifier && identifier) {
-          variables.push(
-            new Variable(
-              identifier.text,
-              typeIdentifier.text,
-              getLineNumber(node)
-            )
-          );
+        const var2 = makeLocalVariablesDeclaration(node);
+        if (var2) {
+          variables.push(var2);
         }
+        break;
       // import { SyntaxNode } from 'tree-sitter'
       case "import_statement":
-        const importClause = getFirstChildOfType(node, "import_clause");
-        const namedImports = getFirstChildOfType(importClause, "named_imports");
-        const importSpecifiers = getAllChildrenOfType(
-          namedImports,
-          "import_specifier"
+        const var3 = makeLocalVariablesImportStatement(
+          node,
+          parent,
+          languageRules
         );
-        const string = getFirstChildOfType(node, "string");
-        const stringFragment = getFirstChildOfType(string, "string_fragment");
-        const fileGroup = parent.getFileGroup();
-        if (stringFragment && fileGroup) {
-          for (const importSpecifier of importSpecifiers) {
-            const name = getName(importSpecifier, languageRules.getName);
-            const pointsTo = getName(stringFragment, languageRules.getName);
-            const relativeFilePathRegex = new RegExp(
-              '^(?:..?[\\/])[^<>:"|?*\n]+$'
-            );
-            // relative filepath
-            if (
-              name &&
-              pointsTo &&
-              relativeFilePathRegex.test(pointsTo) &&
-              fileGroup instanceof Group
-            ) {
-              let importedFilePath = path.resolve(
-                path.dirname(fileGroup.filePath),
-                pointsTo
-              );
-              const baseDirectory = path.dirname(importedFilePath);
-              // if file has no extension, search directory for matching filename
-              if (!path.extname(importedFilePath) && fs.existsSync(baseDirectory)) {
-                const files = fs.readdirSync(baseDirectory);
-                const fileNameWithoutExt = path.basename(pointsTo);
-                const matchedFile = files.find((file) =>
-                  file.startsWith(fileNameWithoutExt)
-                );
-                if (matchedFile) {
-                  importedFilePath = path.join(baseDirectory, matchedFile);
-                }
-              }
-              variables.push(
-                new Variable(
-                  name,
-                  importedFilePath,
-                  getLineNumber(importSpecifier)
-                )
-              );
-            }
-          }
+        if (var3) {
+          variables.push(var3);
         }
+        break;
     }
   }
 
-  if (parent instanceof Group && parent.groupType === GroupType.CLASS) {
-    variables.push(new Variable("this", parent.token, parent.lineNumber));
-  }
-
   return variables;
+}
+
+function findLinkForCallThis(call: Call, nodeA: Node) {
+  if (call.ownerToken === "this" && nodeA.parent instanceof Group) {
+    for (const node of nodeA.parent.nodes) {
+      if (node.token === call.token) {
+        return new Edge(nodeA, node);
+      }
+    }
+  }
+}
+
+function findMethod(call: Call, nodeA: Node, classNode: Group) {
+  for (const node of classNode.nodes) {
+    if (node.token === call.token) {
+      return new Edge(nodeA, node);
+    }
+  }
+}
+
+function findLinkForCallClassInjection(call: Call, nodeA: Node) {
+  /**
+   * Class injection for NestJS
+   * I have variable: articleService -> class ArticleService under constructor
+   * I have call: findAll -> articleService
+   *
+   * Class injection for Java
+   * I have variable: service -> class VenueService
+   * I have call: findAll -> service
+   */
+  if (nodeA.parent instanceof Group) {
+    for (const node of nodeA.parent.nodes) {
+      for (const variable of node.variables) {
+        if (
+          variable.variableType === VariableType.INJECTION &&
+          variable.token === call.ownerToken &&
+          variable.pointsTo instanceof Group
+        ) {
+          // search through class methods
+          const classNode = variable.pointsTo;
+          return findMethod(call, nodeA, classNode);
+        }
+      }
+    }
+  }
+}
+
+function findLinkForCallFunctionCall(call: Call, nodeA: Node) {
+  // calling another function in the same file (priority)
+  if (nodeA.parent instanceof Group) {
+    for (const node2 of nodeA.parent.nodes) {
+      if (call.token === node2.token && node2.nodeType === NodeType.FUNCTION) {
+        return new Edge(nodeA, node2);
+      }
+    }
+  }
+}
+
+function findGlobalNode(fileGroup: Group | null, allNodes: Node[]) {
+  return allNodes.find(
+    (node) =>
+      node.token === GLOBAL &&
+      node.getFileGroup()?.filePath === fileGroup?.filePath
+  );
+}
+
+function findCalledFunctionInImportedFunctions(
+  call: Call,
+  nodeA: Node,
+  globalNode: Node
+) {
+  for (const variable of globalNode.variables) {
+    if (
+      variable.token === call.token &&
+      variable.pointsTo instanceof Group &&
+      variable.pointsTo.groupType === GroupType.FILE
+    ) {
+      for (const fileNode of variable.pointsTo.nodes) {
+        if (fileNode.token === call.token) {
+          return new Edge(nodeA, fileNode);
+        }
+      }
+    }
+  }
+}
+
+function findLinkForCallImportStatement(
+  call: Call,
+  nodeA: Node,
+  fileGroup: Group | null,
+  allNodes: Node[]
+) {
+  /**
+   * calling a function from import statements
+   * I have variable: findAll -> Group: article.service.ts under (global)
+   * I have call: findAll -> null
+   */
+  const globalNode = findGlobalNode(fileGroup, allNodes);
+  if (globalNode) {
+    return findCalledFunctionInImportedFunctions(call, nodeA, globalNode);
+  }
+}
+
+function findLinkForCallFunction(call: Call, nodeA: Node, allNodes: Node[]) {
+  for (const node of allNodes) {
+    if (call.token === node.token && node.nodeType === NodeType.FUNCTION) {
+      return new Edge(nodeA, node);
+    }
+  }
 }
 
 /**
@@ -349,62 +620,36 @@ export function findLinkForCall(
   nodeA: Node,
   allNodes: Node[]
 ): Edge | null {
-  for (const node of allNodes) {
-    /**
-     * Class injection for NestJS
-     * I have variable: articleService -> class ArticleService
-     * I have call: findAll -> articleService
-     */
-    for (const variable of node.variables) {
-      if (
-        call.isAttribute() &&
-        variable.token === call.ownerToken &&
-        variable.pointsTo instanceof Group
-      ) {
-        // search through class methods
-        const classNode: Group = variable.pointsTo;
-        for (const node of classNode.nodes) {
-          if (node.token === call.token) {
-            return new Edge(nodeA, node);
-          }
-        }
-      }
-
-      /**
-       * for variables from import statements
-       * I have variable: findAll -> Group: article.service.ts
-       * I have call: findAll -> null
-       */
-      if (
-        !call.isAttribute() &&
-        variable.token === call.token &&
-        !call.ownerToken &&
-        variable.pointsTo instanceof Group &&
-        variable.pointsTo.groupType === GroupType.FILE
-      ) {
-        for (const fileNode of variable.pointsTo.nodes) {
-          if (fileNode.token === call.token) {
-            return new Edge(nodeA, fileNode);
-          }
-        }
-      }
+  const fileGroup = nodeA.getFileGroup();
+  if (call.isAttribute()) {
+    const edge1 = findLinkForCallThis(call, nodeA);
+    if (edge1) {
+      return edge1;
     }
-
-    // calling another function
-    if (!call.isAttribute() && call.token === node.token) {
-      return new Edge(nodeA, node);
+    const edge2 = findLinkForCallClassInjection(call, nodeA);
+    if (edge2) {
+      return edge2;
     }
-
-    // calling a function in the file space
-    if (
-      !call.isAttribute() &&
-      call.token === node.token &&
-      node.parent instanceof Group &&
-      node.parent.groupType === GroupType.FILE
-    ) {
-      return new Edge(nodeA, node);
+  } else {
+    const edge3 = findLinkForCallFunctionCall(call, nodeA);
+    if (edge3) {
+      return edge3;
+    }
+    const edge4 = findLinkForCallImportStatement(
+      call,
+      nodeA,
+      fileGroup,
+      allNodes
+    );
+    if (edge4) {
+      return edge4;
+    }
+    const edge5 = findLinkForCallFunction(call, nodeA, allNodes);
+    if (edge5) {
+      return edge5;
     }
   }
+
   return null;
 }
 
@@ -417,12 +662,16 @@ export function findLinks(nodeA: Node, allNodes: Node[]) {
     }
   }
 
-  /* for (const variable of nodeA.variables) {
+  for (const variable of nodeA.variables) {
     // e.g. let article = new ArticleEntity()
-    if (variable.pointsTo instanceof Group) {
+    if (
+      variable.variableType === VariableType.OBJECT_INSTANTIATION &&
+      variable.pointsTo instanceof Group &&
+      variable.pointsTo.groupType !== GroupType.FILE
+    ) {
       links.push(new Edge(nodeA, variable.pointsTo));
     }
-  } */
+  }
 
   return links;
 }
@@ -512,7 +761,7 @@ export function getName(node: SyntaxNode, getNameRules: Record<string, any>) {
     }
   }
 
-  return node.text ?? null;
+  return null;
 }
 
 /**
@@ -581,17 +830,30 @@ export function processConstructorRequiredParameter(node: SyntaxNode) {
   if (!typeIdentifier) {
     return null;
   }
-  return new Variable(
-    identifier.text,
-    typeIdentifier.text,
-    getLineNumber(node)
-  );
+  return new Variable({
+    token: identifier.text,
+    pointsTo: typeIdentifier.text,
+    lineNumber: getLineNumber(node),
+    variableType: VariableType.INJECTION,
+  });
 }
 
 export function toGroupTypeIgnoreCase(value: string): GroupType {
-  return (
-    Object.values(GroupType).find(
-      (gt) => gt.toLowerCase() === value.toLowerCase()
-    ) ?? GroupType.CLASS
+  const groupType = Object.values(GroupType).find(
+    (gt) => gt.toLowerCase() === value.toLowerCase()
   );
+  if (!groupType) {
+    throw new Error("Invalid groupType in rules!");
+  }
+  return groupType;
+}
+
+export function toNodeTypeIgnoreCase(value: string): NodeType {
+  const nodeType = Object.values(NodeType).find(
+    (nt) => nt.toLowerCase() === value.toLowerCase()
+  );
+  if (!nodeType) {
+    throw new Error("Invalid nodeType in rules!");
+  }
+  return nodeType;
 }

@@ -1,0 +1,4440 @@
+[
+  {
+    "id": "createChallenges-loadStaticChallengeData",
+    "source": "/data/datacreator.ts",
+    "target": "/data/staticData.ts",
+    "sourceHandle": "createChallenges",
+    "targetHandle": "loadStaticChallengeData",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createUsers-loadStaticUserData",
+    "source": "/data/datacreator.ts",
+    "target": "/data/staticData.ts",
+    "sourceHandle": "createUsers",
+    "targetHandle": "loadStaticUserData",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createUsers-createSecurityAnswer",
+    "source": "/data/datacreator.ts",
+    "target": "/data/datacreator.ts",
+    "sourceHandle": "createUsers",
+    "targetHandle": "createSecurityAnswer",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createUsers-createFeedback",
+    "source": "/data/datacreator.ts",
+    "target": "/data/datacreator.ts",
+    "sourceHandle": "createUsers",
+    "targetHandle": "createFeedback",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createUsers-deleteUser",
+    "source": "/data/datacreator.ts",
+    "target": "/data/datacreator.ts",
+    "sourceHandle": "createUsers",
+    "targetHandle": "deleteUser",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createUsers-createAddresses",
+    "source": "/data/datacreator.ts",
+    "target": "/data/datacreator.ts",
+    "sourceHandle": "createUsers",
+    "targetHandle": "createAddresses",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createUsers-createCards",
+    "source": "/data/datacreator.ts",
+    "target": "/data/datacreator.ts",
+    "sourceHandle": "createUsers",
+    "targetHandle": "createCards",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createWallet-loadStaticUserData",
+    "source": "/data/datacreator.ts",
+    "target": "/data/staticData.ts",
+    "sourceHandle": "createWallet",
+    "targetHandle": "loadStaticUserData",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createDeliveryMethods-loadStaticDeliveryData",
+    "source": "/data/datacreator.ts",
+    "target": "/data/staticData.ts",
+    "sourceHandle": "createDeliveryMethods",
+    "targetHandle": "loadStaticDeliveryData",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createRandomFakeUsers-getGeneratedRandomFakeUserEmail",
+    "source": "/data/datacreator.ts",
+    "target": "/data/datacreator.ts",
+    "sourceHandle": "createRandomFakeUsers",
+    "targetHandle": "getGeneratedRandomFakeUserEmail",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createRandomFakeUsers-makeRandomString",
+    "source": "/data/datacreator.ts",
+    "target": "/data/datacreator.ts",
+    "sourceHandle": "createRandomFakeUsers",
+    "targetHandle": "makeRandomString",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "getGeneratedRandomFakeUserEmail-makeRandomString",
+    "source": "/data/datacreator.ts",
+    "target": "/data/datacreator.ts",
+    "sourceHandle": "getGeneratedRandomFakeUserEmail",
+    "targetHandle": "makeRandomString",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "getGeneratedRandomFakeUserEmail-makeRandomString",
+    "source": "/data/datacreator.ts",
+    "target": "/data/datacreator.ts",
+    "sourceHandle": "getGeneratedRandomFakeUserEmail",
+    "targetHandle": "makeRandomString",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "getGeneratedRandomFakeUserEmail-makeRandomString",
+    "source": "/data/datacreator.ts",
+    "target": "/data/datacreator.ts",
+    "sourceHandle": "getGeneratedRandomFakeUserEmail",
+    "targetHandle": "makeRandomString",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createMemories-createSecurityAnswer",
+    "source": "/data/datacreator.ts",
+    "target": "/data/datacreator.ts",
+    "sourceHandle": "createMemories",
+    "targetHandle": "createSecurityAnswer",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createMemories-createSecurityAnswer",
+    "source": "/data/datacreator.ts",
+    "target": "/data/datacreator.ts",
+    "sourceHandle": "createMemories",
+    "targetHandle": "createSecurityAnswer",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createProducts-customizeChangeProductChallenge",
+    "source": "/data/datacreator.ts",
+    "target": "/data/datacreator.ts",
+    "sourceHandle": "createProducts",
+    "targetHandle": "customizeChangeProductChallenge",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createProducts-customizeRetrieveBlueprintChallenge",
+    "source": "/data/datacreator.ts",
+    "target": "/data/datacreator.ts",
+    "sourceHandle": "createProducts",
+    "targetHandle": "customizeRetrieveBlueprintChallenge",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createProducts-deleteProduct",
+    "source": "/data/datacreator.ts",
+    "target": "/data/datacreator.ts",
+    "sourceHandle": "createProducts",
+    "targetHandle": "deleteProduct",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createAnonymousFeedback-createFeedback",
+    "source": "/data/datacreator.ts",
+    "target": "/data/datacreator.ts",
+    "sourceHandle": "createAnonymousFeedback",
+    "targetHandle": "createFeedback",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createRecycleItem-createRecycle",
+    "source": "/data/datacreator.ts",
+    "target": "/data/datacreator.ts",
+    "sourceHandle": "createRecycleItem",
+    "targetHandle": "createRecycle",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "createSecurityQuestions-loadStaticSecurityQuestionsData",
+    "source": "/data/datacreator.ts",
+    "target": "/data/staticData.ts",
+    "sourceHandle": "createSecurityQuestions",
+    "targetHandle": "loadStaticSecurityQuestionsData",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "tokenMatcher-token1",
+    "source": "/data/static/codefixes/tokenSaleChallenge_1.ts",
+    "target": "/data/static/codefixes/tokenSaleChallenge_1.ts",
+    "sourceHandle": "tokenMatcher",
+    "targetHandle": "token1",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "tokenMatcher-token2",
+    "source": "/data/static/codefixes/tokenSaleChallenge_1.ts",
+    "target": "/data/static/codefixes/tokenSaleChallenge_1.ts",
+    "sourceHandle": "tokenMatcher",
+    "targetHandle": "token2",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "tokenMatcher-token1",
+    "source": "/data/static/codefixes/tokenSaleChallenge_2.ts",
+    "target": "/data/static/codefixes/tokenSaleChallenge_2.ts",
+    "sourceHandle": "tokenMatcher",
+    "targetHandle": "token1",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "tokenMatcher-token2",
+    "source": "/data/static/codefixes/tokenSaleChallenge_2.ts",
+    "target": "/data/static/codefixes/tokenSaleChallenge_2.ts",
+    "sourceHandle": "tokenMatcher",
+    "targetHandle": "token2",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "loadStaticUserData-loadStaticData",
+    "source": "/data/staticData.ts",
+    "target": "/data/staticData.ts",
+    "sourceHandle": "loadStaticUserData",
+    "targetHandle": "loadStaticData",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "loadStaticChallengeData-loadStaticData",
+    "source": "/data/staticData.ts",
+    "target": "/data/staticData.ts",
+    "sourceHandle": "loadStaticChallengeData",
+    "targetHandle": "loadStaticData",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "loadStaticDeliveryData-loadStaticData",
+    "source": "/data/staticData.ts",
+    "target": "/data/staticData.ts",
+    "sourceHandle": "loadStaticDeliveryData",
+    "targetHandle": "loadStaticData",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "loadStaticSecurityQuestionsData-loadStaticData",
+    "source": "/data/staticData.ts",
+    "target": "/data/staticData.ts",
+    "sourceHandle": "loadStaticSecurityQuestionsData",
+    "targetHandle": "loadStaticData",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-continueCode",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
+    "sourceHandle": "save",
+    "targetHandle": "continueCode",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-continueCodeFindIt",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
+    "sourceHandle": "save",
+    "targetHandle": "continueCodeFindIt",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-continueCodeFixIt",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
+    "sourceHandle": "save",
+    "targetHandle": "continueCodeFixIt",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "restore-restoreCookie",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "sourceHandle": "restore",
+    "targetHandle": "restoreCookie",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "restore-restoreCookie",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "sourceHandle": "restore",
+    "targetHandle": "restoreCookie",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "restore-restoreCookie",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "sourceHandle": "restore",
+    "targetHandle": "restoreCookie",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "restore-restoreCookie",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "sourceHandle": "restore",
+    "targetHandle": "restoreCookie",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "restore-restoreCookie",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "sourceHandle": "restore",
+    "targetHandle": "restoreCookie",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "restore-restoreCookie",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "sourceHandle": "restore",
+    "targetHandle": "restoreCookie",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "restore-restoreProgress",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
+    "sourceHandle": "restore",
+    "targetHandle": "restoreProgress",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "restore-restoreProgressFindIt",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
+    "sourceHandle": "restore",
+    "targetHandle": "restoreProgressFindIt",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "restore-restoreProgressFixIt",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
+    "sourceHandle": "restore",
+    "targetHandle": "restoreProgressFixIt",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "restore-open",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "restore",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "restore-open",
+    "source": "/frontend/src/app/Services/local-backup.service.ts.LocalBackupService",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "restore",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "nativeWindow-getWindow",
+    "source": "/frontend/src/app/Services/window-ref.service.ts.WindowRefService",
+    "target": "/frontend/src/app/Services/window-ref.service.ts",
+    "sourceHandle": "nativeWindow",
+    "targetHandle": "getWindow",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getApplicationConfiguration",
+    "source": "/frontend/src/app/about/about.component.ts.AboutComponent",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-populateSlideshowFromFeedbacks",
+    "source": "/frontend/src/app/about/about.component.ts.AboutComponent",
+    "target": "/frontend/src/app/about/about.component.ts.AboutComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "populateSlideshowFromFeedbacks",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "populateSlideshowFromFeedbacks-find",
+    "source": "/frontend/src/app/about/about.component.ts.AboutComponent",
+    "target": "/frontend/src/app/Services/feedback.service.ts.FeedbackService",
+    "sourceHandle": "populateSlideshowFromFeedbacks",
+    "targetHandle": "find",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngAfterViewInit-loadQuantity",
+    "source": "//frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "//frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "sourceHandle": "ngAfterViewInit",
+    "targetHandle": "loadQuantity",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "ngAfterViewInit-loadProducts",
+    "source": "//frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "//frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "sourceHandle": "ngAfterViewInit",
+    "targetHandle": "loadProducts",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "ngAfterViewInit-loadOrders",
+    "source": "//frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "//frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "sourceHandle": "ngAfterViewInit",
+    "targetHandle": "loadOrders",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "loadQuantity-getAll",
+    "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "/frontend/src/app/Services/quantity.service.ts.QuantityService",
+    "sourceHandle": "loadQuantity",
+    "targetHandle": "getAll",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "loadProducts-search",
+    "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "/frontend/src/app/Services/product.service.ts.ProductService",
+    "sourceHandle": "loadProducts",
+    "targetHandle": "search",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "loadOrders-getAll",
+    "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "/frontend/src/app/Services/order-history.service.ts.OrderHistoryService",
+    "sourceHandle": "loadOrders",
+    "targetHandle": "getAll",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "modifyQuantity-put",
+    "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "/frontend/src/app/Services/quantity.service.ts.QuantityService",
+    "sourceHandle": "modifyQuantity",
+    "targetHandle": "put",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "modifyQuantity-loadQuantity",
+    "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "sourceHandle": "modifyQuantity",
+    "targetHandle": "loadQuantity",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "modifyQuantity-open",
+    "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "modifyQuantity",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "modifyQuantity-open",
+    "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "modifyQuantity",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "modifyPrice-put",
+    "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "/frontend/src/app/Services/product.service.ts.ProductService",
+    "sourceHandle": "modifyPrice",
+    "targetHandle": "put",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "modifyPrice-loadProducts",
+    "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "sourceHandle": "modifyPrice",
+    "targetHandle": "loadProducts",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "modifyPrice-open",
+    "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "modifyPrice",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "modifyPrice-open",
+    "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "modifyPrice",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "changeDeliveryStatus-toggleDeliveryStatus",
+    "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "/frontend/src/app/Services/order-history.service.ts.OrderHistoryService",
+    "sourceHandle": "changeDeliveryStatus",
+    "targetHandle": "toggleDeliveryStatus",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "changeDeliveryStatus-loadOrders",
+    "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "sourceHandle": "changeDeliveryStatus",
+    "targetHandle": "loadOrders",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "changeDeliveryStatus-open",
+    "source": "/frontend/src/app/accounting/accounting.component.ts.AccountingComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "changeDeliveryStatus",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-load",
+    "source": "/frontend/src/app/address/address.component.ts.AddressComponent",
+    "target": "/frontend/src/app/address/address.component.ts.AddressComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "load",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "load-get",
+    "source": "/frontend/src/app/address/address.component.ts.AddressComponent",
+    "target": "/frontend/src/app/Services/address.service.ts.AddressService",
+    "sourceHandle": "load",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "load-open",
+    "source": "/frontend/src/app/address/address.component.ts.AddressComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "load",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "deleteAddress-del",
+    "source": "/frontend/src/app/address/address.component.ts.AddressComponent",
+    "target": "/frontend/src/app/Services/address.service.ts.AddressService",
+    "sourceHandle": "deleteAddress",
+    "targetHandle": "del",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "deleteAddress-open",
+    "source": "/frontend/src/app/address/address.component.ts.AddressComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "deleteAddress",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "deleteAddress-open",
+    "source": "/frontend/src/app/address/address.component.ts.AddressComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "deleteAddress",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "deleteAddress-load",
+    "source": "/frontend/src/app/address/address.component.ts.AddressComponent",
+    "target": "/frontend/src/app/address/address.component.ts.AddressComponent",
+    "sourceHandle": "deleteAddress",
+    "targetHandle": "load",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "deleteAddress-open",
+    "source": "/frontend/src/app/address/address.component.ts.AddressComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "deleteAddress",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getById",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/Services/address.service.ts.AddressService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-initializeForm",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "initializeForm",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "ngOnInit-save",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "save",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "ngOnInit-attachEnterKeyHandler",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/Services/form-submit.service.ts.FormSubmitService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "attachEnterKeyHandler",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-put",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/Services/address.service.ts.AddressService",
+    "sourceHandle": "save",
+    "targetHandle": "put",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-ngOnInit",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "sourceHandle": "save",
+    "targetHandle": "ngOnInit",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "save-resetForm",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "sourceHandle": "save",
+    "targetHandle": "resetForm",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "save-routeToPreviousUrl",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "sourceHandle": "save",
+    "targetHandle": "routeToPreviousUrl",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-resetForm",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "sourceHandle": "save",
+    "targetHandle": "resetForm",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "save-save",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/Services/address.service.ts.AddressService",
+    "sourceHandle": "save",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-ngOnInit",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "sourceHandle": "save",
+    "targetHandle": "ngOnInit",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "save-resetForm",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "sourceHandle": "save",
+    "targetHandle": "resetForm",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "save-routeToPreviousUrl",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "sourceHandle": "save",
+    "targetHandle": "routeToPreviousUrl",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-resetForm",
+    "source": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "target": "/frontend/src/app/address-create/address-create.component.ts.AddressCreateComponent",
+    "sourceHandle": "save",
+    "targetHandle": "resetForm",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "ngOnInit-findAllUsers",
+    "source": "/frontend/src/app/administration/administration.component.ts.AdministrationComponent",
+    "target": "/frontend/src/app/administration/administration.component.ts.AdministrationComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "findAllUsers",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-findAllFeedbacks",
+    "source": "/frontend/src/app/administration/administration.component.ts.AdministrationComponent",
+    "target": "/frontend/src/app/administration/administration.component.ts.AdministrationComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "findAllFeedbacks",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "findAllUsers-find",
+    "source": "/frontend/src/app/administration/administration.component.ts.AdministrationComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "findAllUsers",
+    "targetHandle": "find",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "findAllUsers-doesUserHaveAnActiveSession",
+    "source": "/frontend/src/app/administration/administration.component.ts.AdministrationComponent",
+    "target": "/frontend/src/app/administration/administration.component.ts.AdministrationComponent",
+    "sourceHandle": "findAllUsers",
+    "targetHandle": "doesUserHaveAnActiveSession",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "findAllFeedbacks-find",
+    "source": "/frontend/src/app/administration/administration.component.ts.AdministrationComponent",
+    "target": "/frontend/src/app/Services/feedback.service.ts.FeedbackService",
+    "sourceHandle": "findAllFeedbacks",
+    "targetHandle": "find",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "deleteFeedback-del",
+    "source": "/frontend/src/app/administration/administration.component.ts.AdministrationComponent",
+    "target": "/frontend/src/app/Services/feedback.service.ts.FeedbackService",
+    "sourceHandle": "deleteFeedback",
+    "targetHandle": "del",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "deleteFeedback-findAllFeedbacks",
+    "source": "/frontend/src/app/administration/administration.component.ts.AdministrationComponent",
+    "target": "/frontend/src/app/administration/administration.component.ts.AdministrationComponent",
+    "sourceHandle": "deleteFeedback",
+    "targetHandle": "findAllFeedbacks",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "canActivate-forbidRoute",
+    "source": "/frontend/src/app/app.guard.ts.LoginGuard",
+    "target": "/frontend/src/app/app.guard.ts.LoginGuard",
+    "sourceHandle": "canActivate",
+    "targetHandle": "forbidRoute",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "canActivate-tokenDecode",
+    "source": "/frontend/src/app/app.guard.ts.AdminGuard",
+    "target": "/frontend/src/app/app.guard.ts.LoginGuard",
+    "sourceHandle": "canActivate",
+    "targetHandle": "tokenDecode",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "canActivate-forbidRoute",
+    "source": "/frontend/src/app/app.guard.ts.AdminGuard",
+    "target": "/frontend/src/app/app.guard.ts.LoginGuard",
+    "sourceHandle": "canActivate",
+    "targetHandle": "forbidRoute",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "canActivate-tokenDecode",
+    "source": "/frontend/src/app/app.guard.ts.AccountingGuard",
+    "target": "/frontend/src/app/app.guard.ts.LoginGuard",
+    "sourceHandle": "canActivate",
+    "targetHandle": "tokenDecode",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "canActivate-forbidRoute",
+    "source": "/frontend/src/app/app.guard.ts.AccountingGuard",
+    "target": "/frontend/src/app/app.guard.ts.LoginGuard",
+    "sourceHandle": "canActivate",
+    "targetHandle": "forbidRoute",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "isDeluxe-tokenDecode",
+    "source": "/frontend/src/app/app.guard.ts.DeluxeGuard",
+    "target": "/frontend/src/app/app.guard.ts.LoginGuard",
+    "sourceHandle": "isDeluxe",
+    "targetHandle": "tokenDecode",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "constructor-getApplicationConfiguration",
+    "source": "/frontend/src/app/app.module.ts.AppModule",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "constructor",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "tokenMatcher-token1",
+    "source": "/frontend/src/app/app.routing.ts",
+    "target": "/frontend/src/app/app.routing.ts",
+    "sourceHandle": "tokenMatcher",
+    "targetHandle": "token1",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "tokenMatcher-token2",
+    "source": "/frontend/src/app/app.routing.ts",
+    "target": "/frontend/src/app/app.routing.ts",
+    "sourceHandle": "tokenMatcher",
+    "targetHandle": "token2",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-socket",
+    "source": "/frontend/src/app/challenge-solved-notification/challenge-solved-notification.component.ts.ChallengeSolvedNotificationComponent",
+    "target": "/frontend/src/app/Services/socket-io.service.ts.SocketIoService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "socket",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-showNotification",
+    "source": "/frontend/src/app/challenge-solved-notification/challenge-solved-notification.component.ts.ChallengeSolvedNotificationComponent",
+    "target": "/frontend/src/app/challenge-solved-notification/challenge-solved-notification.component.ts.ChallengeSolvedNotificationComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "showNotification",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-saveProgress",
+    "source": "/frontend/src/app/challenge-solved-notification/challenge-solved-notification.component.ts.ChallengeSolvedNotificationComponent",
+    "target": "/frontend/src/app/challenge-solved-notification/challenge-solved-notification.component.ts.ChallengeSolvedNotificationComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "saveProgress",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-socket",
+    "source": "/frontend/src/app/challenge-solved-notification/challenge-solved-notification.component.ts.ChallengeSolvedNotificationComponent",
+    "target": "/frontend/src/app/Services/socket-io.service.ts.SocketIoService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "socket",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getApplicationConfiguration",
+    "source": "/frontend/src/app/challenge-solved-notification/challenge-solved-notification.component.ts.ChallengeSolvedNotificationComponent",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getCountryMapping",
+    "source": "/frontend/src/app/challenge-solved-notification/challenge-solved-notification.component.ts.ChallengeSolvedNotificationComponent",
+    "target": "/frontend/src/app/Services/country-mapping.service.ts.CountryMappingService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getCountryMapping",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "closeNotification-socket",
+    "source": "/frontend/src/app/challenge-solved-notification/challenge-solved-notification.component.ts.ChallengeSolvedNotificationComponent",
+    "target": "/frontend/src/app/Services/socket-io.service.ts.SocketIoService",
+    "sourceHandle": "closeNotification",
+    "targetHandle": "socket",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "saveProgress-continueCode",
+    "source": "/frontend/src/app/challenge-solved-notification/challenge-solved-notification.component.ts.ChallengeSolvedNotificationComponent",
+    "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
+    "sourceHandle": "saveProgress",
+    "targetHandle": "continueCode",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "repeatNotification-repeatNotification",
+    "source": "/frontend/src/app/challenge-status-badge/challenge-status-badge.component.ts.ChallengeStatusBadgeComponent",
+    "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
+    "sourceHandle": "repeatNotification",
+    "targetHandle": "repeatNotification",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-changePassword",
+    "source": "/frontend/src/app/change-password/change-password.component.ts.ChangePasswordComponent",
+    "target": "/frontend/src/app/change-password/change-password.component.ts.ChangePasswordComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "changePassword",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "repeatNewPasswordControl-matchValidator",
+    "source": "/frontend/src/app/change-password/change-password.component.ts.ChangePasswordComponent",
+    "target": "/frontend/src/app/change-password/change-password.component.ts",
+    "sourceHandle": "repeatNewPasswordControl",
+    "targetHandle": "matchValidator",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "resetForm-resetPasswords",
+    "source": "/frontend/src/app/change-password/change-password.component.ts.ChangePasswordComponent",
+    "target": "/frontend/src/app/change-password/change-password.component.ts.ChangePasswordComponent",
+    "sourceHandle": "resetForm",
+    "targetHandle": "resetPasswords",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "ngOnInit-attachEnterKeyHandler",
+    "source": "/frontend/src/app/change-password/change-password.component.ts.ChangePasswordComponent",
+    "target": "/frontend/src/app/Services/form-submit.service.ts.FormSubmitService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "attachEnterKeyHandler",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "changePassword-changePassword",
+    "source": "/frontend/src/app/change-password/change-password.component.ts.ChangePasswordComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "changePassword",
+    "targetHandle": "changePassword",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "changePassword-resetForm",
+    "source": "/frontend/src/app/change-password/change-password.component.ts.ChangePasswordComponent",
+    "target": "/frontend/src/app/change-password/change-password.component.ts.ChangePasswordComponent",
+    "sourceHandle": "changePassword",
+    "targetHandle": "resetForm",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "changePassword-resetPasswords",
+    "source": "/frontend/src/app/change-password/change-password.component.ts.ChangePasswordComponent",
+    "target": "/frontend/src/app/change-password/change-password.component.ts.ChangePasswordComponent",
+    "sourceHandle": "changePassword",
+    "targetHandle": "resetPasswords",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getChatbotStatus",
+    "source": "/frontend/src/app/chatbot/chatbot.component.ts.ChatbotComponent",
+    "target": "/frontend/src/app/Services/chatbot.service.ts.ChatbotService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getChatbotStatus",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-whoAmI",
+    "source": "/frontend/src/app/chatbot/chatbot.component.ts.ChatbotComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "whoAmI",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "sendMessage-getChatbotStatus",
+    "source": "/frontend/src/app/chatbot/chatbot.component.ts.ChatbotComponent",
+    "target": "/frontend/src/app/Services/chatbot.service.ts.ChatbotService",
+    "sourceHandle": "sendMessage",
+    "targetHandle": "getChatbotStatus",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "sendMessage-getResponse",
+    "source": "/frontend/src/app/chatbot/chatbot.component.ts.ChatbotComponent",
+    "target": "/frontend/src/app/Services/chatbot.service.ts.ChatbotService",
+    "sourceHandle": "sendMessage",
+    "targetHandle": "getResponse",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "sendMessage-handleResponse",
+    "source": "/frontend/src/app/chatbot/chatbot.component.ts.ChatbotComponent",
+    "target": "/frontend/src/app/chatbot/chatbot.component.ts.ChatbotComponent",
+    "sourceHandle": "sendMessage",
+    "targetHandle": "handleResponse",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "ngOnInit-getApplicationConfiguration",
+    "source": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-get",
+    "source": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "target": "/frontend/src/app/Services/code-snippet.service.ts.CodeSnippetService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-get",
+    "source": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "target": "/frontend/src/app/Services/code-fixes.service.ts.CodeFixesService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-shuffle",
+    "source": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "target": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "shuffle",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "changeFix-setFix",
+    "source": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "target": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "sourceHandle": "changeFix",
+    "targetHandle": "setFix",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "checkFix-check",
+    "source": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "target": "/frontend/src/app/Services/code-fixes.service.ts.CodeFixesService",
+    "sourceHandle": "checkFix",
+    "targetHandle": "check",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "checkFix-setVerdict",
+    "source": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "target": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "sourceHandle": "checkFix",
+    "targetHandle": "setVerdict",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "checkLines-check",
+    "source": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "target": "/frontend/src/app/Services/vuln-lines.service.ts.VulnLinesService",
+    "sourceHandle": "checkLines",
+    "targetHandle": "check",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "checkLines-setVerdict",
+    "source": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "target": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "sourceHandle": "checkLines",
+    "targetHandle": "setVerdict",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "lockColor-lockIcon",
+    "source": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "target": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "sourceHandle": "lockColor",
+    "targetHandle": "lockIcon",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "setVerdict-continueCodeFixIt",
+    "source": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
+    "sourceHandle": "setVerdict",
+    "targetHandle": "continueCodeFixIt",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "setVerdict-continueCodeFindIt",
+    "source": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
+    "sourceHandle": "setVerdict",
+    "targetHandle": "continueCodeFindIt",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "setVerdict-toggleTab",
+    "source": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "target": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "sourceHandle": "setVerdict",
+    "targetHandle": "toggleTab",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "resultColor-resultIcon",
+    "source": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "target": "/frontend/src/app/code-snippet/code-snippet.component.ts.CodeSnippetComponent",
+    "sourceHandle": "resultColor",
+    "targetHandle": "resultIcon",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-initComplaint",
+    "source": "/frontend/src/app/complaint/complaint.component.ts.ComplaintComponent",
+    "target": "/frontend/src/app/complaint/complaint.component.ts.ComplaintComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "initComplaint",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-saveComplaint",
+    "source": "/frontend/src/app/complaint/complaint.component.ts.ComplaintComponent",
+    "target": "/frontend/src/app/complaint/complaint.component.ts.ComplaintComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "saveComplaint",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-attachEnterKeyHandler",
+    "source": "/frontend/src/app/complaint/complaint.component.ts.ComplaintComponent",
+    "target": "/frontend/src/app/Services/form-submit.service.ts.FormSubmitService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "attachEnterKeyHandler",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-save",
+    "source": "/frontend/src/app/complaint/complaint.component.ts.ComplaintComponent",
+    "target": "/frontend/src/app/complaint/complaint.component.ts.ComplaintComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "save",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "initComplaint-whoAmI",
+    "source": "/frontend/src/app/complaint/complaint.component.ts.ComplaintComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "initComplaint",
+    "targetHandle": "whoAmI",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-saveComplaint",
+    "source": "/frontend/src/app/complaint/complaint.component.ts.ComplaintComponent",
+    "target": "/frontend/src/app/complaint/complaint.component.ts.ComplaintComponent",
+    "sourceHandle": "save",
+    "targetHandle": "saveComplaint",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "saveComplaint-save",
+    "source": "/frontend/src/app/complaint/complaint.component.ts.ComplaintComponent",
+    "target": "/frontend/src/app/Services/complaint.service.ts.ComplaintService",
+    "sourceHandle": "saveComplaint",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "saveComplaint-initComplaint",
+    "source": "/frontend/src/app/complaint/complaint.component.ts.ComplaintComponent",
+    "target": "/frontend/src/app/complaint/complaint.component.ts.ComplaintComponent",
+    "sourceHandle": "saveComplaint",
+    "targetHandle": "initComplaint",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "saveComplaint-resetForm",
+    "source": "/frontend/src/app/complaint/complaint.component.ts.ComplaintComponent",
+    "target": "/frontend/src/app/complaint/complaint.component.ts.ComplaintComponent",
+    "sourceHandle": "saveComplaint",
+    "targetHandle": "resetForm",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-whoAmI",
+    "source": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "whoAmI",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getNewCaptcha",
+    "source": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "target": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getNewCaptcha",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-attachEnterKeyHandler",
+    "source": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "target": "/frontend/src/app/Services/form-submit.service.ts.FormSubmitService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "attachEnterKeyHandler",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-save",
+    "source": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "target": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "save",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "getNewCaptcha-getCaptcha",
+    "source": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "target": "/frontend/src/app/Services/captcha.service.ts.CaptchaService",
+    "sourceHandle": "getNewCaptcha",
+    "targetHandle": "getCaptcha",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-save",
+    "source": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "target": "/frontend/src/app/Services/feedback.service.ts.FeedbackService",
+    "sourceHandle": "save",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-ngOnInit",
+    "source": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "target": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "sourceHandle": "save",
+    "targetHandle": "ngOnInit",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-resetForm",
+    "source": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "target": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "sourceHandle": "save",
+    "targetHandle": "resetForm",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-resetCaptcha",
+    "source": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "target": "/frontend/src/app/contact/contact.component.ts.ContactComponent",
+    "sourceHandle": "save",
+    "targetHandle": "resetCaptcha",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-needCaptcha",
+    "source": "/frontend/src/app/data-export/data-export.component.ts.DataExportComponent",
+    "target": "/frontend/src/app/data-export/data-export.component.ts.DataExportComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "needCaptcha",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "needCaptcha-getNewCaptcha",
+    "source": "/frontend/src/app/data-export/data-export.component.ts.DataExportComponent",
+    "target": "/frontend/src/app/data-export/data-export.component.ts.DataExportComponent",
+    "sourceHandle": "needCaptcha",
+    "targetHandle": "getNewCaptcha",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "getNewCaptcha-getCaptcha",
+    "source": "/frontend/src/app/data-export/data-export.component.ts.DataExportComponent",
+    "target": "/frontend/src/app/Services/image-captcha.service.ts.ImageCaptchaService",
+    "sourceHandle": "getNewCaptcha",
+    "targetHandle": "getCaptcha",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-dataExport",
+    "source": "/frontend/src/app/data-export/data-export.component.ts.DataExportComponent",
+    "target": "/frontend/src/app/Services/data-subject.service.ts.DataSubjectService",
+    "sourceHandle": "save",
+    "targetHandle": "dataExport",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-ngOnInit",
+    "source": "/frontend/src/app/data-export/data-export.component.ts.DataExportComponent",
+    "target": "frontend/src/app/data-export/data-export.component.ts.DataExportComponent",
+    "sourceHandle": "save",
+    "targetHandle": "ngOnInit",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-resetForm",
+    "source": "/frontend/src/app/data-export/data-export.component.ts.DataExportComponent",
+    "target": "frontend/src/app/data-export/data-export.component.ts.DataExportComponent",
+    "sourceHandle": "save",
+    "targetHandle": "resetForm",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-resetFormError",
+    "source": "/frontend/src/app/data-export/data-export.component.ts.DataExportComponent",
+    "target": "frontend/src/app/data-export/data-export.component.ts.DataExportComponent",
+    "sourceHandle": "save",
+    "targetHandle": "resetFormError",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getById",
+    "source": "/frontend/src/app/delivery-method/delivery-method.component.ts.DeliveryMethodComponent",
+    "target": "/frontend/src/app/Services/address.service.ts.AddressService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-get",
+    "source": "/frontend/src/app/delivery-method/delivery-method.component.ts.DeliveryMethodComponent",
+    "target": "/frontend/src/app/Services/delivery.service.ts.DeliveryService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getApplicationConfiguration",
+    "source": "/frontend/src/app/deluxe-user/deluxe-user.component.ts.DeluxeUserComponent",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-socket",
+    "source": "/frontend/src/app/deluxe-user/deluxe-user.component.ts.DeluxeUserComponent",
+    "target": "/frontend/src/app/Services/socket-io.service.ts.SocketIoService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "socket",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-deluxeStatus",
+    "source": "/frontend/src/app/deluxe-user/deluxe-user.component.ts.DeluxeUserComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "deluxeStatus",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-handleAuth",
+    "source": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "target": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "handleAuth",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-checkNftMinted",
+    "source": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "target": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "checkNftMinted",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-nftMintListener",
+    "source": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "target": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "nftMintListener",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "nftMintListener-nftMintListen",
+    "source": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "target": "/frontend/src/app/Services/keys.service.ts.KeysService",
+    "sourceHandle": "nftMintListener",
+    "targetHandle": "nftMintListen",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "checkNftMinted-checkNftMinted",
+    "source": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "target": "/frontend/src/app/Services/keys.service.ts.KeysService",
+    "sourceHandle": "checkNftMinted",
+    "targetHandle": "checkNftMinted",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "handleChainChanged-handleAuth",
+    "source": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "target": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "sourceHandle": "handleChainChanged",
+    "targetHandle": "handleAuth",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "handleAuth-open",
+    "source": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "handleAuth",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "handleAuth-open",
+    "source": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "handleAuth",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "handleAuth-fetchBeeBalance",
+    "source": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "target": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "sourceHandle": "handleAuth",
+    "targetHandle": "fetchBeeBalance",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "handleAuth-fetchMyBeeBalance",
+    "source": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "target": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "sourceHandle": "handleAuth",
+    "targetHandle": "fetchMyBeeBalance",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "extractBEETokens-open",
+    "source": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "extractBEETokens",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "extractBEETokens-fetchBeeBalance",
+    "source": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "target": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "sourceHandle": "extractBEETokens",
+    "targetHandle": "fetchBeeBalance",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "extractBEETokens-fetchMyBeeBalance",
+    "source": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "target": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "sourceHandle": "extractBEETokens",
+    "targetHandle": "fetchMyBeeBalance",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "mintNFT-open",
+    "source": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "mintNFT",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "mintNFT-verifyNFTWallet",
+    "source": "/frontend/src/app/faucet/faucet.component.ts.FaucetComponent",
+    "target": "/frontend/src/app/Services/keys.service.ts.KeysService",
+    "sourceHandle": "mintNFT",
+    "targetHandle": "verifyNFTWallet",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "constructor-getApplicationConfiguration",
+    "source": "/frontend/src/app/faucet/faucet.module.ts.FaucetModule",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "constructor",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "repeatPasswordControl-matchValidator",
+    "source": "/frontend/src/app/forgot-password/forgot-password.component.ts.ForgotPasswordComponent",
+    "target": "/frontend/src/app/change-password/change-password.component.ts",
+    "sourceHandle": "repeatPasswordControl",
+    "targetHandle": "matchValidator",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "findSecurityQuestion-findBy",
+    "source": "/frontend/src/app/forgot-password/forgot-password.component.ts.ForgotPasswordComponent",
+    "target": "/frontend/src/app/Services/security-question.service.ts.SecurityQuestionService",
+    "sourceHandle": "findSecurityQuestion",
+    "targetHandle": "findBy",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "resetPassword-resetPassword",
+    "source": "/frontend/src/app/forgot-password/forgot-password.component.ts.ForgotPasswordComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "resetPassword",
+    "targetHandle": "resetPassword",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "resetPassword-resetForm",
+    "source": "/frontend/src/app/forgot-password/forgot-password.component.ts.ForgotPasswordComponent",
+    "target": "/frontend/src/app/forgot-password/forgot-password.component.ts.ForgotPasswordComponent",
+    "sourceHandle": "resetPassword",
+    "targetHandle": "resetForm",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "resetPassword-resetErrorForm",
+    "source": "/frontend/src/app/forgot-password/forgot-password.component.ts.ForgotPasswordComponent",
+    "target": "/frontend/src/app/forgot-password/forgot-password.component.ts.ForgotPasswordComponent",
+    "sourceHandle": "resetPassword",
+    "targetHandle": "resetErrorForm",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-parseAuthToken",
+    "source": "/frontend/src/app/last-login-ip/last-login-ip.component.ts.LastLoginIpComponent",
+    "target": "/frontend/src/app/last-login-ip/last-login-ip.component.ts.LastLoginIpComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "parseAuthToken",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getApplicationConfiguration",
+    "source": "/frontend/src/app/login/login.component.ts.LoginComponent",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-attachEnterKeyHandler",
+    "source": "/frontend/src/app/login/login.component.ts.LoginComponent",
+    "target": "/frontend/src/app/Services/form-submit.service.ts.FormSubmitService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "attachEnterKeyHandler",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-login",
+    "source": "/frontend/src/app/login/login.component.ts.LoginComponent",
+    "target": "/frontend/src/app/login/login.component.ts.LoginComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "login",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "login-login",
+    "source": "/frontend/src/app/login/login.component.ts.LoginComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "login",
+    "targetHandle": "login",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "login-updateNumberOfCartItems",
+    "source": "/frontend/src/app/login/login.component.ts.LoginComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "login",
+    "targetHandle": "updateNumberOfCartItems",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getLanguages",
+    "source": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "target": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getLanguages",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getItemTotal",
+    "source": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getItemTotal",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getApplicationVersion",
+    "source": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "target": "/frontend/src/app/Services/administration.service.ts.AdministrationService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getApplicationVersion",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getApplicationConfiguration",
+    "source": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getUserDetails",
+    "source": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "target": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getUserDetails",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getScoreBoardStatus",
+    "source": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "target": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getScoreBoardStatus",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getLoggedInState",
+    "source": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getLoggedInState",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-socket",
+    "source": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "target": "/frontend/src/app/Services/socket-io.service.ts.SocketIoService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "socket",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "checkLanguage-changeLanguage",
+    "source": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "target": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "sourceHandle": "checkLanguage",
+    "targetHandle": "changeLanguage",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "getUserDetails-whoAmI",
+    "source": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "getUserDetails",
+    "targetHandle": "whoAmI",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "logout-saveLastLoginIp",
+    "source": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "logout",
+    "targetHandle": "saveLastLoginIp",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "logout-noop",
+    "source": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "target": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "sourceHandle": "logout",
+    "targetHandle": "noop",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "getScoreBoardStatus-find",
+    "source": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
+    "sourceHandle": "getScoreBoardStatus",
+    "targetHandle": "find",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "getLanguages-getLanguages",
+    "source": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "target": "/frontend/src/app/Services/languages.service.ts.LanguagesService",
+    "sourceHandle": "getLanguages",
+    "targetHandle": "getLanguages",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "getLanguages-checkLanguage",
+    "source": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "target": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "sourceHandle": "getLanguages",
+    "targetHandle": "checkLanguage",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "isAccounting-tokenDecode",
+    "source": "/frontend/src/app/navbar/navbar.component.ts.NavbarComponent",
+    "target": "/frontend/src/app/app.guard.ts.LoginGuard",
+    "sourceHandle": "isAccounting",
+    "targetHandle": "tokenDecode",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-checkChallengeStatus",
+    "source": "/frontend/src/app/nft-unlock/nft-unlock.component.ts.NFTUnlockComponent",
+    "target": "/frontend/src/app/nft-unlock/nft-unlock.component.ts.NFTUnlockComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "checkChallengeStatus",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "checkChallengeStatus-nftUnlocked",
+    "source": "/frontend/src/app/nft-unlock/nft-unlock.component.ts.NFTUnlockComponent",
+    "target": "/frontend/src/app/Services/keys.service.ts.KeysService",
+    "sourceHandle": "checkChallengeStatus",
+    "targetHandle": "nftUnlocked",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "submitForm-submitKey",
+    "source": "/frontend/src/app/nft-unlock/nft-unlock.component.ts.NFTUnlockComponent",
+    "target": "/frontend/src/app/Services/keys.service.ts.KeysService",
+    "sourceHandle": "submitForm",
+    "targetHandle": "submitKey",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-oauthLogin",
+    "source": "/frontend/src/app/oauth/oauth.component.ts.OAuthComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "oauthLogin",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-save",
+    "source": "/frontend/src/app/oauth/oauth.component.ts.OAuthComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-parseRedirectUrlParams",
+    "source": "/frontend/src/app/oauth/oauth.component.ts.OAuthComponent",
+    "target": "/frontend/src/app/oauth/oauth.component.ts.OAuthComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "parseRedirectUrlParams",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "ngOnInit-login",
+    "source": "/frontend/src/app/oauth/oauth.component.ts.OAuthComponent",
+    "target": "/frontend/src/app/oauth/oauth.component.ts.OAuthComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "login",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-invalidateSession",
+    "source": "/frontend/src/app/oauth/oauth.component.ts.OAuthComponent",
+    "target": "/frontend/src/app/oauth/oauth.component.ts.OAuthComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "invalidateSession",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "login-login",
+    "source": "/frontend/src/app/oauth/oauth.component.ts.OAuthComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "login",
+    "targetHandle": "login",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "login-invalidateSession",
+    "source": "/frontend/src/app/oauth/oauth.component.ts.OAuthComponent",
+    "target": "/frontend/src/app/oauth/oauth.component.ts.OAuthComponent",
+    "sourceHandle": "login",
+    "targetHandle": "invalidateSession",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-find",
+    "source": "/frontend/src/app/order-completion/order-completion.component.ts.OrderCompletionComponent",
+    "target": "/frontend/src/app/Services/track-order.service.ts.TrackOrderService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "find",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-truncateTweet",
+    "source": "/frontend/src/app/order-completion/order-completion.component.ts.OrderCompletionComponent",
+    "target": "/frontend/src/app/order-completion/order-completion.component.ts.OrderCompletionComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "truncateTweet",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "ngOnInit-getApplicationConfiguration",
+    "source": "/frontend/src/app/order-completion/order-completion.component.ts.OrderCompletionComponent",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getById",
+    "source": "/frontend/src/app/order-completion/order-completion.component.ts.OrderCompletionComponent",
+    "target": "/frontend/src/app/Services/address.service.ts.AddressService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-get",
+    "source": "/frontend/src/app/order-history/order-history.component.ts.OrderHistoryComponent",
+    "target": "/frontend/src/app/Services/order-history.service.ts.OrderHistoryService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "showDetail-get",
+    "source": "/frontend/src/app/order-history/order-history.component.ts.OrderHistoryComponent",
+    "target": "/frontend/src/app/Services/product.service.ts.ProductService",
+    "sourceHandle": "showDetail",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getById",
+    "source": "/frontend/src/app/order-summary/order-summary.component.ts.OrderSummaryComponent",
+    "target": "/frontend/src/app/Services/delivery.service.ts.DeliveryService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getById",
+    "source": "/frontend/src/app/order-summary/order-summary.component.ts.OrderSummaryComponent",
+    "target": "/frontend/src/app/Services/address.service.ts.AddressService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getById",
+    "source": "/frontend/src/app/order-summary/order-summary.component.ts.OrderSummaryComponent",
+    "target": "/frontend/src/app/Services/payment.service.ts.PaymentService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "placeOrder-checkout",
+    "source": "/frontend/src/app/order-summary/order-summary.component.ts.OrderSummaryComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "placeOrder",
+    "targetHandle": "checkout",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "placeOrder-updateNumberOfCartItems",
+    "source": "/frontend/src/app/order-summary/order-summary.component.ts.OrderSummaryComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "placeOrder",
+    "targetHandle": "updateNumberOfCartItems",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "placeOrder-open",
+    "source": "/frontend/src/app/order-summary/order-summary.component.ts.OrderSummaryComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "placeOrder",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-initTotal",
+    "source": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "target": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "initTotal",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-get",
+    "source": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "target": "/frontend/src/app/Services/wallet.service.ts.WalletService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getApplicationConfiguration",
+    "source": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "initTotal-deluxeStatus",
+    "source": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "initTotal",
+    "targetHandle": "deluxeStatus",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "initTotal-getById",
+    "source": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "target": "/frontend/src/app/Services/delivery.service.ts.DeliveryService",
+    "sourceHandle": "initTotal",
+    "targetHandle": "getById",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "applyCoupon-showConfirmation",
+    "source": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "target": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "sourceHandle": "applyCoupon",
+    "targetHandle": "showConfirmation",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "applyCoupon-resetCouponForm",
+    "source": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "target": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "sourceHandle": "applyCoupon",
+    "targetHandle": "resetCouponForm",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "applyCoupon-applyCoupon",
+    "source": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "applyCoupon",
+    "targetHandle": "applyCoupon",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "showConfirmation-resetCouponForm",
+    "source": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "target": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "sourceHandle": "showConfirmation",
+    "targetHandle": "resetCouponForm",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "showConfirmation-initTotal",
+    "source": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "target": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "sourceHandle": "showConfirmation",
+    "targetHandle": "initTotal",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "choosePayment-put",
+    "source": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "target": "/frontend/src/app/Services/wallet.service.ts.WalletService",
+    "sourceHandle": "choosePayment",
+    "targetHandle": "put",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "choosePayment-open",
+    "source": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "choosePayment",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "choosePayment-open",
+    "source": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "choosePayment",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "choosePayment-upgradeToDeluxe",
+    "source": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "choosePayment",
+    "targetHandle": "upgradeToDeluxe",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "choosePayment-open",
+    "source": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "choosePayment",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "useWallet-choosePayment",
+    "source": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "target": "/frontend/src/app/payment/payment.component.ts.PaymentComponent",
+    "sourceHandle": "useWallet",
+    "targetHandle": "choosePayment",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-load",
+    "source": "/frontend/src/app/payment-method/payment-method.component.ts.PaymentMethodComponent",
+    "target": "/frontend/src/app/payment-method/payment-method.component.ts.PaymentMethodComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "load",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-load",
+    "source": "/frontend/src/app/payment-method/payment-method.component.ts.PaymentMethodComponent",
+    "target": "/frontend/src/app/payment-method/payment-method.component.ts.PaymentMethodComponent",
+    "sourceHandle": "save",
+    "targetHandle": "load",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "save-resetForm",
+    "source": "/frontend/src/app/photo-wall/photo-wall.component.ts.PhotoWallComponent",
+    "target": "/frontend/src/app/photo-wall/photo-wall.component.ts.PhotoWallComponent",
+    "sourceHandle": "save",
+    "targetHandle": "resetForm",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "save-ngOnInit",
+    "source": "/frontend/src/app/photo-wall/photo-wall.component.ts.PhotoWallComponent",
+    "target": "/frontend/src/app/photo-wall/photo-wall.component.ts.PhotoWallComponent",
+    "sourceHandle": "save",
+    "targetHandle": "ngOnInit",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "load-get",
+    "source": "/frontend/src/app/payment-method/payment-method.component.ts.PaymentMethodComponent",
+    "target": "/frontend/src/app/Services/payment.service.ts.PaymentService",
+    "sourceHandle": "load",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-save",
+    "source": "/frontend/src/app/payment-method/payment-method.component.ts.PaymentMethodComponent",
+    "target": "/frontend/src/app/Services/payment.service.ts.PaymentService",
+    "sourceHandle": "save",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/payment-method/payment-method.component.ts.PaymentMethodComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/payment-method/payment-method.component.ts.PaymentMethodComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/payment-method/payment-method.component.ts.PaymentMethodComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-resetForm",
+    "source": "/frontend/src/app/payment-method/payment-method.component.ts.PaymentMethodComponent",
+    "target": "/frontend/src/app/payment-method/payment-method.component.ts.PaymentMethodComponent",
+    "sourceHandle": "save",
+    "targetHandle": "resetForm",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "delete-del",
+    "source": "/frontend/src/app/payment-method/payment-method.component.ts.PaymentMethodComponent",
+    "target": "/frontend/src/app/Services/payment.service.ts.PaymentService",
+    "sourceHandle": "delete",
+    "targetHandle": "del",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "delete-load",
+    "source": "/frontend/src/app/payment-method/payment-method.component.ts.PaymentMethodComponent",
+    "target": "/frontend/src/app/payment-method/payment-method.component.ts.PaymentMethodComponent",
+    "sourceHandle": "delete",
+    "targetHandle": "load",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-get",
+    "source": "/frontend/src/app/photo-wall/photo-wall.component.ts.PhotoWallComponent",
+    "target": "/frontend/src/app/Services/photo-wall.service.ts.PhotoWallService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getApplicationConfiguration",
+    "source": "/frontend/src/app/photo-wall/photo-wall.component.ts.PhotoWallComponent",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-addMemory",
+    "source": "/frontend/src/app/photo-wall/photo-wall.component.ts.PhotoWallComponent",
+    "target": "/frontend/src/app/Services/photo-wall.service.ts.PhotoWallService",
+    "sourceHandle": "save",
+    "targetHandle": "addMemory",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/photo-wall/photo-wall.component.ts.PhotoWallComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/photo-wall/photo-wall.component.ts.PhotoWallComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getApplicationConfiguration",
+    "source": "/frontend/src/app/privacy-policy/privacy-policy.component.ts.PrivacyPolicyComponent",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-get",
+    "source": "/frontend/src/app/product-details/product-details.component.ts.ProductDetailsComponent",
+    "target": "/frontend/src/app/Services/product-review.service.ts.ProductReviewService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-whoAmI",
+    "source": "/frontend/src/app/product-details/product-details.component.ts.ProductDetailsComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "whoAmI",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addReview-create",
+    "source": "/frontend/src/app/product-details/product-details.component.ts.ProductDetailsComponent",
+    "target": "/frontend/src/app/Services/product-review.service.ts.ProductReviewService",
+    "sourceHandle": "addReview",
+    "targetHandle": "create",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addReview-get",
+    "source": "/frontend/src/app/product-details/product-details.component.ts.ProductDetailsComponent",
+    "target": "/frontend/src/app/Services/product-review.service.ts.ProductReviewService",
+    "sourceHandle": "addReview",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addReview-open",
+    "source": "/frontend/src/app/product-details/product-details.component.ts.ProductDetailsComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "addReview",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "editReview-get",
+    "source": "/frontend/src/app/product-details/product-details.component.ts.ProductDetailsComponent",
+    "target": "/frontend/src/app/Services/product-review.service.ts.ProductReviewService",
+    "sourceHandle": "editReview",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "likeReview-like",
+    "source": "/frontend/src/app/product-details/product-details.component.ts.ProductDetailsComponent",
+    "target": "/frontend/src/app/Services/product-review.service.ts.ProductReviewService",
+    "sourceHandle": "likeReview",
+    "targetHandle": "like",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "likeReview-get",
+    "source": "/frontend/src/app/product-details/product-details.component.ts.ProductDetailsComponent",
+    "target": "/frontend/src/app/Services/product-review.service.ts.ProductReviewService",
+    "sourceHandle": "likeReview",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "editReview-patch",
+    "source": "/frontend/src/app/product-review-edit/product-review-edit.component.ts.ProductReviewEditComponent",
+    "target": "/frontend/src/app/Services/product-review.service.ts.ProductReviewService",
+    "sourceHandle": "editReview",
+    "targetHandle": "patch",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "editReview-open",
+    "source": "/frontend/src/app/product-review-edit/product-review-edit.component.ts.ProductReviewEditComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "editReview",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-load",
+    "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "target": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "load",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-whoAmI",
+    "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "whoAmI",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "load-isDeluxe",
+    "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "target": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "sourceHandle": "load",
+    "targetHandle": "isDeluxe",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "load-find",
+    "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "load",
+    "targetHandle": "find",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "load-sendToParent",
+    "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "target": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "sourceHandle": "load",
+    "targetHandle": "sendToParent",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "delete-del",
+    "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "delete",
+    "targetHandle": "del",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "delete-load",
+    "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "target": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "sourceHandle": "delete",
+    "targetHandle": "load",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "delete-updateNumberOfCartItems",
+    "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "delete",
+    "targetHandle": "updateNumberOfCartItems",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "inc-addToQuantity",
+    "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "target": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "sourceHandle": "inc",
+    "targetHandle": "addToQuantity",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "dec-addToQuantity",
+    "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "target": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "sourceHandle": "dec",
+    "targetHandle": "addToQuantity",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToQuantity-get",
+    "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "addToQuantity",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToQuantity-put",
+    "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "addToQuantity",
+    "targetHandle": "put",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToQuantity-load",
+    "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "target": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "sourceHandle": "addToQuantity",
+    "targetHandle": "load",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "addToQuantity-updateNumberOfCartItems",
+    "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "addToQuantity",
+    "targetHandle": "updateNumberOfCartItems",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToQuantity-open",
+    "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "addToQuantity",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "isDeluxe-isDeluxe",
+    "source": "/frontend/src/app/purchase-basket/purchase-basket.component.ts.PurchaseBasketComponent",
+    "target": "/frontend/src/app/app.guard.ts.DeluxeGuard",
+    "sourceHandle": "isDeluxe",
+    "targetHandle": "isDeluxe",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getApplicationConfiguration",
+    "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-initRecycle",
+    "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "target": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "initRecycle",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "ngOnInit-findAll",
+    "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "target": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "findAll",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "ngOnInit-attachEnterKeyHandler",
+    "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "target": "/frontend/src/app/Services/form-submit.service.ts.FormSubmitService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "attachEnterKeyHandler",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-save",
+    "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "target": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "save",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "initRecycle-whoAmI",
+    "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "initRecycle",
+    "targetHandle": "whoAmI",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-save",
+    "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "target": "/frontend/src/app/Services/recycle.service.ts.RecycleService",
+    "sourceHandle": "save",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-initRecycle",
+    "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "target": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "sourceHandle": "save",
+    "targetHandle": "initRecycle",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-resetForm",
+    "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "target": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "sourceHandle": "save",
+    "targetHandle": "resetForm",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "findAll-find",
+    "source": "/frontend/src/app/recycle/recycle.component.ts.RecycleComponent",
+    "target": "/frontend/src/app/Services/recycle.service.ts.RecycleService",
+    "sourceHandle": "findAll",
+    "targetHandle": "find",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "repeatPasswordControl-matchValidator",
+    "source": "/frontend/src/app/register/register.component.ts.RegisterComponent",
+    "target": "/frontend/src/app/change-password/change-password.component.ts",
+    "sourceHandle": "repeatPasswordControl",
+    "targetHandle": "matchValidator",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-find",
+    "source": "/frontend/src/app/register/register.component.ts.RegisterComponent",
+    "target": "/frontend/src/app/Services/security-question.service.ts.SecurityQuestionService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "find",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-attachEnterKeyHandler",
+    "source": "/frontend/src/app/register/register.component.ts.RegisterComponent",
+    "target": "/frontend/src/app/Services/form-submit.service.ts.FormSubmitService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "attachEnterKeyHandler",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-save",
+    "source": "/frontend/src/app/register/register.component.ts.RegisterComponent",
+    "target": "/frontend/src/app/register/register.component.ts.RegisterComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "save",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "save-save",
+    "source": "/frontend/src/app/register/register.component.ts.RegisterComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "save",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-save",
+    "source": "/frontend/src/app/register/register.component.ts.RegisterComponent",
+    "target": "/frontend/src/app/Services/security-answer.service.ts.SecurityAnswerService",
+    "sourceHandle": "save",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "save-open",
+    "source": "/frontend/src/app/register/register.component.ts.RegisterComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "save",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-updatedNumberOfSolvedChallenges",
+    "source": "/frontend/src/app/score-board/components/coding-challenge-progress-score-card/coding-challenge-progress-score-card.component.ts.CodingChallengeProgressScoreCardComponent",
+    "target": "/frontend/src/app/score-board/components/coding-challenge-progress-score-card/coding-challenge-progress-score-card.component.ts.CodingChallengeProgressScoreCardComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "updatedNumberOfSolvedChallenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnChanges-updatedNumberOfSolvedChallenges",
+    "source": "/frontend/src/app/score-board/components/coding-challenge-progress-score-card/coding-challenge-progress-score-card.component.ts.CodingChallengeProgressScoreCardComponent",
+    "target": "/frontend/src/app/score-board/components/coding-challenge-progress-score-card/coding-challenge-progress-score-card.component.ts.CodingChallengeProgressScoreCardComponent",
+    "sourceHandle": "ngOnChanges",
+    "targetHandle": "updatedNumberOfSolvedChallenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-updatedNumberOfSolvedChallenges",
+    "source": "/frontend/src/app/score-board/components/difficulty-overview-score-card/difficulty-overview-score-card.component.ts.DifficultyOverviewScoreCardComponent",
+    "target": "/frontend/src/app/score-board/components/difficulty-overview-score-card/difficulty-overview-score-card.component.ts.DifficultyOverviewScoreCardComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "updatedNumberOfSolvedChallenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnChanges-updatedNumberOfSolvedChallenges",
+    "source": "/frontend/src/app/score-board/components/difficulty-overview-score-card/difficulty-overview-score-card.component.ts.DifficultyOverviewScoreCardComponent",
+    "target": "/frontend/src/app/score-board/components/difficulty-overview-score-card/difficulty-overview-score-card.component.ts.DifficultyOverviewScoreCardComponent",
+    "sourceHandle": "ngOnChanges",
+    "targetHandle": "updatedNumberOfSolvedChallenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "toggleCategorySelected-isCategorySelected",
+    "source": "/frontend/src/app/score-board/components/filter-settings/components/category-filter/category-filter.component.ts.CategoryFilterComponent",
+    "target": "/frontend/src/app/score-board/components/filter-settings/components/category-filter/category-filter.component.ts.CategoryFilterComponent",
+    "sourceHandle": "toggleCategorySelected",
+    "targetHandle": "isCategorySelected",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "transform-breakDifficultiesIntoNeighboringGroups",
+    "source": "/frontend/src/app/score-board/components/filter-settings/pipes/difficulty-selection-summary.pipe.ts.DifficultySelectionSummaryPipe",
+    "target": "/frontend/src/app/score-board/components/filter-settings/pipes/difficulty-selection-summary.pipe.ts",
+    "sourceHandle": "transform",
+    "targetHandle": "breakDifficultiesIntoNeighboringGroups",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "transform-convertDifficultyGroupsToString",
+    "source": "/frontend/src/app/score-board/components/filter-settings/pipes/difficulty-selection-summary.pipe.ts.DifficultySelectionSummaryPipe",
+    "target": "/frontend/src/app/score-board/components/filter-settings/pipes/difficulty-selection-summary.pipe.ts",
+    "sourceHandle": "transform",
+    "targetHandle": "convertDifficultyGroupsToString",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-updatedNumberOfSolvedChallenges",
+    "source": "/frontend/src/app/score-board/components/hacking-challenge-progress-score-card/hacking-challenge-progress-score-card.component.ts.HackingChallengeProgressScoreCardComponent",
+    "target": "/frontend/src/app/score-board/components/hacking-challenge-progress-score-card/hacking-challenge-progress-score-card.component.ts.HackingChallengeProgressScoreCardComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "updatedNumberOfSolvedChallenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnChanges-updatedNumberOfSolvedChallenges",
+    "source": "/frontend/src/app/score-board/components/hacking-challenge-progress-score-card/hacking-challenge-progress-score-card.component.ts.HackingChallengeProgressScoreCardComponent",
+    "target": "/frontend/src/app/score-board/components/hacking-challenge-progress-score-card/hacking-challenge-progress-score-card.component.ts.HackingChallengeProgressScoreCardComponent",
+    "sourceHandle": "ngOnChanges",
+    "targetHandle": "updatedNumberOfSolvedChallenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "filterChallenges-getCompleteChallengeStatus",
+    "source": "/frontend/src/app/score-board/helpers/challenge-filtering.ts",
+    "target": "/frontend/src/app/score-board/helpers/challenge-filtering.ts",
+    "sourceHandle": "filterChallenges",
+    "targetHandle": "getCompleteChallengeStatus",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-find",
+    "source": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "find",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-challenges",
+    "source": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "target": "/frontend/src/app/Services/code-snippet.service.ts.CodeSnippetService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "challenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getApplicationConfiguration",
+    "source": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-filterAndUpdateChallenges",
+    "source": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "target": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "filterAndUpdateChallenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-fromQueryParams",
+    "source": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "target": "/frontend/src/app/score-board/filter-settings/query-params-converters.ts",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "fromQueryParams",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-socket",
+    "source": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "target": "/frontend/src/app/Services/socket-io.service.ts.SocketIoService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "socket",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-socket",
+    "source": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "target": "/frontend/src/app/Services/socket-io.service.ts.SocketIoService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "socket",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnDestroy-socket",
+    "source": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "target": "/frontend/src/app/Services/socket-io.service.ts.SocketIoService",
+    "sourceHandle": "ngOnDestroy",
+    "targetHandle": "socket",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnDestroy-socket",
+    "source": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "target": "/frontend/src/app/Services/socket-io.service.ts.SocketIoService",
+    "sourceHandle": "ngOnDestroy",
+    "targetHandle": "socket",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "onFilterSettingUpdate-toQueryParams",
+    "source": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "target": "/frontend/src/app/score-board/filter-settings/query-params-converters.ts",
+    "sourceHandle": "onFilterSettingUpdate",
+    "targetHandle": "toQueryParams",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "onChallengeSolvedWebsocket-filterAndUpdateChallenges",
+    "source": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "target": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "sourceHandle": "onChallengeSolvedWebsocket",
+    "targetHandle": "filterAndUpdateChallenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "onCodeChallengeSolvedWebsocket-filterAndUpdateChallenges",
+    "source": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "target": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "sourceHandle": "onCodeChallengeSolvedWebsocket",
+    "targetHandle": "filterAndUpdateChallenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "filterAndUpdateChallenges-sortChallenges",
+    "source": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "target": "/frontend/src/app/score-board/helpers/challenge-sorting.ts",
+    "sourceHandle": "filterAndUpdateChallenges",
+    "targetHandle": "sortChallenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "filterAndUpdateChallenges-filterChallenges",
+    "source": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "target": "/frontend/src/app/score-board/helpers/challenge-filtering.ts",
+    "sourceHandle": "filterAndUpdateChallenges",
+    "targetHandle": "filterChallenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "reset-toQueryParams",
+    "source": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "target": "/frontend/src/app/score-board/filter-settings/query-params-converters.ts",
+    "sourceHandle": "reset",
+    "targetHandle": "toQueryParams",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "repeatChallengeNotification-repeatNotification",
+    "source": "/frontend/src/app/score-board/score-board.component.ts.ScoreBoardComponent",
+    "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
+    "sourceHandle": "repeatChallengeNotification",
+    "targetHandle": "repeatNotification",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngAfterViewInit-search",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/product.service.ts.ProductService",
+    "sourceHandle": "ngAfterViewInit",
+    "targetHandle": "search",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngAfterViewInit-getAll",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/quantity.service.ts.QuantityService",
+    "sourceHandle": "ngAfterViewInit",
+    "targetHandle": "getAll",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngAfterViewInit-trustProductDescription",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "sourceHandle": "ngAfterViewInit",
+    "targetHandle": "trustProductDescription",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngAfterViewInit-filterTable",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "sourceHandle": "ngAfterViewInit",
+    "targetHandle": "filterTable",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngAfterViewInit-startHackingInstructor",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "sourceHandle": "ngAfterViewInit",
+    "targetHandle": "startHackingInstructor",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "filterTable-socket",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/socket-io.service.ts.SocketIoService",
+    "sourceHandle": "filterTable",
+    "targetHandle": "socket",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToBasket-find",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "addToBasket",
+    "targetHandle": "find",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToBasket-get",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "addToBasket",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToBasket-put",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "addToBasket",
+    "targetHandle": "put",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToBasket-get",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/product.service.ts.ProductService",
+    "sourceHandle": "addToBasket",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToBasket-open",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "addToBasket",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToBasket-updateNumberOfCartItems",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "addToBasket",
+    "targetHandle": "updateNumberOfCartItems",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToBasket-open",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "addToBasket",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToBasket-updateNumberOfCartItems",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "addToBasket",
+    "targetHandle": "updateNumberOfCartItems",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToBasket-open",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "addToBasket",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToBasket-save",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "addToBasket",
+    "targetHandle": "save",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToBasket-get",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/product.service.ts.ProductService",
+    "sourceHandle": "addToBasket",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToBasket-open",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "addToBasket",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToBasket-updateNumberOfCartItems",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "addToBasket",
+    "targetHandle": "updateNumberOfCartItems",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToBasket-open",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "addToBasket",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToBasket-updateNumberOfCartItems",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "addToBasket",
+    "targetHandle": "updateNumberOfCartItems",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "addToBasket-open",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "addToBasket",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "isDeluxe-isDeluxe",
+    "source": "/frontend/src/app/search-result/search-result.component.ts.SearchResultComponent",
+    "target": "/frontend/src/app/app.guard.ts.DeluxeGuard",
+    "sourceHandle": "isDeluxe",
+    "targetHandle": "isDeluxe",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-socket",
+    "source": "/frontend/src/app/server-started-notification/server-started-notification.component.ts.ServerStartedNotificationComponent",
+    "target": "/frontend/src/app/Services/socket-io.service.ts.SocketIoService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "socket",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-restoreProgress",
+    "source": "/frontend/src/app/server-started-notification/server-started-notification.component.ts.ServerStartedNotificationComponent",
+    "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "restoreProgress",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-restoreProgressFindIt",
+    "source": "/frontend/src/app/server-started-notification/server-started-notification.component.ts.ServerStartedNotificationComponent",
+    "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "restoreProgressFindIt",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-restoreProgressFixIt",
+    "source": "/frontend/src/app/server-started-notification/server-started-notification.component.ts.ServerStartedNotificationComponent",
+    "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "restoreProgressFixIt",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "updateNumberOfCartItems-find",
+    "source": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "target": "/frontend/src/app/Services/basket.service.ts.BasketService",
+    "sourceHandle": "updateNumberOfCartItems",
+    "targetHandle": "find",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getApplicationVersion",
+    "source": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "target": "/frontend/src/app/Services/administration.service.ts.AdministrationService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getApplicationVersion",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getApplicationDetails",
+    "source": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "target": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getApplicationDetails",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getScoreBoardStatus",
+    "source": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "target": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getScoreBoardStatus",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getUserDetails",
+    "source": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "target": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getUserDetails",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getLoggedInState",
+    "source": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getLoggedInState",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-socket",
+    "source": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "target": "/frontend/src/app/Services/socket-io.service.ts.SocketIoService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "socket",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "logout-saveLastLoginIp",
+    "source": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "logout",
+    "targetHandle": "saveLastLoginIp",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "logout-noop",
+    "source": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "target": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "sourceHandle": "logout",
+    "targetHandle": "noop",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "getScoreBoardStatus-find",
+    "source": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "target": "/frontend/src/app/Services/challenge.service.ts.ChallengeService",
+    "sourceHandle": "getScoreBoardStatus",
+    "targetHandle": "find",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "getUserDetails-whoAmI",
+    "source": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "getUserDetails",
+    "targetHandle": "whoAmI",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "getApplicationDetails-getApplicationConfiguration",
+    "source": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "getApplicationDetails",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "isAccounting-tokenDecode",
+    "source": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "target": "/frontend/src/app/app.guard.ts.LoginGuard",
+    "sourceHandle": "isAccounting",
+    "targetHandle": "tokenDecode",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "startHackingInstructor-onToggleSidenav",
+    "source": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "target": "/frontend/src/app/sidenav/sidenav.component.ts.SidenavComponent",
+    "sourceHandle": "startHackingInstructor",
+    "targetHandle": "onToggleSidenav",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getApplicationConfiguration",
+    "source": "/frontend/src/app/token-sale/token-sale.component.ts.TokenSaleComponent",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-find",
+    "source": "/frontend/src/app/track-result/track-result.component.ts.TrackResultComponent",
+    "target": "/frontend/src/app/Services/track-order.service.ts.TrackOrderService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "find",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-updateStatus",
+    "source": "/frontend/src/app/two-factor-auth/two-factor-auth.component.ts.TwoFactorAuthComponent",
+    "target": "/frontend/src/app/two-factor-auth/two-factor-auth.component.ts.TwoFactorAuthComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "updateStatus",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "updateStatus-status",
+    "source": "/frontend/src/app/two-factor-auth/two-factor-auth.component.ts.TwoFactorAuthComponent",
+    "target": "/frontend/src/app/Services/two-factor-auth-service.ts.TwoFactorAuthService",
+    "sourceHandle": "updateStatus",
+    "targetHandle": "status",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "updateStatus-getApplicationConfiguration",
+    "source": "/frontend/src/app/two-factor-auth/two-factor-auth.component.ts.TwoFactorAuthComponent",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "updateStatus",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "setup-setup",
+    "source": "/frontend/src/app/two-factor-auth/two-factor-auth.component.ts.TwoFactorAuthComponent",
+    "target": "/frontend/src/app/Services/two-factor-auth-service.ts.TwoFactorAuthService",
+    "sourceHandle": "setup",
+    "targetHandle": "setup",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "setup-open",
+    "source": "/frontend/src/app/two-factor-auth/two-factor-auth.component.ts.TwoFactorAuthComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "setup",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "disable-disable",
+    "source": "/frontend/src/app/two-factor-auth/two-factor-auth.component.ts.TwoFactorAuthComponent",
+    "target": "/frontend/src/app/Services/two-factor-auth-service.ts.TwoFactorAuthService",
+    "sourceHandle": "disable",
+    "targetHandle": "disable",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "disable-updateStatus",
+    "source": "/frontend/src/app/two-factor-auth/two-factor-auth.component.ts.TwoFactorAuthComponent",
+    "target": "/frontend/src/app/two-factor-auth/two-factor-auth.component.ts.TwoFactorAuthComponent",
+    "sourceHandle": "disable",
+    "targetHandle": "updateStatus",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "disable-open",
+    "source": "/frontend/src/app/two-factor-auth/two-factor-auth.component.ts.TwoFactorAuthComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "disable",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "verify-verify",
+    "source": "/frontend/src/app/two-factor-auth-enter/two-factor-auth-enter.component.ts.TwoFactorAuthEnterComponent",
+    "target": "/frontend/src/app/Services/two-factor-auth-service.ts.TwoFactorAuthService",
+    "sourceHandle": "verify",
+    "targetHandle": "verify",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-get",
+    "source": "/frontend/src/app/user-details/user-details.component.ts.UserDetailsComponent",
+    "target": "/frontend/src/app/Services/user.service.ts.UserService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-get",
+    "source": "/frontend/src/app/wallet/wallet.component.ts.WalletComponent",
+    "target": "/frontend/src/app/Services/wallet.service.ts.WalletService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "get",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "constructor-getApplicationConfiguration",
+    "source": "/frontend/src/app/wallet-web3/wallet-web3.module.ts.WalletWeb3Module",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "constructor",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "ngOnInit-handleAuth",
+    "source": "/frontend/src/app/wallet-web3/wallet-web3.component.ts.WalletWeb3Component",
+    "target": "/frontend/src/app/wallet-web3/wallet-web3.component.ts.WalletWeb3Component",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "handleAuth",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "handleChainChanged-handleAuth",
+    "source": "/frontend/src/app/wallet-web3/wallet-web3.component.ts.WalletWeb3Component",
+    "target": "/frontend/src/app/wallet-web3/wallet-web3.component.ts.WalletWeb3Component",
+    "sourceHandle": "handleChainChanged",
+    "targetHandle": "handleAuth",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "depositETH-getUserEthBalance",
+    "source": "/frontend/src/app/wallet-web3/wallet-web3.component.ts.WalletWeb3Component",
+    "target": "/frontend/src/app/wallet-web3/wallet-web3.component.ts.WalletWeb3Component",
+    "sourceHandle": "depositETH",
+    "targetHandle": "getUserEthBalance",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "withdrawETH-getUserEthBalance",
+    "source": "/frontend/src/app/wallet-web3/wallet-web3.component.ts.WalletWeb3Component",
+    "target": "/frontend/src/app/wallet-web3/wallet-web3.component.ts.WalletWeb3Component",
+    "sourceHandle": "withdrawETH",
+    "targetHandle": "getUserEthBalance",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "handleAuth-open",
+    "source": "/frontend/src/app/wallet-web3/wallet-web3.component.ts.WalletWeb3Component",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "handleAuth",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "handleAuth-walletAddressSend",
+    "source": "/frontend/src/app/wallet-web3/wallet-web3.component.ts.WalletWeb3Component",
+    "target": "/frontend/src/app/Services/keys.service.ts.KeysService",
+    "sourceHandle": "handleAuth",
+    "targetHandle": "walletAddressSend",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "handleAuth-open",
+    "source": "/frontend/src/app/wallet-web3/wallet-web3.component.ts.WalletWeb3Component",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "handleAuth",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "handleAuth-getUserEthBalance",
+    "source": "/frontend/src/app/wallet-web3/wallet-web3.component.ts.WalletWeb3Component",
+    "target": "/frontend/src/app/wallet-web3/wallet-web3.component.ts.WalletWeb3Component",
+    "sourceHandle": "handleAuth",
+    "targetHandle": "getUserEthBalance",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-handleAuth",
+    "source": "/frontend/src/app/web3-sandbox/web3-sandbox.component.ts.Web3SandboxComponent",
+    "target": "/frontend/src/app/web3-sandbox/web3-sandbox.component.ts.Web3SandboxComponent",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "handleAuth",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "deploySelectedContract-open",
+    "source": "/frontend/src/app/web3-sandbox/web3-sandbox.component.ts.Web3SandboxComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "deploySelectedContract",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "deploySelectedContract-getInputHints",
+    "source": "/frontend/src/app/web3-sandbox/web3-sandbox.component.ts.Web3SandboxComponent",
+    "target": "/frontend/src/app/web3-sandbox/web3-sandbox.component.ts.Web3SandboxComponent",
+    "sourceHandle": "deploySelectedContract",
+    "targetHandle": "getInputHints",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "invokeFunction-open",
+    "source": "/frontend/src/app/web3-sandbox/web3-sandbox.component.ts.Web3SandboxComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "invokeFunction",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "invokeFunction-parseInputValue",
+    "source": "/frontend/src/app/web3-sandbox/web3-sandbox.component.ts.Web3SandboxComponent",
+    "target": "/frontend/src/app/web3-sandbox/web3-sandbox.component.ts.Web3SandboxComponent",
+    "sourceHandle": "invokeFunction",
+    "targetHandle": "parseInputValue",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "handleChainChanged-handleAuth",
+    "source": "/frontend/src/app/web3-sandbox/web3-sandbox.component.ts.Web3SandboxComponent",
+    "target": "/frontend/src/app/web3-sandbox/web3-sandbox.component.ts.Web3SandboxComponent",
+    "sourceHandle": "handleChainChanged",
+    "targetHandle": "handleAuth",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "handleAuth-open",
+    "source": "/frontend/src/app/web3-sandbox/web3-sandbox.component.ts.Web3SandboxComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "handleAuth",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "handleAuth-open",
+    "source": "/frontend/src/app/web3-sandbox/web3-sandbox.component.ts.Web3SandboxComponent",
+    "target": "/frontend/src/app/Services/snack-bar-helper.service.ts.SnackBarHelperService",
+    "sourceHandle": "handleAuth",
+    "targetHandle": "open",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "constructor-getApplicationConfiguration",
+    "source": "/frontend/src/app/web3-sandbox/web3-sandbox.module.ts.FaucetModule",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "constructor",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "ngOnInit-getApplicationConfiguration",
+    "source": "/frontend/src/app/welcome/welcome.component.ts.WelcomeComponent",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "ngOnInit-getApplicationConfiguration",
+    "source": "/frontend/src/app/welcome-banner/welcome-banner.component.ts.WelcomeBannerComponent",
+    "target": "/frontend/src/app/Services/configuration.service.ts.ConfigurationService",
+    "sourceHandle": "ngOnInit",
+    "targetHandle": "getApplicationConfiguration",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "startHackingInstructor-closeWelcome",
+    "source": "/frontend/src/app/welcome-banner/welcome-banner.component.ts.WelcomeBannerComponent",
+    "target": "/frontend/src/app/welcome-banner/welcome-banner.component.ts.WelcomeBannerComponent",
+    "sourceHandle": "startHackingInstructor",
+    "targetHandle": "closeWelcome",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "resolved-sleep",
+    "source": "/frontend/src/hacking-instructor/challenges/forgedFeedback.ts",
+    "target": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "sourceHandle": "resolved",
+    "targetHandle": "sleep",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "resolved-sleep",
+    "source": "/frontend/src/hacking-instructor/challenges/viewBasket.ts",
+    "target": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "sourceHandle": "resolved",
+    "targetHandle": "sleep",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "resolved-sleep",
+    "source": "/frontend/src/hacking-instructor/challenges/viewBasket.ts",
+    "target": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "sourceHandle": "resolved",
+    "targetHandle": "sleep",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "waitForInputToHaveValue-sleep",
+    "source": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "target": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "sourceHandle": "waitForInputToHaveValue",
+    "targetHandle": "sleep",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "waitForInputToNotHaveValue-sleep",
+    "source": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "target": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "sourceHandle": "waitForInputToNotHaveValue",
+    "targetHandle": "sleep",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "waitForInputToNotHaveValueAndNotBeEmpty-sleep",
+    "source": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "target": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "sourceHandle": "waitForInputToNotHaveValueAndNotBeEmpty",
+    "targetHandle": "sleep",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "waitForInputToNotBeEmpty-sleep",
+    "source": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "target": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "sourceHandle": "waitForInputToNotBeEmpty",
+    "targetHandle": "sleep",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "waitForElementsInnerHtmlToBe-sleep",
+    "source": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "target": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "sourceHandle": "waitForElementsInnerHtmlToBe",
+    "targetHandle": "sleep",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "waitInMs-sleep",
+    "source": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "target": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "sourceHandle": "waitInMs",
+    "targetHandle": "sleep",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "waitForAngularRouteToBeVisited-sleep",
+    "source": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "target": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "sourceHandle": "waitForAngularRouteToBeVisited",
+    "targetHandle": "sleep",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "waitForLogIn-sleep",
+    "source": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "target": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "sourceHandle": "waitForLogIn",
+    "targetHandle": "sleep",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "waitForAdminLogIn-sleep",
+    "source": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "target": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "sourceHandle": "waitForAdminLogIn",
+    "targetHandle": "sleep",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "waitForLogOut-sleep",
+    "source": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "target": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "sourceHandle": "waitForLogOut",
+    "targetHandle": "sleep",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "waitForDevTools-sleep",
+    "source": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "target": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "sourceHandle": "waitForDevTools",
+    "targetHandle": "sleep",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "waitForSelectToHaveValue-sleep",
+    "source": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "target": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "sourceHandle": "waitForSelectToHaveValue",
+    "targetHandle": "sleep",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "waitForSelectToNotHaveValue-sleep",
+    "source": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "target": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "sourceHandle": "waitForSelectToNotHaveValue",
+    "targetHandle": "sleep",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "waitForRightUriQueryParamPair-sleep",
+    "source": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "target": "/frontend/src/hacking-instructor/helpers/helpers.ts",
+    "sourceHandle": "waitForRightUriQueryParamPair",
+    "targetHandle": "sleep",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "startHackingInstructorFor-loadHint",
+    "source": "/frontend/src/hacking-instructor/index.ts",
+    "target": "/frontend/src/hacking-instructor/index.ts",
+    "sourceHandle": "startHackingInstructorFor",
+    "targetHandle": "loadHint",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "startHackingInstructorFor-waitForDoubleClick",
+    "source": "/frontend/src/hacking-instructor/index.ts",
+    "target": "/frontend/src/hacking-instructor/index.ts",
+    "sourceHandle": "startHackingInstructorFor",
+    "targetHandle": "waitForDoubleClick",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "startHackingInstructorFor-waitForCancel",
+    "source": "/frontend/src/hacking-instructor/index.ts",
+    "target": "/frontend/src/hacking-instructor/index.ts",
+    "sourceHandle": "startHackingInstructorFor",
+    "targetHandle": "waitForCancel",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "storeFindItVerdict-storeVerdict",
+    "source": "/lib/accuracy.ts",
+    "target": "/lib/accuracy.ts",
+    "sourceHandle": "storeFindItVerdict",
+    "targetHandle": "storeVerdict",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "storeFixItVerdict-storeVerdict",
+    "source": "/lib/accuracy.ts",
+    "target": "/lib/accuracy.ts",
+    "sourceHandle": "storeFixItVerdict",
+    "targetHandle": "storeVerdict",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "calculateFindItAccuracy-calculateAccuracy",
+    "source": "/lib/accuracy.ts",
+    "target": "/lib/accuracy.ts",
+    "sourceHandle": "calculateFindItAccuracy",
+    "targetHandle": "calculateAccuracy",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "calculateFixItAccuracy-calculateAccuracy",
+    "source": "/lib/accuracy.ts",
+    "target": "/lib/accuracy.ts",
+    "sourceHandle": "calculateFixItAccuracy",
+    "targetHandle": "calculateAccuracy",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "totalFindItAccuracy-totalAccuracy",
+    "source": "/lib/accuracy.ts",
+    "target": "/lib/accuracy.ts",
+    "sourceHandle": "totalFindItAccuracy",
+    "targetHandle": "totalAccuracy",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "totalFixItAccuracy-totalAccuracy",
+    "source": "/lib/accuracy.ts",
+    "target": "/lib/accuracy.ts",
+    "sourceHandle": "totalFixItAccuracy",
+    "targetHandle": "totalAccuracy",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "calculateCheatScore-areCoupled",
+    "source": "/lib/antiCheat.ts",
+    "target": "/lib/antiCheat.ts",
+    "sourceHandle": "calculateCheatScore",
+    "targetHandle": "areCoupled",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "calculateCheatScore-previous",
+    "source": "/lib/antiCheat.ts",
+    "target": "/lib/antiCheat.ts",
+    "sourceHandle": "calculateCheatScore",
+    "targetHandle": "previous",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "calculateCheatScore-isTrivial",
+    "source": "/lib/antiCheat.ts",
+    "target": "/lib/antiCheat.ts",
+    "sourceHandle": "calculateCheatScore",
+    "targetHandle": "isTrivial",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "calculateCheatScore-previous",
+    "source": "/lib/antiCheat.ts",
+    "target": "/lib/antiCheat.ts",
+    "sourceHandle": "calculateCheatScore",
+    "targetHandle": "previous",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "calculateCheatScore-areCoupled",
+    "source": "/lib/antiCheat.ts",
+    "target": "/lib/antiCheat.ts",
+    "sourceHandle": "calculateCheatScore",
+    "targetHandle": "areCoupled",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "calculateCheatScore-previous",
+    "source": "/lib/antiCheat.ts",
+    "target": "/lib/antiCheat.ts",
+    "sourceHandle": "calculateCheatScore",
+    "targetHandle": "previous",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "calculateCheatScore-isTrivial",
+    "source": "/lib/antiCheat.ts",
+    "target": "/lib/antiCheat.ts",
+    "sourceHandle": "calculateCheatScore",
+    "targetHandle": "isTrivial",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "calculateFindItCheatScore-retrieveCodeSnippet",
+    "source": "/lib/antiCheat.ts",
+    "target": "/routes/vulnCodeSnippet.ts",
+    "sourceHandle": "calculateFindItCheatScore",
+    "targetHandle": "retrieveCodeSnippet",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "calculateFindItCheatScore-previous",
+    "source": "/lib/antiCheat.ts",
+    "target": "/lib/antiCheat.ts",
+    "sourceHandle": "calculateFindItCheatScore",
+    "targetHandle": "previous",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "calculateFixItCheatScore-readFixes",
+    "source": "/lib/antiCheat.ts",
+    "target": "/routes/vulnCodeFixes.ts",
+    "sourceHandle": "calculateFixItCheatScore",
+    "targetHandle": "readFixes",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "calculateFixItCheatScore-previous",
+    "source": "/lib/antiCheat.ts",
+    "target": "/lib/antiCheat.ts",
+    "sourceHandle": "calculateFixItCheatScore",
+    "targetHandle": "previous",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "solveIf-notSolved",
+    "source": "/lib/challengeUtils.ts",
+    "target": "/lib/challengeUtils.ts",
+    "sourceHandle": "solveIf",
+    "targetHandle": "notSolved",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "solveIf-solve",
+    "source": "/lib/challengeUtils.ts",
+    "target": "/lib/challengeUtils.ts",
+    "sourceHandle": "solveIf",
+    "targetHandle": "solve",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "solve-sendNotification",
+    "source": "/lib/challengeUtils.ts",
+    "target": "/lib/challengeUtils.ts",
+    "sourceHandle": "solve",
+    "targetHandle": "sendNotification",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "solve-calculateCheatScore",
+    "source": "/lib/challengeUtils.ts",
+    "target": "/lib/challengeUtils.ts",
+    "sourceHandle": "solve",
+    "targetHandle": "calculateCheatScore",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "solveFindIt-calculateFindItCheatScore",
+    "source": "/lib/challengeUtils.ts",
+    "target": "/lib/challengeUtils.ts",
+    "sourceHandle": "solveFindIt",
+    "targetHandle": "calculateFindItCheatScore",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "solveFindIt-sendCodingChallengeNotification",
+    "source": "/lib/challengeUtils.ts",
+    "target": "/lib/challengeUtils.ts",
+    "sourceHandle": "solveFindIt",
+    "targetHandle": "sendCodingChallengeNotification",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "solveFixIt-calculateFindItCheatScore",
+    "source": "/lib/challengeUtils.ts",
+    "target": "/lib/challengeUtils.ts",
+    "sourceHandle": "solveFixIt",
+    "targetHandle": "calculateFindItCheatScore",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "solveFixIt-sendCodingChallengeNotification",
+    "source": "/lib/challengeUtils.ts",
+    "target": "/lib/challengeUtils.ts",
+    "sourceHandle": "solveFixIt",
+    "targetHandle": "sendCodingChallengeNotification",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "findFilesWithCodeChallenges-findFilesWithCodeChallenges",
+    "source": "/lib/codingChallenges.ts",
+    "target": "/lib/codingChallenges.ts",
+    "sourceHandle": "findFilesWithCodeChallenges",
+    "targetHandle": "findFilesWithCodeChallenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "getCodeChallengesFromFile-getCodingChallengeFromFileContent",
+    "source": "/lib/codingChallenges.ts",
+    "target": "/lib/codingChallenges.ts",
+    "sourceHandle": "getCodeChallengesFromFile",
+    "targetHandle": "getCodingChallengeFromFileContent",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "getCodeChallenges-findFilesWithCodeChallenges",
+    "source": "/lib/codingChallenges.ts",
+    "target": "/lib/codingChallenges.ts",
+    "sourceHandle": "getCodeChallenges",
+    "targetHandle": "findFilesWithCodeChallenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "getCodeChallenges-getCodeChallengesFromFile",
+    "source": "/lib/codingChallenges.ts",
+    "target": "/lib/codingChallenges.ts",
+    "sourceHandle": "getCodeChallenges",
+    "targetHandle": "getCodeChallengesFromFile",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "sanitizeSecure-sanitizeHtml",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/insecurity.ts",
+    "sourceHandle": "sanitizeSecure",
+    "targetHandle": "sanitizeHtml",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "sanitizeSecure-sanitizeSecure",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/insecurity.ts",
+    "sourceHandle": "sanitizeSecure",
+    "targetHandle": "sanitizeSecure",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "discountFromCoupon-hasValidFormat",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/insecurity.ts",
+    "sourceHandle": "discountFromCoupon",
+    "targetHandle": "hasValidFormat",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "isAccounting-verify",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/insecurity.ts",
+    "sourceHandle": "isAccounting",
+    "targetHandle": "verify",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "isAccounting-decode",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/insecurity.ts",
+    "sourceHandle": "isAccounting",
+    "targetHandle": "decode",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "isDeluxe-verify",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/insecurity.ts",
+    "sourceHandle": "isDeluxe",
+    "targetHandle": "verify",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "isDeluxe-decode",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/insecurity.ts",
+    "sourceHandle": "isDeluxe",
+    "targetHandle": "decode",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "isDeluxe-deluxeToken",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/insecurity.ts",
+    "sourceHandle": "isDeluxe",
+    "targetHandle": "deluxeToken",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "isCustomer-verify",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/insecurity.ts",
+    "sourceHandle": "isCustomer",
+    "targetHandle": "verify",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "isCustomer-decode",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/insecurity.ts",
+    "sourceHandle": "isCustomer",
+    "targetHandle": "decode",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "isDocker-hasDockerEnv",
+    "source": "/lib/is-docker.ts",
+    "target": "/lib/is-docker.ts",
+    "sourceHandle": "isDocker",
+    "targetHandle": "hasDockerEnv",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "isDocker-hasDockerCGroup",
+    "source": "/lib/is-docker.ts",
+    "target": "/lib/is-docker.ts",
+    "sourceHandle": "isDocker",
+    "targetHandle": "hasDockerCGroup",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "validateChatBot-checkIntentWithFunctionHandlerExists",
+    "source": "/lib/startup/validateChatBot.ts",
+    "target": "/lib/startup/validateChatBot.ts",
+    "sourceHandle": "validateChatBot",
+    "targetHandle": "checkIntentWithFunctionHandlerExists",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "validateChatBot-checkIntentWithFunctionHandlerExists",
+    "source": "/lib/startup/validateChatBot.ts",
+    "target": "/lib/startup/validateChatBot.ts",
+    "sourceHandle": "validateChatBot",
+    "targetHandle": "checkIntentWithFunctionHandlerExists",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "validateChatBot-checkIntentWithFunctionHandlerExists",
+    "source": "/lib/startup/validateChatBot.ts",
+    "target": "/lib/startup/validateChatBot.ts",
+    "sourceHandle": "validateChatBot",
+    "targetHandle": "checkIntentWithFunctionHandlerExists",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "isUrl-startsWith",
+    "source": "/lib/utils.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "isUrl",
+    "targetHandle": "startsWith",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "containsEscaped-contains",
+    "source": "/lib/utils.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "containsEscaped",
+    "targetHandle": "contains",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "containsOrEscaped-contains",
+    "source": "/lib/utils.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "containsOrEscaped",
+    "targetHandle": "contains",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "extractFilename-contains",
+    "source": "/lib/utils.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "extractFilename",
+    "targetHandle": "contains",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "downloadToFile-getErrorMessage",
+    "source": "/lib/utils.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "downloadToFile",
+    "targetHandle": "getErrorMessage",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "isChallengeEnabled-getChallengeEnablementStatus",
+    "source": "/lib/utils.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "isChallengeEnabled",
+    "targetHandle": "getChallengeEnablementStatus",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "toSimpleIpAddress-startsWith",
+    "source": "/lib/utils.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "toSimpleIpAddress",
+    "targetHandle": "startsWith",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "notify-totalCheatScore",
+    "source": "/lib/webhook.ts",
+    "target": "/lib/antiCheat.ts",
+    "sourceHandle": "notify",
+    "targetHandle": "totalCheatScore",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "b2bOrder-uniqueOrderNumber",
+    "source": "/routes/b2bOrder.ts",
+    "target": "/routes/b2bOrder.ts",
+    "sourceHandle": "b2bOrder",
+    "targetHandle": "uniqueOrderNumber",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "b2bOrder-dateTwoWeeksFromNow",
+    "source": "/routes/b2bOrder.ts",
+    "target": "/routes/b2bOrder.ts",
+    "sourceHandle": "b2bOrder",
+    "targetHandle": "dateTwoWeeksFromNow",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "b2bOrder-uniqueOrderNumber",
+    "source": "/routes/b2bOrder.ts",
+    "target": "/routes/b2bOrder.ts",
+    "sourceHandle": "b2bOrder",
+    "targetHandle": "uniqueOrderNumber",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "b2bOrder-dateTwoWeeksFromNow",
+    "source": "/routes/b2bOrder.ts",
+    "target": "/routes/b2bOrder.ts",
+    "sourceHandle": "b2bOrder",
+    "targetHandle": "dateTwoWeeksFromNow",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "quantityCheckBeforeBasketItemAddition-quantityCheck",
+    "source": "/routes/basketItems.ts",
+    "target": "/routes/basketItems.ts",
+    "sourceHandle": "quantityCheckBeforeBasketItemAddition",
+    "targetHandle": "quantityCheck",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "quantityCheckBeforeBasketItemUpdate-quantityCheck",
+    "source": "/routes/basketItems.ts",
+    "target": "/routes/basketItems.ts",
+    "sourceHandle": "quantityCheckBeforeBasketItemUpdate",
+    "targetHandle": "quantityCheck",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "initialize-validateChatBot",
+    "source": "/routes/chatbot.ts",
+    "target": "/lib/startup/validateChatBot.ts",
+    "sourceHandle": "initialize",
+    "targetHandle": "validateChatBot",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "status-getUserFromJwt",
+    "source": "/routes/chatbot.ts",
+    "target": "/routes/chatbot.ts",
+    "sourceHandle": "status",
+    "targetHandle": "getUserFromJwt",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "respond-getUserFromJwt",
+    "source": "/routes/chatbot.ts",
+    "target": "/routes/chatbot.ts",
+    "sourceHandle": "respond",
+    "targetHandle": "getUserFromJwt",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "respond-processQuery",
+    "source": "/routes/chatbot.ts",
+    "target": "/routes/chatbot.ts",
+    "sourceHandle": "respond",
+    "targetHandle": "processQuery",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "respond-setUserName",
+    "source": "/routes/chatbot.ts",
+    "target": "/routes/chatbot.ts",
+    "sourceHandle": "respond",
+    "targetHandle": "setUserName",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "servePublicFiles-verify",
+    "source": "/routes/fileServer.ts",
+    "target": "/routes/fileServer.ts",
+    "sourceHandle": "servePublicFiles",
+    "targetHandle": "verify",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "verify-endsWithAllowlistedFileType",
+    "source": "/routes/fileServer.ts",
+    "target": "/routes/fileServer.ts",
+    "sourceHandle": "verify",
+    "targetHandle": "endsWithAllowlistedFileType",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "verify-verifySuccessfulPoisonNullByteExploit",
+    "source": "/routes/fileServer.ts",
+    "target": "/routes/fileServer.ts",
+    "sourceHandle": "verify",
+    "targetHandle": "verifySuccessfulPoisonNullByteExploit",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "getLanguageList-calcPercentage",
+    "source": "/routes/languages.ts",
+    "target": "/routes/languages.ts",
+    "sourceHandle": "getLanguageList",
+    "targetHandle": "calcPercentage",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "login-verifyPreLoginChallenges",
+    "source": "/routes/login.ts",
+    "target": "/routes/login.ts",
+    "sourceHandle": "login",
+    "targetHandle": "verifyPreLoginChallenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "login-afterLogin",
+    "source": "/routes/login.ts",
+    "target": "/routes/login.ts",
+    "sourceHandle": "login",
+    "targetHandle": "afterLogin",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "afterLogin-verifyPostLoginChallenges",
+    "source": "/routes/login.ts",
+    "target": "/routes/login.ts",
+    "sourceHandle": "afterLogin",
+    "targetHandle": "verifyPostLoginChallenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "observeMetrics-retrieveChallengesWithCodeSnippet",
+    "source": "/routes/metrics.ts",
+    "target": "/routes/vulnCodeSnippet.ts",
+    "sourceHandle": "observeMetrics",
+    "targetHandle": "retrieveChallengesWithCodeSnippet",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "observeMetrics-totalCheatScore",
+    "source": "/routes/metrics.ts",
+    "target": "/lib/antiCheat.ts",
+    "sourceHandle": "observeMetrics",
+    "targetHandle": "totalCheatScore",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "placeOrder-calculateApplicableDiscount",
+    "source": "/routes/order.ts",
+    "target": "/routes/order.ts",
+    "sourceHandle": "placeOrder",
+    "targetHandle": "calculateApplicableDiscount",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "performRedirect-isUnintendedRedirect",
+    "source": "/routes/redirect.ts",
+    "target": "/routes/redirect.ts",
+    "sourceHandle": "performRedirect",
+    "targetHandle": "isUnintendedRedirect",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "resetPassword-verifySecurityAnswerChallenges",
+    "source": "/routes/resetPassword.ts",
+    "target": "/routes/resetPassword.ts",
+    "sourceHandle": "resetPassword",
+    "targetHandle": "verifySecurityAnswerChallenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "jwtChallenge-hasAlgorithm",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "jwtChallenge",
+    "targetHandle": "hasAlgorithm",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "jwtChallenge-hasEmail",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "jwtChallenge",
+    "targetHandle": "hasEmail",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "knownVulnerableComponentChallenge-knownVulnerableComponents",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "knownVulnerableComponentChallenge",
+    "targetHandle": "knownVulnerableComponents",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "knownVulnerableComponentChallenge-knownVulnerableComponents",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "knownVulnerableComponentChallenge",
+    "targetHandle": "knownVulnerableComponents",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "weirdCryptoChallenge-weirdCryptos",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "weirdCryptoChallenge",
+    "targetHandle": "weirdCryptos",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "weirdCryptoChallenge-weirdCryptos",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "weirdCryptoChallenge",
+    "targetHandle": "weirdCryptos",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "supplyChainAttackChallenge-eslintScopeVulnIds",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "supplyChainAttackChallenge",
+    "targetHandle": "eslintScopeVulnIds",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "supplyChainAttackChallenge-eslintScopeVulnIds",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "supplyChainAttackChallenge",
+    "targetHandle": "eslintScopeVulnIds",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "dlpPastebinDataLeakChallenge-dangerousIngredients",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "dlpPastebinDataLeakChallenge",
+    "targetHandle": "dangerousIngredients",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "dlpPastebinDataLeakChallenge-dangerousIngredients",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "dlpPastebinDataLeakChallenge",
+    "targetHandle": "dangerousIngredients",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "serveCodeFixes-readFixes",
+    "source": "/routes/vulnCodeFixes.ts",
+    "target": "/routes/vulnCodeFixes.ts",
+    "sourceHandle": "serveCodeFixes",
+    "targetHandle": "readFixes",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "checkCorrectFix-readFixes",
+    "source": "/routes/vulnCodeFixes.ts",
+    "target": "/routes/vulnCodeFixes.ts",
+    "sourceHandle": "checkCorrectFix",
+    "targetHandle": "readFixes",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "retrieveCodeSnippet-getCodeChallenges",
+    "source": "/routes/vulnCodeSnippet.ts",
+    "target": "/lib/codingChallenges.ts",
+    "sourceHandle": "retrieveCodeSnippet",
+    "targetHandle": "getCodeChallenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "retrieveChallengesWithCodeSnippet-getCodeChallenges",
+    "source": "/routes/vulnCodeSnippet.ts",
+    "target": "/lib/codingChallenges.ts",
+    "sourceHandle": "retrieveChallengesWithCodeSnippet",
+    "targetHandle": "getCodeChallenges",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "seePatch-retrieveCodeSnippet",
+    "source": "/rsn/rsnUtil.ts",
+    "target": "/routes/vulnCodeSnippet.ts",
+    "sourceHandle": "seePatch",
+    "targetHandle": "retrieveCodeSnippet",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "seePatch-filterString",
+    "source": "/rsn/rsnUtil.ts",
+    "target": "/rsn/rsnUtil.ts",
+    "sourceHandle": "seePatch",
+    "targetHandle": "filterString",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "seePatch-filterString",
+    "source": "/rsn/rsnUtil.ts",
+    "target": "/rsn/rsnUtil.ts",
+    "sourceHandle": "seePatch",
+    "targetHandle": "filterString",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "register-login",
+    "source": "/test/api/2faSpec.ts",
+    "target": "/test/api/2faSpec.ts",
+    "sourceHandle": "register",
+    "targetHandle": "login",
+    "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "walkRecursivelyInArray-walkRecursivelyInArray",
+    "source": "/test/cypress/support/commands.ts",
+    "target": "/test/cypress/support/commands.ts",
+    "sourceHandle": "walkRecursivelyInArray",
+    "targetHandle": "walkRecursivelyInArray",
+    "markerEnd": { "type": "arrowclosed" }
+  }
+]

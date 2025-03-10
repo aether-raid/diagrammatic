@@ -1,4 +1,11 @@
-import { Node, Group, GroupType } from "./model.js";
+import {
+  Node,
+  Group,
+  GroupType,
+  NodeType,
+  Variable,
+  VariableType,
+} from "./model.js";
 import {
   makeCalls,
   makeLocalVariables,
@@ -8,6 +15,8 @@ import {
   processConstructorRequiredParameter,
 } from "./function.js";
 import { RuleEngine } from "./rules.js";
+
+export const GLOBAL = "(global)";
 
 export class Language {
   /**
@@ -55,9 +64,7 @@ export class Language {
    */
   static makeClassGroup(tree, parent, languageRules) {
     const {
-      groups,
       nodes: nodeTrees,
-      body,
     } = this.separateNamespaces(tree, languageRules);
     const matchingGroupRule = languageRules.groups.find(
       (group) => group.type === tree.type
@@ -92,6 +99,9 @@ export class Language {
   static makeNodes(tree, parent, languageRules) {
     const { nodes, body } = this.separateNamespaces(tree, languageRules);
     const token = getName(tree, languageRules.getName);
+    if (!token) {
+      return [];
+    }
     const calls = makeCalls(body);
     const variables = makeLocalVariables(body, parent, languageRules);
 
@@ -119,12 +129,46 @@ export class Language {
         }
       }
     }
+
+    /**
+     * For Java, convert class attributes (field_declarations) to variables.
+     * e.g.  private VenueService service;
+     * Variable(token=service, pointsTo=VenueService)
+     * Since VenueService is a string, we need to resolve it to the actual Class node later.
+     */
+    if (tree.type === "field_declaration") {
+      const typeIdentifier = tree.childForFieldName("type");
+      const variableDeclarator = tree.childForFieldName("declarator");
+      const identifier = variableDeclarator.childForFieldName("name");
+      if (identifier && typeIdentifier) {
+        variables.push(
+          new Variable({
+            token: identifier.text,
+            pointsTo: typeIdentifier.text,
+            lineNumber: getLineNumber(tree),
+            variableType: VariableType.INJECTION,
+          })
+        );
+      }
+    }
+
+    const matchingNodeRule = languageRules.nodes.find(
+      (node) => node.type === tree.type
+    );
+    if (!matchingNodeRule || !matchingNodeRule.nodeType) {
+      throw new Error("Node rule is missing nodeType or does not exist!");
+    }
+    if (!NodeType[matchingNodeRule.nodeType]) {
+      throw new Error("Node rule has invalid nodeType!");
+    }
+
     const node = new Node({
       token,
       calls,
       variables,
       lineNumber: getLineNumber(tree),
       parent,
+      nodeType: NodeType[matchingNodeRule.nodeType],
     });
     const subnodes = nodes.flatMap((t) =>
       this.makeNodes(t, node, languageRules)
@@ -134,7 +178,7 @@ export class Language {
 
   static makeRootNode(body, parent, languageRules) {
     return new Node({
-      token: "(global)",
+      token: GLOBAL,
       calls: makeCalls(body),
       variables: makeLocalVariables(body, parent, languageRules),
       lineNumber: 0,

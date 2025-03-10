@@ -1,16 +1,38 @@
 name: Test and Build
 
 on:
-    push:
-        branches:
-            - "*"
-    # pull_request:
-    #   branches:
-    #     - '*'
+  push:
+    branches:
+      - "*"
+
+permissions:
+  contents: write
 
 jobs:
     test:
+      runs-on: ubuntu-latest
+      
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Run tests with Xvfb
+        uses: GabrielBB/xvfb-action@v1
+        with:
+          run: npm test
+
+    deploy:
         runs-on: ubuntu-latest
+        if: github.ref == 'refs/heads/master'
+        needs: test
 
         steps:
             - name: Checkout code
@@ -24,8 +46,26 @@ jobs:
             - name: Install dependencies
               run: npm install
 
-            - name: Run tests
-              run: npm test
+            - name: Deploy on Visual Studio Marketplace
+              run: |
+                COMMIT_MSG=$(git log -1 --pretty=%B)
+                if [[ "$COMMIT_MSG" == *"#major"* ]]; then
+                  npm version major --no-git-tag-version --force
+                elif [[ "$COMMIT_MSG" == *"#minor"* ]]; then
+                  npm version minor --no-git-tag-version --force
+                else
+                  npm version patch --no-git-tag-version --force
+                fi
 
-            - name: Compile and build
-              run: npm run build
+                # Commit the version change to the repository
+                git config --global user.email "github-actions@github.com"
+                git config --global user.name "GitHub Actions"
+                git add package.json
+                git commit -m "[GitHub Actions] Modified app version on package.json"
+                git remote set-url origin https://${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/kahliya/diagrammatic.git
+                git push
+                
+                npx vsce publish
+              env:
+                VSCE_PAT: ${{ secrets.VSCE_PAT }}
+                GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}

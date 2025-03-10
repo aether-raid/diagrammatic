@@ -1,13 +1,19 @@
 import * as vscode from "vscode";
-import { TaskQueue, QueueError } from 'ts-async-queue';
-import { Commands, JumpToLinePayload, WebviewCommandMessage } from "@shared/message.types";
+import {
+  Commands,
+  JumpToLinePayload,
+  WebviewCommandMessage,
+} from "@shared/message.types";
 
 import { runCodeToDiagramAlgorithm } from "./runCodeToDiagramAlgorithm";
 import { NodeEdgeData } from "./extension.types";
-import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
+import {
+  sendAcceptNodeEdgeMessageToWebview,
+  sendAcceptCompNodeEdgeMessageToWebview,
+} from "./messageHandler";
 import { runNodeDescriptionsAlgorithm } from "./runNodeDescriptionsAlgorithm";
-import { getComponentDiagram } from "./runComponentDiagramAlgorithm";
 import { runCodeLinting } from "./runCodeLinting";
+import { getComponentDiagram } from "./runComponentDiagramAlgorithm";
 
 const handleShowMVCDiagram = async (
   context: vscode.ExtensionContext,
@@ -21,39 +27,51 @@ const handleShowMVCDiagram = async (
 
   // Tree-sitter Structure & LLM Descriptions
   let nodeEdgeData: NodeEdgeData = runCodeToDiagramAlgorithm(filePath);
-//   nodeEdgeData.nodes = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData);
 
   // Linting & security
   const { lintedNodes, hasIssues } = await runCodeLinting(nodeEdgeData.nodes);
   nodeEdgeData.nodes = lintedNodes;
   if (hasIssues) {
-    vscode.window.showWarningMessage('ESLint issues found. Check the Problems panel.');
+    vscode.window.showWarningMessage(
+      "ESLint issues found. Check the Problems panel."
+    );
   }
 
-  // C4 Level 3 diagram?
-//   const componentNodeEdge = await getComponentDiagram(nodeEdgeData)
+//   // C4 Level 3 diagram
+  const componentNodesEdges = await getComponentDiagram(nodeEdgeData);
 
   panel = setupWebviewPanel(context);
+  runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData).then(
+    (data) => {
+      nodeEdgeData.nodes = data;
+      sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
+    }
+  );
   const waitWebviewReady: Promise<void> = new Promise((resolve) => {
-    panel.webview.onDidReceiveMessage(async (message: WebviewCommandMessage) => {
-      switch (message.command) {
-        case Commands.READY:
-          resolve();
-          break;
-        case Commands.JUMP_TO_LINE:
-          const msg = message.message as JumpToLinePayload;
-          const fileUri = vscode.Uri.file(msg.filePath);
-          const position = new vscode.Position(msg.lineNumber-1, 0);
-          await vscode.commands.executeCommand('vscode.open', fileUri, {
-            selection: new vscode.Range(position, position),
-          });
-          break;
+    panel.webview.onDidReceiveMessage(
+      async (message: WebviewCommandMessage) => {
+        switch (message.command) {
+          case Commands.READY:
+            sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
+            sendAcceptCompNodeEdgeMessageToWebview(componentNodesEdges, panel);
+            resolve();
+            break;
+          case Commands.JUMP_TO_LINE:
+            const msg = message.message as JumpToLinePayload;
+            const fileUri = vscode.Uri.file(msg.filePath);
+            const position = new vscode.Position(msg.lineNumber - 1, 0);
+            await vscode.commands.executeCommand("vscode.open", fileUri, {
+              selection: new vscode.Range(position, position),
+            });
+            break;
+        }
       }
-    });
+    );
   });
 
   await waitWebviewReady;
   sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
+  sendAcceptCompNodeEdgeMessageToWebview(componentNodesEdges, panel);
   return Promise.resolve(panel);
 };
 
