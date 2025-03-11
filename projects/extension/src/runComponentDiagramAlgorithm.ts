@@ -7,8 +7,7 @@ import { InputComponentNode, InputComponentEdge } from "@shared/compNode.types";
 import { CompNode } from "@shared/compNode.types";
 import { CompEdge } from "@shared/compEdge.types";
 import { CompNodeEdgeData } from "./extension.types";
-dotenv.config({ path: path.resolve(__dirname, ".env") });
-const apikey = process.env.SECRET_KEY;
+import { retrieveOpenAiApiKey } from "./helpers/apiKey";
 
 function transformComponent(input: InputComponentNode): CompNode {
   return {
@@ -38,6 +37,7 @@ function transformEdge(input: InputComponentEdge): CompEdge {
 export const getComponentDiagram = async (
   nodeEdgeData: NodeEdgeData
 ): Promise<CompNodeEdgeData> => {
+  const apiKey = retrieveOpenAiApiKey();
   const { nodes, edges } = nodeEdgeData;
   const componentNodesEdges: CompNodeEdgeData = {
     compNodes: [],
@@ -93,7 +93,7 @@ export const getComponentDiagram = async (
       },
       {
         headers: {
-          Authorization: apikey,
+          Authorization: `Bearer ${apiKey}`,
           "Content-Type": "application/json",
         },
       }

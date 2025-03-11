@@ -31,7 +31,7 @@ export function EntityCompNode({ data }: NodeProps<EntityCompNodeType>) {
                             <p style={{ color: "#FFFFFF" }}>View files</p>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <p style={{ color: "#FFFFFF" }}>
+                            <p style={{ color: "#FFFFFF", wordWrap: 'break-word' }}>
                                 {data.files && (
                                     <ul>
                                         {data.files.map((file) => (

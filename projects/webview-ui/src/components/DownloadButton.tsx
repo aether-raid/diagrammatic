@@ -1,5 +1,4 @@
 import {
-    Panel,
     useReactFlow,
     getNodesBounds,
     getViewportForBounds,
@@ -53,11 +52,9 @@ function DownloadButton({minZoom, maxZoom}: DownloadButtonProps) {
 
     return (
         <>
-            <Panel position="top-right">
-                <button className="download-btn" onClick={onClick}>
-                    Download Diagram
-                </button>
-            </Panel>
+            <button className="download-btn" onClick={onClick}>
+                Download Diagram
+            </button>
         </>
     );
 }
