@@ -79,7 +79,8 @@ export function transformFileGroups(fileGroups) {
           ? [
               {
                 name: node.token ?? "",
-                lineNumber: node.lineNumber ?? 0,
+                startPosition: node.startPosition,
+                endPosition: node.endPosition,
                 type: node.nodeType,
               },
             ]
@@ -94,7 +95,8 @@ export function transformFileGroups(fileGroups) {
           data: {
             fileName: fileGroup.token ?? "",
             filePath: fileGroup.filePath ?? "",
-            lineNumber: 0,
+            sstartPosition: fileGroup.startPosition,
+            endPosition: fileGroup.endPosition,
             entities: fileGroupNodes,
           },
         });
@@ -105,7 +107,8 @@ export function transformFileGroups(fileGroups) {
       const subgroupNodes = subgroup.nodes.flatMap((node) => [
         {
           name: node.token ?? "",
-          lineNumber: node.lineNumber ?? 0,
+          startPosition: node.startPosition,
+          endPosition: node.endPosition,
           type: node.nodeType,
         },
       ]);
@@ -117,7 +120,9 @@ export function transformFileGroups(fileGroups) {
           data: {
             fileName: subgroup.token ?? "",
             filePath: fileGroup.filePath ?? "",
-            lineNumber: subgroup.lineNumber ?? 0,
+            startPosition: subgroup.startPosition,
+            endPosition: subgroup.endPosition,
+            endLine: subgroup.endPosition.row ?? 0,
             entities: subgroupNodes,
           },
         });

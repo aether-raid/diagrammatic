@@ -1,6 +1,7 @@
 import path from "path";
 import fs from "fs";
 import { GLOBAL } from "./language";
+import { Point } from "tree-sitter";
 
 /**
  *  Variables represent named tokens that are accessible to their scope.
@@ -17,23 +18,27 @@ export enum VariableType {
 export class Variable {
   token: string;
   pointsTo: string | Call | Node | Group | null;
-  lineNumber: number | null;
+  startPosition: Point;
+  endPosition: Point;
   variableType: VariableType;
 
   constructor({
     token,
     pointsTo = null,
-    lineNumber = null,
+    startPosition,
+    endPosition,
     variableType,
   }: {
     token: string;
     pointsTo: string | Call | Node | Group | null;
-    lineNumber: number | null;
+    startPosition: Point;
+    endPosition: Point;
     variableType: VariableType;
   }) {
     this.token = token;
     this.pointsTo = pointsTo;
-    this.lineNumber = lineNumber;
+    this.startPosition = startPosition;
+    this.endPosition = endPosition;
     this.variableType = variableType;
   }
 
@@ -51,20 +56,24 @@ export class Variable {
  */
 export class Call {
   token: string;
-  lineNumber: number | null;
+  startPosition: Point;
+  endPosition: Point;
   ownerToken: string | null;
 
   constructor({
     token,
-    lineNumber = null,
+    startPosition,
+    endPosition,
     ownerToken = null,
   }: {
     token: string;
-    lineNumber?: number | null;
+    startPosition: Point;
+    endPosition: Point;
     ownerToken?: string | null;
   }) {
     this.token = token;
-    this.lineNumber = lineNumber;
+    this.startPosition = startPosition;
+    this.endPosition = endPosition;
     this.ownerToken = ownerToken;
   }
 
@@ -102,7 +111,8 @@ export class Node {
   token: string | null;
   calls: Call[];
   variables: Variable[];
-  lineNumber: number | null;
+  startPosition: Point;
+  endPosition: Point;
   parent: Node | Group;
   nodeType: NodeType;
 
@@ -110,21 +120,24 @@ export class Node {
     token,
     calls,
     variables,
-    lineNumber = null,
+    startPosition,
+    endPosition,
     parent,
     nodeType,
   }: {
     token: string | null;
     calls: Call[];
     variables: Variable[];
-    lineNumber?: number | null;
+    startPosition: Point;
+    endPosition: Point;
     parent: Node | Group;
     nodeType: NodeType;
   }) {
     this.token = token;
     this.calls = calls;
     this.variables = variables;
-    this.lineNumber = lineNumber;
+    this.startPosition = startPosition;
+    this.endPosition = endPosition;
     this.parent = parent;
     this.nodeType = nodeType;
   }
@@ -310,7 +323,8 @@ export class Group {
   subgroups: Group[];
   groupType: GroupType;
   token: string | null;
-  lineNumber: number | null;
+  startPosition: Point;
+  endPosition: Point;
   parent: Group | null;
   rootNode: Node | null;
   filePath: string;
@@ -318,13 +332,15 @@ export class Group {
   constructor({
     groupType,
     token,
-    lineNumber = null,
+    startPosition,
+    endPosition,
     parent = null,
     filePath,
   }: {
     groupType: GroupType;
     token: string | null;
-    lineNumber?: number | null;
+    startPosition: Point;
+    endPosition: Point;
     parent?: Group | null;
     filePath: string;
   }) {
@@ -332,7 +348,8 @@ export class Group {
     this.subgroups = [];
     this.groupType = groupType;
     this.token = token;
-    this.lineNumber = lineNumber;
+    this.startPosition = startPosition;
+    this.endPosition = endPosition;
     this.parent = parent;
     this.rootNode = null;
     this.filePath = filePath;

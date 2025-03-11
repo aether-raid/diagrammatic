@@ -10,7 +10,6 @@ import {
   makeCalls,
   makeLocalVariables,
   getName,
-  getLineNumber,
   getAllChildrenOfType,
   processConstructorRequiredParameter,
 } from "./function.js";
@@ -63,9 +62,7 @@ export class Language {
    * Generate all of the nodes internal to the group.
    */
   static makeClassGroup(tree, parent, languageRules) {
-    const {
-      nodes: nodeTrees,
-    } = this.separateNamespaces(tree, languageRules);
+    const { nodes: nodeTrees } = this.separateNamespaces(tree, languageRules);
     const matchingGroupRule = languageRules.groups.find(
       (group) => group.type === tree.type
     );
@@ -78,7 +75,8 @@ export class Language {
     const classGroup = new Group({
       groupType: GroupType[matchingGroupRule.groupType],
       token: getName(tree, languageRules.getName),
-      lineNumber: getLineNumber(tree),
+      startPosition: tree.startPosition,
+      endPosition: tree.endPosition,
       parent,
       filePath: parent.filePath,
     });
@@ -145,7 +143,8 @@ export class Language {
           new Variable({
             token: identifier.text,
             pointsTo: typeIdentifier.text,
-            lineNumber: getLineNumber(tree),
+            startPosition: tree.startPosition,
+            endPosition: tree.endPosition,
             variableType: VariableType.INJECTION,
           })
         );
@@ -166,7 +165,8 @@ export class Language {
       token,
       calls,
       variables,
-      lineNumber: getLineNumber(tree),
+      startPosition: tree.startPosition,
+      endPosition: tree.endPosition,
       parent,
       nodeType: NodeType[matchingNodeRule.nodeType],
     });
@@ -181,7 +181,7 @@ export class Language {
       token: GLOBAL,
       calls: makeCalls(body),
       variables: makeLocalVariables(body, parent, languageRules),
-      lineNumber: 0,
+      startPosition: { row: 0, column: 0 },
       parent,
     });
   }

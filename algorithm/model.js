@@ -15,10 +15,17 @@ export const VariableType = {
 };
 
 export class Variable {
-  constructor({ token, pointsTo, lineNumber, variableType }) {
+  constructor({
+    token,
+    pointsTo,
+    startPosition = {},
+    endPosition = {},
+    variableType,
+  }) {
     this.token = token;
     this.pointsTo = pointsTo;
-    this.lineNumber = lineNumber;
+    this.startPosition = startPosition;
+    this.endPosition = endPosition;
     this.variableType = variableType;
   }
 
@@ -35,9 +42,15 @@ export class Variable {
  *  Or a "naked" call like do_something()
  */
 export class Call {
-  constructor({ token, lineNumber = null, ownerToken = null }) {
+  constructor({
+    token,
+    startPosition = {},
+    endPosition = {},
+    ownerToken = null,
+  }) {
     this.token = token;
-    this.lineNumber = lineNumber;
+    this.startPosition = startPosition;
+    this.endPosition = endPosition;
     this.ownerToken = ownerToken;
   }
 
@@ -75,14 +88,16 @@ export class Node {
     token,
     calls,
     variables,
-    lineNumber = null,
+    startPosition = {},
+    endPosition = {},
     parent,
     nodeType,
   }) {
     this.token = token;
     this.calls = calls;
     this.variables = variables;
-    this.lineNumber = lineNumber;
+    this.startPosition = startPosition;
+    this.endPosition = endPosition;
     this.parent = parent;
     this.nodeType = nodeType;
   }
@@ -243,7 +258,8 @@ export class Group {
   constructor({
     groupType,
     token,
-    lineNumber = null,
+    startPosition = {},
+    endPosition = {},
     parent = null,
     filePath,
   }) {
@@ -251,7 +267,8 @@ export class Group {
     this.subgroups = [];
     this.groupType = groupType;
     this.token = token;
-    this.lineNumber = lineNumber;
+    this.startPosition = startPosition;
+    this.endPosition = endPosition;
     this.parent = parent;
     this.rootNode = null;
     this.filePath = filePath;

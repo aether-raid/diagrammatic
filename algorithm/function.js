@@ -166,13 +166,18 @@ export function processCallExpression(node) {
 
   switch (func.type) {
     case "identifier":
-      return new Call({ token: func.text, lineNumber: getLineNumber(node) });
+      return new Call({
+        token: func.text,
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
+      });
     case "member_expression":
       const { token, pointsTo } = processMemberExpression(func);
       return new Call({
         token,
         ownerToken: pointsTo,
-        lineNumber: getLineNumber(node),
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
       });
     // for C++
     case "field_expression":
@@ -181,7 +186,8 @@ export function processCallExpression(node) {
         return new Call({
           token: getFirstChildOfType(func, "field_identifier")?.text,
           ownerToken: identifier.text,
-          lineNumber: getLineNumber(node),
+          startPosition: node.startPosition,
+          endPosition: node.endPosition,
         });
       }
     default:
@@ -204,7 +210,11 @@ export function processMethodInvocation(node) {
   }
   // getVenueById(id)
   if (!objectNode) {
-    return new Call({ token: nameNode.text, lineNumber: getLineNumber(node) });
+    return new Call({
+      token: nameNode.text,
+      startPosition: node.startPosition,
+      endPosition: node.endPosition,
+    });
   }
 
   switch (objectNode.type) {
@@ -216,7 +226,8 @@ export function processMethodInvocation(node) {
       return new Call({
         token: nameNode.text,
         ownerToken: objectNode.text,
-        lineNumber: getLineNumber(node),
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
       });
     default:
       return null;
@@ -281,7 +292,8 @@ export function processVariableDeclaration(node) {
       return new Variable({
         token: name.text,
         pointsTo: identifierNode.text,
-        lineNumber: getLineNumber(node),
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
         variableType: VariableType.OBJECT_INSTANTIATION,
       });
     case "call_expression":
@@ -289,7 +301,8 @@ export function processVariableDeclaration(node) {
       return new Variable({
         token: name.text,
         pointsTo: call,
-        lineNumber: getLineNumber(node),
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
         variableType: VariableType.CALL_EXPRESSION,
       });
     case "await_expression":
@@ -301,7 +314,8 @@ export function processVariableDeclaration(node) {
       return new Variable({
         token: name.text,
         pointsTo: awaitCall,
-        lineNumber: getLineNumber(node),
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
         variableType: VariableType.CALL_EXPRESSION,
       });
     case "member_expression":
@@ -309,7 +323,8 @@ export function processVariableDeclaration(node) {
       return new Variable({
         token,
         pointsTo,
-        lineNumber: getLineNumber(node),
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
         variableType: VariableType.CALL_EXPRESSION,
       });
   }
@@ -338,13 +353,15 @@ export function makeLocalVariables(tree, parent, languageRules) {
             new Variable({
               token: identifier.text,
               pointsTo: typeIdentifier.text,
-              lineNumber: getLineNumber(node),
+              startPosition: node.startPosition,
+              endPosition: node.endPosition,
               variableType: VariableType.CALL_EXPRESSION,
             })
           );
         }
         break;
-      // import { SyntaxNode } from 'tree-sitter'
+      // import { SyntaxNode
+      //  } from 'tree-sitter'
       case "import_statement":
         const importClause = getFirstChildOfType(node, "import_clause");
         const namedImports = getFirstChildOfType(importClause, "named_imports");
@@ -399,7 +416,8 @@ export function makeLocalVariables(tree, parent, languageRules) {
                   new Variable({
                     token: name,
                     pointsTo: importedFilePath,
-                    lineNumber: getLineNumber(importSpecifier),
+                    startPosition: importSpecifier.startPosition,
+                    endPosition: importSpecifier.endPosition,
                     variableType: VariableType.RELATIVE_IMPORT,
                   })
                 );
@@ -567,10 +585,6 @@ export function getAllChildrenOfType(node, target) {
   return ret;
 }
 
-export function getLineNumber(node) {
-  return node.startPosition?.row + 1; // change to 1 index
-}
-
 /**
  * Extracts the name of a node based on configurable rules.
  *
@@ -638,7 +652,8 @@ export function makeFileGroup(node, filePath, fileName, languageRules) {
   const fileGroup = new Group({
     groupType: GroupType.FILE,
     token: fileName,
-    lineNumber: 0,
+    startPosition: node.startPosition,
+    endPosition: node.endPosition,
     filePath,
   });
   for (const node of nodeTrees) {
@@ -689,7 +704,8 @@ export function processConstructorRequiredParameter(node) {
   return new Variable({
     token: identifier.text,
     pointsTo: typeIdentifier.text,
-    lineNumber: getLineNumber(node),
+    startPosition: node.startPosition,
+    endPosition: node.endPosition,
     variableType: VariableType.INJECTION,
   });
 }
