@@ -15,7 +15,7 @@ import { runNodeDescriptionsAlgorithm } from "./runNodeDescriptionsAlgorithm";
 import { runCodeLinting } from "./runCodeLinting";
 import { getComponentDiagram } from "./runComponentDiagramAlgorithm";
 
-const handleShowMVCDiagram = async (
+export const handleShowMVCDiagram = async (
   context: vscode.ExtensionContext,
   panel: vscode.WebviewPanel | undefined,
   filePath: string
@@ -122,5 +122,3 @@ const getWebViewContent = (
     </html>
   `;
 };
-
-export default handleShowMVCDiagram;
