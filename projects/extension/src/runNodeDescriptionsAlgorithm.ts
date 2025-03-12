@@ -3,7 +3,7 @@ import * as vscode from "vscode";
 import { AppNode } from "@shared/node.types";
 
 import { NodeDescriptionData, NodeEdgeData } from "./extension.types";
-import { retrieveOpenAiApiKey } from "./helpers/apiKey";
+import { retrieveApiKey } from "./helpers/apiKey";
 import { LLMProvider } from "./helpers/llm";
 
 interface JsonData {
@@ -75,7 +75,7 @@ export const runNodeDescriptionsAlgorithm = async (
   llmProvider: LLMProvider
 ): Promise<AppNode[]> => {
 
-  const apiKey = retrieveOpenAiApiKey();
+  const apiKey = retrieveApiKey();
   if (!apiKey) {
     vscode.window.showInformationMessage(
       "Node descriptions are disabled. (No API key provided)"

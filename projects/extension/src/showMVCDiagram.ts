@@ -14,7 +14,7 @@ import {
 import { runNodeDescriptionsAlgorithm } from "./runNodeDescriptionsAlgorithm";
 import { runCodeLinting } from "./runCodeLinting";
 import { getComponentDiagram } from "./runComponentDiagramAlgorithm";
-import { retrieveOpenAiApiKey } from "./helpers/apiKey";
+import { retrieveApiKey } from "./helpers/apiKey";
 import { OpenAIProvider } from "./llm/openAiProvider";
 import { GeminiProvider } from "./llm/geminiProvider";
 import { retrieveLLMProviderConfig, LLMProvider } from "./helpers/llm";
@@ -43,7 +43,7 @@ const handleShowMVCDiagram = async (
 
   // LLM
   const llmProviderName = retrieveLLMProviderConfig();
-  const apiKey = retrieveOpenAiApiKey();
+  const apiKey = retrieveApiKey();
   if (!apiKey) {
     vscode.window.showInformationMessage(
       "Node descriptions are disabled. (No API key provided)"
