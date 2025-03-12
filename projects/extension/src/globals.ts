@@ -5,4 +5,7 @@ export const GLOBALS = {
   ruleset: {
     configName: "diagrammatic.codeToDiagramRulesetFile",
   },
+  llmProvider: {
+    configName: "diagrammatic.llmProvider"
+  }
 };

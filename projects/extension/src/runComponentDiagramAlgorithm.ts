@@ -1,13 +1,19 @@
 import { NodeEdgeData } from "./extension.types";
 import { MarkerType } from "@xyflow/react";
-import axios from "axios";
-import * as dotenv from "dotenv";
-import * as path from "path";
+import * as vscode from "vscode";
 import { InputComponentNode, InputComponentEdge } from "@shared/compNode.types";
 import { CompNode } from "@shared/compNode.types";
 import { CompEdge } from "@shared/compEdge.types";
 import { CompNodeEdgeData } from "./extension.types";
 import { retrieveOpenAiApiKey } from "./helpers/apiKey";
+import { OpenAIProvider } from "./llm/openAiProvider";
+import { LLMProvider } from "./llm/llmProvider";
+import { retrieveLLMProviderConfig } from "./helpers/llm";
+
+interface APIResponse {
+  "components": any[]; // Replace `any` with the actual type of your components
+  "component relationships": any[]; // Replace `any` with the actual type of your relationships
+}
 
 function transformComponent(input: InputComponentNode): CompNode {
   return {
@@ -37,7 +43,22 @@ function transformEdge(input: InputComponentEdge): CompEdge {
 export const getComponentDiagram = async (
   nodeEdgeData: NodeEdgeData
 ): Promise<CompNodeEdgeData> => {
+  const llmProviderName = retrieveLLMProviderConfig();
   const apiKey = retrieveOpenAiApiKey();
+  if (!apiKey) {
+    vscode.window.showInformationMessage(
+      "Node descriptions are disabled. (No API key provided)"
+    );
+  }
+
+  let llmProvider: LLMProvider | null = null; // TODO: set Gemini as default
+  if (llmProviderName === "openai") {
+    llmProvider = new OpenAIProvider(apiKey);
+  }
+  if (!llmProvider) {
+    throw new Error("No LLM provider selected.");
+  }
+
   const { nodes, edges } = nodeEdgeData;
   const componentNodesEdges: CompNodeEdgeData = {
     compNodes: [],
@@ -74,40 +95,13 @@ export const getComponentDiagram = async (
     edges: ${JSON.stringify(edges)}`;
   console.log("Prompt:", prompt);
   try {
-    const response = await axios.post(
-      "https://api.openai.com/v1/chat/completions",
-      {
-        model: "gpt-4-turbo", // Choose the appropriate model
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are an AI that provides structured JSON responses. In the JSON response, only create relationships between components where the source and target components are NOT the same.",
-          },
-          {
-            role: "user",
-            content: prompt,
-          },
-        ],
-        temperature: 0,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const jsonResponse = response.data.choices[0].message.content;
-    const cleanedResponse = JSON.parse(
-      jsonResponse.replace(/```json\n?|\n?```/g, "")
-    );
+    const systemPrompt = "You are an AI that provides structured JSON responses. In the JSON response, only create relationships between components where the source and target components are NOT the same."
+    const userPrompt = prompt
+    const response: APIResponse = await llmProvider.generateResponse(systemPrompt, userPrompt);
 
     // Format the component nodes and edges for diagram
-    const transformedComponents =
-      cleanedResponse["components"].map(transformComponent);
-    const transformedEdges =
-      cleanedResponse["component relationships"].map(transformEdge);
+    const transformedComponents = response["components"].map(transformComponent);
+    const transformedEdges = response["component relationships"].map(transformEdge);
     componentNodesEdges.compNodes = transformedComponents;
     componentNodesEdges.compEdges = transformedEdges;
   } catch (error) {

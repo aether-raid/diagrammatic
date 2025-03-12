@@ -43,10 +43,16 @@
           "default": "",
           "description": "Path to Diagrammatic's ruleset file. If none is set, the default ruleset will be used."
         },
+        "diagrammatic.llmProvider": {
+          "type": "string",
+          "enum": ["openai", "gemini"],
+          "default": "openai",
+          "description": "Select the LLM provider."
+        },
         "diagrammatic.openAiApiKey": {
           "type": "string",
           "default": "",
-          "description": "OpenAI API key. Used to generate node descriptions & the C4 diagram. If none is given, these features will not work."
+          "description": "OpenAI API key. Used to generate node descriptions & the C4 Component diagram. If none is given, these features will not work."
         }
       }
     }

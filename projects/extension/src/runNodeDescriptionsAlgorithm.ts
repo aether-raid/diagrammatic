@@ -1,10 +1,12 @@
-import axios from "axios";
 import * as vscode from "vscode";
 
 import { AppNode } from "@shared/node.types";
 
 import { NodeDescriptionData, NodeEdgeData } from "./extension.types";
 import { retrieveOpenAiApiKey } from "./helpers/apiKey";
+import { OpenAIProvider } from "./llm/openAiProvider";
+import { LLMProvider } from "./llm/llmProvider";
+import { retrieveLLMProviderConfig } from "./helpers/llm";
 
 interface JsonData {
   node_id: string;
@@ -12,7 +14,7 @@ interface JsonData {
 }
 
 const getNodeDescriptions = async (
-  apiKey: string,
+  llmProvider: LLMProvider,
   nodeEdgeData: NodeEdgeData
 ): Promise<NodeDescriptionData> => {
   const { nodes, edges } = nodeEdgeData;
@@ -20,35 +22,12 @@ const getNodeDescriptions = async (
 
   try {
     vscode.window.showInformationMessage("Loading descriptions...");
-    const response = await axios.post(
-      "https://api.openai.com/v1/chat/completions",
-      {
-        model: "gpt-4-turbo",
-        messages: [
-          {
-            role: "system",
-            content: "You are an AI that provides structured JSON responses.",
-          },
-          {
-            role: "user",
-            content: `Give purely a JSON response in the format [{node_id:, class_description:<describe what the class does>},]. Here are the ast details:\n
+    const systemPrompt = "You are an AI that provides structured JSON responses."
+    const userPrompt = `Give purely a JSON response in the format [{node_id:, class_description:<describe what the class does>},]. Here are the ast details:\n
               nodes: ${JSON.stringify(nodes)}
-              edges: ${JSON.stringify(edges)}`,
-          },
-        ],
-        temperature: 0,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    const jsonResponse = response.data.choices[0].message.content;
-    const cleanedResponse = jsonResponse.replace(/```json\n?|\n?```/g, "");
-    const jsonData = JSON.parse(cleanedResponse) as JsonData[];
+              edges: ${JSON.stringify(edges)}`
+    const response = await llmProvider.generateResponse(systemPrompt, userPrompt);
+    const jsonData = response as JsonData[];
     nodes.forEach((node) => {
       const match = jsonData.find((data) => data.node_id === node.id);
       if (match) {
@@ -96,6 +75,7 @@ export const runNodeDescriptionsAlgorithm = async (
   nodes: AppNode[],
   nodeEdgeData: NodeEdgeData
 ): Promise<AppNode[]> => {
+  const llmProviderName = retrieveLLMProviderConfig();
   const apiKey = retrieveOpenAiApiKey();
   if (!apiKey) {
     vscode.window.showInformationMessage(
@@ -103,8 +83,17 @@ export const runNodeDescriptionsAlgorithm = async (
     );
   }
 
+  let llmProvider: LLMProvider | null = null; // TODO: set Gemini as default
+  if (llmProviderName === "openai") {
+    llmProvider = new OpenAIProvider(apiKey);
+  }
+  if (!llmProvider) {
+    throw new Error("No LLM provider selected.");
+  }
+
+
   const descriptions = apiKey
-    ? await getNodeDescriptions(apiKey, nodeEdgeData)
+    ? await getNodeDescriptions(llmProvider, nodeEdgeData)
     : undefined;
   return addDescriptionToNodes(nodes, descriptions);
 };
