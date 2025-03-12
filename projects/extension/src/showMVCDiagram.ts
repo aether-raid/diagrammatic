@@ -50,7 +50,7 @@ const handleShowMVCDiagram = async (
     );
   }
 
-  let llmProvider: LLMProvider | null = null; // TODO: set Gemini as default
+  let llmProvider: LLMProvider | null = null;
   if (llmProviderName === "openai") {
     llmProvider = new OpenAIProvider(apiKey);
   } else if(llmProviderName === "gemini") {

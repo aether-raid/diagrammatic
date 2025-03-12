@@ -49,7 +49,7 @@
             "openai",
             "gemini"
           ],
-          "default": "openai",
+          "default": "gemini",
           "description": "Select the LLM provider."
         },
         "diagrammatic.openAiApiKey": {

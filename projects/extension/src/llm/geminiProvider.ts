@@ -1,4 +1,3 @@
-import axios from "axios";
 import { LLMProvider } from "../helpers/llm";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 export class GeminiProvider implements LLMProvider {
@@ -17,8 +16,7 @@ export class GeminiProvider implements LLMProvider {
                 }
             })
             const result = await model.generateContent(userPrompt)
-            console.log("gemini result:", result)
-            return result.response.text(); // Extract response text
+            return JSON.parse(result.response.text()); // Extract response text
           } catch (error) {
             console.error("Error calling Gemini API:", error);
             throw new Error("Failed to generate response from Gemini.");
