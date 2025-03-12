@@ -14,6 +14,10 @@ import {
 import { runNodeDescriptionsAlgorithm } from "./runNodeDescriptionsAlgorithm";
 import { runCodeLinting } from "./runCodeLinting";
 import { getComponentDiagram } from "./runComponentDiagramAlgorithm";
+import { retrieveOpenAiApiKey } from "./helpers/apiKey";
+import { OpenAIProvider } from "./llm/openAiProvider";
+import { GeminiProvider } from "./llm/geminiProvider";
+import { retrieveLLMProviderConfig, LLMProvider } from "./helpers/llm";
 
 const handleShowMVCDiagram = async (
   context: vscode.ExtensionContext,
@@ -37,11 +41,30 @@ const handleShowMVCDiagram = async (
     );
   }
 
+  // LLM
+  const llmProviderName = retrieveLLMProviderConfig();
+  const apiKey = retrieveOpenAiApiKey();
+  if (!apiKey) {
+    vscode.window.showInformationMessage(
+      "Node descriptions are disabled. (No API key provided)"
+    );
+  }
+
+  let llmProvider: LLMProvider | null = null; // TODO: set Gemini as default
+  if (llmProviderName === "openai") {
+    llmProvider = new OpenAIProvider(apiKey);
+  } else if(llmProviderName === "gemini") {
+    llmProvider = new GeminiProvider(apiKey);
+  }
+  if (!llmProvider) {
+    throw new Error("No LLM provider selected.");
+  }
+
   // C4 Level 3 diagram
-  const componentNodesEdges = await getComponentDiagram(nodeEdgeData);
+  const componentNodesEdges = await getComponentDiagram(nodeEdgeData, llmProvider);
 
   panel = setupWebviewPanel(context);
-  runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData).then(
+  runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData, llmProvider).then(
     (data) => {
       nodeEdgeData.nodes = data;
       sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);

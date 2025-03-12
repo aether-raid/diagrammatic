@@ -4,8 +4,7 @@ import { AppNode } from "@shared/node.types";
 
 import { NodeDescriptionData, NodeEdgeData } from "./extension.types";
 import { retrieveOpenAiApiKey } from "./helpers/apiKey";
-import { OpenAIProvider } from "./llm/openAiProvider";
-import { retrieveLLMProviderConfig, LLMProvider } from "./helpers/llm";
+import { LLMProvider } from "./helpers/llm";
 
 interface JsonData {
   node_id: string;
@@ -72,24 +71,16 @@ const addDescriptionToNodes = (
 
 export const runNodeDescriptionsAlgorithm = async (
   nodes: AppNode[],
-  nodeEdgeData: NodeEdgeData
+  nodeEdgeData: NodeEdgeData,
+  llmProvider: LLMProvider
 ): Promise<AppNode[]> => {
-  const llmProviderName = retrieveLLMProviderConfig();
+
   const apiKey = retrieveOpenAiApiKey();
   if (!apiKey) {
     vscode.window.showInformationMessage(
       "Node descriptions are disabled. (No API key provided)"
     );
   }
-
-  let llmProvider: LLMProvider | null = null; // TODO: set Gemini as default
-  if (llmProviderName === "openai") {
-    llmProvider = new OpenAIProvider(apiKey);
-  }
-  if (!llmProvider) {
-    throw new Error("No LLM provider selected.");
-  }
-
 
   const descriptions = apiKey
     ? await getNodeDescriptions(llmProvider, nodeEdgeData)

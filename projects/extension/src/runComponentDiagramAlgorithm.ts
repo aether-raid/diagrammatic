@@ -1,13 +1,10 @@
 import { NodeEdgeData } from "./extension.types";
 import { MarkerType } from "@xyflow/react";
-import * as vscode from "vscode";
 import { InputComponentNode, InputComponentEdge } from "@shared/compNode.types";
 import { CompNode } from "@shared/compNode.types";
 import { CompEdge } from "@shared/compEdge.types";
 import { CompNodeEdgeData } from "./extension.types";
-import { retrieveOpenAiApiKey } from "./helpers/apiKey";
-import { OpenAIProvider } from "./llm/openAiProvider";
-import { retrieveLLMProviderConfig, LLMProvider } from "./helpers/llm";
+import { LLMProvider } from "./helpers/llm";
 
 interface APIResponse {
   "components": any[]; // Replace `any` with the actual type of your components
@@ -40,24 +37,9 @@ function transformEdge(input: InputComponentEdge): CompEdge {
 }
 
 export const getComponentDiagram = async (
-  nodeEdgeData: NodeEdgeData
+  nodeEdgeData: NodeEdgeData,
+  llmProvider: LLMProvider
 ): Promise<CompNodeEdgeData> => {
-  const llmProviderName = retrieveLLMProviderConfig();
-  const apiKey = retrieveOpenAiApiKey();
-  if (!apiKey) {
-    vscode.window.showInformationMessage(
-      "Node descriptions are disabled. (No API key provided)"
-    );
-  }
-
-  let llmProvider: LLMProvider | null = null; // TODO: set Gemini as default
-  if (llmProviderName === "openai") {
-    llmProvider = new OpenAIProvider(apiKey);
-  }
-  if (!llmProvider) {
-    throw new Error("No LLM provider selected.");
-  }
-
   const { nodes, edges } = nodeEdgeData;
   const componentNodesEdges: CompNodeEdgeData = {
     compNodes: [],
