@@ -1,18 +1,16 @@
+import axios from "axios";
+
 import { NodeEdgeData } from "./extension.types";
 import { MarkerType } from "@xyflow/react";
-import axios from "axios";
-import * as dotenv from "dotenv";
-import * as path from "path";
 import { InputComponentNode, InputComponentEdge } from "@shared/compNode.types";
-import { CompNode } from "@shared/compNode.types";
-import { CompEdge } from "@shared/compEdge.types";
-import { CompNodeEdgeData } from "./extension.types";
 import { retrieveOpenAiApiKey } from "./helpers/apiKey";
+import { AppNode } from "@shared/node.types";
+import { AppEdge } from "@shared/edge.types";
 
-function transformComponent(input: InputComponentNode): CompNode {
+function transformComponent(input: InputComponentNode): AppNode {
   return {
     id: input.id.toString(), // Convert id to string
-    type: "comp",
+    type: "componentEntity",
     position: { x: 0, y: 0 }, // Default position
     data: {
       name: input.name || "Unnamed Component", // Fallback if name is missing
@@ -22,7 +20,7 @@ function transformComponent(input: InputComponentNode): CompNode {
   };
 }
 
-function transformEdge(input: InputComponentEdge): CompEdge {
+function transformEdge(input: InputComponentEdge): AppEdge {
   return {
     id: input.id,
     source: input.source.toString(),
@@ -36,12 +34,12 @@ function transformEdge(input: InputComponentEdge): CompEdge {
 
 export const getComponentDiagram = async (
   nodeEdgeData: NodeEdgeData
-): Promise<CompNodeEdgeData> => {
+): Promise<NodeEdgeData> => {
   const apiKey = retrieveOpenAiApiKey();
   const { nodes, edges } = nodeEdgeData;
-  const componentNodesEdges: CompNodeEdgeData = {
-    compNodes: [],
-    compEdges: [],
+  const componentNodesEdges: NodeEdgeData = {
+    nodes: [],
+    edges: [],
   };
   const prompt = `Group the file nodes into functional components for C4 Level 3 Component diagram. 
     Give unique numerical IDs to each component nodes.
@@ -72,7 +70,8 @@ export const getComponentDiagram = async (
 
     nodes: ${JSON.stringify(nodes)}
     edges: ${JSON.stringify(edges)}`;
-  console.log("Prompt:", prompt);
+
+  // console.log("Prompt:", prompt);
   try {
     const response = await axios.post(
       "https://api.openai.com/v1/chat/completions",
@@ -108,11 +107,12 @@ export const getComponentDiagram = async (
       cleanedResponse["components"].map(transformComponent);
     const transformedEdges =
       cleanedResponse["component relationships"].map(transformEdge);
-    componentNodesEdges.compNodes = transformedComponents;
-    componentNodesEdges.compEdges = transformedEdges;
+    componentNodesEdges.nodes = transformedComponents;
+    componentNodesEdges.edges = transformedEdges;
   } catch (error) {
     console.error("Error fetching component diagram:", error);
     // For development purposes
+    // TODO: fix the type safety here
     const sample = JSON.parse(
       JSON.stringify({
         compNodes: [
@@ -351,8 +351,8 @@ export const getComponentDiagram = async (
         ],
       })
     );
-    componentNodesEdges.compNodes = sample.compNodes;
-    componentNodesEdges.compEdges = sample.compEdges;
+    componentNodesEdges.nodes = sample.compNodes;
+    componentNodesEdges.edges = sample.compEdges;
   }
   return componentNodesEdges;
 };

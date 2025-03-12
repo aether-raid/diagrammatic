@@ -1,5 +1,5 @@
 import "@xyflow/react/dist/style.css"; // Must import this, else React Flow will not work!
-import Dagre from "@dagrejs/dagre";
+
 import {
     Background,
     Controls,
@@ -11,10 +11,8 @@ import {
     useNodesState,
     useReactFlow,
 } from "@xyflow/react";
-import { CompNode } from "@shared/compNode.types";
-import { CompEdge } from "@shared/compEdge.types";
 import {
-    AcceptCompNodeEdgeDataPayload,
+    AcceptComponentDiagramDataPayload,
     Commands,
     WebviewCommandMessage,
 } from "@shared/message.types";
@@ -24,53 +22,20 @@ import React, { useCallback, useEffect, useState } from "react";
 import HomeButton from "./components/HomeButton";
 import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
 import DownloadButton from "./components/DownloadButton";
-
-interface OptionProps {
-    direction: string;
-}
-
-const getLayoutedElements = (
-    nodes: CompNode[],
-    edges: CompEdge[],
-    options: OptionProps
-) => {
-    const g = new Dagre.graphlib.Graph();
-    g.setDefaultEdgeLabel(() => ({}));
-    g.setGraph({ rankdir: options.direction });
-
-    edges.forEach((edge) => g.setEdge(edge.source, edge.target));
-    nodes.forEach((node) =>
-        g.setNode(node.id, {
-            ...node,
-            width: node.measured?.width ?? 0,
-            height: node.measured?.height ?? 0,
-        })
-    );
-
-    Dagre.layout(g);
-
-    return {
-        nodes: nodes.map((node) => {
-            const position = g.node(node.id);
-
-            // Shift the dagre node anchor point (center-center)
-            // to match the React Flow node anchor point (top-left).
-            const x = position.x - (node.measured?.width ?? 0) / 2;
-            const y = position.y - (node.measured?.height ?? 0) / 2;
-
-            return { ...node, position: { x, y } };
-        }),
-        edges,
-    };
-};
+import { AppNode } from "@shared/node.types";
+import { AppEdge } from "@shared/edge.types";
+import { getLayoutedElements } from "./helpers/layoutHandlerDagre";
 
 const LayoutFlow = () => {
-    const { fitView } = useReactFlow<CompNode, CompEdge>();
+    const { fitView } = useReactFlow<AppNode, AppEdge>();
     const [nodes, setNodes, onNodesChange] = useNodesState(initialCompNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialCompEdges);
+
     // Hover Highlighting states
     const [highlightedNodes, setHighlightedNodes] = useState<string[]>([]);
     const [highlightedEdges, setHighlightedEdges] = useState<string[]>([]);
+
+    // General constants
     const MIN_ZOOM = 0.1;
     const MAX_ZOOM = 2;
 
@@ -99,12 +64,12 @@ const LayoutFlow = () => {
         // Setup message listener
         const onMessage = (event: MessageEvent<WebviewCommandMessage>) => {
             const { command, message } = event.data;
-            // TODO: Refactor this into a non switch-case if possible
             switch (command) {
-                case Commands.COMPONENT_DIAGRAM: {
-                    const msg = message as AcceptCompNodeEdgeDataPayload;
-                    setNodes(msg.compNodes);
-                    setEdges(msg.compEdges);
+                case Commands.ACCEPT_COMPONENT_DIAGRAM_DATA: {
+                    const msg = message as AcceptComponentDiagramDataPayload;
+                    console.log(msg);
+                    setNodes(msg.nodes);
+                    setEdges(msg.edges);
                     break;
                 }
             }
@@ -116,7 +81,8 @@ const LayoutFlow = () => {
             sendReadyMessageToExtension();
         } catch (error) {
             if (
-                (error as Error).message !== "acquireVsCodeApi is not defined"
+                (error as Error).message !==
+                "acquireVsCodeApi is not defined"
             ) {
                 // Only catch the above error, throw all else
                 throw error;
@@ -132,7 +98,6 @@ const LayoutFlow = () => {
     const onLayout = useCallback(
         (direction: string) => {
             const layouted = getLayoutedElements(nodes, edges, { direction });
-
             setNodes([...layouted.nodes]);
             setEdges([...layouted.edges]);
 
@@ -144,8 +109,8 @@ const LayoutFlow = () => {
         [nodes, edges]
     );
 
-    const prepareNode = (node: CompNode) =>
-        node.type !== "comp"
+    const prepareNode = (node: AppNode) =>
+        node.type !== "componentEntity"
             ? node
             : {
                   ...node,
@@ -162,7 +127,7 @@ const LayoutFlow = () => {
                   },
               };
 
-    const prepareEdge = (edge: CompEdge) => ({
+    const prepareEdge = (edge: AppEdge) => ({
         ...edge,
         className: highlightedEdges.includes(edge.id) ? "highlighted-edge" : "",
     });

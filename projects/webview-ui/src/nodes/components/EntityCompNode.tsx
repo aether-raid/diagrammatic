@@ -1,11 +1,11 @@
 import { Handle, NodeProps, Position } from "@xyflow/react";
-import { type EntityCompNode as EntityCompNodeType } from "@shared/compNode.types";
+import { type ComponentEntityNode as ComponentEntityNodeType } from "@shared/node.types";
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export function EntityCompNode({ data }: NodeProps<EntityCompNodeType>) {
+export function EntityCompNode({ data }: NodeProps<ComponentEntityNodeType>) {
     function extractFileName(filePath: string): string | null {
         const match = filePath.match(/([^\\]+)$/);
         return match ? match[1] : null;

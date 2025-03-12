@@ -1,17 +1,17 @@
 import { BuiltInNode, Node } from "@xyflow/react";
 
-export type EntityCompNode = Node<
-  {
-    name: string;
-    description?: string;
-    files?: string[];
-  },
-  "comp"
->;
+// export type EntityCompNode = Node<
+//   {
+//     name: string;
+//     description?: string;
+//     files?: string[];
+//   },
+//   "comp"
+// >;
 
-export type TextUpdaterNode = Node<{}, "textUpdater">;
+// export type TextUpdaterNode = Node<{}, "textUpdater">;
 
-export type CompNode = BuiltInNode | TextUpdaterNode | EntityCompNode
+// export type CompNode = BuiltInNode | TextUpdaterNode | EntityCompNode
 
 // Define input node type
 export interface InputComponentNode {
