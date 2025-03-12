@@ -5,8 +5,7 @@ import { AppNode } from "@shared/node.types";
 import { NodeDescriptionData, NodeEdgeData } from "./extension.types";
 import { retrieveOpenAiApiKey } from "./helpers/apiKey";
 import { OpenAIProvider } from "./llm/openAiProvider";
-import { LLMProvider } from "./llm/llmProvider";
-import { retrieveLLMProviderConfig } from "./helpers/llm";
+import { retrieveLLMProviderConfig, LLMProvider } from "./helpers/llm";
 
 interface JsonData {
   node_id: string;
