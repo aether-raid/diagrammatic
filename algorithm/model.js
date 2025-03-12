@@ -47,11 +47,13 @@ export class Call {
     startPosition = {},
     endPosition = {},
     ownerToken = null,
+    text = "",
   }) {
     this.token = token;
     this.startPosition = startPosition;
     this.endPosition = endPosition;
     this.ownerToken = ownerToken;
+    this.text = text;
   }
 
   /**
@@ -71,7 +73,7 @@ export class Call {
   }
 
   toString() {
-    return `Call: token=${this.token}, ownerToken=${this.ownerToken}`;
+    return `Call: token=${this.token}, ownerToken=${this.ownerToken}, text=${this.text}`;
   }
 }
 
@@ -92,6 +94,7 @@ export class Node {
     endPosition = {},
     parent,
     nodeType,
+    functionCalls = [],
   }) {
     this.token = token;
     this.calls = calls;
@@ -100,6 +103,7 @@ export class Node {
     this.endPosition = endPosition;
     this.parent = parent;
     this.nodeType = nodeType;
+    this.functionCalls = functionCalls;
   }
 
   /**
@@ -228,6 +232,9 @@ export class Node {
     const variablesStr = this.variables
       .map((variable) => variable.toString())
       .join(",\n\t");
+    const functionCallsStr = this.functionCalls
+      .map((fnCall) => fnCall.toString())
+      .join(",\n\t");
 
     return `Node(
       token=${this.token}, 
@@ -237,6 +244,9 @@ export class Node {
       variables=[
         ${variablesStr}
       ], 
+      functionCalls=[
+        ${functionCallsStr}
+      ],
       parent=${this.parent?.token}
     )`;
   }

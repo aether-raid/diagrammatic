@@ -170,6 +170,7 @@ export function processCallExpression(node) {
         token: func.text,
         startPosition: node.startPosition,
         endPosition: node.endPosition,
+        text: node.text,
       });
     case "member_expression":
       const { token, pointsTo } = processMemberExpression(func);
@@ -178,6 +179,7 @@ export function processCallExpression(node) {
         ownerToken: pointsTo,
         startPosition: node.startPosition,
         endPosition: node.endPosition,
+        text: node.text,
       });
     // for C++
     case "field_expression":
@@ -188,6 +190,7 @@ export function processCallExpression(node) {
           ownerToken: identifier.text,
           startPosition: node.startPosition,
           endPosition: node.endPosition,
+          text: node.text,
         });
       }
     default:
@@ -214,6 +217,7 @@ export function processMethodInvocation(node) {
       token: nameNode.text,
       startPosition: node.startPosition,
       endPosition: node.endPosition,
+      text: node.text,
     });
   }
 
@@ -228,6 +232,7 @@ export function processMethodInvocation(node) {
         ownerToken: objectNode.text,
         startPosition: node.startPosition,
         endPosition: node.endPosition,
+        text: node.text,
       });
     default:
       return null;
@@ -453,6 +458,7 @@ export function findLinkForCall(call, nodeA, allNodes) {
     if (call.ownerToken === "this") {
       for (const node of nodeA.parent.nodes) {
         if (node.token === call.token) {
+          node.functionCalls.push(call);
           return new Edge(nodeA, node);
         }
       }
@@ -479,6 +485,7 @@ export function findLinkForCall(call, nodeA, allNodes) {
             const classNode = variable.pointsTo;
             for (const node of classNode.nodes) {
               if (node.token === call.token) {
+                node.functionCalls.push(call);
                 return new Edge(nodeA, node);
               }
             }
@@ -507,6 +514,7 @@ export function findLinkForCall(call, nodeA, allNodes) {
       ) {
         for (const fileNode of variable.pointsTo.nodes) {
           if (fileNode.token === call.token) {
+            fileNode.functionCalls.push(call);
             return new Edge(nodeA, fileNode);
           }
         }
@@ -520,6 +528,7 @@ export function findLinkForCall(call, nodeA, allNodes) {
           call.token === node2.token &&
           node2.nodeType === NodeType.FUNCTION
         ) {
+          node2.functionCalls.push(call);
           return new Edge(nodeA, node2);
         }
       }
@@ -528,6 +537,7 @@ export function findLinkForCall(call, nodeA, allNodes) {
     // calling another function
     for (const node of allNodes) {
       if (call.token === node.token && node.nodeType === NodeType.FUNCTION) {
+        node.functionCalls.push(call);
         return new Edge(nodeA, node);
       }
     }

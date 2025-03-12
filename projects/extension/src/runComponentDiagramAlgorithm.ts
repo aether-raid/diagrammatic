@@ -1,8 +1,6 @@
 import { NodeEdgeData } from "./extension.types";
 import { MarkerType } from "@xyflow/react";
 import axios from "axios";
-import * as dotenv from "dotenv";
-import * as path from "path";
 import { InputComponentNode, InputComponentEdge } from "@shared/compNode.types";
 import { CompNode } from "@shared/compNode.types";
 import { CompEdge } from "@shared/compEdge.types";

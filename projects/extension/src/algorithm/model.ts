@@ -59,22 +59,26 @@ export class Call {
   startPosition: Point;
   endPosition: Point;
   ownerToken: string | null;
+  text: string;
 
   constructor({
     token,
     startPosition,
     endPosition,
     ownerToken = null,
+    text = "",
   }: {
     token: string;
     startPosition: Point;
     endPosition: Point;
     ownerToken?: string | null;
+    text: string;
   }) {
     this.token = token;
     this.startPosition = startPosition;
     this.endPosition = endPosition;
     this.ownerToken = ownerToken;
+    this.text = text;
   }
 
   /**
@@ -115,6 +119,7 @@ export class Node {
   endPosition: Point;
   parent: Node | Group;
   nodeType: NodeType;
+  functionCalls: Call[];
 
   constructor({
     token,
@@ -124,6 +129,7 @@ export class Node {
     endPosition,
     parent,
     nodeType,
+    functionCalls = [],
   }: {
     token: string | null;
     calls: Call[];
@@ -132,6 +138,7 @@ export class Node {
     endPosition: Point;
     parent: Node | Group;
     nodeType: NodeType;
+    functionCalls?: Call[];
   }) {
     this.token = token;
     this.calls = calls;
@@ -140,6 +147,7 @@ export class Node {
     this.endPosition = endPosition;
     this.parent = parent;
     this.nodeType = nodeType;
+    this.functionCalls = functionCalls;
   }
 
   private resolveRelativeImport(variableA: Variable, allSubgroups: Group[]) {
@@ -292,6 +300,9 @@ export class Node {
     const variablesStr = this.variables
       .map((variable) => variable.toString())
       .join(",\n\t");
+    const functionCallsStr = this.functionCalls
+      .map((fnCall) => fnCall.toString())
+      .join(",\n\t");
 
     return `Node(
       token=${this.token}, 
@@ -301,6 +312,9 @@ export class Node {
       variables=[
         ${variablesStr}
       ], 
+      functionCalls=[
+        ${functionCallsStr}
+      ],
       parent=${this.parent?.token}
     )`;
   }

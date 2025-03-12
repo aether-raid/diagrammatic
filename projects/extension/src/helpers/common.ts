@@ -4,4 +4,4 @@ import * as vscode from "vscode";
 export const retrieveExtensionConfig = (configName: string) => {
   const config = vscode.workspace.getConfiguration();
   return config.get<string>(configName);
-}
+};

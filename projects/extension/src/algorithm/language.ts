@@ -215,7 +215,8 @@ export class Language {
       token: GLOBAL,
       calls: makeCalls(body),
       variables: makeLocalVariables(body, parent, languageRules),
-      lineNumber: 0,
+      startPosition: body[0]?.startPosition ?? { row: 0, column: 0},
+      endPosition: body[body.length - 1]?.endPosition ?? {row: 0, column: 0}, 
       parent,
       nodeType: NodeType.BODY,
     });

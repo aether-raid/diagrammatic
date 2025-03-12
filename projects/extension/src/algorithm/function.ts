@@ -199,6 +199,7 @@ export function processCallExpression(node: SyntaxNode): Call | null {
         token: func.text,
         startPosition: node.startPosition,
         endPosition: node.endPosition,
+        text: node.text,
       });
     case "member_expression":
       const { token, pointsTo } = processMemberExpression(func);
@@ -208,6 +209,7 @@ export function processCallExpression(node: SyntaxNode): Call | null {
           ownerToken: pointsTo,
           startPosition: node.startPosition,
           endPosition: node.endPosition,
+          text: node.text,
         });
       }
 
@@ -221,6 +223,7 @@ export function processCallExpression(node: SyntaxNode): Call | null {
           ownerToken: identifier.text,
           startPosition: node.startPosition,
           endPosition: node.endPosition,
+          text: node.text,
         });
       }
   }
@@ -251,6 +254,7 @@ export function processMethodInvocation(node: SyntaxNode): Call | null {
       token: nameNode.text,
       startPosition: node.startPosition,
       endPosition: node.endPosition,
+      text: node.text,
     });
   }
 
@@ -265,6 +269,7 @@ export function processMethodInvocation(node: SyntaxNode): Call | null {
         ownerToken: objectNode.text,
         startPosition: node.startPosition,
         endPosition: node.endPosition,
+        text: node.text,
       });
     default:
       return null;
@@ -518,6 +523,7 @@ function findLinkForCallThis(call: Call, nodeA: Node) {
   if (call.ownerToken === "this" && nodeA.parent instanceof Group) {
     for (const node of nodeA.parent.nodes) {
       if (node.token === call.token) {
+        node.functionCalls.push(call);
         return new Edge(nodeA, node);
       }
     }
@@ -527,6 +533,7 @@ function findLinkForCallThis(call: Call, nodeA: Node) {
 function findMethod(call: Call, nodeA: Node, classNode: Group) {
   for (const node of classNode.nodes) {
     if (node.token === call.token) {
+      node.functionCalls.push(call);
       return new Edge(nodeA, node);
     }
   }
@@ -564,6 +571,7 @@ function findLinkForCallFunctionCall(call: Call, nodeA: Node) {
   if (nodeA.parent instanceof Group) {
     for (const node2 of nodeA.parent.nodes) {
       if (call.token === node2.token && node2.nodeType === NodeType.FUNCTION) {
+        node2.functionCalls.push(call);
         return new Edge(nodeA, node2);
       }
     }
@@ -591,6 +599,7 @@ function findCalledFunctionInImportedFunctions(
     ) {
       for (const fileNode of variable.pointsTo.nodes) {
         if (fileNode.token === call.token) {
+          fileNode.functionCalls.push(call);
           return new Edge(nodeA, fileNode);
         }
       }
@@ -618,6 +627,7 @@ function findLinkForCallImportStatement(
 function findLinkForCallFunction(call: Call, nodeA: Node, allNodes: Node[]) {
   for (const node of allNodes) {
     if (call.token === node.token && node.nodeType === NodeType.FUNCTION) {
+      node.functionCalls.push(call);
       return new Edge(nodeA, node);
     }
   }
