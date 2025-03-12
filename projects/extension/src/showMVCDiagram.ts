@@ -19,7 +19,7 @@ import { OpenAIProvider } from "./llm/openAiProvider";
 import { GeminiProvider } from "./llm/geminiProvider";
 import { retrieveLLMProviderConfig, LLMProvider } from "./helpers/llm";
 
-const handleShowMVCDiagram = async (
+export const handleShowMVCDiagram = async (
   context: vscode.ExtensionContext,
   panel: vscode.WebviewPanel | undefined,
   filePath: string
@@ -145,5 +145,3 @@ const getWebViewContent = (
     </html>
   `;
 };
-
-export default handleShowMVCDiagram;

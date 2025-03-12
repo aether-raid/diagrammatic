@@ -3,7 +3,6 @@
 // *********************************
 import { useCallback, useEffect, useState } from "react";
 
-import Dagre from "@dagrejs/dagre";
 import {
     Background,
     Controls,
@@ -38,46 +37,8 @@ import DownloadButton from "./components/DownloadButton";
 import SearchBar from "./components/SearchBar";
 import ComponentButton from "./components/CompButton";
 import { NodeInfoPanel } from "./components/NodeInfoPanel/NodeInfoPanel";
+import { getLayoutedElements } from "./helpers/layoutHandlerDagre";
 
-
-interface OptionProps {
-    direction: string;
-}
-
-const getLayoutedElements = (
-    nodes: AppNode[],
-    edges: AppEdge[],
-    options: OptionProps
-) => {
-    const g = new Dagre.graphlib.Graph();
-    g.setDefaultEdgeLabel(() => ({}));
-    g.setGraph({ rankdir: options.direction });
-
-    edges.forEach((edge) => g.setEdge(edge.source, edge.target));
-    nodes.forEach((node) =>
-        g.setNode(node.id, {
-            ...node,
-            width: node.measured?.width ?? 0,
-            height: node.measured?.height ?? 0,
-        })
-    );
-
-    Dagre.layout(g);
-
-    return {
-        nodes: nodes.map((node) => {
-            const position = g.node(node.id);
-
-            // Shift the dagre node anchor point (center-center)
-            // to match the React Flow node anchor point (top-left).
-            const x = position.x - (node.measured?.width ?? 0) / 2;
-            const y = position.y - (node.measured?.height ?? 0) / 2;
-
-            return { ...node, position: { x, y } };
-        }),
-        edges,
-    };
-};
 
 const LayoutFlow = () => {
     // General ReactFlow states
@@ -102,15 +63,12 @@ const LayoutFlow = () => {
     // General constants
     const MIN_ZOOM = 0.1;
     const MAX_ZOOM = 2;
-    
 
     useEffect(() => {
-        console.log("Component Mounted");   
         // Setup message listener
         const onMessage = (event: MessageEvent<WebviewCommandMessage>) => {
             const { command, message } = event.data;
 
-            // TODO: Refactor this into a non switch-case if possible
             switch (command) {
                 case Commands.ACCEPT_NODE_EDGE_DATA: {
                     const msg = message as AcceptNodeEdgeDataPayload;
@@ -137,7 +95,6 @@ const LayoutFlow = () => {
         }
 
         return () => {
-            console.log("Component Unmounted");
             // Remove event listener on component unmount
             window.removeEventListener("message", onMessage);
         };
@@ -145,9 +102,7 @@ const LayoutFlow = () => {
 
     const onLayout = useCallback(
         (direction: string) => {
-            console.log(nodes);
             const layouted = getLayoutedElements(nodes, edges, { direction });
-
             setNodes([...layouted.nodes]);
             setEdges([...layouted.edges]);
 
