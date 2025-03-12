@@ -46,8 +46,8 @@
         "diagrammatic.llmProvider": {
           "type": "string",
           "enum": [
-            "openai",
-            "gemini"
+            "gemini",
+            "openai"
           ],
           "default": "gemini",
           "description": "Select the LLM provider."
