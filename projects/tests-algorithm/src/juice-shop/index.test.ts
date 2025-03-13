@@ -79,7 +79,7 @@ describe("juice-shop", () => {
             entityType: string;
             entityName: string;
             filePath: string;
-            items: { name: string; lineNumber: number; type: string }[];
+            items: { name: string; type: string }[];
           };
         }[],
         expectedNodes
