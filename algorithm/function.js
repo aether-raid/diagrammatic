@@ -28,6 +28,7 @@ function getLanguageForFile(filePath) {
   if (filePath.endsWith(".py")) return Python;
   if (filePath.endsWith(".java")) return Java;
   if (filePath.endsWith(".cpp")) return Cpp;
+  if (filePath.endsWith(".hpp")) return Cpp;
   return null;
 }
 
@@ -595,6 +596,32 @@ export function getAllChildrenOfType(node, target) {
   return ret;
 }
 
+// Recursive function to process nested NodeConfig relationships
+function getNameUsingConfig(node, config, getNameRules) {
+  if (config.childTypes) {
+    for (const [childType, childConfig] of Object.entries(config.childTypes)) {
+      const child = getFirstChildOfType(node, childType);
+      if (child) {
+        return getNameUsingConfig(child, childConfig, getNameRules);
+      }
+    }
+  }
+
+  if (config.delegate) {
+    return getName(node, getNameRules);
+  }
+
+  if (config.useText) {
+    return node.text;
+  }
+
+  if (config.fieldName) {
+    return node.childForFieldName(config.fieldName)?.text ?? null;
+  }
+
+  return null;
+}
+
 /**
  * Extracts the name of a node based on configurable rules.
  *
@@ -615,23 +642,7 @@ export function getName(node, getNameRules) {
   const nodeTypeConfig = getNameRules[node.type];
 
   if (nodeTypeConfig) {
-    const child = getFirstChildOfType(node, nodeTypeConfig.childType);
-
-    if (!child) {
-      return null;
-    }
-
-    if (nodeTypeConfig.delegate) {
-      return getName(child, getNameRules);
-    }
-
-    if (nodeTypeConfig.useText) {
-      return child.text;
-    }
-
-    if (nodeTypeConfig.fieldName) {
-      return child.childForFieldName(nodeTypeConfig.fieldName)?.text ?? null;
-    }
+    return getNameUsingConfig(node, nodeTypeConfig, getNameRules);
   }
 
   for (const field of getNameRules.fallbackFields) {

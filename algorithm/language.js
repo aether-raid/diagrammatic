@@ -137,7 +137,7 @@ export class Language {
     if (tree.type === "field_declaration") {
       const typeIdentifier = tree.childForFieldName("type");
       const variableDeclarator = tree.childForFieldName("declarator");
-      const identifier = variableDeclarator.childForFieldName("name");
+      const identifier = variableDeclarator?.childForFieldName("name");
       if (identifier && typeIdentifier) {
         variables.push(
           new Variable({

@@ -4,6 +4,10 @@
       {
         "type": "function_definition",
         "nodeType": "FUNCTION"
+      },
+      {
+        "type": "field_declaration",
+        "nodeType": "ATTRIBUTE"
       }
     ],
     "groups": [
@@ -14,30 +18,93 @@
       {
         "type": "class_specifier",
         "groupType": "CLASS"
+      }
+    ],
+    "getName": {
+      "class_specifier": {
+        "childTypes": { "qualified_identifier": { "delegate": true } }
+      },
+      "struct_specifier": {
+        "childTypes": { "type_identifier": { "useText": true } }
+      },
+      "namespace_definition": {
+        "childTypes": { "namespace_identifier": { "useText": true } }
+      },
+      "function_definition": {
+        "childType": { "function_declarator": { "delegate": true } }
+      },
+      "function_declarator": {
+        "childTypes": { "qualified_identifier": { "delegate": true } }
+      },
+      "call_expression": {
+        "childTypes": { "member_expression": { "useText": true } }
+      },
+      "fallbackFields": ["name", "identifier", "field_identifier"]
+    }
+  },
+  ".hpp": {
+    "nodes": [
+      {
+        "type": "function_definition",
+        "nodeType": "FUNCTION"
       },
       {
-        "type": "namespace_definition",
-        "groupType": "NAMESPACE"
+        "type": "field_declaration",
+        "nodeType": "ATTRIBUTE"
+      }
+    ],
+    "groups": [
+      {
+        "type": "struct_specifier",
+        "groupType": "STRUCT"
+      },
+      {
+        "type": "class_specifier",
+        "groupType": "CLASS"
       }
     ],
     "getName": {
       "struct_specifier": {
-        "childType": "type_identifier",
-        "useText": true
+        "childTypes": {
+          "type_identifier": {
+            "useText": true
+          }
+        }
       },
-      "namespace_definition": {
-        "childType": "namespace_identifier",
-        "useText": true
+      "field_declaration": {
+        "childTypes": {
+          "function_declarator": {
+            "delegate": true
+          },
+          "class_specifier": {
+            "delegate": true
+          },
+          "field_identifier": {
+            "useText": true
+          }
+        }
       },
       "function_definition": {
-        "childType": "function_declarator",
-        "delegate": true
+        "childTypes": {
+          "function_declarator": {
+            "delegate": true
+          }
+        }
       },
       "call_expression": {
-        "childType": "member_expression",
-        "useText": true
+        "childTypes": {
+          "member_expression": {
+            "useText": true
+          }
+        }
       },
-      "fallbackFields": ["name", "identifier", "field_identifier"]
+      "fallbackFields": [
+        "name",
+        "identifier",
+        "type_identifier",
+        "field_identifier",
+        "qualified_identifier"
+      ]
     }
   },
   ".java": {
@@ -67,12 +134,10 @@
     ],
     "getName": {
       "field_declaration": {
-        "childType": "variable_declarator",
-        "delegate": true
+        "childTypes": { "variable_declarator": { "delegate": true } }
       },
       "call_expression": {
-        "childType": "member_expression",
-        "useText": true
+        "childType": { "member_expression": { "useText": true } }
       },
       "fallbackFields": ["name", "identifier", "field_identifier"]
     }
@@ -92,8 +157,7 @@
     ],
     "getName": {
       "call_expression": {
-        "childType": "member_expression",
-        "useText": true
+        "childTypes": { "member_expression": { "useText": true } }
       },
       "fallbackFields": ["name", "identifier", "field_identifier"]
     }
@@ -174,24 +238,19 @@
     ],
     "getName": {
       "public_field_definition": {
-        "childType": "property_identifier",
-        "useText": true
+        "childType": { "property_identifier": { "useText": true } }
       },
       "interface_declaration": {
-        "childType": "type_identifier",
-        "useText": true
+        "childType": { "type_identifier": { "useText": true } }
       },
       "export_statement": {
-        "childType": "lexical_declaration",
-        "delegate": true
+        "childType": { "lexical_declaration": { "delegate": true } }
       },
       "lexical_declaration": {
-        "childType": "variable_declarator",
-        "fieldName": "name"
+        "childType": { "variable_declarator": { "fieldName": "name" } }
       },
       "call_expression": {
-        "childType": "member_expression",
-        "useText": true
+        "childType": { "member_expression": { "useText": true } }
       },
       "fallbackFields": ["name", "identifier"]
     }
@@ -237,16 +296,13 @@
     "groups": [{ "type": "class_declaration", "groupType": "CLASS" }],
     "getName": {
       "export_statement": {
-        "childType": "lexical_declaration",
-        "delegate": true
+        "childType": { "lexical_declaration": { "delegate": true } }
       },
       "lexical_declaration": {
-        "childType": "variable_declarator",
-        "fieldName": "name"
+        "childType": { "variable_declarator": { "fieldName": "name" } }
       },
       "call_expression": {
-        "childType": "member_expression",
-        "useText": true
+        "childType": { "member_expression": { "useText": true } }
       },
       "fallbackFields": ["name", "identifier"]
     }

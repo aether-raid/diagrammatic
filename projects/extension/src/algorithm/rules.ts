@@ -19,7 +19,7 @@ export type GroupRule = Rule & {
 };
 
 export type NodeConfig = {
-  childType?: string;
+  childTypes?: Record<string, NodeConfig>; // Nested child types with their own rules
   delegate?: boolean;
   fieldName?: string;
   useText?: boolean;
