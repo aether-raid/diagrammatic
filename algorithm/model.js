@@ -10,7 +10,8 @@ import { GLOBAL } from "./language.js";
 export const VariableType = {
   OBJECT_INSTANTIATION: "object_instantiation",
   CALL_EXPRESSION: "call_expression",
-  RELATIVE_IMPORT: "relative_import",
+  NAMED_IMPORT: "named_import",
+  NAMESPACE_IMPORT: "namespace_import",
   INJECTION: "injection",
 };
 
@@ -115,14 +116,14 @@ export class Node {
       if (typeof variableA.pointsTo === "string") {
         for (const subgroup of allSubgroups) {
           /**
-           * Resolve variables from relative import statements
+           * Resolve variables from named import statements
            * e.g. import { ArticleService } from './article.service';
            * Variable(token=ArticleService, pointsTo=/User/samples/nestjs-real-example-app/src/article/ArticleService.ts)
            * Group(token=ArticleService)
            * pointsTo should resolve from a filepath to the actual class Group
            */
           if (
-            variableA.variableType === VariableType.RELATIVE_IMPORT &&
+            variableA.variableType === VariableType.NAMED_IMPORT &&
             subgroup.groupType === GroupType.CLASS &&
             variableA.pointsTo === subgroup.filePath
           ) {
@@ -131,13 +132,29 @@ export class Node {
           }
 
           /**
-           * Resolve variables from relative import statements
+           * Resolve variables from namespace import statements
+           * e.g. import * as utils from '../lib/utils'
+           * Variable(token=utils, pointsTo=/User/samples/xxx/lib/utils.ts)
+           * Group(token=utils.ts)
+           * pointsTo should resolve from a filepath to the actual file Group
+           */
+          if (
+            variableA.variableType === VariableType.NAMESPACE_IMPORT &&
+            subgroup.groupType === GroupType.FILE &&
+            variableA.pointsTo === subgroup.filePath
+          ) {
+            variableA.pointsTo = subgroup;
+            break;
+          }
+
+          /**
+           * Resolve variables from named import statements
            * e.g. import { CreateArticleDto, CreateCommentDto } from './dto';
            * Variable(token=CreateArticleDto, pointsTo=/User/samples/nestjs-real-example-app/src/article/dto)
            * pointsTo should resolve from a filepath to the actual class Group
            */
           if (
-            variableA.variableType === VariableType.RELATIVE_IMPORT &&
+            variableA.variableType === VariableType.NAMED_IMPORT &&
             variableA.pointsTo &&
             path.isAbsolute(variableA.pointsTo) &&
             fs.existsSync(variableA.pointsTo) &&
@@ -179,7 +196,7 @@ export class Node {
         ) {
           for (const variable of globalNode.variables) {
             if (
-              variable.variableType === VariableType.RELATIVE_IMPORT &&
+              variable.variableType === VariableType.NAMED_IMPORT &&
               variableA.pointsTo === variable.token
             ) {
               variableA.pointsTo = variable.pointsTo;

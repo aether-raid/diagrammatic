@@ -11,7 +11,8 @@ import { Point } from "tree-sitter";
 export enum VariableType {
   OBJECT_INSTANTIATION = "object_instantiation",
   CALL_EXPRESSION = "call_expression",
-  RELATIVE_IMPORT = "relative_import",
+  NAMED_IMPORT = "named_import",
+  NAMESPACE_IMPORT = "namespace_import",
   INJECTION = "injection",
 }
 
@@ -150,22 +151,50 @@ export class Node {
     this.functionCalls = functionCalls;
   }
 
+  private resolveNamedImports(variableA: Variable, subgroup: Group) {
+    /**
+     * Resolve variables from named import statements
+     * e.g. import { ArticleService } from './article.service';
+     * Variable(token=ArticleService, pointsTo=/User/samples/nestjs-real-example-app/src/article/ArticleService.ts)
+     * Group(token=ArticleService)
+     * pointsTo should resolve from a filepath to the actual class Group
+     */
+    if (
+      variableA.variableType === VariableType.NAMED_IMPORT &&
+      subgroup.groupType === GroupType.CLASS &&
+      variableA.pointsTo === subgroup.filePath
+    ) {
+      variableA.pointsTo = subgroup;
+      return true;
+    }
+  }
+
+  private resolveNamespaceImports(variableA: Variable, subgroup: Group) {
+    /**
+     * Resolve variables from namespace import statements
+     * e.g. import * as utils from '../lib/utils'
+     * Variable(token=utils, pointsTo=/User/samples/xxx/lib/utils.ts)
+     * Group(token=utils.ts)
+     * pointsTo should resolve from a filepath to the actual file Group
+     */
+    if (
+      variableA.variableType === VariableType.NAMESPACE_IMPORT &&
+      subgroup.groupType === GroupType.FILE &&
+      variableA.pointsTo === subgroup.filePath
+    ) {
+      variableA.pointsTo = subgroup;
+      return true;
+    }
+  }
+
   private resolveRelativeImport(variableA: Variable, allSubgroups: Group[]) {
     for (const subgroup of allSubgroups) {
-      /**
-       * Resolve variables from relative import statements
-       * e.g. import { ArticleService } from './article.service';
-       * Variable(token=ArticleService, pointsTo=/User/samples/nestjs-real-example-app/src/article/ArticleService.ts)
-       * Group(token=ArticleService)
-       * pointsTo should resolve from a filepath to the actual class Group
-       */
-      if (
-        variableA.variableType === VariableType.RELATIVE_IMPORT &&
-        subgroup.groupType === GroupType.CLASS &&
-        variableA.pointsTo === subgroup.filePath
-      ) {
-        variableA.pointsTo = subgroup;
-        break;
+      if (this.resolveNamedImports(variableA, subgroup)) {
+        return true;
+      }
+
+      if (this.resolveNamespaceImports(variableA, subgroup)) {
+        return true;
       }
 
       /**
@@ -175,7 +204,7 @@ export class Node {
        * pointsTo should resolve from a filepath to the actual class Group
        */
       if (
-        variableA.variableType === VariableType.RELATIVE_IMPORT &&
+        variableA.variableType === VariableType.NAMED_IMPORT &&
         variableA.pointsTo &&
         typeof variableA.pointsTo === "string" &&
         path.isAbsolute(variableA.pointsTo) &&
@@ -188,7 +217,7 @@ export class Node {
           subgroup.token === variableA.token
         ) {
           variableA.pointsTo = subgroup;
-          break;
+          return subgroup;
         }
       }
 
@@ -202,9 +231,10 @@ export class Node {
         variableA.pointsTo === subgroup.token
       ) {
         variableA.pointsTo = subgroup;
-        break;
+        return subgroup;
       }
     }
+    return null;
   }
 
   private resolveGlobalNodeImport(
@@ -230,11 +260,11 @@ export class Node {
     ) {
       for (const variable of globalNode.variables) {
         if (
-          variable.variableType === VariableType.RELATIVE_IMPORT &&
+          variable.variableType === VariableType.NAMED_IMPORT &&
           variable.token === variableA.pointsTo
         ) {
           variableA.pointsTo = variable.pointsTo;
-          return;
+          return variable.pointsTo;
         }
       }
     }
@@ -244,7 +274,7 @@ export class Node {
     for (const node of allNodes) {
       if (variableA.pointsTo === node.token) {
         variableA.pointsTo = node;
-        break;
+        return node;
       }
     }
   }
@@ -255,9 +285,15 @@ export class Node {
   resolveVariables(allSubgroups: Group[], allNodes: Node[]): void {
     const fileGroup = this.getFileGroup();
     for (const variableA of this.variables) {
-      this.resolveRelativeImport(variableA, allSubgroups);
-      this.resolveGlobalNodeImport(variableA, allNodes, fileGroup);
-      this.resolveNodeReference(variableA, allNodes);
+      if (this.resolveRelativeImport(variableA, allSubgroups)) {
+        return;
+      }
+      if (this.resolveGlobalNodeImport(variableA, allNodes, fileGroup)) {
+        return;
+      }
+      if (this.resolveNodeReference(variableA, allNodes)) {
+        return;
+      }
     }
   }
 
