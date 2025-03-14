@@ -227,6 +227,12 @@
         "nodeType": "FUNCTION"
       },
       {
+        "siblingAbove": { "type": "default" },
+        "type": "identifier",
+        "parent": "export_statement",
+        "nodeType": "FUNCTION"
+      },
+      {
         "type": "property_signature",
         "parent": "interface_body",
         "nodeType": "ATTRIBUTE"
@@ -237,6 +243,9 @@
       { "type": "interface_declaration", "groupType": "INTERFACE" }
     ],
     "getName": {
+      "identifier": {
+        "useText": true
+      },
       "public_field_definition": {
         "childType": { "property_identifier": { "useText": true } }
       },

@@ -7,6 +7,7 @@ export type Rule = {
   type?: string;
   field?: string;
   child?: Rule;
+  siblingAbove?: Rule;
   parent?: string;
 };
 
@@ -80,6 +81,14 @@ export class RuleEngine {
     if (rule.parent) {
       const parentNode = node.parent;
       if (!parentNode || parentNode.type !== rule.parent) {
+        return false;
+      }
+    }
+
+    // Check for a required sibling above
+    if (rule.siblingAbove) {
+      const prevSibling = node.previousSibling;
+      if (!prevSibling || !this.matchNode(prevSibling, rule.siblingAbove)) {
         return false;
       }
     }

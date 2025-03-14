@@ -42,9 +42,18 @@ export class RuleEngine {
       return false;
     }
 
+    // Check for the parent node type if specified in the rule
     if (rule.parent) {
       const parentNode = node.parent;
       if (!parentNode || parentNode.type !== rule.parent) {
+        return false;
+      }
+    }
+
+    // Check for a required sibling above
+    if (rule.siblingAbove) {
+      const prevSibling = node.previousSibling;
+      if (!prevSibling || !this.matchNode(prevSibling, rule.siblingAbove)) {
         return false;
       }
     }

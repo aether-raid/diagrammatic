@@ -17,7 +17,7 @@ import {
   VariableType,
 } from "./model";
 import { Language, GLOBAL } from "./language";
-import { LanguageRules } from "./rules";
+import { LanguageRules, NodeConfig } from "./rules";
 
 /**
  * Determines the appropriate language for a file
@@ -738,9 +738,12 @@ export function getAllChildrenOfType(
   return ret;
 }
 
-
 // Recursive function to process nested NodeConfig relationships
-function getNameUsingConfig(node, config, getNameRules) {
+function getNameUsingConfig(
+  node: SyntaxNode,
+  config: NodeConfig,
+  getNameRules: Record<any, any>
+): string | null {
   if (config.childTypes) {
     for (const [childType, childConfig] of Object.entries(config.childTypes)) {
       const child = getFirstChildOfType(node, childType);
