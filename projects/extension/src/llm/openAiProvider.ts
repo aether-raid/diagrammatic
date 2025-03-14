@@ -2,7 +2,7 @@ import axios from "axios";
 import { LLMProvider } from "../helpers/llm";
 
 export class OpenAIProvider implements LLMProvider {
-    private apiKey: string;
+    private readonly apiKey: string;
 
     constructor(apiKey: string) {
         this.apiKey = apiKey;

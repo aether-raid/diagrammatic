@@ -1,7 +1,7 @@
 import { LLMProvider } from "../helpers/llm";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 export class GeminiProvider implements LLMProvider {
-    private apiKey: string;
+    private readonly apiKey: string;
 
     constructor(apiKey: string) {
       this.apiKey = apiKey;
@@ -10,7 +10,7 @@ export class GeminiProvider implements LLMProvider {
         try {
             const gemini = new GoogleGenerativeAI(this.apiKey);
             const model = gemini.getGenerativeModel({
-                model: "gemini-1.5-flash-latest",
+                model: "gemini-2.0-flash-lite",
                 generationConfig: {
                     responseMimeType: "application/json"
                 }
