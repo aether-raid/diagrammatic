@@ -100,7 +100,7 @@ export class Language {
     if (!token) {
       return [];
     }
-    const calls = makeCalls(body);
+    const calls = makeCalls(body, languageRules.getName);
     const variables = makeLocalVariables(body, parent, languageRules);
 
     /**
@@ -179,7 +179,7 @@ export class Language {
   static makeRootNode(body, parent, languageRules) {
     return new Node({
       token: GLOBAL,
-      calls: makeCalls(body),
+      calls: makeCalls(body, languageRules.getName),
       variables: makeLocalVariables(body, parent, languageRules),
       startPosition: { row: 0, column: 0 },
       parent,

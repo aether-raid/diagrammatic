@@ -250,7 +250,7 @@ export function processMethodInvocation(node) {
  * @param {Array} body - List of TreeSitter nodes
  * @returns {Array<Call>} - List of Call objects.
  */
-export function makeCalls(body) {
+export function makeCalls(body, getNameRules) {
   const calls = [];
 
   for (const node of walk(body)) {
@@ -260,11 +260,39 @@ export function makeCalls(body) {
         if (call) {
           calls.push(call);
         }
+        break;
       case "method_invocation":
         const mCall = processMethodInvocation(node);
         if (mCall) {
           calls.push(mCall);
         }
+        break;
+      case "jsx_opening_element":
+        const token = getName(node, getNameRules);
+        if (token) {
+          calls.push(
+            new Call({
+              token,
+              startPosition: node.startPosition,
+              endPosition: node.endPosition,
+              text: node.text,
+            })
+          );
+        }
+        break;
+      case "jsx_self_closing_element":
+        const token2 = getName(node, getNameRules);
+        if (token2) {
+          calls.push(
+            new Call({
+              token: token2,
+              startPosition: node.startPosition,
+              endPosition: node.endPosition,
+              text: node.text,
+            })
+          );
+        }
+        break;
       default:
         continue;
     }

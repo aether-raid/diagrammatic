@@ -31,7 +31,7 @@
         "childTypes": { "namespace_identifier": { "useText": true } }
       },
       "function_definition": {
-        "childType": { "function_declarator": { "delegate": true } }
+        "childTypes": { "function_declarator": { "delegate": true } }
       },
       "function_declarator": {
         "childTypes": { "qualified_identifier": { "delegate": true } }
@@ -137,7 +137,7 @@
         "childTypes": { "variable_declarator": { "delegate": true } }
       },
       "call_expression": {
-        "childType": { "member_expression": { "useText": true } }
+        "childTypes": { "member_expression": { "useText": true } }
       },
       "fallbackFields": ["name", "identifier", "field_identifier"]
     }
@@ -247,19 +247,19 @@
         "useText": true
       },
       "public_field_definition": {
-        "childType": { "property_identifier": { "useText": true } }
+        "childTypes": { "property_identifier": { "useText": true } }
       },
       "interface_declaration": {
-        "childType": { "type_identifier": { "useText": true } }
+        "childTypes": { "type_identifier": { "useText": true } }
       },
       "export_statement": {
-        "childType": { "lexical_declaration": { "delegate": true } }
+        "childTypes": { "lexical_declaration": { "delegate": true } }
       },
       "lexical_declaration": {
-        "childType": { "variable_declarator": { "fieldName": "name" } }
+        "childTypes": { "variable_declarator": { "fieldName": "name" } }
       },
       "call_expression": {
-        "childType": { "member_expression": { "useText": true } }
+        "childTypes": { "member_expression": { "useText": true } }
       },
       "fallbackFields": ["name", "identifier"]
     }
@@ -305,13 +305,19 @@
     "groups": [{ "type": "class_declaration", "groupType": "CLASS" }],
     "getName": {
       "export_statement": {
-        "childType": { "lexical_declaration": { "delegate": true } }
+        "childTypes": { "lexical_declaration": { "delegate": true } }
       },
       "lexical_declaration": {
-        "childType": { "variable_declarator": { "fieldName": "name" } }
+        "childTypes": { "variable_declarator": { "fieldName": "name" } }
       },
       "call_expression": {
-        "childType": { "member_expression": { "useText": true } }
+        "childTypes": { "member_expression": { "useText": true } }
+      },
+      "jsx_opening_element": {
+        "childTypes": { "identifier": { "useText": true } }
+      },
+      "jsx_self_closing_element": {
+        "childTypes": { "identifier": { "useText": true } }
       },
       "fallbackFields": ["name", "identifier"]
     }

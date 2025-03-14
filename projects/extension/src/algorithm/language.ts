@@ -179,7 +179,7 @@ export class Language {
     if (!token) {
       return [];
     }
-    const calls = makeCalls(body);
+    const calls = makeCalls(body, languageRules.getName);
     const variables = makeLocalVariables(body, parent, languageRules);
 
     this.processConstructorInjection(tree, token, variables);
@@ -213,7 +213,7 @@ export class Language {
   ): Node {
     return new Node({
       token: GLOBAL,
-      calls: makeCalls(body),
+      calls: makeCalls(body, languageRules.getName),
       variables: makeLocalVariables(body, parent, languageRules),
       startPosition: body[0]?.startPosition ?? { row: 0, column: 0},
       endPosition: body[body.length - 1]?.endPosition ?? {row: 0, column: 0}, 

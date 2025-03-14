@@ -17,7 +17,7 @@ import {
   VariableType,
 } from "./model";
 import { Language, GLOBAL } from "./language";
-import { LanguageRules, NodeConfig } from "./rules";
+import { getNameConfig, LanguageRules, NodeConfig } from "./rules";
 
 /**
  * Determines the appropriate language for a file
@@ -289,7 +289,7 @@ export function processMethodInvocation(node: SyntaxNode): Call | null {
  * @param {Array} body - List of TreeSitter nodes
  * @returns {Array<Call>} - List of Call objects.
  */
-export function makeCalls(body: SyntaxNode[]) {
+export function makeCalls(body: SyntaxNode[], getNameRules: getNameConfig) {
   const calls = [];
 
   for (const node of walk(body)) {
@@ -300,10 +300,39 @@ export function makeCalls(body: SyntaxNode[]) {
           calls.push(call);
         }
         break;
+      // equivalent of call_expressions in C++
       case "method_invocation":
         const mCall = processMethodInvocation(node);
         if (mCall) {
           calls.push(mCall);
+        }
+        break;
+      // JSX opening elements e.g. <MyComponent>
+      case "jsx_opening_element":
+        const token = getName(node, getNameRules);
+        if (token) {
+          calls.push(
+            new Call({
+              token,
+              startPosition: node.startPosition,
+              endPosition: node.endPosition,
+              text: node.text,
+            })
+          );
+        }
+        break;
+      // JSX self-closing elements e.g. <MyComponent />
+      case "jsx_self_closing_element":
+        const token2 = getName(node, getNameRules);
+        if (token2) {
+          calls.push(
+            new Call({
+              token: token2,
+              startPosition: node.startPosition,
+              endPosition: node.endPosition,
+              text: node.text,
+            })
+          );
         }
         break;
     }
