@@ -4,7 +4,7 @@
   "displayName": "Diagrammatic",
   "license": "MIT",
   "description": "Beautiful and concise MVC diagrams within seconds",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -43,10 +43,19 @@
           "default": "",
           "description": "Path to Diagrammatic's ruleset file. If none is set, the default ruleset will be used."
         },
-        "diagrammatic.openAiApiKey": {
+        "diagrammatic.llmProvider": {
+          "type": "string",
+          "enum": [
+            "gemini",
+            "openai"
+          ],
+          "default": "gemini",
+          "description": "Select the LLM provider."
+        },
+        "diagrammatic.apiKey": {
           "type": "string",
           "default": "",
-          "description": "OpenAI API key. Used to generate node descriptions & the C4 diagram. If none is given, these features will not work."
+          "description": "LLM API key. Used to generate node descriptions & the C4 Component diagram. If none is given, these features will not work."
         }
       }
     }
@@ -102,6 +111,7 @@
     "@dagrejs/dagre": "^1.1.4",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@google/generative-ai": "^0.24.0",
     "@mui/icons-material": "^6.4.5",
     "@mui/material": "^6.4.5",
     "@radix-ui/react-accordion": "^1.2.3",

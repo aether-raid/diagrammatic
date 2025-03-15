@@ -1,11 +1,15 @@
-import axios from "axios";
-
 import { NodeEdgeData } from "./extension.types";
 import { MarkerType } from "@xyflow/react";
 import { InputComponentNode, InputComponentEdge } from "@shared/compNode.types";
-import { retrieveOpenAiApiKey } from "./helpers/apiKey";
 import { AppNode } from "@shared/node.types";
 import { AppEdge } from "@shared/edge.types";
+import { LLMProvider } from "./helpers/llm";
+
+interface APIResponse {
+  "components": any[]; // Replace `any` with the actual type of your components
+  "component relationships": any[]; // Replace `any` with the actual type of your relationships
+}
+
 
 function transformComponent(input: InputComponentNode): AppNode {
   return {
@@ -33,9 +37,9 @@ function transformEdge(input: InputComponentEdge): AppEdge {
 }
 
 export const getComponentDiagram = async (
-  nodeEdgeData: NodeEdgeData
+  nodeEdgeData: NodeEdgeData,
+  llmProvider: LLMProvider
 ): Promise<NodeEdgeData> => {
-  const apiKey = retrieveOpenAiApiKey();
   const { nodes, edges } = nodeEdgeData;
   const componentNodesEdges: NodeEdgeData = {
     nodes: [],
@@ -73,40 +77,13 @@ export const getComponentDiagram = async (
 
   // console.log("Prompt:", prompt);
   try {
-    const response = await axios.post(
-      "https://api.openai.com/v1/chat/completions",
-      {
-        model: "gpt-4-turbo", // Choose the appropriate model
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are an AI that provides structured JSON responses. In the JSON response, only create relationships between components where the source and target components are NOT the same.",
-          },
-          {
-            role: "user",
-            content: prompt,
-          },
-        ],
-        temperature: 0,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const jsonResponse = response.data.choices[0].message.content;
-    const cleanedResponse = JSON.parse(
-      jsonResponse.replace(/```json\n?|\n?```/g, "")
-    );
+    const systemPrompt = "You are an AI that provides structured JSON responses. In the JSON response, only create relationships between components where the source and target components are NOT the same."
+    const userPrompt = prompt
+    const response: APIResponse = await llmProvider.generateResponse(systemPrompt, userPrompt);
 
     // Format the component nodes and edges for diagram
-    const transformedComponents =
-      cleanedResponse["components"].map(transformComponent);
-    const transformedEdges =
-      cleanedResponse["component relationships"].map(transformEdge);
+    const transformedComponents = response["components"].map(transformComponent);
+    const transformedEdges = response["component relationships"].map(transformEdge);
     componentNodesEdges.nodes = transformedComponents;
     componentNodesEdges.edges = transformedEdges;
   } catch (error) {
