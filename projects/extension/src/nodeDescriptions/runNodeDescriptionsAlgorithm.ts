@@ -46,7 +46,10 @@ const addDescriptionToNodes = (
   nodes: AppNode[],
   descriptions?: NodeDescriptionData
 ): AppNode[] => {
-  nodes.map((node) => {
+  // Make a copy to not affect the original
+  const tmp = [...nodes];
+
+  tmp.map((node) => {
     if (!descriptions) {
       node.data = {
         ...node.data,
@@ -66,7 +69,7 @@ const addDescriptionToNodes = (
     return node;
   });
 
-  return nodes;
+  return tmp;
 };
 
 export const runNodeDescriptionsAlgorithm = async (

@@ -17,11 +17,11 @@ export const sendAcceptNodeEdgeMessageToWebview = (
 };
 
 export const sendAcceptCompNodeEdgeMessageToWebview = (
-  payload: AcceptComponentDiagramDataPayload,
+  payload: AcceptComponentDiagramDataPayload | undefined,
   panel: vscode.WebviewPanel
 ) => {
   panel.webview.postMessage({
     command: Commands.ACCEPT_COMPONENT_DIAGRAM_DATA,
-    message: payload,
+    message: payload ?? { nodes: [], edges: [] },
   });
 };

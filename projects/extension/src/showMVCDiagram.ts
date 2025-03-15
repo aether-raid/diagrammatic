@@ -29,6 +29,7 @@ export const handleShowMVCDiagram = async (
 
   // Tree-sitter Structure & LLM Descriptions
   let nodeEdgeData: NodeEdgeData = runCodeToDiagramAlgorithm(filePath);
+  let componentNodeEdgeData: NodeEdgeData | undefined;
 
   // Linting & security
   const { lintedNodes, hasIssues } = await runCodeLinting(nodeEdgeData.nodes);
@@ -39,33 +40,15 @@ export const handleShowMVCDiagram = async (
     );
   }
 
-  // LLM
-  const apiKey = retrieveApiKey();
-  if (!apiKey) {
-    vscode.window.showInformationMessage(
-      "Node descriptions are disabled. (No API key provided)"
-    );
-  }
-
-  const llmProvider: LLMProvider = retrieveLLMProvider(apiKey);
-
-  // C4 Level 3 diagram
-  const componentNodesEdges = await getComponentDiagram(nodeEdgeData, llmProvider);
-
   panel = setupWebviewPanel(context);
-  runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData, llmProvider).then(
-    (data) => {
-      nodeEdgeData.nodes = data;
-      sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
-    }
-  );
+
   const waitWebviewReady: Promise<void> = new Promise((resolve) => {
     panel.webview.onDidReceiveMessage(
       async (message: WebviewCommandMessage) => {
         switch (message.command) {
           case Commands.READY:
             sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
-            sendAcceptCompNodeEdgeMessageToWebview(componentNodesEdges, panel);
+            sendAcceptCompNodeEdgeMessageToWebview(componentNodeEdgeData, panel);
             resolve();
             break;
           case Commands.JUMP_TO_LINE:
@@ -82,8 +65,36 @@ export const handleShowMVCDiagram = async (
   });
 
   await waitWebviewReady;
-  sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
-  sendAcceptCompNodeEdgeMessageToWebview(componentNodesEdges, panel);
+
+  // LLM features, run as background tasks
+  const apiKey = retrieveApiKey();
+  if (!apiKey) {
+    // Node Description & Component Diagram will not be ran without API key
+    vscode.window.showInformationMessage(
+      "The component diagram & node descriptions are disabled (No API key provided)"
+    );
+    return Promise.resolve(panel);
+  }
+
+  const llmProvider: LLMProvider = retrieveLLMProvider(apiKey);
+  const getComponentDiagramAsync = async () => {
+    console.log("running component diag")
+    const data = await getComponentDiagram(nodeEdgeData, llmProvider);
+    componentNodeEdgeData = data;
+    console.log("done component diag, sending");
+    sendAcceptCompNodeEdgeMessageToWebview(componentNodeEdgeData, panel);
+  }
+  const getNodeDescriptionsAsync = async () => {
+    console.log("running node desc")
+    const data = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData, llmProvider);
+    nodeEdgeData.nodes = data;
+    console.log("done node desc, sending")
+    sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
+  }
+
+  getComponentDiagramAsync();
+  getNodeDescriptionsAsync();
+
   return Promise.resolve(panel);
 };
 
