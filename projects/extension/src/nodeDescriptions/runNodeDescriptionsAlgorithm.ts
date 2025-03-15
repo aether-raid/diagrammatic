@@ -2,9 +2,9 @@ import * as vscode from "vscode";
 
 import { AppNode } from "@shared/node.types";
 
-import { NodeDescriptionData, NodeEdgeData } from "./extension.types";
-import { retrieveApiKey } from "./helpers/apiKey";
-import { LLMProvider } from "./helpers/llm";
+import { NodeDescriptionData, NodeEdgeData } from "../extension.types";
+import { retrieveApiKey } from "../helpers/apiKey";
+import { LLMProvider } from "../helpers/llm";
 
 interface JsonData {
   node_id: string;

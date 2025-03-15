@@ -4,7 +4,7 @@ import * as vscode from "vscode";
 
 import { handleShowMVCDiagram } from "./showMVCDiagram";
 import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
-import { lintActiveFile } from "./code-quality/linting";
+import { lintActiveFile } from "./codeQuality/linting";
 import { GLOBALS } from "./globals";
 
 // This method is called when your extension is activated

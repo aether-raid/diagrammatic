@@ -5,15 +5,15 @@ import {
   WebviewCommandMessage,
 } from "@shared/message.types";
 
-import { runCodeToDiagramAlgorithm } from "./runCodeToDiagramAlgorithm";
+import { runCodeToDiagramAlgorithm } from "./codeToDiagram/runCodeToDiagramAlgorithm";
 import { NodeEdgeData } from "./extension.types";
 import {
   sendAcceptNodeEdgeMessageToWebview,
   sendAcceptCompNodeEdgeMessageToWebview,
 } from "./messageHandler";
-import { runNodeDescriptionsAlgorithm } from "./runNodeDescriptionsAlgorithm";
-import { runCodeLinting } from "./runCodeLinting";
-import { getComponentDiagram } from "./runComponentDiagramAlgorithm";
+import { runNodeDescriptionsAlgorithm } from "./nodeDescriptions/runNodeDescriptionsAlgorithm";
+import { runCodeLinting } from "./codeQuality/runCodeLinting";
+import { getComponentDiagram } from "./componentDiagram/runComponentDiagramAlgorithm";
 import { retrieveApiKey } from "./helpers/apiKey";
 import { OpenAIProvider } from "./llm/openAiProvider";
 import { GeminiProvider } from "./llm/geminiProvider";

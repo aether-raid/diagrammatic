@@ -10,7 +10,7 @@ import {
   countEntityTypes,
   countFilesAndLines,
 } from "../helper";
-import { RuleEngine } from "@extension/algorithm/rules";
+import { RuleEngine } from "@extension/codeToDiagram/algorithm/rules";
 import path from "path";
 
 // Repository URL: https://github.com/lujakob/nestjs-realworld-example-app

@@ -1,6 +1,6 @@
 import { AppNode } from "@shared/node.types";
-import { lintFile } from "./code-quality/linting";
-import { serializeDiagnostics } from "./code-quality/linting/helpers";
+import { lintFile } from "./linting";
+import { serializeDiagnostics } from "./linting/helpers";
 
 export const runCodeLinting = async (
   inputNodes: AppNode[]
