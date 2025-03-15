@@ -15,9 +15,7 @@ import { runNodeDescriptionsAlgorithm } from "./nodeDescriptions/runNodeDescript
 import { runCodeLinting } from "./codeQuality/runCodeLinting";
 import { getComponentDiagram } from "./componentDiagram/runComponentDiagramAlgorithm";
 import { retrieveApiKey } from "./helpers/apiKey";
-import { OpenAIProvider } from "./llm/openAiProvider";
-import { GeminiProvider } from "./llm/geminiProvider";
-import { retrieveLLMProviderConfig, LLMProvider } from "./helpers/llm";
+import { LLMProvider, retrieveLLMProvider } from "./helpers/llm";
 
 export const handleShowMVCDiagram = async (
   context: vscode.ExtensionContext,
@@ -42,7 +40,6 @@ export const handleShowMVCDiagram = async (
   }
 
   // LLM
-  const llmProviderName = retrieveLLMProviderConfig();
   const apiKey = retrieveApiKey();
   if (!apiKey) {
     vscode.window.showInformationMessage(
@@ -50,15 +47,7 @@ export const handleShowMVCDiagram = async (
     );
   }
 
-  let llmProvider: LLMProvider | null = null;
-  if (llmProviderName === "openai") {
-    llmProvider = new OpenAIProvider(apiKey);
-  } else if(llmProviderName === "gemini") {
-    llmProvider = new GeminiProvider(apiKey);
-  }
-  if (!llmProvider) {
-    throw new Error("No LLM provider selected.");
-  }
+  const llmProvider: LLMProvider = retrieveLLMProvider(apiKey);
 
   // C4 Level 3 diagram
   const componentNodesEdges = await getComponentDiagram(nodeEdgeData, llmProvider);
