@@ -18,13 +18,14 @@ import {
 } from "@shared/message.types";
 import { initialCompNodes, nodeTypes } from "./nodes";
 import { initialCompEdges } from "./edges";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import HomeButton from "./components/HomeButton";
 import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
 import DownloadButton from "./components/DownloadButton";
 import { AppNode } from "@shared/node.types";
 import { AppEdge } from "@shared/edge.types";
 import { getLayoutedElements } from "./helpers/layoutHandlerDagre";
+import { retainNodePositions } from "./helpers/nodePositionHandler";
 
 const LayoutFlow = () => {
     const { fitView } = useReactFlow<AppNode, AppEdge>();
@@ -34,6 +35,9 @@ const LayoutFlow = () => {
     // Hover Highlighting states
     const [highlightedNodes, setHighlightedNodes] = useState<string[]>([]);
     const [highlightedEdges, setHighlightedEdges] = useState<string[]>([]);
+
+    // Stable Reference to node variable
+    const nodesRef = useRef(nodes);
 
     // General constants
     const MIN_ZOOM = 0.1;
@@ -61,13 +65,17 @@ const LayoutFlow = () => {
     };
 
     useEffect(() => {
+      nodesRef.current = nodes;
+    }, [nodes]);
+
+    useEffect(() => {
         // Setup message listener
         const onMessage = (event: MessageEvent<WebviewCommandMessage>) => {
             const { command, message } = event.data;
             switch (command) {
                 case Commands.ACCEPT_COMPONENT_DIAGRAM_DATA: {
                     const msg = message as AcceptComponentDiagramDataPayload;
-                    console.log(msg);
+                    msg.nodes = retainNodePositions(msg.nodes, nodesRef.current);
                     setNodes(msg.nodes);
                     setEdges(msg.edges);
                     break;
