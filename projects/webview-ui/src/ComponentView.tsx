@@ -19,13 +19,14 @@ import {
 import { initialCompNodes, nodeTypes } from "./nodes";
 import { initialCompEdges } from "./edges";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import HomeButton from "./components/HomeButton";
 import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
 import DownloadButton from "./components/DownloadButton";
 import { AppNode } from "@shared/node.types";
 import { AppEdge } from "@shared/edge.types";
 import { getLayoutedElements } from "./helpers/layoutHandlerDagre";
 import { retainNodePositions } from "./helpers/nodePositionHandler";
+import { NavigationButton } from "./components/NavigationButton";
+import { useNodeDataContext } from "./NodeDataContext";
 
 const LayoutFlow = () => {
     const { fitView } = useReactFlow<AppNode, AppEdge>();
@@ -38,6 +39,9 @@ const LayoutFlow = () => {
 
     // Stable Reference to node variable
     const nodesRef = useRef(nodes);
+
+    // Global context, use to retain states when changing views
+    const nodeDataContext = useNodeDataContext();
 
     // General constants
     const MIN_ZOOM = 0.1;
@@ -85,16 +89,19 @@ const LayoutFlow = () => {
 
         window.addEventListener("message", onMessage);
 
-        try {
-            
-            sendReadyMessageToExtension();
-        } catch (error) {
-            if (
-                (error as Error).message !==
-                "acquireVsCodeApi is not defined"
-            ) {
-                // Only catch the above error, throw all else
-                throw error;
+        if (nodeDataContext?.componentNodes) {
+            setNodes(nodeDataContext.componentNodes);
+        } else {
+            try {
+                sendReadyMessageToExtension();
+            } catch (error) {
+                if (
+                    (error as Error).message !==
+                    "acquireVsCodeApi is not defined"
+                ) {
+                    // Only catch the above error, throw all else
+                    throw error;
+                }
             }
         }
 
@@ -103,6 +110,16 @@ const LayoutFlow = () => {
             window.removeEventListener("message", onMessage);
         };
     }, []);
+
+    const handleBeforeNavigate = () => {
+        if (!nodeDataContext) {
+            console.log("can't find context, quitting");
+            return;
+        }
+
+        console.log('saving code nodes!');
+        nodeDataContext.setComponentNodes(nodes);
+    }
 
     const onLayout = useCallback(
         (direction: string) => {
@@ -168,7 +185,11 @@ const LayoutFlow = () => {
             <Panel position="top-right">
                 <div className="d-flex flex-column gap-2">
                     <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
-                    <HomeButton />
+                    <NavigationButton
+                        target="/"
+                        label="Code View"
+                        onNavigate={handleBeforeNavigate}
+                    />
                 </div>
             </Panel>
             <Background />

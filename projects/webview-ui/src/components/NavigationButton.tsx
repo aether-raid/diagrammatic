@@ -1,20 +1,22 @@
 import { useNavigate } from "react-router-dom";
 
-interface ComponentButtonProps {
+interface NavigationButtonProps {
+  target: string;
+  label: string;
   onNavigate?: () => void;
 }
 
-export const ComponentButton = ({ onNavigate }: ComponentButtonProps) => {
+export const NavigationButton = ({ target, label, onNavigate }: NavigationButtonProps) => {
     const navigate = useNavigate();
 
     const onNavigateClick = () => {
         if (onNavigate) onNavigate();
-        navigate("/compView"); // Navigate to the new page
+        navigate(target); // Navigate to the new page
     };
 
     return (
         <button onClick={onNavigateClick} >
-            Component View
+            {label}
         </button>
     )
 };

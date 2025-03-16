@@ -10,7 +10,7 @@ export const App = () => {
       <MemoryRouter>
         <Routes>
           <Route path="/" element={<CodeView />} />
-          <Route path="/compView" element={<ComponentView />} />
+          <Route path="/componentView" element={<ComponentView />} />
         </Routes>
       </MemoryRouter>
     </NodeDataProvider>

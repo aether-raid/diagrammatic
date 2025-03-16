@@ -39,7 +39,7 @@ import { NodeInfoPanel } from "./components/NodeInfoPanel/NodeInfoPanel";
 import { getLayoutedElements } from "./helpers/layoutHandlerDagre";
 import { retainNodePositions } from "./helpers/nodePositionHandler";
 import { useNodeDataContext } from "./NodeDataContext";
-import { ComponentButton } from "./components/CompButton";
+import { NavigationButton } from "./components/NavigationButton";
 
 
 const LayoutFlow = () => {
@@ -65,7 +65,7 @@ const LayoutFlow = () => {
     // Stable Reference to node variable
     const nodesRef = useRef(nodes);
 
-    // Context storage - will use these instead of sending a Ready message if exists
+    // Global context, use to retain states when changing views
     const nodeDataContext = useNodeDataContext();
 
     // General constants
@@ -227,7 +227,11 @@ const LayoutFlow = () => {
                 <Panel position="top-right">
                     <div className="d-flex flex-column gap-2">
                         <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
-                        <ComponentButton onNavigate={handleBeforeNavigate}/>
+                        <NavigationButton
+                            target="/componentView"
+                            label="Component View"
+                            onNavigate={handleBeforeNavigate}
+                        />
                     </div>
                 </Panel>
                 <Background />
