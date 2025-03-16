@@ -1,7 +1,7 @@
 // *********************************
 // Layout using Dagre.js
 // *********************************
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import {
     Background,
@@ -38,6 +38,7 @@ import SearchBar from "./components/SearchBar";
 import ComponentButton from "./components/CompButton";
 import { NodeInfoPanel } from "./components/NodeInfoPanel/NodeInfoPanel";
 import { getLayoutedElements } from "./helpers/layoutHandlerDagre";
+import { retainNodePositions } from "./helpers/nodePositionHandler";
 
 
 const LayoutFlow = () => {
@@ -60,9 +61,16 @@ const LayoutFlow = () => {
     const [showNodeInfoPanel, setShowNodeInfoPanel] = useState<boolean>(false);
     const [panelNode, setPanelNode] = useState<EntityNode>();
 
+    // Stable Reference to node variable
+    const nodesRef = useRef(nodes);
+
     // General constants
     const MIN_ZOOM = 0.1;
     const MAX_ZOOM = 2;
+
+    useEffect(() => {
+        nodesRef.current = nodes;
+    }, [nodes]);
 
     useEffect(() => {
         // Setup message listener
@@ -72,6 +80,7 @@ const LayoutFlow = () => {
             switch (command) {
                 case Commands.ACCEPT_NODE_EDGE_DATA: {
                     const msg = message as AcceptNodeEdgeDataPayload;
+                    msg.nodes = retainNodePositions(msg.nodes, nodesRef.current);
                     setNodes(msg.nodes);
                     setEdges(msg.edges);
                     break;
