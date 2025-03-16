@@ -86,6 +86,7 @@ const LayoutFlow = () => {
         window.addEventListener("message", onMessage);
 
         try {
+            
             sendReadyMessageToExtension();
         } catch (error) {
             if (
@@ -175,7 +176,7 @@ const LayoutFlow = () => {
     );
 };
 
-const CompView = () => {
+const ComponentView = () => {
     return (
         <ReactFlowProvider>
             <LayoutFlow />
@@ -183,4 +184,4 @@ const CompView = () => {
     );
 };
 
-export default CompView;
+export default ComponentView;
