@@ -13,9 +13,9 @@ import {
   Edge,
   GroupType,
   Node,
-  NodeType,
   VariableType,
 } from "./model";
+import { NodeType } from "@shared/node.types";
 import { Language, GLOBAL } from "./language";
 import { getNameConfig, LanguageRules, NodeConfig } from "./rules";
 

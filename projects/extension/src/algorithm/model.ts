@@ -2,6 +2,7 @@ import path from "path";
 import fs from "fs";
 import { GLOBAL } from "./language";
 import { Point } from "tree-sitter";
+import { NodeType } from "@shared/node.types";
 
 /**
  *  Variables represent named tokens that are accessible to their scope.
@@ -106,12 +107,6 @@ export class Call {
 /**
  * Represent functions and class attributes
  */
-export enum NodeType {
-  FUNCTION = "function",
-  ATTRIBUTE = "attribute",
-  BODY = "body",
-}
-
 export class Node {
   token: string | null;
   calls: Call[];

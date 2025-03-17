@@ -1,7 +1,8 @@
 import { getFirstChildOfType } from "./function";
 import fs from "fs";
 import { SyntaxNode } from "tree-sitter";
-import { GroupType, NodeType } from "./model";
+import { GroupType } from "./model";
+import { NodeType } from "@shared/node.types";
 
 export type Rule = {
   type?: string;

@@ -1,4 +1,5 @@
-import { Node, Group, NodeType, Variable, VariableType } from "./model";
+import { Node, Group, Variable, VariableType } from "./model";
+import { NodeType } from "@shared/node.types";
 import {
   makeCalls,
   makeLocalVariables,

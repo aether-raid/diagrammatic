@@ -3,11 +3,17 @@ import { NodeRow } from "./app.types";
 import { SerializedDiagnostic } from "./vscode.types";
 import { Point } from "tree-sitter";
 
+export enum NodeType {
+  FUNCTION = "function",
+  ATTRIBUTE = "attribute",
+  BODY = "body",
+}
+
 interface EntityItem {
   name: string;
   startPosition: Point;
   endPosition: Point;
-  type: string;
+  type: NodeType;
 }
 
 interface HighlightableEntityItem extends EntityItem {

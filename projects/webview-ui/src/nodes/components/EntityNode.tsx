@@ -58,6 +58,7 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
               filePath: data.filePath,
               lineNumber: item.startPosition.row,
             }}
+            itemType={item.type}
             setHoveredRow={setHoveredRow}
             
           />)}
