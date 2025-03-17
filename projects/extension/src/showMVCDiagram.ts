@@ -59,7 +59,7 @@ const handleShowMVCDiagram = async (
           case Commands.JUMP_TO_LINE:
             const msg = message.message as JumpToLinePayload;
             const fileUri = vscode.Uri.file(msg.filePath);
-            const position = new vscode.Position(msg.lineNumber - 1, 0);
+            const position = new vscode.Position(msg.lineNumber, 0);
             await vscode.commands.executeCommand("vscode.open", fileUri, {
               selection: new vscode.Range(position, position),
             });

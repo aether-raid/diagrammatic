@@ -5,7 +5,9 @@ import { Point } from "tree-sitter";
 
 interface EntityItem {
   name: string;
-  lineNumber?: number;
+  startPosition: Point;
+  endPosition: Point;
+  type: string;
 }
 
 interface HighlightableEntityItem extends EntityItem {

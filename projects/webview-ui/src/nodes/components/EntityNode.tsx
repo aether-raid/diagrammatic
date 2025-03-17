@@ -56,7 +56,7 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
             highlighted={item.highlighted ?? false}
             location={{
               filePath: data.filePath,
-              lineNumber: item.lineNumber,
+              lineNumber: item.startPosition.row,
             }}
             setHoveredRow={setHoveredRow}
             

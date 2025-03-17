@@ -21,8 +21,18 @@ export const initialNodes: AppNode[] = [
       startPosition: { row: 15, column: 25 },
       endPosition: { row: 19, column: 30 },
       items: [
-        { name: "Planter", lineNumber: 15 },
-        { name: "Harvester", lineNumber: 45 },
+        {
+          name: "Planter",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "attribute",
+        },
+        {
+          name: "Harvester",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "attribute",
+        },
       ],
       security: {
         clean: [
@@ -83,9 +93,24 @@ export const initialNodes: AppNode[] = [
       startPosition: { row: 15, column: 25 },
       endPosition: { row: 19, column: 30 },
       items: [
-        { name: "plantPotato", lineNumber: 0 },
-        { name: "plantCorn", lineNumber: 20 },
-        { name: "plantCarrot", lineNumber: 40 },
+        {
+          name: "plantPotato",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "function",
+        },
+        {
+          name: "plantCorn",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "function",
+        },
+        {
+          name: "plantCarrot",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "function",
+        },
       ],
       security: {
         clean: [],
@@ -107,9 +132,24 @@ export const initialNodes: AppNode[] = [
       startPosition: { row: 15, column: 25 },
       endPosition: { row: 19, column: 30 },
       items: [
-        { name: "harvestPotato", lineNumber: 0 },
-        { name: "harvestCorn", lineNumber: 20 },
-        { name: "harvestCarrot", lineNumber: 40 },
+        {
+          name: "harvestPotato",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "function",
+        },
+        {
+          name: "harvestCorn",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "function",
+        },
+        {
+          name: "harvestCarrot",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "function",
+        },
       ],
       security: {
         clean: [],
@@ -128,7 +168,14 @@ export const initialNodes: AppNode[] = [
       filePath: "path/to/grocer",
       startPosition: { row: 15, column: 25 },
       endPosition: { row: 19, column: 30 },
-      items: [{ name: "sellProduct", lineNumber: 0 }],
+      items: [
+        {
+          name: "sellProduct",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "function",
+        },
+      ],
       security: {
         clean: [],
         vulnerability: [],
@@ -147,8 +194,18 @@ export const initialNodes: AppNode[] = [
       startPosition: { row: 15, column: 25 },
       endPosition: { row: 19, column: 30 },
       items: [
-        { name: "consumePotato", lineNumber: 15 },
-        { name: "consumeCorn", lineNumber: 36 },
+        {
+          name: "consumePotato",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "function",
+        },
+        {
+          name: "consumeCorn",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "function",
+        },
       ],
       security: {
         clean: [],
@@ -168,9 +225,24 @@ export const initialNodes: AppNode[] = [
       startPosition: { row: 15, column: 25 },
       endPosition: { row: 19, column: 30 },
       items: [
-        { name: "givePotato", lineNumber: 0 },
-        { name: "giveCorn", lineNumber: 32 },
-        { name: "cookAndGiveDish", lineNumber: 77 },
+        {
+          name: "givePotato",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "function",
+        },
+        {
+          name: "giveCorn",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "function",
+        },
+        {
+          name: "cookAndGiveDish",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "function",
+        },
       ],
       security: {
         clean: [],
@@ -190,8 +262,18 @@ export const initialNodes: AppNode[] = [
       startPosition: { row: 15, column: 25 },
       endPosition: { row: 19, column: 30 },
       items: [
-        { name: "eatPotato", lineNumber: 0 },
-        { name: "eatCorn", lineNumber: 32 },
+        {
+          name: "eatPotato",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "function",
+        },
+        {
+          name: "eatCorn",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "function",
+        },
       ],
     },
   },
@@ -206,8 +288,18 @@ export const initialNodes: AppNode[] = [
       startPosition: { row: 15, column: 25 },
       endPosition: { row: 19, column: 30 },
       items: [
-        { name: "yeetPotato", lineNumber: 0 },
-        { name: "yeetCorn", lineNumber: 32 },
+        {
+          name: "yeetPotato",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "function",
+        },
+        {
+          name: "yeetCorn",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "function",
+        },
       ],
     },
   },
@@ -222,8 +314,18 @@ export const initialNodes: AppNode[] = [
       startPosition: { row: 15, column: 25 },
       endPosition: { row: 19, column: 30 },
       items: [
-        { name: "structPotato", lineNumber: 0 },
-        { name: "structCorn", lineNumber: 32 },
+        {
+          name: "structPotato",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "function",
+        },
+        {
+          name: "structCorn",
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 0, column: 0 },
+          type: "function",
+        },
       ],
     },
   },
