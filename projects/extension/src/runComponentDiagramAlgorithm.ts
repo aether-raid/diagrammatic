@@ -72,7 +72,7 @@ export const getComponentDiagram = async (
 
     nodes: ${JSON.stringify(nodes)}
     edges: ${JSON.stringify(edges)}`;
-  console.log("Prompt:", prompt);
+//   console.log("Prompt:", prompt);
   try {
     const response = await axios.post(
       "https://api.openai.com/v1/chat/completions",

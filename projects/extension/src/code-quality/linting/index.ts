@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
-import path from 'path';
 import { getDiagnostics } from './helpers';
-import { validEnvironment, validFile } from './checks';
+import { validEnvironment } from './checks';
 import { lintFile } from '../linters';
 import { Linters } from '../linters/definitions';
 
@@ -23,8 +22,8 @@ export const getDiagnosticsFromFile = async(linter:typeof Linters[keyof typeof L
         }
         const result = results[0];
         collection.clear();
+        console.log("results before filtering:", results);
         const diagnostics = getDiagnostics(result.messages);
-        // console.log("diagnostics:", diagnostics);
         if (diagnostics.length < 1) {
             return {};
         }

@@ -7,6 +7,7 @@ export default [{
     files: ["**/*.ts"],
 }, {
     plugins: {
+        // eslint,
         "@typescript-eslint": typescriptEslint,
         sonarjs,
         "security":pluginSecurity,
@@ -18,16 +19,19 @@ export default [{
         sourceType: "module",
     },
 
+
     rules: {
+        // ...tseslint.config(
+        //     eslint.configs.recommended,
+        //     ...tseslint.configs.recommended,
+        // ),
         "@typescript-eslint/naming-convention": ["warn", {
             selector: "import",
             format: ["camelCase", "PascalCase"],
         }],
-
-        curly: "warn",
-        eqeqeq: "warn",
+        "curly": "warn",
+        "eqeqeq": "warn",
         "no-throw-literal": "warn",
-        semi: "warn",
         ...sonarjs.configs.recommended.rules,
         ...pluginSecurity.configs.recommended.rules
     },

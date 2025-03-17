@@ -14,7 +14,6 @@ export const runCodeLinting = async (
 }> => {
     const nodes = structuredClone(inputNodes);
     let hasIssues = false;
-    const seenExtension =  new Set<string>();
     const workspacePath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
     const promises: Promise<void>[] = [];
     if (!workspacePath) { return { lintedNodes: nodes, hasIssues}};
@@ -40,8 +39,6 @@ export const runCodeLinting = async (
                 if (!diagnostics || !Array.isArray(diagnostics)) { 
                     return []; 
                 }
-                // console.log("before serialise:", diagnostics);
-
                 return diagnostics.map(diag => serializeDiagnostics(diag));
             })
             .then((diagnostics) => {
@@ -55,10 +52,10 @@ export const runCodeLinting = async (
 
                 for (const diag of diagnostics){
                     switch (diag.source) {
-                        case "Group: clean-code":
+                        case "clean":
                             security.clean.push(diag);
                             break;
-                        case "Group: security":
+                        case "vulnerability":
                             security.vulnerability.push(diag);
                             break;
                         default:

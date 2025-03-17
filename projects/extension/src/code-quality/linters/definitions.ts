@@ -1,43 +1,19 @@
-import type { Linter } from "eslint"
-
 export enum SupportedLanguages {
     js = "js",
     ts = "ts",
-    // py = "py",
-    // java = "java",
-    cpp = "cpp"
+    cpp = "cpp",
+    h = "cpp"
 }
-
-export const requiredPackages = {
-    js:  ["eslint"],
-    ts:  ["eslint"],
-    // py:  ["flake8"],
-    // java:  ["checkstyle"],
-    cpp: ["cpplint"]
-}
-
-
 export const Linters : {[key in keyof typeof SupportedLanguages]: string} = {
     "js": "eslint",
     "ts": "eslint",
-    // "py": "flake8",
-    // "java": "Checkstyle",
-    "cpp": "cpplint"
+    "cpp": "cpplint",
+    "h": "cpplint"
 };
-export const lintingCommands : { [key in keyof typeof SupportedLanguages]: string } = {
-    "js": "eslint --format compact",
-    "ts": "eslint --format compact",
-    // "py": "flake8 --format=default",
-    // "java": "checkstyle -c /google_checks.xml",
-    "cpp": "cpplint"
-};
-
-
 export type CppLintResult = {
     filePath: string,
     messages: CppLintMessage[]
 }
-
 export type CppLintMessage = {
     line: number,
     messageId: string,
