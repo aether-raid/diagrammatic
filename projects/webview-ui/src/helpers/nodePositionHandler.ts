@@ -24,7 +24,6 @@ const copyPositionToOtherNodeArray = (target: AppNode[], source: AppNode[]) => {
   const updatedTarget = target.map(node => {
     const matchedSource = sourceMap.get(node.id);
     if (matchedSource) {
-      console.log("found position: ", matchedSource.position);
       return { ...node, position: matchedSource.position };
     }
 
@@ -32,7 +31,6 @@ const copyPositionToOtherNodeArray = (target: AppNode[], source: AppNode[]) => {
     return node;
   })
 
-  console.log(updatedTarget);
   return updatedTarget;
 }
 

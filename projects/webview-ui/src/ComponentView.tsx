@@ -26,7 +26,7 @@ import { AppEdge } from "@shared/edge.types";
 import { getLayoutedElements } from "./helpers/layoutHandlerDagre";
 import { retainNodePositions } from "./helpers/nodePositionHandler";
 import { NavigationButton } from "./components/NavigationButton";
-import { useNodeDataContext } from "./NodeDataContext";
+import { useNodeEdgeDataContext } from "./NodeEdgeDataContext";
 
 const LayoutFlow = () => {
     const { fitView } = useReactFlow<AppNode, AppEdge>();
@@ -41,7 +41,7 @@ const LayoutFlow = () => {
     const nodesRef = useRef(nodes);
 
     // Global context, use to retain states when changing views
-    const nodeDataContext = useNodeDataContext();
+    const nodeEdgeDataContext = useNodeEdgeDataContext();
 
     // General constants
     const MIN_ZOOM = 0.1;
@@ -89,8 +89,9 @@ const LayoutFlow = () => {
 
         window.addEventListener("message", onMessage);
 
-        if (nodeDataContext?.componentNodes) {
-            setNodes(nodeDataContext.componentNodes);
+        if (nodeEdgeDataContext?.componentNodeEdgeData) {
+            setNodes(nodeEdgeDataContext.componentNodeEdgeData.nodes);
+            setEdges(nodeEdgeDataContext.componentNodeEdgeData.edges);
         } else {
             try {
                 sendReadyMessageToExtension();
@@ -112,13 +113,11 @@ const LayoutFlow = () => {
     }, []);
 
     const handleBeforeNavigate = () => {
-        if (!nodeDataContext) {
-            console.log("can't find context, quitting");
-            return;
-        }
-
-        console.log('saving code nodes!');
-        nodeDataContext.setComponentNodes(nodes);
+        if (!nodeEdgeDataContext) { return; }
+        nodeEdgeDataContext.setComponentNodeEdgeData({
+            nodes: nodes,
+            edges: edges,
+        });
     }
 
     const onLayout = useCallback(

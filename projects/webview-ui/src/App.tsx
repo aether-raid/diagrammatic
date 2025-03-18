@@ -2,17 +2,17 @@ import { MemoryRouter, Route, Routes } from "react-router-dom"
 
 import CodeView from "./CodeView"
 import ComponentView from "./ComponentView"
-import { NodeDataProvider } from "./NodeDataContext"
+import { NodeEdgeDataProvider } from "./NodeEdgeDataContext"
 
 export const App = () => {
   return (
-    <NodeDataProvider>
+    <NodeEdgeDataProvider>
       <MemoryRouter>
         <Routes>
           <Route path="/" element={<CodeView />} />
           <Route path="/componentView" element={<ComponentView />} />
         </Routes>
       </MemoryRouter>
-    </NodeDataProvider>
+    </NodeEdgeDataProvider>
   )
 }
