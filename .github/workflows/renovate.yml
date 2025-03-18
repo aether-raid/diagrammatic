@@ -19,5 +19,6 @@ jobs:
         uses: renovatebot/github-action@v41.0.15
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          repositories: ${{ github.repository }}
         env:
           LOG_LEVEL: debug
