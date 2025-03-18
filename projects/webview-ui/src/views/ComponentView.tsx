@@ -16,17 +16,17 @@ import {
     Commands,
     WebviewCommandMessage,
 } from "@shared/message.types";
-import { initialCompNodes, nodeTypes } from "./nodes";
-import { initialCompEdges } from "./edges";
+import { initialCompNodes, nodeTypes } from "../nodes";
+import { initialCompEdges } from "../edges";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
-import DownloadButton from "./components/DownloadButton";
+import { sendReadyMessageToExtension } from "../helpers/vscodeApiHandler";
+import DownloadButton from "../components/DownloadButton";
 import { AppNode } from "@shared/node.types";
 import { AppEdge } from "@shared/edge.types";
-import { getLayoutedElements } from "./helpers/layoutHandlerDagre";
-import { retainNodePositions } from "./helpers/nodePositionHandler";
-import { NavigationButton } from "./components/NavigationButton";
-import { useNodeEdgeDataContext } from "./contexts/NodeEdgeDataContext";
+import { getLayoutedElements } from "../helpers/layoutHandlerDagre";
+import { retainNodePositions } from "../helpers/nodePositionHandler";
+import { NavigationButton } from "../components/NavigationButton";
+import { useNodeEdgeDataContext } from "../contexts/NodeEdgeDataContext";
 
 const LayoutFlow = () => {
     const { fitView } = useReactFlow<AppNode, AppEdge>();

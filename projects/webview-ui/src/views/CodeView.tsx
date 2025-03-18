@@ -24,21 +24,21 @@ import {
     Commands,
     WebviewCommandMessage,
 } from "@shared/message.types";
-import { useNodeEdgeDataContext } from "./contexts/NodeEdgeDataContext";
+import { useNodeEdgeDataContext } from "../contexts/NodeEdgeDataContext";
 
-import { initialNodes, nodeTypes } from "./nodes";
-import { initialEdges } from "./edges";
+import { initialNodes, nodeTypes } from "../nodes";
+import { initialEdges } from "../edges";
 import {
     getEdgesEntitiesToHighlightBFS,
     getOutgoingEdgesFromEntityRow,
-} from "./helpers/diagramBFS";
-import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
-import DownloadButton from "./components/DownloadButton";
-import SearchBar from "./components/SearchBar";
-import { NodeInfoPanel } from "./components/NodeInfoPanel/NodeInfoPanel";
-import { getLayoutedElements } from "./helpers/layoutHandlerDagre";
-import { retainNodePositions } from "./helpers/nodePositionHandler";
-import { NavigationButton } from "./components/NavigationButton";
+} from "../helpers/diagramBFS";
+import { sendReadyMessageToExtension } from "../helpers/vscodeApiHandler";
+import DownloadButton from "../components/DownloadButton";
+import SearchBar from "../components/SearchBar";
+import { NodeInfoPanel } from "../components/NodeInfoPanel/NodeInfoPanel";
+import { getLayoutedElements } from "../helpers/layoutHandlerDagre";
+import { retainNodePositions } from "../helpers/nodePositionHandler";
+import { NavigationButton } from "../components/NavigationButton";
 
 
 const LayoutFlow = () => {
