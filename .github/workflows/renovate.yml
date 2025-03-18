@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4.2.2
         
       - name: Renovate
-        run: npx renovate
+        run: npx renovate kahliya/diagrammatic
         env:
           RENOVATE_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           LOG_LEVEL: debug
