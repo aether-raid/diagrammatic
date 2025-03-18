@@ -19,6 +19,7 @@ jobs:
         uses: renovatebot/github-action@v41.0.15
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          repositories: "kahliya/diagrammatic"
         env:
           LOG_LEVEL: debug
           RENOVATE_AUTODISCOVER: true
