@@ -5,13 +5,13 @@ import { lintFileCpp } from './cpp';
 import { lintFileES } from './ts';
 
 
-export const lintFile = (linter: string, filePath: string, configFilePath:string): Promise<ESLint.LintResult[] | CppLintResult[]> | []=>  {
+export const lintFile = (linter: string, filePath: string, cwd:string): Promise<ESLint.LintResult[] | CppLintResult[]> | []=>  {
     switch (linter) {
         case 'eslint':
         case 'tslint':
-            return lintFileES(filePath, configFilePath);
+            return lintFileES(filePath, cwd);
         case 'cpplint':
-            return lintFileCpp(filePath, configFilePath).then((output) => processCpplintOutput(output));
+            return lintFileCpp(filePath).then((output) => processCpplintOutput(output));
         default:
             break;
     }

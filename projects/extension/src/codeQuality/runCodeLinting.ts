@@ -7,7 +7,8 @@ import { Linters, SupportedLanguages } from "./linters/definitions";
 import { SerializedDiagnostic } from "@shared/vscode.types";
 
 export const runCodeLinting = async (
-  inputNodes: AppNode[]
+  inputNodes: AppNode[],
+  cwd: string
 ): Promise<{
   lintedNodes: AppNode[];
   hasIssues: boolean;
@@ -30,11 +31,9 @@ export const runCodeLinting = async (
         if (!(ext in SupportedLanguages)) { continue; }
         const casted_ext = ext as keyof typeof SupportedLanguages;
         const linter = Linters[casted_ext];
-        const extension = vscode.extensions.getExtension('diagrammatic.diagrammatic')!;
-        const configFilePath = `${extension.extensionPath}\\config\\linting-configs\\eslint.config.mjs`
 
 
-        const promise = getDiagnosticsFromFile(linter, filePath, configFilePath)
+        const promise = getDiagnosticsFromFile(linter, filePath, cwd)
             .then(({diagnostics}) => {
                 if (!diagnostics || !Array.isArray(diagnostics)) { 
                     return []; 

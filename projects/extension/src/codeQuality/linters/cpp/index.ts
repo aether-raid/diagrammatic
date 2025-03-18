@@ -4,15 +4,15 @@ import * as vscode from "vscode";
 const extension = vscode.extensions.getExtension('diagrammatic.diagrammatic')!;
 const linterPath = `${extension.extensionPath}\\config\\linters\\cpplint.exe`
 
-export const lintFileCpp = (filePath:string, configFilePath:string): Promise<string> => {
+export const lintFileCpp = (filePath:string): Promise<string> => {
     return new Promise((resolve, reject) => {
         try{
             let output = "";
-            const pythonProcess = spawn(linterPath, [filePath])
-            pythonProcess.stderr.on("data", (data) => {
+            const process = spawn(linterPath, [filePath])
+            process.stderr.on("data", (data) => {
                 output += data.toString()
             });
-            pythonProcess.stderr.on("end", () => {
+            process.stderr.on("end", () => {
                 resolve(output)
             })
         }catch(error){
