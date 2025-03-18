@@ -1,12 +1,16 @@
 export enum SupportedLanguages {
     js = "js",
     ts = "ts",
+    jsx = "jsx",
+    tsx = "tsx",
     cpp = "cpp",
     h = "cpp"
 }
 export const Linters : {[key in keyof typeof SupportedLanguages]: string} = {
     "js": "eslint",
     "ts": "eslint",
+    "jsx": "eslint",
+    "tsx": "eslint",
     "cpp": "cpplint",
     "h": "cpplint"
 };
