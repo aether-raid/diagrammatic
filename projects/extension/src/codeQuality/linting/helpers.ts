@@ -62,7 +62,6 @@ const filterSources = (ruleId: string) => {
   if (BLACKLISTED_SOURCES.includes(ruleId)) {
       return null;
   } 
-  console.log("before:", ruleId);
   const group = findKeyForValue(ruleId, WHITELISTED_SOURCES);
   if (group) {
     return group;

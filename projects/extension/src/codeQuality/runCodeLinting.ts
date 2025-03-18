@@ -1,9 +1,9 @@
 import { AppNode } from "@shared/node.types";
-import { getDiagnosticsFromFile } from "./code-quality/linting";
-import { serializeDiagnostics } from "./code-quality/linting/helpers";
+import { getDiagnosticsFromFile } from "./linting";
+import { serializeDiagnostics } from "./linting/helpers";
 import path from 'path';
 import * as vscode from "vscode";
-import { Linters, SupportedLanguages } from "./code-quality/linters/definitions";
+import { Linters, SupportedLanguages } from "./linters/definitions";
 import { SerializedDiagnostic } from "@shared/vscode.types";
 
 export const runCodeLinting = async (

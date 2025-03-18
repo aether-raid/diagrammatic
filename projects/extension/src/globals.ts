@@ -1,8 +1,11 @@
 export const GLOBALS = {
-  openAiApiKey: {
-    configName: "diagrammatic.openAiApiKey",
+  apiKey: {
+    configName: "diagrammatic.apiKey",
   },
   ruleset: {
     configName: "diagrammatic.codeToDiagramRulesetFile",
   },
+  llmProvider: {
+    configName: "diagrammatic.llmProvider"
+  }
 };

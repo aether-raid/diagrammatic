@@ -4,8 +4,6 @@ import { AppEdge } from "@shared/edge.types";
 
 import { CustomEdge } from "./CustomEdge";
 
-import { CompEdge } from "@shared/compEdge.types";
-
 export const initialEdges: AppEdge[] = [
     { id: '5-5a', source: '5', target: '5a', sourceHandle: 'Planter', targetHandle: 'entity', markerEnd: { type: MarkerType.ArrowClosed } },
     { id: '5-5b', source: '5', target: '5b', sourceHandle: 'Harvester', targetHandle: 'entity', markerEnd: { type: MarkerType.ArrowClosed } },
@@ -17,11 +15,7 @@ export const initialEdges: AppEdge[] = [
     { id: '7-8a', source: '7', target: '8', sourceHandle: 'consumePotato', targetHandle: 'cookAndGiveDish', markerEnd: { type: MarkerType.ArrowClosed } }
 ];
 
-export const edgeTypes = {
-    'customEdge': CustomEdge
-} satisfies EdgeTypes;
-
-export const initialCompEdges: CompEdge[] = [
+export const initialCompEdges: AppEdge[] = [
     {id: '0-4', source: '0', target: '4', sourceHandle: 'comp', targetHandle: 'comp', markerEnd: {type: MarkerType.ArrowClosed}},
     {id: '1-4', source: '1', target: '4', sourceHandle: 'comp', targetHandle: 'comp', markerEnd: {type: MarkerType.ArrowClosed}},
     {id: '2-4', source: '2', target: '4', sourceHandle: 'comp', targetHandle: 'comp', markerEnd: {type: MarkerType.ArrowClosed}},
@@ -34,3 +28,7 @@ export const initialCompEdges: CompEdge[] = [
     {id: '5-3', source: '5', target: '3', sourceHandle: 'comp', targetHandle: 'comp', markerEnd: {type: MarkerType.ArrowClosed}},
     {id: '5-4', source: '5', target: '4', sourceHandle: 'comp', targetHandle: 'comp', markerEnd: {type: MarkerType.ArrowClosed}},
 ]
+
+export const edgeTypes = {
+  'customEdge': CustomEdge
+} satisfies EdgeTypes;

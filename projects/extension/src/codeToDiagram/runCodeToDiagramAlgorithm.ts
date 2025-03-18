@@ -1,8 +1,8 @@
 import path from "path";
 import { Tree } from "tree-sitter";
 
-import { GLOBALS } from "./globals";
-import { NodeEdgeData } from "./extension.types";
+import { GLOBALS } from "../globals";
+import { NodeEdgeData } from "../extension.types";
 import {
   findLinks,
   makeFileGroup,
@@ -10,7 +10,7 @@ import {
 } from "./algorithm/function";
 import { Edge, Group } from "./algorithm/model";
 import { transformEdges, transformFileGroups } from "./algorithm/transform";
-import { retrieveRuleset } from "./helpers/ruleset";
+import { retrieveRuleset } from "../helpers/ruleset";
 
 
 export const runCodeToDiagramAlgorithm = (

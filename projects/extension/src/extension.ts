@@ -2,7 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 
-import handleShowMVCDiagram from "./showMVCDiagram";
+import { handleShowMVCDiagram } from "./showMVCDiagram";
 import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
 import { GLOBALS } from "./globals";
 import { exec, spawn } from "child_process";

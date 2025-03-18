@@ -4,7 +4,6 @@ import { TextUpdaterNode } from "./components/TextUpdaterNode";
 import { EntityNode } from "./components/EntityNode";
 import { EntityCompNode } from "./components/EntityCompNode";
 import { AppNode } from "@shared/node.types";
-import { CompNode } from "@shared/compNode.types";
 
 export const initialNodes: AppNode[] = [
   {
@@ -205,10 +204,10 @@ export const initialNodes: AppNode[] = [
   }
 ];
 
-export const initialCompNodes: CompNode[] = [
+export const initialCompNodes: AppNode[] = [
   {
     id: '0',
-    type: "comp", 
+    type: "componentEntity",
     position: { x: 0, y: 0 },
     data: {
       name: "Article Component",
@@ -226,7 +225,7 @@ export const initialCompNodes: CompNode[] = [
   },
   {
     id: '1',
-    type: "comp", 
+    type: "componentEntity",
     position: { x: 0, y: 0 },
     data: {
       "name": "Profile Component",
@@ -241,7 +240,7 @@ export const initialCompNodes: CompNode[] = [
   },
   {
     id: '2',
-    type: "comp", 
+    type: "componentEntity",
     position: { x: 0, y: 0 },
     data: {
       "name": "Tag Component",
@@ -256,7 +255,7 @@ export const initialCompNodes: CompNode[] = [
   },
   {
     id: '3',
-    type: "comp", 
+    type: "componentEntity",
     position: { x: 0, y: 0 },
     data: {
       "name": "User Component",
@@ -275,7 +274,7 @@ export const initialCompNodes: CompNode[] = [
   },
   {
     id: '4',
-    type: "comp", 
+    type: "componentEntity",
     position: { x: 0, y: 0 },
     data: {
       "name": "Shared Component",
@@ -288,7 +287,7 @@ export const initialCompNodes: CompNode[] = [
   },
   {
     id: '5',
-    type: "comp",   
+    type: "componentEntity",
     position: { x: 0, y: 0 },
     data: {
       "name": "Application Component",
@@ -305,5 +304,5 @@ export const initialCompNodes: CompNode[] = [
 export const nodeTypes = {
   'entity': EntityNode,
   'textUpdater': TextUpdaterNode,
-  'comp': EntityCompNode,
+  'componentEntity': EntityCompNode,
 } satisfies NodeTypes;

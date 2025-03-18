@@ -1,4 +1,4 @@
-import type { CppLintResult } from './definitions';
+import type { CppLintResult } from '../linters/definitions';
 import { ESLint } from 'eslint';
 import { processCpplintOutput } from '../linting/helpers';
 import { lintFileCpp } from './cpp';

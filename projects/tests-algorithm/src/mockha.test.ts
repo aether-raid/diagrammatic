@@ -2,7 +2,7 @@ import { expect } from "chai";
 import mock from "mock-require";
 import * as sinon from "sinon";
 
-import { RuleEngine } from "@extension/algorithm/rules";
+import { RuleEngine } from "@extension/codeToDiagram/algorithm/rules";
 
 // Geddit, MOCK-ha?
 // No, just me? ok :(

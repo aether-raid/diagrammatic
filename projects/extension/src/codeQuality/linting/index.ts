@@ -22,7 +22,6 @@ export const getDiagnosticsFromFile = async(linter:typeof Linters[keyof typeof L
         }
         const result = results[0];
         collection.clear();
-        console.log("results before filtering:", results);
         const diagnostics = getDiagnostics(result.messages);
         if (diagnostics.length < 1) {
             return {};

@@ -6,7 +6,7 @@ import { NodeRow } from "@shared/app.types";
 
 
 export const getOutgoingEdgesFromEntityRow = (node: AppNode, rowId: string, edges: AppEdge[]) => {
-  const connectedEdges = getConnectedEdges([node], edges); // Safe assumption that node will never be undefined since an edge is there.
+  const connectedEdges = getConnectedEdges([node], edges);
   const outgoingEdges = connectedEdges.filter(e =>
     (e.source === node.id)
     && (e.sourceHandle === rowId)
@@ -15,9 +15,7 @@ export const getOutgoingEdgesFromEntityRow = (node: AppNode, rowId: string, edge
   return outgoingEdges;
 }
 
-// TODO: Check against explored nodes in case there is a loop
 export const getEdgesEntitiesToHighlightBFS = (initialEdges: AppEdge[], globalEdges: AppEdge[], getNode: (id: string) => AppNode | undefined) => {
-
   // Treat edgesToExplore & entitiesToExplore as Queue objects (push & shift)
   let edgesToExplore = [...initialEdges];
   let entitiesToExplore: NodeRow[] = [];
