@@ -4,7 +4,7 @@ import sonarjs from "eslint-plugin-sonarjs";
 import pluginSecurity from 'eslint-plugin-security'; 
 
 export default [{
-    files: ["**/*.ts"],
+    files: ["**/*.{ts,tsx}"],
 }, {
     plugins: {
         // eslint,
