@@ -12,6 +12,7 @@ import {
   sendAcceptCompNodeEdgeMessageToWebview,
 } from "./messageHandler";
 import { runNodeDescriptionsAlgorithm } from "./nodeDescriptions/runNodeDescriptionsAlgorithm";
+import { runFunctionDescriptionsAlgorithm } from "./functionDescriptions/runFunctionDescriptionsAlgorithm";
 import { runCodeLinting } from "./codeQuality/runCodeLinting";
 import { getComponentDiagram } from "./componentDiagram/runComponentDiagramAlgorithm";
 import { retrieveApiKey } from "./helpers/apiKey";
@@ -92,8 +93,16 @@ export const handleShowMVCDiagram = async (
     sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
   }
 
+
+  const getFunctionDescriptionsAsync = async () => {
+    console.log("running function desc")
+    const data = await runFunctionDescriptionsAlgorithm(nodeEdgeData, llmProvider);
+    console.log(data);
+    console.log("done function desc")
+  }
   getComponentDiagramAsync();
   getNodeDescriptionsAsync();
+  getFunctionDescriptionsAsync();
 
   return Promise.resolve(panel);
 };
