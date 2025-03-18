@@ -26,7 +26,7 @@ import { AppEdge } from "@shared/edge.types";
 import { getLayoutedElements } from "./helpers/layoutHandlerDagre";
 import { retainNodePositions } from "./helpers/nodePositionHandler";
 import { NavigationButton } from "./components/NavigationButton";
-import { useNodeEdgeDataContext } from "./NodeEdgeDataContext";
+import { useNodeEdgeDataContext } from "./contexts/NodeEdgeDataContext";
 
 const LayoutFlow = () => {
     const { fitView } = useReactFlow<AppNode, AppEdge>();

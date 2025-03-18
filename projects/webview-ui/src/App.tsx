@@ -2,7 +2,7 @@ import { MemoryRouter, Route, Routes } from "react-router-dom"
 
 import CodeView from "./CodeView"
 import ComponentView from "./ComponentView"
-import { NodeEdgeDataProvider } from "./NodeEdgeDataContext"
+import { NodeEdgeDataProvider } from "./contexts/NodeEdgeDataContext"
 
 export const App = () => {
   return (

@@ -24,10 +24,10 @@ import {
     Commands,
     WebviewCommandMessage,
 } from "@shared/message.types";
+import { useNodeEdgeDataContext } from "./contexts/NodeEdgeDataContext";
 
 import { initialNodes, nodeTypes } from "./nodes";
 import { initialEdges } from "./edges";
-
 import {
     getEdgesEntitiesToHighlightBFS,
     getOutgoingEdgesFromEntityRow,
@@ -38,7 +38,6 @@ import SearchBar from "./components/SearchBar";
 import { NodeInfoPanel } from "./components/NodeInfoPanel/NodeInfoPanel";
 import { getLayoutedElements } from "./helpers/layoutHandlerDagre";
 import { retainNodePositions } from "./helpers/nodePositionHandler";
-import { useNodeEdgeDataContext } from "./NodeEdgeDataContext";
 import { NavigationButton } from "./components/NavigationButton";
 
 
@@ -65,7 +64,7 @@ const LayoutFlow = () => {
     // Stable Reference to node variable
     const nodesRef = useRef(nodes);
 
-    // Global context, use to retain states when changing views
+    // Global contexts
     const nodeEdgeDataContext = useNodeEdgeDataContext();
 
     // General constants
