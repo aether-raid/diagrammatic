@@ -1,0 +1,21 @@
+name: Renovate Bot
+
+on:
+    push:
+        branches:
+            - "*"
+    # pull_request:
+    #   branches:
+    #     - '*'
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+        
+      - name: Self-hosted Renovate
+        uses: renovatebot/github-action@v41.0.15
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
