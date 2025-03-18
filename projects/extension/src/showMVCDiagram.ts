@@ -32,7 +32,7 @@ export const handleShowMVCDiagram = async (
   let componentNodeEdgeData: NodeEdgeData | undefined;
 
   // Linting & security
-  const { lintedNodes, hasIssues } = await runCodeLinting(nodeEdgeData.nodes);
+  const { lintedNodes, hasIssues } = await runCodeLinting(nodeEdgeData.nodes, filePath);
   nodeEdgeData.nodes = lintedNodes;
   if (hasIssues) {
     vscode.window.showWarningMessage(
