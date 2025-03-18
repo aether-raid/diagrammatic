@@ -18,5 +18,6 @@ jobs:
       - name: Renovate
         run: npx renovate
         env:
+          RENOVATE_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           LOG_LEVEL: debug
           RENOVATE_AUTODISCOVER: true
