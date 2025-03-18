@@ -1,0 +1,6 @@
+{
+  "onboarding": false,
+  "requireConfig": "optional",
+  "enabledManagers": ["npm"],
+  "gitAuthor": "Renovate Bot <renovate@github.com>"
+}

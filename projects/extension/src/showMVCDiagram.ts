@@ -6,7 +6,6 @@ import {
 } from "@shared/message.types";
 
 import { runCodeToDiagramAlgorithm } from "./codeToDiagram/runCodeToDiagramAlgorithm";
-import { NodeEdgeData } from "./extension.types";
 import {
   sendAcceptNodeEdgeMessageToWebview,
   sendAcceptCompNodeEdgeMessageToWebview,
@@ -17,6 +16,7 @@ import { runCodeLinting } from "./codeQuality/runCodeLinting";
 import { getComponentDiagram } from "./componentDiagram/runComponentDiagramAlgorithm";
 import { retrieveApiKey } from "./helpers/apiKey";
 import { LLMProvider, retrieveLLMProvider } from "./helpers/llm";
+import { NodeEdgeData } from "@shared/app.types";
 
 export const handleShowMVCDiagram = async (
   context: vscode.ExtensionContext,
@@ -33,7 +33,7 @@ export const handleShowMVCDiagram = async (
   let componentNodeEdgeData: NodeEdgeData | undefined;
 
   // Linting & security
-  const { lintedNodes, hasIssues } = await runCodeLinting(nodeEdgeData.nodes);
+  const { lintedNodes, hasIssues } = await runCodeLinting(nodeEdgeData.nodes, filePath);
   nodeEdgeData.nodes = lintedNodes;
   if (hasIssues) {
     vscode.window.showWarningMessage(

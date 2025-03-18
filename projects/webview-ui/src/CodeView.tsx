@@ -38,7 +38,7 @@ import SearchBar from "./components/SearchBar";
 import { NodeInfoPanel } from "./components/NodeInfoPanel/NodeInfoPanel";
 import { getLayoutedElements } from "./helpers/layoutHandlerDagre";
 import { retainNodePositions } from "./helpers/nodePositionHandler";
-import { useNodeDataContext } from "./NodeDataContext";
+import { useNodeEdgeDataContext } from "./NodeEdgeDataContext";
 import { NavigationButton } from "./components/NavigationButton";
 
 
@@ -66,7 +66,7 @@ const LayoutFlow = () => {
     const nodesRef = useRef(nodes);
 
     // Global context, use to retain states when changing views
-    const nodeDataContext = useNodeDataContext();
+    const nodeEdgeDataContext = useNodeEdgeDataContext();
 
     // General constants
     const MIN_ZOOM = 0.1;
@@ -96,8 +96,9 @@ const LayoutFlow = () => {
 
         // If context contains a set of data, no need to get from extension
         // Else, send message to inform extension that webview is ready to receive data.
-        if (nodeDataContext?.codeNodes) {
-            setNodes(nodeDataContext.codeNodes);
+        if (nodeEdgeDataContext?.codeNodeEdgeData) {
+            setNodes(nodeEdgeDataContext.codeNodeEdgeData.nodes);
+            setEdges(nodeEdgeDataContext.codeNodeEdgeData.edges);
         } else {
             try {
                 sendReadyMessageToExtension();
@@ -119,13 +120,11 @@ const LayoutFlow = () => {
     }, []);
 
     const handleBeforeNavigate = () => {
-        if (!nodeDataContext) { 
-            console.log("can't find context, quitting");
-            return; 
-        }
-
-        console.log('saving code nodes!');
-        nodeDataContext.setCodeNodes(nodes);
+        if (!nodeEdgeDataContext) { return }
+        nodeEdgeDataContext.setCodeNodeEdgeData({
+            nodes: nodes,
+            edges: edges,
+        });
     }
 
     const onLayout = useCallback(

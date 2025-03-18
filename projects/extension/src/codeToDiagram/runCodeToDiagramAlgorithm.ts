@@ -1,8 +1,9 @@
 import path from "path";
 import { Tree } from "tree-sitter";
 
+import { NodeEdgeData } from "@shared/app.types";
+
 import { GLOBALS } from "../globals";
-import { NodeEdgeData } from "../extension.types";
 import {
   findLinks,
   makeFileGroup,

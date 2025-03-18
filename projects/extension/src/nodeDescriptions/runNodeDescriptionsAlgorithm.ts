@@ -1,8 +1,9 @@
 import * as vscode from "vscode";
 
 import { AppNode } from "@shared/node.types";
+import { NodeEdgeData } from "@shared/app.types";
 
-import { NodeDescriptionData, NodeEdgeData } from "../extension.types";
+import { NodeDescriptionData } from "../extension.types";
 import { retrieveApiKey } from "../helpers/apiKey";
 import { LLMProvider } from "../helpers/llm";
 

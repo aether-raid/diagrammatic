@@ -1,9 +1,8 @@
 import { MarkerType } from "@xyflow/react";
 import { AppNode } from "@shared/node.types";
 import { AppEdge } from "@shared/edge.types";
+import { NodeEdgeData } from "@shared/app.types";
 
-
-import { NodeEdgeData } from "../extension.types";
 import { LLMProvider } from "../helpers/llm";
 import { ComponentEdgeInput, ComponentNodeInput } from "./types";
 
