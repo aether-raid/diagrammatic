@@ -15,11 +15,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.2.2
         
-      - name: Self-hosted Renovate
-        uses: renovatebot/github-action@v41.0.15
-        with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          repositories: "kahliya/diagrammatic"
+      - name: Renovate
+        run: npx renovate
         env:
           LOG_LEVEL: debug
           RENOVATE_AUTODISCOVER: true
