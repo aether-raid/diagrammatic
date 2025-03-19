@@ -115,6 +115,7 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "dependencies": {
+    "openai": "latest",
     "@azure/identity": "^4.8.0",
     "@azure-rest/ai-inference": "latest",
     "@dagrejs/dagre": "^1.1.4",
