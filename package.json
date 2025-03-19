@@ -62,6 +62,30 @@
           "type": "string",
           "default": "",
           "description": "LLM API key. Used to generate node descriptions & the C4 Component diagram. If none is given, these features will not work."
+        },
+        "diagrammatic.azureOpenAI.endpoint": {
+          "type": "string",
+          "default": "",
+          "description": "Azure OpenAI Endpoint.",
+          "when": "diagrammatic.llmProvider == 'azure-openai'"
+        },
+        "diagrammatic.azureOpenAI.model": {
+          "type": "string",
+          "default": "",
+          "description": "Azure OpenAI Model.",
+          "when": "diagrammatic.llmProvider == 'azure-openai'"
+        },
+        "diagrammatic.azureOpenAI.deploymentId": {
+          "type": "string",
+          "default": "",
+          "description": "Azure OpenAI Deployment ID.",
+          "when": "diagrammatic.llmProvider == 'azure-openai'"
+        },
+        "diagrammatic.azureOpenAI.apiVersion": {
+          "type": "string",
+          "default": "",
+          "description": "Azure OpenAI apiVersion.",
+          "when": "diagrammatic.llmProvider == 'azure-openai'"
         }
       }
     }
