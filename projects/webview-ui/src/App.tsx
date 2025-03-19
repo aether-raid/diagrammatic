@@ -5,6 +5,7 @@ import {
     AcceptComponentDiagramDataPayload,
     AcceptNodeEdgeDataPayload,
     Commands,
+    UpdateFeatureStatusPayload,
     WebviewCommandMessage
 } from "@shared/message.types";
 
@@ -12,8 +13,10 @@ import { useNodeEdgeDataContext } from "./contexts/NodeEdgeDataContext";
 import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
 import CodeView from "./views/CodeView"
 import ComponentView from "./views/ComponentView"
+import { useFeatureStatusContext } from "./contexts/FeatureStatusContext";
 
 export const App = () => {
+    const featureStatusCtx = useFeatureStatusContext();
     const nodeEdgeCtx = useNodeEdgeDataContext();
 
     useEffect(() => {
@@ -22,23 +25,28 @@ export const App = () => {
             const { command, message } = event.data;
 
             switch (command) {
+                case Commands.ACCEPT_COMPONENT_DIAGRAM_DATA: {
+                    const msg = message as AcceptComponentDiagramDataPayload;
+                    nodeEdgeCtx?.setComponentNodeEdgeData({
+                        nodes: msg.nodes,
+                        edges: msg.edges,
+                    });
+                    break;
+                }
                 case Commands.ACCEPT_NODE_EDGE_DATA: {
                     const msg = message as AcceptNodeEdgeDataPayload;
-                    // msg.nodes = retainNodePositions(msg.nodes, nodesRef.current);
                     nodeEdgeCtx?.setCodeNodeEdgeData({
                         nodes: msg.nodes,
                         edges: msg.edges,
                     });
                     break;
                 }
-                case Commands.ACCEPT_COMPONENT_DIAGRAM_DATA: {
-                    const msg = message as AcceptComponentDiagramDataPayload;
-                    // msg.nodes = retainNodePositions(msg.nodes, nodesRef.current);
-                    nodeEdgeCtx?.setComponentNodeEdgeData({
-                        nodes: msg.nodes,
-                        edges: msg.edges,
-                    });
-                    break;
+                case Commands.UPDATE_FEATURE_STATUS: {
+                    const msg = message as UpdateFeatureStatusPayload;
+                    featureStatusCtx?.setFeatureStatus(
+                        msg.feature,
+                        msg.status
+                    );
                 }
             }
         };

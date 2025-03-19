@@ -15,7 +15,7 @@ import {
     useReactFlow,
 } from "@xyflow/react";
 
-import { NodeRow } from "@shared/app.types";
+import { Feature, FeatureStatus, NodeRow } from "@shared/app.types";
 import { AppNode, EntityNode } from "@shared/node.types";
 import { AppEdge } from "@shared/edge.types";
 
@@ -33,6 +33,7 @@ import {
 } from "../helpers/diagramBFS";
 import { getLayoutedElements } from "../helpers/layoutHandlerDagre";
 import { retainNodePositions } from "../helpers/nodePositionHandler";
+import { useFeatureStatusContext } from "../contexts/FeatureStatusContext";
 
 const LayoutFlow = () => {
     // General ReactFlow states
@@ -58,6 +59,9 @@ const LayoutFlow = () => {
     const nodesRef = useRef(nodes);
 
     // Global contexts
+    const featureStatusCtx = useFeatureStatusContext();
+    const componentDiagramStatus = featureStatusCtx?.getFeatureStatus(Feature.COMPONENT_DIAGRAM);
+
     const nodeEdgeCtx = useNodeEdgeDataContext();
 
     // General constants
@@ -83,6 +87,18 @@ const LayoutFlow = () => {
             nodes: nodes,
             edges: edges,
         });
+    }
+
+    const renderComponentButtonText = () => {
+        switch (componentDiagramStatus) {
+            case FeatureStatus.ENABLED_LOADING:
+                return "Loading Component Diagram...";
+            case FeatureStatus.ENABLED_DONE:
+                return "Component Diagram";
+            default:
+                // Disabled or unknown status
+                return "Component Diagram Disabled";
+        }
     }
 
     const onLayout = useCallback(
@@ -186,7 +202,8 @@ const LayoutFlow = () => {
                         <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
                         <NavigationButton
                             target="/componentView"
-                            label="Component View"
+                            label={renderComponentButtonText()}
+                            disabled={componentDiagramStatus !== FeatureStatus.ENABLED_DONE}
                             onNavigate={handleBeforeNavigate}
                         />
                     </div>

@@ -13,12 +13,15 @@ import './styles/colors.css';
 import './styles/bs-overrides.css';
 import './nodes/nodes.css';
 import './edges/edges.css';
+import { FeatureStatusProvider } from './contexts/FeatureStatusContext';
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <NodeEdgeDataProvider>
-            <App />
-        </NodeEdgeDataProvider>
+        <FeatureStatusProvider>
+            <NodeEdgeDataProvider>
+                <App />
+            </NodeEdgeDataProvider>
+        </FeatureStatusProvider>
     </React.StrictMode>,
 )
