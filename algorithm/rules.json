@@ -34,7 +34,10 @@
         "childTypes": { "function_declarator": { "delegate": true } }
       },
       "function_declarator": {
-        "childTypes": { "qualified_identifier": { "delegate": true } }
+        "childTypes": {
+          "qualified_identifier": { "delegate": true },
+          "identifier": { "useText": true }
+        }
       },
       "call_expression": {
         "childTypes": { "member_expression": { "useText": true } }

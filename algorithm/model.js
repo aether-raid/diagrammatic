@@ -170,8 +170,25 @@ export class Node {
             }
           }
 
+          /**
+           * resolve NestJS / Java constructor injection from the variable name to class
+           * e.g. variable: articleService => class ArticleService
+           * findLinkForCall will resolve articleService.findAll to ArticleService.findAll
+           */
           if (
             variableA.variableType === VariableType.INJECTION &&
+            variableA.pointsTo === subgroup.token
+          ) {
+            variableA.pointsTo = subgroup;
+            break;
+          }
+
+          /**
+           * resolve object instantiations in C++
+           * e.g. Variable(token=layer, pointsTo=AbsValLayer, type='object_instantiation')
+           */
+          if (
+            variableA.variableType === VariableType.OBJECT_INSTANTIATION &&
             variableA.pointsTo === subgroup.token
           ) {
             variableA.pointsTo = subgroup;
@@ -206,7 +223,10 @@ export class Node {
         }
 
         for (const node of allNodes) {
-          if (variableA.pointsTo === node.token) {
+          if (
+            variableA.variableType !== VariableType.OBJECT_INSTANTIATION &&
+            variableA.pointsTo === node.token
+          ) {
             variableA.pointsTo = node;
             break;
           }

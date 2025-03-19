@@ -408,7 +408,10 @@ export function processVariableDeclaration(node: SyntaxNode): Variable | null {
   return null;
 }
 
-function makeLocalVariablesDeclaration(node: SyntaxNode) {
+function makeLocalVariablesDeclaration(
+  node: SyntaxNode,
+  languageRules: LanguageRules
+) {
   const typeIdentifier = getFirstChildOfType(node, "type_identifier");
   const identifier = getFirstChildOfType(node, "identifier");
   if (typeIdentifier && identifier) {
@@ -418,6 +421,24 @@ function makeLocalVariablesDeclaration(node: SyntaxNode) {
       startPosition: node.startPosition,
       endPosition: node.endPosition,
       variableType: VariableType.CALL_EXPRESSION,
+    });
+  }
+
+  const templateType = getFirstChildOfType(node, "template_type");
+  const functionDeclarator = getFirstChildOfType(node, "function_declarator");
+  if (!templateType || !functionDeclarator) {
+    return null;
+  }
+
+  const templateClassToken = getName(functionDeclarator, languageRules.getName);
+  const typeIdentifier2 = getFirstChildOfType(templateType, "type_identifier");
+  if (typeIdentifier2 && templateClassToken) {
+    return new Variable({
+      token: templateClassToken,
+      pointsTo: typeIdentifier2.text,
+      startPosition: node.startPosition,
+      endPosition: node.endPosition,
+      variableType: VariableType.OBJECT_INSTANTIATION,
     });
   }
   return null;
@@ -436,8 +457,11 @@ function isRelativeFilePath(path: string): boolean {
  * output=/User/fyp/samples/nestjs-realworld-example-app/src/article/article.service.ts
  * output=/User/fyp/samples/nestjs-realworld-example-app/src/article/dto
  */
-function resolveRelativeFilePath(filePath: string, pointsTo: string): string {
+function resolveRelativeFilePath(filePath: string, pointsTo: string): string | null {
   let importedFilePath = path.resolve(path.dirname(filePath), pointsTo);
+  if (fs.existsSync(importedFilePath)) {
+    return importedFilePath;
+  }
 
   // if file has no extension, search directory for matching filename
   const baseDirectory = path.dirname(importedFilePath);
@@ -453,7 +477,7 @@ function resolveRelativeFilePath(filePath: string, pointsTo: string): string {
     }
   }
 
-  return importedFilePath;
+  return null;
 }
 
 /**
@@ -568,7 +592,7 @@ function makeLocalVariablesImportStatement(
   );
 
   const firstChild = importClause.firstChild;
-  if (!firstChild) {
+  if (!firstChild || !importedFilePath) {
     return [];
   }
 
@@ -590,6 +614,41 @@ function makeLocalVariablesImportStatement(
   return [];
 }
 
+function makeLocalVariablesInclude(
+  node: SyntaxNode,
+  parent: Node | Group
+) {
+  const fileGroup = parent.getFileGroup();
+  const stringLiteral = getFirstChildOfType(node, "string_literal");
+  const stringContent = getFirstChildOfType(stringLiteral, "string_content");
+  const pointsTo = stringContent?.text;
+  if (!pointsTo || !fileGroup) {
+    return;
+  }
+  let importedFilePath = resolveRelativeFilePath(fileGroup.filePath, pointsTo);
+  const possibleIncludePaths = ["/include"];
+  for (const basePath of possibleIncludePaths) {
+    const fullPath = path.join(
+      path.dirname(fileGroup.filePath),
+      basePath,
+      pointsTo
+    );
+    if (fs.existsSync(fullPath)) {
+      importedFilePath = fullPath;
+      break;
+    }
+  }
+  if (importedFilePath) {
+    return new Variable({
+      token: path.basename(pointsTo),
+      pointsTo: importedFilePath,
+      startPosition: node.startPosition,
+      endPosition: node.endPosition,
+      variableType: VariableType.NAMESPACE_IMPORT,
+    });
+  }
+}
+
 export function makeLocalVariables(
   tree: SyntaxNode[],
   parent: Node | Group,
@@ -608,7 +667,7 @@ export function makeLocalVariables(
       // A a;
       // a.callB();
       case "declaration":
-        const var2 = makeLocalVariablesDeclaration(node);
+        const var2 = makeLocalVariablesDeclaration(node, languageRules);
         if (var2) {
           variables.push(var2);
         }
@@ -624,6 +683,12 @@ export function makeLocalVariables(
           variables.push(...varArray);
         }
         break;
+      // #include "caffe/layers/absval_layer.hpp" in C++
+      case "preproc_include":
+        const var4 = makeLocalVariablesInclude(node, parent)
+        if (var4) {
+          variables.push(var4)
+        }
     }
   }
 

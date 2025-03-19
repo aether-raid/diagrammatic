@@ -194,6 +194,7 @@ export function processCallExpression(node) {
           text: node.text,
         });
       }
+      break;
     default:
       return null;
   }
@@ -381,6 +382,9 @@ function isRelativeFilePath(path) {
  */
 function resolveRelativeFilePath(filePath, pointsTo) {
   let importedFilePath = path.resolve(path.dirname(filePath), pointsTo);
+  if (fs.existsSync(importedFilePath)) {
+    return importedFilePath;
+  }
 
   // if file has no extension, search directory for matching filename
   const baseDirectory = path.dirname(importedFilePath);
@@ -396,7 +400,7 @@ function resolveRelativeFilePath(filePath, pointsTo) {
     }
   }
 
-  return importedFilePath;
+  return null;
 }
 
 /**
@@ -551,6 +555,31 @@ export function makeLocalVariables(tree, parent, languageRules) {
             })
           );
         }
+
+        const templateType = getFirstChildOfType(node, "template_type");
+        const functionDeclarator = getFirstChildOfType(
+          node,
+          "function_declarator"
+        );
+        const templateClassToken = getName(
+          functionDeclarator,
+          languageRules.getName
+        );
+        const typeIdentifier2 = getFirstChildOfType(
+          templateType,
+          "type_identifier"
+        );
+        if (templateType && typeIdentifier2 && templateClassToken) {
+          variables.push(
+            new Variable({
+              token: templateClassToken,
+              pointsTo: typeIdentifier2.text,
+              startPosition: node.startPosition,
+              endPosition: node.endPosition,
+              variableType: VariableType.OBJECT_INSTANTIATION,
+            })
+          );
+        }
         break;
       case "import_statement":
         const varArray = makeLocalVariablesImportStatement(
@@ -560,6 +589,45 @@ export function makeLocalVariables(tree, parent, languageRules) {
         );
         if (varArray) {
           variables.push(...varArray);
+        }
+        break;
+      case "preproc_include":
+        const fileGroup = parent.getFileGroup();
+        const stringLiteral = getFirstChildOfType(node, "string_literal");
+        const stringContent = getFirstChildOfType(
+          stringLiteral,
+          "string_content"
+        );
+        const pointsTo = stringContent?.text;
+        if (!pointsTo) {
+          break;
+        }
+        let importedFilePath = resolveRelativeFilePath(
+          fileGroup.filePath,
+          pointsTo
+        );
+        const possibleIncludePaths = ["/include"];
+        for (const basePath of possibleIncludePaths) {
+          const fullPath = path.join(
+            path.dirname(fileGroup.filePath),
+            basePath,
+            pointsTo
+          );
+          if (fs.existsSync(fullPath)) {
+            importedFilePath = fullPath;
+            break;
+          }
+        }
+        if (importedFilePath) {
+          variables.push(
+            new Variable({
+              token: path.basename(pointsTo),
+              pointsTo: importedFilePath,
+              startPosition: node.startPosition,
+              endPosition: node.endPosition,
+              variableType: VariableType.NAMESPACE_IMPORT,
+            })
+          );
         }
         break;
     }
@@ -788,6 +856,9 @@ function getNameUsingConfig(node, config, getNameRules) {
 export function getName(node, getNameRules) {
   if (!getNameRules) {
     throw new Error("getName rules not defined in JSON file!");
+  }
+  if (!node) {
+    return null;
   }
   const nodeTypeConfig = getNameRules[node.type];
 

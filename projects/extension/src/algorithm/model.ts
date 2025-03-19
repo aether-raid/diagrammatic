@@ -162,6 +162,30 @@ export class Node {
       variableA.pointsTo = subgroup;
       return true;
     }
+
+    /**
+       * Resolve variables from relative import statements
+       * e.g. import { CreateArticleDto, CreateCommentDto } from './dto';
+       * Variable(token=CreateArticleDto, pointsTo=/User/samples/nestjs-real-example-app/src/article/dto)
+       * pointsTo should resolve from a filepath to the actual class Group
+       */
+    if (
+      variableA.variableType === VariableType.NAMED_IMPORT &&
+      variableA.pointsTo &&
+      typeof variableA.pointsTo === "string" &&
+      path.isAbsolute(variableA.pointsTo) &&
+      fs.existsSync(variableA.pointsTo) &&
+      fs.statSync(variableA.pointsTo).isDirectory()
+    ) {
+      const baseDirectory = path.dirname(subgroup.filePath);
+      if (
+        variableA.pointsTo === baseDirectory &&
+        subgroup.token === variableA.token
+      ) {
+        variableA.pointsTo = subgroup;
+        return subgroup;
+      }
+    }
   }
 
   private resolveNamespaceImports(variableA: Variable, subgroup: Group) {
@@ -193,36 +217,24 @@ export class Node {
       }
 
       /**
-       * Resolve variables from relative import statements
-       * e.g. import { CreateArticleDto, CreateCommentDto } from './dto';
-       * Variable(token=CreateArticleDto, pointsTo=/User/samples/nestjs-real-example-app/src/article/dto)
-       * pointsTo should resolve from a filepath to the actual class Group
-       */
-      if (
-        variableA.variableType === VariableType.NAMED_IMPORT &&
-        variableA.pointsTo &&
-        typeof variableA.pointsTo === "string" &&
-        path.isAbsolute(variableA.pointsTo) &&
-        fs.existsSync(variableA.pointsTo) &&
-        fs.statSync(variableA.pointsTo).isDirectory()
-      ) {
-        const baseDirectory = path.dirname(subgroup.filePath);
-        if (
-          variableA.pointsTo === baseDirectory &&
-          subgroup.token === variableA.token
-        ) {
-          variableA.pointsTo = subgroup;
-          return subgroup;
-        }
-      }
-
-      /**
        * resolve NestJS / Java constructor injection from the variable name to class
        * e.g. variable: articleService => class ArticleService
        * findLinkForCall will resolve articleService.findAll to ArticleService.findAll
        */
       if (
         variableA.variableType === VariableType.INJECTION &&
+        variableA.pointsTo === subgroup.token
+      ) {
+        variableA.pointsTo = subgroup;
+        return subgroup;
+      }
+
+      /**
+       * resolve object instantiations in C++
+       * e.g. Variable(token=layer, pointsTo=AbsValLayer, type='object_instantiation')
+       */
+      if (
+        variableA.variableType === VariableType.OBJECT_INSTANTIATION &&
         variableA.pointsTo === subgroup.token
       ) {
         variableA.pointsTo = subgroup;
@@ -267,7 +279,10 @@ export class Node {
 
   private resolveNodeReference(variableA: Variable, allNodes: Node[]) {
     for (const node of allNodes) {
-      if (variableA.pointsTo === node.token) {
+      if (
+        variableA.variableType !== VariableType.OBJECT_INSTANTIATION &&
+        variableA.pointsTo === node.token
+      ) {
         variableA.pointsTo = node;
         return node;
       }
