@@ -14,32 +14,25 @@ import {
     useNodesState,
     useReactFlow,
 } from "@xyflow/react";
-import "@xyflow/react/dist/style.css"; // Must import this, else React Flow will not work!
 
 import { NodeRow } from "@shared/app.types";
 import { AppNode, EntityNode } from "@shared/node.types";
 import { AppEdge } from "@shared/edge.types";
-import {
-    AcceptNodeEdgeDataPayload,
-    Commands,
-    WebviewCommandMessage,
-} from "@shared/message.types";
+
 import { useNodeEdgeDataContext } from "../contexts/NodeEdgeDataContext";
 
 import { initialNodes, nodeTypes } from "../nodes";
 import { initialEdges } from "../edges";
+import DownloadButton from "../components/DownloadButton";
+import { NavigationButton } from "../components/NavigationButton";
+import { NodeInfoPanel } from "../components/NodeInfoPanel/NodeInfoPanel";
+import SearchBar from "../components/SearchBar";
 import {
     getEdgesEntitiesToHighlightBFS,
     getOutgoingEdgesFromEntityRow,
 } from "../helpers/diagramBFS";
-import { sendReadyMessageToExtension } from "../helpers/vscodeApiHandler";
-import DownloadButton from "../components/DownloadButton";
-import SearchBar from "../components/SearchBar";
-import { NodeInfoPanel } from "../components/NodeInfoPanel/NodeInfoPanel";
 import { getLayoutedElements } from "../helpers/layoutHandlerDagre";
 import { retainNodePositions } from "../helpers/nodePositionHandler";
-import { NavigationButton } from "../components/NavigationButton";
-
 
 const LayoutFlow = () => {
     // General ReactFlow states
@@ -65,7 +58,7 @@ const LayoutFlow = () => {
     const nodesRef = useRef(nodes);
 
     // Global contexts
-    const nodeEdgeDataContext = useNodeEdgeDataContext();
+    const nodeEdgeCtx = useNodeEdgeDataContext();
 
     // General constants
     const MIN_ZOOM = 0.1;
@@ -76,51 +69,17 @@ const LayoutFlow = () => {
     }, [nodes]);
 
     useEffect(() => {
-        // Setup message listener
-        const onMessage = (event: MessageEvent<WebviewCommandMessage>) => {
-            const { command, message } = event.data;
-
-            switch (command) {
-                case Commands.ACCEPT_NODE_EDGE_DATA: {
-                    const msg = message as AcceptNodeEdgeDataPayload;
-                    msg.nodes = retainNodePositions(msg.nodes, nodesRef.current);
-                    setNodes(msg.nodes);
-                    setEdges(msg.edges);
-                    break;
-                }
-            }
-        };
-
-        window.addEventListener("message", onMessage);
-
-        // If context contains a set of data, no need to get from extension
-        // Else, send message to inform extension that webview is ready to receive data.
-        if (nodeEdgeDataContext?.codeNodeEdgeData) {
-            setNodes(nodeEdgeDataContext.codeNodeEdgeData.nodes);
-            setEdges(nodeEdgeDataContext.codeNodeEdgeData.edges);
-        } else {
-            try {
-                sendReadyMessageToExtension();
-            } catch (error) {
-                if (
-                    (error as Error).message !==
-                    "acquireVsCodeApi is not defined"
-                ) {
-                    // Only catch the above error, throw all else
-                    throw error;
-                }
-            }
+        if (!nodeEdgeCtx?.codeNodeEdgeData) {
+            console.error("Unable to retrieve data from context!");
+            return;
         }
-
-        return () => {
-            // Remove event listener on component unmount
-            window.removeEventListener("message", onMessage);
-        };
-    }, []);
+        setNodes(retainNodePositions(nodeEdgeCtx.codeNodeEdgeData.nodes, nodesRef.current));
+        setEdges(nodeEdgeCtx.codeNodeEdgeData.edges);
+    }, [nodeEdgeCtx?.codeNodeEdgeData]);
 
     const handleBeforeNavigate = () => {
-        if (!nodeEdgeDataContext) { return }
-        nodeEdgeDataContext.setCodeNodeEdgeData({
+        if (!nodeEdgeCtx) { return }
+        nodeEdgeCtx.setCodeNodeEdgeData({
             nodes: nodes,
             edges: edges,
         });
