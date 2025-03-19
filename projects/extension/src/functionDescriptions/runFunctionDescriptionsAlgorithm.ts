@@ -1,36 +1,50 @@
 import * as vscode from "vscode";
 import { readFile } from 'fs/promises';
-import { AppNode } from "@shared/node.types";
-
-import { NodeEdgeData } from "../extension.types";
 import { retrieveApiKey } from "../helpers/apiKey";
 import { LLMProvider } from "../helpers/llm";
-import { json } from "stream/consumers";
+import { NodeEdgeData } from "@shared/app.types";
+import { AppNode } from "@shared/node.types";
 
 interface JsonData {
   node_id: string;
   class_name: string;
   class_description: string;
-  functions: [{function_name: string, description: string}];
+  functions: [{
+    function_name: string, 
+    function_description: string
+    parameters: [
+      {
+        inputType: string,
+        description: string
+      }
+    ]
+    output: {
+      outputType: string,
+      description: string
+    }
+  }];
 }
 
 const transformFilePath = (filePath: string): string => {
   let normalizedPath = filePath.replace(/\\/g, "/");
-  return normalizedPath.replace(/\.[^.]+$/, "");
+  return normalizedPath.endsWith(".ts")
+    ? normalizedPath
+    : normalizedPath.replace(/\.[^.]+$/, "");
 }
 
 const getFunctionDescriptions = async (
   llmProvider: LLMProvider,
   nodeEdgeData: NodeEdgeData
 ) => {
+  // console.log(nodeEdgeData.nodes);
   console.log("======= Loading function descriptions =======");
   const allResponses = await Promise.all(
-    nodeEdgeData.nodes.map(async (node) => {
+    nodeEdgeData.nodes.map(async (node: AppNode) => {
       try {
         const filePath = transformFilePath(node.id);
         const content = await readFile(filePath, "utf-8");
-        const systemPrompt = "You are an AI that provides structured JSON responses."
-        const userPrompt = `Give purely a JSON response in the format [node_id: ${node.id},class_name:,class_description,functions:[{function_name:,input:inputName:dataType,output:outputName:dataType,description:}]]. Here is the file content:\n` + content;
+        const systemPrompt = "You are an AI that provides structured JSON responses for code documentation creation."
+        const userPrompt = `Give purely a JSON response in the format [node_id: ${node.id},class_name:,class_description,functions:[{function_name:,function_description:,parameters:[{inputType:, description:(describe what needs to be inputted just like in a code documentation)}],output:{outputType, description:(describe what needs to be returned just like in a code documentation)}]]. Here is the file content:\n` + content;
         const response = await llmProvider.generateResponse(systemPrompt, userPrompt);
         const jsonData = response as JsonData;
         return jsonData;
@@ -41,36 +55,6 @@ const getFunctionDescriptions = async (
   )
   console.log(allResponses);  
 };
-
-// const addDescriptionToNodes = (
-//   nodes: AppNode[],
-//   descriptions?: NodeDescriptionData
-// ): AppNode[] => {
-//   // Make a copy to not affect the original
-//   const tmp = [...nodes];
-
-//   tmp.map((node) => {
-//     if (!descriptions) {
-//       node.data = {
-//         ...node.data,
-//         description: "Descriptions are disabled. (No API key provided.)",
-//       };
-//       return node;
-//     }
-
-//     if (!(node.id in descriptions)) {
-//       return node;
-//     }
-
-//     node.data = {
-//       ...node.data,
-//       description: descriptions[node.id],
-//     };
-//     return node;
-//   });
-
-//   return tmp;
-// };
 
 export const runFunctionDescriptionsAlgorithm = async (
   nodeEdgeData: NodeEdgeData,
@@ -84,8 +68,4 @@ export const runFunctionDescriptionsAlgorithm = async (
     );
   }
   getFunctionDescriptions(llmProvider, nodeEdgeData)
-  // const descriptions = apiKey
-  //   ? await getNodeDescriptions(llmProvider, nodeEdgeData)
-  //   : undefined;
-  // return addDescriptionToNodes(nodes, descriptions);
 };
