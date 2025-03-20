@@ -66,19 +66,19 @@
         "diagrammatic.azureOpenAI.endpoint": {
           "type": "string",
           "default": "",
-          "description": "Azure OpenAI Endpoint.",
+          "description": "Azure OpenAI Endpoint (only required if 'azure-openai' is selected as the LLM provider)..",
           "when": "diagrammatic.llmProvider == 'azure-openai'"
         },
         "diagrammatic.azureOpenAI.deployment": {
           "type": "string",
           "default": "",
-          "description": "Azure OpenAI Deployment Model Name.",
+          "description": "Azure OpenAI Deployment Model Name (only required if 'azure-openai' is selected as the LLM provider)..",
           "when": "diagrammatic.llmProvider == 'azure-openai'"
         },
         "diagrammatic.azureOpenAI.apiVersion": {
           "type": "string",
           "default": "",
-          "description": "Azure OpenAI apiVersion.",
+          "description": "Azure OpenAI apiVersion (only required if 'azure-openai' is selected as the LLM provider)..",
           "when": "diagrammatic.llmProvider == 'azure-openai'"
         }
       }
