@@ -1,7 +1,9 @@
 import { GLOBALS } from "../globals";
 import { GeminiProvider } from "../llm/geminiProvider";
 import { OpenAIProvider } from "../llm/openAiProvider";
+import { AzureOpenAIProvider } from "../llm/azureOpenAiProvider";
 import { retrieveExtensionConfig } from "./common";
+import { retrieveUriParameters } from "./uriParameters";
 
 export interface LLMProvider {
   generateResponse(systemPrompt:string, userPrompt: string): Promise<any>;
@@ -21,6 +23,10 @@ export const retrieveLLMProvider = (apiKey: string) => {
       break;
     case "gemini":
       llmProvider = new GeminiProvider(apiKey);
+      break;
+    case "azure-openai":
+      const { endpoint, deployment, apiVersion } = retrieveUriParameters();
+      llmProvider = new AzureOpenAIProvider(apiKey, endpoint, deployment, apiVersion);
       break;
     default:
       throw new Error("No LLM provider selected.")

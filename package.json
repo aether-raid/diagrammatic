@@ -52,7 +52,8 @@
           "type": "string",
           "enum": [
             "gemini",
-            "openai"
+            "openai",
+            "azure-openai"
           ],
           "default": "gemini",
           "description": "Select the LLM provider."
@@ -61,6 +62,24 @@
           "type": "string",
           "default": "",
           "description": "LLM API key. Used to generate node descriptions & the C4 Component diagram. If none is given, these features will not work."
+        },
+        "diagrammatic.azureOpenAI.endpoint": {
+          "type": "string",
+          "default": "",
+          "description": "Azure OpenAI Endpoint (only required if 'azure-openai' is selected as the LLM provider)..",
+          "when": "diagrammatic.llmProvider == 'azure-openai'"
+        },
+        "diagrammatic.azureOpenAI.deployment": {
+          "type": "string",
+          "default": "",
+          "description": "Azure OpenAI Deployment Model Name (only required if 'azure-openai' is selected as the LLM provider)..",
+          "when": "diagrammatic.llmProvider == 'azure-openai'"
+        },
+        "diagrammatic.azureOpenAI.apiVersion": {
+          "type": "string",
+          "default": "",
+          "description": "Azure OpenAI apiVersion (only required if 'azure-openai' is selected as the LLM provider)..",
+          "when": "diagrammatic.llmProvider == 'azure-openai'"
         }
       }
     }
@@ -114,6 +133,9 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "dependencies": {
+    "openai": "latest",
+    "@azure/identity": "^4.8.0",
+    "@azure-rest/ai-inference": "latest",
     "@dagrejs/dagre": "^1.1.4",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
