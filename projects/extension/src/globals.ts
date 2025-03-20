@@ -12,11 +12,8 @@ export const GLOBALS = {
     endpoint: {
       configName: "diagrammatic.azureOpenAI.endpoint",
     },
-    model: {
-      configName: "diagrammatic.azureOpenAI.model",
-    },
-    deploymentId: {
-      configName: "diagrammatic.azureOpenAI.deploymentId",
+    deployment: {
+      configName: "diagrammatic.azureOpenAI.deployment",
     },
     apiVersion: {
       configName: "diagrammatic.azureOpenAI.apiVersion",

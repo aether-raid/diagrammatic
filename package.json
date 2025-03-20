@@ -69,16 +69,10 @@
           "description": "Azure OpenAI Endpoint.",
           "when": "diagrammatic.llmProvider == 'azure-openai'"
         },
-        "diagrammatic.azureOpenAI.model": {
+        "diagrammatic.azureOpenAI.deployment": {
           "type": "string",
           "default": "",
-          "description": "Azure OpenAI Model.",
-          "when": "diagrammatic.llmProvider == 'azure-openai'"
-        },
-        "diagrammatic.azureOpenAI.deploymentId": {
-          "type": "string",
-          "default": "",
-          "description": "Azure OpenAI Deployment ID.",
+          "description": "Azure OpenAI Deployment Model Name.",
           "when": "diagrammatic.llmProvider == 'azure-openai'"
         },
         "diagrammatic.azureOpenAI.apiVersion": {

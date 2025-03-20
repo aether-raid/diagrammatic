@@ -4,15 +4,13 @@ import { AzureOpenAI } from "openai";
 export class AzureOpenAIProvider implements LLMProvider {
     private readonly apiKey: string;
     private readonly endpoint: string;
-    private readonly deploymentId: string;
-    private readonly modelName: string;
+    private readonly deployment: string;
     private readonly apiVersion: string
 
-    constructor(apiKey: string, endpoint: string, modelName: string, deploymentId: string, apiVersion: string) {
+    constructor(apiKey: string, endpoint: string, deployment: string, apiVersion: string) {
         this.apiKey = apiKey;
         this.endpoint = endpoint;
-        this.deploymentId = deploymentId;
-        this.modelName = modelName;
+        this.deployment = deployment;
         this.apiVersion = apiVersion;
     }
 
@@ -20,9 +18,8 @@ export class AzureOpenAIProvider implements LLMProvider {
         const endpoint = this.endpoint;
         const apiKey = this.apiKey;
         const apiVersion = this.apiVersion;
-        const deploymentId = this.deploymentId;
-        const modelName = this.modelName;
-        const options = { endpoint, apiKey, deploymentId, apiVersion }
+        const deployment = this.deployment;
+        const options = { endpoint, apiKey, apiVersion, deployment }
         const client = new AzureOpenAI(options);
         try {
             const response = await client.chat.completions.create({
@@ -31,13 +28,14 @@ export class AzureOpenAIProvider implements LLMProvider {
                     { role: "user", content: userPrompt }
                 ],
                 temperature: 0,
-                model: modelName
+                model: deployment
             });
 
-            return response.choices[0].message.content ?? "";
+            const result = response.choices[0].message.content ?? "";
+            return JSON.parse(result.replace(/```json\n?|\n?```/g, "")) 
 
         } catch (error) {
-            console.error("Error calling Gemini API:", error);
+            console.error("Error calling Azure OpenAI API:", error);
             throw new Error("Failed to generate response from Azure OpenAI.");
         }
 

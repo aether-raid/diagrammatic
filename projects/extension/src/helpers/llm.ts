@@ -25,8 +25,8 @@ export const retrieveLLMProvider = (apiKey: string) => {
       llmProvider = new GeminiProvider(apiKey);
       break;
     case "azure-openai":
-      const { endpoint, model, deploymentId, apiVersion } = retrieveUriParameters();
-      llmProvider = new AzureOpenAIProvider(apiKey, endpoint, model, deploymentId, apiVersion);
+      const { endpoint, deployment, apiVersion } = retrieveUriParameters();
+      llmProvider = new AzureOpenAIProvider(apiKey, endpoint, deployment, apiVersion);
       break;
     default:
       throw new Error("No LLM provider selected.")
