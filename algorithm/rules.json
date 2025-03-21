@@ -6,49 +6,12 @@
         "nodeType": "FUNCTION"
       },
       {
-        "type": "field_declaration",
-        "nodeType": "ATTRIBUTE"
-      }
-    ],
-    "groups": [
-      {
-        "type": "struct_specifier",
-        "groupType": "STRUCT"
+        "parent": "declaration",
+        "type": "function_declarator",
+        "nodeType": "FUNCTION"
       },
       {
-        "type": "class_specifier",
-        "groupType": "CLASS"
-      }
-    ],
-    "getName": {
-      "class_specifier": {
-        "childTypes": { "qualified_identifier": { "delegate": true } }
-      },
-      "struct_specifier": {
-        "childTypes": { "type_identifier": { "useText": true } }
-      },
-      "namespace_definition": {
-        "childTypes": { "namespace_identifier": { "useText": true } }
-      },
-      "function_definition": {
-        "childTypes": { "function_declarator": { "delegate": true } }
-      },
-      "function_declarator": {
-        "childTypes": {
-          "qualified_identifier": { "delegate": true },
-          "identifier": { "useText": true }
-        }
-      },
-      "call_expression": {
-        "childTypes": { "member_expression": { "useText": true } }
-      },
-      "fallbackFields": ["name", "identifier", "field_identifier"]
-    }
-  },
-  ".hpp": {
-    "nodes": [
-      {
-        "type": "function_definition",
+        "type": "preproc_function_def",
         "nodeType": "FUNCTION"
       },
       {
@@ -67,6 +30,115 @@
       }
     ],
     "getName": {
+      "class_specifier": {
+        "childTypes": {
+          "qualified_identifier": { "delegate": true },
+          "type_identifier": { "useText": true }
+        }
+      },
+      "struct_specifier": {
+        "childTypes": { "type_identifier": { "useText": true } }
+      },
+      "namespace_definition": {
+        "childTypes": { "namespace_identifier": { "useText": true } }
+      },
+      "function_definition": {
+        "childTypes": {
+          "function_declarator": {
+            "delegate": true
+          },
+          "pointer_declarator": {
+            "childTypes": { "function_declarator": { "delegate": true } }
+          },
+          "reference_declarator": {
+            "childTypes": { "function_declarator": { "delegate": true } }
+          }
+        }
+      },
+      "function_declarator": {
+        "childTypes": {
+          "qualified_identifier": { "delegate": true },
+          "identifier": { "useText": true },
+          "field_identifier": { "useText": true },
+          "destructor_name": { "useText": true }
+        }
+      },
+      "field_declaration": {
+        "childTypes": {
+          "function_declarator": {
+            "delegate": true
+          },
+          "class_specifier": {
+            "delegate": true
+          },
+          "field_identifier": {
+            "useText": true
+          },
+          "pointer_declarator": {
+            "childTypes": {
+              "function_declarator": {
+                "delegate": true
+              },
+              "field_identifier": { "useText": true }
+            }
+          },
+          "reference_declarator": {
+            "childTypes": {
+              "function_declarator": {
+                "delegate": true
+              }
+            }
+          }
+        }
+      },
+      "call_expression": {
+        "childTypes": { "member_expression": { "useText": true } }
+      },
+      "fallbackFields": [
+        "name",
+        "identifier",
+        "field_identifier",
+        "type_identifier"
+      ]
+    }
+  },
+  ".hpp": {
+    "nodes": [
+      {
+        "type": "function_definition",
+        "nodeType": "FUNCTION"
+      },
+      {
+        "parent": "declaration",
+        "type": "function_declarator",
+        "nodeType": "FUNCTION"
+      },
+      {
+        "type": "preproc_function_def",
+        "nodeType": "FUNCTION"
+      },
+      {
+        "type": "field_declaration",
+        "nodeType": "ATTRIBUTE"
+      }
+    ],
+    "groups": [
+      {
+        "type": "struct_specifier",
+        "groupType": "STRUCT"
+      },
+      {
+        "type": "class_specifier",
+        "groupType": "CLASS"
+      }
+    ],
+    "getName": {
+      "class_specifier": {
+        "childTypes": {
+          "qualified_identifier": { "delegate": true },
+          "type_identifier": { "useText": true }
+        }
+      },
       "struct_specifier": {
         "childTypes": {
           "type_identifier": {
@@ -84,6 +156,21 @@
           },
           "field_identifier": {
             "useText": true
+          },
+          "pointer_declarator": {
+            "childTypes": {
+              "function_declarator": {
+                "delegate": true
+              },
+              "field_identifier": { "useText": true }
+            }
+          },
+          "reference_declarator": {
+            "childTypes": {
+              "function_declarator": {
+                "delegate": true
+              }
+            }
           }
         }
       },
@@ -91,7 +178,21 @@
         "childTypes": {
           "function_declarator": {
             "delegate": true
+          },
+          "pointer_declarator": {
+            "childTypes": { "function_declarator": { "delegate": true } }
+          },
+          "reference_declarator": {
+            "childTypes": { "function_declarator": { "delegate": true } }
           }
+        }
+      },
+      "function_declarator": {
+        "childTypes": {
+          "qualified_identifier": { "delegate": true },
+          "identifier": { "useText": true },
+          "field_identifier": { "useText": true },
+          "destructor_name": { "useText": true }
         }
       },
       "call_expression": {
