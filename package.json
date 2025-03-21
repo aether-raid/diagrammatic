@@ -133,9 +133,9 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "dependencies": {
-    "openai": "latest",
-    "@azure/identity": "^4.8.0",
     "@azure-rest/ai-inference": "latest",
+    "@azure/identity": "^4.8.0",
+    "@azure/openai": "^2.0.0",
     "@dagrejs/dagre": "^1.1.4",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
@@ -155,6 +155,7 @@
     "eslint-plugin-security": "^3.0.1",
     "eslint-plugin-sonarjs": "^3.0.1",
     "html-to-image": "^1.11.11",
+    "openai": "latest",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.7",
     "react-dom": "^18.2.0",
