@@ -1,11 +1,9 @@
 import * as vscode from "vscode";
 import { Linter } from "eslint";
-
 import {
   DiagnosticSeverityEnum,
   SerializedDiagnostic,
 } from "@shared/vscode.types";
-
 import { BLACKLISTED_SOURCES, Sources, WHITELISTED_SOURCES } from "./definitions";
 import type{ CppLintResult, CppLintMessage } from '../linters/definitions';
 
@@ -70,7 +68,6 @@ const filterSources = (ruleId: string) => {
   return ruleId;
 };
 
-
 export const processCpplintOutput = (output: string): CppLintResult[] =>  {
     // (cpp filename):(line number): message [category] [column number]
     const regex = /(.+\.cpp|.+\.h):(\d+):\s+(.+)\s\[(.+)\]\s+\[(\d+)\]/g;
@@ -94,10 +91,10 @@ export const processCpplintOutput = (output: string): CppLintResult[] =>  {
     return [{ filePath, messages: diagnostics }];
 }
 
-
 const findKeyForValue = (searchString: string, sources: Sources) => {
     return Object.entries(sources)
     .find(([key, values]) => 
         values.includes(searchString))?.[0] || null
 };
+
 

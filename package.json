@@ -48,6 +48,11 @@
           "default": "",
           "description": "Path to Diagrammatic's ruleset file. If none is set, the default ruleset will be used."
         },
+        "diagrammatic.codeToDiagramLintFilterFile": {
+          "type": "string",
+          "default": "",
+          "description": "Path to Diagrammatic's LintFilter file. If none is set, the default LintFilter will be used."
+        },
         "diagrammatic.llmProvider": {
           "type": "string",
           "enum": [
