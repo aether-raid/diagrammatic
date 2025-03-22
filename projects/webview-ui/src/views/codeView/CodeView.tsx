@@ -9,6 +9,7 @@ import {
     MiniMap,
     Panel,
     ReactFlow,
+    ReactFlowInstance,
     ReactFlowProvider,
     useEdgesState,
     useNodesState,
@@ -19,27 +20,27 @@ import { Feature, FeatureStatus, NodeRow } from "@shared/app.types";
 import { AppNode, EntityNode } from "@shared/node.types";
 import { AppEdge } from "@shared/edge.types";
 
-import { useNodeEdgeDataContext } from "../contexts/NodeEdgeDataContext";
-
-import { initialNodes, nodeTypes } from "../nodes";
-import { initialEdges } from "../edges";
-import DownloadButton from "../components/DownloadButton";
-import { NavigationButton } from "../components/NavigationButton";
-import { NodeInfoPanel } from "../components/NodeInfoPanel/NodeInfoPanel";
-import SearchBar from "../components/SearchBar";
+import { initialNodes, nodeTypes } from "../../nodes";
+import { initialEdges } from "../../edges";
+import DownloadButton from "../../components/DownloadButton";
+import { NavigationButton } from "../../components/NavigationButton";
+import { NodeInfoPanel } from "../../components/NodeInfoPanel/NodeInfoPanel";
+import SearchBar from "../../components/SearchBar";
 import {
     getEdgesEntitiesToHighlightBFS,
     getOutgoingEdgesFromEntityRow,
-} from "../helpers/diagramBFS";
-import { getLayoutedElements } from "../helpers/layoutHandlerDagre";
-import { retainNodePositions } from "../helpers/nodePositionHandler";
-import { useFeatureStatusContext } from "../contexts/FeatureStatusContext";
+} from "../../helpers/diagramBFS";
+import { getLayoutedElements } from "../../helpers/layoutHandlerDagre";
+import { retainNodePositions } from "../../helpers/nodePositionHandler";
+import { useFeatureStatusContext } from "../../contexts/FeatureStatusContext";
+import { useDiagramContext } from "../../contexts/DiagramContext";
 
 const LayoutFlow = () => {
     // General ReactFlow states
-    const { fitView, getNode, setCenter } = useReactFlow<AppNode, AppEdge>();
+    const { fitView, getNode, getViewport, setCenter, setViewport } = useReactFlow<AppNode, AppEdge>();
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+    const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance<AppNode, AppEdge>>();
 
     // Hover Highlighting states
     const [highlightedNodes, setHighlightedNodes] = useState<string[]>([]);
@@ -62,7 +63,7 @@ const LayoutFlow = () => {
     const featureStatusCtx = useFeatureStatusContext();
     const componentDiagramStatus = featureStatusCtx?.getFeatureStatus(Feature.COMPONENT_DIAGRAM);
 
-    const nodeEdgeCtx = useNodeEdgeDataContext();
+    const diagramCtx = useDiagramContext();
 
     // General constants
     const MIN_ZOOM = 0.1;
@@ -73,20 +74,28 @@ const LayoutFlow = () => {
     }, [nodes]);
 
     useEffect(() => {
-        if (!nodeEdgeCtx?.codeNodeEdgeData) {
+        // TODO: Properly refactor this if have time
+        // > useReactFlow() should be called inside the ReactFlow component, not outside like this
+        if (!diagramCtx?.codeView.graphData) {
             console.error("Unable to retrieve data from context!");
             return;
         }
-        setNodes(retainNodePositions(nodeEdgeCtx.codeNodeEdgeData.nodes, nodesRef.current));
-        setEdges(nodeEdgeCtx.codeNodeEdgeData.edges);
-    }, [nodeEdgeCtx?.codeNodeEdgeData]);
+
+        setNodes(retainNodePositions(diagramCtx.codeView.graphData.nodes, nodesRef.current));
+        setEdges(diagramCtx.codeView.graphData.edges);
+
+        if (diagramCtx.codeView.viewport) {
+            setViewport(diagramCtx.codeView.viewport);
+        }
+    }, [diagramCtx?.codeView, reactFlowInstance]);
 
     const handleBeforeNavigate = () => {
-        if (!nodeEdgeCtx) { return }
-        nodeEdgeCtx.setCodeNodeEdgeData({
+        if (!diagramCtx) { return }
+        diagramCtx.codeView.setGraphData({
             nodes: nodes,
             edges: edges,
         });
+        diagramCtx.codeView.setViewport(getViewport());
     }
 
     const renderComponentButtonText = () => {
@@ -174,6 +183,7 @@ const LayoutFlow = () => {
                 nodeTypes={nodeTypes}
                 nodes={nodes.map((n) => prepareNode(n))}
                 edges={edges.map((e) => prepareEdge(e))}
+                onInit={setReactFlowInstance}
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
                 onNodeClick={(_event, node) => {

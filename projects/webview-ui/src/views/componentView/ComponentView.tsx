@@ -6,6 +6,7 @@ import {
     MiniMap,
     Panel,
     ReactFlow,
+    ReactFlowInstance,
     ReactFlowProvider,
     useEdgesState,
     useNodesState,
@@ -15,19 +16,20 @@ import {
 import { AppNode } from "@shared/node.types";
 import { AppEdge } from "@shared/edge.types";
 
-import { useNodeEdgeDataContext } from "../contexts/NodeEdgeDataContext";
+import { useDiagramContext } from "../../contexts/DiagramContext";
 
-import { initialCompNodes, nodeTypes } from "../nodes";
-import { initialCompEdges } from "../edges";
-import DownloadButton from "../components/DownloadButton";
-import { NavigationButton } from "../components/NavigationButton";
-import { getLayoutedElements } from "../helpers/layoutHandlerDagre";
-import { retainNodePositions } from "../helpers/nodePositionHandler";
+import { initialCompNodes, nodeTypes } from "../../nodes";
+import { initialCompEdges } from "../../edges";
+import DownloadButton from "../../components/DownloadButton";
+import { NavigationButton } from "../../components/NavigationButton";
+import { getLayoutedElements } from "../../helpers/layoutHandlerDagre";
+import { retainNodePositions } from "../../helpers/nodePositionHandler";
 
 const LayoutFlow = () => {
-    const { fitView } = useReactFlow<AppNode, AppEdge>();
+    const { fitView, getViewport, setViewport } = useReactFlow<AppNode, AppEdge>();
     const [nodes, setNodes, onNodesChange] = useNodesState(initialCompNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialCompEdges);
+    const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance<AppNode, AppEdge>>();
 
     // Hover Highlighting states
     const [highlightedNodes, setHighlightedNodes] = useState<string[]>([]);
@@ -37,7 +39,7 @@ const LayoutFlow = () => {
     const nodesRef = useRef(nodes);
 
     // Global context, use to retain states when changing views
-    const nodeEdgeCtx = useNodeEdgeDataContext();
+    const diagramCtx = useDiagramContext();
 
     // General constants
     const MIN_ZOOM = 0.1;
@@ -69,20 +71,27 @@ const LayoutFlow = () => {
     }, [nodes]);
 
     useEffect(() => {
-        if (!nodeEdgeCtx?.componentNodeEdgeData) {
+        // TODO: Properly refactor this if have time
+        // > useReactFlow() should be called inside the ReactFlow component, not outside like this
+        if (!diagramCtx?.componentView.graphData) {
             console.error("Unable to retrieve data from context!");
             return;
         }
-        setNodes(retainNodePositions(nodeEdgeCtx.componentNodeEdgeData.nodes, nodesRef.current));
-        setEdges(nodeEdgeCtx.componentNodeEdgeData.edges);
-    }, [nodeEdgeCtx?.componentNodeEdgeData]);
+        setNodes(retainNodePositions(diagramCtx.componentView.graphData.nodes, nodesRef.current));
+        setEdges(diagramCtx.componentView.graphData.edges);
+
+        if (diagramCtx.componentView.viewport) {
+            setViewport(diagramCtx.componentView.viewport);
+        }
+    }, [diagramCtx?.componentView, reactFlowInstance]);
 
     const handleBeforeNavigate = () => {
-        if (!nodeEdgeCtx) { return; }
-        nodeEdgeCtx.setComponentNodeEdgeData({
+        if (!diagramCtx) { return; }
+        diagramCtx.componentView.setGraphData({
             nodes: nodes,
             edges: edges,
         });
+        diagramCtx.componentView.setViewport(getViewport());
     }
 
     const onLayout = useCallback(
@@ -127,6 +136,7 @@ const LayoutFlow = () => {
             nodeTypes={nodeTypes}
             nodes={nodes.map((n) => prepareNode(n))}
             edges={edges.map((e) => prepareEdge(e))}
+            onInit={setReactFlowInstance}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onEdgeMouseEnter={(event, edge) => onEdgeMouseEnter(event, edge.id)}

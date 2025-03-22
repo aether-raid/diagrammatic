@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import { App } from './App';
-import { NodeEdgeDataProvider } from "./contexts/NodeEdgeDataContext"
+import { DiagramProvider } from './contexts/DiagramContext';
+import { FeatureStatusProvider } from './contexts/FeatureStatusContext';
 
 import "@xyflow/react/dist/style.css"; // Must import this, else React Flow will not work!
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,15 +14,14 @@ import './styles/colors.css';
 import './styles/bs-overrides.css';
 import './nodes/nodes.css';
 import './edges/edges.css';
-import { FeatureStatusProvider } from './contexts/FeatureStatusContext';
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <FeatureStatusProvider>
-            <NodeEdgeDataProvider>
+            <DiagramProvider>
                 <App />
-            </NodeEdgeDataProvider>
+            </DiagramProvider>
         </FeatureStatusProvider>
     </React.StrictMode>,
 )

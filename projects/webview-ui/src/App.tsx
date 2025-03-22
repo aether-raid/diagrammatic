@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { MemoryRouter, Route, Routes } from "react-router-dom"
 
+import { Feature, FeatureStatus } from "@shared/app.types";
 import {
     AcceptComponentDiagramDataPayload,
     AcceptNodeEdgeDataPayload,
@@ -8,16 +9,17 @@ import {
     UpdateFeatureStatusPayload,
     WebviewCommandMessage
 } from "@shared/message.types";
-
-import { useNodeEdgeDataContext } from "./contexts/NodeEdgeDataContext";
-import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
-import CodeView from "./views/CodeView"
-import ComponentView from "./views/ComponentView"
+import { useDiagramContext } from "./contexts/DiagramContext";
 import { useFeatureStatusContext } from "./contexts/FeatureStatusContext";
 
+import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
+import CodeView from "./views/codeView/CodeView"
+import ComponentView from "./views/componentView/ComponentView"
+
+
 export const App = () => {
+    const diagramCtx = useDiagramContext();
     const featureStatusCtx = useFeatureStatusContext();
-    const nodeEdgeCtx = useNodeEdgeDataContext();
 
     useEffect(() => {
         // Setup message listener
@@ -27,15 +29,15 @@ export const App = () => {
             switch (command) {
                 case Commands.ACCEPT_COMPONENT_DIAGRAM_DATA: {
                     const msg = message as AcceptComponentDiagramDataPayload;
-                    nodeEdgeCtx?.setComponentNodeEdgeData({
+                    diagramCtx?.componentView.setGraphData({
                         nodes: msg.nodes,
                         edges: msg.edges,
-                    });
+                    })
                     break;
                 }
                 case Commands.ACCEPT_NODE_EDGE_DATA: {
                     const msg = message as AcceptNodeEdgeDataPayload;
-                    nodeEdgeCtx?.setCodeNodeEdgeData({
+                    diagramCtx?.codeView.setGraphData({
                         nodes: msg.nodes,
                         edges: msg.edges,
                     });
@@ -56,13 +58,13 @@ export const App = () => {
         try {
             sendReadyMessageToExtension();
         } catch (error) {
-            if (
-                (error as Error).message !==
-                "acquireVsCodeApi is not defined"
-            ) {
+            if ((error as Error).message === "acquireVsCodeApi is not defined") {
                 // Only catch the above error, throw all else
-                throw error;
+                featureStatusCtx?.setFeatureStatus(Feature.COMPONENT_DIAGRAM, FeatureStatus.ENABLED_DONE);
+                featureStatusCtx?.setFeatureStatus(Feature.NODE_DESCRIPTIONS, FeatureStatus.ENABLED_DONE);
+                return;
             }
+            throw error;
         }
 
         return () => {
