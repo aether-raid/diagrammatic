@@ -36,6 +36,7 @@ const getNodeDescriptions = async (
 
     vscode.window.showInformationMessage("Descriptions loaded!");
   } catch (error) {
+    // TODO: Throw error out to extension for handling
     vscode.window.showErrorMessage("Error fetching descriptions");
     console.error("Error fetching descriptions:", error);
   }

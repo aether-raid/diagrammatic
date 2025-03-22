@@ -9,6 +9,7 @@ import { runCodeToDiagramAlgorithm } from "./codeToDiagram/runCodeToDiagramAlgor
 import {
   sendAcceptNodeEdgeMessageToWebview,
   sendAcceptCompNodeEdgeMessageToWebview,
+  sendUpdateFeatureStatusMessageToWebview,
 } from "./messageHandler";
 import { runNodeDescriptionsAlgorithm } from "./nodeDescriptions/runNodeDescriptionsAlgorithm";
 import { runFunctionDescriptionsAlgorithm } from "./functionDescriptions/runFunctionDescriptionsAlgorithm";
@@ -16,7 +17,7 @@ import { runCodeLinting } from "./codeQuality/runCodeLinting";
 import { getComponentDiagram } from "./componentDiagram/runComponentDiagramAlgorithm";
 import { retrieveApiKey } from "./helpers/apiKey";
 import { LLMProvider, retrieveLLMProvider } from "./helpers/llm";
-import { NodeEdgeData } from "@shared/app.types";
+import { Feature, FeatureStatus, NodeEdgeData } from "@shared/app.types";
 
 export const handleShowMVCDiagram = async (
   context: vscode.ExtensionContext,
@@ -79,20 +80,40 @@ export const handleShowMVCDiagram = async (
 
   const llmProvider: LLMProvider = retrieveLLMProvider(apiKey);
   const getComponentDiagramAsync = async () => {
-    console.log("running component diag")
+    console.log("running component diag");
+    sendUpdateFeatureStatusMessageToWebview({
+      feature: Feature.COMPONENT_DIAGRAM,
+      status: FeatureStatus.ENABLED_LOADING,
+    }, panel);
+
     const data = await getComponentDiagram(nodeEdgeData, llmProvider);
     componentNodeEdgeData = data;
-    console.log("done component diag, sending");
+
     sendAcceptCompNodeEdgeMessageToWebview(componentNodeEdgeData, panel);
-  }
-  const getNodeDescriptionsAsync = async () => {
-    console.log("running node desc")
-    const data = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData, llmProvider);
-    nodeEdgeData.nodes = data;
-    console.log("done node desc, sending")
-    sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
+    sendUpdateFeatureStatusMessageToWebview({
+      feature: Feature.COMPONENT_DIAGRAM,
+      status: FeatureStatus.ENABLED_DONE,
+    }, panel);
+    console.log("component diag done & sent");
   }
 
+  const getNodeDescriptionsAsync = async () => {
+    console.log("running node desc");
+    sendUpdateFeatureStatusMessageToWebview({
+      feature: Feature.NODE_DESCRIPTIONS,
+      status: FeatureStatus.ENABLED_LOADING,
+    }, panel);
+
+    const data = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData, llmProvider);
+    nodeEdgeData.nodes = data;
+
+    sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
+    sendUpdateFeatureStatusMessageToWebview({
+      feature: Feature.NODE_DESCRIPTIONS,
+      status: FeatureStatus.ENABLED_DONE,
+    }, panel);
+    console.log("node desc done & sent");
+  }
 
   const getFunctionDescriptionsAsync = async () => {
     console.log("running function desc")
@@ -102,7 +123,7 @@ export const handleShowMVCDiagram = async (
   }
   getComponentDiagramAsync();
   getNodeDescriptionsAsync();
-  getFunctionDescriptionsAsync();
+  // getFunctionDescriptionsAsync();
 
   return Promise.resolve(panel);
 };

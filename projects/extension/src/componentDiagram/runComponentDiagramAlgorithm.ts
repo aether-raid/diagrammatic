@@ -88,6 +88,7 @@ export const getComponentDiagram = async (
     componentNodesEdges.nodes = transformedComponents;
     componentNodesEdges.edges = transformedEdges;
   } catch (error) {
+     // TODO: Throw error out to extension for handling
     console.error("Error fetching component diagram:", error);
   }
 
