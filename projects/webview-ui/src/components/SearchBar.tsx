@@ -1,13 +1,12 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { Panel, XYPosition } from "@xyflow/react";
+import { Panel, useReactFlow, XYPosition } from "@xyflow/react";
 
 import Button from "react-bootstrap/Button";
 
+import { AppEdge } from "@shared/edge.types";
 import { AppNode } from "@shared/node.types";
 
 interface SearchBarProps {
-  nodes: AppNode[];
-  setCenter: (x: number, y: number, options?: { zoom?: number }) => void;
   matchedNodesState: [
     AppNode[],
     React.Dispatch<React.SetStateAction<AppNode[]>>
@@ -16,10 +15,9 @@ interface SearchBarProps {
 
 // eslint-disable-next-line react/prop-types
 const SearchBar: React.FC<SearchBarProps> = ({
-  nodes,
-  setCenter,
   matchedNodesState: [matchedNodes, setMatchedNodes],
 }) => {
+  const { getNodes, setCenter } = useReactFlow<AppNode, AppEdge>();
   const [searchInput, setSearchInput] = useState<string>("");
   const [currentMatchIndex, setCurrentMatchIndex] = useState<number>(0);
 
@@ -50,6 +48,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
     // Search nodes by title
     // eslint-disable-next-line react/prop-types
+    const nodes = getNodes();
     const matches = nodes.filter((node) => {
       if (node.data && "entityName" in node.data) {
         return node.data.entityName

@@ -1,7 +1,7 @@
 // *********************************
 // Layout using Dagre.js
 // *********************************
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 import {
     Background,
@@ -26,18 +26,15 @@ import DownloadButton from "../../components/DownloadButton";
 import { NavigationButton } from "../../components/NavigationButton";
 import { NodeInfoPanel } from "../../components/NodeInfoPanel/NodeInfoPanel";
 import SearchBar from "../../components/SearchBar";
-import {
-    getEdgesEntitiesToHighlightBFS,
-    getOutgoingEdgesFromEntityRow,
-} from "../../helpers/diagramBFS";
 import { getLayoutedElements } from "../../helpers/layoutHandlerDagre";
 import { useFeatureStatusContext } from "../../contexts/FeatureStatusContext";
 import { useDiagramContext } from "../../contexts/DiagramContext";
 import { ViewChangeHandler } from "../../components/ViewChangeHandler";
+import { HighlightConnectedPathHandler } from "../../components/HighlightConnectedPathHandler";
 
 const LayoutFlow = () => {
     // General ReactFlow states
-    const { fitView, getNode, getViewport, setCenter } = useReactFlow<AppNode, AppEdge>();
+    const { fitView, getViewport } = useReactFlow<AppNode, AppEdge>();
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
@@ -100,31 +97,6 @@ const LayoutFlow = () => {
         [nodes, edges]
     );
 
-    useEffect(() => {
-        // console.log("Currently hovering on: ", hoveredEntity);
-        if (!hoveredEntity) {
-            setHighlightedNodes([]);
-            setHighlightedEdges([]);
-            return;
-        }
-
-        const hoveredNode = getNode(hoveredEntity.nodeId)!; // Can safely assume it exists since it's part of the graph
-        const outgoingEdges = getOutgoingEdgesFromEntityRow(
-            hoveredNode,
-            hoveredEntity.rowId,
-            edges
-        );
-        const toHighlight = getEdgesEntitiesToHighlightBFS(
-            outgoingEdges,
-            edges,
-            getNode
-        );
-        setHighlightedEdges(toHighlight.edges);
-
-        const entityRepr = `${hoveredEntity.nodeId}-${hoveredEntity.rowId}`;
-        setHighlightedNodes([entityRepr, ...toHighlight.entities]);
-    }, [hoveredEntity, edges]);
-
     const prepareNode = (node: AppNode) =>
         node.type !== "entity"
             ? node
@@ -150,11 +122,6 @@ const LayoutFlow = () => {
 
     return (
         <>
-            <SearchBar
-                nodes={nodes}
-                setCenter={setCenter}
-                matchedNodesState={[matchedNodes, setMatchedNodes]}
-            />
             <ReactFlow
                 nodeTypes={nodeTypes}
                 nodes={nodes.map((n) => prepareNode(n))}
@@ -171,7 +138,16 @@ const LayoutFlow = () => {
                 minZoom={MIN_ZOOM}
                 maxZoom={MAX_ZOOM}
             >
+                {/* Handlers */}
+                <HighlightConnectedPathHandler
+                    hoveredEntity={hoveredEntity}
+                    setHighlightedEdges={setHighlightedEdges}
+                    setHighlightedNodes={setHighlightedNodes}
+                />
                 <ViewChangeHandler />
+
+                {/* Displayed Elements */}
+                <SearchBar matchedNodesState={[matchedNodes, setMatchedNodes]} />
                 <Panel position="top-center">
                     <button onClick={() => onLayout("TB")}>
                         Vertical Layout
