@@ -5,13 +5,17 @@ import { AppEdge } from "@shared/edge.types";
 import { AppNode } from "@shared/node.types";
 
 import { useDiagramContext } from "../contexts/DiagramContext";
-import { retainNodePositions } from "../helpers/nodePositionHandler";
+
 import { ViewType } from "../App.types";
+import { retainNodePositions } from "../helpers/nodePositionHandler";
 
+interface ViewChangeHandlerProps {
+    view: ViewType;
+}
 
-export const ViewChangeHandler = () => {
+export const ViewChangeHandler = ({ view }: ViewChangeHandlerProps) => {
     const { getNodes, setEdges, setNodes, setViewport } = useReactFlow<AppNode, AppEdge>();
-    const diagramCtx = useDiagramContext(ViewType.CODE_VIEW);
+    const diagramCtx = useDiagramContext(view);
 
     const nodes = getNodes();
 

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import {
     Background,
@@ -6,7 +6,6 @@ import {
     MiniMap,
     Panel,
     ReactFlow,
-    ReactFlowInstance,
     ReactFlowProvider,
     useEdgesState,
     useNodesState,
@@ -23,26 +22,24 @@ import { initialCompEdges } from "../../edges";
 import { ViewType } from "../../App.types";
 import DownloadButton from "../../components/DownloadButton";
 import { NavigationButton } from "../../components/NavigationButton";
+import { ViewChangeHandler } from "../../components/ViewChangeHandler";
 import { getLayoutedElements } from "../../helpers/layoutHandlerDagre";
-import { retainNodePositions } from "../../helpers/nodePositionHandler";
+
 
 const LayoutFlow = () => {
-    const { fitView, getViewport, setViewport } = useReactFlow<AppNode, AppEdge>();
+    const { fitView, getViewport } = useReactFlow<AppNode, AppEdge>();
     const [nodes, setNodes, onNodesChange] = useNodesState(initialCompNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialCompEdges);
-    const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance<AppNode, AppEdge>>();
 
     // Hover Highlighting states
     const [highlightedNodes, setHighlightedNodes] = useState<string[]>([]);
     const [highlightedEdges, setHighlightedEdges] = useState<string[]>([]);
 
-    // Stable Reference to node variable
-    const nodesRef = useRef(nodes);
-
     // Global context, use to retain states when changing views
     const diagramCtx = useDiagramContext(ViewType.COMPONENT_VIEW);
 
     // General constants
+    const CURRENT_VIEW = ViewType.COMPONENT_VIEW;
     const MIN_ZOOM = 0.1;
     const MAX_ZOOM = 2;
 
@@ -66,25 +63,6 @@ const LayoutFlow = () => {
         setHighlightedNodes([]);
         setHighlightedEdges([]);
     };
-
-    useEffect(() => {
-      nodesRef.current = nodes;
-    }, [nodes]);
-
-    useEffect(() => {
-        // TODO: Properly refactor this if have time
-        // > useReactFlow() should be called inside the ReactFlow component, not outside like this
-        if (!diagramCtx?.graphData) {
-            console.error("Unable to retrieve data from context!");
-            return;
-        }
-        setNodes(retainNodePositions(diagramCtx.graphData.nodes, nodesRef.current));
-        setEdges(diagramCtx.graphData.edges);
-
-        if (diagramCtx.viewport) {
-            setViewport(diagramCtx.viewport);
-        }
-    }, [diagramCtx, reactFlowInstance]);
 
     const handleBeforeNavigate = () => {
         if (!diagramCtx) { return; }
@@ -137,7 +115,6 @@ const LayoutFlow = () => {
             nodeTypes={nodeTypes}
             nodes={nodes.map((n) => prepareNode(n))}
             edges={edges.map((e) => prepareEdge(e))}
-            onInit={setReactFlowInstance}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onEdgeMouseEnter={(event, edge) => onEdgeMouseEnter(event, edge.id)}
@@ -149,6 +126,10 @@ const LayoutFlow = () => {
             minZoom={MIN_ZOOM}
             maxZoom={MAX_ZOOM}
         >
+            {/* Handlers */}
+            <ViewChangeHandler view={CURRENT_VIEW}/>
+
+            {/* Displayed Elements */}
             <Panel position="top-center">
                 <button onClick={() => onLayout("TB")}>Vertical Layout</button>
                 <button onClick={() => onLayout("LR")}>

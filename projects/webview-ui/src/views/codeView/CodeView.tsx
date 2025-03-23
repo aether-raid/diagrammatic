@@ -26,11 +26,11 @@ import DownloadButton from "../../components/DownloadButton";
 import { NavigationButton } from "../../components/NavigationButton";
 import { NodeInfoPanel } from "../../components/NodeInfoPanel/NodeInfoPanel";
 import SearchBar from "../../components/SearchBar";
-import { getLayoutedElements } from "../../helpers/layoutHandlerDagre";
 import { useFeatureStatusContext } from "../../contexts/FeatureStatusContext";
 import { useDiagramContext } from "../../contexts/DiagramContext";
 import { ViewChangeHandler } from "../../components/ViewChangeHandler";
 import { HighlightConnectedPathHandler } from "../../components/HighlightConnectedPathHandler";
+import { getLayoutedElements } from "../../helpers/layoutHandlerDagre";
 
 const LayoutFlow = () => {
     // General ReactFlow states
@@ -59,6 +59,7 @@ const LayoutFlow = () => {
     const diagramCtx = useDiagramContext(ViewType.CODE_VIEW);
 
     // General constants
+    const CURRENT_VIEW = ViewType.CODE_VIEW;
     const MIN_ZOOM = 0.1;
     const MAX_ZOOM = 2;
 
@@ -144,7 +145,7 @@ const LayoutFlow = () => {
                     setHighlightedEdges={setHighlightedEdges}
                     setHighlightedNodes={setHighlightedNodes}
                 />
-                <ViewChangeHandler />
+                <ViewChangeHandler view={CURRENT_VIEW} />
 
                 {/* Displayed Elements */}
                 <SearchBar matchedNodesState={[matchedNodes, setMatchedNodes]} />
