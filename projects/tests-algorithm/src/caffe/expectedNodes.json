@@ -104,6 +104,160 @@
         }
       ]
     }
+  },  {
+    "id": "/examples/cpp_classification/classification.cpp.Classifier",
+    "type": "entity",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "data": {
+      "entityName": "Classifier",
+      "entityType": "class",
+      "startPosition": {
+        "row": 20,
+        "column": 0
+      },
+      "endPosition": {
+        "row": 45,
+        "column": 1
+      },
+      "filePath": "/examples/cpp_classification/classification.cpp",
+      "items": [
+        {
+          "name": "Classifier",
+          "startPosition": {
+            "row": 22,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 25,
+            "column": 38
+          },
+          "type": "function"
+        },
+        {
+          "name": "Classify",
+          "startPosition": {
+            "row": 27,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 27,
+            "column": 66
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "SetMean",
+          "startPosition": {
+            "row": 30,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 30,
+            "column": 40
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "Predict",
+          "startPosition": {
+            "row": 32,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 32,
+            "column": 49
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "WrapInputLayer",
+          "startPosition": {
+            "row": 34,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 34,
+            "column": 60
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "Preprocess",
+          "startPosition": {
+            "row": 36,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 37,
+            "column": 56
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "net_",
+          "startPosition": {
+            "row": 40,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 40,
+            "column": 31
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "input_geometry_",
+          "startPosition": {
+            "row": 41,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 41,
+            "column": 27
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "num_channels_",
+          "startPosition": {
+            "row": 42,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 42,
+            "column": 20
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "mean_",
+          "startPosition": {
+            "row": 43,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 43,
+            "column": 16
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "labels_",
+          "startPosition": {
+            "row": 44,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 44,
+            "column": 30
+          },
+          "type": "attribute"
+        }
+      ]
+    }
   },
   {
     "id": "/examples/finetune_flickr_style/assemble_data.py",
@@ -11396,6 +11550,76 @@
         }
       ]
     }
+  },  {
+    "id": "/include/caffe/util/insert_splits.hpp",
+    "type": "entity",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "data": {
+      "entityName": "insert_splits.hpp",
+      "entityType": "file",
+      "startPosition": {
+        "row": 0,
+        "column": 0
+      },
+      "endPosition": {
+        "row": 26,
+        "column": 0
+      },
+      "filePath": "/include/caffe/util/insert_splits.hpp",
+      "items": [
+        {
+          "name": "InsertSplits",
+          "startPosition": {
+            "row": 11,
+            "column": 5
+          },
+          "endPosition": {
+            "row": 11,
+            "column": 71
+          },
+          "type": "function"
+        },
+        {
+          "name": "ConfigureSplitLayer",
+          "startPosition": {
+            "row": 13,
+            "column": 5
+          },
+          "endPosition": {
+            "row": 15,
+            "column": 38
+          },
+          "type": "function"
+        },
+        {
+          "name": "SplitLayerName",
+          "startPosition": {
+            "row": 17,
+            "column": 7
+          },
+          "endPosition": {
+            "row": 18,
+            "column": 23
+          },
+          "type": "function"
+        },
+        {
+          "name": "SplitBlobName",
+          "startPosition": {
+            "row": 20,
+            "column": 7
+          },
+          "endPosition": {
+            "row": 21,
+            "column": 44
+          },
+          "type": "function"
+        }
+      ]
+    }
   },
   {
     "id": "/include/caffe/util/benchmark.hpp.Timer",
@@ -18875,6 +19099,125 @@
     }
   },
   {
+    "id": "/src/caffe/parallel.cpp.Worker",
+    "type": "entity",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "data": {
+      "entityName": "Worker",
+      "entityType": "class",
+      "startPosition": {
+        "row": 258,
+        "column": 0
+      },
+      "endPosition": {
+        "row": 324,
+        "column": 1
+      },
+      "filePath": "/src/caffe/parallel.cpp",
+      "items": [
+        {
+          "name": "Worker",
+          "startPosition": {
+            "row": 260,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 265,
+            "column": 3
+          },
+          "type": "function"
+        },
+        {
+          "name": "~Worker",
+          "startPosition": {
+            "row": 266,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 266,
+            "column": 22
+          },
+          "type": "function"
+        },
+        {
+          "name": "InternalThreadEntry",
+          "startPosition": {
+            "row": 269,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 317,
+            "column": 3
+          },
+          "type": "function"
+        },
+        {
+          "name": "rank0_",
+          "startPosition": {
+            "row": 319,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 319,
+            "column": 36
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "device_",
+          "startPosition": {
+            "row": 320,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 320,
+            "column": 14
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "barrier_",
+          "startPosition": {
+            "row": 321,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 321,
+            "column": 27
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "nccls_",
+          "startPosition": {
+            "row": 322,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 322,
+            "column": 31
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "restore_",
+          "startPosition": {
+            "row": 323,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 323,
+            "column": 23
+          },
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
     "id": "/src/caffe/solver.cpp",
     "type": "entity",
     "position": { "x": 0, "y": 0 },
@@ -20152,6 +20495,77 @@
         }
       ]
     }
+  }, 
+  {
+    "id": "/src/caffe/test/test_blob.cpp.BlobMathTest",
+    "type": "entity",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "data": {
+      "entityName": "BlobMathTest",
+      "entityType": "class",
+      "startPosition": {
+        "row": 115,
+        "column": 0
+      },
+      "endPosition": {
+        "row": 125,
+        "column": 1
+      },
+      "filePath": "/src/caffe/test/test_blob.cpp",
+      "items": [
+        {
+          "name": "BlobMathTest",
+          "startPosition": {
+            "row": 118,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 120,
+            "column": 25
+          },
+          "type": "function"
+        },
+        {
+          "name": "~BlobMathTest",
+          "startPosition": {
+            "row": 122,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 122,
+            "column": 43
+          },
+          "type": "function"
+        },
+        {
+          "name": "blob_",
+          "startPosition": {
+            "row": 123,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 123,
+            "column": 27
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "epsilon_",
+          "startPosition": {
+            "row": 124,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 124,
+            "column": 17
+          },
+          "type": "attribute"
+        }
+      ]
+    }
   },
   {
     "id": "/src/caffe/test/test_caffe_main.cpp",
@@ -20548,6 +20962,124 @@
           "startPosition": { "row": 262, "column": 0 },
           "endPosition": { "row": 280, "column": 1 },
           "type": "function"
+        }
+      ]
+    }
+  }, {
+    "id": "/src/caffe/test/test_crop_layer.cpp.CropLayerTest",
+    "type": "entity",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "data": {
+      "entityName": "CropLayerTest",
+      "entityType": "class",
+      "startPosition": {
+        "row": 15,
+        "column": 0
+      },
+      "endPosition": {
+        "row": 45,
+        "column": 1
+      },
+      "filePath": "/src/caffe/test/test_crop_layer.cpp",
+      "items": [
+        {
+          "name": "CropLayerTest",
+          "startPosition": {
+            "row": 19,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 22,
+            "column": 39
+          },
+          "type": "function"
+        },
+        {
+          "name": "SetUp",
+          "startPosition": {
+            "row": 23,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 33,
+            "column": 3
+          },
+          "type": "function"
+        },
+        {
+          "name": "~CropLayerTest",
+          "startPosition": {
+            "row": 35,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 38,
+            "column": 3
+          },
+          "type": "function"
+        },
+        {
+          "name": "blob_bottom_0_",
+          "startPosition": {
+            "row": 40,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 40,
+            "column": 36
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "blob_bottom_1_",
+          "startPosition": {
+            "row": 41,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 41,
+            "column": 36
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "blob_top_",
+          "startPosition": {
+            "row": 42,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 42,
+            "column": 31
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "blob_bottom_vec_",
+          "startPosition": {
+            "row": 43,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 43,
+            "column": 40
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "blob_top_vec_",
+          "startPosition": {
+            "row": 44,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 44,
+            "column": 37
+          },
+          "type": "attribute"
         }
       ]
     }
@@ -27420,6 +27952,136 @@
         }
       ]
     }
+  }, {
+    "id": "/include/caffe/util/hdf5.hpp",
+    "type": "entity",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "data": {
+      "entityName": "hdf5.hpp",
+      "entityType": "file",
+      "startPosition": {
+        "row": 0,
+        "column": 0
+      },
+      "endPosition": {
+        "row": 41,
+        "column": 0
+      },
+      "filePath": "/include/caffe/util/hdf5.hpp",
+      "items": [
+        {
+          "name": "hdf5_load_nd_dataset_helper",
+          "startPosition": {
+            "row": 14,
+            "column": 5
+          },
+          "endPosition": {
+            "row": 16,
+            "column": 36
+          },
+          "type": "function"
+        },
+        {
+          "name": "hdf5_load_nd_dataset",
+          "startPosition": {
+            "row": 19,
+            "column": 5
+          },
+          "endPosition": {
+            "row": 21,
+            "column": 44
+          },
+          "type": "function"
+        },
+        {
+          "name": "hdf5_save_nd_dataset",
+          "startPosition": {
+            "row": 24,
+            "column": 5
+          },
+          "endPosition": {
+            "row": 26,
+            "column": 28
+          },
+          "type": "function"
+        },
+        {
+          "name": "hdf5_load_int",
+          "startPosition": {
+            "row": 28,
+            "column": 4
+          },
+          "endPosition": {
+            "row": 28,
+            "column": 59
+          },
+          "type": "function"
+        },
+        {
+          "name": "hdf5_save_int",
+          "startPosition": {
+            "row": 29,
+            "column": 5
+          },
+          "endPosition": {
+            "row": 29,
+            "column": 67
+          },
+          "type": "function"
+        },
+        {
+          "name": "hdf5_load_string",
+          "startPosition": {
+            "row": 30,
+            "column": 7
+          },
+          "endPosition": {
+            "row": 30,
+            "column": 65
+          },
+          "type": "function"
+        },
+        {
+          "name": "hdf5_save_string",
+          "startPosition": {
+            "row": 31,
+            "column": 5
+          },
+          "endPosition": {
+            "row": 32,
+            "column": 38
+          },
+          "type": "function"
+        },
+        {
+          "name": "hdf5_get_num_links",
+          "startPosition": {
+            "row": 34,
+            "column": 4
+          },
+          "endPosition": {
+            "row": 34,
+            "column": 36
+          },
+          "type": "function"
+        },
+        {
+          "name": "hdf5_get_name_by_idx",
+          "startPosition": {
+            "row": 35,
+            "column": 7
+          },
+          "endPosition": {
+            "row": 35,
+            "column": 50
+          },
+          "type": "function"
+        }
+      ]
+    }
   },
   {
     "id": "/src/caffe/util/hdf5.cpp",
@@ -27472,6 +28134,125 @@
           "name": "hdf5_get_name_by_idx",
           "startPosition": { "row": 195, "column": 0 },
           "endPosition": { "row": 207, "column": 1 },
+          "type": "function"
+        }
+      ]
+    }
+  }, 
+  {
+    "id": "/include/caffe/util/im2col.hpp",
+    "type": "entity",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "data": {
+      "entityName": "im2col.hpp",
+      "entityType": "file",
+      "startPosition": {
+        "row": 0,
+        "column": 0
+      },
+      "endPosition": {
+        "row": 60,
+        "column": 0
+      },
+      "filePath": "/include/caffe/util/im2col.hpp",
+      "items": [
+        {
+          "name": "im2col_nd_cpu",
+          "startPosition": {
+            "row": 6,
+            "column": 5
+          },
+          "endPosition": {
+            "row": 9,
+            "column": 41
+          },
+          "type": "function"
+        },
+        {
+          "name": "im2col_cpu",
+          "startPosition": {
+            "row": 12,
+            "column": 5
+          },
+          "endPosition": {
+            "row": 16,
+            "column": 20
+          },
+          "type": "function"
+        },
+        {
+          "name": "col2im_nd_cpu",
+          "startPosition": {
+            "row": 19,
+            "column": 5
+          },
+          "endPosition": {
+            "row": 22,
+            "column": 40
+          },
+          "type": "function"
+        },
+        {
+          "name": "col2im_cpu",
+          "startPosition": {
+            "row": 25,
+            "column": 5
+          },
+          "endPosition": {
+            "row": 29,
+            "column": 19
+          },
+          "type": "function"
+        },
+        {
+          "name": "im2col_nd_gpu",
+          "startPosition": {
+            "row": 32,
+            "column": 5
+          },
+          "endPosition": {
+            "row": 35,
+            "column": 41
+          },
+          "type": "function"
+        },
+        {
+          "name": "im2col_gpu",
+          "startPosition": {
+            "row": 38,
+            "column": 5
+          },
+          "endPosition": {
+            "row": 42,
+            "column": 20
+          },
+          "type": "function"
+        },
+        {
+          "name": "col2im_nd_gpu",
+          "startPosition": {
+            "row": 45,
+            "column": 5
+          },
+          "endPosition": {
+            "row": 48,
+            "column": 40
+          },
+          "type": "function"
+        },
+        {
+          "name": "col2im_gpu",
+          "startPosition": {
+            "row": 51,
+            "column": 5
+          },
+          "endPosition": {
+            "row": 55,
+            "column": 19
+          },
           "type": "function"
         }
       ]
@@ -28222,6 +29003,171 @@
           "name": "main",
           "startPosition": { "row": 17, "column": 0 },
           "endPosition": { "row": 50, "column": 1 },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "id": "/python/caffe/_caffe.cpp.SolverCallback",
+    "type": "entity",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "data": {
+      "entityName": "SolverCallback",
+      "entityType": "class",
+      "startPosition": {
+        "row": 273,
+        "column": 0
+      },
+      "endPosition": {
+        "row": 286,
+        "column": 1
+      },
+      "filePath": "/python/caffe/_caffe.cpp",
+      "items": [
+        {
+          "name": "on_start_",
+          "startPosition": {
+            "row": 275,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 275,
+            "column": 44
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "SolverCallback",
+          "startPosition": {
+            "row": 278,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 279,
+            "column": 70
+          },
+          "type": "function"
+        },
+        {
+          "name": "on_gradients_ready",
+          "startPosition": {
+            "row": 280,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 282,
+            "column": 3
+          },
+          "type": "function"
+        },
+        {
+          "name": "on_start",
+          "startPosition": {
+            "row": 283,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 285,
+            "column": 3
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "id": "/python/caffe/_caffe.cpp.NetCallback",
+    "type": "entity",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "data": {
+      "entityName": "NetCallback",
+      "entityType": "class",
+      "startPosition": {
+        "row": 309,
+        "column": 0
+      },
+      "endPosition": {
+        "row": 318,
+        "column": 1
+      },
+      "filePath": "/python/caffe/_caffe.cpp",
+      "items": [
+        {
+          "name": "NetCallback",
+          "startPosition": {
+            "row": 311,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 311,
+            "column": 53
+          },
+          "type": "function"
+        },
+        {
+          "name": "run",
+          "startPosition": {
+            "row": 314,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 316,
+            "column": 3
+          },
+          "type": "function"
+        },
+        {
+          "name": "run_",
+          "startPosition": {
+            "row": 317,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 317,
+            "column": 18
+          },
+          "type": "attribute"
+        }
+      ]
+    }
+  },
+  {
+    "id": "/python/caffe/_caffe.cpp.NCCL",
+    "type": "entity",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "data": {
+      "entityName": "NCCL",
+      "entityType": "class",
+      "startPosition": {
+        "row": 343,
+        "column": 0
+      },
+      "endPosition": {
+        "row": 346,
+        "column": 1
+      },
+      "filePath": "/python/caffe/_caffe.cpp",
+      "items": [
+        {
+          "name": "NCCL",
+          "startPosition": {
+            "row": 345,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 345,
+            "column": 63
+          },
           "type": "function"
         }
       ]
