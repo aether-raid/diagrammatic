@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { existsSync } from "fs";
 
-import { RuleEngine } from "../algorithm/rules";
+import { RuleEngine } from "../codeToDiagram/algorithm/rules";
 import { GLOBALS } from "../globals";
 import { retrieveExtensionConfig } from "./common";
 

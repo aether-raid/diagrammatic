@@ -1,0 +1,22 @@
+name: Renovate Bot
+
+on:
+  schedule:
+    - cron: "0 9 * * 1"
+    # pull_request:
+    #   branches:
+    #     - '*'
+  workflow_dispatch:
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+        
+      - name: Renovate
+        run: npx renovate kahliya/diagrammatic
+        env:
+          RENOVATE_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          LOG_LEVEL: debug

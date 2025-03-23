@@ -10,7 +10,7 @@ import {
   countEntityTypes,
   countFilesAndLines,
 } from "../helper";
-import { RuleEngine } from "@extension/algorithm/rules";
+import { RuleEngine } from "@extension/codeToDiagram/algorithm/rules";
 import path from "path";
 
 // Repository URL: https://github.com/Tick-CS203/tick
@@ -27,7 +27,7 @@ describe("tick", () => {
     mock("vscode", {});
     ruleset = require("@extension/helpers/ruleset");
     runCodeToDiagramAlgorithm =
-      require("@extension/runCodeToDiagramAlgorithm").runCodeToDiagramAlgorithm;
+      require("@extension/codeToDiagram/runCodeToDiagramAlgorithm").runCodeToDiagramAlgorithm;
 
     // Stub ruleset to always return us the default config
     rulesetStub = sinon.stub(ruleset, "retrieveRuleset");

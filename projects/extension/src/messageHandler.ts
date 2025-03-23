@@ -1,6 +1,12 @@
 import * as vscode from "vscode";
 
-import { AcceptNodeEdgeDataPayload, Commands, AcceptCompNodeEdgeDataPayload } from "@shared/message.types";
+import {
+  Commands,
+  AcceptComponentDiagramDataPayload,
+  AcceptNodeEdgeDataPayload,
+  UpdateFeatureStatusPayload,
+} from "@shared/message.types";
+
 export const sendAcceptNodeEdgeMessageToWebview = (
   payload: AcceptNodeEdgeDataPayload,
   panel: vscode.WebviewPanel
@@ -12,11 +18,21 @@ export const sendAcceptNodeEdgeMessageToWebview = (
 };
 
 export const sendAcceptCompNodeEdgeMessageToWebview = (
-  payload: AcceptCompNodeEdgeDataPayload,
+  payload: AcceptComponentDiagramDataPayload | undefined,
   panel: vscode.WebviewPanel
 ) => {
   panel.webview.postMessage({
-    command: Commands.COMPONENT_DIAGRAM,
-    message: payload,
+    command: Commands.ACCEPT_COMPONENT_DIAGRAM_DATA,
+    message: payload ?? { nodes: [], edges: [] },
   });
 };
+
+export const sendUpdateFeatureStatusMessageToWebview = (
+  payload: UpdateFeatureStatusPayload,
+  panel: vscode.WebviewPanel,
+) => {
+  panel.webview.postMessage({
+    command: Commands.UPDATE_FEATURE_STATUS,
+    message: payload,
+  })
+}

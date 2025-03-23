@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import CompView from './CompView';
-import { HashRouter, Routes, Route } from "react-router-dom"
 
+import { App } from './App';
+import { DiagramProvider } from './contexts/DiagramContext';
+import { FeatureStatusProvider } from './contexts/FeatureStatusContext';
+
+import "@xyflow/react/dist/style.css"; // Must import this, else React Flow will not work!
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './styles/reset.css';
@@ -15,12 +17,11 @@ import './edges/edges.css';
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/compView" element={<CompView />} />
-      </Routes>
-    </HashRouter>
-  </React.StrictMode>,
+    <React.StrictMode>
+        <FeatureStatusProvider>
+            <DiagramProvider>
+                <App />
+            </DiagramProvider>
+        </FeatureStatusProvider>
+    </React.StrictMode>,
 )

@@ -51,6 +51,15 @@ export type EntityNode = Node<
   "entity"
 >;
 
+export type ComponentEntityNode = Node<
+  {
+    name: string;
+    description?: string;
+    files?: string[];
+  },
+  "componentEntity"
+>;
+
 export type TextUpdaterNode = Node<{}, "textUpdater">;
 
-export type AppNode = BuiltInNode | TextUpdaterNode | EntityNode;
+export type AppNode = BuiltInNode | TextUpdaterNode | EntityNode | ComponentEntityNode;

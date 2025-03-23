@@ -5,17 +5,21 @@ import {
   WebviewCommandMessage,
 } from "@shared/message.types";
 
-import { runCodeToDiagramAlgorithm } from "./runCodeToDiagramAlgorithm";
-import { NodeEdgeData } from "./extension.types";
+import { runCodeToDiagramAlgorithm } from "./codeToDiagram/runCodeToDiagramAlgorithm";
 import {
   sendAcceptNodeEdgeMessageToWebview,
   sendAcceptCompNodeEdgeMessageToWebview,
+  sendUpdateFeatureStatusMessageToWebview,
 } from "./messageHandler";
-import { runNodeDescriptionsAlgorithm } from "./runNodeDescriptionsAlgorithm";
-import { runCodeLinting } from "./runCodeLinting";
-import { getComponentDiagram } from "./runComponentDiagramAlgorithm";
+import { runNodeDescriptionsAlgorithm } from "./nodeDescriptions/runNodeDescriptionsAlgorithm";
+import { runFunctionDescriptionsAlgorithm } from "./functionDescriptions/runFunctionDescriptionsAlgorithm";
+import { runCodeLinting } from "./codeQuality/runCodeLinting";
+import { getComponentDiagram } from "./componentDiagram/runComponentDiagramAlgorithm";
+import { retrieveApiKey } from "./helpers/apiKey";
+import { LLMProvider, retrieveLLMProvider } from "./helpers/llm";
+import { Feature, FeatureStatus, NodeEdgeData } from "@shared/app.types";
 
-const handleShowMVCDiagram = async (
+export const handleShowMVCDiagram = async (
   context: vscode.ExtensionContext,
   panel: vscode.WebviewPanel | undefined,
   filePath: string
@@ -27,9 +31,10 @@ const handleShowMVCDiagram = async (
 
   // Tree-sitter Structure & LLM Descriptions
   let nodeEdgeData: NodeEdgeData = runCodeToDiagramAlgorithm(filePath);
+  let componentNodeEdgeData: NodeEdgeData | undefined;
 
   // Linting & security
-  const { lintedNodes, hasIssues } = await runCodeLinting(nodeEdgeData.nodes);
+  const { lintedNodes, hasIssues } = await runCodeLinting(nodeEdgeData.nodes, filePath);
   nodeEdgeData.nodes = lintedNodes;
   if (hasIssues) {
     vscode.window.showWarningMessage(
@@ -37,23 +42,15 @@ const handleShowMVCDiagram = async (
     );
   }
 
-  // C4 Level 3 diagram
-  const componentNodesEdges = await getComponentDiagram(nodeEdgeData);
-
   panel = setupWebviewPanel(context);
-  runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData).then(
-    (data) => {
-      nodeEdgeData.nodes = data;
-      sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
-    }
-  );
+
   const waitWebviewReady: Promise<void> = new Promise((resolve) => {
     panel.webview.onDidReceiveMessage(
       async (message: WebviewCommandMessage) => {
         switch (message.command) {
           case Commands.READY:
             sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
-            sendAcceptCompNodeEdgeMessageToWebview(componentNodesEdges, panel);
+            sendAcceptCompNodeEdgeMessageToWebview(componentNodeEdgeData, panel);
             resolve();
             break;
           case Commands.JUMP_TO_LINE:
@@ -70,8 +67,64 @@ const handleShowMVCDiagram = async (
   });
 
   await waitWebviewReady;
-  sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
-  sendAcceptCompNodeEdgeMessageToWebview(componentNodesEdges, panel);
+
+  // LLM features, run as background tasks
+  const apiKey = retrieveApiKey();
+  if (!apiKey) {
+    // Node Description & Component Diagram will not be ran without API key
+    vscode.window.showInformationMessage(
+      "The component diagram & node descriptions are disabled (No API key provided)"
+    );
+    return Promise.resolve(panel);
+  }
+
+  const llmProvider: LLMProvider = retrieveLLMProvider(apiKey);
+  const getComponentDiagramAsync = async () => {
+    console.log("running component diag");
+    sendUpdateFeatureStatusMessageToWebview({
+      feature: Feature.COMPONENT_DIAGRAM,
+      status: FeatureStatus.ENABLED_LOADING,
+    }, panel);
+
+    const data = await getComponentDiagram(nodeEdgeData, llmProvider);
+    componentNodeEdgeData = data;
+
+    sendAcceptCompNodeEdgeMessageToWebview(componentNodeEdgeData, panel);
+    sendUpdateFeatureStatusMessageToWebview({
+      feature: Feature.COMPONENT_DIAGRAM,
+      status: FeatureStatus.ENABLED_DONE,
+    }, panel);
+    console.log("component diag done & sent");
+  }
+
+  const getNodeDescriptionsAsync = async () => {
+    console.log("running node desc");
+    sendUpdateFeatureStatusMessageToWebview({
+      feature: Feature.NODE_DESCRIPTIONS,
+      status: FeatureStatus.ENABLED_LOADING,
+    }, panel);
+
+    const data = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData, llmProvider);
+    nodeEdgeData.nodes = data;
+
+    sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
+    sendUpdateFeatureStatusMessageToWebview({
+      feature: Feature.NODE_DESCRIPTIONS,
+      status: FeatureStatus.ENABLED_DONE,
+    }, panel);
+    console.log("node desc done & sent");
+  }
+
+  const getFunctionDescriptionsAsync = async () => {
+    console.log("running function desc")
+    const data = await runFunctionDescriptionsAlgorithm(nodeEdgeData, llmProvider);
+    console.log(data);
+    console.log("done function desc")
+  }
+  getComponentDiagramAsync();
+  getNodeDescriptionsAsync();
+  // getFunctionDescriptionsAsync();
+
   return Promise.resolve(panel);
 };
 
@@ -122,5 +175,3 @@ const getWebViewContent = (
     </html>
   `;
 };
-
-export default handleShowMVCDiagram;

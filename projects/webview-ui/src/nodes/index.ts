@@ -3,8 +3,7 @@ import { NodeTypes } from "@xyflow/react";
 import { TextUpdaterNode } from "./components/TextUpdaterNode";
 import { EntityNode } from "./components/EntityNode";
 import { EntityCompNode } from "./components/EntityCompNode";
-import { AppNode } from "@shared/node.types";
-import { CompNode } from "@shared/compNode.types";
+import { AppNode, NodeType } from "@shared/node.types";
 
 export const initialNodes: AppNode[] = [
   {
@@ -25,13 +24,13 @@ export const initialNodes: AppNode[] = [
           name: "Planter",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "attribute",
+          type: NodeType.ATTRIBUTE,
         },
         {
           name: "Harvester",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "attribute",
+          type: NodeType.ATTRIBUTE,
         },
       ],
       security: {
@@ -97,19 +96,19 @@ export const initialNodes: AppNode[] = [
           name: "plantPotato",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "function",
+          type: NodeType.FUNCTION,
         },
         {
           name: "plantCorn",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "function",
+          type: NodeType.FUNCTION,
         },
         {
           name: "plantCarrot",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "function",
+          type: NodeType.FUNCTION,
         },
       ],
       security: {
@@ -136,19 +135,19 @@ export const initialNodes: AppNode[] = [
           name: "harvestPotato",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "function",
+          type: NodeType.FUNCTION,
         },
         {
           name: "harvestCorn",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "function",
+          type: NodeType.FUNCTION,
         },
         {
           name: "harvestCarrot",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "function",
+          type: NodeType.FUNCTION,
         },
       ],
       security: {
@@ -173,7 +172,7 @@ export const initialNodes: AppNode[] = [
           name: "sellProduct",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "function",
+          type: NodeType.FUNCTION,
         },
       ],
       security: {
@@ -198,13 +197,13 @@ export const initialNodes: AppNode[] = [
           name: "consumePotato",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "function",
+          type: NodeType.FUNCTION,
         },
         {
           name: "consumeCorn",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "function",
+          type: NodeType.FUNCTION,
         },
       ],
       security: {
@@ -229,19 +228,19 @@ export const initialNodes: AppNode[] = [
           name: "givePotato",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "function",
+          type: NodeType.FUNCTION,
         },
         {
           name: "giveCorn",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "function",
+          type: NodeType.FUNCTION,
         },
         {
           name: "cookAndGiveDish",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "function",
+          type: NodeType.FUNCTION,
         },
       ],
       security: {
@@ -266,13 +265,13 @@ export const initialNodes: AppNode[] = [
           name: "eatPotato",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "function",
+          type: NodeType.FUNCTION,
         },
         {
           name: "eatCorn",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "function",
+          type: NodeType.FUNCTION,
         },
       ],
     },
@@ -292,13 +291,13 @@ export const initialNodes: AppNode[] = [
           name: "yeetPotato",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "function",
+          type: NodeType.FUNCTION,
         },
         {
           name: "yeetCorn",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "function",
+          type: NodeType.FUNCTION,
         },
       ],
     },
@@ -318,23 +317,23 @@ export const initialNodes: AppNode[] = [
           name: "structPotato",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "function",
+          type: NodeType.FUNCTION,
         },
         {
           name: "structCorn",
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
-          type: "function",
+          type: NodeType.FUNCTION,
         },
       ],
     },
   },
 ];
 
-export const initialCompNodes: CompNode[] = [
+export const initialCompNodes: AppNode[] = [
   {
-    id: "0",
-    type: "comp",
+    id: '0',
+    type: "componentEntity",
     position: { x: 0, y: 0 },
     data: {
       name: "Article Component",
@@ -351,8 +350,8 @@ export const initialCompNodes: CompNode[] = [
     },
   },
   {
-    id: "1",
-    type: "comp",
+    id: '1',
+    type: "componentEntity",
     position: { x: 0, y: 0 },
     data: {
       name: "Profile Component",
@@ -366,8 +365,8 @@ export const initialCompNodes: CompNode[] = [
     },
   },
   {
-    id: "2",
-    type: "comp",
+    id: '2',
+    type: "componentEntity",
     position: { x: 0, y: 0 },
     data: {
       name: "Tag Component",
@@ -381,8 +380,8 @@ export const initialCompNodes: CompNode[] = [
     },
   },
   {
-    id: "3",
-    type: "comp",
+    id: '3',
+    type: "componentEntity",
     position: { x: 0, y: 0 },
     data: {
       name: "User Component",
@@ -400,8 +399,8 @@ export const initialCompNodes: CompNode[] = [
     },
   },
   {
-    id: "4",
-    type: "comp",
+    id: '4',
+    type: "componentEntity",
     position: { x: 0, y: 0 },
     data: {
       name: "Shared Component",
@@ -413,8 +412,8 @@ export const initialCompNodes: CompNode[] = [
     },
   },
   {
-    id: "5",
-    type: "comp",
+    id: '5',
+    type: "componentEntity",
     position: { x: 0, y: 0 },
     data: {
       name: "Application Component",
@@ -429,7 +428,7 @@ export const initialCompNodes: CompNode[] = [
 ];
 
 export const nodeTypes = {
-  entity: EntityNode,
-  textUpdater: TextUpdaterNode,
-  comp: EntityCompNode,
+  'entity': EntityNode,
+  'textUpdater': TextUpdaterNode,
+  'componentEntity': EntityCompNode,
 } satisfies NodeTypes;

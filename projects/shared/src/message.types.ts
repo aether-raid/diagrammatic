@@ -1,16 +1,20 @@
-import { CompNode } from "./compNode.types";
-import { CompEdge } from "./compEdge.types";
+import { Feature, FeatureStatus } from "./app.types";
 import { AppEdge } from "./edge.types";
 import { AppNode } from "./node.types";
 
 
 export enum Commands {
+  ACCEPT_COMPONENT_DIAGRAM_DATA = 'accept-component-diagram-data',
   ACCEPT_NODE_EDGE_DATA = 'accept-node-edge-data',
   JUMP_TO_LINE = 'jump-to-line',
   READY = 'ready',
-  COMPONENT_DIAGRAM = 'accept-component-diagram-data',
+  UPDATE_FEATURE_STATUS = 'update-feature-status',
 }
 
+export interface AcceptComponentDiagramDataPayload {
+  nodes: AppNode[];
+  edges: AppEdge[];
+}
 export interface AcceptNodeEdgeDataPayload {
   nodes: AppNode[];
   edges: AppEdge[];
@@ -23,12 +27,12 @@ export interface JumpToLinePayload {
 
 export interface ReadyPayload {};
 
-export interface AcceptCompNodeEdgeDataPayload {
-  compNodes: CompNode[];
-  compEdges: CompEdge[];
+export interface UpdateFeatureStatusPayload {
+  feature: Feature;
+  status: FeatureStatus;
 }
 
 export interface WebviewCommandMessage {
   command: Commands;
-  message: AcceptNodeEdgeDataPayload | JumpToLinePayload | ReadyPayload | AcceptCompNodeEdgeDataPayload;
+  message: AcceptNodeEdgeDataPayload | JumpToLinePayload | ReadyPayload | AcceptComponentDiagramDataPayload;
 }
