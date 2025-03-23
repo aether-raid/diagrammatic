@@ -1,7 +1,7 @@
 // *********************************
 // Layout using Dagre.js
 // *********************************
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import {
     Background,
@@ -9,7 +9,6 @@ import {
     MiniMap,
     Panel,
     ReactFlow,
-    ReactFlowInstance,
     ReactFlowProvider,
     useEdgesState,
     useNodesState,
@@ -31,16 +30,15 @@ import {
     getOutgoingEdgesFromEntityRow,
 } from "../../helpers/diagramBFS";
 import { getLayoutedElements } from "../../helpers/layoutHandlerDagre";
-import { retainNodePositions } from "../../helpers/nodePositionHandler";
 import { useFeatureStatusContext } from "../../contexts/FeatureStatusContext";
 import { useDiagramContext } from "../../contexts/DiagramContext";
+import { ViewChangeHandler } from "../../components/ViewChangeHandler";
 
 const LayoutFlow = () => {
     // General ReactFlow states
-    const { fitView, getNode, getViewport, setCenter, setViewport } = useReactFlow<AppNode, AppEdge>();
+    const { fitView, getNode, getViewport, setCenter } = useReactFlow<AppNode, AppEdge>();
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-    const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance<AppNode, AppEdge>>();
 
     // Hover Highlighting states
     const [highlightedNodes, setHighlightedNodes] = useState<string[]>([]);
@@ -56,9 +54,6 @@ const LayoutFlow = () => {
     const [showNodeInfoPanel, setShowNodeInfoPanel] = useState<boolean>(false);
     const [panelNode, setPanelNode] = useState<EntityNode>();
 
-    // Stable Reference to node variable
-    const nodesRef = useRef(nodes);
-
     // Global contexts
     const featureStatusCtx = useFeatureStatusContext();
     const componentDiagramStatus = featureStatusCtx?.getFeatureStatus(Feature.COMPONENT_DIAGRAM);
@@ -68,26 +63,6 @@ const LayoutFlow = () => {
     // General constants
     const MIN_ZOOM = 0.1;
     const MAX_ZOOM = 2;
-
-    useEffect(() => {
-        nodesRef.current = nodes;
-    }, [nodes]);
-
-    useEffect(() => {
-        // TODO: Properly refactor this if have time
-        // > useReactFlow() should be called inside the ReactFlow component, not outside like this
-        if (!diagramCtx?.codeView.graphData) {
-            console.error("Unable to retrieve data from context!");
-            return;
-        }
-
-        setNodes(retainNodePositions(diagramCtx.codeView.graphData.nodes, nodesRef.current));
-        setEdges(diagramCtx.codeView.graphData.edges);
-
-        if (diagramCtx.codeView.viewport) {
-            setViewport(diagramCtx.codeView.viewport);
-        }
-    }, [diagramCtx?.codeView, reactFlowInstance]);
 
     const handleBeforeNavigate = () => {
         if (!diagramCtx) { return }
@@ -183,7 +158,6 @@ const LayoutFlow = () => {
                 nodeTypes={nodeTypes}
                 nodes={nodes.map((n) => prepareNode(n))}
                 edges={edges.map((e) => prepareEdge(e))}
-                onInit={setReactFlowInstance}
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
                 onNodeClick={(_event, node) => {
@@ -192,11 +166,11 @@ const LayoutFlow = () => {
                         setShowNodeInfoPanel(true);
                     }
                 }}
-                fitView
                 colorMode="dark"
                 minZoom={MIN_ZOOM}
                 maxZoom={MAX_ZOOM}
             >
+                <ViewChangeHandler />
                 <Panel position="top-center">
                     <button onClick={() => onLayout("TB")}>
                         Vertical Layout
