@@ -9,16 +9,19 @@ import {
     UpdateFeatureStatusPayload,
     WebviewCommandMessage
 } from "@shared/message.types";
+
 import { useDiagramContext } from "./contexts/DiagramContext";
 import { useFeatureStatusContext } from "./contexts/FeatureStatusContext";
 
+import { ViewType } from "./App.types";
 import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
 import CodeView from "./views/codeView/CodeView"
 import ComponentView from "./views/componentView/ComponentView"
 
 
 export const App = () => {
-    const diagramCtx = useDiagramContext();
+    const codeDiagramCtx = useDiagramContext(ViewType.CODE_VIEW);
+    const componentDiagramCtx = useDiagramContext(ViewType.COMPONENT_VIEW);
     const featureStatusCtx = useFeatureStatusContext();
 
     useEffect(() => {
@@ -29,7 +32,7 @@ export const App = () => {
             switch (command) {
                 case Commands.ACCEPT_COMPONENT_DIAGRAM_DATA: {
                     const msg = message as AcceptComponentDiagramDataPayload;
-                    diagramCtx?.componentView.setGraphData({
+                    componentDiagramCtx?.setGraphData({
                         nodes: msg.nodes,
                         edges: msg.edges,
                     })
@@ -37,7 +40,7 @@ export const App = () => {
                 }
                 case Commands.ACCEPT_NODE_EDGE_DATA: {
                     const msg = message as AcceptNodeEdgeDataPayload;
-                    diagramCtx?.codeView.setGraphData({
+                    codeDiagramCtx?.setGraphData({
                         nodes: msg.nodes,
                         edges: msg.edges,
                     });

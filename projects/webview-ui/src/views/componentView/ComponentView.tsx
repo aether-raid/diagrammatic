@@ -20,6 +20,7 @@ import { useDiagramContext } from "../../contexts/DiagramContext";
 
 import { initialCompNodes, nodeTypes } from "../../nodes";
 import { initialCompEdges } from "../../edges";
+import { ViewType } from "../../App.types";
 import DownloadButton from "../../components/DownloadButton";
 import { NavigationButton } from "../../components/NavigationButton";
 import { getLayoutedElements } from "../../helpers/layoutHandlerDagre";
@@ -39,7 +40,7 @@ const LayoutFlow = () => {
     const nodesRef = useRef(nodes);
 
     // Global context, use to retain states when changing views
-    const diagramCtx = useDiagramContext();
+    const diagramCtx = useDiagramContext(ViewType.COMPONENT_VIEW);
 
     // General constants
     const MIN_ZOOM = 0.1;
@@ -73,25 +74,25 @@ const LayoutFlow = () => {
     useEffect(() => {
         // TODO: Properly refactor this if have time
         // > useReactFlow() should be called inside the ReactFlow component, not outside like this
-        if (!diagramCtx?.componentView.graphData) {
+        if (!diagramCtx?.graphData) {
             console.error("Unable to retrieve data from context!");
             return;
         }
-        setNodes(retainNodePositions(diagramCtx.componentView.graphData.nodes, nodesRef.current));
-        setEdges(diagramCtx.componentView.graphData.edges);
+        setNodes(retainNodePositions(diagramCtx.graphData.nodes, nodesRef.current));
+        setEdges(diagramCtx.graphData.edges);
 
-        if (diagramCtx.componentView.viewport) {
-            setViewport(diagramCtx.componentView.viewport);
+        if (diagramCtx.viewport) {
+            setViewport(diagramCtx.viewport);
         }
-    }, [diagramCtx?.componentView, reactFlowInstance]);
+    }, [diagramCtx, reactFlowInstance]);
 
     const handleBeforeNavigate = () => {
         if (!diagramCtx) { return; }
-        diagramCtx.componentView.setGraphData({
+        diagramCtx.setGraphData({
             nodes: nodes,
             edges: edges,
         });
-        diagramCtx.componentView.setViewport(getViewport());
+        diagramCtx.setViewport(getViewport());
     }
 
     const onLayout = useCallback(

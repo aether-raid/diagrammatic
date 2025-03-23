@@ -3,6 +3,7 @@ import { Viewport } from "@xyflow/react";
 
 import { NodeEdgeData } from "@shared/app.types";
 
+import { ViewType } from "../App.types";
 
 interface DiagramContextProps {
     codeView: {
@@ -53,6 +54,12 @@ export const DiagramProvider = ({ children }: DiagramProviderProps) => {
     );
 }
 
-export const useDiagramContext = () => {
-    return useContext(DiagramContext);
+export const useDiagramContext = (view: ViewType) => {
+    const ctx = useContext(DiagramContext);
+    if (!ctx) {
+        console.error("Unable to retrieve context!");
+        return;
+    }
+
+    return (view === ViewType.CODE_VIEW) ? ctx.codeView : ctx.componentView;
 }

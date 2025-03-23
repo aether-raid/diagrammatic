@@ -21,6 +21,7 @@ import { AppEdge } from "@shared/edge.types";
 
 import { initialNodes, nodeTypes } from "../../nodes";
 import { initialEdges } from "../../edges";
+import { ViewType } from "../../App.types";
 import DownloadButton from "../../components/DownloadButton";
 import { NavigationButton } from "../../components/NavigationButton";
 import { NodeInfoPanel } from "../../components/NodeInfoPanel/NodeInfoPanel";
@@ -58,7 +59,7 @@ const LayoutFlow = () => {
     const featureStatusCtx = useFeatureStatusContext();
     const componentDiagramStatus = featureStatusCtx?.getFeatureStatus(Feature.COMPONENT_DIAGRAM);
 
-    const diagramCtx = useDiagramContext();
+    const diagramCtx = useDiagramContext(ViewType.CODE_VIEW);
 
     // General constants
     const MIN_ZOOM = 0.1;
@@ -66,11 +67,11 @@ const LayoutFlow = () => {
 
     const handleBeforeNavigate = () => {
         if (!diagramCtx) { return }
-        diagramCtx.codeView.setGraphData({
+        diagramCtx.setGraphData({
             nodes: nodes,
             edges: edges,
         });
-        diagramCtx.codeView.setViewport(getViewport());
+        diagramCtx.setViewport(getViewport());
     }
 
     const renderComponentButtonText = () => {
