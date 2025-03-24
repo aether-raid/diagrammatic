@@ -85,6 +85,7 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
                 startPosition: node.startPosition,
                 endPosition: node.endPosition,
                 type: node.nodeType,
+                functionCalls: node.functionCalls
               },
             ]
           : []
@@ -113,6 +114,7 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
           startPosition: node.startPosition,
           endPosition: node.endPosition,
           type: node.nodeType,
+          functionCalls: node.functionCalls,
         },
       ]);
       if (subgroup.token) {
