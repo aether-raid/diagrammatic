@@ -3,15 +3,17 @@
   "publisher": "diagrammatic",
   "displayName": "Diagrammatic",
   "icon": "assets/diagrammatic-logo.png",
+  "marketplace": {
+    "readme": "VSC-README.md"
+  },
+  "categories": ["Formatters", "Linters", "Snippets"],
+  "keywords": ["diagrams", "visualization", "linting", "code-analysis"],
   "license": "MIT",
   "description": "Beautiful and concise MVC diagrams within seconds",
   "version": "0.0.6",
   "engines": {
     "vscode": "^1.96.0"
   },
-  "categories": [
-    "Other"
-  ],
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
