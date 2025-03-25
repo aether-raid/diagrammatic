@@ -2,6 +2,7 @@
   "name": "diagrammatic",
   "publisher": "diagrammatic",
   "displayName": "Diagrammatic",
+  "icon": "assets/diagrammatic-logo.png",
   "license": "MIT",
   "description": "Beautiful and concise MVC diagrams within seconds",
   "version": "0.0.6",
