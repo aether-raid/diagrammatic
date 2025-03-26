@@ -121,7 +121,6 @@ const LayoutFlow = () => {
             onEdgeMouseLeave={onEdgeMouseLeave}
             onNodeMouseEnter={(event, node) => onNodeMouseEnter(event, node.id)}
             onNodeMouseLeave={onNodeMouseLeave}
-            fitView
             colorMode="dark"
             minZoom={MIN_ZOOM}
             maxZoom={MAX_ZOOM}
