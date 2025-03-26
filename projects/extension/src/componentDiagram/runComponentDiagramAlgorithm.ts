@@ -46,7 +46,7 @@ export const getComponentDiagram = async (
     nodes: [],
     edges: [],
   };
-  const prompt = `Group the file nodes into functional components for C4 Level 3 Component diagram. 
+  const prompt = `Group the file nodes into abstract functional components for C4 Level 3 Component diagram.
     Give unique numerical IDs to each component nodes.
     For example:
     {
@@ -76,7 +76,6 @@ export const getComponentDiagram = async (
     nodes: ${JSON.stringify(nodes)}
     edges: ${JSON.stringify(edges)}`;
 
-  // console.log("Prompt:", prompt);
   try {
     const systemPrompt = "You are an AI that provides structured JSON responses. In the JSON response, only create relationships between components where the source and target components are NOT the same."
     const userPrompt = prompt
@@ -88,7 +87,7 @@ export const getComponentDiagram = async (
     componentNodesEdges.nodes = transformedComponents;
     componentNodesEdges.edges = transformedEdges;
   } catch (error) {
-     // TODO: Throw error out to extension for handling
+    // TODO: Throw error out to extension for handling
     console.error("Error fetching component diagram:", error);
   }
 
