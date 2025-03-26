@@ -10,6 +10,7 @@ import { EntityNode } from '@shared/node.types';
 
 import "./NodeInfoPanel.css";
 import { LintingTab } from "./tabs/LintingTab";
+import { GeneratedDescriptionsTab } from "./tabs/GeneratedDescriptionsTab";
 
 interface NodeInfoPanelProps {
     show: boolean;
@@ -74,7 +75,9 @@ export const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => 
                             </Tab>
                             <Tab title="Generated Descriptions" eventKey="gen-desc">
                                 <div className="d-flex flex-column gap-4">
-                                    WIP - not implemented yet.
+                                    <GeneratedDescriptionsTab
+                                        items={entity.data.items}
+                                    />
                                 </div>
                             </Tab>
                         </Tabs>

@@ -9,7 +9,7 @@ export enum NodeType {
   BODY = "body",
 }
 
-interface EntityItem {
+export interface EntityItem {
   name: string;
   startPosition: Point;
   endPosition: Point;
