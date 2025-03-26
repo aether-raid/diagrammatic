@@ -10,15 +10,23 @@ import { GLOBAL } from "./language.js";
 export const VariableType = {
   OBJECT_INSTANTIATION: "object_instantiation",
   CALL_EXPRESSION: "call_expression",
-  RELATIVE_IMPORT: "relative_import",
+  NAMED_IMPORT: "named_import",
+  NAMESPACE_IMPORT: "namespace_import",
   INJECTION: "injection",
 };
 
 export class Variable {
-  constructor({ token, pointsTo, lineNumber, variableType }) {
+  constructor({
+    token,
+    pointsTo,
+    startPosition = {},
+    endPosition = {},
+    variableType,
+  }) {
     this.token = token;
     this.pointsTo = pointsTo;
-    this.lineNumber = lineNumber;
+    this.startPosition = startPosition;
+    this.endPosition = endPosition;
     this.variableType = variableType;
   }
 
@@ -35,10 +43,18 @@ export class Variable {
  *  Or a "naked" call like do_something()
  */
 export class Call {
-  constructor({ token, lineNumber = null, ownerToken = null }) {
+  constructor({
+    token,
+    startPosition = {},
+    endPosition = {},
+    ownerToken = null,
+    text = "",
+  }) {
     this.token = token;
-    this.lineNumber = lineNumber;
+    this.startPosition = startPosition;
+    this.endPosition = endPosition;
     this.ownerToken = ownerToken;
+    this.text = text;
   }
 
   /**
@@ -58,7 +74,7 @@ export class Call {
   }
 
   toString() {
-    return `Call: token=${this.token}, ownerToken=${this.ownerToken}`;
+    return `Call: token=${this.token}, ownerToken=${this.ownerToken}, text=${this.text}`;
   }
 }
 
@@ -75,16 +91,20 @@ export class Node {
     token,
     calls,
     variables,
-    lineNumber = null,
+    startPosition = {},
+    endPosition = {},
     parent,
     nodeType,
+    functionCalls = [],
   }) {
     this.token = token;
     this.calls = calls;
     this.variables = variables;
-    this.lineNumber = lineNumber;
+    this.startPosition = startPosition;
+    this.endPosition = endPosition;
     this.parent = parent;
     this.nodeType = nodeType;
+    this.functionCalls = functionCalls;
   }
 
   /**
@@ -96,14 +116,14 @@ export class Node {
       if (typeof variableA.pointsTo === "string") {
         for (const subgroup of allSubgroups) {
           /**
-           * Resolve variables from relative import statements
+           * Resolve variables from named import statements
            * e.g. import { ArticleService } from './article.service';
            * Variable(token=ArticleService, pointsTo=/User/samples/nestjs-real-example-app/src/article/ArticleService.ts)
            * Group(token=ArticleService)
            * pointsTo should resolve from a filepath to the actual class Group
            */
           if (
-            variableA.variableType === VariableType.RELATIVE_IMPORT &&
+            variableA.variableType === VariableType.NAMED_IMPORT &&
             subgroup.groupType === GroupType.CLASS &&
             variableA.pointsTo === subgroup.filePath
           ) {
@@ -112,13 +132,29 @@ export class Node {
           }
 
           /**
-           * Resolve variables from relative import statements
+           * Resolve variables from namespace import statements
+           * e.g. import * as utils from '../lib/utils'
+           * Variable(token=utils, pointsTo=/User/samples/xxx/lib/utils.ts)
+           * Group(token=utils.ts)
+           * pointsTo should resolve from a filepath to the actual file Group
+           */
+          if (
+            variableA.variableType === VariableType.NAMESPACE_IMPORT &&
+            subgroup.groupType === GroupType.FILE &&
+            variableA.pointsTo === subgroup.filePath
+          ) {
+            variableA.pointsTo = subgroup;
+            break;
+          }
+
+          /**
+           * Resolve variables from named import statements
            * e.g. import { CreateArticleDto, CreateCommentDto } from './dto';
            * Variable(token=CreateArticleDto, pointsTo=/User/samples/nestjs-real-example-app/src/article/dto)
            * pointsTo should resolve from a filepath to the actual class Group
            */
           if (
-            variableA.variableType === VariableType.RELATIVE_IMPORT &&
+            variableA.variableType === VariableType.NAMED_IMPORT &&
             variableA.pointsTo &&
             path.isAbsolute(variableA.pointsTo) &&
             fs.existsSync(variableA.pointsTo) &&
@@ -134,8 +170,25 @@ export class Node {
             }
           }
 
+          /**
+           * resolve NestJS / Java constructor injection from the variable name to class
+           * e.g. variable: articleService => class ArticleService
+           * findLinkForCall will resolve articleService.findAll to ArticleService.findAll
+           */
           if (
             variableA.variableType === VariableType.INJECTION &&
+            variableA.pointsTo === subgroup.token
+          ) {
+            variableA.pointsTo = subgroup;
+            break;
+          }
+
+          /**
+           * resolve object instantiations in C++
+           * e.g. Variable(token=layer, pointsTo=AbsValLayer, type='object_instantiation')
+           */
+          if (
+            variableA.variableType === VariableType.OBJECT_INSTANTIATION &&
             variableA.pointsTo === subgroup.token
           ) {
             variableA.pointsTo = subgroup;
@@ -160,7 +213,7 @@ export class Node {
         ) {
           for (const variable of globalNode.variables) {
             if (
-              variable.variableType === VariableType.RELATIVE_IMPORT &&
+              variable.variableType === VariableType.NAMED_IMPORT &&
               variableA.pointsTo === variable.token
             ) {
               variableA.pointsTo = variable.pointsTo;
@@ -170,7 +223,10 @@ export class Node {
         }
 
         for (const node of allNodes) {
-          if (variableA.pointsTo === node.token) {
+          if (
+            variableA.variableType !== VariableType.OBJECT_INSTANTIATION &&
+            variableA.pointsTo === node.token
+          ) {
             variableA.pointsTo = node;
             break;
           }
@@ -213,6 +269,9 @@ export class Node {
     const variablesStr = this.variables
       .map((variable) => variable.toString())
       .join(",\n\t");
+    const functionCallsStr = this.functionCalls
+      .map((fnCall) => fnCall.toString())
+      .join(",\n\t");
 
     return `Node(
       token=${this.token}, 
@@ -222,6 +281,9 @@ export class Node {
       variables=[
         ${variablesStr}
       ], 
+      functionCalls=[
+        ${functionCallsStr}
+      ],
       parent=${this.parent?.token}
     )`;
   }
@@ -243,7 +305,8 @@ export class Group {
   constructor({
     groupType,
     token,
-    lineNumber = null,
+    startPosition = {},
+    endPosition = {},
     parent = null,
     filePath,
   }) {
@@ -251,7 +314,8 @@ export class Group {
     this.subgroups = [];
     this.groupType = groupType;
     this.token = token;
-    this.lineNumber = lineNumber;
+    this.startPosition = startPosition;
+    this.endPosition = endPosition;
     this.parent = parent;
     this.rootNode = null;
     this.filePath = filePath;

@@ -13,11 +13,11 @@ import {
   Edge,
   GroupType,
   Node,
-  NodeType,
   VariableType,
 } from "./model";
+import { NodeType } from "@shared/node.types";
 import { Language, GLOBAL } from "./language";
-import { LanguageRules } from "./rules";
+import { getNameConfig, LanguageRules, NodeConfig } from "./rules";
 
 /**
  * Determines the appropriate language for a file
@@ -38,6 +38,9 @@ function getLanguageForFile(filePath: string): any | null {
     return Java;
   }
   if (filePath.endsWith(".cpp")) {
+    return Cpp;
+  }
+  if (filePath.endsWith(".hpp")) {
     return Cpp;
   }
   return null;
@@ -195,14 +198,21 @@ export function processCallExpression(node: SyntaxNode): Call | null {
 
   switch (func.type) {
     case "identifier":
-      return new Call({ token: func.text, lineNumber: getLineNumber(node) });
+      return new Call({
+        token: func.text,
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
+        text: node.text,
+      });
     case "member_expression":
       const { token, pointsTo } = processMemberExpression(func);
       if (token && pointsTo) {
         return new Call({
           token,
           ownerToken: pointsTo,
-          lineNumber: getLineNumber(node),
+          startPosition: node.startPosition,
+          endPosition: node.endPosition,
+          text: node.text,
         });
       }
 
@@ -214,7 +224,9 @@ export function processCallExpression(node: SyntaxNode): Call | null {
         return new Call({
           token: fieldIdentifier.text,
           ownerToken: identifier.text,
-          lineNumber: getLineNumber(node),
+          startPosition: node.startPosition,
+          endPosition: node.endPosition,
+          text: node.text,
         });
       }
   }
@@ -241,7 +253,12 @@ export function processMethodInvocation(node: SyntaxNode): Call | null {
   }
   // getVenueById(id)
   if (!objectNode) {
-    return new Call({ token: nameNode.text, lineNumber: getLineNumber(node) });
+    return new Call({
+      token: nameNode.text,
+      startPosition: node.startPosition,
+      endPosition: node.endPosition,
+      text: node.text,
+    });
   }
 
   switch (objectNode.type) {
@@ -253,7 +270,9 @@ export function processMethodInvocation(node: SyntaxNode): Call | null {
       return new Call({
         token: nameNode.text,
         ownerToken: objectNode.text,
-        lineNumber: getLineNumber(node),
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
+        text: node.text,
       });
     default:
       return null;
@@ -270,7 +289,7 @@ export function processMethodInvocation(node: SyntaxNode): Call | null {
  * @param {Array} body - List of TreeSitter nodes
  * @returns {Array<Call>} - List of Call objects.
  */
-export function makeCalls(body: SyntaxNode[]) {
+export function makeCalls(body: SyntaxNode[], getNameRules: getNameConfig) {
   const calls = [];
 
   for (const node of walk(body)) {
@@ -281,10 +300,39 @@ export function makeCalls(body: SyntaxNode[]) {
           calls.push(call);
         }
         break;
+      // equivalent of call_expressions in C++
       case "method_invocation":
         const mCall = processMethodInvocation(node);
         if (mCall) {
           calls.push(mCall);
+        }
+        break;
+      // JSX opening elements e.g. <MyComponent>
+      case "jsx_opening_element":
+        const token = getName(node, getNameRules);
+        if (token) {
+          calls.push(
+            new Call({
+              token,
+              startPosition: node.startPosition,
+              endPosition: node.endPosition,
+              text: node.text,
+            })
+          );
+        }
+        break;
+      // JSX self-closing elements e.g. <MyComponent />
+      case "jsx_self_closing_element":
+        const token2 = getName(node, getNameRules);
+        if (token2) {
+          calls.push(
+            new Call({
+              token: token2,
+              startPosition: node.startPosition,
+              endPosition: node.endPosition,
+              text: node.text,
+            })
+          );
         }
         break;
     }
@@ -318,7 +366,8 @@ export function processVariableDeclaration(node: SyntaxNode): Variable | null {
       return new Variable({
         token: name.text,
         pointsTo: identifierNode.text,
-        lineNumber: getLineNumber(node),
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
         variableType: VariableType.OBJECT_INSTANTIATION,
       });
     case "call_expression":
@@ -326,7 +375,8 @@ export function processVariableDeclaration(node: SyntaxNode): Variable | null {
       return new Variable({
         token: name.text,
         pointsTo: call,
-        lineNumber: getLineNumber(node),
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
         variableType: VariableType.CALL_EXPRESSION,
       });
     case "await_expression":
@@ -338,7 +388,8 @@ export function processVariableDeclaration(node: SyntaxNode): Variable | null {
       return new Variable({
         token: name.text,
         pointsTo: awaitCall,
-        lineNumber: getLineNumber(node),
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
         variableType: VariableType.CALL_EXPRESSION,
       });
     case "member_expression":
@@ -347,7 +398,8 @@ export function processVariableDeclaration(node: SyntaxNode): Variable | null {
         return new Variable({
           token,
           pointsTo,
-          lineNumber: getLineNumber(node),
+          startPosition: node.startPosition,
+          endPosition: node.endPosition,
           variableType: VariableType.CALL_EXPRESSION,
         });
       }
@@ -356,15 +408,37 @@ export function processVariableDeclaration(node: SyntaxNode): Variable | null {
   return null;
 }
 
-function makeLocalVariablesDeclaration(node: SyntaxNode) {
+function makeLocalVariablesDeclaration(
+  node: SyntaxNode,
+  languageRules: LanguageRules
+) {
   const typeIdentifier = getFirstChildOfType(node, "type_identifier");
   const identifier = getFirstChildOfType(node, "identifier");
   if (typeIdentifier && identifier) {
     return new Variable({
       token: identifier.text,
       pointsTo: typeIdentifier.text,
-      lineNumber: getLineNumber(node),
+      startPosition: node.startPosition,
+      endPosition: node.endPosition,
       variableType: VariableType.CALL_EXPRESSION,
+    });
+  }
+
+  const templateType = getFirstChildOfType(node, "template_type");
+  const functionDeclarator = getFirstChildOfType(node, "function_declarator");
+  if (!templateType || !functionDeclarator) {
+    return null;
+  }
+
+  const templateClassToken = getName(functionDeclarator, languageRules.getName);
+  const typeIdentifier2 = getFirstChildOfType(templateType, "type_identifier");
+  if (typeIdentifier2 && templateClassToken) {
+    return new Variable({
+      token: templateClassToken,
+      pointsTo: typeIdentifier2.text,
+      startPosition: node.startPosition,
+      endPosition: node.endPosition,
+      variableType: VariableType.OBJECT_INSTANTIATION,
     });
   }
   return null;
@@ -375,31 +449,22 @@ function isRelativeFilePath(path: string): boolean {
   return relativeFilePathRegex.test(path);
 }
 
-function createImportVariable(
-  importSpecifier: SyntaxNode,
-  pointsTo: string,
-  fileGroup: Group,
-  languageRules: LanguageRules
-) {
-  /**
-   * relative filepath
-   * e.g. "./article.service" => without extension
-   * e.g. "./dto" => folder
-   * (1) import classes from file
-   * (2) import functions from file
-   * (3) import from folder
-   * output variable.pointsTo: /User/fyp/samples/nestjs-realworld-example-app/src/article/article.service.ts
-   * output variable.pointsTo: User/fyp/samples/nestjs-realworld-example-app/src/article/dto
-   */
-  const name = getName(importSpecifier, languageRules.getName);
-  if (!name || !fileGroup.filePath) return;
+/**
+ * resolve relative filepath
+ * (1) pointsTo="./article.service" => without extension
+ * (2) pointsTo="./article.service.ts" => with extension
+ * (3) pointsTo="./dto" => folder
+ * output=/User/fyp/samples/nestjs-realworld-example-app/src/article/article.service.ts
+ * output=/User/fyp/samples/nestjs-realworld-example-app/src/article/dto
+ */
+function resolveRelativeFilePath(filePath: string, pointsTo: string): string | null {
+  let importedFilePath = path.resolve(path.dirname(filePath), pointsTo);
+  if (fs.existsSync(importedFilePath)) {
+    return importedFilePath;
+  }
 
-  let importedFilePath = path.resolve(
-    path.dirname(fileGroup.filePath),
-    pointsTo
-  );
-  const baseDirectory = path.dirname(importedFilePath);
   // if file has no extension, search directory for matching filename
+  const baseDirectory = path.dirname(importedFilePath);
   if (fs.existsSync(baseDirectory)) {
     const files = fs.readdirSync(baseDirectory);
     const fileNameWithoutExt = path.basename(pointsTo);
@@ -408,51 +473,180 @@ function createImportVariable(
       return baseFilePath.startsWith(fileNameWithoutExt);
     });
     if (matchedFile) {
-      importedFilePath = path.join(baseDirectory, matchedFile);
+      return path.join(baseDirectory, matchedFile);
+    }
+  }
+
+  return null;
+}
+
+/**
+ * import { SyntaxNode, Tree } from 'tree-sitter'
+ *   - import_statement (11:0 - 11:68)
+      - import (11:0 - 11:6)
+      - type (11:7 - 11:11)
+      - import_clause (11:12 - 11:53)
+        - named_imports (11:12 - 11:53)
+          - { (11:12 - 11:13)
+          - import_specifier (11:14 - 11:25)
+            - identifier (11:14 - 11:25)
+          - , (11:25 - 11:26)
+          - import_specifier (11:44 - 11:51)
+            - identifier (11:44 - 11:51)
+          - } (11:52 - 11:53)
+      - from (11:54 - 11:58)
+      - string (11:59 - 11:68)
+        - ' (11:59 - 11:60)
+        - string_fragment (11:60 - 11:67)
+        - ' (11:67 - 11:68)
+  */
+function makeLocalVariablesImportStatementNamedImport(
+  namedImports: SyntaxNode,
+  importedFilePath: string,
+  filePath: string,
+  languageRules: LanguageRules
+): Variable[] {
+  const importSpecifiers = getAllChildrenOfType(
+    namedImports,
+    "import_specifier"
+  );
+
+  const variables = [];
+  for (const importSpecifier of importSpecifiers) {
+    const name = getName(importSpecifier, languageRules.getName);
+    if (!name || !filePath) {
+      continue;
     }
 
-    return new Variable({
-      token: name,
-      pointsTo: importedFilePath,
-      lineNumber: getLineNumber(importSpecifier),
-      variableType: VariableType.RELATIVE_IMPORT,
-    });
+    variables.push(
+      new Variable({
+        token: name,
+        pointsTo: importedFilePath,
+        startPosition: importSpecifier.startPosition,
+        endPosition: importSpecifier.endPosition,
+        variableType: VariableType.NAMED_IMPORT,
+      })
+    );
   }
-  return null;
+  return variables;
+}
+
+/**
+ * import * as utils from '../lib/utils'
+ * - import_statement (12:0 - 12:32)
+    - import (12:0 - 12:6)
+    - import_clause (12:7 - 12:17)
+      - namespace_import (12:7 - 12:17)
+        - * (12:7 - 12:8)
+        - as (12:9 - 12:11)
+        - identifier (12:12 - 12:17)
+    - from (12:18 - 12:22)
+    - string (12:23 - 12:32)
+      - ' (12:23 - 12:24)
+      - string_fragment (12:24 - 12:31)
+      - ' (12:31 - 12:32)
+  */
+function makeLocalVariablesImportStatementNamespaceImport(
+  namespaceImport: SyntaxNode,
+  importedFilePath: string,
+  languageRules: LanguageRules
+): Variable[] {
+  const token = getName(namespaceImport, languageRules.getName);
+  if (!token) {
+    return [];
+  }
+
+  return [
+    new Variable({
+      token,
+      pointsTo: importedFilePath,
+      startPosition: namespaceImport.startPosition,
+      endPosition: namespaceImport.endPosition,
+      variableType: VariableType.NAMESPACE_IMPORT,
+    }),
+  ];
 }
 
 function makeLocalVariablesImportStatement(
   node: SyntaxNode,
   parent: Node | Group,
   languageRules: LanguageRules
-) {
+): Variable[] {
   const importClause = getFirstChildOfType(node, "import_clause");
-  const namedImports = getFirstChildOfType(importClause, "named_imports");
-  const importSpecifiers = getAllChildrenOfType(
-    namedImports,
-    "import_specifier"
-  );
   const string = getFirstChildOfType(node, "string");
   const stringFragment = getFirstChildOfType(string, "string_fragment");
   const fileGroup = parent.getFileGroup();
 
-  if (stringFragment && fileGroup) {
-    const pointsTo = stringFragment.text;
-    for (const importSpecifier of importSpecifiers) {
-      if (pointsTo && isRelativeFilePath(pointsTo)) {
-        const variable = createImportVariable(
-          importSpecifier,
-          pointsTo,
-          fileGroup,
-          languageRules
-        );
-        if (variable) {
-          return variable;
-        }
-      }
+  if (!importClause || !stringFragment || !fileGroup) {
+    return [];
+  }
+
+  const pointsTo = stringFragment.text;
+  if (!pointsTo || !isRelativeFilePath(pointsTo)) {
+    return [];
+  }
+
+  const importedFilePath = resolveRelativeFilePath(
+    fileGroup.filePath,
+    pointsTo
+  );
+
+  const firstChild = importClause.firstChild;
+  if (!firstChild || !importedFilePath) {
+    return [];
+  }
+
+  switch (firstChild.type) {
+    case "named_imports":
+      return makeLocalVariablesImportStatementNamedImport(
+        firstChild,
+        importedFilePath,
+        fileGroup.filePath,
+        languageRules
+      );
+    case "namespace_import":
+      return makeLocalVariablesImportStatementNamespaceImport(
+        firstChild,
+        importedFilePath,
+        languageRules
+      );
+  }
+  return [];
+}
+
+function makeLocalVariablesInclude(
+  node: SyntaxNode,
+  parent: Node | Group
+) {
+  const fileGroup = parent.getFileGroup();
+  const stringLiteral = getFirstChildOfType(node, "string_literal");
+  const stringContent = getFirstChildOfType(stringLiteral, "string_content");
+  const pointsTo = stringContent?.text;
+  if (!pointsTo || !fileGroup) {
+    return;
+  }
+  let importedFilePath = resolveRelativeFilePath(fileGroup.filePath, pointsTo);
+  const possibleIncludePaths = ["/include"];
+  for (const basePath of possibleIncludePaths) {
+    const fullPath = path.join(
+      path.dirname(fileGroup.filePath),
+      basePath,
+      pointsTo
+    );
+    if (fs.existsSync(fullPath)) {
+      importedFilePath = fullPath;
+      break;
     }
   }
-  return null;
+  if (importedFilePath) {
+    return new Variable({
+      token: path.basename(pointsTo),
+      pointsTo: importedFilePath,
+      startPosition: node.startPosition,
+      endPosition: node.endPosition,
+      variableType: VariableType.NAMESPACE_IMPORT,
+    });
+  }
 }
 
 export function makeLocalVariables(
@@ -473,22 +667,28 @@ export function makeLocalVariables(
       // A a;
       // a.callB();
       case "declaration":
-        const var2 = makeLocalVariablesDeclaration(node);
+        const var2 = makeLocalVariablesDeclaration(node, languageRules);
         if (var2) {
           variables.push(var2);
         }
         break;
       // import { SyntaxNode } from 'tree-sitter'
       case "import_statement":
-        const var3 = makeLocalVariablesImportStatement(
+        const varArray = makeLocalVariablesImportStatement(
           node,
           parent,
           languageRules
         );
-        if (var3) {
-          variables.push(var3);
+        if (varArray) {
+          variables.push(...varArray);
         }
         break;
+      // #include "caffe/layers/absval_layer.hpp" in C++
+      case "preproc_include":
+        const var4 = makeLocalVariablesInclude(node, parent)
+        if (var4) {
+          variables.push(var4)
+        }
     }
   }
 
@@ -499,6 +699,7 @@ function findLinkForCallThis(call: Call, nodeA: Node) {
   if (call.ownerToken === "this" && nodeA.parent instanceof Group) {
     for (const node of nodeA.parent.nodes) {
       if (node.token === call.token) {
+        node.functionCalls.push(call);
         return new Edge(nodeA, node);
       }
     }
@@ -508,6 +709,7 @@ function findLinkForCallThis(call: Call, nodeA: Node) {
 function findMethod(call: Call, nodeA: Node, classNode: Group) {
   for (const node of classNode.nodes) {
     if (node.token === call.token) {
+      node.functionCalls.push(call);
       return new Edge(nodeA, node);
     }
   }
@@ -540,11 +742,38 @@ function findLinkForCallClassInjection(call: Call, nodeA: Node) {
   }
 }
 
+function findLinkForCallNamespaceImport(
+  call: Call,
+  nodeA: Node,
+  globalNode: Node
+) {
+  /**
+   * Calling functions from namespace import
+   * I have variable: utils -> utils.ts
+   * I have call: utils.ctfFlag()
+   */
+  for (const variable of globalNode.variables) {
+    if (
+      variable.token === call.ownerToken &&
+      variable.pointsTo instanceof Group &&
+      variable.pointsTo.groupType === GroupType.FILE
+    ) {
+      for (const fileNode of variable.pointsTo.nodes) {
+        if (fileNode.token === call.token) {
+          fileNode.functionCalls.push(call);
+          return new Edge(nodeA, fileNode);
+        }
+      }
+    }
+  }
+}
+
 function findLinkForCallFunctionCall(call: Call, nodeA: Node) {
   // calling another function in the same file (priority)
   if (nodeA.parent instanceof Group) {
     for (const node2 of nodeA.parent.nodes) {
       if (call.token === node2.token && node2.nodeType === NodeType.FUNCTION) {
+        node2.functionCalls.push(call);
         return new Edge(nodeA, node2);
       }
     }
@@ -572,6 +801,7 @@ function findCalledFunctionInImportedFunctions(
     ) {
       for (const fileNode of variable.pointsTo.nodes) {
         if (fileNode.token === call.token) {
+          fileNode.functionCalls.push(call);
           return new Edge(nodeA, fileNode);
         }
       }
@@ -582,26 +812,68 @@ function findCalledFunctionInImportedFunctions(
 function findLinkForCallImportStatement(
   call: Call,
   nodeA: Node,
-  fileGroup: Group | null,
-  allNodes: Node[]
+  globalNode: Node
 ) {
   /**
    * calling a function from import statements
    * I have variable: findAll -> Group: article.service.ts under (global)
    * I have call: findAll -> null
    */
-  const globalNode = findGlobalNode(fileGroup, allNodes);
-  if (globalNode) {
-    return findCalledFunctionInImportedFunctions(call, nodeA, globalNode);
-  }
+  return findCalledFunctionInImportedFunctions(call, nodeA, globalNode);
 }
 
 function findLinkForCallFunction(call: Call, nodeA: Node, allNodes: Node[]) {
   for (const node of allNodes) {
     if (call.token === node.token && node.nodeType === NodeType.FUNCTION) {
+      node.functionCalls.push(call);
       return new Edge(nodeA, node);
     }
   }
+}
+
+function findLinkForAttributeCall(
+  call: Call,
+  nodeA: Node,
+  globalNode: Node | null
+): Edge | null {
+  const edge1 = findLinkForCallThis(call, nodeA);
+  if (edge1) {
+    return edge1;
+  }
+  if (globalNode) {
+    const edge6 = findLinkForCallNamespaceImport(call, nodeA, globalNode);
+    if (edge6) {
+      return edge6;
+    }
+  }
+  const edge2 = findLinkForCallClassInjection(call, nodeA);
+  if (edge2) {
+    return edge2;
+  }
+  return null;
+}
+
+function findLinkForNonAttributeCall(
+  call: Call,
+  nodeA: Node,
+  globalNode: Node | null,
+  allNodes: Node[]
+): Edge | null {
+  const edge3 = findLinkForCallFunctionCall(call, nodeA);
+  if (edge3) {
+    return edge3;
+  }
+  if (globalNode) {
+    const edge4 = findLinkForCallImportStatement(call, nodeA, globalNode);
+    if (edge4) {
+      return edge4;
+    }
+  }
+  const edge5 = findLinkForCallFunction(call, nodeA, allNodes);
+  if (edge5) {
+    return edge5;
+  }
+  return null;
 }
 
 /**
@@ -621,36 +893,12 @@ export function findLinkForCall(
   allNodes: Node[]
 ): Edge | null {
   const fileGroup = nodeA.getFileGroup();
+  const globalNode = findGlobalNode(fileGroup, allNodes) ?? null;
   if (call.isAttribute()) {
-    const edge1 = findLinkForCallThis(call, nodeA);
-    if (edge1) {
-      return edge1;
-    }
-    const edge2 = findLinkForCallClassInjection(call, nodeA);
-    if (edge2) {
-      return edge2;
-    }
+    return findLinkForAttributeCall(call, nodeA, globalNode);
   } else {
-    const edge3 = findLinkForCallFunctionCall(call, nodeA);
-    if (edge3) {
-      return edge3;
-    }
-    const edge4 = findLinkForCallImportStatement(
-      call,
-      nodeA,
-      fileGroup,
-      allNodes
-    );
-    if (edge4) {
-      return edge4;
-    }
-    const edge5 = findLinkForCallFunction(call, nodeA, allNodes);
-    if (edge5) {
-      return edge5;
-    }
+    return findLinkForNonAttributeCall(call, nodeA, globalNode, allNodes);
   }
-
-  return null;
 }
 
 export function findLinks(nodeA: Node, allNodes: Node[]) {
@@ -706,8 +954,34 @@ export function getAllChildrenOfType(
   return ret;
 }
 
-export function getLineNumber(node: SyntaxNode) {
-  return node.startPosition?.row + 1; // change to 1 index
+// Recursive function to process nested NodeConfig relationships
+function getNameUsingConfig(
+  node: SyntaxNode,
+  config: NodeConfig,
+  getNameRules: Record<any, any>
+): string | null {
+  if (config.childTypes) {
+    for (const [childType, childConfig] of Object.entries(config.childTypes)) {
+      const child = getFirstChildOfType(node, childType);
+      if (child) {
+        return getNameUsingConfig(child, childConfig, getNameRules);
+      }
+    }
+  }
+
+  if (config.delegate) {
+    return getName(node, getNameRules);
+  }
+
+  if (config.useText) {
+    return node.text;
+  }
+
+  if (config.fieldName) {
+    return node.childForFieldName(config.fieldName)?.text ?? null;
+  }
+
+  return null;
 }
 
 /**
@@ -728,25 +1002,8 @@ export function getName(node: SyntaxNode, getNameRules: Record<string, any>) {
     throw new Error("getName rules not defined in JSON file!");
   }
   const nodeTypeConfig = getNameRules[node.type];
-
   if (nodeTypeConfig) {
-    const child = getFirstChildOfType(node, nodeTypeConfig.childType);
-
-    if (!child) {
-      return null;
-    }
-
-    if (nodeTypeConfig.delegate) {
-      return getName(child, getNameRules);
-    }
-
-    if (nodeTypeConfig.useText) {
-      return child.text;
-    }
-
-    if (nodeTypeConfig.fieldName) {
-      return child.childForFieldName(nodeTypeConfig.fieldName)?.text ?? null;
-    }
+    return getNameUsingConfig(node, nodeTypeConfig, getNameRules);
   }
 
   for (const field of getNameRules.fallbackFields) {
@@ -782,7 +1039,8 @@ export function makeFileGroup(
   const fileGroup = new Group({
     groupType: GroupType.FILE,
     token: fileName,
-    lineNumber: 0,
+    startPosition: node.startPosition,
+    endPosition: node.endPosition,
     filePath,
   });
   for (const node of nodeTrees) {
@@ -833,7 +1091,8 @@ export function processConstructorRequiredParameter(node: SyntaxNode) {
   return new Variable({
     token: identifier.text,
     pointsTo: typeIdentifier.text,
-    lineNumber: getLineNumber(node),
+    startPosition: node.startPosition,
+    endPosition: node.endPosition,
     variableType: VariableType.INJECTION,
   });
 }

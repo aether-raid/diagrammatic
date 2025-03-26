@@ -1,12 +1,14 @@
 import { getFirstChildOfType } from "./function";
 import fs from "fs";
 import { SyntaxNode } from "tree-sitter";
-import { GroupType, NodeType } from "./model";
+import { GroupType } from "./model";
+import { NodeType } from "@shared/node.types";
 
 export type Rule = {
   type?: string;
   field?: string;
   child?: Rule;
+  siblingAbove?: Rule;
   parent?: string;
 };
 
@@ -19,7 +21,7 @@ export type GroupRule = Rule & {
 };
 
 export type NodeConfig = {
-  childType?: string;
+  childTypes?: Record<string, NodeConfig>; // Nested child types with their own rules
   delegate?: boolean;
   fieldName?: string;
   useText?: boolean;
@@ -80,6 +82,14 @@ export class RuleEngine {
     if (rule.parent) {
       const parentNode = node.parent;
       if (!parentNode || parentNode.type !== rule.parent) {
+        return false;
+      }
+    }
+
+    // Check for a required sibling above
+    if (rule.siblingAbove) {
+      const prevSibling = node.previousSibling;
+      if (!prevSibling || !this.matchNode(prevSibling, rule.siblingAbove)) {
         return false;
       }
     }

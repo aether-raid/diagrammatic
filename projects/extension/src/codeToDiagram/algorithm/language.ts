@@ -1,9 +1,9 @@
-import { Node, Group, NodeType, Variable, VariableType } from "./model";
+import { Node, Group, Variable, VariableType } from "./model";
+import { NodeType } from "@shared/node.types";
 import {
   makeCalls,
   makeLocalVariables,
   getName,
-  getLineNumber,
   getAllChildrenOfType,
   processConstructorRequiredParameter,
   toGroupTypeIgnoreCase,
@@ -80,7 +80,8 @@ export class Language {
     const classGroup = new Group({
       groupType: toGroupTypeIgnoreCase(matchingGroupRule.groupType),
       token: getName(tree, languageRules.getName),
-      lineNumber: getLineNumber(tree),
+      startPosition: tree.startPosition,
+      endPosition: tree.endPosition,
       parent,
       filePath: parent.filePath,
     });
@@ -158,7 +159,8 @@ export class Language {
       new Variable({
         token: identifier.text,
         pointsTo: typeIdentifier.text,
-        lineNumber: getLineNumber(tree),
+        startPosition: tree.startPosition,
+        endPosition: tree.endPosition,
         variableType: VariableType.INJECTION,
       })
     );
@@ -178,7 +180,7 @@ export class Language {
     if (!token) {
       return [];
     }
-    const calls = makeCalls(body);
+    const calls = makeCalls(body, languageRules.getName);
     const variables = makeLocalVariables(body, parent, languageRules);
 
     this.processConstructorInjection(tree, token, variables);
@@ -194,7 +196,8 @@ export class Language {
       token,
       calls,
       variables,
-      lineNumber: getLineNumber(tree),
+      startPosition: tree.startPosition,
+      endPosition: tree.endPosition,
       parent,
       nodeType: toNodeTypeIgnoreCase(matchingNodeRule.nodeType),
     });
@@ -211,9 +214,10 @@ export class Language {
   ): Node {
     return new Node({
       token: GLOBAL,
-      calls: makeCalls(body),
+      calls: makeCalls(body, languageRules.getName),
       variables: makeLocalVariables(body, parent, languageRules),
-      lineNumber: 0,
+      startPosition: body[0]?.startPosition ?? { row: 0, column: 0},
+      endPosition: body[body.length - 1]?.endPosition ?? {row: 0, column: 0}, 
       parent,
       nodeType: NodeType.BODY,
     });

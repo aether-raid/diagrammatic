@@ -12,11 +12,12 @@ import {
 } from "../helper";
 import { RuleEngine } from "@extension/codeToDiagram/algorithm/rules";
 import path from "path";
+import fs from "fs"
 
-// Repository URL: https://github.com/Tick-CS203/tick
-const mockDirectoryPath = "/Users/sharlenetio/Desktop/fyp/samples/tick";
+// Repository URL: https://github.com/arvidn/libtorrent/tree/RC_2_0
+const mockDirectoryPath = "/Users/sharlenetio/Desktop/fyp/samples/libtorrent";
 
-describe("tick", () => {
+describe("libtorrent", () => {
   let rulesetStub: sinon.SinonStub;
 
   let ruleset: any;
@@ -52,8 +53,12 @@ describe("tick", () => {
 
     const start = process.hrtime();
     const result = runCodeToDiagramAlgorithm(mockDirectoryPath);
+
     const [seconds, nanoseconds] = process.hrtime(start);
     console.log("Milliseconds:", seconds * 1000 + nanoseconds / 1e6);
+
+    fs.writeFileSync('expectedEdges.json', JSON.stringify(result.edges), 'utf-8');
+    fs.writeFileSync('expectedNodes.json', JSON.stringify(result.nodes), 'utf-8');
 
     const numComponents = result.nodes.length;
     console.log("Number of components:", numComponents);
@@ -65,6 +70,7 @@ describe("tick", () => {
       "Ratio of resulting components to expected components:",
       numComponents / expectedNodes.length
     );
+
     const expectedEntityTypes = countEntityTypes(expectedNodes);
     const returnedEntityTypes = countEntityTypes(
       result.nodes as { data: { entityType: string } }[]
@@ -88,7 +94,6 @@ describe("tick", () => {
       edge.source = path.join(mockDirectoryPath, edge.source);
       edge.target = path.join(mockDirectoryPath, edge.target);
     });
-
     const { edgeTP, edgeFP, edgeFN } = calculatePrecisionRecallF1ForEdges(
       result.edges,
       expectedEdges
