@@ -115,15 +115,15 @@ export const handleShowMVCDiagram = async (
     console.log("node desc done & sent");
   }
 
-  const getFunctionDescriptionsAsync = async () => {
+  const getFunctionDescriptionsAsync = async (targetNodeId: string) => {
     console.log("running function desc")
-    const data = await runFunctionDescriptionsAlgorithm(nodeEdgeData, llmProvider);
+    const data = await runFunctionDescriptionsAlgorithm(nodeEdgeData, llmProvider, targetNodeId);
     console.log(data);
     console.log("done function desc")
   }
   getComponentDiagramAsync();
   getNodeDescriptionsAsync();
-  // getFunctionDescriptionsAsync();
+  getFunctionDescriptionsAsync(nodeEdgeData.nodes[0].id);
 
   return Promise.resolve(panel);
 };
