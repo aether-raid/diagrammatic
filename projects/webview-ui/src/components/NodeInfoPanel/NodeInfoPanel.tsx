@@ -3,12 +3,14 @@ import React from "react";
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 import { EntityNode } from '@shared/node.types';
-import { SerializedDiagnostic } from '@shared/vscode.types';
-import { SecurityTypeAccordion } from './SecurityTypeAccordion';
 
 import "./NodeInfoPanel.css";
+import { LintingTab } from "./tabs/LintingTab";
+import { GeneratedDescriptionsTab } from "./tabs/GeneratedDescriptionsTab";
 
 interface NodeInfoPanelProps {
     show: boolean;
@@ -35,6 +37,7 @@ export const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => 
             <Offcanvas.Header closeButton>
                 <Offcanvas.Title>{ entity?.data.entityName ?? "-" }</Offcanvas.Title>
             </Offcanvas.Header>
+
             <Offcanvas.Body>
                 { entity 
                     ? <div className="d-flex flex-column gap-4">
@@ -60,12 +63,24 @@ export const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => 
                             </Accordion.Item>
                         </Accordion>
 
-                        {(Object.entries(entity.data.security ?? []) as [string, SerializedDiagnostic[]][])
-                            .map(([type, issues], idx) => {
-                                if (issues.length === 0) return;
-                                return (<SecurityTypeAccordion key={idx} type={type} issues={issues} filePath={entity.data.filePath} />);
-                            })
-                        }
+                        {/* React Bootstrap */}
+                        <Tabs defaultActiveKey="linting">
+                            <Tab title="Linting" eventKey="linting">
+                                <div className="d-flex flex-column gap-4">
+                                    <LintingTab
+                                        securityData={entity.data.security}
+                                        filePath={entity.data.filePath}
+                                    />
+                                </div>
+                            </Tab>
+                            <Tab title="Generated Descriptions" eventKey="gen-desc">
+                                <div className="d-flex flex-column gap-4">
+                                    <GeneratedDescriptionsTab
+                                        items={entity.data.items}
+                                    />
+                                </div>
+                            </Tab>
+                        </Tabs>
                     </div>
                     : <p>No selected node<br/>(how did you even open this panel..?)</p>
                 }
