@@ -24,7 +24,9 @@ import DownloadButton from "../../components/DownloadButton";
 import { NavigationButton } from "../../components/NavigationButton";
 import { ViewChangeHandler } from "../../components/ViewChangeHandler";
 import { getLayoutedElements } from "../../helpers/layoutHandlerDagre";
-
+import { RegenerateButton } from "../../components/RegenerateButton";
+import { Feature, FeatureStatus } from "@shared/app.types";
+import { useFeatureStatusContext } from "../../contexts/FeatureStatusContext";
 
 const LayoutFlow = () => {
     const { fitView, getViewport } = useReactFlow<AppNode, AppEdge>();
@@ -110,6 +112,21 @@ const LayoutFlow = () => {
         className: highlightedEdges.includes(edge.id) ? "highlighted-edge" : "",
     });
 
+    // Global contexts
+    const featureStatusCtx = useFeatureStatusContext();
+    const componentDiagramStatus = featureStatusCtx?.getFeatureStatus(Feature.COMPONENT_DIAGRAM);
+
+    const renderComponentButtonText = () => {
+        switch (componentDiagramStatus) {
+            case FeatureStatus.ENABLED_LOADING:
+                return "Loading Component Diagram...";
+            case FeatureStatus.ENABLED_DONE:
+                return "Regenerate Component Diagram";
+            default:
+                // Disabled or unknown status
+                return "Component Diagram Disabled";
+        }
+    }
     return (
         <ReactFlow
             nodeTypes={nodeTypes}
@@ -144,6 +161,10 @@ const LayoutFlow = () => {
                         target="/"
                         label="Code View"
                         onNavigate={handleBeforeNavigate}
+                    />
+                    <RegenerateButton 
+                        label={renderComponentButtonText()} 
+                        disabled={componentDiagramStatus !== FeatureStatus.ENABLED_DONE}
                     />
                 </div>
             </Panel>

@@ -9,6 +9,7 @@ export enum Commands {
   JUMP_TO_LINE = 'jump-to-line',
   READY = 'ready',
   UPDATE_FEATURE_STATUS = 'update-feature-status',
+  GET_COMPONENT_DIAGRAM = 'get-component-diagram'
 }
 
 export interface AcceptComponentDiagramDataPayload {

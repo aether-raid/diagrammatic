@@ -122,7 +122,6 @@ const LayoutFlow = () => {
     });
 
     return (
-        <>
             <ReactFlow
                 nodeTypes={nodeTypes}
                 nodes={nodes.map((n) => prepareNode(n))}
@@ -178,7 +177,6 @@ const LayoutFlow = () => {
                     entity={panelNode}
                 />
             </ReactFlow>
-        </>
     );
 };
 
