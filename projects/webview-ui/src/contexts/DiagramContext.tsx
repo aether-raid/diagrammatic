@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { Viewport } from "@xyflow/react";
 
 import { NodeEdgeData } from "@shared/app.types";

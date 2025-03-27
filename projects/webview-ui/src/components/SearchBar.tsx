@@ -13,7 +13,6 @@ interface SearchBarProps {
   ];
 }
 
-// eslint-disable-next-line react/prop-types
 const SearchBar: React.FC<SearchBarProps> = ({
   matchedNodesState: [matchedNodes, setMatchedNodes],
 }) => {
@@ -47,7 +46,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
     }
 
     // Search nodes by title
-    // eslint-disable-next-line react/prop-types
     const nodes = getNodes();
     const matches = nodes.filter((node) => {
       if (node.data && "entityName" in node.data) {
@@ -68,14 +66,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
     const prevIndex =
       (currentMatchIndex - 1 + matchedNodes.length) % matchedNodes.length;
     setCurrentMatchIndex(prevIndex);
-  }, [matchedNodes, currentMatchIndex, setCenter]);
+  }, [matchedNodes, currentMatchIndex]);
 
   // Navigate to the next match in the list
   const jumpToNextMatch = useCallback(() => {
     if (matchedNodes.length === 0) return;
     const nextIndex = (currentMatchIndex + 1) % matchedNodes.length;
     setCurrentMatchIndex(nextIndex);
-  }, [matchedNodes, currentMatchIndex, setCenter]);
+  }, [matchedNodes, currentMatchIndex]);
 
   // Auto-center & zoom upon changing match index
   useEffect(() => {
