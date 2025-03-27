@@ -1,19 +1,19 @@
-import { getVsCodeApi } from "../helpers/vscodeApiHandler";
+import { sendRegenerateComponentDiagramMessageToExtension } from "../helpers/vscodeApiHandler";
 
 interface RegenerateButtonProps {
     label: string;
     disabled?: boolean;
-  }
+    onRegenerate?: () => void;
+}
 
 export const RegenerateButton = ({
     label,
     disabled = false,
+    onRegenerate,
 }: RegenerateButtonProps) => {
-    const handleRegenerateDiagram  = () =>  {
-        const vscode = getVsCodeApi();
-        vscode.postMessage({
-            command: 'get-component-diagram',
-        });
+    const handleRegenerateDiagram = () =>  {
+        if (onRegenerate) onRegenerate();
+        sendRegenerateComponentDiagramMessageToExtension();
     }
     return (
         <button onClick={handleRegenerateDiagram} disabled={disabled}>

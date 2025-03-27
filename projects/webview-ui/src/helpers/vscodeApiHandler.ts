@@ -1,4 +1,4 @@
-import { Commands, JumpToLinePayload, ReadyPayload } from "@shared/message.types";
+import { Commands, JumpToLinePayload, ReadyPayload, RegenerateComponentDiagramPayload } from "@shared/message.types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let vscode: any = undefined;
@@ -21,6 +21,16 @@ export const sendReadyMessageToExtension = () => {
   });
 };
 
+export const sendRegenerateComponentDiagramMessageToExtension = () => {
+    initVsCodeApi();
+
+    const payload: RegenerateComponentDiagramPayload = {};
+    vscode.postMessage({
+        command: Commands.GET_COMPONENT_DIAGRAM,
+        message: payload,
+    });
+}
+
 export const sendJumpToLineMessageToExtension = (filePath: string, lineNumber: number) => {
   initVsCodeApi();
 
@@ -34,5 +44,3 @@ export const sendJumpToLineMessageToExtension = (filePath: string, lineNumber: n
     message: payload,
   });
 }
-
-export const getVsCodeApi = () => vscode;

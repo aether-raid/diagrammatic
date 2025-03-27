@@ -75,6 +75,14 @@ const LayoutFlow = () => {
         diagramCtx.setViewport(getViewport());
     }
 
+    const handleBeforeRegenerate = () => {
+        // Wipe existing data
+        diagramCtx?.setGraphData({
+            nodes: [],
+            edges: [],
+        })
+    }
+
     const onLayout = useCallback(
         (direction: string) => {
             const layouted = getLayoutedElements(nodes, edges, { direction });
@@ -119,7 +127,7 @@ const LayoutFlow = () => {
     const renderComponentButtonText = () => {
         switch (componentDiagramStatus) {
             case FeatureStatus.ENABLED_LOADING:
-                return "Loading Component Diagram...";
+                return "Regenerating Component Diagram...";
             case FeatureStatus.ENABLED_DONE:
                 return "Regenerate Component Diagram";
             default:
@@ -165,6 +173,7 @@ const LayoutFlow = () => {
                     <RegenerateButton 
                         label={renderComponentButtonText()} 
                         disabled={componentDiagramStatus !== FeatureStatus.ENABLED_DONE}
+                        onRegenerate={handleBeforeRegenerate}
                     />
                 </div>
             </Panel>
