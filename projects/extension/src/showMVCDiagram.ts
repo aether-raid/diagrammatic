@@ -84,11 +84,15 @@ export const handleShowMVCDiagram = async (
   const llmProvider: LLMProvider = retrieveLLMProvider(apiKey);
   const getComponentDiagramAsync = async () => {
     console.log("running component diag");
+
+    // to clear old diagram 
+    componentNodeEdgeData = undefined;
+    sendAcceptCompNodeEdgeMessageToWebview(componentNodeEdgeData, panel);
+    
     sendUpdateFeatureStatusMessageToWebview({
       feature: Feature.COMPONENT_DIAGRAM,
       status: FeatureStatus.ENABLED_LOADING,
     }, panel);
-
     const data = await getComponentDiagram(nodeEdgeData, llmProvider);
     componentNodeEdgeData = data;
 
