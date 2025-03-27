@@ -61,6 +61,9 @@ export const handleShowMVCDiagram = async (
               selection: new vscode.Range(position, position),
             });
             break;
+          case Commands.GET_COMPONENT_DIAGRAM:
+            await getComponentDiagramAsync(); // Call the regeneration function
+            break;
         }
       }
     );

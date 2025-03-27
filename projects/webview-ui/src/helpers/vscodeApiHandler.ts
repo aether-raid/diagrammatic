@@ -34,3 +34,5 @@ export const sendJumpToLineMessageToExtension = (filePath: string, lineNumber: n
     message: payload,
   });
 }
+
+export const getVsCodeApi = () => vscode;
