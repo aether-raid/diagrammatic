@@ -35,30 +35,26 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
       case FeatureStatus.ENABLED_LOADING:
         return "Descriptions are loading...";
       case FeatureStatus.ENABLED_DONE:
-        return data.description;
+        return data.description ?? "No description available";
     }
   }
 
   return (
-    <div className='custom__node entity-node'>
+    <div className={`custom__node entity-node overflow-hidden ${data.matchesSearchTerm ? "search-matched-node" : ""}`}>
       <OverlayTrigger
         overlay={
           <Popover>
-            <Popover.Header className="px-3">{ data.filePath }</Popover.Header>
-            <Popover.Body className="py-2 px-3 fst-italic">
+            <Popover.Header className="px-3 fs-7 fw-semibold">{ data.filePath }</Popover.Header>
+            <Popover.Body className="py-2 px-3 fst-italic fs-7">
               { renderNodeDescriptions() }
             </Popover.Body>
           </Popover>
         }
       >
-        <div className={`d-flex flex-column rounded-top entity__${data.entityType}`}>
+        <div className={`d-flex flex-column entity__${data.entityType}`}>
           <div className="py-2">
             <p className="fs-8">{ data.entityType }</p>
-            <p className="fw-bold">
-              <span className={data.matchesSearchTerm ? "bg-highlighter text-black" : ""}>
-                { data.entityName }
-              </span>
-            </p>
+            <p className="fw-bold">{ data.entityName }</p>
           </div>
           <NodeSecurityBanner security={data.security}/>
         </div>
@@ -76,7 +72,6 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
             }}
             itemType={item.type}
             setHoveredRow={setHoveredRow}
-            
           />)}
         </tbody>
       </table>

@@ -18,18 +18,18 @@ import {
 import { Feature, FeatureStatus, NodeRow } from "@shared/app.types";
 import { AppNode, EntityNode } from "@shared/node.types";
 import { AppEdge } from "@shared/edge.types";
+import { useFeatureStatusContext } from "../../contexts/FeatureStatusContext";
+import { useDiagramContext } from "../../contexts/DiagramContext";
 
 import { initialNodes, nodeTypes } from "../../nodes";
 import { initialEdges } from "../../edges";
 import { ViewType } from "../../App.types";
 import DownloadButton from "../../components/DownloadButton";
+import { HighlightConnectedPathHandler } from "../../components/HighlightConnectedPathHandler";
 import { NavigationButton } from "../../components/NavigationButton";
 import { NodeInfoPanel } from "../../components/NodeInfoPanel/NodeInfoPanel";
-import SearchBar from "../../components/SearchBar";
-import { useFeatureStatusContext } from "../../contexts/FeatureStatusContext";
-import { useDiagramContext } from "../../contexts/DiagramContext";
+import { SearchBar } from "../../components/SearchBar";
 import { ViewChangeHandler } from "../../components/ViewChangeHandler";
-import { HighlightConnectedPathHandler } from "../../components/HighlightConnectedPathHandler";
 import { getLayoutedElements } from "../../helpers/layoutHandlerDagre";
 
 const LayoutFlow = () => {

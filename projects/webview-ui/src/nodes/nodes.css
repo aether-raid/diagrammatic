@@ -19,9 +19,15 @@
   width: auto; /* Default is 150px */
 }
 
-/* Highlighted Nodes */
+/* Highlighted Row (hover-highlighting) */
 .highlighted-row {
   border: 1px solid greenyellow;
+}
+
+/* Highlighted Node (search-matching) */
+.search-matched-node {
+  box-shadow: 0 0 10px 4px var(--app-yellow);
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 /* Entity Node */
