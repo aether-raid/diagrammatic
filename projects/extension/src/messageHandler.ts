@@ -5,6 +5,7 @@ import {
   AcceptComponentDiagramDataPayload,
   AcceptNodeEdgeDataPayload,
   UpdateFeatureStatusPayload,
+  AcceptFnDescriptionPayload,
 } from "@shared/message.types";
 
 export const sendAcceptNodeEdgeMessageToWebview = (
@@ -24,6 +25,16 @@ export const sendAcceptCompNodeEdgeMessageToWebview = (
   panel.webview.postMessage({
     command: Commands.ACCEPT_COMPONENT_DIAGRAM_DATA,
     message: payload ?? { nodes: [], edges: [] },
+  });
+};
+
+export const sendAcceptFnDescriptionMessageToWebview = (
+  payload: AcceptFnDescriptionPayload,
+  panel: vscode.WebviewPanel,
+) => {
+  panel.webview.postMessage({
+    command: Commands.ACCEPT_FN_DESCRIPTIONS,
+    message: payload,
   });
 };
 
