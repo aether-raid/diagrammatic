@@ -18,10 +18,12 @@ interface JsonData {
         description: string
       }
     ]
-    output: {
-      outputType: string,
-      description: string
-    }
+    output: 
+      {
+        outputType: string,
+        description: string
+      }
+    
   }];
 }
 

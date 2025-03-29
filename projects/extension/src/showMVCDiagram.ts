@@ -126,7 +126,7 @@ export const handleShowMVCDiagram = async (
   }
   getComponentDiagramAsync();
   getNodeDescriptionsAsync();
-  getFunctionDescriptionsAsync(nodeEdgeData.nodes[1].id);
+  getFunctionDescriptionsAsync(nodeEdgeData.nodes[2].id);
 
   return Promise.resolve(panel);
 };
