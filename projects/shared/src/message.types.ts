@@ -1,11 +1,13 @@
 import { Feature, FeatureStatus } from "./app.types";
 import { AppEdge } from "./edge.types";
-import { AppNode } from "./node.types";
+import { AppNode, FunctionDescription } from "./node.types";
 
 
 export enum Commands {
   ACCEPT_COMPONENT_DIAGRAM_DATA = 'accept-component-diagram-data',
+  ACCEPT_FN_DESCRIPTIONS = 'accept-fn-descriptions',
   ACCEPT_NODE_EDGE_DATA = 'accept-node-edge-data',
+  GENERATE_FN_DESCRIPTIONS = 'generate-fn-descriptions',
   GET_COMPONENT_DIAGRAM = 'get-component-diagram',
   JUMP_TO_LINE = 'jump-to-line',
   READY = 'ready',
@@ -16,6 +18,11 @@ export interface AcceptComponentDiagramDataPayload {
   nodes: AppNode[];
   edges: AppEdge[];
 }
+
+export interface AcceptFnDescriptionPayload {
+  nodeId: string;
+  data: FunctionDescription[];
+}
 export interface AcceptNodeEdgeDataPayload {
   nodes: AppNode[];
   edges: AppEdge[];
@@ -24,6 +31,10 @@ export interface AcceptNodeEdgeDataPayload {
 export interface JumpToLinePayload {
   filePath: string;
   lineNumber: number;
+}
+
+export interface GenerateFnDescriptionPayload {
+  nodeId: string;
 }
 
 export interface ReadyPayload {};

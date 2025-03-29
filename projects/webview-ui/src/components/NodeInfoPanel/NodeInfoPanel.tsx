@@ -73,11 +73,16 @@ export const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => 
                                     />
                                 </div>
                             </Tab>
+
                             <Tab title="Generated Descriptions" eventKey="gen-desc">
                                 <div className="d-flex flex-column gap-4">
-                                    <GeneratedDescriptionsTab
-                                        items={entity.data.items}
-                                    />
+                                    {entity.data.entityType === 'file'
+                                        ? <GeneratedDescriptionsTab
+                                            nodeId={entity.id}
+                                            items={entity.data.items}
+                                        />
+                                        : "This node type does not support description generation."
+                                    }
                                 </div>
                             </Tab>
                         </Tabs>

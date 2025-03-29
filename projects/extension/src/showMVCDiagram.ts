@@ -1,23 +1,26 @@
 import * as vscode from "vscode";
+
+import { Feature, FeatureStatus, NodeEdgeData } from "@shared/app.types";
 import {
   Commands,
+  GenerateFnDescriptionPayload,
   JumpToLinePayload,
   WebviewCommandMessage,
 } from "@shared/message.types";
 
 import { runCodeToDiagramAlgorithm } from "./codeToDiagram/runCodeToDiagramAlgorithm";
+import { runCodeLinting } from "./codeQuality/runCodeLinting";
+import { getComponentDiagram } from "./componentDiagram/runComponentDiagramAlgorithm";
+import { getFunctionDescriptions } from "./functionDescriptions/runFunctionDescriptionsAlgorithm";
 import {
   sendAcceptNodeEdgeMessageToWebview,
   sendAcceptCompNodeEdgeMessageToWebview,
   sendUpdateFeatureStatusMessageToWebview,
+  sendAcceptFnDescriptionMessageToWebview,
 } from "./messageHandler";
 import { runNodeDescriptionsAlgorithm } from "./nodeDescriptions/runNodeDescriptionsAlgorithm";
-import { runFunctionDescriptionsAlgorithm } from "./functionDescriptions/runFunctionDescriptionsAlgorithm";
-import { runCodeLinting } from "./codeQuality/runCodeLinting";
-import { getComponentDiagram } from "./componentDiagram/runComponentDiagramAlgorithm";
 import { retrieveApiKey } from "./helpers/apiKey";
 import { LLMProvider, retrieveLLMProvider } from "./helpers/llm";
-import { Feature, FeatureStatus, NodeEdgeData } from "@shared/app.types";
 
 export const handleShowMVCDiagram = async (
   context: vscode.ExtensionContext,
@@ -48,12 +51,14 @@ export const handleShowMVCDiagram = async (
     panel.webview.onDidReceiveMessage(
       async (message: WebviewCommandMessage) => {
         switch (message.command) {
-          case Commands.READY:
+          case Commands.READY: {
             sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
             sendAcceptCompNodeEdgeMessageToWebview(componentNodeEdgeData, panel);
             resolve();
             break;
-          case Commands.JUMP_TO_LINE:
+          }
+
+          case Commands.JUMP_TO_LINE: {
             const msg = message.message as JumpToLinePayload;
             const fileUri = vscode.Uri.file(msg.filePath);
             const position = new vscode.Position(msg.lineNumber, 0);
@@ -61,9 +66,18 @@ export const handleShowMVCDiagram = async (
               selection: new vscode.Range(position, position),
             });
             break;
-          case Commands.GET_COMPONENT_DIAGRAM:
+          }
+
+          case Commands.GENERATE_FN_DESCRIPTIONS: {
+            const msg = message.message as GenerateFnDescriptionPayload;
+            await getFunctionDescriptionsAsync(msg.nodeId);
+            break;
+          }
+
+          case Commands.GET_COMPONENT_DIAGRAM: {
             await getComponentDiagramAsync(); // Call the regeneration function
             break;
+          }
         }
       }
     );
@@ -120,13 +134,17 @@ export const handleShowMVCDiagram = async (
 
   const getFunctionDescriptionsAsync = async (targetNodeId: string) => {
     console.log("running function desc")
-    const data = await runFunctionDescriptionsAlgorithm(nodeEdgeData, llmProvider, targetNodeId);
-    console.log(data);
+
+    const fnDesc = await getFunctionDescriptions(llmProvider, nodeEdgeData, targetNodeId);
+    sendAcceptFnDescriptionMessageToWebview({
+      nodeId: targetNodeId,
+      data: fnDesc ?? [],
+    }, panel);
     console.log("done function desc")
   }
+
   getComponentDiagramAsync();
   getNodeDescriptionsAsync();
-  getFunctionDescriptionsAsync(nodeEdgeData.nodes[2].id);
 
   return Promise.resolve(panel);
 };

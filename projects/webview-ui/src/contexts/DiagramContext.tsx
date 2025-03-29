@@ -5,19 +5,16 @@ import { NodeEdgeData } from "@shared/app.types";
 
 import { ViewType } from "../App.types";
 
+export interface DiagramContextView {
+    graphData: NodeEdgeData|undefined;
+    setGraphData: React.Dispatch<React.SetStateAction<NodeEdgeData|undefined>>;
+    viewport: Viewport|undefined;
+    setViewport: React.Dispatch<React.SetStateAction<Viewport|undefined>>;
+}
+
 interface DiagramContextProps {
-    codeView: {
-        graphData: NodeEdgeData|undefined;
-        setGraphData: React.Dispatch<React.SetStateAction<NodeEdgeData|undefined>>;
-        viewport: Viewport|undefined;
-        setViewport: React.Dispatch<React.SetStateAction<Viewport|undefined>>;
-    };
-    componentView: {
-        graphData: NodeEdgeData|undefined;
-        setGraphData: React.Dispatch<React.SetStateAction<NodeEdgeData|undefined>>;
-        viewport: Viewport|undefined;
-        setViewport: React.Dispatch<React.SetStateAction<Viewport|undefined>>;
-    };
+    codeView: DiagramContextView;
+    componentView: DiagramContextView;
 }
 
 interface DiagramProviderProps {
