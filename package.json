@@ -6,11 +6,20 @@
   "marketplace": {
     "readme": "VSC-README.md"
   },
-  "categories": ["Formatters", "Linters", "Snippets"],
-  "keywords": ["diagrams", "visualization", "linting", "code-analysis"],
+  "categories": [
+    "Formatters",
+    "Linters",
+    "Snippets"
+  ],
+  "keywords": [
+    "diagrams",
+    "visualization",
+    "linting",
+    "code-analysis"
+  ],
   "license": "MIT",
   "description": "Beautiful and concise MVC diagrams within seconds",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "engines": {
     "vscode": "^1.96.0"
   },
