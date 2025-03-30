@@ -13,10 +13,12 @@ export interface FunctionDescription {
   function_name: string;
   function_description: string;
   parameters: {
+    inputName: string,
     inputType: string,
     description: string,
   }[];
   output: {
+    outputName: string,
     outputType: string,
     description: string,
   }

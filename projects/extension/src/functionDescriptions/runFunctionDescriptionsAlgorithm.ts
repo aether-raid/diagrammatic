@@ -77,7 +77,7 @@ export const getFunctionDescriptions = async (
     const combinedContent = readAndConcatenateFiles(matchImportsToNodes(extractImportPaths(content), nodeEdgeData));
 
     const systemPrompt = "You are an AI that provides structured JSON responses for code documentation creation."
-    const userPrompt = `Give purely a JSON response in the format [node_id: ${targetNode.id},class_name:,class_description,functions:[{function_name:,function_description:,parameters:[{inputType:, description:(describe what needs to be inputted just like in a code documentation)}],output:{outputType:, description:(describe what needs to be returned just like in a code documentation)}]]. Here is the file content:\n` + content + '\nHere is the context:\n' + combinedContent;
+    const userPrompt = `Give purely a JSON response in the format [node_id: ${targetNode.id},class_name:,class_description,functions:[{function_name:,function_description:,parameters:[{inputName:, inputType:, description:(describe what needs to be inputted just like in a code documentation)}],output:{outputName, outputType:, description:(describe what needs to be returned just like in a code documentation)}]] only for this file. Here is the file content:\n` + content + '\nHere is the context:\n' + combinedContent;
 
     const response = await llmProvider.generateResponse(systemPrompt, userPrompt) as FnDescResponse[];
     console.log(response);
