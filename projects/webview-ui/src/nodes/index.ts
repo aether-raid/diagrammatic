@@ -235,13 +235,16 @@ export const initialNodes: AppNode[] = [
                 i.e. throw it at them full speed like a baseball
             `,
             parameters: [{
+                inputName: "targetPerson",
                 inputType: 'string',
                 description: 'the person the potato is aimed at',
             }, {
+                inputName: "strength",
                 inputType: 'number',
                 description: 'the strength value of the thrower',
             }],
             output: {
+                outputName: "damageDealt",
                 outputType: 'number',
                 description: 'the amount of damage dealt from the potato lmao',
             },
