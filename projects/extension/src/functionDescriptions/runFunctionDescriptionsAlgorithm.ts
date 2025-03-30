@@ -26,18 +26,13 @@ const extractImportPaths = (content: string): string[] => {
 
   while ((match = importRegex.exec(content)) !== null) {
     let path = match[1].replace(/^(\.\/|\.\.\/|@)+/, "");
-
-    if (path.includes("shared")) {
-      path = path.replace("shared", "shared/src");
-    }
-
     importPaths.push(path);
   }
   return importPaths;
 };
 
 const matchImportsToNodes = (importPaths: string[], nodeEdgeData: NodeEdgeData): string[] => {
-  console.log('import paths:', importPaths);
+  //console.log('import paths:', importPaths);
 
   return nodeEdgeData.nodes
     .filter(node => {
@@ -49,7 +44,7 @@ const matchImportsToNodes = (importPaths: string[], nodeEdgeData: NodeEdgeData):
 };
 
 const readAndConcatenateFiles = async (matchedNodeIds: string[]): Promise<string> => {
-  console.log("matches:\n" + matchedNodeIds)
+  // console.log("matches:\n" + matchedNodeIds)
   let combinedContent = "";
   for (const nodeId of matchedNodeIds) {
     try {
@@ -59,7 +54,7 @@ const readAndConcatenateFiles = async (matchedNodeIds: string[]): Promise<string
       console.error(`Error reading file ${nodeId}:`, error);
     }
   }
-  console.log("combi content:", combinedContent);
+  //console.log("combi content:", combinedContent);
   return combinedContent;
 };
 
@@ -68,7 +63,7 @@ export const getFunctionDescriptions = async (
   nodeEdgeData: NodeEdgeData,
   targetNodeId: string
 ) => {
-  console.log("======= Loading function descriptions =======");
+  //console.log("======= Loading function descriptions =======");
   const targetNode = nodeEdgeData.nodes.find((node: AppNode) => node.id === targetNodeId);
   if (!targetNode) {
     console.error(`Node with ID ${targetNodeId} not found.`);
@@ -80,10 +75,9 @@ export const getFunctionDescriptions = async (
     const content = await readFile(filePath, "utf-8");
 
     const combinedContent = readAndConcatenateFiles(matchImportsToNodes(extractImportPaths(content), nodeEdgeData));
-    // console.log("combi content:", combinedContent);
 
     const systemPrompt = "You are an AI that provides structured JSON responses for code documentation creation."
-    const userPrompt = `Give purely a JSON response in the format [node_id: ${targetNode.id},class_name:,class_description,functions:[{function_name:,function_description:,parameters:[{inputType:, description:(describe what needs to be inputted just like in a code documentation)}],output:{outputType, description:(describe what needs to be returned just like in a code documentation)}]]. Here is the file content:\n` + content + '\nHere is the context:\n' + combinedContent;
+    const userPrompt = `Give purely a JSON response in the format [node_id: ${targetNode.id},class_name:,class_description,functions:[{function_name:,function_description:,parameters:[{inputType:, description:(describe what needs to be inputted just like in a code documentation)}],output:{outputType:, description:(describe what needs to be returned just like in a code documentation)}]]. Here is the file content:\n` + content + '\nHere is the context:\n' + combinedContent;
 
     const response = await llmProvider.generateResponse(systemPrompt, userPrompt) as FnDescResponse[];
     console.log(response);
