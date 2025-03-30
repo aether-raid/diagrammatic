@@ -18,7 +18,6 @@ import { ViewType } from "./App.types";
 import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
 import CodeView from "./views/codeView/CodeView"
 import ComponentView from "./views/componentView/ComponentView"
-import { attachFnDescriptionsToNode } from "./helpers/nodeFnDescriptionHandler";
 
 export const App = () => {
     const codeDiagramCtx = useDiagramContext(ViewType.CODE_VIEW);
@@ -51,16 +50,16 @@ export const App = () => {
                 }
                 case Commands.ACCEPT_FN_DESCRIPTIONS: {
                     const msg = message as AcceptFnDescriptionPayload;
-                    if (!codeCtxRef.current?.graphData) {
+                    if (!codeDiagramCtx?.setNodeFnDesc) {
                         console.error("ACCEPT_FN_DESCRIPTION - Unable to retrieve diagram from context!");
                         return;
                     }
 
-                    attachFnDescriptionsToNode(codeCtxRef.current, msg.nodeId, msg.data);
-                    codeDiagramCtx?.setGraphData({
-                        nodes: codeCtxRef.current.graphData.nodes,
-                        edges: codeCtxRef.current.graphData.edges,
+                    codeDiagramCtx?.setNodeFnDesc({
+                        ...codeCtxRef.current?.nodeFnDesc,
+                        [msg.nodeId]: msg.data
                     });
+
                     break;
                 }
                 case Commands.ACCEPT_NODE_EDGE_DATA: {

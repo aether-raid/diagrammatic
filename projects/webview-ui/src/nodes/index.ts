@@ -188,7 +188,7 @@ export const initialNodes: AppNode[] = [
     position: { x: 0, y: 0 },
     data: {
       entityName: "Customer",
-      entityType: "file",
+      entityType: "record",
       filePath: "path/to/customer",
       startPosition: { row: 15, column: 25 },
       endPosition: { row: 19, column: 30 },
@@ -229,6 +229,23 @@ export const initialNodes: AppNode[] = [
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
           type: NodeType.FUNCTION,
+          documentation: {
+            function_name: 'givePotato',
+            function_description: `Give a potato to someone very passionately
+                i.e. throw it at them full speed like a baseball
+            `,
+            parameters: [{
+                inputType: 'string',
+                description: 'the person the potato is aimed at',
+            }, {
+                inputType: 'number',
+                description: 'the strength value of the thrower',
+            }],
+            output: {
+                outputType: 'number',
+                description: 'the amount of damage dealt from the potato lmao',
+            },
+          }
         },
         {
           name: "giveCorn",
