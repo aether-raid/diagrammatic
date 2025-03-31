@@ -27,6 +27,10 @@ body,
     font-size: 0.6rem;
 }
 
+.font-weight-light {
+    font-weight: 300;
+}
+
 /* Background colors */
 .bg-charcoal {
     background-color: var(--app-black)

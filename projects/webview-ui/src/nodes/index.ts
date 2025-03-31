@@ -34,50 +34,49 @@ export const initialNodes: AppNode[] = [
         },
       ],
       security: {
-        clean: [
-          {
-            range: {
-              start: { line: 26, character: 32 },
-              end: { line: 3, character: 3 },
+          clean: [
+            { 
+                range: {
+                start: { line: 26, character: 32 },
+                end: { line: 3, character: 3 },
+              },
+              message: "Security.dirty-object",
+              severity: 1,
+              source: "dirty-object"
             },
-            message: "Security.clean Object",
-            severity: 1,
-            source: "Group: security",
-          },
-          {
-            range: {
-              start: { line: 26, character: 32 },
-              end: { line: 3, character: 3 },
+            { range: {
+                start: { line: 27, character: 32 },
+                end: { line: 3, character: 3 },
+              },
+              message: 'Security.dirty-object',
+              severity: 1,
+              source: "dirty-object"
             },
-            message: "Security.dirty Object",
-            severity: 1,
-            source: "Group: security",
-          },
-          {
-            range: {
+            { 
+              range: {
               start: { line: 52, character: 32 },
               end: { line: 3, character: 3 },
             },
             message: "About to implode...",
             severity: 0,
-            source: "Group: security",
+            source: "implode"
           },
-        ],
-        vulnerability: [
-          {
-            range: {
-              start: { line: 26, character: 32 },
-              end: { line: 3, character: 3 },
-            },
-            message:
-              "Variable Assigned to Object Injection Sink Lorem ipsum potato ramen I like long issues what the testing data",
-            severity: 1,
-            source: "Group: vulnerability",
-          },
-        ],
-        extras: [],
-      },
-    },
+          ],
+          vulnerability: [
+            {
+              range: {
+                start: { line: 26, character: 32 },
+                end: { line: 3, character: 3 },
+              },
+              message: 
+               "Variable Assigned to Object Injection Sink Lorem ipsum potato ramen I like long issues what the testing data", 
+              severity: 1,
+              source: "long-issue"
+            }
+          ],
+          extras: []
+      }
+    }
   },
   {
     id: "5a",
