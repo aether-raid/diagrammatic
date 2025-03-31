@@ -25,17 +25,17 @@ export const initialNodes: AppNode[] = [
                 start: { line: 26, character: 32 },
                 end: { line: 3, character: 3 },
               },
-              message: 'Security.clean Object',
+              message: 'Security.dirty-object',
               severity: 1,
-              source: 'Group: security'
+              source: 'dirty-object'
             },
             { range: {
-                start: { line: 26, character: 32 },
+                start: { line: 27, character: 32 },
                 end: { line: 3, character: 3 },
               },
               message: 'Security.dirty Object',
               severity: 1,
-              source: 'Group: security'
+              source: 'dirty-object'
             },
             { range: {
               start: { line: 52, character: 32 },
@@ -43,7 +43,7 @@ export const initialNodes: AppNode[] = [
             },
             message: 'About to implode...',
             severity: 0,
-            source: 'Group: security'
+            source: 'implode'
           },
           ],
           vulnerability: [
@@ -54,7 +54,7 @@ export const initialNodes: AppNode[] = [
               },
               message: 'Variable Assigned to Object Injection Sink Lorem ipsum potato ramen I like long issues what the testing data', 
               severity: 1,
-              source: 'Group: vulnerability'
+              source: 'long-issue'
             }
           ],
           extras: []

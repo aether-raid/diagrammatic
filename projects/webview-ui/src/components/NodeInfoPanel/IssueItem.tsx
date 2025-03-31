@@ -45,3 +45,27 @@ export const IssueItem = ({ issue, filePath }: IssueItemProps) => {
     </div>
   );
 }
+export const LineItem = ({ lineNumber, filePath }: {lineNumber: number, filePath:string|undefined}) => {
+
+  const handleClick = () => {
+    if (!filePath) {
+      console.error(`Unknown filePath (${filePath})`);
+      return;
+    }
+
+    sendJumpToLineMessageToExtension(filePath, lineNumber);
+  };
+
+  return (
+    <div
+      onClick={handleClick}
+      className={
+        `d-flex justify-content-between gap-3 px-3 p-2 border-bottom bg-opacity-25 user-select-none cursor-pointer issue-text-hover fs-7`}
+    >
+      <div className='d-flex align-items-center fst-italic text-nowrap'>
+        <span>Line { lineNumber }</span>
+      </div>
+
+    </div>
+  );
+}
