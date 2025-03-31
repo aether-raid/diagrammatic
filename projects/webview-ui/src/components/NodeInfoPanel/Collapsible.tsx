@@ -1,6 +1,6 @@
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible"
 import { DiagnosticSeverityEnum } from "@shared/vscode.types"
-import { JSX, useState } from "react"
+import React, { JSX, useState } from "react"
 
 function Collapsible({
   ...props
