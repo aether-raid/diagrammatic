@@ -1,5 +1,6 @@
 import DangerousRoundedIcon from '@mui/icons-material/DangerousRounded';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
+import LaunchIcon from '@mui/icons-material/Launch';
 
 import { DiagnosticSeverityEnum, SerializedDiagnostic } from "@shared/vscode.types";
 
@@ -56,16 +57,15 @@ export const LineItem = ({ lineNumber, filePath }: {lineNumber: number, filePath
     sendJumpToLineMessageToExtension(filePath, lineNumber);
   };
 
+  const displayLine = Math.max(0, lineNumber) + 1;
   return (
     <div
       onClick={handleClick}
       className={
-        `d-flex justify-content-between gap-3 px-3 p-2 border-bottom bg-opacity-25 user-select-none cursor-pointer issue-text-hover fs-7`}
+        `d-flex justify-content-between align-items-center gap-3 px-3 py-1 user-select-none cursor-pointer issue-text-hover`}
     >
-      <div className='d-flex align-items-center fst-italic text-nowrap'>
-        <span>Line { lineNumber }</span>
-      </div>
-
+        <span className='fs-7 font-weight-normal text-nowrap'>Line&nbsp;{ displayLine }</span>
+        <LaunchIcon style={{fontSize: '16px'}}/>
     </div>
   );
 }

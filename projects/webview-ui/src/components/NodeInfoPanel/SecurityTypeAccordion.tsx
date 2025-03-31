@@ -1,7 +1,7 @@
 import Accordion from 'react-bootstrap/Accordion';
 
 import { SerializedDiagnostic } from '@shared/vscode.types';
-import { IssueItem, LineItem } from './IssueItem';
+import { LineItem } from './IssueItem';
 import { CollapsibleGroup } from "./Collapsible";
 import { groupIssues } from '../../helpers/organise';
 
@@ -14,11 +14,12 @@ interface SecurityTypeAccordionProps {
 
 export const SecurityTypeAccordion = ({ type, issues, filePath }: SecurityTypeAccordionProps) => {
   const groupedIssues = groupIssues(issues);
+  console.log('groupedIssues', groupedIssues);
   
   return (
     <Accordion alwaysOpen>
         <Accordion.Item eventKey='0'>
-            <Accordion.Header >
+            <Accordion.Header>
                 <div className="d-flex flex-column gap-1">
                     <div className="fs-7 fst-italic">Warning/Error</div>
                     <div className="fw-bold">Linting: { type }</div>
@@ -26,9 +27,9 @@ export const SecurityTypeAccordion = ({ type, issues, filePath }: SecurityTypeAc
             </Accordion.Header>
             <Accordion.Body className="p-0">
                 {(Object.entries(groupedIssues) as [string, SerializedDiagnostic[]][])
-                .map(([source, issues], idx) => {
+                .map(([rule, issues], idx) => {
                     return (
-                    <CollapsibleGroup key={idx} source={source} message={issues[0].message} severity={issues[0].severity}>
+                    <CollapsibleGroup key={idx} source={rule} message={issues[0].message} severity={issues[0].severity}>
                         {issues.map((issue, idx) => <LineItem key={idx} lineNumber={issue.range.start.line} filePath={filePath} />) }
                     </CollapsibleGroup>
                 )})}

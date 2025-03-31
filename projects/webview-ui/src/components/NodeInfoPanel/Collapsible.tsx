@@ -60,12 +60,13 @@ const CollapsibleGroup = ({source, message, severity, children}: {source:string,
     return <Collapsible
             open={isOpen}
             onOpenChange={setIsOpen}
-            className="w-[350px]"
+            className="w-[350px] mb-1"
         >
-            <div className={`d-flex px-3 py-3 items-center d-flex justify-content-between gap-3 border-bottom ${bgColor} bg-opacity-25`}>
-                <div className='d-flex gap-2 align-items-center'>
-                    <h4 className="fs-7">{source}</h4>
-                </div>
+            <div className={`d-flex px-3 py-1 items-center d-flex justify-content-between gap-3 ${bgColor} bg-opacity-25`}>
+                <p className="d-flex align-items-center fs-7">
+                    Rule:&nbsp;
+                    <span className="fw-normal">{source}</span>
+                </p>
                 <CollapsibleTrigger asChild>
                     <button className={`border-0 p-0 h-8 rounded-md pl-3 bg-transparent user-select-none cursor-pointer issue-text-hover`}>
                         <ChevronsUpDown width={16} height={16}/>
@@ -74,7 +75,9 @@ const CollapsibleGroup = ({source, message, severity, children}: {source:string,
                 
             </div>
             <CollapsibleContent>
-                <p className="d-flex justify-content-between gap-3 px-3 p-2 border-bottom fst-italic fs-7 bg-secondary bg-opacity-25">{message}</p>
+                <p className="px-3 pt-1 pb-3 fs-7"> Description:&nbsp;
+                    <span className=" ">{message}</span>
+                </p>
                 {...children}
             </CollapsibleContent>
         </Collapsible>

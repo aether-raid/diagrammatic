@@ -29,6 +29,7 @@ export const getDiagnostics = (messages: Linter.LintMessage[] | CppLintMessage[]
     const validSource = filterSources(msg.ruleId);
     if (validSource) {
       diagnostic.source = `${validSource}`; 
+      diagnostic.code = msg.ruleId;
       diagnostics.push(diagnostic);
     }
   });
@@ -50,6 +51,7 @@ export const serializeDiagnostics = (
       },
     },
     message: diagnostic.message,
+    rule: diagnostic.code ? `${diagnostic.code}` : undefined,
     severity: diagnostic.severity as number as DiagnosticSeverityEnum,
     source: diagnostic.source,
   };
@@ -79,7 +81,7 @@ export const processCpplintOutput = (output: string): CppLintResult[] =>  {
         filePath = file;
         diagnostics.push({
             // 1 based index
-            line: Math.max(parseInt(line, 10) + 1, 1),
+            line: Math.max(parseInt(line, 10), 0),
             messageId: messageId,
             message,
             column: parseInt(column, 10),
