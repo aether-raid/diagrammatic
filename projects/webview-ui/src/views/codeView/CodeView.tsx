@@ -1,7 +1,7 @@
 // *********************************
 // Layout using Dagre.js
 // *********************************
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 
 import {
     Background,
@@ -18,26 +18,23 @@ import {
 import { Feature, FeatureStatus, NodeRow } from "@shared/app.types";
 import { AppNode, EntityNode } from "@shared/node.types";
 import { AppEdge } from "@shared/edge.types";
+import { useFeatureStatusContext } from "../../contexts/FeatureStatusContext";
+import { useDiagramContext } from "../../contexts/DiagramContext";
 
-import { useNodeEdgeDataContext } from "../contexts/NodeEdgeDataContext";
-
-import { initialNodes, nodeTypes } from "../nodes";
-import { initialEdges } from "../edges";
-import DownloadButton from "../components/DownloadButton";
-import { NavigationButton } from "../components/NavigationButton";
-import { NodeInfoPanel } from "../components/NodeInfoPanel/NodeInfoPanel";
-import SearchBar from "../components/SearchBar";
-import {
-    getEdgesEntitiesToHighlightBFS,
-    getOutgoingEdgesFromEntityRow,
-} from "../helpers/diagramBFS";
-import { getLayoutedElements } from "../helpers/layoutHandlerDagre";
-import { retainNodePositions } from "../helpers/nodePositionHandler";
-import { useFeatureStatusContext } from "../contexts/FeatureStatusContext";
+import { initialNodes, nodeTypes } from "../../nodes";
+import { initialEdges } from "../../edges";
+import { ViewType } from "../../App.types";
+import DownloadButton from "../../components/DownloadButton";
+import { HighlightConnectedPathHandler } from "../../components/HighlightConnectedPathHandler";
+import { NavigationButton } from "../../components/NavigationButton";
+import { NodeInfoPanel } from "../../components/NodeInfoPanel/NodeInfoPanel";
+import { SearchBar } from "../../components/SearchBar";
+import { ViewChangeHandler } from "../../components/ViewChangeHandler";
+import { getLayoutedElements } from "../../helpers/layoutHandlerDagre";
 
 const LayoutFlow = () => {
     // General ReactFlow states
-    const { fitView, getNode, setCenter } = useReactFlow<AppNode, AppEdge>();
+    const { fitView, getViewport } = useReactFlow<AppNode, AppEdge>();
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
@@ -55,38 +52,24 @@ const LayoutFlow = () => {
     const [showNodeInfoPanel, setShowNodeInfoPanel] = useState<boolean>(false);
     const [panelNode, setPanelNode] = useState<EntityNode>();
 
-    // Stable Reference to node variable
-    const nodesRef = useRef(nodes);
-
     // Global contexts
     const featureStatusCtx = useFeatureStatusContext();
     const componentDiagramStatus = featureStatusCtx?.getFeatureStatus(Feature.COMPONENT_DIAGRAM);
 
-    const nodeEdgeCtx = useNodeEdgeDataContext();
+    const diagramCtx = useDiagramContext(ViewType.CODE_VIEW);
 
     // General constants
+    const CURRENT_VIEW = ViewType.CODE_VIEW;
     const MIN_ZOOM = 0.1;
     const MAX_ZOOM = 2;
 
-    useEffect(() => {
-        nodesRef.current = nodes;
-    }, [nodes]);
-
-    useEffect(() => {
-        if (!nodeEdgeCtx?.codeNodeEdgeData) {
-            console.error("Unable to retrieve data from context!");
-            return;
-        }
-        setNodes(retainNodePositions(nodeEdgeCtx.codeNodeEdgeData.nodes, nodesRef.current));
-        setEdges(nodeEdgeCtx.codeNodeEdgeData.edges);
-    }, [nodeEdgeCtx?.codeNodeEdgeData]);
-
     const handleBeforeNavigate = () => {
-        if (!nodeEdgeCtx) { return }
-        nodeEdgeCtx.setCodeNodeEdgeData({
+        if (!diagramCtx) { return }
+        diagramCtx.setGraphData({
             nodes: nodes,
             edges: edges,
         });
+        diagramCtx.setViewport(getViewport());
     }
 
     const renderComponentButtonText = () => {
@@ -115,31 +98,6 @@ const LayoutFlow = () => {
         [nodes, edges]
     );
 
-    useEffect(() => {
-        // console.log("Currently hovering on: ", hoveredEntity);
-        if (!hoveredEntity) {
-            setHighlightedNodes([]);
-            setHighlightedEdges([]);
-            return;
-        }
-
-        const hoveredNode = getNode(hoveredEntity.nodeId)!; // Can safely assume it exists since it's part of the graph
-        const outgoingEdges = getOutgoingEdgesFromEntityRow(
-            hoveredNode,
-            hoveredEntity.rowId,
-            edges
-        );
-        const toHighlight = getEdgesEntitiesToHighlightBFS(
-            outgoingEdges,
-            edges,
-            getNode
-        );
-        setHighlightedEdges(toHighlight.edges);
-
-        const entityRepr = `${hoveredEntity.nodeId}-${hoveredEntity.rowId}`;
-        setHighlightedNodes([entityRepr, ...toHighlight.entities]);
-    }, [hoveredEntity, edges]);
-
     const prepareNode = (node: AppNode) =>
         node.type !== "entity"
             ? node
@@ -164,12 +122,6 @@ const LayoutFlow = () => {
     });
 
     return (
-        <>
-            <SearchBar
-                nodes={nodes}
-                setCenter={setCenter}
-                matchedNodesState={[matchedNodes, setMatchedNodes]}
-            />
             <ReactFlow
                 nodeTypes={nodeTypes}
                 nodes={nodes.map((n) => prepareNode(n))}
@@ -182,11 +134,20 @@ const LayoutFlow = () => {
                         setShowNodeInfoPanel(true);
                     }
                 }}
-                fitView
                 colorMode="dark"
                 minZoom={MIN_ZOOM}
                 maxZoom={MAX_ZOOM}
             >
+                {/* Handlers */}
+                <HighlightConnectedPathHandler
+                    hoveredEntity={hoveredEntity}
+                    setHighlightedEdges={setHighlightedEdges}
+                    setHighlightedNodes={setHighlightedNodes}
+                />
+                <ViewChangeHandler view={CURRENT_VIEW} />
+
+                {/* Displayed Elements */}
+                <SearchBar matchedNodesState={[matchedNodes, setMatchedNodes]} />
                 <Panel position="top-center">
                     <button onClick={() => onLayout("TB")}>
                         Vertical Layout
@@ -216,7 +177,6 @@ const LayoutFlow = () => {
                     entity={panelNode}
                 />
             </ReactFlow>
-        </>
     );
 };
 

@@ -1,23 +1,26 @@
 import * as vscode from "vscode";
+
+import { Feature, FeatureStatus, NodeEdgeData } from "@shared/app.types";
 import {
   Commands,
+  GenerateFnDescriptionPayload,
   JumpToLinePayload,
   WebviewCommandMessage,
 } from "@shared/message.types";
 
 import { runCodeToDiagramAlgorithm } from "./codeToDiagram/runCodeToDiagramAlgorithm";
+import { runCodeLinting } from "./codeQuality/runCodeLinting";
+import { getComponentDiagram } from "./componentDiagram/runComponentDiagramAlgorithm";
+import { getFunctionDescriptions } from "./functionDescriptions/runFunctionDescriptionsAlgorithm";
 import {
   sendAcceptNodeEdgeMessageToWebview,
   sendAcceptCompNodeEdgeMessageToWebview,
   sendUpdateFeatureStatusMessageToWebview,
+  sendAcceptFnDescriptionMessageToWebview,
 } from "./messageHandler";
 import { runNodeDescriptionsAlgorithm } from "./nodeDescriptions/runNodeDescriptionsAlgorithm";
-import { runFunctionDescriptionsAlgorithm } from "./functionDescriptions/runFunctionDescriptionsAlgorithm";
-import { runCodeLinting } from "./codeQuality/runCodeLinting";
-import { getComponentDiagram } from "./componentDiagram/runComponentDiagramAlgorithm";
 import { retrieveApiKey } from "./helpers/apiKey";
 import { LLMProvider, retrieveLLMProvider } from "./helpers/llm";
-import { Feature, FeatureStatus, NodeEdgeData } from "@shared/app.types";
 
 export const handleShowMVCDiagram = async (
   context: vscode.ExtensionContext,
@@ -48,19 +51,33 @@ export const handleShowMVCDiagram = async (
     panel.webview.onDidReceiveMessage(
       async (message: WebviewCommandMessage) => {
         switch (message.command) {
-          case Commands.READY:
+          case Commands.READY: {
             sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
             sendAcceptCompNodeEdgeMessageToWebview(componentNodeEdgeData, panel);
             resolve();
             break;
-          case Commands.JUMP_TO_LINE:
+          }
+
+          case Commands.JUMP_TO_LINE: {
             const msg = message.message as JumpToLinePayload;
             const fileUri = vscode.Uri.file(msg.filePath);
-            const position = new vscode.Position(msg.lineNumber - 1, 0);
+            const position = new vscode.Position(msg.lineNumber, 0);
             await vscode.commands.executeCommand("vscode.open", fileUri, {
               selection: new vscode.Range(position, position),
             });
             break;
+          }
+
+          case Commands.GENERATE_FN_DESCRIPTIONS: {
+            const msg = message.message as GenerateFnDescriptionPayload;
+            await getFunctionDescriptionsAsync(msg.nodeId);
+            break;
+          }
+
+          case Commands.GET_COMPONENT_DIAGRAM: {
+            await getComponentDiagramAsync(); // Call the regeneration function
+            break;
+          }
         }
       }
     );
@@ -81,11 +98,11 @@ export const handleShowMVCDiagram = async (
   const llmProvider: LLMProvider = retrieveLLMProvider(apiKey);
   const getComponentDiagramAsync = async () => {
     console.log("running component diag");
+
     sendUpdateFeatureStatusMessageToWebview({
       feature: Feature.COMPONENT_DIAGRAM,
       status: FeatureStatus.ENABLED_LOADING,
     }, panel);
-
     const data = await getComponentDiagram(nodeEdgeData, llmProvider);
     componentNodeEdgeData = data;
 
@@ -115,15 +132,19 @@ export const handleShowMVCDiagram = async (
     console.log("node desc done & sent");
   }
 
-  const getFunctionDescriptionsAsync = async () => {
+  const getFunctionDescriptionsAsync = async (targetNodeId: string) => {
     console.log("running function desc")
-    const data = await runFunctionDescriptionsAlgorithm(nodeEdgeData, llmProvider);
-    console.log(data);
+
+    const fnDesc = await getFunctionDescriptions(llmProvider, nodeEdgeData, targetNodeId);
+    sendAcceptFnDescriptionMessageToWebview({
+      nodeId: targetNodeId,
+      data: fnDesc ?? [],
+    }, panel);
     console.log("done function desc")
   }
+
   getComponentDiagramAsync();
   getNodeDescriptionsAsync();
-  // getFunctionDescriptionsAsync();
 
   return Promise.resolve(panel);
 };

@@ -28,6 +28,7 @@ function getLanguageForFile(filePath) {
   if (filePath.endsWith(".py")) return Python;
   if (filePath.endsWith(".java")) return Java;
   if (filePath.endsWith(".cpp")) return Cpp;
+  if (filePath.endsWith(".hpp")) return Cpp;
   return null;
 }
 
@@ -166,13 +167,20 @@ export function processCallExpression(node) {
 
   switch (func.type) {
     case "identifier":
-      return new Call({ token: func.text, lineNumber: getLineNumber(node) });
+      return new Call({
+        token: func.text,
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
+        text: node.text,
+      });
     case "member_expression":
       const { token, pointsTo } = processMemberExpression(func);
       return new Call({
         token,
         ownerToken: pointsTo,
-        lineNumber: getLineNumber(node),
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
+        text: node.text,
       });
     // for C++
     case "field_expression":
@@ -181,9 +189,12 @@ export function processCallExpression(node) {
         return new Call({
           token: getFirstChildOfType(func, "field_identifier")?.text,
           ownerToken: identifier.text,
-          lineNumber: getLineNumber(node),
+          startPosition: node.startPosition,
+          endPosition: node.endPosition,
+          text: node.text,
         });
       }
+      break;
     default:
       return null;
   }
@@ -204,7 +215,12 @@ export function processMethodInvocation(node) {
   }
   // getVenueById(id)
   if (!objectNode) {
-    return new Call({ token: nameNode.text, lineNumber: getLineNumber(node) });
+    return new Call({
+      token: nameNode.text,
+      startPosition: node.startPosition,
+      endPosition: node.endPosition,
+      text: node.text,
+    });
   }
 
   switch (objectNode.type) {
@@ -216,7 +232,9 @@ export function processMethodInvocation(node) {
       return new Call({
         token: nameNode.text,
         ownerToken: objectNode.text,
-        lineNumber: getLineNumber(node),
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
+        text: node.text,
       });
     default:
       return null;
@@ -233,7 +251,7 @@ export function processMethodInvocation(node) {
  * @param {Array} body - List of TreeSitter nodes
  * @returns {Array<Call>} - List of Call objects.
  */
-export function makeCalls(body) {
+export function makeCalls(body, getNameRules) {
   const calls = [];
 
   for (const node of walk(body)) {
@@ -243,11 +261,39 @@ export function makeCalls(body) {
         if (call) {
           calls.push(call);
         }
+        break;
       case "method_invocation":
         const mCall = processMethodInvocation(node);
         if (mCall) {
           calls.push(mCall);
         }
+        break;
+      case "jsx_opening_element":
+        const token = getName(node, getNameRules);
+        if (token) {
+          calls.push(
+            new Call({
+              token,
+              startPosition: node.startPosition,
+              endPosition: node.endPosition,
+              text: node.text,
+            })
+          );
+        }
+        break;
+      case "jsx_self_closing_element":
+        const token2 = getName(node, getNameRules);
+        if (token2) {
+          calls.push(
+            new Call({
+              token: token2,
+              startPosition: node.startPosition,
+              endPosition: node.endPosition,
+              text: node.text,
+            })
+          );
+        }
+        break;
       default:
         continue;
     }
@@ -281,7 +327,8 @@ export function processVariableDeclaration(node) {
       return new Variable({
         token: name.text,
         pointsTo: identifierNode.text,
-        lineNumber: getLineNumber(node),
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
         variableType: VariableType.OBJECT_INSTANTIATION,
       });
     case "call_expression":
@@ -289,7 +336,8 @@ export function processVariableDeclaration(node) {
       return new Variable({
         token: name.text,
         pointsTo: call,
-        lineNumber: getLineNumber(node),
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
         variableType: VariableType.CALL_EXPRESSION,
       });
     case "await_expression":
@@ -301,7 +349,8 @@ export function processVariableDeclaration(node) {
       return new Variable({
         token: name.text,
         pointsTo: awaitCall,
-        lineNumber: getLineNumber(node),
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
         variableType: VariableType.CALL_EXPRESSION,
       });
     case "member_expression":
@@ -309,12 +358,174 @@ export function processVariableDeclaration(node) {
       return new Variable({
         token,
         pointsTo,
-        lineNumber: getLineNumber(node),
+        startPosition: node.startPosition,
+        endPosition: node.endPosition,
         variableType: VariableType.CALL_EXPRESSION,
       });
   }
 
   return null;
+}
+
+function isRelativeFilePath(path) {
+  const relativeFilePathRegex = /^(?:..?[\\/])[^<>:"|?*\n]+$/;
+  return relativeFilePathRegex.test(path);
+}
+
+/**
+ * relative filepath
+ * (1) pointsTo="./article.service" => without extension
+ * (2) pointsTo="./article.service.ts" => with extension
+ * (3) pointsTo="./dto" => folder
+ * output=/User/fyp/samples/nestjs-realworld-example-app/src/article/article.service.ts
+ * output=/User/fyp/samples/nestjs-realworld-example-app/src/article/dto
+ */
+function resolveRelativeFilePath(filePath, pointsTo) {
+  let importedFilePath = path.resolve(path.dirname(filePath), pointsTo);
+  if (fs.existsSync(importedFilePath)) {
+    return importedFilePath;
+  }
+
+  // if file has no extension, search directory for matching filename
+  const baseDirectory = path.dirname(importedFilePath);
+  if (fs.existsSync(baseDirectory)) {
+    const files = fs.readdirSync(baseDirectory);
+    const fileNameWithoutExt = path.basename(pointsTo);
+    const matchedFile = files.find((file) => {
+      const baseFilePath = path.basename(file);
+      return baseFilePath.startsWith(fileNameWithoutExt);
+    });
+    if (matchedFile) {
+      return path.join(baseDirectory, matchedFile);
+    }
+  }
+
+  return null;
+}
+
+/**
+ * import { SyntaxNode, Tree } from 'tree-sitter'
+ *   - import_statement (11:0 - 11:68)
+      - import (11:0 - 11:6)
+      - type (11:7 - 11:11)
+      - import_clause (11:12 - 11:53)
+        - named_imports (11:12 - 11:53)
+          - { (11:12 - 11:13)
+          - import_specifier (11:14 - 11:25)
+            - identifier (11:14 - 11:25)
+          - , (11:25 - 11:26)
+          - import_specifier (11:44 - 11:51)
+            - identifier (11:44 - 11:51)
+          - } (11:52 - 11:53)
+      - from (11:54 - 11:58)
+      - string (11:59 - 11:68)
+        - ' (11:59 - 11:60)
+        - string_fragment (11:60 - 11:67)
+        - ' (11:67 - 11:68)
+  */
+function makeLocalVariablesImportStatementNamedImport(
+  namedImports,
+  importedFilePath,
+  fileGroup,
+  languageRules
+) {
+  const importSpecifiers = getAllChildrenOfType(
+    namedImports,
+    "import_specifier"
+  );
+
+  const variables = [];
+  for (const importSpecifier of importSpecifiers) {
+    const name = getName(importSpecifier, languageRules.getName);
+    if (!name || !fileGroup.filePath) {
+      continue;
+    }
+
+    variables.push(
+      new Variable({
+        token: name,
+        pointsTo: importedFilePath,
+        startPosition: importSpecifier.startPosition,
+        endPosition: importSpecifier.endPosition,
+        variableType: VariableType.NAMED_IMPORT,
+      })
+    );
+  }
+  return variables;
+}
+
+/**
+ * import * as utils from '../lib/utils'
+ * - import_statement (12:0 - 12:32)
+    - import (12:0 - 12:6)
+    - import_clause (12:7 - 12:17)
+      - namespace_import (12:7 - 12:17)
+        - * (12:7 - 12:8)
+        - as (12:9 - 12:11)
+        - identifier (12:12 - 12:17)
+    - from (12:18 - 12:22)
+    - string (12:23 - 12:32)
+      - ' (12:23 - 12:24)
+      - string_fragment (12:24 - 12:31)
+      - ' (12:31 - 12:32)
+  */
+function makeLocalVariablesImportStatementNamespaceImport(
+  namespaceImport,
+  importedFilePath,
+  languageRules
+) {
+  const token = getName(namespaceImport, languageRules.getName);
+  if (!token) {
+    return [];
+  }
+
+  return [
+    new Variable({
+      token,
+      pointsTo: importedFilePath,
+      startPosition: namespaceImport.startPosition,
+      endPosition: namespaceImport.endPosition,
+      variableType: VariableType.NAMESPACE_IMPORT,
+    }),
+  ];
+}
+
+function makeLocalVariablesImportStatement(node, parent, languageRules) {
+  const importClause = getFirstChildOfType(node, "import_clause");
+  const string = getFirstChildOfType(node, "string");
+  const stringFragment = getFirstChildOfType(string, "string_fragment");
+  const fileGroup = parent.getFileGroup();
+
+  if (!importClause || !stringFragment || !fileGroup) {
+    return [];
+  }
+
+  const pointsTo = stringFragment.text;
+  if (!pointsTo || !isRelativeFilePath(pointsTo)) {
+    return [];
+  }
+
+  const importedFilePath = resolveRelativeFilePath(
+    fileGroup.filePath,
+    pointsTo
+  );
+
+  const firstChild = importClause.firstChild;
+  switch (firstChild.type) {
+    case "named_imports":
+      return makeLocalVariablesImportStatementNamedImport(
+        firstChild,
+        importedFilePath,
+        fileGroup,
+        languageRules
+      );
+    case "namespace_import":
+      return makeLocalVariablesImportStatementNamespaceImport(
+        firstChild,
+        importedFilePath,
+        languageRules
+      );
+  }
 }
 
 export function makeLocalVariables(tree, parent, languageRules) {
@@ -338,74 +549,85 @@ export function makeLocalVariables(tree, parent, languageRules) {
             new Variable({
               token: identifier.text,
               pointsTo: typeIdentifier.text,
-              lineNumber: getLineNumber(node),
+              startPosition: node.startPosition,
+              endPosition: node.endPosition,
               variableType: VariableType.CALL_EXPRESSION,
             })
           );
         }
-        break;
-      // import { SyntaxNode } from 'tree-sitter'
-      case "import_statement":
-        const importClause = getFirstChildOfType(node, "import_clause");
-        const namedImports = getFirstChildOfType(importClause, "named_imports");
-        const importSpecifiers = getAllChildrenOfType(
-          namedImports,
-          "import_specifier"
+
+        const templateType = getFirstChildOfType(node, "template_type");
+        const functionDeclarator = getFirstChildOfType(
+          node,
+          "function_declarator"
         );
-        const string = getFirstChildOfType(node, "string");
-        const stringFragment = getFirstChildOfType(string, "string_fragment");
+        const templateClassToken = getName(
+          functionDeclarator,
+          languageRules.getName
+        );
+        const typeIdentifier2 = getFirstChildOfType(
+          templateType,
+          "type_identifier"
+        );
+        if (templateType && typeIdentifier2 && templateClassToken) {
+          variables.push(
+            new Variable({
+              token: templateClassToken,
+              pointsTo: typeIdentifier2.text,
+              startPosition: node.startPosition,
+              endPosition: node.endPosition,
+              variableType: VariableType.OBJECT_INSTANTIATION,
+            })
+          );
+        }
+        break;
+      case "import_statement":
+        const varArray = makeLocalVariablesImportStatement(
+          node,
+          parent,
+          languageRules
+        );
+        if (varArray) {
+          variables.push(...varArray);
+        }
+        break;
+      case "preproc_include":
         const fileGroup = parent.getFileGroup();
-        if (stringFragment && fileGroup) {
-          for (const importSpecifier of importSpecifiers) {
-            const name = getName(importSpecifier, languageRules.getName);
-            const pointsTo = stringFragment.text;
-            const relativeFilePathRegex = new RegExp(
-              '^(?:..?[\\/])[^<>:"|?*\n]+$'
-            );
-            /**
-             * relative filepath
-             * e.g. "./article.service" => without extension
-             * e.g. "./dto" => folder
-             * (1) import classes from file
-             * (2) import functions from file
-             * (3) import from folder
-             * output variable.pointsTo: /User/fyp/samples/nestjs-realworld-example-app/src/article/article.service.ts
-             * output variable.pointsTo: User/fyp/samples/nestjs-realworld-example-app/src/article/dto
-             */
-            if (
-              name &&
-              pointsTo &&
-              relativeFilePathRegex.test(pointsTo) &&
-              fileGroup instanceof Group &&
-              fileGroup.filePath
-            ) {
-              let importedFilePath = path.resolve(
-                path.dirname(fileGroup.filePath),
-                pointsTo
-              );
-              const baseDirectory = path.dirname(importedFilePath);
-              // if file has no extension, search directory for matching filename
-              if (fs.existsSync(baseDirectory)) {
-                const files = fs.readdirSync(baseDirectory);
-                const fileNameWithoutExt = path.basename(pointsTo);
-                const matchedFile = files.find((file) => {
-                  const baseFilePath = path.basename(file);
-                  return baseFilePath.startsWith(fileNameWithoutExt);
-                });
-                if (matchedFile) {
-                  importedFilePath = path.join(baseDirectory, matchedFile);
-                }
-                variables.push(
-                  new Variable({
-                    token: name,
-                    pointsTo: importedFilePath,
-                    lineNumber: getLineNumber(importSpecifier),
-                    variableType: VariableType.RELATIVE_IMPORT,
-                  })
-                );
-              }
-            }
+        const stringLiteral = getFirstChildOfType(node, "string_literal");
+        const stringContent = getFirstChildOfType(
+          stringLiteral,
+          "string_content"
+        );
+        const pointsTo = stringContent?.text;
+        if (!pointsTo) {
+          break;
+        }
+        let importedFilePath = resolveRelativeFilePath(
+          fileGroup.filePath,
+          pointsTo
+        );
+        const possibleIncludePaths = ["/include"];
+        for (const basePath of possibleIncludePaths) {
+          const fullPath = path.join(
+            path.dirname(fileGroup.filePath),
+            basePath,
+            pointsTo
+          );
+          if (fs.existsSync(fullPath)) {
+            importedFilePath = fullPath;
+            break;
           }
+        }
+        if (importedFilePath) {
+          variables.push(
+            new Variable({
+              token: path.basename(pointsTo),
+              pointsTo: importedFilePath,
+              startPosition: node.startPosition,
+              endPosition: node.endPosition,
+              variableType: VariableType.NAMESPACE_IMPORT,
+            })
+          );
         }
         break;
     }
@@ -426,6 +648,11 @@ export function makeLocalVariables(tree, parent, languageRules) {
  */
 export function findLinkForCall(call, nodeA, allNodes) {
   const fileGroup = nodeA.getFileGroup();
+  const globalNode = allNodes.find(
+    (node) =>
+      node.token === GLOBAL &&
+      node.getFileGroup().filePath === fileGroup.filePath
+  );
 
   if (call.isAttribute()) {
     /**
@@ -435,7 +662,28 @@ export function findLinkForCall(call, nodeA, allNodes) {
     if (call.ownerToken === "this") {
       for (const node of nodeA.parent.nodes) {
         if (node.token === call.token) {
+          node.functionCalls.push(call);
           return new Edge(nodeA, node);
+        }
+      }
+    }
+
+    /**
+     * Calling functions from namespace import
+     * I have variable: utils -> utils.ts
+     * I have call: utils.ctfFlag()
+     */
+    for (const variable of globalNode.variables) {
+      if (
+        variable.token === call.ownerToken &&
+        variable.pointsTo instanceof Group &&
+        variable.pointsTo.groupType === GroupType.FILE
+      ) {
+        for (const fileNode of variable.pointsTo.nodes) {
+          if (fileNode.token === call.token) {
+            fileNode.functionCalls.push(call);
+            return new Edge(nodeA, fileNode);
+          }
         }
       }
     }
@@ -461,6 +709,7 @@ export function findLinkForCall(call, nodeA, allNodes) {
             const classNode = variable.pointsTo;
             for (const node of classNode.nodes) {
               if (node.token === call.token) {
+                node.functionCalls.push(call);
                 return new Edge(nodeA, node);
               }
             }
@@ -476,11 +725,6 @@ export function findLinkForCall(call, nodeA, allNodes) {
      * I have variable: findAll -> Group: article.service.ts under (global)
      * I have call: findAll -> null
      */
-    const globalNode = allNodes.find(
-      (node) =>
-        node.token === GLOBAL &&
-        node.getFileGroup().filePath === fileGroup.filePath
-    );
     for (const variable of globalNode.variables) {
       if (
         variable.token === call.token &&
@@ -489,6 +733,7 @@ export function findLinkForCall(call, nodeA, allNodes) {
       ) {
         for (const fileNode of variable.pointsTo.nodes) {
           if (fileNode.token === call.token) {
+            fileNode.functionCalls.push(call);
             return new Edge(nodeA, fileNode);
           }
         }
@@ -502,6 +747,7 @@ export function findLinkForCall(call, nodeA, allNodes) {
           call.token === node2.token &&
           node2.nodeType === NodeType.FUNCTION
         ) {
+          node2.functionCalls.push(call);
           return new Edge(nodeA, node2);
         }
       }
@@ -510,6 +756,7 @@ export function findLinkForCall(call, nodeA, allNodes) {
     // calling another function
     for (const node of allNodes) {
       if (call.token === node.token && node.nodeType === NodeType.FUNCTION) {
+        node.functionCalls.push(call);
         return new Edge(nodeA, node);
       }
     }
@@ -567,8 +814,30 @@ export function getAllChildrenOfType(node, target) {
   return ret;
 }
 
-export function getLineNumber(node) {
-  return node.startPosition?.row + 1; // change to 1 index
+// Recursive function to process nested NodeConfig relationships
+function getNameUsingConfig(node, config, getNameRules) {
+  if (config.childTypes) {
+    for (const [childType, childConfig] of Object.entries(config.childTypes)) {
+      const child = getFirstChildOfType(node, childType);
+      if (child) {
+        return getNameUsingConfig(child, childConfig, getNameRules);
+      }
+    }
+  }
+
+  if (config.delegate) {
+    return getName(node, getNameRules);
+  }
+
+  if (config.useText) {
+    return node.text;
+  }
+
+  if (config.fieldName) {
+    return node.childForFieldName(config.fieldName)?.text ?? null;
+  }
+
+  return null;
 }
 
 /**
@@ -588,26 +857,13 @@ export function getName(node, getNameRules) {
   if (!getNameRules) {
     throw new Error("getName rules not defined in JSON file!");
   }
+  if (!node) {
+    return null;
+  }
   const nodeTypeConfig = getNameRules[node.type];
 
   if (nodeTypeConfig) {
-    const child = getFirstChildOfType(node, nodeTypeConfig.childType);
-
-    if (!child) {
-      return null;
-    }
-
-    if (nodeTypeConfig.delegate) {
-      return getName(child, getNameRules);
-    }
-
-    if (nodeTypeConfig.useText) {
-      return child.text;
-    }
-
-    if (nodeTypeConfig.fieldName) {
-      return child.childForFieldName(nodeTypeConfig.fieldName)?.text ?? null;
-    }
+    return getNameUsingConfig(node, nodeTypeConfig, getNameRules);
   }
 
   for (const field of getNameRules.fallbackFields) {
@@ -638,7 +894,8 @@ export function makeFileGroup(node, filePath, fileName, languageRules) {
   const fileGroup = new Group({
     groupType: GroupType.FILE,
     token: fileName,
-    lineNumber: 0,
+    startPosition: node.startPosition,
+    endPosition: node.endPosition,
     filePath,
   });
   for (const node of nodeTrees) {
@@ -689,7 +946,8 @@ export function processConstructorRequiredParameter(node) {
   return new Variable({
     token: identifier.text,
     pointsTo: typeIdentifier.text,
-    lineNumber: getLineNumber(node),
+    startPosition: node.startPosition,
+    endPosition: node.endPosition,
     variableType: VariableType.INJECTION,
   });
 }

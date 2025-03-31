@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import {
     Background,
@@ -15,17 +15,21 @@ import {
 import { AppNode } from "@shared/node.types";
 import { AppEdge } from "@shared/edge.types";
 
-import { useNodeEdgeDataContext } from "../contexts/NodeEdgeDataContext";
+import { useDiagramContext } from "../../contexts/DiagramContext";
 
-import { initialCompNodes, nodeTypes } from "../nodes";
-import { initialCompEdges } from "../edges";
-import DownloadButton from "../components/DownloadButton";
-import { NavigationButton } from "../components/NavigationButton";
-import { getLayoutedElements } from "../helpers/layoutHandlerDagre";
-import { retainNodePositions } from "../helpers/nodePositionHandler";
+import { initialCompNodes, nodeTypes } from "../../nodes";
+import { initialCompEdges } from "../../edges";
+import { ViewType } from "../../App.types";
+import DownloadButton from "../../components/DownloadButton";
+import { NavigationButton } from "../../components/NavigationButton";
+import { ViewChangeHandler } from "../../components/ViewChangeHandler";
+import { getLayoutedElements } from "../../helpers/layoutHandlerDagre";
+import { RegenerateButton } from "../../components/RegenerateButton";
+import { Feature, FeatureStatus } from "@shared/app.types";
+import { useFeatureStatusContext } from "../../contexts/FeatureStatusContext";
 
 const LayoutFlow = () => {
-    const { fitView } = useReactFlow<AppNode, AppEdge>();
+    const { fitView, getViewport } = useReactFlow<AppNode, AppEdge>();
     const [nodes, setNodes, onNodesChange] = useNodesState(initialCompNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialCompEdges);
 
@@ -33,13 +37,11 @@ const LayoutFlow = () => {
     const [highlightedNodes, setHighlightedNodes] = useState<string[]>([]);
     const [highlightedEdges, setHighlightedEdges] = useState<string[]>([]);
 
-    // Stable Reference to node variable
-    const nodesRef = useRef(nodes);
-
     // Global context, use to retain states when changing views
-    const nodeEdgeCtx = useNodeEdgeDataContext();
+    const diagramCtx = useDiagramContext(ViewType.COMPONENT_VIEW);
 
     // General constants
+    const CURRENT_VIEW = ViewType.COMPONENT_VIEW;
     const MIN_ZOOM = 0.1;
     const MAX_ZOOM = 2;
 
@@ -64,25 +66,21 @@ const LayoutFlow = () => {
         setHighlightedEdges([]);
     };
 
-    useEffect(() => {
-      nodesRef.current = nodes;
-    }, [nodes]);
-
-    useEffect(() => {
-        if (!nodeEdgeCtx?.componentNodeEdgeData) {
-            console.error("Unable to retrieve data from context!");
-            return;
-        }
-        setNodes(retainNodePositions(nodeEdgeCtx.componentNodeEdgeData.nodes, nodesRef.current));
-        setEdges(nodeEdgeCtx.componentNodeEdgeData.edges);
-    }, [nodeEdgeCtx?.componentNodeEdgeData]);
-
     const handleBeforeNavigate = () => {
-        if (!nodeEdgeCtx) { return; }
-        nodeEdgeCtx.setComponentNodeEdgeData({
+        if (!diagramCtx) { return; }
+        diagramCtx.setGraphData({
             nodes: nodes,
             edges: edges,
         });
+        diagramCtx.setViewport(getViewport());
+    }
+
+    const handleBeforeRegenerate = () => {
+        // Wipe existing data
+        diagramCtx?.setGraphData({
+            nodes: [],
+            edges: [],
+        })
     }
 
     const onLayout = useCallback(
@@ -122,6 +120,21 @@ const LayoutFlow = () => {
         className: highlightedEdges.includes(edge.id) ? "highlighted-edge" : "",
     });
 
+    // Global contexts
+    const featureStatusCtx = useFeatureStatusContext();
+    const componentDiagramStatus = featureStatusCtx?.getFeatureStatus(Feature.COMPONENT_DIAGRAM);
+
+    const renderComponentButtonText = () => {
+        switch (componentDiagramStatus) {
+            case FeatureStatus.ENABLED_LOADING:
+                return "Regenerating Component Diagram...";
+            case FeatureStatus.ENABLED_DONE:
+                return "Regenerate Component Diagram";
+            default:
+                // Disabled or unknown status
+                return "Component Diagram Disabled";
+        }
+    }
     return (
         <ReactFlow
             nodeTypes={nodeTypes}
@@ -133,11 +146,14 @@ const LayoutFlow = () => {
             onEdgeMouseLeave={onEdgeMouseLeave}
             onNodeMouseEnter={(event, node) => onNodeMouseEnter(event, node.id)}
             onNodeMouseLeave={onNodeMouseLeave}
-            fitView
             colorMode="dark"
             minZoom={MIN_ZOOM}
             maxZoom={MAX_ZOOM}
         >
+            {/* Handlers */}
+            <ViewChangeHandler view={CURRENT_VIEW}/>
+
+            {/* Displayed Elements */}
             <Panel position="top-center">
                 <button onClick={() => onLayout("TB")}>Vertical Layout</button>
                 <button onClick={() => onLayout("LR")}>
@@ -153,6 +169,11 @@ const LayoutFlow = () => {
                         target="/"
                         label="Code View"
                         onNavigate={handleBeforeNavigate}
+                    />
+                    <RegenerateButton 
+                        label={renderComponentButtonText()} 
+                        disabled={componentDiagramStatus !== FeatureStatus.ENABLED_DONE}
+                        onRegenerate={handleBeforeRegenerate}
                     />
                 </div>
             </Panel>

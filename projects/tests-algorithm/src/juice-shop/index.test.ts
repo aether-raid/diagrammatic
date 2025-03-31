@@ -27,7 +27,7 @@ describe("juice-shop", () => {
     mock("vscode", {});
     ruleset = require("@extension/helpers/ruleset");
     runCodeToDiagramAlgorithm =
-      require("@extension/runCodeToDiagramAlgorithm").runCodeToDiagramAlgorithm;
+      require("@extension/codeToDiagram/runCodeToDiagramAlgorithm").runCodeToDiagramAlgorithm;
 
     // Stub ruleset to always return us the default config
     rulesetStub = sinon.stub(ruleset, "retrieveRuleset");
@@ -79,7 +79,7 @@ describe("juice-shop", () => {
             entityType: string;
             entityName: string;
             filePath: string;
-            items: { name: string; lineNumber: number; type: string }[];
+            items: { name: string; type: string }[];
           };
         }[],
         expectedNodes

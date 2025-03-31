@@ -82,8 +82,10 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
           ? [
               {
                 name: node.token ?? "",
-                lineNumber: node.lineNumber ?? 0,
+                startPosition: node.startPosition,
+                endPosition: node.endPosition,
                 type: node.nodeType,
+                functionCalls: node.functionCalls
               },
             ]
           : []
@@ -97,6 +99,8 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
           data: {
             entityName: fileGroup.token ?? "",
             entityType: "file",
+            startPosition: fileGroup.startPosition,
+            endPosition: fileGroup.endPosition,
             filePath: fileGroup.filePath ?? "",
             items: fileGroupNodes,
           },
@@ -107,8 +111,10 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
       const subgroupNodes = subgroup.nodes.flatMap((node: Node) => [
         {
           name: node.token ?? "",
-          lineNumber: node.lineNumber ?? 0,
+          startPosition: node.startPosition,
+          endPosition: node.endPosition,
           type: node.nodeType,
+          functionCalls: node.functionCalls,
         },
       ]);
       if (subgroup.token) {
@@ -119,6 +125,8 @@ export function transformFileGroups(fileGroups: Group[]): AppNode[] {
           data: {
             entityName: subgroup.token ?? "",
             entityType: subgroup.groupType,
+            startPosition: subgroup.startPosition,
+            endPosition: subgroup.endPosition,
             filePath: fileGroup.filePath ?? "",
             items: subgroupNodes,
           },

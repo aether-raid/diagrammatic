@@ -1,54 +1,77 @@
-# Welcome to Diagrammatic
+# Diagrammatic
 
-## Development Installation Guide
+Diagrammatic is a powerful VSCode extension that automatically generates interactive visual representations of your codebase, helping you understand complex code structures at a glance.
 
-* **Install dependencies**: npm install
-* **Start in VSCode extension mode**: Press F5
-  * This will run the environment in watch mode (both the Extension & the React webview)
-  * Ensure your local .vscode folder is using the one in this repo.
-  * **To start the extension**:
-    * Ctrl+Shift+P > Diagrammatic: Generate MVC Diagram
+Gain insights into unfamiliar code structures without spending hours reading documentation or tracing through files manually.
 
-* **Start in browser**: npm run dev
-  * Not integrated with the extension, so only mock data is available
-  * Typically only used for developing solely the ReactFlow features
-
-## Available Commands
-**Generate MVC Diagram**
-* Our main bread and butter :D
-* Run this to generate a diagram of any given codebase
-* Languages currently in development: JS, TS, Python, C++
-
-**Select Ruleset**
-* Define a custom ruleset to parse the AST returned by treesitter if you're unsatisfied with the default
-* View config/default-rules.json for an example format
+![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/diagrammatic-team.diagrammatic)
+![License](https://img.shields.io/badge/license-MIT-green)
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### 🔍 Interactive Diagram Generation
 
-For example if there is an image subfolder under your extension project workspace:
+-   **Instant Visualization**: Convert your codebase into an interactive diagram with a single click
+-   **Multi-Language Support**: Works with TypeScript, JavaScript, Java, Python, and more
+-   **Easy Navigation**: Jump directly from diagram nodes to code files
 
-\!\[feature X\]\(images/feature-x.png\)
+### 🧩 Customizable Views
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+-   **Configurable Display**: Choose what aspects of your code to highlight
+-   **Filtering Options**: Focus on specific components or relationships
+-   **Layout Controls**: Adjust the diagram to suit your needs
+
+### 🔬 Code Quality Analysis
+
+-   **Built-in Analysis**: Identify code smells and potential issues
+-   **Security Vulnerability Detection**: Highlight security concerns in your code
+
+### 🔄 Component Diagrams
+
+-   **Automatic Component Detection**: Visualize high-level architecture
+-   **Relationship Mapping**: See how components interact with each other
+-   **C4 Model Support**: Generate diagrams compatible with the C4 model
+
+## Getting Started
+
+### Installation
+
+1. Open VS Code
+2. Go to Extensions
+3. Search for `Diagrammatic`
+4. Click Install
+
+### Quick Start
+
+1. Open all commands with `Cmd-Shift-P` and type `Diagrammatic`
+2. Select `Generate Diagram` to visualize your codebase
+3. Select the folder of the repository you want to parse
+4. Wait and see the magic!
+
+## Usage Examples
+
+### Code Reviews
+
+Share diagrams with your team to facilitate more effective code reviews by providing a visual context for changes.
+
+### Architecture Planning
+
+Use the component diagrams to plan refactoring efforts or discuss architectural changes with your team.
 
 ## Requirements
 
-No external requirements.
-
-Just npm install & run this on VSCode 
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-NIL
+-   VS Code 1.60.0 or higher
+-   For large codebases: At least 8GB RAM recommended
 
 ## Known Issues
 
-NIL
+-   Very large codebases (>100k LOC) may experience slower diagram generation
+-   Component grouping may need manual adjustments for complex architectures
 
-## Release Notes
+## About
 
-NIL, yet to release
+Diagrammatic is developed by a team of software engineers committed to making code comprehension easier. Our mission is to enhance software architecture understanding through intuitive visualization.
+
+---
+
+**Enjoy visualizing your code with Diagrammatic!**

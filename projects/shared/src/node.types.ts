@@ -1,11 +1,35 @@
 import { BuiltInNode, Node } from "@xyflow/react";
 import { NodeRow } from "./app.types";
 import { SerializedDiagnostic } from "./vscode.types";
+import { Point } from "tree-sitter";
 
+export enum NodeType {
+  FUNCTION = "function",
+  ATTRIBUTE = "attribute",
+  BODY = "body",
+}
 
-interface EntityItem {
+export interface FunctionDescription {
+  function_name: string;
+  function_description: string;
+  parameters: {
+    inputName: string,
+    inputType: string,
+    description: string,
+  }[];
+  output: {
+    outputName: string,
+    outputType: string,
+    description: string,
+  }
+}
+
+export interface EntityItem {
   name: string;
-  lineNumber?: number;
+  startPosition: Point;
+  endPosition: Point;
+  type: NodeType;
+  documentation?: FunctionDescription;
 }
 
 interface HighlightableEntityItem extends EntityItem {
@@ -21,8 +45,16 @@ export interface EntityLintData {
 export type EntityNode = Node<
   {
     entityName: string;
-    entityType: "class" | "file" | "interface" | "namespace" | "struct" | 'record';
+    entityType:
+      | "class"
+      | "file"
+      | "interface"
+      | "namespace"
+      | "struct"
+      | "record";
     items: HighlightableEntityItem[];
+    startPosition: Point;
+    endPosition: Point;
 
     matchesSearchTerm?: boolean;
     setHoveredEntity?: React.Dispatch<

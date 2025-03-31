@@ -1,6 +1,8 @@
 import path from "path";
 import fs from "fs";
 import { GLOBAL } from "./language";
+import { Point } from "tree-sitter";
+import { NodeType } from "@shared/node.types";
 
 /**
  *  Variables represent named tokens that are accessible to their scope.
@@ -10,30 +12,35 @@ import { GLOBAL } from "./language";
 export enum VariableType {
   OBJECT_INSTANTIATION = "object_instantiation",
   CALL_EXPRESSION = "call_expression",
-  RELATIVE_IMPORT = "relative_import",
+  NAMED_IMPORT = "named_import",
+  NAMESPACE_IMPORT = "namespace_import",
   INJECTION = "injection",
 }
 
 export class Variable {
   token: string;
   pointsTo: string | Call | Node | Group | null;
-  lineNumber: number | null;
+  startPosition: Point;
+  endPosition: Point;
   variableType: VariableType;
 
   constructor({
     token,
     pointsTo = null,
-    lineNumber = null,
+    startPosition,
+    endPosition,
     variableType,
   }: {
     token: string;
     pointsTo: string | Call | Node | Group | null;
-    lineNumber: number | null;
+    startPosition: Point;
+    endPosition: Point;
     variableType: VariableType;
   }) {
     this.token = token;
     this.pointsTo = pointsTo;
-    this.lineNumber = lineNumber;
+    this.startPosition = startPosition;
+    this.endPosition = endPosition;
     this.variableType = variableType;
   }
 
@@ -51,21 +58,29 @@ export class Variable {
  */
 export class Call {
   token: string;
-  lineNumber: number | null;
+  startPosition: Point;
+  endPosition: Point;
   ownerToken: string | null;
+  text: string;
 
   constructor({
     token,
-    lineNumber = null,
+    startPosition,
+    endPosition,
     ownerToken = null,
+    text = "",
   }: {
     token: string;
-    lineNumber?: number | null;
+    startPosition: Point;
+    endPosition: Point;
     ownerToken?: string | null;
+    text: string;
   }) {
     this.token = token;
-    this.lineNumber = lineNumber;
+    this.startPosition = startPosition;
+    this.endPosition = endPosition;
     this.ownerToken = ownerToken;
+    this.text = text;
   }
 
   /**
@@ -92,83 +107,113 @@ export class Call {
 /**
  * Represent functions and class attributes
  */
-export enum NodeType {
-  FUNCTION = "function",
-  ATTRIBUTE = "attribute",
-  BODY = "body",
-}
-
 export class Node {
   token: string | null;
   calls: Call[];
   variables: Variable[];
-  lineNumber: number | null;
+  startPosition: Point;
+  endPosition: Point;
   parent: Node | Group;
   nodeType: NodeType;
+  functionCalls: Call[];
 
   constructor({
     token,
     calls,
     variables,
-    lineNumber = null,
+    startPosition,
+    endPosition,
     parent,
     nodeType,
+    functionCalls = [],
   }: {
     token: string | null;
     calls: Call[];
     variables: Variable[];
-    lineNumber?: number | null;
+    startPosition: Point;
+    endPosition: Point;
     parent: Node | Group;
     nodeType: NodeType;
+    functionCalls?: Call[];
   }) {
     this.token = token;
     this.calls = calls;
     this.variables = variables;
-    this.lineNumber = lineNumber;
+    this.startPosition = startPosition;
+    this.endPosition = endPosition;
     this.parent = parent;
     this.nodeType = nodeType;
+    this.functionCalls = functionCalls;
   }
 
-  private resolveRelativeImport(variableA: Variable, allSubgroups: Group[]) {
-    for (const subgroup of allSubgroups) {
-      /**
-       * Resolve variables from relative import statements
-       * e.g. import { ArticleService } from './article.service';
-       * Variable(token=ArticleService, pointsTo=/User/samples/nestjs-real-example-app/src/article/ArticleService.ts)
-       * Group(token=ArticleService)
-       * pointsTo should resolve from a filepath to the actual class Group
-       */
-      if (
-        variableA.variableType === VariableType.RELATIVE_IMPORT &&
-        subgroup.groupType === GroupType.CLASS &&
-        variableA.pointsTo === subgroup.filePath
-      ) {
-        variableA.pointsTo = subgroup;
-        break;
-      }
+  private resolveNamedImports(variableA: Variable, subgroup: Group) {
+    /**
+     * Resolve variables from named import statements
+     * e.g. import { ArticleService } from './article.service';
+     * Variable(token=ArticleService, pointsTo=/User/samples/nestjs-real-example-app/src/article/ArticleService.ts)
+     * Group(token=ArticleService)
+     * pointsTo should resolve from a filepath to the actual class Group
+     */
+    if (
+      variableA.variableType === VariableType.NAMED_IMPORT &&
+      subgroup.groupType === GroupType.CLASS &&
+      variableA.pointsTo === subgroup.filePath
+    ) {
+      variableA.pointsTo = subgroup;
+      return true;
+    }
 
-      /**
+    /**
        * Resolve variables from relative import statements
        * e.g. import { CreateArticleDto, CreateCommentDto } from './dto';
        * Variable(token=CreateArticleDto, pointsTo=/User/samples/nestjs-real-example-app/src/article/dto)
        * pointsTo should resolve from a filepath to the actual class Group
        */
+    if (
+      variableA.variableType === VariableType.NAMED_IMPORT &&
+      variableA.pointsTo &&
+      typeof variableA.pointsTo === "string" &&
+      path.isAbsolute(variableA.pointsTo) &&
+      fs.existsSync(variableA.pointsTo) &&
+      fs.statSync(variableA.pointsTo).isDirectory()
+    ) {
+      const baseDirectory = path.dirname(subgroup.filePath);
       if (
-        variableA.variableType === VariableType.RELATIVE_IMPORT &&
-        variableA.pointsTo &&
-        typeof variableA.pointsTo === "string" &&
-        path.isAbsolute(variableA.pointsTo) &&
-        fs.existsSync(variableA.pointsTo) &&
-        fs.statSync(variableA.pointsTo).isDirectory()
+        variableA.pointsTo === baseDirectory &&
+        subgroup.token === variableA.token
       ) {
-        const baseDirectory = path.dirname(subgroup.filePath);
-        if (
-          variableA.pointsTo === baseDirectory &&
-          subgroup.token === variableA.token
-        ) {
-          variableA.pointsTo = subgroup;
-          break;
-        }
+        variableA.pointsTo = subgroup;
+        return subgroup;
+      }
+    }
+  }
+
+  private resolveNamespaceImports(variableA: Variable, subgroup: Group) {
+    /**
+     * Resolve variables from namespace import statements
+     * e.g. import * as utils from '../lib/utils'
+     * Variable(token=utils, pointsTo=/User/samples/xxx/lib/utils.ts)
+     * Group(token=utils.ts)
+     * pointsTo should resolve from a filepath to the actual file Group
+     */
+    if (
+      variableA.variableType === VariableType.NAMESPACE_IMPORT &&
+      subgroup.groupType === GroupType.FILE &&
+      variableA.pointsTo === subgroup.filePath
+    ) {
+      variableA.pointsTo = subgroup;
+      return true;
+    }
+  }
+
+  private resolveRelativeImport(variableA: Variable, allSubgroups: Group[]) {
+    for (const subgroup of allSubgroups) {
+      if (this.resolveNamedImports(variableA, subgroup)) {
+        return true;
+      }
+
+      if (this.resolveNamespaceImports(variableA, subgroup)) {
+        return true;
       }
 
       /**
@@ -181,9 +226,22 @@ export class Node {
         variableA.pointsTo === subgroup.token
       ) {
         variableA.pointsTo = subgroup;
-        break;
+        return subgroup;
+      }
+
+      /**
+       * resolve object instantiations in C++
+       * e.g. Variable(token=layer, pointsTo=AbsValLayer, type='object_instantiation')
+       */
+      if (
+        variableA.variableType === VariableType.OBJECT_INSTANTIATION &&
+        variableA.pointsTo === subgroup.token
+      ) {
+        variableA.pointsTo = subgroup;
+        return subgroup;
       }
     }
+    return null;
   }
 
   private resolveGlobalNodeImport(
@@ -209,11 +267,11 @@ export class Node {
     ) {
       for (const variable of globalNode.variables) {
         if (
-          variable.variableType === VariableType.RELATIVE_IMPORT &&
+          variable.variableType === VariableType.NAMED_IMPORT &&
           variable.token === variableA.pointsTo
         ) {
           variableA.pointsTo = variable.pointsTo;
-          return;
+          return variable.pointsTo;
         }
       }
     }
@@ -221,9 +279,12 @@ export class Node {
 
   private resolveNodeReference(variableA: Variable, allNodes: Node[]) {
     for (const node of allNodes) {
-      if (variableA.pointsTo === node.token) {
+      if (
+        variableA.variableType !== VariableType.OBJECT_INSTANTIATION &&
+        variableA.pointsTo === node.token
+      ) {
         variableA.pointsTo = node;
-        break;
+        return node;
       }
     }
   }
@@ -234,9 +295,15 @@ export class Node {
   resolveVariables(allSubgroups: Group[], allNodes: Node[]): void {
     const fileGroup = this.getFileGroup();
     for (const variableA of this.variables) {
-      this.resolveRelativeImport(variableA, allSubgroups);
-      this.resolveGlobalNodeImport(variableA, allNodes, fileGroup);
-      this.resolveNodeReference(variableA, allNodes);
+      if (this.resolveRelativeImport(variableA, allSubgroups)) {
+        return;
+      }
+      if (this.resolveGlobalNodeImport(variableA, allNodes, fileGroup)) {
+        return;
+      }
+      if (this.resolveNodeReference(variableA, allNodes)) {
+        return;
+      }
     }
   }
 
@@ -279,6 +346,9 @@ export class Node {
     const variablesStr = this.variables
       .map((variable) => variable.toString())
       .join(",\n\t");
+    const functionCallsStr = this.functionCalls
+      .map((fnCall) => fnCall.toString())
+      .join(",\n\t");
 
     return `Node(
       token=${this.token}, 
@@ -288,6 +358,9 @@ export class Node {
       variables=[
         ${variablesStr}
       ], 
+      functionCalls=[
+        ${functionCallsStr}
+      ],
       parent=${this.parent?.token}
     )`;
   }
@@ -310,7 +383,8 @@ export class Group {
   subgroups: Group[];
   groupType: GroupType;
   token: string | null;
-  lineNumber: number | null;
+  startPosition: Point;
+  endPosition: Point;
   parent: Group | null;
   rootNode: Node | null;
   filePath: string;
@@ -318,13 +392,15 @@ export class Group {
   constructor({
     groupType,
     token,
-    lineNumber = null,
+    startPosition,
+    endPosition,
     parent = null,
     filePath,
   }: {
     groupType: GroupType;
     token: string | null;
-    lineNumber?: number | null;
+    startPosition: Point;
+    endPosition: Point;
     parent?: Group | null;
     filePath: string;
   }) {
@@ -332,7 +408,8 @@ export class Group {
     this.subgroups = [];
     this.groupType = groupType;
     this.token = token;
-    this.lineNumber = lineNumber;
+    this.startPosition = startPosition;
+    this.endPosition = endPosition;
     this.parent = parent;
     this.rootNode = null;
     this.filePath = filePath;

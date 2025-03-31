@@ -32,7 +32,7 @@ export class AzureOpenAIProvider implements LLMProvider {
             });
 
             const result = response.choices[0].message.content ?? "";
-            return JSON.parse(result.replace(/```json\n?|\n?```/g, "")) 
+            return JSON.parse(result.replace(/```json\n?|\n?```/g, ""));
 
         } catch (error) {
             console.error("Error calling Azure OpenAI API:", error);

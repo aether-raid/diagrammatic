@@ -3,16 +3,17 @@ import { Handle, Position } from "@xyflow/react";
 
 import { sendJumpToLineMessageToExtension } from "../../helpers/vscodeApiHandler";
 import { CodeLocation } from "../../App.types";
-
+import { NodeType } from "@shared/node.types";
 
 interface EntityNodeItemProps {
   itemName: string;
   highlighted: boolean;
   location: CodeLocation;
+  itemType: NodeType;
   setHoveredRow: React.Dispatch<React.SetStateAction<string|undefined>>;
 }
 
-export function EntityNodeItem ({ itemName, highlighted, location, setHoveredRow }: EntityNodeItemProps) {
+export function EntityNodeItem ({ itemName, highlighted, location, setHoveredRow, itemType }: EntityNodeItemProps) {
   const onMouseEnter = () => setHoveredRow(itemName);
   const onMouseLeave = () => setHoveredRow(undefined);
 
@@ -33,7 +34,7 @@ export function EntityNodeItem ({ itemName, highlighted, location, setHoveredRow
       onClick={onRowClick}
     >
       <td className="px-3 py-2 position-relative">
-        { itemName }
+      {itemType === NodeType.FUNCTION ? `${itemName}()` : itemName}
 
         {/* Handles */}
         <Handle type='target' position={Position.Left} id={itemName} />

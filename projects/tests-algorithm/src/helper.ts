@@ -79,7 +79,7 @@ export function calculatePrecisionRecallF1ForNodes(
       entityType: string;
       entityName: string;
       filePath: string;
-      items: { name: string; lineNumber: number; type: string }[];
+      items: { name: string; type: string }[];
     };
   }[],
   groundTruthList: {
@@ -87,7 +87,7 @@ export function calculatePrecisionRecallF1ForNodes(
       entityType: string;
       entityName: string;
       filePath: string;
-      items: { name: string; lineNumber: number; type: string }[];
+      items: { name: string; type: string }[];
     };
   }[]
 ) {
@@ -142,13 +142,13 @@ export function calculatePrecisionRecallF1ForNodes(
     const actualItems = new Set(
       actualEntity.data.items.map(
         (i) =>
-          `${actualEntity.data.entityType}:${actualEntity.data.entityName}:${i.name}:${i.lineNumber}:${i.type}`
+          `${actualEntity.data.entityType}:${actualEntity.data.entityName}:${i.name}:${i.type}`
       )
     );
     const predictedItems = new Set(
       predictedEntity.data.items.map(
         (i) =>
-          `${predictedEntity.data.entityType}:${predictedEntity.data.entityName}:${i.name}:${i.lineNumber}:${i.type}`
+          `${predictedEntity.data.entityType}:${predictedEntity.data.entityName}:${i.name}:${i.type}`
       )
     );
 
@@ -239,7 +239,13 @@ export function calculatePrecisionRecallF1ForEdges(
     (item) => !predictedSet.has(item)
   );
 
-  /* console.log("false positives:", edgeFPSet);
+  /* const falsePositives = predictedList.filter((e) =>
+    edgeFPSet.includes(
+      `${e.source}:${e.sourceHandle}:${e.target}:${e.targetHandle}`
+    )
+  );
+  console.log(JSON.stringify(falsePositives, null, 2));
+  console.log("false positives:", edgeFPSet);
   console.log("false negatives:", edgeFNSet); */
 
   const edgeFP = edgeFPSet.length;

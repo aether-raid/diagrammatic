@@ -1,41 +1,70 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { MemoryRouter, Route, Routes } from "react-router-dom"
 
+import { Feature, FeatureStatus } from "@shared/app.types";
 import {
     AcceptComponentDiagramDataPayload,
+    AcceptFnDescriptionPayload,
     AcceptNodeEdgeDataPayload,
     Commands,
     UpdateFeatureStatusPayload,
     WebviewCommandMessage
 } from "@shared/message.types";
 
-import { useNodeEdgeDataContext } from "./contexts/NodeEdgeDataContext";
-import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
-import CodeView from "./views/CodeView"
-import ComponentView from "./views/ComponentView"
+import { useDiagramContext } from "./contexts/DiagramContext";
 import { useFeatureStatusContext } from "./contexts/FeatureStatusContext";
 
+import { ViewType } from "./App.types";
+import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
+import CodeView from "./views/codeView/CodeView"
+import ComponentView from "./views/componentView/ComponentView"
+
 export const App = () => {
+    const codeDiagramCtx = useDiagramContext(ViewType.CODE_VIEW);
+    const componentDiagramCtx = useDiagramContext(ViewType.COMPONENT_VIEW);
     const featureStatusCtx = useFeatureStatusContext();
-    const nodeEdgeCtx = useNodeEdgeDataContext();
+
+    const codeCtxRef = useRef(codeDiagramCtx);
+    const componentCtxRef = useRef(componentDiagramCtx);
+
+    useEffect(() => {
+        codeCtxRef.current = codeDiagramCtx;
+    }, [codeDiagramCtx])
+
+    useEffect(() => {
+        componentCtxRef.current = componentDiagramCtx;
+    }, [componentDiagramCtx])
 
     useEffect(() => {
         // Setup message listener
         const onMessage = (event: MessageEvent<WebviewCommandMessage>) => {
             const { command, message } = event.data;
-
             switch (command) {
                 case Commands.ACCEPT_COMPONENT_DIAGRAM_DATA: {
                     const msg = message as AcceptComponentDiagramDataPayload;
-                    nodeEdgeCtx?.setComponentNodeEdgeData({
+                    componentDiagramCtx?.setGraphData({
                         nodes: msg.nodes,
                         edges: msg.edges,
+                    })
+                    break;
+                }
+                case Commands.ACCEPT_FN_DESCRIPTIONS: {
+                    const msg = message as AcceptFnDescriptionPayload;
+                    if (!codeDiagramCtx?.setNodeFnDesc) {
+                        console.error("ACCEPT_FN_DESCRIPTION - Unable to retrieve diagram from context!");
+                        return;
+                    }
+
+                    codeDiagramCtx?.setNodeFnDesc({
+                        ...codeCtxRef.current?.nodeFnDesc,
+                        [msg.nodeId]: msg.data
                     });
+
                     break;
                 }
                 case Commands.ACCEPT_NODE_EDGE_DATA: {
                     const msg = message as AcceptNodeEdgeDataPayload;
-                    nodeEdgeCtx?.setCodeNodeEdgeData({
+                    codeDiagramCtx?.setGraphData({
                         nodes: msg.nodes,
                         edges: msg.edges,
                     });
@@ -56,13 +85,13 @@ export const App = () => {
         try {
             sendReadyMessageToExtension();
         } catch (error) {
-            if (
-                (error as Error).message !==
-                "acquireVsCodeApi is not defined"
-            ) {
+            if ((error as Error).message === "acquireVsCodeApi is not defined") {
                 // Only catch the above error, throw all else
-                throw error;
+                featureStatusCtx?.setFeatureStatus(Feature.COMPONENT_DIAGRAM, FeatureStatus.ENABLED_DONE);
+                featureStatusCtx?.setFeatureStatus(Feature.NODE_DESCRIPTIONS, FeatureStatus.ENABLED_DONE);
+                return;
             }
+            throw error;
         }
 
         return () => {
