@@ -12,11 +12,11 @@ interface FnDescResponse {
   functions: FunctionDescription[];
 }
 
-const transformFilePath = (filePath: string): string => {
-  let normalizedPath = filePath.replace(/\\/g, "/");
-  return normalizedPath.endsWith(".ts")
-    ? normalizedPath
-    : normalizedPath.replace(/\.[^.]+$/, "");
+const getFilePath = (node: AppNode): string | undefined => {
+  if ("filePath" in node.data) {
+    return node.data.filePath;
+  }
+  return undefined;
 }
 
 const extractImportPaths = (content: string): string[] => {
@@ -32,26 +32,23 @@ const extractImportPaths = (content: string): string[] => {
 };
 
 const matchImportsToNodes = (importPaths: string[], nodeEdgeData: NodeEdgeData): string[] => {
-  //console.log('import paths:', importPaths);
-
   return nodeEdgeData.nodes
     .filter(node => {
-      const transformedPath = transformFilePath(node.id);
-      // console.log("xform path:", transformedPath);
-      return importPaths.some(importPath => transformedPath.includes(importPath));
+      const transformedPath = getFilePath(node);
+      return transformedPath && importPaths.some(importPath => transformedPath.includes(importPath));
     })
-    .map(node => node.id);
+    .map(node => getFilePath(node) as string);
 };
 
-const readAndConcatenateFiles = async (matchedNodeIds: string[]): Promise<string> => {
+const readAndConcatenateFiles = async (filePaths: string[]): Promise<string> => {
   // console.log("matches:\n" + matchedNodeIds)
   let combinedContent = "";
-  for (const nodeId of matchedNodeIds) {
+  for (const filePath of filePaths) {
     try {
-      const fileContent = await readFile(transformFilePath(nodeId), "utf-8");
-      combinedContent += `\n// Content from: ${nodeId}\n` + fileContent;
+      const fileContent = await readFile(filePath, "utf-8");
+      combinedContent += `\n// Content from: ${filePath}\n` + fileContent;
     } catch (error) {
-      console.error(`Error reading file ${nodeId}:`, error);
+      console.error(`Error reading file ${filePath}:`, error);
     }
   }
   //console.log("combi content:", combinedContent);
@@ -71,7 +68,11 @@ export const getFunctionDescriptions = async (
   }
 
   try {
-    const filePath = transformFilePath(targetNode.id);
+    const filePath = getFilePath(targetNode);
+    if (!filePath) {
+      console.error("File path is undefined.");
+      return;
+    }
     const content = await readFile(filePath, "utf-8");
 
     const combinedContent = readAndConcatenateFiles(matchImportsToNodes(extractImportPaths(content), nodeEdgeData));

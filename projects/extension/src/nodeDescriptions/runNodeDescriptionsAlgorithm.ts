@@ -80,7 +80,7 @@ export const runNodeDescriptionsAlgorithm = async (
   nodeEdgeData: NodeEdgeData,
   llmProvider: LLMProvider
 ): Promise<AppNode[]> => {
-
+  //console.log(nodeEdgeData.nodes);
   const apiKey = retrieveApiKey();
   if (!apiKey) {
     vscode.window.showInformationMessage(
