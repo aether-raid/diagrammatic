@@ -74,3 +74,23 @@
 .text-updater-node [data-handleid="b"] {
   left: 65%;
 }
+
+.text-button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: #FFFFFF;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+
+.text-button:hover {
+  text-decoration: underline;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+}
