@@ -81,7 +81,7 @@ export const processCpplintOutput = (output: string): CppLintResult[] =>  {
         filePath = file;
         diagnostics.push({
             // 1 based index
-            line: Math.max(parseInt(line, 10), 0),
+            line: Math.max(parseInt(line, 10), 1),
             messageId: messageId,
             message,
             column: parseInt(column, 10),
