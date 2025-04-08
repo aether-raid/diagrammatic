@@ -6545,7 +6545,6 @@
       "items": [
         {
           "name": "tokenMap",
-
           "type": "attribute"
         },
         {
@@ -10719,14 +10718,74 @@
       "items": [
         {
           "name": "customizeApplication",
-          "startPosition": {
-            "row": 115,
-            "column": 15
-          },
-          "endPosition": {
-            "row": 115,
-            "column": 35
-          },
+          "startPosition": { "row": 11, "column": 0 },
+          "endPosition": { "row": 37, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizeLogo",
+          "startPosition": { "row": 39, "column": 0 },
+          "endPosition": { "row": 41, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizeChatbotAvatar",
+          "startPosition": { "row": 43, "column": 0 },
+          "endPosition": { "row": 46, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizeHackingInstructorAvatar",
+          "startPosition": { "row": 48, "column": 0 },
+          "endPosition": { "row": 51, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizeFavicon",
+          "startPosition": { "row": 53, "column": 0 },
+          "endPosition": { "row": 62, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizePromotionVideo",
+          "startPosition": { "row": 64, "column": 0 },
+          "endPosition": { "row": 66, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizePromotionSubtitles",
+          "startPosition": { "row": 68, "column": 0 },
+          "endPosition": { "row": 70, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "retrieveCustomFile",
+          "startPosition": { "row": 72, "column": 0 },
+          "endPosition": { "row": 80, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizeTitle",
+          "startPosition": { "row": 82, "column": 0 },
+          "endPosition": { "row": 91, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizeTheme",
+          "startPosition": { "row": 93, "column": 0 },
+          "endPosition": { "row": 102, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizeCookieConsentBanner",
+          "startPosition": { "row": 104, "column": 0 },
+          "endPosition": { "row": 113, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizeApplication",
+          "startPosition": { "row": 115, "column": 15 },
+          "endPosition": { "row": 115, "column": 35 },
           "type": "function"
         }
       ]
@@ -10754,14 +10813,20 @@
       "items": [
         {
           "name": "customizeEasterEgg",
-          "startPosition": {
-            "row": 47,
-            "column": 15
-          },
-          "endPosition": {
-            "row": 47,
-            "column": 33
-          },
+          "startPosition": { "row": 10, "column": 0 },
+          "endPosition": { "row": 23, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "replaceImagePath",
+          "startPosition": { "row": 25, "column": 0 },
+          "endPosition": { "row": 34, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "replaceThreeJsTitleTag",
+          "startPosition": { "row": 36, "column": 0 },
+          "endPosition": { "row": 45, "column": 1 },
           "type": "function"
         }
       ]
@@ -10823,15 +10888,21 @@
       "filePath": "/lib/startup/restoreOverwrittenFilesWithOriginals.ts",
       "items": [
         {
+          "name": "exists",
+          "startPosition": { "row": 11, "column": 0 },
+          "endPosition": { "row": 11, "column": 93 },
+          "type": "function"
+        },
+        {
           "name": "restoreOverwrittenFilesWithOriginals",
-          "startPosition": {
-            "row": 35,
-            "column": 15
-          },
-          "endPosition": {
-            "row": 35,
-            "column": 51
-          },
+          "startPosition": { "row": 13, "column": 0 },
+          "endPosition": { "row": 33, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "restoreOverwrittenFilesWithOriginals",
+          "startPosition": { "row": 35, "column": 15 },
+          "endPosition": { "row": 35, "column": 51 },
           "type": "function"
         }
       ]
