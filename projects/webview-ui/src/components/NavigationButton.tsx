@@ -1,5 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
+import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
+
+import { HiddenLabelButton } from "./HiddenLabelButton/HiddenLabelButton";
+
 interface NavigationButtonProps {
   target: string;
   label: string;
@@ -21,8 +25,11 @@ export const NavigationButton = ({
     };
 
     return (
-        <button onClick={onNavigateClick} disabled={disabled}>
-            {label}
-        </button>
+        <HiddenLabelButton
+            icon={<GridViewRoundedIcon />}
+            label={label}
+            onClick={onNavigateClick}
+            disabled={disabled}
+        />
     )
 };

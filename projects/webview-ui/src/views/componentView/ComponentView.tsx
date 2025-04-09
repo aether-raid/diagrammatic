@@ -163,14 +163,14 @@ const LayoutFlow = () => {
             <MiniMap />
             <Controls />
             <Panel position="top-right">
-                <div className="d-flex flex-column gap-2">
+                <div className="d-flex flex-column gap-2 align-items-end">
                     <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
                     <NavigationButton
                         target="/"
                         label="Code View"
                         onNavigate={handleBeforeNavigate}
                     />
-                    <RegenerateButton 
+                    <RegenerateButton
                         label={renderComponentButtonText()} 
                         disabled={componentDiagramStatus !== FeatureStatus.ENABLED_DONE}
                         onRegenerate={handleBeforeRegenerate}

@@ -1,0 +1,20 @@
+.hidden-label-button {
+    max-width: 50px;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: all 1s ease !important;
+}
+
+.hidden-label-button:hover {
+    max-width: 400px;
+}
+
+.hidden-label-button span {
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.hidden-label-button:hover span {
+    opacity: 1;
+    display: inline;
+}
