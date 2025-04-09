@@ -38,6 +38,11 @@
         "category": "Diagrammatic"
       },
       {
+        "command": "diagrammatic.testShowMVCDiagram",
+        "title": "Test Generate MVC Diagram",
+        "category": "Diagrammatic"
+      },
+      {
         "command": "diagrammatic.testMsg",
         "title": "Test Msg",
         "category": "Diagrammatic"

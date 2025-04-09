@@ -116,6 +116,32 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
   context.subscriptions.push(testMsg);
+
+  const testShowMVCDiagram = vscode.commands.registerCommand(
+    "diagrammatic.testShowMVCDiagram",
+    async () => {
+      const testRepoPath = "/Users/ashleytan/GitHub/diagrammatic/projects/webview-ui/src";
+      vscode.window.showInformationMessage(`Parsing repository: ${testRepoPath}`);
+      
+      try {
+        currentPanel = await handleShowMVCDiagram(
+          context,
+          currentPanel,
+          testRepoPath
+        );
+        currentPanel.onDidDispose(
+          () => {
+            currentPanel = undefined;
+          },
+          null,
+          context.subscriptions
+        );
+      } catch (error) {
+        vscode.window.showErrorMessage(`Error running algorithm: ${error}`);
+      }
+    }
+  );
+  context.subscriptions.push(testShowMVCDiagram);
 }
 
 // This method is called when your extension is deactivated
