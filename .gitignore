@@ -6,3 +6,4 @@ node_modules
 *.env
 coverage
 .wdio-vscode-service/
+trace
