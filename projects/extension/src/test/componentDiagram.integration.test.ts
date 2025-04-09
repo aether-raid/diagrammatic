@@ -1,9 +1,10 @@
 import { MarkerType } from '@xyflow/react';
-import { getComponentDiagram } from '../componentDiagram/runComponentDiagramAlgorithm'; // Update path as needed
+import { getComponentDiagram } from '../componentDiagram/runComponentDiagramAlgorithm';
 import { AppNode } from '@shared/node.types';
 import { AppEdge } from '@shared/edge.types';
 import { NodeEdgeData } from '@shared/app.types';
 import { LLMProvider } from '../helpers/llm';
+import { ComponentNodeInput, ComponentEdgeInput } from '../componentDiagram/types'; // Update path as needed
 
 describe('Component Diagram Integration Tests', () => {
   // Create a mock LLM provider
@@ -44,32 +45,36 @@ describe('Component Diagram Integration Tests', () => {
       ]
     };
 
-    // Mock LLM response
+    // Mock LLM response that matches your types
+    const mockComponents: ComponentNodeInput[] = [
+      { 
+        id: 1, 
+        name: 'Auth Module', 
+        description: 'Handles user authentication',
+        files: ['auth.js', 'login.js']
+      },
+      { 
+        id: 2, 
+        name: 'API Service', 
+        description: 'Manages API requests',
+        files: ['api.js']
+      }
+    ];
+    
+    const mockRelationships: ComponentEdgeInput[] = [
+      { 
+        id: '1-2', 
+        source: 1, 
+        target: 2, 
+        sourceName: 'Auth Module', 
+        targetName: 'API Service', 
+        type: 'calls' 
+      }
+    ];
+
     const mockLLMResponse = {
-      components: [
-        { 
-          id: 1, 
-          name: 'Auth Module', 
-          description: 'Handles user authentication',
-          files: ['auth.js', 'login.js']
-        },
-        { 
-          id: 2, 
-          name: 'API Service', 
-          description: 'Manages API requests',
-          files: ['api.js']
-        }
-      ],
-      'component relationships': [
-        { 
-          id: '1-2', 
-          source: 1, 
-          target: 2, 
-          sourceName: 'Auth Module', 
-          targetName: 'API Service', 
-          type: 'calls' 
-        }
-      ]
+      components: mockComponents,
+      'component relationships': mockRelationships
     };
 
     // Setup mock response
@@ -134,6 +139,9 @@ describe('Component Diagram Integration Tests', () => {
       new Error('LLM API error')
     );
 
+    // Create a spy on console.error before the function call
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
+
     // Function should return empty components rather than throwing
     const result = await getComponentDiagram(inputData, mockLLMProvider);
     
@@ -141,11 +149,13 @@ describe('Component Diagram Integration Tests', () => {
     expect(result.edges).toHaveLength(0);
     
     // Verify error was logged
-    const consoleErrorSpy = jest.spyOn(console, 'error');
     expect(consoleErrorSpy).toHaveBeenCalledWith(
       'Error fetching component diagram:',
       expect.any(Error)
     );
+
+    // Restore the original console.error
+    consoleErrorSpy.mockRestore();
   });
 
   it('should convert node and edge IDs to strings', async () => {
@@ -155,10 +165,26 @@ describe('Component Diagram Integration Tests', () => {
       edges: []
     };
 
-    // Mock LLM response with numeric IDs
+    // Mock LLM response with numeric IDs that match your types
     const mockLLMResponse = {
-      components: [{ id: 123, name: 'Test', description: 'Test component', files: ['file1'] }],
-      'component relationships': [{ id: '123-456', source: 123, target: 456, type: 'calls' }]
+      components: [
+        { 
+          id: 123, 
+          name: 'Test', 
+          description: 'Test component', 
+          files: ['file1'] 
+        }
+      ],
+      'component relationships': [
+        { 
+          id: '123-456', 
+          source: 123, 
+          target: 456, 
+          sourceName: 'Test',
+          targetName: 'Other Component',
+          type: 'calls' 
+        }
+      ]
     };
 
     (mockLLMProvider.generateResponse as jest.Mock).mockResolvedValueOnce(mockLLMResponse);
