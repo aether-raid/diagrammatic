@@ -1,5 +1,5 @@
 .hidden-label-button {
-    max-width: 50px;
+    max-width: 42px;
     overflow: hidden;
     white-space: nowrap;
     transition: all 1s ease !important;
@@ -7,6 +7,7 @@
 
 .hidden-label-button:hover {
     max-width: 400px;
+    transition-delay: 0.15s !important;
 }
 
 .hidden-label-button span {
@@ -17,4 +18,5 @@
 .hidden-label-button:hover span {
     opacity: 1;
     display: inline;
+    transition-delay: 0.15s !important;
 }

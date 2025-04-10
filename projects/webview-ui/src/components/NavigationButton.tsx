@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
+import FlipCameraAndroidRoundedIcon from '@mui/icons-material/FlipCameraAndroidRounded';
 
 import { HiddenLabelButton } from "./HiddenLabelButton/HiddenLabelButton";
 
@@ -26,7 +26,7 @@ export const NavigationButton = ({
 
     return (
         <HiddenLabelButton
-            icon={<GridViewRoundedIcon />}
+            icon={<FlipCameraAndroidRoundedIcon />}
             label={label}
             onClick={onNavigateClick}
             disabled={disabled}

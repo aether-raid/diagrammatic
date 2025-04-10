@@ -19,6 +19,7 @@ export const HiddenLabelButton = ({
     return (
         <Button
             variant={variant}
+            size="sm"
             className="hidden-label-button"
             {...props}
         >
