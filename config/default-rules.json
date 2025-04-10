@@ -359,6 +359,15 @@
       },
       {
         "type": "property_signature",
+        "child": {
+          "type": "type_annotation",
+          "child": { "type": "function_type" }
+        },
+        "parent": "interface_body",
+        "nodeType": "FUNCTION"
+      },
+      {
+        "type": "property_signature",
         "parent": "interface_body",
         "nodeType": "ATTRIBUTE"
       }

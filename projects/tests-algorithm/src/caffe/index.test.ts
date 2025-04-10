@@ -12,7 +12,6 @@ import {
 } from "../helper";
 import { RuleEngine } from "@extension/codeToDiagram/algorithm/rules";
 import path from "path";
-import fs from "fs"
 
 // Repository URL: https://github.com/BVLC/caffe
 const mockDirectoryPath = "/Users/sharlenetio/Desktop/fyp/samples/caffe";
@@ -56,8 +55,6 @@ describe("caffe", () => {
 
     const [seconds, nanoseconds] = process.hrtime(start);
     console.log("Milliseconds:", seconds * 1000 + nanoseconds / 1e6);
-
-    fs.writeFileSync('output.json', JSON.stringify(result.nodes), 'utf-8');
 
     const numComponents = result.nodes.length;
     console.log("Number of components:", numComponents);
