@@ -16,7 +16,6 @@ interface RuleGroupAccordionProps {
 export const RuleGroupAccordion = ({ ruleGroups, filePath }: RuleGroupAccordionProps) => {
     const {
         Warning: WARNING,
-        Error: _ERROR,
     } = DiagnosticSeverityEnum;
 
     return (
@@ -29,6 +28,7 @@ export const RuleGroupAccordion = ({ ruleGroups, filePath }: RuleGroupAccordionP
 
                 return (
                     <Accordion.Item
+                        key={idx}
                         eventKey={`nested-${idx}`}
                         className={`${severity === WARNING ? "warning-item" : "error-item"}`}
                     >
@@ -39,7 +39,7 @@ export const RuleGroupAccordion = ({ ruleGroups, filePath }: RuleGroupAccordionP
                             </div>
                         </Accordion.Header>
                         <Accordion.Body className="p-0">
-                            {issues.map((issue, idx) => <IssueItem key={idx} issue={issue} filePath={filePath} />)}
+                            {issues.map((issue, idx2) => <IssueItem key={idx2} issue={issue} filePath={filePath} />)}
                         </Accordion.Body>
                     </Accordion.Item>
                 );

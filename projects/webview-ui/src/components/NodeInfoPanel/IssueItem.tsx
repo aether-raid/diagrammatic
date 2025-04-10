@@ -10,7 +10,7 @@ interface IssueItemProps {
 }
 
 export const IssueItem = ({ issue, filePath }: IssueItemProps) => {
-  const { message, range, severity: _severity } = issue;
+  const { message, range } = issue;
 
   const handleClick = () => {
     if (!filePath) {
