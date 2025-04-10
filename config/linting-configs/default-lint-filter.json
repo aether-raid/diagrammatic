@@ -34,10 +34,6 @@
                 "readability/nul",
                 "readability/todo",
                 "readability/utf8",
-                "runtime/member_string_references",
-                "runtime/printf",
-                "runtime/string",
-                "runtime/vlog",
                 "whitespace/todo"
             ],
             "vulnerability": [
@@ -51,7 +47,11 @@
                 "runtime/operator",
                 "runtime/printf_format",
                 "runtime/references",
-                "runtime/threadsafe_fn"
+                "runtime/threadsafe_fn",
+                "runtime/member_string_references",
+                "runtime/printf",
+                "runtime/string",
+                "runtime/vlog"
             ],
             "extras": []
         },
