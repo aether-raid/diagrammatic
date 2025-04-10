@@ -35,41 +35,45 @@ export const initialNodes: AppNode[] = [
       ],
       security: {
           clean: [
-            { 
-                range: {
+            {
+              message: "Security.dirty-object",
+              range: {
                 start: { line: 26, character: 32 },
                 end: { line: 3, character: 3 },
               },
-              message: "Security.dirty-object",
+              rule: "potato",
               severity: 1,
               source: "dirty-object"
             },
-            { range: {
+            {
+              message: 'Security.dirty-object',
+              range: {
                 start: { line: 27, character: 32 },
                 end: { line: 3, character: 3 },
               },
-              message: 'Security.dirty-object',
+              rule: "potato",
               severity: 1,
               source: "dirty-object"
             },
-            { 
+            {
+              message: "About to implode...",
               range: {
-              start: { line: 52, character: 32 },
-              end: { line: 3, character: 3 },
+                start: { line: 52, character: 32 },
+                end: { line: 3, character: 3 },
+              },
+              rule: "french fries",
+              severity: 0,
+              source: "implode"
             },
-            message: "About to implode...",
-            severity: 0,
-            source: "implode"
-          },
           ],
           vulnerability: [
             {
+              message: "Variable Assigned to Object Injection Sink Lorem ipsum potato ramen I like long issues what the testing data",
               range: {
                 start: { line: 26, character: 32 },
                 end: { line: 3, character: 3 },
               },
-              message: 
-               "Variable Assigned to Object Injection Sink Lorem ipsum potato ramen I like long issues what the testing data", 
+              rule: "big problem, I'm hungry :(",
               severity: 1,
               source: "long-issue"
             }
