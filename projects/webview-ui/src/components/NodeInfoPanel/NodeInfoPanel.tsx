@@ -33,10 +33,10 @@ export const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => 
             onHide={onHide}
             show={show}
         >
-            <Offcanvas.Header className="align-items-start border-bottom border-2 pb-2" closeButton>
-                <div className="w-100">
+            <Offcanvas.Header className="gap-2 align-items-start border-bottom border-2 pb-2 px-3" closeButton>
+                <div>
                     <Offcanvas.Title>{ entity?.data.entityName ?? "-" }</Offcanvas.Title>
-                    <div className="w-75 text-break fst-italic fs-7">
+                    <div className="fst-italic text-break fs-7">
                         {entity?.data.filePath}
                     </div>
                 </div>
