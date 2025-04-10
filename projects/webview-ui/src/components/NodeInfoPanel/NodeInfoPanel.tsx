@@ -24,8 +24,6 @@ export const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => 
 
     const metadata = [
       ["Filepath", entity?.data.filePath],
-      ["Metadata", "placeholder text"],
-      ["Metadata", "placeholder text"]
     ];
 
     return (
@@ -35,8 +33,13 @@ export const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => 
             onHide={onHide}
             show={show}
         >
-            <Offcanvas.Header closeButton>
-                <Offcanvas.Title>{ entity?.data.entityName ?? "-" }</Offcanvas.Title>
+            <Offcanvas.Header className="align-items-start border-bottom border-2 pb-2" closeButton>
+                <div className="w-100">
+                    <Offcanvas.Title>{ entity?.data.entityName ?? "-" }</Offcanvas.Title>
+                    <div className="w-75 text-break fst-italic fs-7">
+                        {entity?.data.filePath}
+                    </div>
+                </div>
             </Offcanvas.Header>
 
             <Offcanvas.Body>
@@ -48,23 +51,7 @@ export const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => 
                                 { entity.data.description ?? 'No description available.'}
                             </Card.Body>
                         </Card>
-                        <Accordion alwaysOpen>
-                            <Accordion.Item eventKey='0'>
-                                <Accordion.Header>Metadata</Accordion.Header>
-                                <Accordion.Body className="p-0">
-                                    <div className="d-flex flex-column fs-7">
-                                        { metadata.map((item, idx) => (
-                                            <div key={idx} className="d-flex gap-3 border-bottom p-2 px-3">
-                                                <div className="w-25 text-break fw-bold">{item[0]}</div>
-                                                <div className="w-75 text-break">{item[1]}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </Accordion.Body>
-                            </Accordion.Item>
-                        </Accordion>
 
-                        {/* React Bootstrap */}
                         <Tabs defaultActiveKey="linting">
                             <Tab title="Linting" eventKey="linting">
                                 <div className="d-flex flex-column gap-4">
