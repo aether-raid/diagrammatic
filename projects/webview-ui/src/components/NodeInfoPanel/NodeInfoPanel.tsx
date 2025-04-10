@@ -1,6 +1,6 @@
 import React from "react";
 
-import Accordion from 'react-bootstrap/Accordion';
+import Button from "react-bootstrap/esm/Button";
 import Card from 'react-bootstrap/Card';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Tab from 'react-bootstrap/Tab';
@@ -10,6 +10,7 @@ import { EntityNode } from '@shared/node.types';
 
 import { LintingTab } from "./tabs/LintingTab";
 import { GeneratedDescriptionsTab } from "./tabs/GeneratedDescriptionsTab";
+import { sendJumpToLineMessageToExtension } from "../../helpers/vscodeApiHandler";
 
 import "./styles/NodeInfoPanel.css";
 
@@ -22,10 +23,6 @@ interface NodeInfoPanelProps {
 export const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => {
     const onHide = () => setShow(false);
 
-    const metadata = [
-      ["Filepath", entity?.data.filePath],
-    ];
-
     return (
         <Offcanvas
             backdrop={false}
@@ -36,9 +33,12 @@ export const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => 
             <Offcanvas.Header className="gap-2 align-items-start border-bottom border-2 pb-2 px-3" closeButton>
                 <div>
                     <Offcanvas.Title>{ entity?.data.entityName ?? "-" }</Offcanvas.Title>
-                    <div className="fst-italic text-break fs-7">
+                    <div className="fst-italic text-break fs-7 mt-1 mb-2">
                         {entity?.data.filePath}
                     </div>
+                    <Button variant="primary" size="sm" onClick={() => sendJumpToLineMessageToExtension(entity?.data.filePath ?? "", 0)}>
+                        Go to File
+                    </Button>
                 </div>
             </Offcanvas.Header>
 
