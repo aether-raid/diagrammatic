@@ -26,6 +26,7 @@ export const NavigationButton = ({
 
     return (
         <HiddenLabelButton
+            alwaysShowLabel
             icon={<FlipCameraAndroidRoundedIcon />}
             label={label}
             onClick={onNavigateClick}
