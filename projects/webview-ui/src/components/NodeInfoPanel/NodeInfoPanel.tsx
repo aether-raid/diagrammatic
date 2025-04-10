@@ -8,9 +8,10 @@ import Tabs from 'react-bootstrap/Tabs';
 
 import { EntityNode } from '@shared/node.types';
 
-import "./NodeInfoPanel.css";
 import { LintingTab } from "./tabs/LintingTab";
 import { GeneratedDescriptionsTab } from "./tabs/GeneratedDescriptionsTab";
+
+import "./styles/NodeInfoPanel.css";
 
 interface NodeInfoPanelProps {
     show: boolean;
