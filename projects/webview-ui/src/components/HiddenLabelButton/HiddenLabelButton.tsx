@@ -7,7 +7,7 @@ interface HiddenLabelButtonProps {
     icon: ReactNode;
     label: string;
     variant?: string;
-    [key: string]: any;
+    [key: string]: any; // eslint-disable-line  @typescript-eslint/no-explicit-any -- passes in extra props to the button
 }
 
 export const HiddenLabelButton = ({
