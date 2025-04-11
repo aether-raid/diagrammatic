@@ -19,7 +19,7 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
   const [hoveredRow, setHoveredRow] = useState<string|undefined>('');
 
   useEffect(() => {
-    console.log('running useEffect to setHoveredEntity');
+    // console.log('running useEffect to setHoveredEntity');
     if (!data.setHoveredEntity) { return; }
 
     data.setHoveredEntity(hoveredRow
