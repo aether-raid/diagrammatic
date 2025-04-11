@@ -133,7 +133,7 @@
         "type": "declaration",
         "child": { "type": "function_declarator" },
         "parent": "field_declaration_list",
-        "nodeType": "ATTRIBUTE"
+        "nodeType": "FUNCTION"
       }
     ],
     "groups": [

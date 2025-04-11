@@ -229,6 +229,21 @@ export function processCallExpression(node: SyntaxNode): Call | null {
           text: node.text,
         });
       }
+    /**
+     * For C++
+     * e.g. caffe_rng_gaussian<Dtype>(blob->count(), Dtype(0), std, blob->mutable_cpu_data());
+     */
+    case "template_function":
+      const identifier2 = getFirstChildOfType(func, "identifier");
+      if (identifier2) {
+        return new Call({
+          token: identifier2?.text,
+          startPosition: node.startPosition,
+          endPosition: node.endPosition,
+          text: node.text,
+        });
+      }
+      break;
   }
 
   return null;
@@ -349,8 +364,11 @@ export function makeCalls(body: SyntaxNode[], getNameRules: getNameConfig) {
  *
  * @returns {[Variable]}
  */
-export function processVariableDeclaration(node: SyntaxNode): Variable | null {
-  const name = node.childForFieldName("name");
+export function processVariableDeclaration(
+  node: SyntaxNode,
+  languageRules: LanguageRules
+): Variable | null {
+  const name = getName(node, languageRules.getName);
   const value = node.childForFieldName("value");
 
   if (!name || !value) {
@@ -359,21 +377,20 @@ export function processVariableDeclaration(node: SyntaxNode): Variable | null {
 
   switch (value.type) {
     case "new_expression":
-      const identifierNode = getFirstChildOfType(value, "identifier");
-      if (!identifierNode) {
-        return null;
+      const newObjectToken = getName(value, languageRules.getName);
+      if (newObjectToken) {
+        return new Variable({
+          token: name,
+          pointsTo: newObjectToken,
+          startPosition: node.startPosition,
+          endPosition: node.endPosition,
+          variableType: VariableType.OBJECT_INSTANTIATION,
+        });
       }
-      return new Variable({
-        token: name.text,
-        pointsTo: identifierNode.text,
-        startPosition: node.startPosition,
-        endPosition: node.endPosition,
-        variableType: VariableType.OBJECT_INSTANTIATION,
-      });
     case "call_expression":
       const call = processCallExpression(value);
       return new Variable({
-        token: name.text,
+        token: name,
         pointsTo: call,
         startPosition: node.startPosition,
         endPosition: node.endPosition,
@@ -386,7 +403,7 @@ export function processVariableDeclaration(node: SyntaxNode): Variable | null {
       }
       const awaitCall = processCallExpression(callExpressionNode);
       return new Variable({
-        token: name.text,
+        token: name,
         pointsTo: awaitCall,
         startPosition: node.startPosition,
         endPosition: node.endPosition,
@@ -457,7 +474,10 @@ function isRelativeFilePath(path: string): boolean {
  * output=/User/fyp/samples/nestjs-realworld-example-app/src/article/article.service.ts
  * output=/User/fyp/samples/nestjs-realworld-example-app/src/article/dto
  */
-function resolveRelativeFilePath(filePath: string, pointsTo: string): string | null {
+function resolveRelativeFilePath(
+  filePath: string,
+  pointsTo: string
+): string | null {
   let importedFilePath = path.resolve(path.dirname(filePath), pointsTo);
   if (fs.existsSync(importedFilePath)) {
     return importedFilePath;
@@ -614,10 +634,7 @@ function makeLocalVariablesImportStatement(
   return [];
 }
 
-function makeLocalVariablesInclude(
-  node: SyntaxNode,
-  parent: Node | Group
-) {
+function makeLocalVariablesInclude(node: SyntaxNode, parent: Node | Group) {
   const fileGroup = parent.getFileGroup();
   const stringLiteral = getFirstChildOfType(node, "string_literal");
   const stringContent = getFirstChildOfType(stringLiteral, "string_content");
@@ -659,7 +676,7 @@ export function makeLocalVariables(
   for (const node of walk(tree)) {
     switch (node.type) {
       case "variable_declarator":
-        const var1 = processVariableDeclaration(node);
+        const var1 = processVariableDeclaration(node, languageRules);
         if (var1) {
           variables.push(var1);
         }
@@ -685,9 +702,9 @@ export function makeLocalVariables(
         break;
       // #include "caffe/layers/absval_layer.hpp" in C++
       case "preproc_include":
-        const var4 = makeLocalVariablesInclude(node, parent)
+        const var4 = makeLocalVariablesInclude(node, parent);
         if (var4) {
-          variables.push(var4)
+          variables.push(var4);
         }
     }
   }
