@@ -52991,18 +52991,6 @@
           "type": "function"
         },
         {
-          "name": "header",
-          "startPosition": { "row": 101, "column": 20 },
-          "endPosition": { "row": 101, "column": 67 },
-          "type": "function"
-        },
-        {
-          "name": "slot",
-          "startPosition": { "row": 125, "column": 22 },
-          "endPosition": { "row": 125, "column": 43 },
-          "type": "function"
-        },
-        {
           "name": "~part_file",
           "startPosition": { "row": 146, "column": 1 },
           "endPosition": { "row": 150, "column": 2 },
@@ -53042,12 +53030,6 @@
           "name": "do_hash",
           "startPosition": { "row": 234, "column": 1 },
           "endPosition": { "row": 263, "column": 2 },
-          "type": "function"
-        },
-        {
-          "name": "buffer",
-          "startPosition": { "row": 258, "column": 20 },
-          "endPosition": { "row": 258, "column": 57 },
           "type": "function"
         },
         {
@@ -53284,12 +53266,6 @@
           "name": "remove_all",
           "startPosition": { "row": 852, "column": 1 },
           "endPosition": { "row": 872, "column": 2 },
-          "type": "function"
-        },
-        {
-          "name": "i",
-          "startPosition": { "row": 862, "column": 23 },
-          "endPosition": { "row": 862, "column": 31 },
           "type": "function"
         },
         {
@@ -55707,6 +55683,12 @@
           "startPosition": { "row": 311, "column": 2 },
           "endPosition": { "row": 311, "column": 52 },
           "type": "attribute"
+        },
+        {
+          "name": "operator=",
+          "startPosition": { "row": 314, "column": 2 },
+          "endPosition": { "row": 314, "column": 64 },
+          "type": "function"
         }
       ]
     }
@@ -59379,12 +59361,6 @@
           "name": "write_resume_data",
           "startPosition": { "row": 73, "column": 1 },
           "endPosition": { "row": 300, "column": 2 },
-          "type": "function"
-        },
-        {
-          "name": "piece_struct",
-          "startPosition": { "row": 196, "column": 10 },
-          "endPosition": { "row": 196, "column": 43 },
           "type": "function"
         },
         {

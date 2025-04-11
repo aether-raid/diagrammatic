@@ -13,7 +13,7 @@ import {
 import { RuleEngine } from "@extension/codeToDiagram/algorithm/rules";
 import path from "path";
 
-// Repository URL: https://github.com/arvidn/libtorrent/tree/RC_2_0
+// Repository URL: https://github.com/arvidn/libtorrent
 const mockDirectoryPath = "/Users/sharlenetio/Desktop/fyp/samples/libtorrent";
 
 describe("libtorrent", () => {

@@ -22146,18 +22146,6 @@
           "type": "function"
         },
         {
-          "name": "layer_weight_1",
-          "startPosition": { "row": 43, "column": 30 },
-          "endPosition": { "row": 43, "column": 57 },
-          "type": "function"
-        },
-        {
-          "name": "layer_weight_2",
-          "startPosition": { "row": 52, "column": 30 },
-          "endPosition": { "row": 52, "column": 57 },
-          "type": "function"
-        },
-        {
           "name": "blob_bottom_data_",
           "startPosition": { "row": 63, "column": 2 },
           "endPosition": { "row": 63, "column": 39 },
@@ -23597,12 +23585,6 @@
           "name": "InfogainLossLayerTest",
           "startPosition": { "row": 20, "column": 2 },
           "endPosition": { "row": 46, "column": 3 },
-          "type": "function"
-        },
-        {
-          "name": "infogain_filler",
-          "startPosition": { "row": 41, "column": 25 },
-          "endPosition": { "row": 41, "column": 54 },
           "type": "function"
         },
         {
@@ -26353,18 +26335,6 @@
           "type": "function"
         },
         {
-          "name": "data_filler",
-          "startPosition": { "row": 27, "column": 26 },
-          "endPosition": { "row": 27, "column": 56 },
-          "type": "function"
-        },
-        {
-          "name": "targets_filler",
-          "startPosition": { "row": 34, "column": 25 },
-          "endPosition": { "row": 34, "column": 61 },
-          "type": "function"
-        },
-        {
           "name": "~SigmoidCrossEntropyLossLayerTest",
           "startPosition": { "row": 39, "column": 2 },
           "endPosition": { "row": 43, "column": 3 },
@@ -26380,18 +26350,6 @@
           "name": "TestForward",
           "startPosition": { "row": 61, "column": 2 },
           "endPosition": { "row": 91, "column": 3 },
-          "type": "function"
-        },
-        {
-          "name": "data_filler",
-          "startPosition": { "row": 67, "column": 26 },
-          "endPosition": { "row": 67, "column": 56 },
-          "type": "function"
-        },
-        {
-          "name": "targets_filler",
-          "startPosition": { "row": 71, "column": 25 },
-          "endPosition": { "row": 71, "column": 61 },
           "type": "function"
         },
         {

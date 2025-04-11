@@ -305,6 +305,21 @@
   },
   ".ts": {
     "nodes": [
+      {
+        "type": "public_field_definition",
+        "child": {
+          "type": "type_annotation",
+          "child": { "type": "function_type" }
+        },
+        "nodeType": "FUNCTION"
+      },
+      {
+        "type": "public_field_definition",
+        "child": {
+          "type": "arrow_function"
+        },
+        "nodeType": "FUNCTION"
+      },
       { "type": "public_field_definition", "nodeType": "ATTRIBUTE" },
       {
         "type": "call_expression",
@@ -324,6 +339,17 @@
             "type": "arrow_function"
           }
         },
+        "nodeType": "FUNCTION"
+      },
+      {
+        "type": "expression_statement",
+        "child": {
+          "type": "assignment_expression",
+          "child": {
+            "type": "arrow_function"
+          }
+        },
+        "parent": "program",
         "nodeType": "FUNCTION"
       },
       {
@@ -391,6 +417,17 @@
       },
       "lexical_declaration": {
         "childTypes": { "variable_declarator": { "fieldName": "name" } }
+      },
+      "expression_statement": {
+        "childTypes": {
+          "assignment_expression": {
+            "childTypes": {
+              "member_expression": {
+                "childTypes": { "property_identifier": { "useText": true } }
+              }
+            }
+          }
+        }
       },
       "call_expression": {
         "childTypes": { "member_expression": { "useText": true } }
