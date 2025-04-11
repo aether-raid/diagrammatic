@@ -493,6 +493,18 @@
           "type": "function"
         },
         {
+          "name": "operator=",
+          "startPosition": {
+            "row": 16,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 16,
+            "column": 48
+          },
+          "type": "function"
+        },
+        {
           "name": "bytes",
           "startPosition": { "row": 17, "column": 1 },
           "endPosition": { "row": 17, "column": 11 },
@@ -1666,6 +1678,12 @@
           "type": "function"
         },
         {
+          "name": "operator()",
+          "startPosition": { "row": 39, "column": 4 },
+          "endPosition": { "row": 43, "column": 5 },
+          "type": "function"
+        },
+        {
           "name": "fn",
           "startPosition": { "row": 44, "column": 4 },
           "endPosition": { "row": 44, "column": 9 },
@@ -1727,6 +1745,12 @@
           "name": "deprecated_fun",
           "startPosition": { "row": 129, "column": 4 },
           "endPosition": { "row": 129, "column": 69 },
+          "type": "function"
+        },
+        {
+          "name": "operator()",
+          "startPosition": { "row": 131, "column": 4 },
+          "endPosition": { "row": 137, "column": 5 },
           "type": "function"
         },
         {
@@ -1864,12 +1888,6 @@
       "filePath": "/bindings/python/src/load_torrent.cpp",
       "items": [
         {
-          "name": "dict_to_limits",
-          "startPosition": { "row": 16, "column": 24 },
-          "endPosition": { "row": 16, "column": 51 },
-          "type": "function"
-        },
-        {
           "name": "load_torrent_file1",
           "startPosition": { "row": 20, "column": 4 },
           "endPosition": { "row": 23, "column": 1 },
@@ -1914,12 +1932,6 @@
       "filePath": "/bindings/python/src/magnet_uri.cpp",
       "items": [
         {
-          "name": "dict_to_add_torrent_params",
-          "startPosition": { "row": 15, "column": 12 },
-          "endPosition": { "row": 15, "column": 74 },
-          "type": "function"
-        },
-        {
           "name": "_add_magnet_uri",
           "startPosition": { "row": 20, "column": 1 },
           "endPosition": { "row": 37, "column": 2 },
@@ -1957,138 +1969,6 @@
       "endPosition": { "row": 62, "column": 0 },
       "filePath": "/bindings/python/src/module.cpp",
       "items": [
-        {
-          "name": "bind_utility",
-          "startPosition": { "row": 11, "column": 5 },
-          "endPosition": { "row": 11, "column": 19 },
-          "type": "function"
-        },
-        {
-          "name": "bind_fingerprint",
-          "startPosition": { "row": 12, "column": 5 },
-          "endPosition": { "row": 12, "column": 23 },
-          "type": "function"
-        },
-        {
-          "name": "bind_sha1_hash",
-          "startPosition": { "row": 13, "column": 5 },
-          "endPosition": { "row": 13, "column": 21 },
-          "type": "function"
-        },
-        {
-          "name": "bind_sha256_hash",
-          "startPosition": { "row": 14, "column": 5 },
-          "endPosition": { "row": 14, "column": 23 },
-          "type": "function"
-        },
-        {
-          "name": "bind_info_hash",
-          "startPosition": { "row": 15, "column": 5 },
-          "endPosition": { "row": 15, "column": 21 },
-          "type": "function"
-        },
-        {
-          "name": "bind_session",
-          "startPosition": { "row": 16, "column": 5 },
-          "endPosition": { "row": 16, "column": 19 },
-          "type": "function"
-        },
-        {
-          "name": "bind_entry",
-          "startPosition": { "row": 17, "column": 5 },
-          "endPosition": { "row": 17, "column": 17 },
-          "type": "function"
-        },
-        {
-          "name": "bind_torrent_info",
-          "startPosition": { "row": 18, "column": 5 },
-          "endPosition": { "row": 18, "column": 24 },
-          "type": "function"
-        },
-        {
-          "name": "bind_unicode_string_conversion",
-          "startPosition": { "row": 19, "column": 5 },
-          "endPosition": { "row": 19, "column": 37 },
-          "type": "function"
-        },
-        {
-          "name": "bind_torrent_handle",
-          "startPosition": { "row": 20, "column": 5 },
-          "endPosition": { "row": 20, "column": 26 },
-          "type": "function"
-        },
-        {
-          "name": "bind_torrent_status",
-          "startPosition": { "row": 21, "column": 5 },
-          "endPosition": { "row": 21, "column": 26 },
-          "type": "function"
-        },
-        {
-          "name": "bind_session_settings",
-          "startPosition": { "row": 22, "column": 5 },
-          "endPosition": { "row": 22, "column": 28 },
-          "type": "function"
-        },
-        {
-          "name": "bind_version",
-          "startPosition": { "row": 23, "column": 5 },
-          "endPosition": { "row": 23, "column": 19 },
-          "type": "function"
-        },
-        {
-          "name": "bind_alert",
-          "startPosition": { "row": 24, "column": 5 },
-          "endPosition": { "row": 24, "column": 17 },
-          "type": "function"
-        },
-        {
-          "name": "bind_datetime",
-          "startPosition": { "row": 25, "column": 5 },
-          "endPosition": { "row": 25, "column": 20 },
-          "type": "function"
-        },
-        {
-          "name": "bind_peer_info",
-          "startPosition": { "row": 26, "column": 5 },
-          "endPosition": { "row": 26, "column": 21 },
-          "type": "function"
-        },
-        {
-          "name": "bind_ip_filter",
-          "startPosition": { "row": 27, "column": 5 },
-          "endPosition": { "row": 27, "column": 21 },
-          "type": "function"
-        },
-        {
-          "name": "bind_magnet_uri",
-          "startPosition": { "row": 28, "column": 5 },
-          "endPosition": { "row": 28, "column": 22 },
-          "type": "function"
-        },
-        {
-          "name": "bind_converters",
-          "startPosition": { "row": 29, "column": 5 },
-          "endPosition": { "row": 29, "column": 22 },
-          "type": "function"
-        },
-        {
-          "name": "bind_create_torrent",
-          "startPosition": { "row": 30, "column": 5 },
-          "endPosition": { "row": 30, "column": 26 },
-          "type": "function"
-        },
-        {
-          "name": "bind_error_code",
-          "startPosition": { "row": 31, "column": 5 },
-          "endPosition": { "row": 31, "column": 22 },
-          "type": "function"
-        },
-        {
-          "name": "bind_load_torrent",
-          "startPosition": { "row": 32, "column": 5 },
-          "endPosition": { "row": 32, "column": 24 },
-          "type": "function"
-        },
         {
           "name": "BOOST_PYTHON_MODULE",
           "startPosition": { "row": 34, "column": 0 },
@@ -2382,12 +2262,6 @@
           "type": "function"
         },
         {
-          "name": "begin",
-          "startPosition": { "row": 139, "column": 30 },
-          "endPosition": { "row": 139, "column": 38 },
-          "type": "function"
-        },
-        {
           "name": "prioritize_files",
           "startPosition": { "row": 162, "column": 0 },
           "endPosition": { "row": 166, "column": 1 },
@@ -2427,6 +2301,12 @@
           "name": "add_tracker",
           "startPosition": { "row": 229, "column": 0 },
           "endPosition": { "row": 234, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "to_ptime",
+          "startPosition": { "row": 240, "column": 3 },
+          "endPosition": { "row": 249, "column": 4 },
           "type": "function"
         },
         {
@@ -3584,12 +3464,6 @@
           "startPosition": { "row": 154, "column": 0 },
           "endPosition": { "row": 318, "column": 1 },
           "type": "function"
-        },
-        {
-          "name": "args",
-          "startPosition": { "row": 156, "column": 23 },
-          "endPosition": { "row": 156, "column": 41 },
-          "type": "function"
         }
       ]
     }
@@ -3708,86 +3582,7 @@
       "startPosition": { "row": 0, "column": 0 },
       "endPosition": { "row": 56, "column": 0 },
       "filePath": "/examples/print.hpp",
-      "items": [
-        {
-          "name": "esc",
-          "startPosition": { "row": 22, "column": 12 },
-          "endPosition": { "row": 22, "column": 33 },
-          "type": "function"
-        },
-        {
-          "name": "to_string",
-          "startPosition": { "row": 24, "column": 12 },
-          "endPosition": { "row": 24, "column": 39 },
-          "type": "function"
-        },
-        {
-          "name": "add_suffix_float",
-          "startPosition": { "row": 26, "column": 12 },
-          "endPosition": { "row": 26, "column": 60 },
-          "type": "function"
-        },
-        {
-          "name": "add_suffix",
-          "startPosition": { "row": 28, "column": 18 },
-          "endPosition": { "row": 30, "column": 1 },
-          "type": "function"
-        },
-        {
-          "name": "color",
-          "startPosition": { "row": 32, "column": 12 },
-          "endPosition": { "row": 32, "column": 53 },
-          "type": "function"
-        },
-        {
-          "name": "piece_bar",
-          "startPosition": { "row": 39, "column": 19 },
-          "endPosition": { "row": 39, "column": 62 },
-          "type": "function"
-        },
-        {
-          "name": "avail_bar",
-          "startPosition": { "row": 41, "column": 12 },
-          "endPosition": { "row": 41, "column": 69 },
-          "type": "function"
-        },
-        {
-          "name": "set_cursor_pos",
-          "startPosition": { "row": 43, "column": 5 },
-          "endPosition": { "row": 43, "column": 33 },
-          "type": "function"
-        },
-        {
-          "name": "clear_screen",
-          "startPosition": { "row": 45, "column": 5 },
-          "endPosition": { "row": 45, "column": 19 },
-          "type": "function"
-        },
-        {
-          "name": "clear_rows",
-          "startPosition": { "row": 47, "column": 5 },
-          "endPosition": { "row": 47, "column": 31 },
-          "type": "function"
-        },
-        {
-          "name": "terminal_size",
-          "startPosition": { "row": 49, "column": 20 },
-          "endPosition": { "row": 49, "column": 35 },
-          "type": "function"
-        },
-        {
-          "name": "piece_matrix",
-          "startPosition": { "row": 50, "column": 12 },
-          "endPosition": { "row": 50, "column": 71 },
-          "type": "function"
-        },
-        {
-          "name": "print",
-          "startPosition": { "row": 52, "column": 5 },
-          "endPosition": { "row": 52, "column": 27 },
-          "type": "function"
-        }
-      ]
+      "items": []
     }
   },
   {
@@ -4360,12 +4155,6 @@
           "type": "function"
         },
         {
-          "name": "dest",
-          "startPosition": { "row": 369, "column": 16 },
-          "endPosition": { "row": 369, "column": 25 },
-          "type": "function"
-        },
-        {
           "name": "print_headers",
           "startPosition": { "row": 411, "column": 0 },
           "endPosition": { "row": 438, "column": 1 },
@@ -4375,12 +4164,6 @@
           "name": "print_torrent",
           "startPosition": { "row": 440, "column": 0 },
           "endPosition": { "row": 503, "column": 1 },
-          "type": "function"
-        },
-        {
-          "name": "dest",
-          "startPosition": { "row": 443, "column": 16 },
-          "endPosition": { "row": 443, "column": 25 },
           "type": "function"
         },
         {
@@ -4662,12 +4445,6 @@
       "filePath": "/fuzzers/main.cpp",
       "items": [
         {
-          "name": "LLVMFuzzerTestOneInput",
-          "startPosition": { "row": 36, "column": 15 },
-          "endPosition": { "row": 36, "column": 61 },
-          "type": "function"
-        },
-        {
           "name": "main",
           "startPosition": { "row": 38, "column": 0 },
           "endPosition": { "row": 54, "column": 1 },
@@ -4839,12 +4616,6 @@
       "endPosition": { "row": 102, "column": 0 },
       "filePath": "/fuzzers/src/dht_node.cpp",
       "items": [
-        {
-          "name": "dht_storage",
-          "startPosition": { "row": 44, "column": 48 },
-          "endPosition": { "row": 44, "column": 103 },
-          "type": "function"
-        },
         {
           "name": "LLVMFuzzerTestOneInput",
           "startPosition": { "row": 93, "column": 11 },
@@ -5453,24 +5224,6 @@
       "endPosition": { "row": 135, "column": 0 },
       "filePath": "/include/libtorrent/assert.hpp",
       "items": [
-        {
-          "name": "demangle",
-          "startPosition": { "row": 45, "column": 12 },
-          "endPosition": { "row": 45, "column": 38 },
-          "type": "function"
-        },
-        {
-          "name": "print_backtrace",
-          "startPosition": { "row": 46, "column": 20 },
-          "endPosition": { "row": 46, "column": 95 },
-          "type": "function"
-        },
-        {
-          "name": "assert_fail",
-          "startPosition": { "row": 70, "column": 20 },
-          "endPosition": { "row": 71, "column": 73 },
-          "type": "function"
-        },
         {
           "name": "TORRENT_ASSERT_PRECOND_MSG",
           "startPosition": { "row": 87, "column": 0 },
@@ -6846,6 +6599,24 @@
           "type": "function"
         },
         {
+          "name": "operator[]",
+          "startPosition": { "row": 63, "column": 2 },
+          "endPosition": { "row": 68, "column": 3 },
+          "type": "function"
+        },
+        {
+          "name": "operator[]",
+          "startPosition": {
+            "row": 70,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 75,
+            "column": 3
+          },
+          "type": "function"
+        },
+        {
           "name": "end_index",
           "startPosition": { "row": 77, "column": 2 },
           "endPosition": { "row": 81, "column": 3 },
@@ -6911,6 +6682,18 @@
           "name": "handler_wrapper",
           "startPosition": { "row": 43, "column": 1 },
           "endPosition": { "row": 45, "column": 29 },
+          "type": "function"
+        },
+        {
+          "name": "operator()",
+          "startPosition": {
+            "row": 48,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 53,
+            "column": 2
+          },
           "type": "function"
         },
         {
@@ -6981,6 +6764,12 @@
           "name": "dev_random",
           "startPosition": { "row": 58, "column": 2 },
           "endPosition": { "row": 58, "column": 41 },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": { "row": 59, "column": 2 },
+          "endPosition": { "row": 59, "column": 52 },
           "type": "function"
         },
         {
@@ -7882,6 +7671,18 @@
           "type": "function"
         },
         {
+          "name": "operator=",
+          "startPosition": { "row": 51, "column": 1 },
+          "endPosition": { "row": 51, "column": 55 },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": { "row": 52, "column": 1 },
+          "endPosition": { "row": 56, "column": 2 },
+          "type": "function"
+        },
+        {
           "name": "file",
           "startPosition": { "row": 57, "column": 1 },
           "endPosition": { "row": 57, "column": 35 },
@@ -8330,7 +8131,14 @@
       "startPosition": { "row": 53, "column": 1 },
       "endPosition": { "row": 54, "column": 58 },
       "filePath": "/include/libtorrent/aux_/heterogeneous_queue.hpp",
-      "items": []
+      "items": [
+        {
+          "name": "operator()",
+          "startPosition": { "row": 54, "column": 3 },
+          "endPosition": { "row": 54, "column": 56 },
+          "type": "function"
+        }
+      ]
     }
   },
   {
@@ -8577,6 +8385,12 @@
           "type": "function"
         },
         {
+          "name": "operator=",
+          "startPosition": { "row": 61, "column": 2 },
+          "endPosition": { "row": 61, "column": 76 },
+          "type": "function"
+        },
+        {
           "name": "~invariant_checker_impl",
           "startPosition": { "row": 63, "column": 2 },
           "endPosition": { "row": 63, "column": 65 },
@@ -8762,36 +8576,6 @@
       "filePath": "/include/libtorrent/aux_/ip_helpers.hpp",
       "items": [
         {
-          "name": "is_global",
-          "startPosition": { "row": 44, "column": 27 },
-          "endPosition": { "row": 44, "column": 54 },
-          "type": "function"
-        },
-        {
-          "name": "is_local",
-          "startPosition": { "row": 45, "column": 27 },
-          "endPosition": { "row": 45, "column": 53 },
-          "type": "function"
-        },
-        {
-          "name": "is_link_local",
-          "startPosition": { "row": 46, "column": 27 },
-          "endPosition": { "row": 46, "column": 61 },
-          "type": "function"
-        },
-        {
-          "name": "is_teredo",
-          "startPosition": { "row": 47, "column": 27 },
-          "endPosition": { "row": 47, "column": 57 },
-          "type": "function"
-        },
-        {
-          "name": "is_ip_address",
-          "startPosition": { "row": 48, "column": 27 },
-          "endPosition": { "row": 48, "column": 65 },
-          "type": "function"
-        },
-        {
           "name": "is_v4",
           "startPosition": { "row": 52, "column": 1 },
           "endPosition": { "row": 55, "column": 2 },
@@ -8801,12 +8585,6 @@
           "name": "is_v6",
           "startPosition": { "row": 57, "column": 1 },
           "endPosition": { "row": 60, "column": 2 },
-          "type": "function"
-        },
-        {
-          "name": "ensure_v6",
-          "startPosition": { "row": 62, "column": 22 },
-          "endPosition": { "row": 62, "column": 57 },
           "type": "function"
         }
       ]
@@ -10612,6 +10390,18 @@
           "startPosition": { "row": 174, "column": 2 },
           "endPosition": { "row": 175, "column": 44 },
           "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": { "row": 178, "column": 2 },
+          "endPosition": { "row": 178, "column": 68 },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": { "row": 179, "column": 2 },
+          "endPosition": { "row": 179, "column": 64 },
+          "type": "function"
         }
       ]
     }
@@ -10846,6 +10636,12 @@
           "type": "function"
         },
         {
+          "name": "operator=",
+          "startPosition": { "row": 179, "column": 1 },
+          "endPosition": { "row": 179, "column": 73 },
+          "type": "function"
+        },
+        {
           "name": "mutable_buffer",
           "startPosition": { "row": 181, "column": 1 },
           "endPosition": { "row": 181, "column": 77 },
@@ -10934,6 +10730,12 @@
           "startPosition": { "row": 221, "column": 1 },
           "endPosition": { "row": 221, "column": 23 },
           "type": "attribute"
+        },
+        {
+          "name": "m_connection_buffer",
+          "startPosition": { "row": 222, "column": 1 },
+          "endPosition": { "row": 222, "column": 37 },
+          "type": "attribute"
         }
       ]
     }
@@ -11001,9 +10803,21 @@
           "type": "function"
         },
         {
+          "name": "operator=",
+          "startPosition": { "row": 47, "column": 2 },
+          "endPosition": { "row": 47, "column": 67 },
+          "type": "function"
+        },
+        {
           "name": "scope_end_impl",
           "startPosition": { "row": 50, "column": 2 },
           "endPosition": { "row": 50, "column": 49 },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": { "row": 51, "column": 2 },
+          "endPosition": { "row": 51, "column": 60 },
           "type": "function"
         },
         {
@@ -11490,18 +11304,6 @@
           "startPosition": { "row": 43, "column": 1 },
           "endPosition": { "row": 87, "column": 2 },
           "type": "function"
-        },
-        {
-          "name": "option",
-          "startPosition": { "row": 60, "column": 38 },
-          "endPosition": { "row": 60, "column": 54 },
-          "type": "function"
-        },
-        {
-          "name": "option",
-          "startPosition": { "row": 77, "column": 41 },
-          "endPosition": { "row": 77, "column": 58 },
-          "type": "function"
         }
       ]
     }
@@ -11576,9 +11378,21 @@
           "type": "attribute"
         },
         {
+          "name": "state",
+          "startPosition": { "row": 19, "column": 2 },
+          "endPosition": { "row": 19, "column": 25 },
+          "type": "attribute"
+        },
+        {
           "name": "curlen",
           "startPosition": { "row": 20, "column": 2 },
           "endPosition": { "row": 20, "column": 21 },
+          "type": "attribute"
+        },
+        {
+          "name": "buf",
+          "startPosition": { "row": 21, "column": 2 },
+          "endPosition": { "row": 21, "column": 24 },
           "type": "attribute"
         }
       ]
@@ -11817,6 +11631,12 @@
           "startPosition": { "row": 56, "column": 1 },
           "endPosition": { "row": 56, "column": 12 },
           "type": "attribute"
+        },
+        {
+          "name": "operator==",
+          "startPosition": { "row": 57, "column": 1 },
+          "endPosition": { "row": 61, "column": 2 },
+          "type": "function"
         }
       ]
     }
@@ -11907,9 +11727,27 @@
           "type": "function"
         },
         {
+          "name": "operator=",
+          "startPosition": { "row": 56, "column": 2 },
+          "endPosition": { "row": 63, "column": 3 },
+          "type": "function"
+        },
+        {
           "name": "string_ptr",
           "startPosition": { "row": 64, "column": 2 },
           "endPosition": { "row": 64, "column": 45 },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": { "row": 65, "column": 2 },
+          "endPosition": { "row": 65, "column": 56 },
+          "type": "function"
+        },
+        {
+          "name": "operator*",
+          "startPosition": { "row": 66, "column": 2 },
+          "endPosition": { "row": 66, "column": 49 },
           "type": "function"
         },
         {
@@ -11931,7 +11769,14 @@
       "startPosition": { "row": 41, "column": 1 },
       "endPosition": { "row": 47, "column": 2 },
       "filePath": "/include/libtorrent/aux_/strview_less.hpp",
-      "items": []
+      "items": [
+        {
+          "name": "operator()",
+          "startPosition": { "row": 45, "column": 2 },
+          "endPosition": { "row": 46, "column": 23 },
+          "type": "function"
+        }
+      ]
     }
   },
   {
@@ -12052,32 +11897,7 @@
       "startPosition": { "row": 0, "column": 0 },
       "endPosition": { "row": 80, "column": 0 },
       "filePath": "/include/libtorrent/aux_/torrent_impl.hpp",
-      "items": [
-        {
-          "name": "wrap",
-          "startPosition": { "row": 41, "column": 6 },
-          "endPosition": { "row": 41, "column": 39 },
-          "type": "function"
-        },
-        {
-          "name": "catch",
-          "startPosition": { "row": 49, "column": 1 },
-          "endPosition": { "row": 59, "column": 2 },
-          "type": "function"
-        },
-        {
-          "name": "catch",
-          "startPosition": { "row": 59, "column": 3 },
-          "endPosition": { "row": 66, "column": 2 },
-          "type": "function"
-        },
-        {
-          "name": "catch",
-          "startPosition": { "row": 66, "column": 3 },
-          "endPosition": { "row": 73, "column": 2 },
-          "type": "function"
-        }
-      ]
+      "items": []
     }
   },
   {
@@ -12128,21 +11948,21 @@
           "type": "function"
         },
         {
+          "name": "operator[]",
+          "startPosition": { "row": 78, "column": 1 },
+          "endPosition": { "row": 82, "column": 2 },
+          "type": "function"
+        },
+        {
+          "name": "operator[]",
+          "startPosition": { "row": 84, "column": 1 },
+          "endPosition": { "row": 88, "column": 2 },
+          "type": "function"
+        },
+        {
           "name": "insert",
           "startPosition": { "row": 90, "column": 1 },
           "endPosition": { "row": 145, "column": 2 },
-          "type": "function"
-        },
-        {
-          "name": "h",
-          "startPosition": { "row": 116, "column": 12 },
-          "endPosition": { "row": 116, "column": 19 },
-          "type": "function"
-        },
-        {
-          "name": "h",
-          "startPosition": { "row": 131, "column": 10 },
-          "endPosition": { "row": 131, "column": 17 },
           "type": "function"
         },
         {
@@ -12161,12 +11981,6 @@
           "name": "erase",
           "startPosition": { "row": 163, "column": 1 },
           "endPosition": { "row": 200, "column": 2 },
-          "type": "function"
-        },
-        {
-          "name": "h",
-          "startPosition": { "row": 180, "column": 10 },
-          "endPosition": { "row": 180, "column": 17 },
           "type": "function"
         },
         {
@@ -12452,6 +12266,12 @@
           "type": "function"
         },
         {
+          "name": "operator=",
+          "startPosition": { "row": 144, "column": 2 },
+          "endPosition": { "row": 144, "column": 68 },
+          "type": "function"
+        },
+        {
           "name": "m_send_fun",
           "startPosition": { "row": 148, "column": 2 },
           "endPosition": { "row": 148, "column": 24 },
@@ -12503,6 +12323,24 @@
           "name": "m_new_connection",
           "startPosition": { "row": 181, "column": 2 },
           "endPosition": { "row": 181, "column": 28 },
+          "type": "attribute"
+        },
+        {
+          "name": "m_sett",
+          "startPosition": { "row": 183, "column": 2 },
+          "endPosition": { "row": 183, "column": 38 },
+          "type": "attribute"
+        },
+        {
+          "name": "m_counters",
+          "startPosition": { "row": 186, "column": 2 },
+          "endPosition": { "row": 186, "column": 23 },
+          "type": "attribute"
+        },
+        {
+          "name": "m_ios",
+          "startPosition": { "row": 188, "column": 2 },
+          "endPosition": { "row": 188, "column": 20 },
           "type": "attribute"
         },
         {
@@ -12597,6 +12435,12 @@
           "name": "~cng_hash",
           "startPosition": { "row": 100, "column": 2 },
           "endPosition": { "row": 103, "column": 3 },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": { "row": 78, "column": 2 },
+          "endPosition": { "row": 85, "column": 3 },
           "type": "function"
         },
         {
@@ -12775,6 +12619,18 @@
           "name": "~crypt_hash",
           "startPosition": { "row": 76, "column": 2 },
           "endPosition": { "row": 76, "column": 45 },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": {
+            "row": 78,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 85,
+            "column": 3
+          },
           "type": "function"
         },
         {
@@ -12974,42 +12830,6 @@
           "startPosition": { "row": 109, "column": 0 },
           "endPosition": { "row": 111, "column": 30 },
           "type": "function"
-        },
-        {
-          "name": "system::error_code make_error_code",
-          "startPosition": { "row": 142, "column": 16 },
-          "endPosition": { "row": 142, "column": 76 },
-          "type": "function"
-        },
-        {
-          "name": "escape_string",
-          "startPosition": { "row": 166, "column": 5 },
-          "endPosition": { "row": 166, "column": 62 },
-          "type": "function"
-        },
-        {
-          "name": "print_entry",
-          "startPosition": { "row": 443, "column": 15 },
-          "endPosition": { "row": 444, "column": 44 },
-          "type": "function"
-        },
-        {
-          "name": "bdecode",
-          "startPosition": { "row": 471, "column": 19 },
-          "endPosition": { "row": 473, "column": 29 },
-          "type": "function"
-        },
-        {
-          "name": "bdecode",
-          "startPosition": { "row": 474, "column": 15 },
-          "endPosition": { "row": 476, "column": 29 },
-          "type": "function"
-        },
-        {
-          "name": "bdecode",
-          "startPosition": { "row": 477, "column": 15 },
-          "endPosition": { "row": 478, "column": 52 },
-          "type": "function"
         }
       ]
     }
@@ -13206,9 +13026,27 @@
           "type": "function"
         },
         {
+          "name": "operator=",
+          "startPosition": { "row": 299, "column": 2 },
+          "endPosition": { "row": 303, "column": 3 },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": { "row": 304, "column": 2 },
+          "endPosition": { "row": 308, "column": 3 },
+          "type": "function"
+        },
+        {
           "name": "range",
           "startPosition": { "row": 313, "column": 2 },
           "endPosition": { "row": 316, "column": 3 },
+          "type": "function"
+        },
+        {
+          "name": "operator[]",
+          "startPosition": { "row": 318, "column": 2 },
+          "endPosition": { "row": 319, "column": 62 },
           "type": "function"
         },
         {
@@ -13322,6 +13160,12 @@
           "startPosition": { "row": 71, "column": 2 },
           "endPosition": { "row": 71, "column": 29 },
           "type": "function"
+        },
+        {
+          "name": "bits",
+          "startPosition": { "row": 74, "column": 2 },
+          "endPosition": { "row": 74, "column": 23 },
+          "type": "attribute"
         }
       ]
     }
@@ -13584,6 +13428,42 @@
           "type": "function"
         },
         {
+          "name": "operator=",
+          "startPosition": { "row": 49, "column": 2 },
+          "endPosition": { "row": 54, "column": 3 },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": { "row": 55, "column": 2 },
+          "endPosition": { "row": 55, "column": 57 },
+          "type": "function"
+        },
+        {
+          "name": "operator->",
+          "startPosition": { "row": 56, "column": 2 },
+          "endPosition": { "row": 56, "column": 41 },
+          "type": "function"
+        },
+        {
+          "name": "operator->",
+          "startPosition": { "row": 57, "column": 2 },
+          "endPosition": { "row": 57, "column": 53 },
+          "type": "function"
+        },
+        {
+          "name": "operator*",
+          "startPosition": { "row": 58, "column": 2 },
+          "endPosition": { "row": 58, "column": 35 },
+          "type": "function"
+        },
+        {
+          "name": "operator*",
+          "startPosition": { "row": 59, "column": 2 },
+          "endPosition": { "row": 59, "column": 47 },
+          "type": "function"
+        },
+        {
           "name": "swap",
           "startPosition": { "row": 60, "column": 2 },
           "endPosition": { "row": 60, "column": 52 },
@@ -13642,36 +13522,6 @@
           "type": "function"
         },
         {
-          "name": "add_files",
-          "startPosition": { "row": 514, "column": 21 },
-          "endPosition": { "row": 515, "column": 66 },
-          "type": "function"
-        },
-        {
-          "name": "add_files",
-          "startPosition": { "row": 516, "column": 21 },
-          "endPosition": { "row": 517, "column": 30 },
-          "type": "function"
-        },
-        {
-          "name": "set_piece_hashes",
-          "startPosition": { "row": 533, "column": 21 },
-          "endPosition": { "row": 534, "column": 64 },
-          "type": "function"
-        },
-        {
-          "name": "set_piece_hashes",
-          "startPosition": { "row": 535, "column": 21 },
-          "endPosition": { "row": 537, "column": 64 },
-          "type": "function"
-        },
-        {
-          "name": "set_piece_hashes",
-          "startPosition": { "row": 538, "column": 21 },
-          "endPosition": { "row": 540, "column": 64 },
-          "type": "function"
-        },
-        {
           "name": "set_piece_hashes",
           "startPosition": { "row": 541, "column": 1 },
           "endPosition": { "row": 544, "column": 2 },
@@ -13693,18 +13543,6 @@
           "name": "set_piece_hashes",
           "startPosition": { "row": 559, "column": 1 },
           "endPosition": { "row": 566, "column": 2 },
-          "type": "function"
-        },
-        {
-          "name": "get_file_attributes",
-          "startPosition": { "row": 570, "column": 22 },
-          "endPosition": { "row": 570, "column": 76 },
-          "type": "function"
-        },
-        {
-          "name": "get_symlink_path",
-          "startPosition": { "row": 571, "column": 22 },
-          "endPosition": { "row": 571, "column": 72 },
           "type": "function"
         }
       ]
@@ -13734,12 +13572,6 @@
       "endPosition": { "row": 288, "column": 0 },
       "filePath": "/include/libtorrent/debug.hpp",
       "items": [
-        {
-          "name": "demangle",
-          "startPosition": { "row": 67, "column": 12 },
-          "endPosition": { "row": 67, "column": 38 },
-          "type": "function"
-        },
         {
           "name": "has_outstanding_async",
           "startPosition": { "row": 92, "column": 1 },
@@ -13961,6 +13793,12 @@
       "filePath": "/include/libtorrent/debug.hpp",
       "items": [
         {
+          "name": "m_cnt",
+          "startPosition": { "row": 274, "column": 2 },
+          "endPosition": { "row": 274, "column": 13 },
+          "type": "attribute"
+        },
+        {
           "name": "increment_guard",
           "startPosition": { "row": 275, "column": 2 },
           "endPosition": { "row": 275, "column": 86 },
@@ -13977,6 +13815,12 @@
           "startPosition": { "row": 278, "column": 2 },
           "endPosition": { "row": 278, "column": 41 },
           "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": { "row": 279, "column": 2 },
+          "endPosition": { "row": 279, "column": 52 },
+          "type": "attribute"
         }
       ]
     }
@@ -14130,9 +13974,15 @@
       "filePath": "/include/libtorrent/entry.hpp",
       "items": [
         {
-          "name": "integer_to_str",
-          "startPosition": { "row": 318, "column": 16 },
-          "endPosition": { "row": 319, "column": 28 },
+          "name": "operator!=",
+          "startPosition": { "row": 313, "column": 1 },
+          "endPosition": { "row": 313, "column": 85 },
+          "type": "function"
+        },
+        {
+          "name": "operator<<",
+          "startPosition": { "row": 324, "column": 1 },
+          "endPosition": { "row": 328, "column": 2 },
           "type": "function"
         }
       ]
@@ -14163,69 +14013,9 @@
       "filePath": "/include/libtorrent/enum_net.hpp",
       "items": [
         {
-          "name": "vector<ip_interface> enum_net_interfaces",
-          "startPosition": { "row": 124, "column": 22 },
-          "endPosition": { "row": 125, "column": 19 },
-          "type": "function"
-        },
-        {
-          "name": "vector<ip_route> enum_routes",
-          "startPosition": { "row": 127, "column": 22 },
-          "endPosition": { "row": 128, "column": 19 },
-          "type": "function"
-        },
-        {
-          "name": "family",
-          "startPosition": { "row": 131, "column": 26 },
-          "endPosition": { "row": 131, "column": 50 },
-          "type": "function"
-        },
-        {
-          "name": "match_addr_mask",
-          "startPosition": { "row": 134, "column": 27 },
-          "endPosition": { "row": 135, "column": 43 },
-          "type": "function"
-        },
-        {
-          "name": "build_netmask",
-          "startPosition": { "row": 140, "column": 22 },
-          "endPosition": { "row": 140, "column": 65 },
-          "type": "function"
-        },
-        {
-          "name": "optional<address> get_gateway",
-          "startPosition": { "row": 144, "column": 22 },
-          "endPosition": { "row": 145, "column": 57 },
-          "type": "function"
-        },
-        {
-          "name": "has_internet_route",
-          "startPosition": { "row": 149, "column": 27 },
-          "endPosition": { "row": 150, "column": 32 },
-          "type": "function"
-        },
-        {
-          "name": "has_any_internet_route",
-          "startPosition": { "row": 155, "column": 27 },
-          "endPosition": { "row": 155, "column": 78 },
-          "type": "function"
-        },
-        {
           "name": "bind_socket_to_device",
           "startPosition": { "row": 165, "column": 1 },
           "endPosition": { "row": 224, "column": 2 },
-          "type": "function"
-        },
-        {
-          "name": "bind_ep",
-          "startPosition": { "row": 169, "column": 16 },
-          "endPosition": { "row": 169, "column": 63 },
-          "type": "function"
-        },
-        {
-          "name": "device_for_address",
-          "startPosition": { "row": 228, "column": 22 },
-          "endPosition": { "row": 229, "column": 36 },
           "type": "function"
         }
       ]
@@ -14265,6 +14055,24 @@
           "name": "netmask",
           "startPosition": { "row": 99, "column": 2 },
           "endPosition": { "row": 99, "column": 18 },
+          "type": "attribute"
+        },
+        {
+          "name": "name",
+          "startPosition": { "row": 100, "column": 2 },
+          "endPosition": { "row": 100, "column": 18 },
+          "type": "attribute"
+        },
+        {
+          "name": "friendly_name",
+          "startPosition": { "row": 101, "column": 2 },
+          "endPosition": { "row": 101, "column": 28 },
+          "type": "attribute"
+        },
+        {
+          "name": "description",
+          "startPosition": { "row": 102, "column": 2 },
+          "endPosition": { "row": 102, "column": 26 },
           "type": "attribute"
         },
         {
@@ -14324,6 +14132,12 @@
           "type": "attribute"
         },
         {
+          "name": "name",
+          "startPosition": { "row": 118, "column": 2 },
+          "endPosition": { "row": 118, "column": 18 },
+          "type": "attribute"
+        },
+        {
           "name": "mtu",
           "startPosition": { "row": 119, "column": 2 },
           "endPosition": { "row": 119, "column": 14 },
@@ -14344,12 +14158,6 @@
       "filePath": "/include/libtorrent/error_code.hpp",
       "items": [
         {
-          "name": "system::error_code make_error_code",
-          "startPosition": { "row": 508, "column": 16 },
-          "endPosition": { "row": 508, "column": 76 },
-          "type": "function"
-        },
-        {
           "name": "get_libtorrent_category",
           "startPosition": { "row": 530, "column": 1 },
           "endPosition": { "row": 532, "column": 34 },
@@ -14359,12 +14167,6 @@
           "name": "get_http_category",
           "startPosition": { "row": 534, "column": 1 },
           "endPosition": { "row": 536, "column": 28 },
-          "type": "function"
-        },
-        {
-          "name": "print_error",
-          "startPosition": { "row": 587, "column": 13 },
-          "endPosition": { "row": 587, "column": 43 },
           "type": "function"
         }
       ]
@@ -14680,6 +14482,18 @@
           "type": "function"
         },
         {
+          "name": "operator=",
+          "startPosition": {
+            "row": 129,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 129,
+            "column": 48
+          },
+          "type": "attribute"
+        },
+        {
           "name": "file_entry",
           "startPosition": { "row": 130, "column": 2 },
           "endPosition": { "row": 130, "column": 38 },
@@ -14862,44 +14676,230 @@
       "items": [
         {
           "name": "bitfield_flag",
-          "startPosition": { "row": 61, "column": 1 },
-          "endPosition": { "row": 61, "column": 70 },
+          "startPosition": {
+            "row": 61,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 61,
+            "column": 70
+          },
           "type": "function"
         },
         {
           "name": "bitfield_flag",
-          "startPosition": { "row": 62, "column": 1 },
-          "endPosition": { "row": 62, "column": 65 },
+          "startPosition": {
+            "row": 62,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 62,
+            "column": 65
+          },
           "type": "function"
         },
         {
           "name": "bitfield_flag",
-          "startPosition": { "row": 63, "column": 1 },
-          "endPosition": { "row": 63, "column": 49 },
+          "startPosition": {
+            "row": 63,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 63,
+            "column": 49
+          },
           "type": "function"
         },
         {
           "name": "bitfield_flag",
-          "startPosition": { "row": 64, "column": 1 },
-          "endPosition": { "row": 64, "column": 84 },
+          "startPosition": {
+            "row": 64,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 64,
+            "column": 84
+          },
           "type": "function"
         },
         {
           "name": "bitfield_flag",
-          "startPosition": { "row": 65, "column": 1 },
-          "endPosition": { "row": 65, "column": 134 },
+          "startPosition": {
+            "row": 65,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 65,
+            "column": 134
+          },
           "type": "function"
         },
         {
           "name": "all",
-          "startPosition": { "row": 73, "column": 1 },
-          "endPosition": { "row": 76, "column": 2 },
+          "startPosition": {
+            "row": 73,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 76,
+            "column": 2
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator==",
+          "startPosition": {
+            "row": 78,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 79,
+            "column": 29
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator!=",
+          "startPosition": {
+            "row": 81,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 82,
+            "column": 29
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator|=",
+          "startPosition": {
+            "row": 84,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 88,
+            "column": 2
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator&=",
+          "startPosition": {
+            "row": 90,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 94,
+            "column": 2
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator^=",
+          "startPosition": {
+            "row": 96,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 100,
+            "column": 2
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator|",
+          "startPosition": {
+            "row": 102,
+            "column": 18
+          },
+          "endPosition": {
+            "row": 105,
+            "column": 2
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator&",
+          "startPosition": {
+            "row": 107,
+            "column": 18
+          },
+          "endPosition": {
+            "row": 110,
+            "column": 2
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator^",
+          "startPosition": {
+            "row": 112,
+            "column": 18
+          },
+          "endPosition": {
+            "row": 115,
+            "column": 2
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator~",
+          "startPosition": {
+            "row": 117,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 123,
+            "column": 2
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": {
+            "row": 125,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 125,
+            "column": 73
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": {
+            "row": 126,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 126,
+            "column": 68
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator<<",
+          "startPosition": {
+            "row": 129,
+            "column": 8
+          },
+          "endPosition": {
+            "row": 130,
+            "column": 51
+          },
           "type": "function"
         },
         {
           "name": "m_val",
-          "startPosition": { "row": 134, "column": 1 },
-          "endPosition": { "row": 134, "column": 22 },
+          "startPosition": {
+            "row": 134,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 134,
+            "column": 22
+          },
           "type": "attribute"
         }
       ]
@@ -16750,21 +16750,9 @@
       "filePath": "/include/libtorrent/gzip.hpp",
       "items": [
         {
-          "name": "inflate_gzip",
-          "startPosition": { "row": 43, "column": 27 },
-          "endPosition": { "row": 47, "column": 19 },
-          "type": "function"
-        },
-        {
           "name": "get_gzip_category",
           "startPosition": { "row": 53, "column": 1 },
           "endPosition": { "row": 55, "column": 28 },
-          "type": "function"
-        },
-        {
-          "name": "system::error_code make_error_code",
-          "startPosition": { "row": 117, "column": 16 },
-          "endPosition": { "row": 117, "column": 76 },
           "type": "function"
         }
       ]
@@ -16933,6 +16921,18 @@
           "type": "function"
         },
         {
+          "name": "operator==",
+          "startPosition": {
+            "row": 105,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 105,
+            "column": 89
+          },
+          "type": "function"
+        },
+        {
           "name": "file",
           "startPosition": { "row": 106, "column": 2 },
           "endPosition": { "row": 106, "column": 20 },
@@ -16958,42 +16958,6 @@
       "endPosition": { "row": 97, "column": 0 },
       "filePath": "/include/libtorrent/hex.hpp",
       "items": [
-        {
-          "name": "hex_to_int",
-          "startPosition": { "row": 46, "column": 26 },
-          "endPosition": { "row": 46, "column": 45 },
-          "type": "function"
-        },
-        {
-          "name": "is_hex",
-          "startPosition": { "row": 47, "column": 27 },
-          "endPosition": { "row": 47, "column": 54 },
-          "type": "function"
-        },
-        {
-          "name": "to_hex",
-          "startPosition": { "row": 61, "column": 28 },
-          "endPosition": { "row": 61, "column": 66 },
-          "type": "function"
-        },
-        {
-          "name": "to_hex",
-          "startPosition": { "row": 62, "column": 33 },
-          "endPosition": { "row": 62, "column": 71 },
-          "type": "function"
-        },
-        {
-          "name": "to_hex",
-          "startPosition": { "row": 63, "column": 33 },
-          "endPosition": { "row": 63, "column": 75 },
-          "type": "function"
-        },
-        {
-          "name": "from_hex",
-          "startPosition": { "row": 70, "column": 33 },
-          "endPosition": { "row": 70, "column": 73 },
-          "type": "function"
-        },
         {
           "name": "to_hex",
           "startPosition": { "row": 81, "column": 1 },
@@ -17076,6 +17040,18 @@
           "startPosition": { "row": 76, "column": 1 },
           "endPosition": { "row": 76, "column": 12 },
           "type": "attribute"
+        },
+        {
+          "name": "operator==",
+          "startPosition": {
+            "row": 77,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 80,
+            "column": 2
+          },
+          "type": "function"
         }
       ]
     }
@@ -17204,12 +17180,6 @@
           "type": "function"
         },
         {
-          "name": "p",
-          "startPosition": { "row": 128, "column": 47 },
-          "endPosition": { "row": 128, "column": 58 },
-          "type": "function"
-        },
-        {
           "name": "handshake1",
           "startPosition": { "row": 144, "column": 1 },
           "endPosition": { "row": 154, "column": 2 },
@@ -17264,50 +17234,7 @@
       "startPosition": { "row": 0, "column": 0 },
       "endPosition": { "row": 97, "column": 0 },
       "filePath": "/include/libtorrent/http_tracker_connection.hpp",
-      "items": [
-        {
-          "name": "on_filter",
-          "startPosition": { "row": 75, "column": 7 },
-          "endPosition": { "row": 75, "column": 75 },
-          "type": "function"
-        },
-        {
-          "name": "on_filter_hostname",
-          "startPosition": { "row": 76, "column": 7 },
-          "endPosition": { "row": 76, "column": 67 },
-          "type": "function"
-        },
-        {
-          "name": "on_connect",
-          "startPosition": { "row": 77, "column": 7 },
-          "endPosition": { "row": 77, "column": 37 },
-          "type": "function"
-        },
-        {
-          "name": "on_response",
-          "startPosition": { "row": 78, "column": 7 },
-          "endPosition": { "row": 79, "column": 27 },
-          "type": "function"
-        },
-        {
-          "name": "on_timeout",
-          "startPosition": { "row": 81, "column": 2 },
-          "endPosition": { "row": 81, "column": 48 },
-          "type": "function"
-        },
-        {
-          "name": "parse_tracker_response",
-          "startPosition": { "row": 88, "column": 22 },
-          "endPosition": { "row": 90, "column": 62 },
-          "type": "function"
-        },
-        {
-          "name": "extract_peer_info",
-          "startPosition": { "row": 92, "column": 27 },
-          "endPosition": { "row": 93, "column": 36 },
-          "type": "function"
-        }
-      ]
+      "items": []
     }
   },
   {
@@ -17387,12 +17314,6 @@
       "filePath": "/include/libtorrent/i2p_stream.hpp",
       "items": [
         {
-          "name": "system::error_code make_error_code",
-          "startPosition": { "row": 77, "column": 16 },
-          "endPosition": { "row": 77, "column": 75 },
-          "type": "function"
-        },
-        {
           "name": "get_i2p_category",
           "startPosition": { "row": 98, "column": 1 },
           "endPosition": { "row": 100, "column": 27 },
@@ -17460,6 +17381,18 @@
           "name": "i2p_stream",
           "startPosition": { "row": 114, "column": 1 },
           "endPosition": { "row": 114, "column": 45 },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": {
+            "row": 116,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 116,
+            "column": 51
+          },
           "type": "function"
         },
         {
@@ -17553,18 +17486,6 @@
           "type": "function"
         },
         {
-          "name": "invalid_response",
-          "startPosition": { "row": 264, "column": 13 },
-          "endPosition": { "row": 265, "column": 20 },
-          "type": "function"
-        },
-        {
-          "name": "ec",
-          "startPosition": { "row": 360, "column": 13 },
-          "endPosition": { "row": 360, "column": 39 },
-          "type": "function"
-        },
-        {
           "name": "send_connect",
           "startPosition": { "row": 411, "column": 1 },
           "endPosition": { "row": 423, "column": 2 },
@@ -17654,6 +17575,18 @@
           "name": "~i2p_connection",
           "startPosition": { "row": 484, "column": 1 },
           "endPosition": { "row": 484, "column": 18 },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": {
+            "row": 486,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 486,
+            "column": 59
+          },
           "type": "function"
         },
         {
@@ -17763,6 +17696,18 @@
           "startPosition": { "row": 632, "column": 1 },
           "endPosition": { "row": 632, "column": 17 },
           "type": "attribute"
+        },
+        {
+          "name": "m_io_service",
+          "startPosition": {
+            "row": 634,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 634,
+            "column": 26
+          },
+          "type": "attribute"
         }
       ]
     }
@@ -17812,14 +17757,86 @@
       "items": [
         {
           "name": "index_iter",
-          "startPosition": { "row": 40, "column": 1 },
-          "endPosition": { "row": 40, "column": 43 },
+          "startPosition": {
+            "row": 40,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 40,
+            "column": 43
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator++",
+          "startPosition": {
+            "row": 41,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 45,
+            "column": 2
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator--",
+          "startPosition": {
+            "row": 46,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 50,
+            "column": 2
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator*",
+          "startPosition": {
+            "row": 51,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 51,
+            "column": 42
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator==",
+          "startPosition": {
+            "row": 52,
+            "column": 8
+          },
+          "endPosition": {
+            "row": 53,
+            "column": 35
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator!=",
+          "startPosition": {
+            "row": 54,
+            "column": 8
+          },
+          "endPosition": {
+            "row": 55,
+            "column": 35
+          },
           "type": "function"
         },
         {
           "name": "m_idx",
-          "startPosition": { "row": 57, "column": 1 },
-          "endPosition": { "row": 57, "column": 13 },
+          "startPosition": {
+            "row": 57,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 57,
+            "column": 13
+          },
           "type": "attribute"
         }
       ]
@@ -18027,30 +18044,6 @@
       "filePath": "/include/libtorrent/ip_filter.hpp",
       "items": [
         {
-          "name": "zero",
-          "startPosition": { "row": 66, "column": 27 },
-          "endPosition": { "row": 66, "column": 33 },
-          "type": "function"
-        },
-        {
-          "name": "plus_one",
-          "startPosition": { "row": 68, "column": 27 },
-          "endPosition": { "row": 68, "column": 50 },
-          "type": "function"
-        },
-        {
-          "name": "minus_one",
-          "startPosition": { "row": 70, "column": 27 },
-          "endPosition": { "row": 70, "column": 51 },
-          "type": "function"
-        },
-        {
-          "name": "max_addr",
-          "startPosition": { "row": 72, "column": 27 },
-          "endPosition": { "row": 72, "column": 37 },
-          "type": "function"
-        },
-        {
           "name": "plus_one",
           "startPosition": { "row": 83, "column": 1 },
           "endPosition": { "row": 83, "column": 69 },
@@ -18060,24 +18053,6 @@
           "name": "minus_one",
           "startPosition": { "row": 84, "column": 1 },
           "endPosition": { "row": 84, "column": 70 },
-          "type": "function"
-        },
-        {
-          "name": "export_filter",
-          "startPosition": { "row": 128, "column": 51 },
-          "endPosition": { "row": 128, "column": 109 },
-          "type": "function"
-        },
-        {
-          "name": "export_filter",
-          "startPosition": { "row": 129, "column": 51 },
-          "endPosition": { "row": 129, "column": 109 },
-          "type": "function"
-        },
-        {
-          "name": "export_filter",
-          "startPosition": { "row": 130, "column": 54 },
-          "endPosition": { "row": 130, "column": 103 },
           "type": "function"
         }
       ]
@@ -18771,194 +18746,7 @@
       "startPosition": { "row": 0, "column": 0 },
       "endPosition": { "row": 230, "column": 0 },
       "filePath": "/include/libtorrent/kademlia/dht_tracker.hpp",
-      "items": [
-        {
-          "name": "dht_tracker",
-          "startPosition": { "row": 84, "column": 2 },
-          "endPosition": { "row": 90, "column": 38 },
-          "type": "function"
-        },
-        {
-          "name": "dht_tracker",
-          "startPosition": { "row": 96, "column": 2 },
-          "endPosition": { "row": 96, "column": 43 },
-          "type": "function"
-        },
-        {
-          "name": "start",
-          "startPosition": { "row": 99, "column": 7 },
-          "endPosition": { "row": 99, "column": 48 },
-          "type": "function"
-        },
-        {
-          "name": "stop",
-          "startPosition": { "row": 100, "column": 7 },
-          "endPosition": { "row": 100, "column": 13 },
-          "type": "function"
-        },
-        {
-          "name": "update_node_id",
-          "startPosition": { "row": 104, "column": 7 },
-          "endPosition": { "row": 104, "column": 57 },
-          "type": "function"
-        },
-        {
-          "name": "new_socket",
-          "startPosition": { "row": 106, "column": 7 },
-          "endPosition": { "row": 106, "column": 53 },
-          "type": "function"
-        },
-        {
-          "name": "delete_socket",
-          "startPosition": { "row": 107, "column": 7 },
-          "endPosition": { "row": 107, "column": 56 },
-          "type": "function"
-        },
-        {
-          "name": "add_node",
-          "startPosition": { "row": 109, "column": 7 },
-          "endPosition": { "row": 109, "column": 42 },
-          "type": "function"
-        },
-        {
-          "name": "add_router_node",
-          "startPosition": { "row": 110, "column": 7 },
-          "endPosition": { "row": 110, "column": 49 },
-          "type": "function"
-        },
-        {
-          "name": "state",
-          "startPosition": { "row": 112, "column": 12 },
-          "endPosition": { "row": 112, "column": 25 },
-          "type": "function"
-        },
-        {
-          "name": "get_peers",
-          "startPosition": { "row": 114, "column": 7 },
-          "endPosition": { "row": 115, "column": 62 },
-          "type": "function"
-        },
-        {
-          "name": "announce",
-          "startPosition": { "row": 116, "column": 7 },
-          "endPosition": { "row": 117, "column": 62 },
-          "type": "function"
-        },
-        {
-          "name": "sample_infohashes",
-          "startPosition": { "row": 119, "column": 7 },
-          "endPosition": { "row": 123, "column": 59 },
-          "type": "function"
-        },
-        {
-          "name": "get_item",
-          "startPosition": { "row": 125, "column": 7 },
-          "endPosition": { "row": 126, "column": 41 },
-          "type": "function"
-        },
-        {
-          "name": "get_item",
-          "startPosition": { "row": 130, "column": 7 },
-          "endPosition": { "row": 132, "column": 38 },
-          "type": "function"
-        },
-        {
-          "name": "put_item",
-          "startPosition": { "row": 137, "column": 7 },
-          "endPosition": { "row": 138, "column": 33 },
-          "type": "function"
-        },
-        {
-          "name": "put_item",
-          "startPosition": { "row": 143, "column": 7 },
-          "endPosition": { "row": 145, "column": 74 },
-          "type": "function"
-        },
-        {
-          "name": "direct_request",
-          "startPosition": { "row": 148, "column": 7 },
-          "endPosition": { "row": 149, "column": 39 },
-          "type": "function"
-        },
-        {
-          "name": "dht_status",
-          "startPosition": { "row": 153, "column": 7 },
-          "endPosition": { "row": 153, "column": 36 },
-          "type": "function"
-        },
-        {
-          "name": "dht_status",
-          "startPosition": { "row": 156, "column": 35 },
-          "endPosition": { "row": 156, "column": 53 },
-          "type": "function"
-        },
-        {
-          "name": "update_stats_counters",
-          "startPosition": { "row": 157, "column": 7 },
-          "endPosition": { "row": 157, "column": 47 },
-          "type": "function"
-        },
-        {
-          "name": "incoming_error",
-          "startPosition": { "row": 159, "column": 7 },
-          "endPosition": { "row": 159, "column": 68 },
-          "type": "function"
-        },
-        {
-          "name": "incoming_packet",
-          "startPosition": { "row": 160, "column": 7 },
-          "endPosition": { "row": 161, "column": 51 },
-          "type": "function"
-        },
-        {
-          "name": "live_nodes",
-          "startPosition": { "row": 163, "column": 49 },
-          "endPosition": { "row": 163, "column": 79 },
-          "type": "function"
-        },
-        {
-          "name": "self",
-          "startPosition": { "row": 183, "column": 2 },
-          "endPosition": { "row": 184, "column": 32 },
-          "type": "function"
-        },
-        {
-          "name": "connection_timeout",
-          "startPosition": { "row": 186, "column": 7 },
-          "endPosition": { "row": 186, "column": 82 },
-          "type": "function"
-        },
-        {
-          "name": "refresh_timeout",
-          "startPosition": { "row": 187, "column": 7 },
-          "endPosition": { "row": 187, "column": 43 },
-          "type": "function"
-        },
-        {
-          "name": "refresh_key",
-          "startPosition": { "row": 188, "column": 7 },
-          "endPosition": { "row": 188, "column": 39 },
-          "type": "function"
-        },
-        {
-          "name": "update_storage_node_ids",
-          "startPosition": { "row": 189, "column": 7 },
-          "endPosition": { "row": 189, "column": 32 },
-          "type": "function"
-        },
-        {
-          "name": "has_quota",
-          "startPosition": { "row": 193, "column": 7 },
-          "endPosition": { "row": 193, "column": 27 },
-          "type": "function"
-        },
-        {
-          "name": "send_packet",
-          "startPosition": { "row": 194, "column": 7 },
-          "endPosition": { "row": 194, "column": 100 },
-          "type": "function"
-        }
-      ]
+      "items": []
     }
   },
   {
@@ -20630,12 +20418,6 @@
       "endPosition": { "row": 103, "column": 0 },
       "filePath": "/include/libtorrent/kademlia/msg.hpp",
       "items": [
-        {
-          "name": "verify_message_impl",
-          "startPosition": { "row": 87, "column": 26 },
-          "endPosition": { "row": 88, "column": 44 },
-          "type": "function"
-        },
         {
           "name": "verify_message",
           "startPosition": { "row": 93, "column": 0 },
@@ -23974,14 +23756,7 @@
       "startPosition": { "row": 0, "column": 0 },
       "endPosition": { "row": 189, "column": 0 },
       "filePath": "/include/libtorrent/kademlia/traversal_algorithm.hpp",
-      "items": [
-        {
-          "name": "look_for_nodes",
-          "startPosition": { "row": 170, "column": 5 },
-          "endPosition": { "row": 171, "column": 70 },
-          "type": "function"
-        }
-      ]
+      "items": []
     }
   },
   {
@@ -25051,6 +24826,18 @@
           "type": "attribute"
         },
         {
+          "name": "m_callback",
+          "startPosition": {
+            "row": 66,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 66,
+            "column": 31
+          },
+          "type": "attribute"
+        },
+        {
           "name": "m_listen_address",
           "startPosition": { "row": 68, "column": 1 },
           "endPosition": { "row": 68, "column": 26 },
@@ -25820,14 +25607,7 @@
       "startPosition": { "row": 0, "column": 0 },
       "endPosition": { "row": 220, "column": 0 },
       "filePath": "/include/libtorrent/natpmp.hpp",
-      "items": [
-        {
-          "name": "make_error_code",
-          "startPosition": { "row": 72, "column": 27 },
-          "endPosition": { "row": 72, "column": 56 },
-          "type": "function"
-        }
-      ]
+      "items": []
     }
   },
   {
@@ -26401,6 +26181,30 @@
           "type": "function"
         },
         {
+          "name": "operator=",
+          "startPosition": {
+            "row": 74,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 78,
+            "column": 3
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": {
+            "row": 80,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 84,
+            "column": 3
+          },
+          "type": "function"
+        },
+        {
           "name": "protocol",
           "startPosition": { "row": 86, "column": 2 },
           "endPosition": { "row": 89, "column": 3 },
@@ -26458,38 +26262,98 @@
       "items": [
         {
           "name": "netlink",
-          "startPosition": { "row": 162, "column": 2 },
-          "endPosition": { "row": 162, "column": 39 },
+          "startPosition": {
+            "row": 162,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 162,
+            "column": 39
+          },
           "type": "function"
         },
         {
           "name": "netlink",
-          "startPosition": { "row": 164, "column": 2 },
-          "endPosition": { "row": 167, "column": 3 },
+          "startPosition": {
+            "row": 164,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 167,
+            "column": 3
+          },
           "type": "function"
         },
         {
           "name": "type",
-          "startPosition": { "row": 169, "column": 2 },
-          "endPosition": { "row": 172, "column": 3 },
+          "startPosition": {
+            "row": 169,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 172,
+            "column": 3
+          },
           "type": "function"
         },
         {
           "name": "protocol",
-          "startPosition": { "row": 174, "column": 2 },
-          "endPosition": { "row": 177, "column": 3 },
+          "startPosition": {
+            "row": 174,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 177,
+            "column": 3
+          },
           "type": "function"
         },
         {
           "name": "family",
-          "startPosition": { "row": 179, "column": 2 },
-          "endPosition": { "row": 182, "column": 3 },
+          "startPosition": {
+            "row": 179,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 182,
+            "column": 3
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator==",
+          "startPosition": {
+            "row": 184,
+            "column": 9
+          },
+          "endPosition": {
+            "row": 187,
+            "column": 3
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator!=",
+          "startPosition": {
+            "row": 189,
+            "column": 9
+          },
+          "endPosition": {
+            "row": 192,
+            "column": 3
+          },
           "type": "function"
         },
         {
           "name": "m_nl_family",
-          "startPosition": { "row": 195, "column": 2 },
-          "endPosition": { "row": 195, "column": 18 },
+          "startPosition": {
+            "row": 195,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 195,
+            "column": 18
+          },
           "type": "attribute"
         }
       ]
@@ -30049,9 +29913,17 @@
           "type": "function"
         },
         {
+          "name": "operator=",
+          "type": "function"
+        },
+        {
           "name": "proxy_base",
           "startPosition": { "row": 58, "column": 1 },
           "endPosition": { "row": 58, "column": 40 },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
           "type": "function"
         },
         {
@@ -30351,6 +30223,10 @@
           "type": "function"
         },
         {
+          "name": "operator()",
+          "type": "function"
+        },
+        {
           "name": "get_allocator",
           "startPosition": { "row": 354, "column": 1 },
           "endPosition": { "row": 355, "column": 72 },
@@ -30409,27 +30285,9 @@
       "filePath": "/include/libtorrent/random.hpp",
       "items": [
         {
-          "name": "random",
-          "startPosition": { "row": 45, "column": 22 },
-          "endPosition": { "row": 45, "column": 59 },
-          "type": "function"
-        },
-        {
           "name": "random_shuffle",
           "startPosition": { "row": 52, "column": 1 },
           "endPosition": { "row": 67, "column": 2 },
-          "type": "function"
-        },
-        {
-          "name": "random_bytes",
-          "startPosition": { "row": 76, "column": 27 },
-          "endPosition": { "row": 76, "column": 58 },
-          "type": "function"
-        },
-        {
-          "name": "crypto_random_bytes",
-          "startPosition": { "row": 80, "column": 27 },
-          "endPosition": { "row": 80, "column": 65 },
           "type": "function"
         }
       ]
@@ -30558,12 +30416,6 @@
           "name": "high_performance_seed",
           "startPosition": { "row": 88, "column": 1 },
           "endPosition": { "row": 90, "column": 35 },
-          "type": "function"
-        },
-        {
-          "name": "default_disk_io_constructor",
-          "startPosition": { "row": 105, "column": 16 },
-          "endPosition": { "row": 106, "column": 60 },
           "type": "function"
         }
       ]
@@ -31898,6 +31750,10 @@
           "type": "function"
         },
         {
+          "name": "operator=",
+          "type": "function"
+        },
+        {
           "name": "add_sample",
           "startPosition": { "row": 56, "column": 1 },
           "endPosition": { "row": 75, "column": 2 },
@@ -32510,54 +32366,6 @@
       "filePath": "/include/libtorrent/socket_io.hpp",
       "items": [
         {
-          "name": "print_address",
-          "startPosition": { "row": 49, "column": 22 },
-          "endPosition": { "row": 49, "column": 68 },
-          "type": "function"
-        },
-        {
-          "name": "print_endpoint",
-          "startPosition": { "row": 50, "column": 22 },
-          "endPosition": { "row": 50, "column": 79 },
-          "type": "function"
-        },
-        {
-          "name": "print_endpoint",
-          "startPosition": { "row": 51, "column": 22 },
-          "endPosition": { "row": 51, "column": 73 },
-          "type": "function"
-        },
-        {
-          "name": "print_endpoint",
-          "startPosition": { "row": 52, "column": 22 },
-          "endPosition": { "row": 52, "column": 73 },
-          "type": "function"
-        },
-        {
-          "name": "endpoint parse_endpoint",
-          "startPosition": { "row": 53, "column": 22 },
-          "endPosition": { "row": 53, "column": 83 },
-          "type": "function"
-        },
-        {
-          "name": "address_to_bytes",
-          "startPosition": { "row": 55, "column": 22 },
-          "endPosition": { "row": 55, "column": 68 },
-          "type": "function"
-        },
-        {
-          "name": "endpoint_to_bytes",
-          "startPosition": { "row": 56, "column": 22 },
-          "endPosition": { "row": 56, "column": 76 },
-          "type": "function"
-        },
-        {
-          "name": "hash_address",
-          "startPosition": { "row": 57, "column": 22 },
-          "endPosition": { "row": 57, "column": 63 },
-          "type": "function"
-        },
-        {
           "name": "address_size",
           "startPosition": { "row": 62, "column": 2 },
           "endPosition": { "row": 68, "column": 3 },
@@ -32619,12 +32427,6 @@
       "endPosition": { "row": 561, "column": 0 },
       "filePath": "/include/libtorrent/socks5_stream.hpp",
       "items": [
-        {
-          "name": "make_error_code",
-          "startPosition": { "row": 70, "column": 16 },
-          "endPosition": { "row": 70, "column": 77 },
-          "type": "function"
-        },
         {
           "name": "get_socks_category",
           "startPosition": { "row": 90, "column": 0 },
@@ -32931,6 +32733,18 @@
           "type": "function"
         },
         {
+          "name": "operator=",
+          "startPosition": {
+            "row": 116,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 121,
+            "column": 3
+          },
+          "type": "function"
+        },
+        {
           "name": "size",
           "startPosition": { "row": 123, "column": 2 },
           "endPosition": { "row": 123, "column": 52 },
@@ -33062,42 +32876,6 @@
           "name": "get_context_handle",
           "startPosition": { "row": 162, "column": 0 },
           "endPosition": { "row": 169, "column": 1 },
-          "type": "function"
-        },
-        {
-          "name": "set_trust_certificate",
-          "startPosition": { "row": 171, "column": 26 },
-          "endPosition": { "row": 171, "column": 104 },
-          "type": "function"
-        },
-        {
-          "name": "set_server_name_callback",
-          "startPosition": { "row": 173, "column": 26 },
-          "endPosition": { "row": 173, "column": 130 },
-          "type": "function"
-        },
-        {
-          "name": "set_host_name",
-          "startPosition": { "row": 174, "column": 26 },
-          "endPosition": { "row": 174, "column": 102 },
-          "type": "function"
-        },
-        {
-          "name": "set_context",
-          "startPosition": { "row": 176, "column": 26 },
-          "endPosition": { "row": 176, "column": 82 },
-          "type": "function"
-        },
-        {
-          "name": "has_context",
-          "startPosition": { "row": 177, "column": 26 },
-          "endPosition": { "row": 177, "column": 82 },
-          "type": "function"
-        },
-        {
-          "name": "get_context",
-          "startPosition": { "row": 178, "column": 21 },
-          "endPosition": { "row": 178, "column": 74 },
           "type": "function"
         }
       ]
@@ -33412,38 +33190,122 @@
       "items": [
         {
           "name": "allocation_slot",
-          "startPosition": { "row": 51, "column": 2 },
-          "endPosition": { "row": 51, "column": 43 },
+          "startPosition": {
+            "row": 51,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 51,
+            "column": 43
+          },
           "type": "function"
         },
         {
           "name": "allocation_slot",
-          "startPosition": { "row": 52, "column": 2 },
-          "endPosition": { "row": 52, "column": 61 },
+          "startPosition": {
+            "row": 52,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 52,
+            "column": 61
+          },
           "type": "function"
         },
         {
           "name": "allocation_slot",
-          "startPosition": { "row": 53, "column": 2 },
-          "endPosition": { "row": 53, "column": 56 },
+          "startPosition": {
+            "row": 53,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 53,
+            "column": 56
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": {
+            "row": 54,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 54,
+            "column": 65
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": {
+            "row": 55,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 55,
+            "column": 69
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator==",
+          "startPosition": {
+            "row": 56,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 56,
+            "column": 78
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator!=",
+          "startPosition": {
+            "row": 57,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 57,
+            "column": 78
+          },
           "type": "function"
         },
         {
           "name": "allocation_slot",
-          "startPosition": { "row": 60, "column": 2 },
-          "endPosition": { "row": 60, "column": 60 },
+          "startPosition": {
+            "row": 60,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 60,
+            "column": 60
+          },
           "type": "function"
         },
         {
           "name": "val",
-          "startPosition": { "row": 61, "column": 2 },
-          "endPosition": { "row": 61, "column": 35 },
+          "startPosition": {
+            "row": 61,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 61,
+            "column": 35
+          },
           "type": "function"
         },
         {
           "name": "m_idx",
-          "startPosition": { "row": 62, "column": 2 },
-          "endPosition": { "row": 62, "column": 12 },
+          "startPosition": {
+            "row": 62,
+            "column": 2
+          },
+          "endPosition": {
+            "row": 62,
+            "column": 12
+          },
           "type": "attribute"
         }
       ]
@@ -34417,18 +34279,6 @@
       "filePath": "/include/libtorrent/string_util.hpp",
       "items": [
         {
-          "name": "is_alpha",
-          "startPosition": { "row": 51, "column": 27 },
-          "endPosition": { "row": 51, "column": 43 },
-          "type": "function"
-        },
-        {
-          "name": "to_string",
-          "startPosition": { "row": 54, "column": 2 },
-          "endPosition": { "row": 55, "column": 27 },
-          "type": "function"
-        },
-        {
           "name": "is_digit",
           "startPosition": { "row": 58, "column": 1 },
           "endPosition": { "row": 59, "column": 33 },
@@ -34438,108 +34288,6 @@
           "name": "ensure_trailing_slash",
           "startPosition": { "row": 60, "column": 1 },
           "endPosition": { "row": 64, "column": 2 },
-          "type": "function"
-        },
-        {
-          "name": "strip_string",
-          "startPosition": { "row": 67, "column": 22 },
-          "endPosition": { "row": 67, "column": 62 },
-          "type": "function"
-        },
-        {
-          "name": "is_print",
-          "startPosition": { "row": 69, "column": 27 },
-          "endPosition": { "row": 69, "column": 43 },
-          "type": "function"
-        },
-        {
-          "name": "is_space",
-          "startPosition": { "row": 70, "column": 27 },
-          "endPosition": { "row": 70, "column": 43 },
-          "type": "function"
-        },
-        {
-          "name": "to_lower",
-          "startPosition": { "row": 71, "column": 27 },
-          "endPosition": { "row": 71, "column": 43 },
-          "type": "function"
-        },
-        {
-          "name": "string_begins_no_case",
-          "startPosition": { "row": 73, "column": 27 },
-          "endPosition": { "row": 73, "column": 80 },
-          "type": "function"
-        },
-        {
-          "name": "string_equal_no_case",
-          "startPosition": { "row": 74, "column": 27 },
-          "endPosition": { "row": 74, "column": 79 },
-          "type": "function"
-        },
-        {
-          "name": "url_random",
-          "startPosition": { "row": 76, "column": 27 },
-          "endPosition": { "row": 76, "column": 54 },
-          "type": "function"
-        },
-        {
-          "name": "string_ends_with",
-          "startPosition": { "row": 78, "column": 27 },
-          "endPosition": { "row": 78, "column": 75 },
-          "type": "function"
-        },
-        {
-          "name": "search",
-          "startPosition": { "row": 82, "column": 26 },
-          "endPosition": { "row": 82, "column": 79 },
-          "type": "function"
-        },
-        {
-          "name": "vector<listen_interface_t> parse_listen_interfaces",
-          "startPosition": { "row": 102, "column": 22 },
-          "endPosition": { "row": 103, "column": 58 },
-          "type": "function"
-        },
-        {
-          "name": "print_listen_interfaces",
-          "startPosition": { "row": 107, "column": 22 },
-          "endPosition": { "row": 108, "column": 44 },
-          "type": "function"
-        },
-        {
-          "name": "parse_comma_separated_string_port",
-          "startPosition": { "row": 114, "column": 27 },
-          "endPosition": { "row": 115, "column": 71 },
-          "type": "function"
-        },
-        {
-          "name": "parse_comma_separated_string",
-          "startPosition": { "row": 120, "column": 27 },
-          "endPosition": { "row": 121, "column": 55 },
-          "type": "function"
-        },
-        {
-          "name": "split_string",
-          "startPosition": { "row": 134, "column": 22 },
-          "endPosition": { "row": 134, "column": 98 },
-          "type": "function"
-        },
-        {
-          "name": "split_string_quotes",
-          "startPosition": { "row": 139, "column": 22 },
-          "endPosition": { "row": 140, "column": 35 },
-          "type": "function"
-        },
-        {
-          "name": "ltrim",
-          "startPosition": { "row": 143, "column": 27 },
-          "endPosition": { "row": 143, "column": 48 },
-          "type": "function"
-        },
-        {
-          "name": "is_i2p_url",
-          "startPosition": { "row": 147, "column": 27 },
-          "endPosition": { "row": 147, "column": 61 },
           "type": "function"
         }
       ]
@@ -35057,12 +34805,6 @@
       "endPosition": { "row": 312, "column": 0 },
       "filePath": "/include/libtorrent/torrent_peer.hpp",
       "items": [
-        {
-          "name": "peer_priority",
-          "startPosition": { "row": 53, "column": 22 },
-          "endPosition": { "row": 54, "column": 37 },
-          "type": "function"
-        },
         {
           "name": "torrent_peer_equal",
           "startPosition": { "row": 297, "column": 1 },
@@ -38514,14 +38256,6 @@
       "filePath": "/include/libtorrent/upnp.hpp",
       "items": [
         {
-          "name": "make_error_code",
-          "type": "function"
-        },
-        {
-          "name": "upnp_category",
-          "type": "function"
-        },
-        {
           "name": "get_upnp_category",
           "startPosition": {
             "row": 115,
@@ -38534,15 +38268,27 @@
           "type": "function"
         },
         {
-          "name": "find_control_url",
+          "name": "router_model",
+          "startPosition": {
+            "row": 208,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 212,
+            "column": 2
+          },
           "type": "function"
         },
         {
-          "name": "find_error_code",
-          "type": "function"
-        },
-        {
-          "name": "find_ip_address",
+          "name": "num_mappings",
+          "startPosition": {
+            "row": 263,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 263,
+            "column": 60
+          },
           "type": "function"
         }
       ]
@@ -39851,12 +39597,6 @@
           "type": "function"
         },
         {
-          "name": "blocks",
-          "startPosition": { "row": 244, "column": 35 },
-          "endPosition": { "row": 244, "column": 59 },
-          "type": "function"
-        },
-        {
           "name": "create_test_torrent",
           "startPosition": { "row": 279, "column": 0 },
           "endPosition": { "row": 288, "column": 1 },
@@ -40117,6 +39857,12 @@
           "type": "attribute"
         },
         {
+          "name": "m_ioc",
+          "startPosition": { "row": 706, "column": 1 },
+          "endPosition": { "row": 706, "column": 23 },
+          "type": "attribute"
+        },
+        {
           "name": "m_pad_bytes",
           "startPosition": { "row": 707, "column": 1 },
           "endPosition": { "row": 707, "column": 56 },
@@ -40194,92 +39940,194 @@
       "items": [
         {
           "name": "set_seed",
-          "startPosition": { "row": 64, "column": 1 },
-          "endPosition": { "row": 67, "column": 2 },
+          "startPosition": {
+            "row": 64,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 67,
+            "column": 2
+          },
           "type": "function"
         },
         {
           "name": "set_files",
-          "startPosition": { "row": 68, "column": 1 },
-          "endPosition": { "row": 73, "column": 2 },
+          "startPosition": {
+            "row": 68,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 73,
+            "column": 2
+          },
           "type": "function"
         },
         {
           "name": "set_space_left",
-          "startPosition": { "row": 74, "column": 1 },
-          "endPosition": { "row": 79, "column": 2 },
+          "startPosition": {
+            "row": 74,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 79,
+            "column": 2
+          },
           "type": "function"
         },
         {
           "name": "set_recover_full_disk",
-          "startPosition": { "row": 80, "column": 1 },
-          "endPosition": { "row": 85, "column": 2 },
+          "startPosition": {
+            "row": 80,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 85,
+            "column": 2
+          },
           "type": "function"
         },
         {
           "name": "send_corrupt_data",
-          "startPosition": { "row": 86, "column": 1 },
-          "endPosition": { "row": 91, "column": 2 },
+          "startPosition": {
+            "row": 86,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 91,
+            "column": 2
+          },
           "type": "function"
         },
         {
           "name": "high_watermark",
-          "startPosition": { "row": 96, "column": 1 },
-          "endPosition": { "row": 96, "column": 25 },
+          "startPosition": {
+            "row": 96,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 96,
+            "column": 25
+          },
           "type": "attribute"
         },
         {
           "name": "low_watermark",
-          "startPosition": { "row": 97, "column": 1 },
-          "endPosition": { "row": 97, "column": 24 },
+          "startPosition": {
+            "row": 97,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 97,
+            "column": 24
+          },
+          "type": "attribute"
+        },
+        {
+          "name": "operator()",
+          "startPosition": {
+            "row": 99,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 100,
+            "column": 69
+          },
           "type": "attribute"
         },
         {
           "name": "seek_time",
-          "startPosition": { "row": 103, "column": 1 },
-          "endPosition": { "row": 103, "column": 52 },
+          "startPosition": {
+            "row": 103,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 103,
+            "column": 52
+          },
           "type": "attribute"
         },
         {
           "name": "hash_time",
-          "startPosition": { "row": 106, "column": 1 },
-          "endPosition": { "row": 106, "column": 52 },
+          "startPosition": {
+            "row": 106,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 106,
+            "column": 52
+          },
           "type": "attribute"
         },
         {
           "name": "write_time",
-          "startPosition": { "row": 109, "column": 1 },
-          "endPosition": { "row": 109, "column": 52 },
+          "startPosition": {
+            "row": 109,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 109,
+            "column": 52
+          },
           "type": "attribute"
         },
         {
           "name": "read_time",
-          "startPosition": { "row": 112, "column": 1 },
-          "endPosition": { "row": 112, "column": 51 },
+          "startPosition": {
+            "row": 112,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 112,
+            "column": 51
+          },
           "type": "attribute"
         },
         {
           "name": "files",
-          "startPosition": { "row": 116, "column": 1 },
-          "endPosition": { "row": 116, "column": 59 },
+          "startPosition": {
+            "row": 116,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 116,
+            "column": 59
+          },
           "type": "attribute"
         },
         {
           "name": "recover_full_disk",
-          "startPosition": { "row": 119, "column": 1 },
-          "endPosition": { "row": 119, "column": 32 },
+          "startPosition": {
+            "row": 119,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 119,
+            "column": 32
+          },
           "type": "attribute"
         },
         {
           "name": "corrupt_data_in",
-          "startPosition": { "row": 122, "column": 1 },
-          "endPosition": { "row": 122, "column": 55 },
+          "startPosition": {
+            "row": 122,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 122,
+            "column": 55
+          },
           "type": "attribute"
         },
         {
           "name": "space_left",
-          "startPosition": { "row": 125, "column": 1 },
-          "endPosition": { "row": 125, "column": 50 },
+          "startPosition": {
+            "row": 125,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 125,
+            "column": 50
+          },
           "type": "attribute"
         }
       ]
@@ -40747,9 +40595,21 @@
           "type": "function"
         },
         {
+          "name": "operator=",
+          "startPosition": { "row": 117, "column": 1 },
+          "endPosition": { "row": 117, "column": 47 },
+          "type": "function"
+        },
+        {
           "name": "dht_node",
           "startPosition": { "row": 122, "column": 1 },
           "endPosition": { "row": 122, "column": 33 },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": { "row": 123, "column": 1 },
+          "endPosition": { "row": 123, "column": 42 },
           "type": "function"
         },
         {
@@ -41850,12 +41710,6 @@
           "type": "function"
         },
         {
-          "name": "resolver",
-          "startPosition": { "row": 475, "column": 19 },
-          "endPosition": { "row": 475, "column": 39 },
-          "type": "function"
-        },
-        {
           "name": "TORRENT_TEST",
           "startPosition": { "row": 505, "column": 0 },
           "endPosition": { "row": 550, "column": 1 },
@@ -42360,6 +42214,12 @@
       "filePath": "/simulation/test_peer_connection.cpp",
       "items": [
         {
+          "name": "operator()",
+          "startPosition": { "row": 142, "column": 1 },
+          "endPosition": { "row": 150, "column": 2 },
+          "type": "function"
+        },
+        {
           "name": "alerts",
           "startPosition": { "row": 121, "column": 1 },
           "endPosition": { "row": 121, "column": 36 },
@@ -42380,6 +42240,18 @@
       "filePath": "/simulation/test_peer_connection.cpp",
       "items": [
         {
+          "name": "operator()",
+          "startPosition": {
+            "row": 126,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 135,
+            "column": 2
+          },
+          "type": "function"
+        },
+        {
           "name": "alerts",
           "startPosition": { "row": 137, "column": 1 },
           "endPosition": { "row": 137, "column": 36 },
@@ -42399,6 +42271,18 @@
       "endPosition": { "row": 153, "column": 1 },
       "filePath": "/simulation/test_peer_connection.cpp",
       "items": [
+        {
+          "name": "operator()",
+          "startPosition": {
+            "row": 142,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 150,
+            "column": 2
+          },
+          "type": "function"
+        },
         {
           "name": "alerts",
           "startPosition": { "row": 152, "column": 1 },
@@ -43894,30 +43778,6 @@
           "name": "run_test",
           "startPosition": { "row": 66, "column": 0 },
           "endPosition": { "row": 261, "column": 1 },
-          "type": "function"
-        },
-        {
-          "name": "run_matrix_test",
-          "startPosition": { "row": 263, "column": 5 },
-          "endPosition": { "row": 263, "column": 88 },
-          "type": "function"
-        },
-        {
-          "name": "no_init",
-          "startPosition": { "row": 265, "column": 5 },
-          "endPosition": { "row": 265, "column": 50 },
-          "type": "function"
-        },
-        {
-          "name": "blocks_per_piece",
-          "startPosition": { "row": 315, "column": 4 },
-          "endPosition": { "row": 315, "column": 55 },
-          "type": "function"
-        },
-        {
-          "name": "num_pieces",
-          "startPosition": { "row": 316, "column": 4 },
-          "endPosition": { "row": 316, "column": 49 },
           "type": "function"
         },
         {
@@ -46677,38 +46537,98 @@
       "items": [
         {
           "name": "directory",
-          "startPosition": { "row": 56, "column": 1 },
-          "endPosition": { "row": 56, "column": 39 },
+          "startPosition": {
+            "row": 56,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 56,
+            "column": 39
+          },
           "type": "function"
         },
         {
           "name": "~directory",
-          "startPosition": { "row": 57, "column": 1 },
-          "endPosition": { "row": 57, "column": 54 },
+          "startPosition": {
+            "row": 57,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 57,
+            "column": 54
+          },
           "type": "function"
         },
         {
           "name": "directory",
-          "startPosition": { "row": 58, "column": 1 },
-          "endPosition": { "row": 58, "column": 38 },
+          "startPosition": {
+            "row": 58,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 58,
+            "column": 38
+          },
           "type": "function"
         },
         {
           "name": "directory",
-          "startPosition": { "row": 59, "column": 1 },
-          "endPosition": { "row": 59, "column": 35 },
+          "startPosition": {
+            "row": 59,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 59,
+            "column": 35
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": {
+            "row": 60,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 60,
+            "column": 49
+          },
+          "type": "function"
+        },
+        {
+          "name": "operator=",
+          "startPosition": {
+            "row": 61,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 61,
+            "column": 46
+          },
           "type": "function"
         },
         {
           "name": "dir",
-          "startPosition": { "row": 62, "column": 1 },
-          "endPosition": { "row": 62, "column": 33 },
+          "startPosition": {
+            "row": 62,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 62,
+            "column": 33
+          },
           "type": "function"
         },
         {
           "name": "ptr",
-          "startPosition": { "row": 64, "column": 1 },
-          "endPosition": { "row": 64, "column": 10 },
+          "startPosition": {
+            "row": 64,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 64,
+            "column": 10
+          },
           "type": "attribute"
         }
       ]
@@ -47446,6 +47366,12 @@
           "type": "function"
         },
         {
+          "name": "operator==",
+          "startPosition": { "row": 512, "column": 1 },
+          "endPosition": { "row": 532, "column": 2 },
+          "type": "function"
+        },
+        {
           "name": "construct",
           "startPosition": { "row": 534, "column": 1 },
           "endPosition": { "row": 560, "column": 2 },
@@ -47485,18 +47411,6 @@
           "name": "add_indent",
           "startPosition": { "row": 695, "column": 1 },
           "endPosition": { "row": 698, "column": 2 },
-          "type": "function"
-        },
-        {
-          "name": "print_list",
-          "startPosition": { "row": 700, "column": 6 },
-          "endPosition": { "row": 700, "column": 55 },
-          "type": "function"
-        },
-        {
-          "name": "print_dict",
-          "startPosition": { "row": 701, "column": 6 },
-          "endPosition": { "row": 701, "column": 55 },
           "type": "function"
         },
         {
@@ -48348,12 +48262,6 @@
           "type": "function"
         },
         {
-          "name": "req",
-          "startPosition": { "row": 363, "column": 22 },
-          "endPosition": { "row": 363, "column": 38 },
-          "type": "function"
-        },
-        {
           "name": "have_hash",
           "startPosition": { "row": 372, "column": 1 },
           "endPosition": { "row": 378, "column": 2 },
@@ -49167,156 +49075,278 @@
       "items": [
         {
           "name": "ip_filter",
-          "startPosition": { "row": 40, "column": 1 },
-          "endPosition": { "row": 40, "column": 34 },
+          "startPosition": {
+            "row": 40,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 40,
+            "column": 34
+          },
           "type": "function"
         },
         {
           "name": "ip_filter",
-          "startPosition": { "row": 41, "column": 1 },
-          "endPosition": { "row": 41, "column": 50 },
+          "startPosition": {
+            "row": 41,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 41,
+            "column": 50
+          },
           "type": "function"
         },
         {
           "name": "ip_filter",
-          "startPosition": { "row": 42, "column": 1 },
-          "endPosition": { "row": 42, "column": 45 },
-          "type": "function"
-        },
-        {
-          "name": "operator=",
-          "type": "function"
-        },
-        {
-          "name": "operator=",
+          "startPosition": {
+            "row": 42,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 42,
+            "column": 45
+          },
           "type": "function"
         },
         {
           "name": "~ip_filter",
-          "startPosition": { "row": 45, "column": 1 },
-          "endPosition": { "row": 45, "column": 35 },
+          "startPosition": {
+            "row": 45,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 45,
+            "column": 35
+          },
           "type": "function"
         },
         {
           "name": "empty",
-          "startPosition": { "row": 47, "column": 1 },
-          "endPosition": { "row": 47, "column": 81 },
+          "startPosition": {
+            "row": 47,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 47,
+            "column": 81
+          },
           "type": "function"
         },
         {
           "name": "add_rule",
-          "startPosition": { "row": 49, "column": 1 },
-          "endPosition": { "row": 63, "column": 2 },
+          "startPosition": {
+            "row": 49,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 63,
+            "column": 2
+          },
           "type": "function"
         },
         {
           "name": "access",
-          "startPosition": { "row": 65, "column": 1 },
-          "endPosition": { "row": 71, "column": 2 },
+          "startPosition": {
+            "row": 65,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 71,
+            "column": 2
+          },
           "type": "function"
         },
         {
           "name": "export_filter",
-          "startPosition": { "row": 73, "column": 1 },
-          "endPosition": { "row": 77, "column": 2 },
+          "startPosition": {
+            "row": 73,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 77,
+            "column": 2
+          },
           "type": "function"
         },
         {
           "name": "port_filter",
-          "startPosition": { "row": 79, "column": 1 },
-          "endPosition": { "row": 79, "column": 38 },
+          "startPosition": {
+            "row": 79,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 79,
+            "column": 38
+          },
           "type": "function"
         },
         {
           "name": "port_filter",
-          "startPosition": { "row": 80, "column": 1 },
-          "endPosition": { "row": 80, "column": 56 },
+          "startPosition": {
+            "row": 80,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 80,
+            "column": 56
+          },
           "type": "function"
         },
         {
           "name": "port_filter",
-          "startPosition": { "row": 81, "column": 1 },
-          "endPosition": { "row": 81, "column": 51 },
-          "type": "function"
-        },
-        {
-          "name": "operator=",
-          "type": "function"
-        },
-        {
-          "name": "operator=",
+          "startPosition": {
+            "row": 81,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 81,
+            "column": 51
+          },
           "type": "function"
         },
         {
           "name": "~port_filter",
-          "startPosition": { "row": 84, "column": 1 },
-          "endPosition": { "row": 84, "column": 39 },
+          "startPosition": {
+            "row": 84,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 84,
+            "column": 39
+          },
           "type": "function"
         },
         {
           "name": "add_rule",
-          "startPosition": { "row": 86, "column": 1 },
-          "endPosition": { "row": 89, "column": 2 },
+          "startPosition": {
+            "row": 86,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 89,
+            "column": 2
+          },
           "type": "function"
         },
         {
           "name": "access",
-          "startPosition": { "row": 91, "column": 1 },
-          "endPosition": { "row": 94, "column": 2 },
+          "startPosition": {
+            "row": 91,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 94,
+            "column": 2
+          },
           "type": "function"
         },
         {
           "name": "zero",
-          "startPosition": { "row": 99, "column": 1 },
-          "endPosition": { "row": 104, "column": 2 },
+          "startPosition": {
+            "row": 99,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 104,
+            "column": 2
+          },
           "type": "function"
         },
         {
           "name": "plus_one",
-          "startPosition": { "row": 107, "column": 1 },
-          "endPosition": { "row": 121, "column": 2 },
+          "startPosition": {
+            "row": 107,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 121,
+            "column": 2
+          },
           "type": "function"
         },
         {
           "name": "minus_one",
-          "startPosition": { "row": 124, "column": 1 },
-          "endPosition": { "row": 138, "column": 2 },
+          "startPosition": {
+            "row": 124,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 138,
+            "column": 2
+          },
           "type": "function"
         },
         {
           "name": "max_addr",
-          "startPosition": { "row": 141, "column": 1 },
-          "endPosition": { "row": 147, "column": 2 },
+          "startPosition": {
+            "row": 141,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 147,
+            "column": 2
+          },
           "type": "function"
         },
         {
           "name": "filter_impl",
-          "startPosition": { "row": 165, "column": 1 },
-          "endPosition": { "row": 169, "column": 2 },
+          "startPosition": {
+            "row": 165,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 169,
+            "column": 2
+          },
           "type": "function"
         },
         {
           "name": "empty",
-          "startPosition": { "row": 172, "column": 1 },
-          "endPosition": { "row": 176, "column": 2 },
+          "startPosition": {
+            "row": 172,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 176,
+            "column": 2
+          },
           "type": "function"
         },
         {
           "name": "add_rule",
-          "startPosition": { "row": 179, "column": 1 },
-          "endPosition": { "row": 234, "column": 2 },
+          "startPosition": {
+            "row": 179,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 234,
+            "column": 2
+          },
           "type": "function"
         },
         {
           "name": "access",
-          "startPosition": { "row": 237, "column": 1 },
-          "endPosition": { "row": 246, "column": 2 },
+          "startPosition": {
+            "row": 237,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 246,
+            "column": 2
+          },
           "type": "function"
         },
         {
           "name": "export_filter",
-          "startPosition": { "row": 250, "column": 1 },
-          "endPosition": { "row": 271, "column": 2 },
+          "startPosition": {
+            "row": 250,
+            "column": 1
+          },
+          "endPosition": {
+            "row": 271,
+            "column": 2
+          },
           "type": "function"
         }
       ]
@@ -50105,6 +50135,12 @@
       "filePath": "/src/kademlia/dht_storage.cpp",
       "items": [
         {
+          "name": "operator<",
+          "startPosition": { "row": 71, "column": 1 },
+          "endPosition": { "row": 76, "column": 2 },
+          "type": "function"
+        },
+        {
           "name": "set_value",
           "startPosition": { "row": 115, "column": 1 },
           "endPosition": { "row": 124, "column": 2 },
@@ -50407,6 +50443,12 @@
           "type": "function"
         },
         {
+          "name": "operator=",
+          "startPosition": { "row": 205, "column": 2 },
+          "endPosition": { "row": 205, "column": 70 },
+          "type": "function"
+        },
+        {
           "name": "num_torrents",
           "startPosition": { "row": 208, "column": 2 },
           "endPosition": { "row": 208, "column": 63 },
@@ -50483,6 +50525,12 @@
           "startPosition": { "row": 543, "column": 2 },
           "endPosition": { "row": 546, "column": 3 },
           "type": "function"
+        },
+        {
+          "name": "m_settings",
+          "startPosition": { "row": 549, "column": 2 },
+          "endPosition": { "row": 549, "column": 39 },
+          "type": "attribute"
         },
         {
           "name": "m_counters",
@@ -52890,12 +52938,6 @@
       "endPosition": { "row": 195, "column": 0 },
       "filePath": "/src/packet_buffer.cpp",
       "items": [
-        {
-          "name": "compare_less_wrap",
-          "startPosition": { "row": 40, "column": 6 },
-          "endPosition": { "row": 41, "column": 23 },
-          "type": "function"
-        },
         {
           "name": "check_invariant",
           "startPosition": { "row": 44, "column": 1 },
@@ -55679,6 +55721,12 @@
           "type": "function"
         },
         {
+          "name": "m_torrent",
+          "startPosition": { "row": 306, "column": 2 },
+          "endPosition": { "row": 306, "column": 21 },
+          "type": "attribute"
+        },
+        {
           "name": "m_block_hashes",
           "startPosition": { "row": 311, "column": 2 },
           "endPosition": { "row": 311, "column": 52 },
@@ -56852,12 +56900,6 @@
       "endPosition": { "row": 108, "column": 0 },
       "filePath": "/src/timestamp_history.cpp",
       "items": [
-        {
-          "name": "compare_less_wrap",
-          "startPosition": { "row": 43, "column": 5 },
-          "endPosition": { "row": 44, "column": 22 },
-          "type": "function"
-        },
         {
           "name": "add_sample",
           "startPosition": { "row": 46, "column": 0 },
@@ -58103,12 +58145,6 @@
           "type": "function"
         },
         {
-          "name": "hostname",
-          "startPosition": { "row": 436, "column": 14 },
-          "endPosition": { "row": 436, "column": 30 },
-          "type": "function"
-        },
-        {
           "name": "close",
           "startPosition": { "row": 456, "column": 0 },
           "endPosition": { "row": 469, "column": 1 },
@@ -58381,6 +58417,12 @@
           "type": "attribute"
         },
         {
+          "name": "m_resolver",
+          "startPosition": { "row": 122, "column": 1 },
+          "endPosition": { "row": 122, "column": 37 },
+          "type": "attribute"
+        },
+        {
           "name": "m_timer",
           "startPosition": { "row": 123, "column": 1 },
           "endPosition": { "row": 123, "column": 24 },
@@ -58390,6 +58432,12 @@
           "name": "m_retry_timer",
           "startPosition": { "row": 124, "column": 1 },
           "endPosition": { "row": 124, "column": 30 },
+          "type": "attribute"
+        },
+        {
+          "name": "m_alerts",
+          "startPosition": { "row": 125, "column": 1 },
+          "endPosition": { "row": 125, "column": 30 },
           "type": "attribute"
         },
         {
@@ -58489,26 +58537,6 @@
           "startPosition": { "row": 180, "column": 1 },
           "endPosition": { "row": 180, "column": 17 },
           "type": "attribute"
-        }
-      ]
-    }
-  },
-  {
-    "id": "/src/udp_socket.cpp.set_dont_frag",
-    "type": "entity",
-    "position": { "x": 0, "y": 0 },
-    "data": {
-      "entityName": "set_dont_frag",
-      "entityType": "struct",
-      "startPosition": { "row": 183, "column": 0 },
-      "endPosition": { "row": 184, "column": 39 },
-      "filePath": "/src/udp_socket.cpp",
-      "items": [
-        {
-          "name": "set_dont_frag",
-          "startPosition": { "row": 184, "column": 2 },
-          "endPosition": { "row": 184, "column": 37 },
-          "type": "function"
         }
       ]
     }
@@ -61220,30 +61248,6 @@
       "endPosition": { "row": 201, "column": 0 },
       "filePath": "/test/test.hpp",
       "items": [
-        {
-          "name": "report_failure",
-          "startPosition": { "row": 66, "column": 5 },
-          "endPosition": { "row": 66, "column": 71 },
-          "type": "function"
-        },
-        {
-          "name": "print_failures",
-          "startPosition": { "row": 67, "column": 4 },
-          "endPosition": { "row": 67, "column": 27 },
-          "type": "function"
-        },
-        {
-          "name": "test_counter",
-          "startPosition": { "row": 68, "column": 4 },
-          "endPosition": { "row": 68, "column": 25 },
-          "type": "function"
-        },
-        {
-          "name": "reset_output",
-          "startPosition": { "row": 69, "column": 5 },
-          "endPosition": { "row": 69, "column": 26 },
-          "type": "function"
-        },
         {
           "name": "TORRENT_TEST",
           "startPosition": { "row": 89, "column": 0 },

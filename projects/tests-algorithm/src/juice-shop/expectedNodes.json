@@ -4,7 +4,14 @@
       "entityName": "SnippetRequestBody",
       "entityType": "interface",
       "filePath": "/routes/vulnCodeSnippet.ts",
-      "items": []
+      "items": [
+        {
+          "name": "challenge",
+          "startPosition": { "row": 15, "column": 2 },
+          "endPosition": { "row": 15, "column": 19 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -12,7 +19,20 @@
       "entityName": "VerdictRequestBody",
       "entityType": "interface",
       "filePath": "/routes/vulnCodeSnippet.ts",
-      "items": []
+      "items": [
+        {
+          "name": "selectedLines",
+          "startPosition": { "row": 19, "column": 2 },
+          "endPosition": { "row": 19, "column": 25 },
+          "type": "attribute"
+        },
+        {
+          "name": "key",
+          "startPosition": { "row": 20, "column": 2 },
+          "endPosition": { "row": 20, "column": 13 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -23,18 +43,44 @@
       "items": [
         {
           "name": "setStatusCode",
+          "startPosition": { "row": 23, "column": 0 },
+          "endPosition": { "row": 30, "column": 1 },
           "type": "function"
         },
         {
           "name": "retrieveCodeSnippet",
+          "startPosition": { "row": 32, "column": 7 },
+          "endPosition": { "row": 38, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "serveCodeSnippet",
+          "startPosition": { "row": 40, "column": 0 },
+          "endPosition": { "row": 52, "column": 1 },
           "type": "function"
         },
         {
           "name": "retrieveChallengesWithCodeSnippet",
+          "startPosition": { "row": 54, "column": 7 },
+          "endPosition": { "row": 57, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "serveChallengesWithCodeSnippet",
+          "startPosition": { "row": 59, "column": 0 },
+          "endPosition": { "row": 62, "column": 1 },
           "type": "function"
         },
         {
           "name": "getVerdict",
+          "startPosition": { "row": 64, "column": 7 },
+          "endPosition": { "row": 71, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "checkVulnLines",
+          "startPosition": { "row": 73, "column": 0 },
+          "endPosition": { "row": 119, "column": 1 },
           "type": "function"
         }
       ]
@@ -45,7 +91,26 @@
       "entityName": "OrderDetail",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/basket.service.ts",
-      "items": []
+      "items": [
+        {
+          "name": "paymentId",
+          "startPosition": { "row": 12, "column": 2 },
+          "endPosition": { "row": 12, "column": 19 },
+          "type": "attribute"
+        },
+        {
+          "name": "addressId",
+          "startPosition": { "row": 13, "column": 2 },
+          "endPosition": { "row": 13, "column": 19 },
+          "type": "attribute"
+        },
+        {
+          "name": "deliveryMethodId",
+          "startPosition": { "row": 14, "column": 2 },
+          "endPosition": { "row": 14, "column": 26 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -250,7 +315,14 @@
       "entityName": "result",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/code-fixes.service.ts",
-      "items": []
+      "items": [
+        {
+          "name": "verdict",
+          "startPosition": { "row": 7, "column": 2 },
+          "endPosition": { "row": 7, "column": 18 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -258,7 +330,14 @@
       "entityName": "Fixes",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/code-fixes.service.ts",
-      "items": []
+      "items": [
+        {
+          "name": "fixes",
+          "startPosition": { "row": 11, "column": 2 },
+          "endPosition": { "row": 11, "column": 17 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -266,8 +345,7 @@
       "entityName": "Solved",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/code-fixes.service.ts",
-
-      "items": []
+      "items": [{ "name": "challenges", "type": "attribute" }]
     }
   },
   {
@@ -286,7 +364,14 @@
       "entityName": "Solved",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/code-snippet.service.ts",
-      "items": []
+      "items": [
+        {
+          "name": "challenges",
+          "startPosition": { "row": 17, "column": 2 },
+          "endPosition": { "row": 17, "column": 22 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -321,7 +406,7 @@
       "entityName": "ConfigResponse",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/configuration.service.ts",
-      "items": []
+      "items": [{ "name": "config", "type": "attribute" }]
     }
   },
   {
@@ -329,8 +414,50 @@
       "entityName": "Config",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/configuration.service.ts",
-
-      "items": []
+      "items": [
+        {
+          "name": "server",
+          "startPosition": { "row": 15, "column": 2 },
+          "endPosition": { "row": 17, "column": 3 },
+          "type": "attribute"
+        },
+        {
+          "name": "application",
+          "startPosition": { "row": 18, "column": 2 },
+          "endPosition": { "row": 71, "column": 3 },
+          "type": "attribute"
+        },
+        {
+          "name": "challenges",
+          "startPosition": { "row": 72, "column": 2 },
+          "endPosition": { "row": 81, "column": 3 },
+          "type": "attribute"
+        },
+        {
+          "name": "hackingInstructor",
+          "startPosition": { "row": 82, "column": 2 },
+          "endPosition": { "row": 85, "column": 3 },
+          "type": "attribute"
+        },
+        {
+          "name": "products",
+          "startPosition": { "row": 86, "column": 2 },
+          "endPosition": { "row": 86, "column": 17 },
+          "type": "attribute"
+        },
+        {
+          "name": "memories",
+          "startPosition": { "row": 87, "column": 2 },
+          "endPosition": { "row": 87, "column": 17 },
+          "type": "attribute"
+        },
+        {
+          "name": "ctf",
+          "startPosition": { "row": 88, "column": 2 },
+          "endPosition": { "row": 92, "column": 3 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -382,7 +509,20 @@
       "entityName": "DeliveryMultipleMethodResponse",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/delivery.service.ts",
-      "items": []
+      "items": [
+        {
+          "name": "status",
+          "startPosition": { "row": 12, "column": 2 },
+          "endPosition": { "row": 12, "column": 16 },
+          "type": "attribute"
+        },
+        {
+          "name": "data",
+          "startPosition": { "row": 13, "column": 2 },
+          "endPosition": { "row": 13, "column": 24 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -390,8 +530,20 @@
       "entityName": "DeliverySingleMethodResponse",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/delivery.service.ts",
-
-      "items": []
+      "items": [
+        {
+          "name": "status",
+          "startPosition": { "row": 17, "column": 2 },
+          "endPosition": { "row": 17, "column": 16 },
+          "type": "attribute"
+        },
+        {
+          "name": "data",
+          "startPosition": { "row": 18, "column": 2 },
+          "endPosition": { "row": 18, "column": 22 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -674,7 +826,14 @@
       "entityName": "TwoFactorVerifyResponse",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/two-factor-auth-service.ts",
-      "items": []
+      "items": [
+        {
+          "name": "authentication",
+          "startPosition": { "row": 12, "column": 2 },
+          "endPosition": { "row": 12, "column": 39 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -682,8 +841,26 @@
       "entityName": "AuthenticationPayload",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/two-factor-auth-service.ts",
-
-      "items": []
+      "items": [
+        {
+          "name": "token",
+          "startPosition": { "row": 16, "column": 2 },
+          "endPosition": { "row": 16, "column": 15 },
+          "type": "attribute"
+        },
+        {
+          "name": "bid",
+          "startPosition": { "row": 17, "column": 2 },
+          "endPosition": { "row": 17, "column": 13 },
+          "type": "attribute"
+        },
+        {
+          "name": "umail",
+          "startPosition": { "row": 18, "column": 2 },
+          "endPosition": { "row": 18, "column": 15 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -691,8 +868,32 @@
       "entityName": "TwoFactorAuthStatusPayload",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/two-factor-auth-service.ts",
-
-      "items": []
+      "items": [
+        {
+          "name": "setup",
+          "startPosition": { "row": 22, "column": 2 },
+          "endPosition": { "row": 22, "column": 16 },
+          "type": "attribute"
+        },
+        {
+          "name": "secret",
+          "startPosition": { "row": 23, "column": 2 },
+          "endPosition": { "row": 23, "column": 17 },
+          "type": "attribute"
+        },
+        {
+          "name": "setupToken",
+          "startPosition": { "row": 24, "column": 2 },
+          "endPosition": { "row": 24, "column": 21 },
+          "type": "attribute"
+        },
+        {
+          "name": "email",
+          "startPosition": { "row": 25, "column": 2 },
+          "endPosition": { "row": 25, "column": 16 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -714,7 +915,26 @@
       "entityName": "Passwords",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/user.service.ts",
-      "items": []
+      "items": [
+        {
+          "name": "current",
+          "startPosition": { "row": 12, "column": 2 },
+          "endPosition": { "row": 12, "column": 18 },
+          "type": "attribute"
+        },
+        {
+          "name": "new",
+          "startPosition": { "row": 13, "column": 2 },
+          "endPosition": { "row": 13, "column": 14 },
+          "type": "attribute"
+        },
+        {
+          "name": "repeat",
+          "startPosition": { "row": 14, "column": 2 },
+          "endPosition": { "row": 14, "column": 17 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -748,7 +968,20 @@
       "entityName": "result",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/vuln-lines.service.ts",
-      "items": []
+      "items": [
+        {
+          "name": "verdict",
+          "startPosition": { "row": 6, "column": 2 },
+          "endPosition": { "row": 6, "column": 18 },
+          "type": "attribute"
+        },
+        {
+          "name": "hint",
+          "startPosition": { "row": 7, "column": 2 },
+          "endPosition": { "row": 7, "column": 14 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -1026,7 +1259,7 @@
       "entityType": "interface",
       "filePath": "/data/types.ts",
       "items": [
-        { "name": "test", "type": "attribute" },
+        { "name": "text", "type": "attribute" },
         { "name": "author", "type": "attribute" },
         {
           "name": "liked",
@@ -1060,9 +1293,19 @@
           "name": "createRandomFakeUsers",
           "type": "function"
         },
+        {
+          "name": "getGeneratedRandomFakeUserEmail",
+          "type": "function"
+        },
+        {
+          "name": "makeRandomString",
+          "type": "function"
+        },
         { "name": "createQuantity", "type": "function" },
         { "name": "createMemories", "type": "function" },
         { "name": "createProducts", "type": "function" },
+        { "name": "customizeChangeProductChallenge", "type": "function" },
+        { "name": "customizeRetrieveBlueprintChallenge", "type": "function" },
         { "name": "createBaskets", "type": "function" },
         { "name": "createBasketItems", "type": "function" },
         {
@@ -1176,7 +1419,10 @@
       "entityName": "loginAdminChallenge_1.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginAdminChallenge_1.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1184,7 +1430,10 @@
       "entityName": "loginAdminChallenge_2.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginAdminChallenge_2.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1192,7 +1441,10 @@
       "entityName": "loginAdminChallenge_3.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginAdminChallenge_3.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1200,7 +1452,10 @@
       "entityName": "loginAdminChallenge_4_correct.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginAdminChallenge_4_correct.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1208,7 +1463,10 @@
       "entityName": "loginBenderChallenge_1.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginBenderChallenge_1.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1216,7 +1474,10 @@
       "entityName": "loginBenderChallenge_2_correct.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginBenderChallenge_2_correct.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1224,7 +1485,10 @@
       "entityName": "loginBenderChallenge_3.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginBenderChallenge_3.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1232,7 +1496,10 @@
       "entityName": "loginBenderChallenge_4.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginBenderChallenge_4.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1240,7 +1507,10 @@
       "entityName": "loginJimChallenge_1_correct.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginJimChallenge_1_correct.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1248,7 +1518,10 @@
       "entityName": "loginJimChallenge_2.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginJimChallenge_2.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1256,7 +1529,10 @@
       "entityName": "loginJimChallenge_3.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginJimChallenge_3.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1264,7 +1540,10 @@
       "entityName": "loginJimChallenge_4.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginJimChallenge_4.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1312,7 +1591,10 @@
       "entityName": "redirectChallenge_3.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/redirectChallenge_3.ts",
-      "items": [{ "name": "isRedirectAllowed", "type": "function" }]
+      "items": [
+        { "name": "isRedirectAllowed", "type": "function" },
+        { "name": "escapeHTML", "type": "function" }
+      ]
     }
   },
   {
@@ -1484,6 +1766,10 @@
           "type": "attribute"
         },
         {
+          "name": "paginatorOrderHistory",
+          "type": "attribute"
+        },
+        {
           "name": "orderData",
           "type": "attribute"
         },
@@ -1501,6 +1787,10 @@
         },
         {
           "name": "dataSource",
+          "type": "attribute"
+        },
+        {
+          "name": "paginator",
           "type": "attribute"
         },
         {
@@ -1586,55 +1876,111 @@
       "filePath": "/frontend/src/app/address/address.component.ts",
       "items": [
         {
+          "name": "emitSelection",
+          "startPosition": { "row": 23, "column": 2 },
+          "endPosition": { "row": 23, "column": 46 },
+          "type": "attribute"
+        },
+        {
+          "name": "allowEdit",
+          "startPosition": { "row": 24, "column": 2 },
+          "endPosition": { "row": 24, "column": 55 },
+          "type": "attribute"
+        },
+        {
+          "name": "addNewAddressDiv",
+          "startPosition": { "row": 25, "column": 2 },
+          "endPosition": { "row": 25, "column": 68 },
+          "type": "attribute"
+        },
+        {
+          "name": "showNextButton",
+          "startPosition": { "row": 26, "column": 2 },
+          "endPosition": { "row": 26, "column": 65 },
+          "type": "attribute"
+        },
+        {
           "name": "addressId",
+          "startPosition": { "row": 27, "column": 2 },
+          "endPosition": { "row": 27, "column": 35 },
           "type": "attribute"
         },
         {
           "name": "displayedColumns",
+          "startPosition": { "row": 28, "column": 2 },
+          "endPosition": { "row": 28, "column": 58 },
+          "type": "attribute"
+        },
+        {
+          "name": "selection",
+          "startPosition": { "row": 29, "column": 2 },
+          "endPosition": { "row": 29, "column": 52 },
           "type": "attribute"
         },
         {
           "name": "storedAddresses",
+          "startPosition": { "row": 30, "column": 2 },
+          "endPosition": { "row": 30, "column": 31 },
           "type": "attribute"
         },
         {
           "name": "dataSource",
+          "startPosition": { "row": 31, "column": 2 },
+          "endPosition": { "row": 31, "column": 19 },
           "type": "attribute"
         },
         {
           "name": "confirmation",
+          "startPosition": { "row": 32, "column": 2 },
+          "endPosition": { "row": 32, "column": 26 },
           "type": "attribute"
         },
         {
           "name": "error",
+          "startPosition": { "row": 33, "column": 2 },
+          "endPosition": { "row": 33, "column": 19 },
           "type": "attribute"
         },
         {
           "name": "addressExist",
+          "startPosition": { "row": 34, "column": 2 },
+          "endPosition": { "row": 34, "column": 38 },
           "type": "attribute"
         },
         {
           "name": "constructor",
+          "startPosition": { "row": 36, "column": 2 },
+          "endPosition": { "row": 37, "column": 136 },
           "type": "function"
         },
         {
           "name": "ngOnInit",
+          "startPosition": { "row": 39, "column": 2 },
+          "endPosition": { "row": 46, "column": 3 },
           "type": "function"
         },
         {
           "name": "load",
+          "startPosition": { "row": 48, "column": 2 },
+          "endPosition": { "row": 57, "column": 3 },
           "type": "function"
         },
         {
           "name": "emitSelectionToParent",
+          "startPosition": { "row": 59, "column": 2 },
+          "endPosition": { "row": 67, "column": 3 },
           "type": "function"
         },
         {
           "name": "chooseAddress",
+          "startPosition": { "row": 69, "column": 2 },
+          "endPosition": { "row": 72, "column": 3 },
           "type": "function"
         },
         {
           "name": "deleteAddress",
+          "startPosition": { "row": 74, "column": 2 },
+          "endPosition": { "row": 87, "column": 3 },
           "type": "function"
         }
       ]
@@ -1740,83 +2086,6 @@
   },
   {
     "data": {
-      "entityName": "AdministrationComponent",
-      "entityType": "class",
-      "filePath": "/frontend/src/app/administration/administration.component.ts",
-      "items": [
-        {
-          "name": "userDataSource",
-          "type": "attribute"
-        },
-        {
-          "name": "userDataSourceHidden",
-          "type": "attribute"
-        },
-        {
-          "name": "userColumns",
-          "type": "attribute"
-        },
-        {
-          "name": "feedbackDataSource",
-          "type": "attribute"
-        },
-        {
-          "name": "feedbackColumns",
-          "type": "attribute"
-        },
-        {
-          "name": "error",
-          "type": "attribute"
-        },
-        {
-          "name": "resultsLengthUser",
-          "type": "attribute"
-        },
-        {
-          "name": "resultsLengthFeedback",
-          "type": "attribute"
-        },
-        {
-          "name": "constructor",
-          "type": "function"
-        },
-        {
-          "name": "ngOnInit",
-          "type": "function"
-        },
-        {
-          "name": "findAllUsers",
-          "type": "function"
-        },
-        {
-          "name": "findAllFeedbacks",
-          "type": "function"
-        },
-        {
-          "name": "deleteFeedback",
-          "type": "function"
-        },
-        {
-          "name": "showUserDetail",
-          "type": "function"
-        },
-        {
-          "name": "showFeedbackDetails",
-          "type": "function"
-        },
-        {
-          "name": "times",
-          "type": "function"
-        },
-        {
-          "name": "doesUserHaveAnActiveSession",
-          "type": "function"
-        }
-      ]
-    }
-  },
-  {
-    "data": {
       "entityName": "BasketComponent",
       "entityType": "class",
       "filePath": "/frontend/src/app/basket/basket.component.ts",
@@ -1842,7 +2111,7 @@
           "type": "function"
         },
         {
-          "name": "checkout",
+          "name": "getBonusPoints",
           "type": "function"
         }
       ]
@@ -2038,6 +2307,10 @@
         {
           "name": "matchValidator",
           "type": "function"
+        },
+        {
+          "name": "matchOtherValidate",
+          "type": "function"
         }
       ]
     }
@@ -2169,6 +2442,10 @@
           "type": "attribute"
         },
         {
+          "name": "addLine",
+          "type": "attribute"
+        },
+        {
           "name": "langs",
           "type": "attribute"
         },
@@ -2215,6 +2492,10 @@
         },
         {
           "name": "format",
+          "type": "attribute"
+        },
+        {
+          "name": "codeComponent",
           "type": "attribute"
         },
         {
@@ -3613,10 +3894,14 @@
       "items": [
         {
           "name": "key",
+          "startPosition": { "row": 50, "column": 2 },
+          "endPosition": { "row": 50, "column": 13 },
           "type": "attribute"
         },
         {
           "name": "selectedFix",
+          "startPosition": { "row": 51, "column": 2 },
+          "endPosition": { "row": 51, "column": 21 },
           "type": "attribute"
         }
       ]

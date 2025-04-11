@@ -128,6 +128,12 @@
       {
         "type": "field_declaration",
         "nodeType": "ATTRIBUTE"
+      },
+      {
+        "type": "declaration",
+        "child": { "type": "function_declarator" },
+        "parent": "field_declaration_list",
+        "nodeType": "ATTRIBUTE"
       }
     ],
     "groups": [
@@ -217,6 +223,13 @@
         "childTypes": {
           "member_expression": {
             "useText": true
+          }
+        }
+      },
+      "declaration": {
+        "childTypes": {
+          "function_declarator": {
+            "delegate": true
           }
         }
       },
