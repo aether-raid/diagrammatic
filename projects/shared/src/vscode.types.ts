@@ -20,9 +20,9 @@ interface SerializedRange {
 
 // Serialized version of vscode.Diagnostic
 export interface SerializedDiagnostic {
-  rule?: string;
-  range: SerializedRange;
   message: string;
+  range: SerializedRange;
+  rule: string;
   severity: DiagnosticSeverityEnum;
   source?: string;
 }

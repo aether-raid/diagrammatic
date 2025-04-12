@@ -1,8 +1,3 @@
-.issue-text-hover:hover {
-    --bs-bg-opacity: 0.6;
-}
-
-
 .nav.nav-tabs .nav-link {
     --bs-nav-link-color: var(--app-black);
 }

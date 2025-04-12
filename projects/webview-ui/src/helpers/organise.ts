@@ -1,6 +1,9 @@
 import { SerializedDiagnostic } from "@shared/vscode.types";
 
-type GroupedIssues = {[key:string]: SerializedDiagnostic[]};
+interface GroupedIssues {
+    [key:string]: SerializedDiagnostic[];
+}
+
 // type ClassifiedIssues = {[key:string]: {
 //     message: string;
 //     severity: number;

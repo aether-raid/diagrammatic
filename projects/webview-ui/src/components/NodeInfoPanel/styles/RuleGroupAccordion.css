@@ -1,0 +1,23 @@
+/* Small Accordion - Overwriting Bootstrap defaults */
+.accordion.small-accordion {
+    --bs-accordion-btn-padding-x: 1.25rem;
+    --bs-accordion-btn-padding-y: 0.5rem;
+    /* --bs-accordion-bg: red; */
+    /* --bs-accordion-active-bg: green; */
+}
+
+.small-accordion .warning-item .accordion-button {
+    --bs-bg-opacity: 0.25;
+    --bs-accordion-btn-bg: rgba(var(--bs-warning-rgb),var(--bs-bg-opacity));
+    --bs-accordion-active-bg: rgba(var(--bs-warning-rgb),var(--bs-bg-opacity));
+}
+
+.small-accordion .error-item .accordion-button {
+    --bs-bg-opacity: 0.25;
+    --bs-accordion-btn-bg: rgba(var(--bs-danger-rgb),var(--bs-bg-opacity));
+    --bs-accordion-active-bg: rgba(var(--bs-danger-rgb),var(--bs-bg-opacity));
+}
+
+.small-accordion .accordion-button:not(.collapsed) {
+    --bs-bg-opacity: 0.8;
+}
