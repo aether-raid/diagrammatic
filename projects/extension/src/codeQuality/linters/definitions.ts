@@ -28,3 +28,13 @@ export type CppLintMessage = {
     endLine?: number,
     endColumn?: number
 }
+
+const CPPWarning=1
+const CPPError=2
+export const cpplintSeverity : {[key:number]: number} = {
+    1 : CPPWarning,
+    2 : CPPWarning,
+    3 : CPPWarning,
+    4 : CPPWarning,
+    5 : CPPError
+}
