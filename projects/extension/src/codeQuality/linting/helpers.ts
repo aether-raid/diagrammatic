@@ -50,7 +50,7 @@ export const serializeDiagnostics = (
       },
     },
     message: diagnostic.message,
-    rule: diagnostic.code ? `${diagnostic.code}` : undefined,
+    rule: diagnostic.code ? `${diagnostic.code}` : '',
     severity: diagnostic.severity as number,
     source: diagnostic.source,
   };
