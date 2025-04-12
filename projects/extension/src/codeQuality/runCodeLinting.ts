@@ -15,9 +15,11 @@ export const runCodeLinting = async (
 }> => {
     const nodes = structuredClone(inputNodes);
     let hasIssues = false;
-    const workspacePath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+
+    // allow linting without opening workspace
+    // const workspacePath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+    // if (!workspacePath) { return { lintedNodes: nodes, hasIssues}};
     const promises: Promise<void>[] = [];
-    if (!workspacePath) { return { lintedNodes: nodes, hasIssues}};
 
 // this loop gets the diagnostics for each file and puts the promises in an array
     for (let node of nodes){
