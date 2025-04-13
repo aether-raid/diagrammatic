@@ -8,7 +8,7 @@ export const lintFileCpp = (filePath:string): Promise<string> => {
     return new Promise((resolve, reject) => {
         try{
             let output = "";
-            const process = spawn(linterPath, [filePath])
+            const process = spawn(linterPath, ['--verbose=3', filePath])
             process.stderr.on("data", (data) => {
                 output += data.toString()
             });

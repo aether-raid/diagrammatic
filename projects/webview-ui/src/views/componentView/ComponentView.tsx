@@ -24,7 +24,10 @@ import DownloadButton from "../../components/DownloadButton";
 import { NavigationButton } from "../../components/NavigationButton";
 import { ViewChangeHandler } from "../../components/ViewChangeHandler";
 import { getLayoutedElements } from "../../helpers/layoutHandlerDagre";
-
+import { RegenerateButton } from "../../components/RegenerateButton";
+import { Feature, FeatureStatus } from "@shared/app.types";
+import { useFeatureStatusContext } from "../../contexts/FeatureStatusContext";
+import { AutoLayoutButton } from "../../components/AutoLayoutButton";
 
 const LayoutFlow = () => {
     const { fitView, getViewport } = useReactFlow<AppNode, AppEdge>();
@@ -73,7 +76,15 @@ const LayoutFlow = () => {
         diagramCtx.setViewport(getViewport());
     }
 
-    const onLayout = useCallback(
+    const handleBeforeRegenerate = () => {
+        // Wipe existing data
+        diagramCtx?.setGraphData({
+            nodes: [],
+            edges: [],
+        })
+    }
+
+    const handleLayout = useCallback(
         (direction: string) => {
             const layouted = getLayoutedElements(nodes, edges, { direction });
             setNodes([...layouted.nodes]);
@@ -110,6 +121,21 @@ const LayoutFlow = () => {
         className: highlightedEdges.includes(edge.id) ? "highlighted-edge" : "",
     });
 
+    // Global contexts
+    const featureStatusCtx = useFeatureStatusContext();
+    const componentDiagramStatus = featureStatusCtx?.getFeatureStatus(Feature.COMPONENT_DIAGRAM);
+
+    const renderRegenerateButtonText = () => {
+        switch (componentDiagramStatus) {
+            case FeatureStatus.ENABLED_LOADING:
+                return "Regenerating Component Diagram...";
+            case FeatureStatus.ENABLED_DONE:
+                return "Regenerate Component Diagram";
+            default:
+                // Disabled or unknown status
+                return "Component Diagram Disabled";
+        }
+    }
     return (
         <ReactFlow
             nodeTypes={nodeTypes}
@@ -121,7 +147,6 @@ const LayoutFlow = () => {
             onEdgeMouseLeave={onEdgeMouseLeave}
             onNodeMouseEnter={(event, node) => onNodeMouseEnter(event, node.id)}
             onNodeMouseLeave={onNodeMouseLeave}
-            fitView
             colorMode="dark"
             minZoom={MIN_ZOOM}
             maxZoom={MAX_ZOOM}
@@ -130,21 +155,29 @@ const LayoutFlow = () => {
             <ViewChangeHandler view={CURRENT_VIEW}/>
 
             {/* Displayed Elements */}
-            <Panel position="top-center">
-                <button onClick={() => onLayout("TB")}>Vertical Layout</button>
-                <button onClick={() => onLayout("LR")}>
-                    Horizontal Layout
-                </button>
-            </Panel>
             <MiniMap />
             <Controls />
             <Panel position="top-right">
-                <div className="d-flex flex-column gap-2">
-                    <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
+                <div className="d-flex flex-column gap-2 align-items-end">
                     <NavigationButton
                         target="/"
-                        label="Code View"
+                        label="Switch to Code View"
                         onNavigate={handleBeforeNavigate}
+                    />
+                </div>
+                <div className="d-flex flex-column gap-2 align-items-end my-2">
+                    <div
+                        className="bg-light rounded"
+                        style={{ height: "2px", width: "42px" }}
+                    />
+                </div>
+                <div className="d-flex flex-column gap-2 align-items-end">
+                    <AutoLayoutButton handleLayout={handleLayout} />
+                    <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
+                    <RegenerateButton
+                        label={renderRegenerateButtonText()}
+                        disabled={componentDiagramStatus !== FeatureStatus.ENABLED_DONE}
+                        onRegenerate={handleBeforeRegenerate}
                     />
                 </div>
             </Panel>

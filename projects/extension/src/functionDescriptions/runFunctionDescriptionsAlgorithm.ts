@@ -1,35 +1,22 @@
-import * as vscode from "vscode";
 import { readFile } from 'fs/promises';
-import { retrieveApiKey } from "../helpers/apiKey";
-import { LLMProvider } from "../helpers/llm";
-import { NodeEdgeData } from "@shared/app.types";
-import { AppNode } from "@shared/node.types";
 
-interface JsonData {
+import { NodeEdgeData } from "@shared/app.types";
+import { AppNode, FunctionDescription } from "@shared/node.types";
+
+import { LLMProvider } from "../helpers/llm";
+
+interface FnDescResponse {
   node_id: string;
   class_name: string;
   class_description: string;
-  functions: [{
-    function_name: string, 
-    function_description: string
-    parameters: [
-      {
-        inputType: string,
-        description: string
-      }
-    ]
-    output: {
-      outputType: string,
-      description: string
-    }
-  }];
+  functions: FunctionDescription[];
 }
 
-const transformFilePath = (filePath: string): string => {
-  let normalizedPath = filePath.replace(/\\/g, "/");
-  return normalizedPath.endsWith(".ts")
-    ? normalizedPath
-    : normalizedPath.replace(/\.[^.]+$/, "");
+const getFilePath = (node: AppNode): string | undefined => {
+  if ("filePath" in node.data) {
+    return node.data.filePath;
+  }
+  return undefined;
 }
 
 const extractImportPaths = (content: string): string[] => {
@@ -38,71 +25,66 @@ const extractImportPaths = (content: string): string[] => {
   const importPaths: string[] = [];
 
   while ((match = importRegex.exec(content)) !== null) {
-    importPaths.push(match[1].replace(/^(\.\/|\.\.\/|@)+/, "")); // Extracted file path from the 'from' clause
+    let path = match[1].replace(/^(\.\/|\.\.\/|@)+/, "");
+    importPaths.push(path);
   }
-  console.log("import paths:\n" + importPaths);
   return importPaths;
 };
 
 const matchImportsToNodes = (importPaths: string[], nodeEdgeData: NodeEdgeData): string[] => {
   return nodeEdgeData.nodes
-    .filter(node => importPaths.some(importPath => transformFilePath(node.id).includes(importPath)))
-    .map(node => node.id);
+    .filter(node => {
+      const transformedPath = getFilePath(node);
+      return transformedPath && importPaths.some(importPath => transformedPath.includes(importPath));
+    })
+    .map(node => getFilePath(node) as string);
 };
 
-const readAndConcatenateFiles = async (matchedNodeIds: string[]): Promise<string> => {
+const readAndConcatenateFiles = async (filePaths: string[]): Promise<string> => {
+  // console.log("matches:\n" + matchedNodeIds)
   let combinedContent = "";
-  console.log("matches:\n" + matchedNodeIds);
-  for (const nodeId of matchedNodeIds) {
+  for (const filePath of filePaths) {
     try {
-      const fileContent = await readFile(transformFilePath(nodeId), "utf-8");
-      combinedContent += `\n// Content from: ${nodeId}\n` + fileContent;
+      const fileContent = await readFile(filePath, "utf-8");
+      combinedContent += `\n// Content from: ${filePath}\n` + fileContent;
     } catch (error) {
-      console.error(`Error reading file ${nodeId}:`, error);
+      console.error(`Error reading file ${filePath}:`, error);
     }
   }
-
+  //console.log("combi content:", combinedContent);
   return combinedContent;
 };
 
-const getFunctionDescriptions = async (
+export const getFunctionDescriptions = async (
   llmProvider: LLMProvider,
   nodeEdgeData: NodeEdgeData,
   targetNodeId: string
 ) => {
-  // console.log(nodeEdgeData.nodes);
-  console.log("======= Loading function descriptions =======");
+  //console.log("======= Loading function descriptions =======");
   const targetNode = nodeEdgeData.nodes.find((node: AppNode) => node.id === targetNodeId);
   if (!targetNode) {
     console.error(`Node with ID ${targetNodeId} not found.`);
-    return null;
+    return;
   }
+
   try {
-    const filePath = transformFilePath(targetNode.id);
+    const filePath = getFilePath(targetNode);
+    if (!filePath) {
+      console.error("File path is undefined.");
+      return;
+    }
     const content = await readFile(filePath, "utf-8");
-    // const combinedContent = "";
+
     const combinedContent = readAndConcatenateFiles(matchImportsToNodes(extractImportPaths(content), nodeEdgeData));
+
     const systemPrompt = "You are an AI that provides structured JSON responses for code documentation creation."
-    const userPrompt = `Give purely a JSON response in the format [node_id: ${targetNode.id},class_name:,class_description,functions:[{function_name:,function_description:,parameters:[{inputType:, description:(describe what needs to be inputted just like in a code documentation)}],output:{outputType, description:(describe what needs to be returned just like in a code documentation)}]]. Here is the file content:\n` + content + '\nHere is the context:\n' + combinedContent;
-    const response = await llmProvider.generateResponse(systemPrompt, userPrompt);
-    const jsonData = response as JsonData;
-    console.log(jsonData);
+    const userPrompt = `Give purely a JSON response in the format [node_id: ${targetNode.id},class_name:,class_description,functions:[{function_name:,function_description:,parameters:[{inputName:, inputType:, description:(describe what needs to be inputted just like in a code documentation)}],output:{outputName, outputType:, description:(describe what needs to be returned just like in a code documentation)}]] only for this file. Here is the file content:\n` + content + '\nHere is the context:\n' + combinedContent;
+
+    const response = await llmProvider.generateResponse(systemPrompt, userPrompt) as FnDescResponse[];
+    console.log(response);
+    return response[0].functions;
   } catch (error) {
     console.error("Error fetching function descriptions:", error);
-  }  
-};
-
-export const runFunctionDescriptionsAlgorithm = async (
-  nodeEdgeData: NodeEdgeData,
-  llmProvider: LLMProvider,
-  targetNodeId: string
-) => {
-
-  const apiKey = retrieveApiKey();
-  if (!apiKey) {
-    vscode.window.showInformationMessage(
-      "Node descriptions are disabled. (No API key provided)"
-    );
+    return;
   }
-  getFunctionDescriptions(llmProvider, nodeEdgeData, targetNodeId)
 };

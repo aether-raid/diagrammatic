@@ -1,0 +1,10 @@
+/* Issue Item */
+.warning-item .issue-item-hover:hover {
+    background-color: var(--bs-warning-bg-subtle);
+    transition: all 0.15s ease;
+}
+
+.error-item .issue-item-hover:hover {
+    background-color: var(--bs-danger-bg-subtle);
+    transition: all 0.15s ease;
+}

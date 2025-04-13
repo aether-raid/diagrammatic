@@ -19,9 +19,15 @@
   width: auto; /* Default is 150px */
 }
 
-/* Highlighted Nodes */
+/* Highlighted Row (hover-highlighting) */
 .highlighted-row {
   border: 1px solid greenyellow;
+}
+
+/* Highlighted Node (search-matching) */
+.search-matched-node {
+  box-shadow: 0 0 10px 4px var(--app-yellow);
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 /* Entity Node */
@@ -67,4 +73,24 @@
 
 .text-updater-node [data-handleid="b"] {
   left: 65%;
+}
+
+.text-button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: #FFFFFF;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+
+.text-button:hover {
+  text-decoration: underline;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
 }

@@ -5,7 +5,7 @@
     },
     "composite": true,
 
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": false,
     "module": "CommonJS",
     "target": "ES2022",
     "lib": [
@@ -21,9 +21,10 @@
     // "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
     // "noFallthroughCasesInSwitch": true, /* Report errors for fallthrough cases in switch statement. */
     // "noUnusedParameters": true,  /* Report errors on unused parameters. */
-    "skipLibCheck": true,
+    "skipLibCheck": true
   },
   "references": [
     { "path": "../shared" }
-  ]
+  ],
+  "include": ["src", "test"]
 }

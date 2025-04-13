@@ -1,13 +1,10 @@
 import * as vscode from "vscode";
 import { Linter } from "eslint";
-
 import {
-  DiagnosticSeverityEnum,
   SerializedDiagnostic,
 } from "@shared/vscode.types";
-
 import { BLACKLISTED_SOURCES, Sources, WHITELISTED_SOURCES } from "./definitions";
-import type{ CppLintResult, CppLintMessage } from '../linters/definitions';
+import{ type CppLintResult, type CppLintMessage, cpplintSeverity } from '../linters/definitions';
 
 export const getDiagnostics = (messages: Linter.LintMessage[] | CppLintMessage[]) => {
   const diagnostics: vscode.Diagnostic[] = [];
@@ -31,6 +28,7 @@ export const getDiagnostics = (messages: Linter.LintMessage[] | CppLintMessage[]
     const validSource = filterSources(msg.ruleId);
     if (validSource) {
       diagnostic.source = `${validSource}`; 
+      diagnostic.code = msg.ruleId;
       diagnostics.push(diagnostic);
     }
   });
@@ -52,13 +50,13 @@ export const serializeDiagnostics = (
       },
     },
     message: diagnostic.message,
-    severity: diagnostic.severity as number as DiagnosticSeverityEnum,
+    rule: diagnostic.code ? `${diagnostic.code}` : '',
+    severity: diagnostic.severity as number,
     source: diagnostic.source,
   };
 };
 
 const filterSources = (ruleId: string) => {
-//   const source = ruleId.includes("/") ? ruleId.split("/")[0] : ruleId;
   if (BLACKLISTED_SOURCES.includes(ruleId)) {
       return null;
   } 
@@ -70,7 +68,6 @@ const filterSources = (ruleId: string) => {
   return ruleId;
 };
 
-
 export const processCpplintOutput = (output: string): CppLintResult[] =>  {
     // (cpp filename):(line number): message [category] [column number]
     const regex = /(.+\.cpp|.+\.h):(\d+):\s+(.+)\s\[(.+)\]\s+\[(\d+)\]/g;
@@ -78,26 +75,29 @@ export const processCpplintOutput = (output: string): CppLintResult[] =>  {
     let filePath = "";
     const diagnostics:CppLintMessage[] = [];
     while ((match = regex.exec(output)) !== null) {
-        const [_,file, line, message, messageId, column] = match;
+        const [_,file, line, message, messageId, severity] = match;
         filePath = file;
+
+        // map linter severity to same as eslint severity
+        const diagnostic_severity = cpplintSeverity[parseInt(severity, 10)]
         diagnostics.push({
             // 1 based index
-            line: Math.max(parseInt(line, 10) + 1, 1),
+            line: Math.max(parseInt(line, 10), 1),
+            endColumn: Number.MAX_SAFE_INTEGER,
             messageId: messageId,
             message,
-            column: parseInt(column, 10),
+            column: 1,
             ruleId: messageId,
-            // warning: 1, error: 2
-            severity: 1
+            severity: diagnostic_severity
         });
     }
     return [{ filePath, messages: diagnostics }];
 }
-
 
 const findKeyForValue = (searchString: string, sources: Sources) => {
     return Object.entries(sources)
     .find(([key, values]) => 
         values.includes(searchString))?.[0] || null
 };
+
 

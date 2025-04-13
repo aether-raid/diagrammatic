@@ -34,50 +34,53 @@ export const initialNodes: AppNode[] = [
         },
       ],
       security: {
-        clean: [
-          {
-            range: {
-              start: { line: 26, character: 32 },
-              end: { line: 3, character: 3 },
+          clean: [
+            {
+              message: "Security.dirty-object",
+              range: {
+                start: { line: 26, character: 32 },
+                end: { line: 3, character: 3 },
+              },
+              rule: "potato",
+              severity: 1,
+              source: "dirty-object"
             },
-            message: "Security.clean Object",
-            severity: 1,
-            source: "Group: security",
-          },
-          {
-            range: {
-              start: { line: 26, character: 32 },
-              end: { line: 3, character: 3 },
+            {
+              message: 'Security.dirty-object',
+              range: {
+                start: { line: 27, character: 32 },
+                end: { line: 3, character: 3 },
+              },
+              rule: "potato",
+              severity: 1,
+              source: "dirty-object"
             },
-            message: "Security.dirty Object",
-            severity: 1,
-            source: "Group: security",
-          },
-          {
-            range: {
-              start: { line: 52, character: 32 },
-              end: { line: 3, character: 3 },
+            {
+              message: "About to implode...",
+              range: {
+                start: { line: 52, character: 32 },
+                end: { line: 3, character: 3 },
+              },
+              rule: "french fries",
+              severity: 0,
+              source: "implode"
             },
-            message: "About to implode...",
-            severity: 0,
-            source: "Group: security",
-          },
-        ],
-        vulnerability: [
-          {
-            range: {
-              start: { line: 26, character: 32 },
-              end: { line: 3, character: 3 },
-            },
-            message:
-              "Variable Assigned to Object Injection Sink Lorem ipsum potato ramen I like long issues what the testing data",
-            severity: 1,
-            source: "Group: vulnerability",
-          },
-        ],
-        extras: [],
-      },
-    },
+          ],
+          vulnerability: [
+            {
+              message: "Variable Assigned to Object Injection Sink Lorem ipsum potato ramen I like long issues what the testing data",
+              range: {
+                start: { line: 26, character: 32 },
+                end: { line: 3, character: 3 },
+              },
+              rule: "big problem, I'm hungry :(",
+              severity: 1,
+              source: "long-issue"
+            }
+          ],
+          extras: []
+      }
+    }
   },
   {
     id: "5a",
@@ -188,7 +191,7 @@ export const initialNodes: AppNode[] = [
     position: { x: 0, y: 0 },
     data: {
       entityName: "Customer",
-      entityType: "file",
+      entityType: "record",
       filePath: "path/to/customer",
       startPosition: { row: 15, column: 25 },
       endPosition: { row: 19, column: 30 },
@@ -229,6 +232,26 @@ export const initialNodes: AppNode[] = [
           startPosition: { row: 0, column: 0 },
           endPosition: { row: 0, column: 0 },
           type: NodeType.FUNCTION,
+          documentation: {
+            function_name: 'givePotato',
+            function_description: `Give a potato to someone very passionately
+                i.e. throw it at them full speed like a baseball
+            `,
+            parameters: [{
+                inputName: "targetPerson",
+                inputType: 'string',
+                description: 'the person the potato is aimed at',
+            }, {
+                inputName: "strength",
+                inputType: 'number',
+                description: 'the strength value of the thrower',
+            }],
+            output: {
+                outputName: "damageDealt",
+                outputType: 'number',
+                description: 'the amount of damage dealt from the potato lmao',
+            },
+          }
         },
         {
           name: "giveCorn",

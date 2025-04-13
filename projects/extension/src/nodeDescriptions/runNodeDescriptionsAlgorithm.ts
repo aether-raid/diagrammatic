@@ -26,6 +26,7 @@ const getNodeDescriptions = async (
               nodes: ${JSON.stringify(nodes)}
               edges: ${JSON.stringify(edges)}`
     const response = await llmProvider.generateResponse(systemPrompt, userPrompt);
+    //console.log(response);
     const jsonData = response as JsonData[];
     nodes.forEach((node) => {
       const match = jsonData.find((data) => data.node_id === node.id);
@@ -79,7 +80,7 @@ export const runNodeDescriptionsAlgorithm = async (
   nodeEdgeData: NodeEdgeData,
   llmProvider: LLMProvider
 ): Promise<AppNode[]> => {
-
+  //console.log(nodeEdgeData.nodes);
   const apiKey = retrieveApiKey();
   if (!apiKey) {
     vscode.window.showInformationMessage(

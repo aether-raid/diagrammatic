@@ -5,6 +5,9 @@ export const GLOBALS = {
   ruleset: {
     configName: "diagrammatic.codeToDiagramRulesetFile",
   },
+  lintFilter: {
+    configName: "diagrammatic.codeToDiagramLintFilterFile",
+  },
   llmProvider: {
     configName: "diagrammatic.llmProvider"
   },

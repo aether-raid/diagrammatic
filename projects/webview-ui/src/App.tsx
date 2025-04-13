@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { MemoryRouter, Route, Routes } from "react-router-dom"
 
 import { Feature, FeatureStatus } from "@shared/app.types";
 import {
     AcceptComponentDiagramDataPayload,
+    AcceptFnDescriptionPayload,
     AcceptNodeEdgeDataPayload,
     Commands,
     UpdateFeatureStatusPayload,
@@ -18,17 +19,26 @@ import { sendReadyMessageToExtension } from "./helpers/vscodeApiHandler";
 import CodeView from "./views/codeView/CodeView"
 import ComponentView from "./views/componentView/ComponentView"
 
-
 export const App = () => {
     const codeDiagramCtx = useDiagramContext(ViewType.CODE_VIEW);
     const componentDiagramCtx = useDiagramContext(ViewType.COMPONENT_VIEW);
     const featureStatusCtx = useFeatureStatusContext();
 
+    const codeCtxRef = useRef(codeDiagramCtx);
+    const componentCtxRef = useRef(componentDiagramCtx);
+
+    useEffect(() => {
+        codeCtxRef.current = codeDiagramCtx;
+    }, [codeDiagramCtx])
+
+    useEffect(() => {
+        componentCtxRef.current = componentDiagramCtx;
+    }, [componentDiagramCtx])
+
     useEffect(() => {
         // Setup message listener
         const onMessage = (event: MessageEvent<WebviewCommandMessage>) => {
             const { command, message } = event.data;
-
             switch (command) {
                 case Commands.ACCEPT_COMPONENT_DIAGRAM_DATA: {
                     const msg = message as AcceptComponentDiagramDataPayload;
@@ -36,6 +46,20 @@ export const App = () => {
                         nodes: msg.nodes,
                         edges: msg.edges,
                     })
+                    break;
+                }
+                case Commands.ACCEPT_FN_DESCRIPTIONS: {
+                    const msg = message as AcceptFnDescriptionPayload;
+                    if (!codeDiagramCtx?.setNodeFnDesc) {
+                        console.error("ACCEPT_FN_DESCRIPTION - Unable to retrieve diagram from context!");
+                        return;
+                    }
+
+                    codeDiagramCtx?.setNodeFnDesc({
+                        ...codeCtxRef.current?.nodeFnDesc,
+                        [msg.nodeId]: msg.data
+                    });
+
                     break;
                 }
                 case Commands.ACCEPT_NODE_EDGE_DATA: {

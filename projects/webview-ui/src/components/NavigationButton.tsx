@@ -1,5 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
+import FlipCameraAndroidRoundedIcon from '@mui/icons-material/FlipCameraAndroidRounded';
+
+import { HiddenLabelButton } from "./HiddenLabelButton/HiddenLabelButton";
+
 interface NavigationButtonProps {
   target: string;
   label: string;
@@ -21,8 +25,12 @@ export const NavigationButton = ({
     };
 
     return (
-        <button onClick={onNavigateClick} disabled={disabled}>
-            {label}
-        </button>
+        <HiddenLabelButton
+            alwaysShowLabel
+            icon={<FlipCameraAndroidRoundedIcon />}
+            label={label}
+            onClick={onNavigateClick}
+            disabled={disabled}
+        />
     )
 };

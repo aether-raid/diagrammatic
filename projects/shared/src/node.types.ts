@@ -9,11 +9,27 @@ export enum NodeType {
   BODY = "body",
 }
 
-interface EntityItem {
+export interface FunctionDescription {
+  function_name: string;
+  function_description: string;
+  parameters: {
+    inputName: string,
+    inputType: string,
+    description: string,
+  }[];
+  output: {
+    outputName: string,
+    outputType: string,
+    description: string,
+  }
+}
+
+export interface EntityItem {
   name: string;
   startPosition: Point;
   endPosition: Point;
   type: NodeType;
+  documentation?: FunctionDescription;
 }
 
 interface HighlightableEntityItem extends EntityItem {
