@@ -164,11 +164,11 @@ export class Node {
     }
 
     /**
-       * Resolve variables from relative import statements
-       * e.g. import { CreateArticleDto, CreateCommentDto } from './dto';
-       * Variable(token=CreateArticleDto, pointsTo=/User/samples/nestjs-real-example-app/src/article/dto)
-       * pointsTo should resolve from a filepath to the actual class Group
-       */
+     * Resolve variables from relative import statements
+     * e.g. import { CreateArticleDto, CreateCommentDto } from './dto';
+     * Variable(token=CreateArticleDto, pointsTo=/User/samples/nestjs-real-example-app/src/article/dto)
+     * pointsTo should resolve from a filepath to the actual class Group
+     */
     if (
       variableA.variableType === VariableType.NAMED_IMPORT &&
       variableA.pointsTo &&
@@ -223,6 +223,7 @@ export class Node {
        */
       if (
         variableA.variableType === VariableType.INJECTION &&
+        subgroup.groupType !== GroupType.FILE &&
         variableA.pointsTo === subgroup.token
       ) {
         variableA.pointsTo = subgroup;
@@ -235,6 +236,8 @@ export class Node {
        */
       if (
         variableA.variableType === VariableType.OBJECT_INSTANTIATION &&
+        subgroup.groupType !== GroupType.INTERFACE &&
+        subgroup.groupType !== GroupType.FILE &&
         variableA.pointsTo === subgroup.token
       ) {
         variableA.pointsTo = subgroup;
