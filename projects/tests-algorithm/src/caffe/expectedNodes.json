@@ -28868,37 +28868,36 @@
     "data": {
       "entityName": "solver_factory.hpp",
       "entityType": "file",
-      "startPosition": {
-        "filePath": "/include/caffe/solver_factory.hpp",
-        "items": [
-          {
-            "name": "REGISTER_SOLVER_CREATOR",
-            "startPosition": {
-              "row": 121,
-              "column": 0
-            },
-            "endPosition": {
-              "row": 125,
-              "column": 0
-            },
-            "type": "function"
+      "filePath": "/include/caffe/solver_factory.hpp",
+      "items": [
+        {
+          "name": "REGISTER_SOLVER_CREATOR",
+          "startPosition": {
+            "row": 121,
+            "column": 0
           },
-          {
-            "name": "REGISTER_SOLVER_CLASS",
-            "startPosition": {
-              "row": 125,
-              "column": 0
-            },
-            "endPosition": {
-              "row": 133,
-              "column": 0
-            },
-            "type": "function"
-          }
-        ]
-      }
+          "endPosition": {
+            "row": 125,
+            "column": 0
+          },
+          "type": "function"
+        },
+        {
+          "name": "REGISTER_SOLVER_CLASS",
+          "startPosition": {
+            "row": 125,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 133,
+            "column": 0
+          },
+          "type": "function"
+        }
+      ]
     }
-  }, { 
+  },
+  {
     "data": {
       "entityName": "layer_factory.hpp",
       "entityType": "file",
@@ -29023,5 +29022,5 @@
         }
       ]
     }
-  },
+  }
 ]

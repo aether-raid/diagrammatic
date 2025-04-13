@@ -10593,23 +10593,21 @@
     "data": {
       "entityName": "address.ts",
       "entityType": "file",
-      "startPosition": {
-        "filePath": "/models/address.ts",
-        "items": [
-          {
-            "name": "AddressModelInit",
-            "startPosition": {
-              "row": 29,
-              "column": 0
-            },
-            "endPosition": {
-              "row": 72,
-              "column": 1
-            },
-            "type": "function"
-          }
-        ]
-      }
+      "filePath": "/models/address.ts",
+      "items": [
+        {
+          "name": "AddressModelInit",
+          "startPosition": {
+            "row": 29,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 72,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
     }
   }
 ]
