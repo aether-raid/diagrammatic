@@ -1,3 +1,4 @@
+// @ts-ignore: React is needed for testing, but not used in the component
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { RegenerateButton } from '../components/RegenerateButton';

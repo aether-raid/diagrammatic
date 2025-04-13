@@ -1,4 +1,5 @@
-import React from 'react'; // Do not remove this (for testing)
+// @ts-ignore: React is needed for testing, but not used in the component
+import React from 'react'; 
 import { sendRegenerateComponentDiagramMessageToExtension } from "../helpers/vscodeApiHandler";
 
 interface RegenerateButtonProps {
