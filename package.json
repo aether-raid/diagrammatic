@@ -26,6 +26,23 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "diagrammatic-view-container",
+          "title": "Diagrammatic",
+          "icon": "assets/diagrammatic-logo.svg"
+        }
+      ]
+    },
+    "views": {
+      "diagrammatic-view-container": [
+        {
+          "id": "select-folder-view",
+          "name": "Select Folder"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "diagrammatic.selectRulesetFile",
