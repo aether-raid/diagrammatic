@@ -1,6 +1,6 @@
 import { MarkerType } from '@xyflow/react';
 import { getComponentDiagram } from '../componentDiagram/runComponentDiagramAlgorithm';
-import { AppNode } from '@shared/node.types';
+import { AppNode, EntityNode } from '@shared/node.types';
 import { AppEdge } from '@shared/edge.types';
 import { NodeEdgeData } from '@shared/app.types';
 import { LLMProvider } from '../helpers/llm';
@@ -18,27 +18,40 @@ describe('Component Diagram Integration Tests', () => {
 
   it('should transform API response into nodes and edges', async () => {
     // Sample input data
+    const mockEntityNodes: EntityNode[] = [
+      {
+        id: 'file1',
+        type: 'entity',  // Important to specify 'entity' as the type
+        position: { x: 0, y: 0 },
+        data: {
+          entityName: 'auth.js',  // entity-specific property
+          entityType: 'file',  // entity-specific property
+          items: [],  // Empty array or add HighlightableEntityItems as needed
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 10, column: 0 },
+          description: 'Authentication module',
+          filePath: '/src/auth.js',
+        },
+
+      },
+      {
+        id: 'file2',
+        type: 'entity',  // Important to specify 'entity' as the type
+        position: { x: 100, y: 0 },
+        data: {
+          entityName: 'login.js',  // entity-specific property
+          entityType: 'file',  // entity-specific property
+          items: [],  // Empty array or add HighlightableEntityItems as needed
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 5, column: 0 },
+          description: 'Login module',
+          filePath: '/src/login.js',
+        },
+
+      }
+    ];
     const inputData: NodeEdgeData = {
-      nodes: [
-        { 
-          id: 'file1', 
-          type: 'fileEntity', 
-          position: { x: 0, y: 0 },
-          data: { entityName: 'auth.js', description: 'Authentication module' } 
-        },
-        { 
-          id: 'file2', 
-          type: 'fileEntity', 
-          position: { x: 100, y: 0 },
-          data: { entityName: 'login.js', description: 'Login handler' } 
-        },
-        { 
-          id: 'file3', 
-          type: 'fileEntity', 
-          position: { x: 200, y: 0 },
-          data: { entityName: 'api.js', description: 'API utilities' } 
-        }
-      ],
+      nodes: mockEntityNodes,
       edges: [
         { id: 'e1-2', source: 'file1', target: 'file2', label: 'imports' },
         { id: 'e2-3', source: 'file2', target: 'file3', label: 'calls' }
@@ -47,28 +60,28 @@ describe('Component Diagram Integration Tests', () => {
 
     // Mock LLM response that matches your types
     const mockComponents: ComponentNodeInput[] = [
-      { 
-        id: 1, 
-        name: 'Auth Module', 
+      {
+        id: 1,
+        name: 'Auth Module',
         description: 'Handles user authentication',
         files: ['auth.js', 'login.js']
       },
-      { 
-        id: 2, 
-        name: 'API Service', 
+      {
+        id: 2,
+        name: 'API Service',
         description: 'Manages API requests',
         files: ['api.js']
       }
     ];
-    
+
     const mockRelationships: ComponentEdgeInput[] = [
-      { 
-        id: '1-2', 
-        source: 1, 
-        target: 2, 
-        sourceName: 'Auth Module', 
-        targetName: 'API Service', 
-        type: 'calls' 
+      {
+        id: '1-2',
+        source: 1,
+        target: 2,
+        sourceName: 'Auth Module',
+        targetName: 'API Service',
+        type: 'calls'
       }
     ];
 
@@ -115,7 +128,7 @@ describe('Component Diagram Integration Tests', () => {
 
   it('should handle empty input data', async () => {
     const emptyData: NodeEdgeData = { nodes: [], edges: [] };
-    
+
     // Setup mock response for empty input
     (mockLLMProvider.generateResponse as jest.Mock).mockResolvedValueOnce({
       components: [],
@@ -123,17 +136,49 @@ describe('Component Diagram Integration Tests', () => {
     });
 
     const result = await getComponentDiagram(emptyData, mockLLMProvider);
-    
+
     expect(result.nodes).toHaveLength(0);
     expect(result.edges).toHaveLength(0);
   });
 
   it('should handle errors from LLM provider', async () => {
-    const inputData: NodeEdgeData = { 
-      nodes: [{ id: 'test', type: 'fileEntity', position: { x: 0, y: 0 }, data: {} }], 
-      edges: [] 
+    const mockEntityNodes: EntityNode[] = [
+      {
+        id: 'file1',
+        type: 'entity',  // Important to specify 'entity' as the type
+        position: { x: 0, y: 0 },
+        data: {
+          entityName: 'auth.js',  // entity-specific property
+          entityType: 'file',  // entity-specific property
+          items: [],  // Empty array or add HighlightableEntityItems as needed
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 10, column: 0 },
+          description: 'Authentication module',
+          filePath: '/src/auth.js',
+        },
+
+      },
+      {
+        id: 'file2',
+        type: 'entity',  // Important to specify 'entity' as the type
+        position: { x: 100, y: 0 },
+        data: {
+          entityName: 'login.js',  // entity-specific property
+          entityType: 'file',  // entity-specific property
+          items: [],  // Empty array or add HighlightableEntityItems as needed
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 5, column: 0 },
+          description: 'Login module',
+          filePath: '/src/login.js',
+        },
+
+      }
+    ];
+    const inputData: NodeEdgeData = {
+      nodes: mockEntityNodes,
+      edges: []
     };
-    
+
     // Mock error from LLM provider
     (mockLLMProvider.generateResponse as jest.Mock).mockRejectedValueOnce(
       new Error('LLM API error')
@@ -144,10 +189,10 @@ describe('Component Diagram Integration Tests', () => {
 
     // Function should return empty components rather than throwing
     const result = await getComponentDiagram(inputData, mockLLMProvider);
-    
+
     expect(result.nodes).toHaveLength(0);
     expect(result.edges).toHaveLength(0);
-    
+
     // Verify error was logged
     expect(consoleErrorSpy).toHaveBeenCalledWith(
       'Error fetching component diagram:',
@@ -160,29 +205,61 @@ describe('Component Diagram Integration Tests', () => {
 
   it('should convert node and edge IDs to strings', async () => {
     // Sample input data
+    const mockEntityNodes: EntityNode[] = [
+      {
+        id: 'file1',
+        type: 'entity',  // Important to specify 'entity' as the type
+        position: { x: 0, y: 0 },
+        data: {
+          entityName: 'auth.js',  // entity-specific property
+          entityType: 'file',  // entity-specific property
+          items: [],  // Empty array or add HighlightableEntityItems as needed
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 10, column: 0 },
+          description: 'Authentication module',
+          filePath: '/src/auth.js',
+        },
+
+      },
+      {
+        id: 'file2',
+        type: 'entity',  // Important to specify 'entity' as the type
+        position: { x: 100, y: 0 },
+        data: {
+          entityName: 'login.js',  // entity-specific property
+          entityType: 'file',  // entity-specific property
+          items: [],  // Empty array or add HighlightableEntityItems as needed
+          startPosition: { row: 0, column: 0 },
+          endPosition: { row: 5, column: 0 },
+          description: 'Login module',
+          filePath: '/src/login.js',
+        },
+
+      }
+    ];
     const inputData: NodeEdgeData = {
-      nodes: [{ id: 'file1', type: 'fileEntity', position: { x: 0, y: 0 }, data: {} }],
+      nodes: mockEntityNodes,
       edges: []
     };
 
     // Mock LLM response with numeric IDs that match your types
     const mockLLMResponse = {
       components: [
-        { 
-          id: 123, 
-          name: 'Test', 
-          description: 'Test component', 
-          files: ['file1'] 
+        {
+          id: 123,
+          name: 'Test',
+          description: 'Test component',
+          files: ['file1']
         }
       ],
       'component relationships': [
-        { 
-          id: '123-456', 
-          source: 123, 
-          target: 456, 
+        {
+          id: '123-456',
+          source: 123,
+          target: 456,
           sourceName: 'Test',
           targetName: 'Other Component',
-          type: 'calls' 
+          type: 'calls'
         }
       ]
     };
@@ -190,11 +267,11 @@ describe('Component Diagram Integration Tests', () => {
     (mockLLMProvider.generateResponse as jest.Mock).mockResolvedValueOnce(mockLLMResponse);
 
     const result = await getComponentDiagram(inputData, mockLLMProvider);
-    
+
     // Check that IDs were converted to strings
     expect(result.nodes[0].id).toBe('123');
     expect(typeof result.nodes[0].id).toBe('string');
-    
+
     expect(result.edges[0].source).toBe('123');
     expect(result.edges[0].target).toBe('456');
     expect(typeof result.edges[0].source).toBe('string');
