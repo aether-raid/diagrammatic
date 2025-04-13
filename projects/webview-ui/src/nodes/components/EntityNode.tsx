@@ -20,7 +20,7 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
 
   useEffect(() => {
     // console.log('running useEffect to setHoveredEntity');
-    if (!data.setters.setHoveredEntity) { return; }
+    if (!data.setters?.setHoveredEntity) { return; }
 
     data.setters.setHoveredEntity(hoveredRow
       ? { nodeId: id, rowId: hoveredRow }
@@ -29,7 +29,7 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
   }, [hoveredRow, id])
 
   const showNodeInfoPanel = () => {
-    data.setters.setPanelNode(getNode(id));
+    data.setters?.setPanelNode(getNode(id));
   }
 
   const renderNodeDescriptions = () => {
