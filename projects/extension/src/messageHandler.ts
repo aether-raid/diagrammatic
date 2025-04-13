@@ -37,7 +37,7 @@ export const sendAcceptNodeDescriptionsMessageToWebview = (
   // This is separated as unlike AcceptNodeEdgeMessage,
   // we do not want to reset the layout in the webview upon receiving this (isTouched = true)
   panel.webview.postMessage({
-    command: Commands.ACCEPT_FN_DESCRIPTIONS,
+    command: Commands.ACCEPT_NODE_DESCRIPTIONS,
     message: payload,
   });
 };
