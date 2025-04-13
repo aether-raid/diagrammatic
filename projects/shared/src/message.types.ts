@@ -6,6 +6,7 @@ import { AppNode, FunctionDescription } from "./node.types";
 export enum Commands {
   ACCEPT_COMPONENT_DIAGRAM_DATA = 'accept-component-diagram-data',
   ACCEPT_FN_DESCRIPTIONS = 'accept-fn-descriptions',
+  ACCEPT_NODE_DESCRIPTIONS = 'accept-node-descriptions',
   ACCEPT_NODE_EDGE_DATA = 'accept-node-edge-data',
   GENERATE_FN_DESCRIPTIONS = 'generate-fn-descriptions',
   GET_COMPONENT_DIAGRAM = 'get-component-diagram',
@@ -24,6 +25,11 @@ export interface AcceptFnDescriptionPayload {
   data: FunctionDescription[];
 }
 export interface AcceptNodeEdgeDataPayload {
+  nodes: AppNode[];
+  edges: AppEdge[];
+}
+
+export interface AcceptNodeDescriptionsPayload {
   nodes: AppNode[];
   edges: AppEdge[];
 }

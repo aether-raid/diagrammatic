@@ -6,17 +6,8 @@ import {
   AcceptNodeEdgeDataPayload,
   UpdateFeatureStatusPayload,
   AcceptFnDescriptionPayload,
+  AcceptNodeDescriptionsPayload,
 } from "@shared/message.types";
-
-export const sendAcceptNodeEdgeMessageToWebview = (
-  payload: AcceptNodeEdgeDataPayload,
-  panel: vscode.WebviewPanel
-) => {
-  panel.webview.postMessage({
-    command: Commands.ACCEPT_NODE_EDGE_DATA,
-    message: payload,
-  });
-};
 
 export const sendAcceptCompNodeEdgeMessageToWebview = (
   payload: AcceptComponentDiagramDataPayload | undefined,
@@ -34,6 +25,29 @@ export const sendAcceptFnDescriptionMessageToWebview = (
 ) => {
   panel.webview.postMessage({
     command: Commands.ACCEPT_FN_DESCRIPTIONS,
+    message: payload,
+  });
+};
+
+export const sendAcceptNodeDescriptionsMessageToWebview = (
+  payload: AcceptNodeDescriptionsPayload,
+  panel: vscode.WebviewPanel,
+) => {
+  // Identical payload to AcceptNodeEdgeMessage
+  // This is separated as unlike AcceptNodeEdgeMessage,
+  // we do not want to reset the layout in the webview upon receiving this (isTouched = true)
+  panel.webview.postMessage({
+    command: Commands.ACCEPT_FN_DESCRIPTIONS,
+    message: payload,
+  });
+};
+
+export const sendAcceptNodeEdgeMessageToWebview = (
+  payload: AcceptNodeEdgeDataPayload,
+  panel: vscode.WebviewPanel
+) => {
+  panel.webview.postMessage({
+    command: Commands.ACCEPT_NODE_EDGE_DATA,
     message: payload,
   });
 };

@@ -5,6 +5,7 @@ import { Feature, FeatureStatus } from "@shared/app.types";
 import {
     AcceptComponentDiagramDataPayload,
     AcceptFnDescriptionPayload,
+    AcceptNodeDescriptionsPayload,
     AcceptNodeEdgeDataPayload,
     Commands,
     UpdateFeatureStatusPayload,
@@ -69,6 +70,15 @@ export const App = () => {
                         nodes: msg.nodes,
                         edges: msg.edges,
                         isTouched: false,
+                    });
+                    break;
+                }
+                case Commands.ACCEPT_NODE_DESCRIPTIONS: {
+                    const msg = message as AcceptNodeDescriptionsPayload;
+                    codeDiagramCtx?.setGraphData({
+                        nodes: msg.nodes,
+                        edges: msg.edges,
+                        isTouched: true,
                     });
                     break;
                 }

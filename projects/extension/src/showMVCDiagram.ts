@@ -17,6 +17,7 @@ import {
   sendAcceptCompNodeEdgeMessageToWebview,
   sendUpdateFeatureStatusMessageToWebview,
   sendAcceptFnDescriptionMessageToWebview,
+  sendAcceptNodeDescriptionsMessageToWebview,
 } from "./messageHandler";
 import { runNodeDescriptionsAlgorithm } from "./nodeDescriptions/runNodeDescriptionsAlgorithm";
 import { retrieveApiKey } from "./helpers/apiKey";
@@ -124,7 +125,7 @@ export const handleShowMVCDiagram = async (
     const data = await runNodeDescriptionsAlgorithm(nodeEdgeData.nodes, nodeEdgeData, llmProvider);
     nodeEdgeData.nodes = data;
 
-    sendAcceptNodeEdgeMessageToWebview(nodeEdgeData, panel);
+    sendAcceptNodeDescriptionsMessageToWebview(nodeEdgeData, panel);
     sendUpdateFeatureStatusMessageToWebview({
       feature: Feature.NODE_DESCRIPTIONS,
       status: FeatureStatus.ENABLED_DONE,
