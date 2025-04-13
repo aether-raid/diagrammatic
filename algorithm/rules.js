@@ -1,5 +1,6 @@
 import { getFirstChildOfType } from "./function.js";
 import fs from "fs";
+import { NodeType, GroupType } from "./model.js";
 
 export class RuleEngine {
   static loadRules(filePath) {
@@ -79,10 +80,19 @@ export class RuleEngine {
     return true;
   }
 
-  static processNode(node, rules) {
+  static matchNodeRules(node, rules) {
     for (const rule of rules) {
       if (this.matchNode(node, rule)) {
-        return true; // Node matches the rule
+        return NodeType[rule.nodeType]; // Node matches the rule
+      }
+    }
+    return false;
+  }
+
+  static matchGroupRules(node, rules) {
+    for (const rule of rules) {
+      if (this.matchNode(node, rule)) {
+        return GroupType[rule.groupType]; // Node matches the rule
       }
     }
     return false;

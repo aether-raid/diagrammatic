@@ -310,31 +310,30 @@ export function makeCalls(body, getNameRules) {
  *
  * @returns {[Variable]}
  */
-export function processVariableDeclaration(node) {
-  const name = node.childForFieldName("name");
+export function processVariableDeclaration(node, languageRules) {
+  const name = getName(node, languageRules.getName);
   const value = node.childForFieldName("value");
 
-  if (!name || !value) {
+  if (!value) {
     return null;
   }
 
   switch (value.type) {
     case "new_expression":
-      const identifierNode = getFirstChildOfType(value, "identifier");
-      if (!identifierNode) {
-        return null;
+      const newObjectToken = getName(value, languageRules.getName);
+      if (newObjectToken) {
+        return new Variable({
+          token: name,
+          pointsTo: newObjectToken,
+          startPosition: node.startPosition,
+          endPosition: node.endPosition,
+          variableType: VariableType.OBJECT_INSTANTIATION,
+        });
       }
-      return new Variable({
-        token: name.text,
-        pointsTo: identifierNode.text,
-        startPosition: node.startPosition,
-        endPosition: node.endPosition,
-        variableType: VariableType.OBJECT_INSTANTIATION,
-      });
     case "call_expression":
       const call = processCallExpression(value);
       return new Variable({
-        token: name.text,
+        token: name,
         pointsTo: call,
         startPosition: node.startPosition,
         endPosition: node.endPosition,
@@ -347,7 +346,7 @@ export function processVariableDeclaration(node) {
       }
       const awaitCall = processCallExpression(callExpressionNode);
       return new Variable({
-        token: name.text,
+        token: name,
         pointsTo: awaitCall,
         startPosition: node.startPosition,
         endPosition: node.endPosition,
@@ -534,7 +533,7 @@ export function makeLocalVariables(tree, parent, languageRules) {
   for (const node of walk(tree)) {
     switch (node.type) {
       case "variable_declarator":
-        const result = processVariableDeclaration(node);
+        const result = processVariableDeclaration(node, languageRules);
         if (result) {
           variables.push(result);
         }
@@ -554,6 +553,7 @@ export function makeLocalVariables(tree, parent, languageRules) {
               variableType: VariableType.CALL_EXPRESSION,
             })
           );
+          break;
         }
 
         const templateType = getFirstChildOfType(node, "template_type");

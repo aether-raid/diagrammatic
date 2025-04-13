@@ -109,4 +109,23 @@ describe("tick", () => {
     console.log("Recall:", overallRecall);
     console.log("F1:", overallF1);
   });
+
+  it("test runtime average over 10 runs", () => {
+    const runs = 10;
+    let totalTime = 0;
+
+    for (let i = 0; i < runs; i++) {
+      const start = process.hrtime();
+      runCodeToDiagramAlgorithm(mockDirectoryPath);
+      const [seconds, nanoseconds] = process.hrtime(start);
+      const ms = seconds * 1000 + nanoseconds / 1e6;
+      totalTime += ms;
+      console.log(`Run ${i + 1}: ${ms.toFixed(2)} ms`);
+    }
+
+    const average = totalTime / runs;
+    console.log(
+      `\nAverage execution time over ${runs} runs: ${average.toFixed(2)} ms`
+    );
+  });
 });

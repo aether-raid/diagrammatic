@@ -4,7 +4,14 @@
       "entityName": "SnippetRequestBody",
       "entityType": "interface",
       "filePath": "/routes/vulnCodeSnippet.ts",
-      "items": []
+      "items": [
+        {
+          "name": "challenge",
+          "startPosition": { "row": 15, "column": 2 },
+          "endPosition": { "row": 15, "column": 19 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -12,7 +19,20 @@
       "entityName": "VerdictRequestBody",
       "entityType": "interface",
       "filePath": "/routes/vulnCodeSnippet.ts",
-      "items": []
+      "items": [
+        {
+          "name": "selectedLines",
+          "startPosition": { "row": 19, "column": 2 },
+          "endPosition": { "row": 19, "column": 25 },
+          "type": "attribute"
+        },
+        {
+          "name": "key",
+          "startPosition": { "row": 20, "column": 2 },
+          "endPosition": { "row": 20, "column": 13 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -23,22 +43,44 @@
       "items": [
         {
           "name": "setStatusCode",
-
+          "startPosition": { "row": 23, "column": 0 },
+          "endPosition": { "row": 30, "column": 1 },
           "type": "function"
         },
         {
           "name": "retrieveCodeSnippet",
-
+          "startPosition": { "row": 32, "column": 7 },
+          "endPosition": { "row": 38, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "serveCodeSnippet",
+          "startPosition": { "row": 40, "column": 0 },
+          "endPosition": { "row": 52, "column": 1 },
           "type": "function"
         },
         {
           "name": "retrieveChallengesWithCodeSnippet",
-
+          "startPosition": { "row": 54, "column": 7 },
+          "endPosition": { "row": 57, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "serveChallengesWithCodeSnippet",
+          "startPosition": { "row": 59, "column": 0 },
+          "endPosition": { "row": 62, "column": 1 },
           "type": "function"
         },
         {
           "name": "getVerdict",
-
+          "startPosition": { "row": 64, "column": 7 },
+          "endPosition": { "row": 71, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "checkVulnLines",
+          "startPosition": { "row": 73, "column": 0 },
+          "endPosition": { "row": 119, "column": 1 },
           "type": "function"
         }
       ]
@@ -49,7 +91,26 @@
       "entityName": "OrderDetail",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/basket.service.ts",
-      "items": []
+      "items": [
+        {
+          "name": "paymentId",
+          "startPosition": { "row": 12, "column": 2 },
+          "endPosition": { "row": 12, "column": 19 },
+          "type": "attribute"
+        },
+        {
+          "name": "addressId",
+          "startPosition": { "row": 13, "column": 2 },
+          "endPosition": { "row": 13, "column": 19 },
+          "type": "attribute"
+        },
+        {
+          "name": "deliveryMethodId",
+          "startPosition": { "row": 14, "column": 2 },
+          "endPosition": { "row": 14, "column": 26 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -64,47 +125,38 @@
         { "name": "constructor", "type": "function" },
         {
           "name": "find",
-
           "type": "function"
         },
         {
           "name": "get",
-
           "type": "function"
         },
         {
           "name": "put",
-
           "type": "function"
         },
         {
           "name": "del",
-
           "type": "function"
         },
         {
           "name": "save",
-
           "type": "function"
         },
         {
           "name": "checkout",
-
           "type": "function"
         },
         {
           "name": "applyCoupon",
-
           "type": "function"
         },
         {
           "name": "updateNumberOfCartItems",
-
           "type": "function"
         },
         {
           "name": "getItemTotal",
-
           "type": "function"
         }
       ]
@@ -121,27 +173,22 @@
         { "name": "constructor", "type": "function" },
         {
           "name": "get",
-
           "type": "function"
         },
         {
           "name": "getById",
-
           "type": "function"
         },
         {
           "name": "save",
-
           "type": "function"
         },
         {
           "name": "put",
-
           "type": "function"
         },
         {
           "name": "del",
-
           "type": "function"
         }
       ]
@@ -158,7 +205,6 @@
         { "name": "constructor", "type": "function" },
         {
           "name": "getApplicationVersion",
-
           "type": "function"
         }
       ]
@@ -175,7 +221,6 @@
         { "name": "constructor", "type": "function" },
         {
           "name": "getCaptcha",
-
           "type": "function"
         }
       ]
@@ -192,42 +237,34 @@
         { "name": "constructor", "type": "function" },
         {
           "name": "find",
-
           "type": "function"
         },
         {
           "name": "repeatNotification",
-
           "type": "function"
         },
         {
           "name": "continueCode",
-
           "type": "function"
         },
         {
           "name": "continueCodeFindIt",
-
           "type": "function"
         },
         {
           "name": "continueCodeFixIt",
-
           "type": "function"
         },
         {
           "name": "restoreProgress",
-
           "type": "function"
         },
         {
           "name": "restoreProgressFindIt",
-
           "type": "function"
         },
         {
           "name": "restoreProgressFixIt",
-
           "type": "function"
         }
       ]
@@ -244,12 +281,10 @@
         { "name": "constructor", "type": "function" },
         {
           "name": "getChatbotStatus",
-
           "type": "function"
         },
         {
           "name": "getResponse",
-
           "type": "function"
         }
       ]
@@ -266,12 +301,10 @@
         { "name": "constructor", "type": "function" },
         {
           "name": "get",
-
           "type": "function"
         },
         {
           "name": "check",
-
           "type": "function"
         }
       ]
@@ -282,7 +315,14 @@
       "entityName": "result",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/code-fixes.service.ts",
-      "items": []
+      "items": [
+        {
+          "name": "verdict",
+          "startPosition": { "row": 7, "column": 2 },
+          "endPosition": { "row": 7, "column": 18 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -290,7 +330,14 @@
       "entityName": "Fixes",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/code-fixes.service.ts",
-      "items": []
+      "items": [
+        {
+          "name": "fixes",
+          "startPosition": { "row": 11, "column": 2 },
+          "endPosition": { "row": 11, "column": 17 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -298,8 +345,7 @@
       "entityName": "Solved",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/code-fixes.service.ts",
-
-      "items": []
+      "items": [{ "name": "challenges", "type": "attribute" }]
     }
   },
   {
@@ -318,7 +364,14 @@
       "entityName": "Solved",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/code-snippet.service.ts",
-      "items": []
+      "items": [
+        {
+          "name": "challenges",
+          "startPosition": { "row": 17, "column": 2 },
+          "endPosition": { "row": 17, "column": 22 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -353,7 +406,7 @@
       "entityName": "ConfigResponse",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/configuration.service.ts",
-      "items": []
+      "items": [{ "name": "config", "type": "attribute" }]
     }
   },
   {
@@ -361,8 +414,50 @@
       "entityName": "Config",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/configuration.service.ts",
-
-      "items": []
+      "items": [
+        {
+          "name": "server",
+          "startPosition": { "row": 15, "column": 2 },
+          "endPosition": { "row": 17, "column": 3 },
+          "type": "attribute"
+        },
+        {
+          "name": "application",
+          "startPosition": { "row": 18, "column": 2 },
+          "endPosition": { "row": 71, "column": 3 },
+          "type": "attribute"
+        },
+        {
+          "name": "challenges",
+          "startPosition": { "row": 72, "column": 2 },
+          "endPosition": { "row": 81, "column": 3 },
+          "type": "attribute"
+        },
+        {
+          "name": "hackingInstructor",
+          "startPosition": { "row": 82, "column": 2 },
+          "endPosition": { "row": 85, "column": 3 },
+          "type": "attribute"
+        },
+        {
+          "name": "products",
+          "startPosition": { "row": 86, "column": 2 },
+          "endPosition": { "row": 86, "column": 17 },
+          "type": "attribute"
+        },
+        {
+          "name": "memories",
+          "startPosition": { "row": 87, "column": 2 },
+          "endPosition": { "row": 87, "column": 17 },
+          "type": "attribute"
+        },
+        {
+          "name": "ctf",
+          "startPosition": { "row": 88, "column": 2 },
+          "endPosition": { "row": 92, "column": 3 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -378,7 +473,6 @@
         { "name": "constructor", "type": "function" },
         {
           "name": "getApplicationConfiguration",
-
           "type": "function"
         }
       ]
@@ -415,7 +509,20 @@
       "entityName": "DeliveryMultipleMethodResponse",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/delivery.service.ts",
-      "items": []
+      "items": [
+        {
+          "name": "status",
+          "startPosition": { "row": 12, "column": 2 },
+          "endPosition": { "row": 12, "column": 16 },
+          "type": "attribute"
+        },
+        {
+          "name": "data",
+          "startPosition": { "row": 13, "column": 2 },
+          "endPosition": { "row": 13, "column": 24 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -423,8 +530,20 @@
       "entityName": "DeliverySingleMethodResponse",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/delivery.service.ts",
-
-      "items": []
+      "items": [
+        {
+          "name": "status",
+          "startPosition": { "row": 17, "column": 2 },
+          "endPosition": { "row": 17, "column": 16 },
+          "type": "attribute"
+        },
+        {
+          "name": "data",
+          "startPosition": { "row": 18, "column": 2 },
+          "endPosition": { "row": 18, "column": 22 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -465,7 +584,6 @@
         { "name": "constructor", "type": "function" },
         {
           "name": "attachEnterKeyHandler",
-
           "type": "function"
         }
       ]
@@ -708,7 +826,14 @@
       "entityName": "TwoFactorVerifyResponse",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/two-factor-auth-service.ts",
-      "items": []
+      "items": [
+        {
+          "name": "authentication",
+          "startPosition": { "row": 12, "column": 2 },
+          "endPosition": { "row": 12, "column": 39 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -716,8 +841,26 @@
       "entityName": "AuthenticationPayload",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/two-factor-auth-service.ts",
-
-      "items": []
+      "items": [
+        {
+          "name": "token",
+          "startPosition": { "row": 16, "column": 2 },
+          "endPosition": { "row": 16, "column": 15 },
+          "type": "attribute"
+        },
+        {
+          "name": "bid",
+          "startPosition": { "row": 17, "column": 2 },
+          "endPosition": { "row": 17, "column": 13 },
+          "type": "attribute"
+        },
+        {
+          "name": "umail",
+          "startPosition": { "row": 18, "column": 2 },
+          "endPosition": { "row": 18, "column": 15 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -725,8 +868,32 @@
       "entityName": "TwoFactorAuthStatusPayload",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/two-factor-auth-service.ts",
-
-      "items": []
+      "items": [
+        {
+          "name": "setup",
+          "startPosition": { "row": 22, "column": 2 },
+          "endPosition": { "row": 22, "column": 16 },
+          "type": "attribute"
+        },
+        {
+          "name": "secret",
+          "startPosition": { "row": 23, "column": 2 },
+          "endPosition": { "row": 23, "column": 17 },
+          "type": "attribute"
+        },
+        {
+          "name": "setupToken",
+          "startPosition": { "row": 24, "column": 2 },
+          "endPosition": { "row": 24, "column": 21 },
+          "type": "attribute"
+        },
+        {
+          "name": "email",
+          "startPosition": { "row": 25, "column": 2 },
+          "endPosition": { "row": 25, "column": 16 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -748,7 +915,26 @@
       "entityName": "Passwords",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/user.service.ts",
-      "items": []
+      "items": [
+        {
+          "name": "current",
+          "startPosition": { "row": 12, "column": 2 },
+          "endPosition": { "row": 12, "column": 18 },
+          "type": "attribute"
+        },
+        {
+          "name": "new",
+          "startPosition": { "row": 13, "column": 2 },
+          "endPosition": { "row": 13, "column": 14 },
+          "type": "attribute"
+        },
+        {
+          "name": "repeat",
+          "startPosition": { "row": 14, "column": 2 },
+          "endPosition": { "row": 14, "column": 17 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -782,7 +968,20 @@
       "entityName": "result",
       "entityType": "interface",
       "filePath": "/frontend/src/app/Services/vuln-lines.service.ts",
-      "items": []
+      "items": [
+        {
+          "name": "verdict",
+          "startPosition": { "row": 6, "column": 2 },
+          "endPosition": { "row": 6, "column": 18 },
+          "type": "attribute"
+        },
+        {
+          "name": "hint",
+          "startPosition": { "row": 7, "column": 2 },
+          "endPosition": { "row": 7, "column": 14 },
+          "type": "attribute"
+        }
+      ]
     }
   },
   {
@@ -886,7 +1085,6 @@
         { "name": "userDataSource", "type": "attribute" },
         {
           "name": "userDataSourceHidden",
-
           "type": "attribute"
         },
         { "name": "userColumns", "type": "attribute" },
@@ -896,7 +1094,6 @@
         { "name": "resultsLengthUser", "type": "attribute" },
         {
           "name": "resultsLengthFeedback",
-
           "type": "attribute"
         },
         { "name": "paginatorUsers", "type": "attribute" },
@@ -911,7 +1108,6 @@
         { "name": "times", "type": "function" },
         {
           "name": "doesUserHaveAnActiveSession",
-
           "type": "function"
         }
       ]
@@ -1044,17 +1240,14 @@
         { "name": "loadStaticUserData", "type": "function" },
         {
           "name": "loadStaticChallengeData",
-
           "type": "function"
         },
         {
           "name": "loadStaticDeliveryData",
-
           "type": "function"
         },
         {
           "name": "loadStaticSecurityQuestionsData",
-
           "type": "function"
         }
       ]
@@ -1066,16 +1259,14 @@
       "entityType": "interface",
       "filePath": "/data/types.ts",
       "items": [
-        { "name": "test", "type": "attribute" },
+        { "name": "text", "type": "attribute" },
         { "name": "author", "type": "attribute" },
         {
           "name": "liked",
-
           "type": "attribute"
         },
         {
           "name": "likedBy",
-
           "type": "attribute"
         }
       ]
@@ -1092,7 +1283,6 @@
         { "name": "createWallet", "type": "function" },
         {
           "name": "createDeliveryMethods",
-
           "type": "function"
         },
         { "name": "createAddresses", "type": "function" },
@@ -1101,17 +1291,25 @@
         { "name": "deleteProduct", "type": "function" },
         {
           "name": "createRandomFakeUsers",
-
+          "type": "function"
+        },
+        {
+          "name": "getGeneratedRandomFakeUserEmail",
+          "type": "function"
+        },
+        {
+          "name": "makeRandomString",
           "type": "function"
         },
         { "name": "createQuantity", "type": "function" },
         { "name": "createMemories", "type": "function" },
         { "name": "createProducts", "type": "function" },
+        { "name": "customizeChangeProductChallenge", "type": "function" },
+        { "name": "customizeRetrieveBlueprintChallenge", "type": "function" },
         { "name": "createBaskets", "type": "function" },
         { "name": "createBasketItems", "type": "function" },
         {
           "name": "createAnonymousFeedback",
-
           "type": "function"
         },
         { "name": "createFeedback", "type": "function" },
@@ -1120,12 +1318,10 @@
         { "name": "createRecycleItem", "type": "function" },
         {
           "name": "createSecurityQuestions",
-
           "type": "function"
         },
         {
           "name": "createSecurityAnswer",
-
           "type": "function"
         },
         { "name": "createOrders", "type": "function" },
@@ -1141,7 +1337,6 @@
       "items": [
         {
           "name": "setRetrieveBlueprintChallengeFile",
-
           "type": "function"
         }
       ]
@@ -1224,7 +1419,10 @@
       "entityName": "loginAdminChallenge_1.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginAdminChallenge_1.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1232,7 +1430,10 @@
       "entityName": "loginAdminChallenge_2.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginAdminChallenge_2.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1240,7 +1441,10 @@
       "entityName": "loginAdminChallenge_3.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginAdminChallenge_3.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1248,7 +1452,10 @@
       "entityName": "loginAdminChallenge_4_correct.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginAdminChallenge_4_correct.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1256,7 +1463,10 @@
       "entityName": "loginBenderChallenge_1.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginBenderChallenge_1.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1264,7 +1474,10 @@
       "entityName": "loginBenderChallenge_2_correct.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginBenderChallenge_2_correct.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1272,7 +1485,10 @@
       "entityName": "loginBenderChallenge_3.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginBenderChallenge_3.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1280,7 +1496,10 @@
       "entityName": "loginBenderChallenge_4.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginBenderChallenge_4.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1288,7 +1507,10 @@
       "entityName": "loginJimChallenge_1_correct.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginJimChallenge_1_correct.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1296,7 +1518,10 @@
       "entityName": "loginJimChallenge_2.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginJimChallenge_2.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1304,7 +1529,10 @@
       "entityName": "loginJimChallenge_3.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginJimChallenge_3.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1312,7 +1540,10 @@
       "entityName": "loginJimChallenge_4.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/loginJimChallenge_4.ts",
-      "items": [{ "name": "login", "type": "function" }]
+      "items": [
+        { "name": "login", "type": "function" },
+        { "name": "afterLogin", "type": "function" }
+      ]
     }
   },
   {
@@ -1360,7 +1591,10 @@
       "entityName": "redirectChallenge_3.ts",
       "entityType": "file",
       "filePath": "/data/static/codefixes/redirectChallenge_3.ts",
-      "items": [{ "name": "isRedirectAllowed", "type": "function" }]
+      "items": [
+        { "name": "isRedirectAllowed", "type": "function" },
+        { "name": "escapeHTML", "type": "function" }
+      ]
     }
   },
   {
@@ -1472,62 +1706,50 @@
       "items": [
         {
           "name": "twitterUrl",
-
           "type": "attribute"
         },
         {
           "name": "facebookUrl",
-
           "type": "attribute"
         },
         {
           "name": "slackUrl",
-
           "type": "attribute"
         },
         {
           "name": "redditUrl",
-
           "type": "attribute"
         },
         {
           "name": "pressKitUrl",
-
           "type": "attribute"
         },
         {
           "name": "nftUrl",
-
           "type": "attribute"
         },
         {
           "name": "slideshowDataSource",
-
           "type": "attribute"
         },
         {
           "name": "images",
-
           "type": "attribute"
         },
         {
           "name": "stars",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "populateSlideshowFromFeedbacks",
-
           "type": "function"
         }
       ]
@@ -1541,92 +1763,82 @@
       "items": [
         {
           "name": "orderHistoryColumns",
-
+          "type": "attribute"
+        },
+        {
+          "name": "paginatorOrderHistory",
           "type": "attribute"
         },
         {
           "name": "orderData",
-
           "type": "attribute"
         },
         {
           "name": "orderSource",
-
           "type": "attribute"
         },
         {
           "name": "displayedColumns",
-
           "type": "attribute"
         },
         {
           "name": "tableData",
-
           "type": "attribute"
         },
         {
           "name": "dataSource",
-
+          "type": "attribute"
+        },
+        {
+          "name": "paginator",
           "type": "attribute"
         },
         {
           "name": "productSubscription",
-
           "type": "attribute"
         },
         {
           "name": "quantitySubscription",
-
           "type": "attribute"
         },
         {
           "name": "quantityMap",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngAfterViewInit",
-
           "type": "function"
         },
         {
           "name": "loadQuantity",
-
           "type": "function"
         },
         {
           "name": "loadProducts",
-
           "type": "function"
         },
         {
           "name": "loadOrders",
-
           "type": "function"
         },
         {
           "name": "ngOnDestroy",
-
           "type": "function"
         },
         {
           "name": "modifyQuantity",
-
           "type": "function"
         },
         {
           "name": "modifyPrice",
-
           "type": "function"
         },
         {
           "name": "changeDeliveryStatus",
-
           "type": "function"
         }
       ]
@@ -1640,22 +1852,18 @@
       "items": [
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "orderId",
-
           "type": "attribute"
         },
         {
           "name": "totalPrice",
-
           "type": "attribute"
         },
         {
           "name": "delivered",
-
           "type": "attribute"
         }
       ]
@@ -1668,68 +1876,111 @@
       "filePath": "/frontend/src/app/address/address.component.ts",
       "items": [
         {
+          "name": "emitSelection",
+          "startPosition": { "row": 23, "column": 2 },
+          "endPosition": { "row": 23, "column": 46 },
+          "type": "attribute"
+        },
+        {
+          "name": "allowEdit",
+          "startPosition": { "row": 24, "column": 2 },
+          "endPosition": { "row": 24, "column": 55 },
+          "type": "attribute"
+        },
+        {
+          "name": "addNewAddressDiv",
+          "startPosition": { "row": 25, "column": 2 },
+          "endPosition": { "row": 25, "column": 68 },
+          "type": "attribute"
+        },
+        {
+          "name": "showNextButton",
+          "startPosition": { "row": 26, "column": 2 },
+          "endPosition": { "row": 26, "column": 65 },
+          "type": "attribute"
+        },
+        {
           "name": "addressId",
-
+          "startPosition": { "row": 27, "column": 2 },
+          "endPosition": { "row": 27, "column": 35 },
           "type": "attribute"
         },
         {
           "name": "displayedColumns",
-
+          "startPosition": { "row": 28, "column": 2 },
+          "endPosition": { "row": 28, "column": 58 },
+          "type": "attribute"
+        },
+        {
+          "name": "selection",
+          "startPosition": { "row": 29, "column": 2 },
+          "endPosition": { "row": 29, "column": 52 },
           "type": "attribute"
         },
         {
           "name": "storedAddresses",
-
+          "startPosition": { "row": 30, "column": 2 },
+          "endPosition": { "row": 30, "column": 31 },
           "type": "attribute"
         },
         {
           "name": "dataSource",
-
+          "startPosition": { "row": 31, "column": 2 },
+          "endPosition": { "row": 31, "column": 19 },
           "type": "attribute"
         },
         {
           "name": "confirmation",
-
+          "startPosition": { "row": 32, "column": 2 },
+          "endPosition": { "row": 32, "column": 26 },
           "type": "attribute"
         },
         {
           "name": "error",
-
+          "startPosition": { "row": 33, "column": 2 },
+          "endPosition": { "row": 33, "column": 19 },
           "type": "attribute"
         },
         {
           "name": "addressExist",
-
+          "startPosition": { "row": 34, "column": 2 },
+          "endPosition": { "row": 34, "column": 38 },
           "type": "attribute"
         },
         {
           "name": "constructor",
-
+          "startPosition": { "row": 36, "column": 2 },
+          "endPosition": { "row": 37, "column": 136 },
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
+          "startPosition": { "row": 39, "column": 2 },
+          "endPosition": { "row": 46, "column": 3 },
           "type": "function"
         },
         {
           "name": "load",
-
+          "startPosition": { "row": 48, "column": 2 },
+          "endPosition": { "row": 57, "column": 3 },
           "type": "function"
         },
         {
           "name": "emitSelectionToParent",
-
+          "startPosition": { "row": 59, "column": 2 },
+          "endPosition": { "row": 67, "column": 3 },
           "type": "function"
         },
         {
           "name": "chooseAddress",
-
+          "startPosition": { "row": 69, "column": 2 },
+          "endPosition": { "row": 72, "column": 3 },
           "type": "function"
         },
         {
           "name": "deleteAddress",
-
+          "startPosition": { "row": 74, "column": 2 },
+          "endPosition": { "row": 87, "column": 3 },
           "type": "function"
         }
       ]
@@ -1743,82 +1994,66 @@
       "items": [
         {
           "name": "countryControl",
-
           "type": "attribute"
         },
         {
           "name": "nameControl",
-
           "type": "attribute"
         },
         {
           "name": "numberControl",
-
           "type": "attribute"
         },
         {
           "name": "pinControl",
-
           "type": "attribute"
         },
         {
           "name": "addressControl",
-
           "type": "attribute"
         },
         {
           "name": "cityControl",
-
           "type": "attribute"
         },
         {
           "name": "stateControl",
-
           "type": "attribute"
         },
         {
           "name": "address",
-
           "type": "attribute"
         },
         {
           "name": "mode",
-
           "type": "attribute"
         },
         {
           "name": "addressId",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "save",
-
           "type": "function"
         },
         {
           "name": "initializeForm",
-
           "type": "function"
         },
         {
           "name": "routeToPreviousUrl",
-
           "type": "function"
         },
         {
           "name": "resetForm",
-
           "type": "function"
         }
       ]
@@ -1832,116 +2067,18 @@
       "items": [
         {
           "name": "addressId",
-
           "type": "attribute"
         },
         {
           "name": "showNextButton",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "getMessage",
-
-          "type": "function"
-        }
-      ]
-    }
-  },
-  {
-    "data": {
-      "entityName": "AdministrationComponent",
-      "entityType": "class",
-      "filePath": "/frontend/src/app/administration/administration.component.ts",
-      "items": [
-        {
-          "name": "userDataSource",
-
-          "type": "attribute"
-        },
-        {
-          "name": "userDataSourceHidden",
-
-          "type": "attribute"
-        },
-        {
-          "name": "userColumns",
-
-          "type": "attribute"
-        },
-        {
-          "name": "feedbackDataSource",
-
-          "type": "attribute"
-        },
-        {
-          "name": "feedbackColumns",
-
-          "type": "attribute"
-        },
-        {
-          "name": "error",
-
-          "type": "attribute"
-        },
-        {
-          "name": "resultsLengthUser",
-
-          "type": "attribute"
-        },
-        {
-          "name": "resultsLengthFeedback",
-
-          "type": "attribute"
-        },
-        {
-          "name": "constructor",
-
-          "type": "function"
-        },
-        {
-          "name": "ngOnInit",
-
-          "type": "function"
-        },
-        {
-          "name": "findAllUsers",
-
-          "type": "function"
-        },
-        {
-          "name": "findAllFeedbacks",
-
-          "type": "function"
-        },
-        {
-          "name": "deleteFeedback",
-
-          "type": "function"
-        },
-        {
-          "name": "showUserDetail",
-
-          "type": "function"
-        },
-        {
-          "name": "showFeedbackDetails",
-
-          "type": "function"
-        },
-        {
-          "name": "times",
-
-          "type": "function"
-        },
-        {
-          "name": "doesUserHaveAnActiveSession",
-
           "type": "function"
         }
       ]
@@ -1955,32 +2092,26 @@
       "items": [
         {
           "name": "productCount",
-
           "type": "attribute"
         },
         {
           "name": "bonus",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "checkout",
-
           "type": "function"
         },
         {
           "name": "getProductCount",
-
           "type": "function"
         },
         {
-          "name": "checkout",
-
+          "name": "getBonusPoints",
           "type": "function"
         }
       ]
@@ -1994,27 +2125,22 @@
       "items": [
         {
           "name": "challenge",
-
           "type": "attribute"
         },
         {
           "name": "hidden",
-
           "type": "attribute"
         },
         {
           "name": "isRestore",
-
           "type": "attribute"
         },
         {
           "name": "flag",
-
           "type": "attribute"
         },
         {
           "name": "key",
-
           "type": "attribute"
         }
       ]
@@ -2028,22 +2154,18 @@
       "items": [
         {
           "name": "message",
-
           "type": "attribute"
         },
         {
           "name": "flag",
-
           "type": "attribute"
         },
         {
           "name": "country",
-
           "type": "attribute"
         },
         {
           "name": "copied",
-
           "type": "attribute"
         }
       ]
@@ -2057,47 +2179,38 @@
       "items": [
         {
           "name": "notifications",
-
           "type": "attribute"
         },
         {
           "name": "showCtfFlagsInNotifications",
-
           "type": "attribute"
         },
         {
           "name": "showCtfCountryDetailsInNotifications",
-
           "type": "attribute"
         },
         {
           "name": "countryMap",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "closeNotification",
-
           "type": "function"
         },
         {
           "name": "showNotification",
-
           "type": "function"
         },
         {
           "name": "saveProgress",
-
           "type": "function"
         }
       ]
@@ -2111,32 +2224,26 @@
       "items": [
         {
           "name": "challenge",
-
           "type": "attribute"
         },
         {
           "name": "allowRepeatNotifications",
-
           "type": "attribute"
         },
         {
           "name": "showChallengeHints",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "repeatNotification",
-
           "type": "function"
         },
         {
           "name": "openHint",
-
           "type": "function"
         }
       ]
@@ -2150,52 +2257,42 @@
       "items": [
         {
           "name": "passwordControl",
-
           "type": "attribute"
         },
         {
           "name": "newPasswordControl",
-
           "type": "attribute"
         },
         {
           "name": "repeatNewPasswordControl",
-
           "type": "attribute"
         },
         {
           "name": "error",
-
           "type": "attribute"
         },
         {
           "name": "confirmation",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "changePassword",
-
           "type": "function"
         },
         {
           "name": "resetForm",
-
           "type": "function"
         },
         {
           "name": "resetPasswords",
-
           "type": "function"
         }
       ]
@@ -2209,7 +2306,10 @@
       "items": [
         {
           "name": "matchValidator",
-
+          "type": "function"
+        },
+        {
+          "name": "matchOtherValidate",
           "type": "function"
         }
       ]
@@ -2223,12 +2323,10 @@
       "items": [
         {
           "name": "author",
-
           "type": "attribute"
         },
         {
           "name": "body",
-
           "type": "attribute"
         }
       ]
@@ -2242,12 +2340,10 @@
       "items": [
         {
           "name": "response",
-
           "type": "attribute"
         },
         {
           "name": "namequery",
-
           "type": "attribute"
         }
       ]
@@ -2261,62 +2357,50 @@
       "items": [
         {
           "name": "messageControl",
-
           "type": "attribute"
         },
         {
           "name": "messages",
-
           "type": "attribute"
         },
         {
           "name": "juicyImageSrc",
-
           "type": "attribute"
         },
         {
           "name": "profileImageSrc",
-
           "type": "attribute"
         },
         {
           "name": "messageActions",
-
           "type": "attribute"
         },
         {
           "name": "currentAction",
-
           "type": "attribute"
         },
         {
           "name": "chatScrollDownTimeoutId",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnDestroy",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "handleResponse",
-
           "type": "function"
         },
         {
           "name": "sendMessage",
-
           "type": "function"
         }
       ]
@@ -2330,12 +2414,10 @@
       "items": [
         {
           "name": "marked",
-
           "type": "attribute"
         },
         {
           "name": "lineNumber",
-
           "type": "attribute"
         }
       ]
@@ -2349,32 +2431,30 @@
       "items": [
         {
           "name": "code",
-
           "type": "attribute"
         },
         {
           "name": "vulnLines",
-
           "type": "attribute"
         },
         {
           "name": "lineMarkers",
-
+          "type": "attribute"
+        },
+        {
+          "name": "addLine",
           "type": "attribute"
         },
         {
           "name": "langs",
-
           "type": "attribute"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "selectLines",
-
           "type": "function"
         }
       ]
@@ -2388,47 +2468,42 @@
       "items": [
         {
           "name": "differ",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "snippet",
-
           "type": "attribute"
         },
         {
           "name": "fixes",
-
           "type": "attribute"
         },
         {
           "name": "selectedFix",
-
           "type": "attribute"
         },
         {
           "name": "randomFixes",
-
           "type": "attribute"
         },
         {
           "name": "format",
-
+          "type": "attribute"
+        },
+        {
+          "name": "codeComponent",
           "type": "attribute"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "ngDoCheck",
-
           "type": "function"
         }
       ]
@@ -2442,37 +2517,30 @@
       "items": [
         {
           "name": "membershipCost",
-
           "type": "attribute"
         },
         {
           "name": "error",
-
           "type": "attribute"
         },
         {
           "name": "applicationName",
-
           "type": "attribute"
         },
         {
           "name": "logoSrc",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "upgradeToDeluxe",
-
           "type": "function"
         }
       ]
@@ -2486,17 +2554,14 @@
       "items": [
         {
           "name": "error",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         }
       ]
@@ -2510,7 +2575,6 @@
       "items": [
         {
           "name": "constructor",
-
           "type": "function"
         }
       ]
@@ -2524,22 +2588,18 @@
       "items": [
         {
           "name": "feedback",
-
           "type": "attribute"
         },
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         }
       ]
@@ -2553,72 +2613,58 @@
       "items": [
         {
           "name": "emailControl",
-
           "type": "attribute"
         },
         {
           "name": "securityQuestionControl",
-
           "type": "attribute"
         },
         {
           "name": "passwordControl",
-
           "type": "attribute"
         },
         {
           "name": "repeatPasswordControl",
-
           "type": "attribute"
         },
         {
           "name": "securityQuestion",
-
           "type": "attribute"
         },
         {
           "name": "error",
-
           "type": "attribute"
         },
         {
           "name": "confirmation",
-
           "type": "attribute"
         },
         {
           "name": "timeoutDuration",
-
           "type": "attribute"
         },
         {
           "name": "timeout",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "findSecurityQuestion",
-
           "type": "function"
         },
         {
           "name": "resetPassword",
-
           "type": "function"
         },
         {
           "name": "resetForm",
-
           "type": "function"
         },
         {
           "name": "resetErrorForm",
-
           "type": "function"
         }
       ]
@@ -2632,7 +2678,10 @@
       "items": [
         {
           "name": "matchValidator",
-
+          "type": "function"
+        },
+        {
+          "name": "matchOtherValidate",
           "type": "function"
         }
       ]
@@ -2646,22 +2695,18 @@
       "items": [
         {
           "name": "lastLoginIp",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "parseAuthToken",
-
           "type": "function"
         }
       ]
@@ -2675,67 +2720,54 @@
       "items": [
         {
           "name": "emailControl",
-
           "type": "attribute"
         },
         {
           "name": "passwordControl",
-
           "type": "attribute"
         },
         {
           "name": "hide",
-
           "type": "attribute"
         },
         {
           "name": "user",
-
           "type": "attribute"
         },
         {
           "name": "rememberMe",
-
           "type": "attribute"
         },
         {
           "name": "error",
-
           "type": "attribute"
         },
         {
           "name": "clientId",
-
           "type": "attribute"
         },
         {
           "name": "oauthUnavailable",
-
           "type": "attribute"
         },
         {
           "name": "redirectUri",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "login",
-
           "type": "function"
         },
         {
           "name": "googleLogin",
-
           "type": "function"
         }
       ]
@@ -2749,32 +2781,26 @@
       "items": [
         {
           "name": "version",
-
           "type": "attribute"
         },
         {
           "name": "continueCode",
-
           "type": "attribute"
         },
         {
           "name": "continueCodeFindIt",
-
           "type": "attribute"
         },
         {
           "name": "continueCodeFixIt",
-
           "type": "attribute"
         },
         {
           "name": "language",
-
           "type": "attribute"
         },
         {
           "name": "banners",
-
           "type": "attribute"
         }
       ]
@@ -2788,77 +2814,62 @@
       "items": [
         {
           "name": "name",
-
           "type": "attribute"
         },
         {
           "name": "key",
-
           "type": "attribute"
         },
         {
           "name": "category",
-
           "type": "attribute"
         },
         {
           "name": "tags",
-
           "type": "attribute"
         },
         {
           "name": "description",
-
           "type": "attribute"
         },
         {
           "name": "difficulty",
-
           "type": "attribute"
         },
         {
           "name": "hint",
-
           "type": "attribute"
         },
         {
           "name": "hintUrl",
-
           "type": "attribute"
         },
         {
           "name": "disabledEnv",
-
           "type": "attribute"
         },
         {
           "name": "solved",
-
           "type": "attribute"
         },
         {
           "name": "tutorialOrder",
-
           "type": "attribute"
         },
         {
           "name": "hasTutorial",
-
           "type": "attribute"
         },
         {
           "name": "hasSnippet",
-
           "type": "attribute"
         },
         {
           "name": "codingChallengeStatus",
-
           "type": "attribute"
         },
         {
           "name": "mitigationUrl",
-
           "type": "attribute"
         }
       ]
@@ -2872,27 +2883,22 @@
       "items": [
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "name",
-
           "type": "attribute"
         },
         {
           "name": "price",
-
           "type": "attribute"
         },
         {
           "name": "eta",
-
           "type": "attribute"
         },
         {
           "name": "icon",
-
           "type": "attribute"
         }
       ]
@@ -2906,32 +2912,26 @@
       "items": [
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "name",
-
           "type": "attribute"
         },
         {
           "name": "description",
-
           "type": "attribute"
         },
         {
           "name": "image",
-
           "type": "attribute"
         },
         {
           "name": "price",
-
           "type": "attribute"
         },
         {
           "name": "points",
-
           "type": "attribute"
         }
       ]
@@ -2945,17 +2945,14 @@
       "items": [
         {
           "name": "_id",
-
           "type": "attribute"
         },
         {
           "name": "message",
-
           "type": "attribute"
         },
         {
           "name": "author",
-
           "type": "attribute"
         }
       ]
@@ -2969,12 +2966,10 @@
       "items": [
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "question",
-
           "type": "attribute"
         }
       ]
@@ -2988,132 +2983,106 @@
       "items": [
         {
           "name": "userEmail",
-
           "type": "attribute"
         },
         {
           "name": "languages",
-
           "type": "attribute"
         },
         {
           "name": "selectedLanguage",
-
           "type": "attribute"
         },
         {
           "name": "version",
-
           "type": "attribute"
         },
         {
           "name": "applicationName",
-
           "type": "attribute"
         },
         {
           "name": "showGitHubLink",
-
           "type": "attribute"
         },
         {
           "name": "logoSrc",
-
           "type": "attribute"
         },
         {
           "name": "scoreBoardVisible",
-
           "type": "attribute"
         },
         {
           "name": "shortKeyLang",
-
           "type": "attribute"
         },
         {
           "name": "itemTotal",
-
           "type": "attribute"
         },
         {
           "name": "sidenavToggle",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "checkLanguage",
-
           "type": "function"
         },
         {
           "name": "search",
-
           "type": "function"
         },
         {
           "name": "getUserDetails",
-
           "type": "function"
         },
         {
           "name": "isLoggedIn",
-
           "type": "function"
         },
         {
           "name": "logout",
-
           "type": "function"
         },
         {
           "name": "changeLanguage",
-
           "type": "function"
         },
         {
           "name": "getScoreBoardStatus",
-
           "type": "function"
         },
         {
           "name": "goToProfilePage",
-
           "type": "function"
         },
         {
           "name": "goToDataErasurePage",
-
           "type": "function"
         },
         {
           "name": "onToggleSidenav",
-
           "type": "function"
         },
         {
           "name": "noop",
-
           "type": "function"
         },
         {
           "name": "getLanguages",
-
           "type": "function"
         },
         {
           "name": "isAccounting",
-
           "type": "function"
         }
       ]
@@ -3127,42 +3096,34 @@
       "items": [
         {
           "name": "privateKey",
-
           "type": "attribute"
         },
         {
           "name": "formSubmitted",
-
           "type": "attribute"
         },
         {
           "name": "successResponse",
-
           "type": "attribute"
         },
         {
           "name": "errorMessage",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "checkChallengeStatus",
-
           "type": "function"
         },
         {
           "name": "submitForm",
-
           "type": "function"
         }
       ]
@@ -3176,27 +3137,22 @@
       "items": [
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "login",
-
           "type": "function"
         },
         {
           "name": "invalidateSession",
-
           "type": "function"
         },
         {
           "name": "parseRedirectUrlParams",
-
           "type": "function"
         }
       ]
@@ -3210,62 +3166,50 @@
       "items": [
         {
           "name": "tableColumns",
-
           "type": "attribute"
         },
         {
           "name": "dataSource",
-
           "type": "attribute"
         },
         {
           "name": "orderId",
-
           "type": "attribute"
         },
         {
           "name": "orderDetails",
-
           "type": "attribute"
         },
         {
           "name": "deliveryPrice",
-
           "type": "attribute"
         },
         {
-          "name": "promotionalDsicount",
-
+          "name": "promotionalDiscount",
           "type": "attribute"
         },
         {
           "name": "address",
-
           "type": "attribute"
         },
         {
           "name": "tweetText",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "openConfirmationPDF",
-
           "type": "function"
         },
         {
           "name": "truncateTweet",
-
           "type": "function"
         }
       ]
@@ -3279,27 +3223,22 @@
       "items": [
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "name",
-
           "type": "attribute"
         },
         {
           "name": "price",
-
           "type": "attribute"
         },
         {
           "name": "quantity",
-
           "type": "attribute"
         },
         {
           "name": "total",
-
           "type": "attribute"
         }
       ]
@@ -3313,27 +3252,22 @@
       "items": [
         {
           "name": "orderId",
-
           "type": "attribute"
         },
         {
           "name": "totalPrice",
-
           "type": "attribute"
         },
         {
           "name": "bonus",
-
           "type": "attribute"
         },
         {
           "name": "products",
-
           "type": "attribute"
         },
         {
           "name": "delivered",
-
           "type": "attribute"
         }
       ]
@@ -3347,42 +3281,34 @@
       "items": [
         {
           "name": "tableColumns",
-
           "type": "attribute"
         },
         {
           "name": "orders",
-
           "type": "attribute"
         },
         {
           "name": "emptyState",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "showDetail",
-
           "type": "function"
         },
         {
           "name": "openConfirmationPDF",
-
           "type": "function"
         },
         {
           "name": "trackOrder",
-
           "type": "function"
         }
       ]
@@ -3396,52 +3322,42 @@
       "items": [
         {
           "name": "bonus",
-
           "type": "attribute"
         },
         {
           "name": "itemTotal",
-
           "type": "attribute"
         },
         {
           "name": "deliveryPrice",
-
           "type": "attribute"
         },
         {
-          "name": "promotionalDsicount",
-
+          "name": "promotionalDiscount",
           "type": "attribute"
         },
         {
           "name": "address",
-
           "type": "attribute"
         },
         {
           "name": "paymentMethod",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "getMessage",
-
           "type": "function"
         },
         {
           "name": "placeOrder",
-
           "type": "function"
         }
       ]
@@ -3455,7 +3371,6 @@
       "items": [
         {
           "name": "app",
-
           "type": "function"
         }
       ]
@@ -3469,7 +3384,6 @@
       "items": [
         {
           "name": "HttpLoaderFactory",
-
           "type": "function"
         }
       ]
@@ -3483,7 +3397,6 @@
       "items": [
         {
           "name": "constructor",
-
           "type": "function"
         }
       ]
@@ -3497,37 +3410,30 @@
       "items": [
         {
           "name": "loadFaucetModule",
-
           "type": "function"
         },
         {
           "name": "loadWeb3WalletModule",
-
           "type": "function"
         },
         {
           "name": "loadWeb3SandboxtModule",
-
           "type": "function"
         },
         {
           "name": "oauthMatcher",
-
           "type": "function"
         },
         {
           "name": "tokenMatcher",
-
           "type": "function"
         },
         {
           "name": "token1",
-
           "type": "function"
         },
         {
-          "name": "oauttoken2hMatcher",
-
+          "name": "token2",
           "type": "function"
         }
       ]
@@ -3541,12 +3447,10 @@
       "items": [
         {
           "name": "on",
-
           "type": "function"
         },
         {
           "name": "emit",
-
           "type": "function"
         }
       ]
@@ -3560,12 +3464,10 @@
       "items": [
         {
           "name": "findIt",
-
           "type": "attribute"
         },
         {
           "name": "fixIt",
-
           "type": "attribute"
         }
       ]
@@ -3579,12 +3481,10 @@
       "items": [
         {
           "name": "fix",
-
           "type": "attribute"
         },
         {
           "name": "index",
-
           "type": "attribute"
         }
       ]
@@ -3598,132 +3498,106 @@
       "items": [
         {
           "name": "snippet",
-
           "type": "attribute"
         },
         {
           "name": "fixes",
-
           "type": "attribute"
         },
         {
           "name": "selectedLines",
-
           "type": "attribute"
         },
         {
           "name": "selectedFix",
-
           "type": "attribute"
         },
         {
           "name": "tab",
-
           "type": "attribute"
         },
         {
           "name": "lock",
-
           "type": "attribute"
         },
         {
           "name": "result",
-
           "type": "attribute"
         },
         {
           "name": "hint",
-
           "type": "attribute"
         },
         {
           "name": "explanation",
-
           "type": "attribute"
         },
         {
           "name": "solved",
-
           "type": "attribute"
         },
         {
           "name": "showFeedbackButtons",
-
           "type": "attribute"
         },
         {
           "name": "randomFixes",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "addLine",
-
           "type": "function"
         },
         {
           "name": "setFix",
-
           "type": "function"
         },
         {
           "name": "changeFix",
-
           "type": "function"
         },
         {
           "name": "toggleTab",
-
           "type": "function"
         },
         {
           "name": "checkFix",
-
           "type": "function"
         },
         {
           "name": "checkLines",
-
           "type": "function"
         },
         {
           "name": "lockIcon",
-
           "type": "function"
         },
         {
           "name": "lockColor",
-
           "type": "function"
         },
         {
           "name": "shuffle",
-
           "type": "function"
         },
         {
           "name": "setVerdict",
-
           "type": "function"
         },
         {
           "name": "resultIcon",
-
           "type": "function"
         },
         {
           "name": "resultColor",
-
           "type": "function"
         }
       ]
@@ -3737,67 +3611,86 @@
       "items": [
         {
           "name": "customerControl",
-
+          "startPosition": { "row": 24, "column": 2 },
+          "endPosition": { "row": 24, "column": 104 },
           "type": "attribute"
         },
         {
           "name": "messageControl",
-
+          "startPosition": { "row": 25, "column": 2 },
+          "endPosition": { "row": 25, "column": 122 },
+          "type": "attribute"
+        },
+        {
+          "name": "fileControl",
+          "startPosition": { "row": 26, "column": 2 },
+          "endPosition": { "row": 26, "column": 70 },
           "type": "attribute"
         },
         {
           "name": "fileUploadError",
-
+          "startPosition": { "row": 27, "column": 2 },
+          "endPosition": { "row": 27, "column": 41 },
           "type": "attribute"
         },
         {
           "name": "uploader",
-
+          "startPosition": { "row": 28, "column": 2 },
+          "endPosition": { "row": 33, "column": 4 },
           "type": "attribute"
         },
         {
           "name": "userEmail",
-
+          "startPosition": { "row": 35, "column": 2 },
+          "endPosition": { "row": 35, "column": 35 },
           "type": "attribute"
         },
         {
           "name": "complaint",
-
+          "startPosition": { "row": 36, "column": 2 },
+          "endPosition": { "row": 36, "column": 35 },
           "type": "attribute"
         },
         {
           "name": "confirmation",
-
+          "startPosition": { "row": 37, "column": 2 },
+          "endPosition": { "row": 37, "column": 26 },
           "type": "attribute"
         },
         {
           "name": "constructor",
-
+          "startPosition": { "row": 39, "column": 2 },
+          "endPosition": { "row": 39, "column": 215 },
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
+          "startPosition": { "row": 41, "column": 2 },
+          "endPosition": { "row": 56, "column": 3 },
           "type": "function"
         },
         {
           "name": "initComplaint",
-
+          "startPosition": { "row": 58, "column": 2 },
+          "endPosition": { "row": 68, "column": 3 },
           "type": "function"
         },
         {
           "name": "save",
-
+          "startPosition": { "row": 70, "column": 2 },
+          "endPosition": { "row": 77, "column": 3 },
           "type": "function"
         },
         {
           "name": "saveComplaint",
-
+          "startPosition": { "row": 79, "column": 2 },
+          "endPosition": { "row": 91, "column": 3 },
           "type": "function"
         },
         {
           "name": "resetForm",
-
+          "startPosition": { "row": 93, "column": 2 },
+          "endPosition": { "row": 98, "column": 3 },
           "type": "function"
         }
       ]
@@ -3811,87 +3704,70 @@
       "items": [
         {
           "name": "authorControl",
-
           "type": "attribute"
         },
         {
           "name": "feedbackControl",
-
           "type": "attribute"
         },
         {
           "name": "captchaControl",
-
           "type": "attribute"
         },
         {
           "name": "userIdControl",
-
           "type": "attribute"
         },
         {
           "name": "rating",
-
           "type": "attribute"
         },
         {
           "name": "feedback",
-
           "type": "attribute"
         },
         {
           "name": "captcha",
-
           "type": "attribute"
         },
         {
           "name": "captchaId",
-
           "type": "attribute"
         },
         {
           "name": "confirmation",
-
           "type": "attribute"
         },
         {
           "name": "error",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "getNewCaptcha",
-
           "type": "function"
         },
         {
           "name": "save",
-
           "type": "function"
         },
         {
           "name": "resetForm",
-
           "type": "function"
         },
         {
           "name": "resetCaptcha",
-
           "type": "function"
         },
         {
           "name": "formatRating",
-
           "type": "function"
         }
       ]
@@ -3934,7 +3810,6 @@
         { "name": "invalidateSession", "type": "function" },
         {
           "name": "parseRedirectUrlParams",
-
           "type": "function"
         }
       ]
@@ -3948,7 +3823,6 @@
       "items": [
         {
           "name": "parseExifData",
-
           "type": "function"
         }
       ]
@@ -3962,17 +3836,14 @@
       "items": [
         {
           "name": "login",
-
           "type": "function"
         },
         {
           "name": "register",
-
           "type": "function"
         },
         {
           "name": "getStatus",
-
           "type": "function"
         }
       ]
@@ -3986,37 +3857,30 @@
       "items": [
         {
           "name": "readFiles",
-
           "type": "function"
         },
         {
           "name": "writeToFile",
-
           "type": "function"
         },
         {
           "name": "getDataFromFile",
-
           "type": "function"
         },
         {
           "name": "filterString",
-
           "type": "function"
         },
         {
           "name": "checkDiffs",
-
           "type": "function"
         },
         {
           "name": "seePatch",
-
           "type": "function"
         },
         {
           "name": "checkData",
-
           "type": "function"
         }
       ]
@@ -4030,12 +3894,14 @@
       "items": [
         {
           "name": "key",
-
+          "startPosition": { "row": 50, "column": 2 },
+          "endPosition": { "row": 50, "column": 13 },
           "type": "attribute"
         },
         {
           "name": "selectedFix",
-
+          "startPosition": { "row": 51, "column": 2 },
+          "endPosition": { "row": 51, "column": 21 },
           "type": "attribute"
         }
       ]
@@ -4049,7 +3915,6 @@
       "items": [
         {
           "name": "key",
-
           "type": "attribute"
         }
       ]
@@ -4063,12 +3928,10 @@
       "items": [
         {
           "name": "fixes",
-
           "type": "attribute"
         },
         {
           "name": "correct",
-
           "type": "attribute"
         }
       ]
@@ -4082,17 +3945,14 @@
       "items": [
         {
           "name": "readFixes",
-
           "type": "function"
         },
         {
           "name": "serveCodeFixes",
-
           "type": "function"
         },
         {
           "name": "checkCorrectFix",
-
           "type": "function"
         }
       ]
@@ -4106,22 +3966,28 @@
       "items": [
         {
           "name": "getVideo",
-
           "type": "function"
         },
         {
           "name": "promotionVideo",
-
+          "type": "function"
+        },
+        {
+          "name": "favicon",
+          "startPosition": { "row": 72, "column": 2 },
+          "endPosition": { "row": 74, "column": 3 },
           "type": "function"
         },
         {
           "name": "getSubsFromFile",
-
+          "startPosition": { "row": 77, "column": 0 },
+          "endPosition": { "row": 81, "column": 1 },
           "type": "function"
         },
         {
           "name": "videoPath",
-
+          "startPosition": { "row": 83, "column": 0 },
+          "endPosition": { "row": 89, "column": 1 },
           "type": "function"
         }
       ]
@@ -4135,132 +4001,110 @@
       "items": [
         {
           "name": "emptyUserRegistration",
-
           "type": "function"
         },
         {
           "name": "forgedFeedbackChallenge",
-
           "type": "function"
         },
         {
           "name": "captchaBypassChallenge",
-
           "type": "function"
         },
         {
           "name": "registerAdminChallenge",
-
           "type": "function"
         },
         {
           "name": "passwordRepeatChallenge",
-
           "type": "function"
         },
         {
           "name": "accessControlChallenges",
-
           "type": "function"
         },
         {
           "name": "errorHandlingChallenge",
-
           "type": "function"
         },
         {
           "name": "jwtChallenges",
-
           "type": "function"
         },
         {
           "name": "serverSideChallenges",
-
           "type": "function"
         },
         {
           "name": "jwtChallenge",
-
           "type": "function"
         },
         {
           "name": "hasAlgorithm",
-
           "type": "function"
         },
         {
           "name": "hasEmail",
-
+          "type": "function"
+        },
+        {
+          "name": "databaseRelatedChallenges",
           "type": "function"
         },
         {
           "name": "changeProductChallenge",
-
           "type": "function"
         },
         {
           "name": "feedbackChallenge",
-
           "type": "function"
         },
         {
           "name": "knownVulnerableComponentChallenge",
-
           "type": "function"
         },
         {
           "name": "knownVulnerableComponents",
-
           "type": "function"
         },
         {
           "name": "weirdCryptoChallenge",
-
           "type": "function"
         },
         {
           "name": "weirdCryptos",
-
           "type": "function"
         },
         {
           "name": "typosquattingNpmChallenge",
-
           "type": "function"
         },
         {
           "name": "typosquattingAngularChallenge",
-
           "type": "function"
         },
         {
           "name": "hiddenImageChallenge",
-
           "type": "function"
         },
         {
           "name": "supplyChainAttackChallenge",
-
           "type": "function"
         },
         {
           "name": "eslintScopeVulnIds",
-
           "type": "function"
         },
         {
           "name": "dlpPastebinDataLeakChallenge",
-
           "type": "function"
         },
         {
           "name": "csafChallenge",
-
           "type": "function"
         },
         {
           "name": "dangerousIngredients",
-
           "type": "function"
         }
       ]
@@ -4274,12 +4118,10 @@
       "items": [
         {
           "name": "getUserProfile",
-
           "type": "function"
         },
         {
           "name": "favicon",
-
           "type": "function"
         }
       ]
@@ -4293,7 +4135,6 @@
       "items": [
         {
           "name": "walkRecursivelyInArray",
-
           "type": "function"
         }
       ]
@@ -4307,7 +4148,6 @@
       "items": [
         {
           "name": "key",
-
           "type": "attribute"
         }
       ]
@@ -4321,12 +4161,10 @@
       "items": [
         {
           "name": "fixes",
-
           "type": "attribute"
         },
         {
           "name": "correct",
-
           "type": "attribute"
         }
       ]
@@ -4340,7 +4178,6 @@
       "items": [
         {
           "name": "productReviews",
-
           "type": "function"
         }
       ]
@@ -4354,12 +4191,10 @@
       "items": [
         {
           "name": "resetPassword",
-
           "type": "function"
         },
         {
           "name": "verifySecurityAnswerChallenges",
-
           "type": "function"
         }
       ]
@@ -4373,12 +4208,10 @@
       "items": [
         {
           "name": "performRedirect",
-
           "type": "function"
         },
         {
           "name": "isUnintendedRedirect",
-
           "type": "function"
         }
       ]
@@ -4392,32 +4225,26 @@
       "items": [
         {
           "name": "UserId",
-
           "type": "attribute"
         },
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "fullName",
-
           "type": "attribute"
         },
         {
           "name": "cardNum",
-
           "type": "attribute"
         },
         {
           "name": "expMonth",
-
           "type": "attribute"
         },
         {
           "name": "expYear",
-
           "type": "attribute"
         }
       ]
@@ -4431,32 +4258,26 @@
       "items": [
         {
           "name": "quantity",
-
           "type": "attribute"
         },
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "name",
-
           "type": "attribute"
         },
         {
           "name": "price",
-
           "type": "attribute"
         },
         {
           "name": "total",
-
           "type": "attribute"
         },
         {
           "name": "bonus",
-
           "type": "attribute"
         }
       ]
@@ -4470,12 +4291,10 @@
       "items": [
         {
           "name": "placeOrder",
-
           "type": "function"
         },
         {
           "name": "calculateApplicableDiscount",
-
           "type": "function"
         }
       ]
@@ -4488,18 +4307,27 @@
       "filePath": "/routes/login.ts",
       "items": [
         {
+          "name": "login",
+          "startPosition": { "row": 19, "column": 17 },
+          "endPosition": { "row": 84, "column": 1 },
+          "type": "function"
+        },
+        {
           "name": "afterLogin",
-
+          "startPosition": { "row": 20, "column": 2 },
+          "endPosition": { "row": 31, "column": 3 },
           "type": "function"
         },
         {
           "name": "verifyPreLoginChallenges",
-
+          "startPosition": { "row": 60, "column": 2 },
+          "endPosition": { "row": 67, "column": 3 },
           "type": "function"
         },
         {
           "name": "verifyPostLoginChallenges",
-
+          "startPosition": { "row": 69, "column": 2 },
+          "endPosition": { "row": 83, "column": 3 },
           "type": "function"
         }
       ]
@@ -4513,7 +4341,10 @@
       "items": [
         {
           "name": "imageCaptchas",
-
+          "type": "function"
+        },
+        {
+          "name": "verifyCaptcha",
           "type": "function"
         }
       ]
@@ -4527,27 +4358,22 @@
       "items": [
         {
           "name": "ensureFileIsPassed",
-
           "type": "function"
         },
         {
           "name": "handleZipFileUpload",
-
           "type": "function"
         },
         {
           "name": "checkUploadSize",
-
           "type": "function"
         },
         {
           "name": "checkFileType",
-
           "type": "function"
         },
         {
           "name": "handleXmlUpload",
-
           "type": "function"
         }
       ]
@@ -4561,22 +4387,18 @@
       "items": [
         {
           "name": "servePublicFiles",
-
           "type": "function"
         },
         {
           "name": "verify",
-
           "type": "function"
         },
         {
           "name": "verifySuccessfulPoisonNullByteExploit",
-
           "type": "function"
         },
         {
           "name": "endsWithAllowlistedFileType",
-
           "type": "function"
         }
       ]
@@ -4590,17 +4412,14 @@
       "items": [
         {
           "name": "layout",
-
           "type": "attribute"
         },
         {
           "name": "email",
-
           "type": "attribute"
         },
         {
           "name": "securityAnswer",
-
           "type": "attribute"
         }
       ]
@@ -4614,32 +4433,26 @@
       "items": [
         {
           "name": "initialize",
-
           "type": "function"
         },
         {
           "name": "processQuery",
-
           "type": "function"
         },
         {
           "name": "setUserName",
-
           "type": "function"
         },
         {
           "name": "status",
-
           "type": "function"
         },
         {
           "name": "respond",
-
           "type": "function"
         },
         {
           "name": "getUserFromJwt",
-
           "type": "function"
         }
       ]
@@ -4653,22 +4466,18 @@
       "items": [
         {
           "name": "addBasketItem",
-
           "type": "function"
         },
         {
           "name": "quantityCheckBeforeBasketItemAddition",
-
           "type": "function"
         },
         {
           "name": "quantityCheckBeforeBasketItemUpdate",
-
           "type": "function"
         },
         {
           "name": "quantityCheck",
-
           "type": "function"
         }
       ]
@@ -4682,22 +4491,18 @@
       "items": [
         {
           "name": "addBasketItem",
-
           "type": "function"
         },
         {
           "name": "quantityCheckBeforeBasketItemAddition",
-
           "type": "function"
         },
         {
           "name": "quantityCheckBeforeBasketItemUpdate",
-
           "type": "function"
         },
         {
           "name": "quantityCheck",
-
           "type": "function"
         }
       ]
@@ -4711,7 +4516,6 @@
       "items": [
         {
           "name": "retrieveUserList",
-
           "type": "function"
         }
       ]
@@ -4725,22 +4529,18 @@
       "items": [
         {
           "name": "verify",
-
           "type": "function"
         },
         {
           "name": "status",
-
           "type": "function"
         },
         {
           "name": "setup",
-
           "type": "function"
         },
         {
           "name": "disable",
-
           "type": "function"
         }
       ]
@@ -4754,17 +4554,14 @@
       "items": [
         {
           "name": "UserId",
-
           "type": "attribute"
         },
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "balance",
-
           "type": "attribute"
         }
       ]
@@ -4778,52 +4575,42 @@
       "items": [
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "username",
-
           "type": "attribute"
         },
         {
           "name": "email",
-
           "type": "attribute"
         },
         {
           "name": "password",
-
           "type": "attribute"
         },
         {
           "name": "role",
-
           "type": "attribute"
         },
         {
           "name": "deluxeToken",
-
           "type": "attribute"
         },
         {
           "name": "lastLoginIp",
-
           "type": "attribute"
         },
         {
           "name": "profileImage",
-
           "type": "attribute"
         },
         {
           "name": "totpSecret",
-
           "type": "attribute"
         },
         {
           "name": "isActive",
-
           "type": "attribute"
         }
       ]
@@ -4837,12 +4624,10 @@
       "items": [
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "question",
-
           "type": "attribute"
         }
       ]
@@ -4856,22 +4641,18 @@
       "items": [
         {
           "name": "SecurityQuestionId",
-
           "type": "attribute"
         },
         {
           "name": "UserId",
-
           "type": "attribute"
         },
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "answer",
-
           "type": "attribute"
         }
       ]
@@ -4885,32 +4666,26 @@
       "items": [
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "UserId",
-
           "type": "attribute"
         },
         {
           "name": "AddressId",
-
           "type": "attribute"
         },
         {
           "name": "quantity",
-
           "type": "attribute"
         },
         {
           "name": "isPickup",
-
           "type": "attribute"
         },
         {
           "name": "date",
-
           "type": "attribute"
         }
       ]
@@ -4924,22 +4699,18 @@
       "items": [
         {
           "name": "ProductId",
-
           "type": "attribute"
         },
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "quantity",
-
           "type": "attribute"
         },
         {
           "name": "limitPerUser",
-
           "type": "attribute"
         }
       ]
@@ -4953,37 +4724,30 @@
       "items": [
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "name",
-
           "type": "attribute"
         },
         {
           "name": "description",
-
           "type": "attribute"
         },
         {
           "name": "price",
-
           "type": "attribute"
         },
         {
           "name": "deluxePrice",
-
           "type": "attribute"
         },
         {
           "name": "image",
-
           "type": "attribute"
         },
         {
           "name": "BasketItem",
-
           "type": "attribute"
         }
       ]
@@ -4997,17 +4761,14 @@
       "items": [
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "UserId",
-
           "type": "attribute"
         },
         {
           "name": "deletionRequested",
-
           "type": "attribute"
         }
       ]
@@ -5021,22 +4782,18 @@
       "items": [
         {
           "name": "UserId",
-
           "type": "attribute"
         },
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "caption",
-
           "type": "attribute"
         },
         {
           "name": "imagePath",
-
           "type": "attribute"
         }
       ]
@@ -5050,27 +4807,22 @@
       "items": [
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "image",
-
           "type": "attribute"
         },
         {
           "name": "answer",
-
           "type": "attribute"
         },
         {
           "name": "UserId",
-
           "type": "attribute"
         },
         {
           "name": "createdAt",
-
           "type": "attribute"
         }
       ]
@@ -5084,22 +4836,18 @@
       "items": [
         {
           "name": "UserId",
-
           "type": "attribute"
         },
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "comment",
-
           "type": "attribute"
         },
         {
           "name": "rating",
-
           "type": "attribute"
         }
       ]
@@ -5113,32 +4861,26 @@
       "items": [
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "name",
-
           "type": "attribute"
         },
         {
           "name": "price",
-
           "type": "attribute"
         },
         {
           "name": "deluxePrice",
-
           "type": "attribute"
         },
         {
           "name": "eta",
-
           "type": "attribute"
         },
         {
           "name": "icon",
-
           "type": "attribute"
         }
       ]
@@ -5152,22 +4894,18 @@
       "items": [
         {
           "name": "UserId",
-
           "type": "attribute"
         },
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "message",
-
           "type": "attribute"
         },
         {
           "name": "file",
-
           "type": "attribute"
         }
       ]
@@ -5181,72 +4919,58 @@
       "items": [
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "name",
-
           "type": "attribute"
         },
         {
           "name": "category",
-
           "type": "attribute"
         },
         {
           "name": "description",
-
           "type": "attribute"
         },
         {
           "name": "difficulty",
-
           "type": "attribute"
         },
         {
           "name": "hint",
-
           "type": "attribute"
         },
         {
           "name": "hintUrl",
-
           "type": "attribute"
         },
         {
           "name": "mitigationUrl",
-
           "type": "attribute"
         },
         {
           "name": "key",
-
           "type": "attribute"
         },
         {
           "name": "disabledEnv",
-
           "type": "attribute"
         },
         {
           "name": "tutorialOrder",
-
           "type": "attribute"
         },
         {
           "name": "tags",
-
           "type": "attribute"
         },
         {
           "name": "solved",
-
           "type": "attribute"
         },
         {
           "name": "codingChallengeStatus",
-
           "type": "attribute"
         }
       ]
@@ -5260,32 +4984,26 @@
       "items": [
         {
           "name": "UserId",
-
           "type": "attribute"
         },
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "fullName",
-
           "type": "attribute"
         },
         {
           "name": "cardNum",
-
           "type": "attribute"
         },
         {
           "name": "expMonth",
-
           "type": "attribute"
         },
         {
           "name": "expYear",
-
           "type": "attribute"
         }
       ]
@@ -5299,17 +5017,14 @@
       "items": [
         {
           "name": "captchaId",
-
           "type": "attribute"
         },
         {
           "name": "captcha",
-
           "type": "attribute"
         },
         {
           "name": "answer",
-
           "type": "attribute"
         }
       ]
@@ -5323,22 +5038,18 @@
       "items": [
         {
           "name": "ProductId",
-
           "type": "attribute"
         },
         {
           "name": "BasketId",
-
           "type": "attribute"
         },
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "quantity",
-
           "type": "attribute"
         }
       ]
@@ -5352,22 +5063,18 @@
       "items": [
         {
           "name": "UserId",
-
           "type": "attribute"
         },
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "coupon",
-
           "type": "attribute"
         },
         {
           "name": "Products",
-
           "type": "attribute"
         }
       ]
@@ -5381,47 +5088,38 @@
       "items": [
         {
           "name": "UserId",
-
           "type": "attribute"
         },
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "fullName",
-
           "type": "attribute"
         },
         {
           "name": "mobileNum",
-
           "type": "attribute"
         },
         {
           "name": "zipCode",
-
           "type": "attribute"
         },
         {
           "name": "streetAddress",
-
           "type": "attribute"
         },
         {
           "name": "city",
-
           "type": "attribute"
         },
         {
           "name": "state",
-
           "type": "attribute"
         },
         {
           "name": "country",
-
           "type": "attribute"
         }
       ]
@@ -5435,7 +5133,6 @@
       "items": [
         {
           "name": "notify",
-
           "type": "function"
         }
       ]
@@ -5449,12 +5146,10 @@
       "items": [
         {
           "name": "enabled",
-
           "type": "attribute"
         },
         {
           "name": "disabledBecause",
-
           "type": "attribute"
         }
       ]
@@ -5468,17 +5163,14 @@
       "items": [
         {
           "name": "expectChallengeSolved",
-
-          "type": "attribute"
+          "type": "function"
         },
         {
           "name": "login",
-
-          "type": "attribute"
+          "type": "function"
         },
         {
           "name": "eachSeries",
-
           "type": "attribute"
         }
       ]
@@ -5492,12 +5184,10 @@
       "items": [
         {
           "name": "getWalletBalance",
-
           "type": "function"
         },
         {
           "name": "addWalletBalance",
-
           "type": "function"
         }
       ]
@@ -5511,7 +5201,6 @@
       "items": [
         {
           "name": "updateUserProfile",
-
           "type": "function"
         }
       ]
@@ -5525,7 +5214,6 @@
       "items": [
         {
           "name": "trackOrder",
-
           "type": "function"
         }
       ]
@@ -5538,8 +5226,11 @@
       "filePath": "/routes/showProductReviews.ts",
       "items": [
         {
+          "name": "sleep",
+          "type": "function"
+        },
+        {
           "name": "productReviews",
-
           "type": "function"
         }
       ]
@@ -5553,7 +5244,6 @@
       "items": [
         {
           "name": "securityQuestion",
-
           "type": "function"
         }
       ]
@@ -5567,7 +5257,6 @@
       "items": [
         {
           "name": "parent",
-
           "type": "attribute"
         }
       ]
@@ -5581,7 +5270,6 @@
       "items": [
         {
           "name": "searchProducts",
-
           "type": "function"
         }
       ]
@@ -5595,7 +5283,6 @@
       "items": [
         {
           "name": "saveLoginIp",
-
           "type": "function"
         }
       ]
@@ -5609,17 +5296,14 @@
       "items": [
         {
           "name": "restoreProgress",
-
           "type": "function"
         },
         {
           "name": "restoreProgressFindIt",
-
           "type": "function"
         },
         {
           "name": "restoreProgressFixIt",
-
           "type": "function"
         }
       ]
@@ -5633,7 +5317,6 @@
       "items": [
         {
           "name": "repeatNotification",
-
           "type": "function"
         }
       ]
@@ -5647,7 +5330,6 @@
       "items": [
         {
           "name": "serveQuarantineFiles",
-
           "type": "function"
         }
       ]
@@ -5661,7 +5343,6 @@
       "items": [
         {
           "name": "profileImageUrlUpload",
-
           "type": "function"
         }
       ]
@@ -5675,7 +5356,6 @@
       "items": [
         {
           "name": "fileUpload",
-
           "type": "function"
         }
       ]
@@ -5689,7 +5369,6 @@
       "items": [
         {
           "name": "servePrivacyPolicyProof",
-
           "type": "function"
         }
       ]
@@ -5703,7 +5382,6 @@
       "items": [
         {
           "name": "servePremiumContent",
-
           "type": "function"
         }
       ]
@@ -5717,17 +5395,14 @@
       "items": [
         {
           "name": "getPaymentMethods",
-
           "type": "function"
         },
         {
           "name": "getPaymentMethodById",
-
           "type": "function"
         },
         {
           "name": "delPaymentMethodById",
-
           "type": "function"
         }
       ]
@@ -5741,17 +5416,14 @@
       "items": [
         {
           "name": "orderHistory",
-
           "type": "function"
         },
         {
           "name": "allOrders",
-
           "type": "function"
         },
         {
           "name": "toggleDeliveryStatus",
-
           "type": "function"
         }
       ]
@@ -5765,12 +5437,10 @@
       "items": [
         {
           "name": "nftMintListener",
-
           "type": "function"
         },
         {
           "name": "walletNFTVerify",
-
           "type": "function"
         }
       ]
@@ -5784,22 +5454,32 @@
       "items": [
         {
           "name": "observeRequestMetricsMiddleware",
-
+          "startPosition": { "row": 38, "column": 42 },
+          "endPosition": { "row": 52, "column": 1 },
           "type": "function"
         },
         {
           "name": "observeFileUploadMetricsMiddleware",
-
+          "startPosition": { "row": 54, "column": 45 },
+          "endPosition": { "row": 63, "column": 1 },
           "type": "function"
         },
         {
           "name": "serveMetrics",
-
+          "startPosition": { "row": 65, "column": 23 },
+          "endPosition": { "row": 74, "column": 1 },
           "type": "function"
         },
         {
           "name": "observeMetrics",
-
+          "startPosition": { "row": 76, "column": 25 },
+          "endPosition": { "row": 231, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "updateLoop",
+          "startPosition": { "row": 143, "column": 2 },
+          "endPosition": { "row": 225, "column": 10 },
           "type": "function"
         }
       ]
@@ -5813,12 +5493,10 @@
       "items": [
         {
           "name": "addMemory",
-
           "type": "function"
         },
         {
           "name": "getMemories",
-
           "type": "function"
         }
       ]
@@ -5832,7 +5510,6 @@
       "items": [
         {
           "name": "serveLogFiles",
-
           "type": "function"
         }
       ]
@@ -5846,7 +5523,6 @@
       "items": [
         {
           "name": "productReviews",
-
           "type": "function"
         }
       ]
@@ -5860,12 +5536,10 @@
       "items": [
         {
           "name": "getLanguageList",
-
           "type": "function"
         },
         {
           "name": "calcPercentage",
-
           "type": "function"
         }
       ]
@@ -5879,7 +5553,6 @@
       "items": [
         {
           "name": "serveKeyFiles",
-
           "type": "function"
         }
       ]
@@ -5893,7 +5566,6 @@
       "items": [
         {
           "name": "serveEasterEgg",
-
           "type": "function"
         }
       ]
@@ -5907,12 +5579,10 @@
       "items": [
         {
           "name": "upgradeToDeluxe",
-
           "type": "function"
         },
         {
           "name": "deluxeMembershipStatus",
-
           "type": "function"
         }
       ]
@@ -5926,12 +5596,10 @@
       "items": [
         {
           "name": "getDeliveryMethods",
-
           "type": "function"
         },
         {
           "name": "getDeliveryMethod",
-
           "type": "function"
         }
       ]
@@ -5945,7 +5613,6 @@
       "items": [
         {
           "name": "dataExport",
-
           "type": "function"
         }
       ]
@@ -5959,7 +5626,6 @@
       "items": [
         {
           "name": "retrieveLoggedInUser",
-
           "type": "function"
         }
       ]
@@ -5973,7 +5639,6 @@
       "items": [
         {
           "name": "productReviews",
-
           "type": "function"
         }
       ]
@@ -5987,7 +5652,6 @@
       "items": [
         {
           "name": "applyCoupon",
-
           "type": "function"
         }
       ]
@@ -6001,7 +5665,6 @@
       "items": [
         {
           "name": "countryMapping",
-
           "type": "function"
         }
       ]
@@ -6015,17 +5678,14 @@
       "items": [
         {
           "name": "continueCode",
-
           "type": "function"
         },
         {
           "name": "continueCodeFindIt",
-
           "type": "function"
         },
         {
           "name": "continueCodeFixIt",
-
           "type": "function"
         }
       ]
@@ -6039,12 +5699,10 @@
       "items": [
         {
           "name": "checkKeys",
-
           "type": "function"
         },
         {
           "name": "nftUnlocked",
-
           "type": "function"
         }
       ]
@@ -6058,7 +5716,6 @@
       "items": [
         {
           "name": "changePassword",
-
           "type": "function"
         }
       ]
@@ -6072,7 +5729,10 @@
       "items": [
         {
           "name": "captchas",
-
+          "type": "function"
+        },
+        {
+          "name": "verifyCaptcha",
           "type": "function"
         }
       ]
@@ -6086,7 +5746,6 @@
       "items": [
         {
           "name": "rawBody",
-
           "type": "attribute"
         }
       ]
@@ -6100,7 +5759,6 @@
       "items": [
         {
           "name": "retrieveBasket",
-
           "type": "function"
         }
       ]
@@ -6114,17 +5772,14 @@
       "items": [
         {
           "name": "b2bOrder",
-
           "type": "function"
         },
         {
           "name": "uniqueOrderNumber",
-
           "type": "function"
         },
         {
           "name": "dateTwoWeeksFromNow",
-
           "type": "function"
         }
       ]
@@ -6138,7 +5793,6 @@
       "items": [
         {
           "name": "retrieveAppVersion",
-
           "type": "function"
         }
       ]
@@ -6152,7 +5806,6 @@
       "items": [
         {
           "name": "retrieveAppConfiguration",
-
           "type": "function"
         }
       ]
@@ -6166,7 +5819,6 @@
       "items": [
         {
           "name": "serveAngularClient",
-
           "type": "function"
         }
       ]
@@ -6180,17 +5832,14 @@
       "items": [
         {
           "name": "getAddress",
-
           "type": "function"
         },
         {
           "name": "getAddressById",
-
           "type": "function"
         },
         {
           "name": "delAddressById",
-
           "type": "function"
         }
       ]
@@ -6203,123 +5852,159 @@
       "filePath": "/lib/utils.ts",
       "items": [
         {
+          "name": "isGitpod",
+          "startPosition": { "row": 22, "column": 0 },
+          "endPosition": { "row": 22, "column": 28 },
+          "type": "function"
+        },
+        {
           "name": "queryResultToJson",
-
+          "startPosition": { "row": 26, "column": 7 },
+          "endPosition": { "row": 34, "column": 1 },
           "type": "function"
         },
         {
           "name": "isUrl",
-
+          "startPosition": { "row": 36, "column": 7 },
+          "endPosition": { "row": 38, "column": 1 },
           "type": "function"
         },
         {
           "name": "startsWith",
-
+          "startPosition": { "row": 40, "column": 7 },
+          "endPosition": { "row": 40, "column": 98 },
           "type": "function"
         },
         {
           "name": "endsWith",
-
+          "startPosition": { "row": 42, "column": 7 },
+          "endPosition": { "row": 42, "column": 133 },
           "type": "function"
         },
         {
           "name": "contains",
-
+          "startPosition": { "row": 44, "column": 7 },
+          "endPosition": { "row": 44, "column": 187 },
           "type": "function"
         },
         {
           "name": "containsEscaped",
-
+          "startPosition": { "row": 46, "column": 0 },
+          "endPosition": { "row": 48, "column": 1 },
           "type": "function"
         },
         {
           "name": "containsOrEscaped",
-
+          "startPosition": { "row": 50, "column": 0 },
+          "endPosition": { "row": 52, "column": 1 },
           "type": "function"
         },
         {
           "name": "unquote",
-
+          "startPosition": { "row": 54, "column": 0 },
+          "endPosition": { "row": 60, "column": 1 },
           "type": "function"
         },
         {
           "name": "trunc",
-
+          "startPosition": { "row": 62, "column": 0 },
+          "endPosition": { "row": 65, "column": 1 },
           "type": "function"
         },
         {
           "name": "version",
-
+          "startPosition": { "row": 67, "column": 7 },
+          "endPosition": { "row": 74, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "getCtfKey",
+          "startPosition": { "row": 77, "column": 0 },
+          "endPosition": { "row": 87, "column": 1 },
           "type": "function"
         },
         {
           "name": "ctfFlag",
-
+          "startPosition": { "row": 88, "column": 7 },
+          "endPosition": { "row": 93, "column": 1 },
           "type": "function"
         },
         {
           "name": "toMMMYY",
-
+          "startPosition": { "row": 95, "column": 7 },
+          "endPosition": { "row": 99, "column": 1 },
           "type": "function"
         },
         {
           "name": "toISO8601",
-
+          "startPosition": { "row": 101, "column": 7 },
+          "endPosition": { "row": 110, "column": 1 },
           "type": "function"
         },
         {
           "name": "extractFilename",
-
+          "startPosition": { "row": 112, "column": 7 },
+          "endPosition": { "row": 118, "column": 1 },
           "type": "function"
         },
         {
           "name": "downloadToFile",
-
+          "startPosition": { "row": 120, "column": 7 },
+          "endPosition": { "row": 127, "column": 1 },
           "type": "function"
         },
         {
           "name": "jwtFrom",
-
+          "startPosition": { "row": 129, "column": 7 },
+          "endPosition": { "row": 142, "column": 1 },
           "type": "function"
         },
         {
           "name": "randomHexString",
-
+          "startPosition": { "row": 144, "column": 7 },
+          "endPosition": { "row": 146, "column": 1 },
           "type": "function"
         },
         {
           "name": "getChallengeEnablementStatus",
-
+          "startPosition": { "row": 157, "column": 7 },
+          "endPosition": { "row": 190, "column": 1 },
           "type": "function"
         },
         {
           "name": "isChallengeEnabled",
-
+          "startPosition": { "row": 191, "column": 7 },
+          "endPosition": { "row": 194, "column": 1 },
           "type": "function"
         },
         {
           "name": "parseJsonCustom",
-
+          "startPosition": { "row": 196, "column": 7 },
+          "endPosition": { "row": 208, "column": 1 },
           "type": "function"
         },
         {
           "name": "toSimpleIpAddress",
-
+          "startPosition": { "row": 210, "column": 7 },
+          "endPosition": { "row": 218, "column": 1 },
           "type": "function"
         },
         {
           "name": "getErrorMessage",
-
+          "startPosition": { "row": 220, "column": 7 },
+          "endPosition": { "row": 223, "column": 1 },
           "type": "function"
         },
         {
           "name": "matchesSystemIniFile",
-
+          "startPosition": { "row": 225, "column": 7 },
+          "endPosition": { "row": 228, "column": 1 },
           "type": "function"
         },
         {
           "name": "matchesEtcPasswdFile",
-
+          "startPosition": { "row": 230, "column": 7 },
+          "endPosition": { "row": 233, "column": 1 },
           "type": "function"
         }
       ]
@@ -6333,37 +6018,30 @@
       "items": [
         {
           "name": "validatePreconditions",
-
           "type": "function"
         },
         {
           "name": "checkIfRunningOnSupportedNodeVersion",
-
           "type": "function"
         },
         {
           "name": "checkIfRunningOnSupportedOS",
-
           "type": "function"
         },
         {
           "name": "checkIfRunningOnSupportedCPU",
-
           "type": "function"
         },
         {
           "name": "checkIfDomainReachable",
-
           "type": "function"
         },
         {
           "name": "checkIfPortIsAvailable",
-
           "type": "function"
         },
         {
           "name": "checkIfRequiredFileExists",
-
           "type": "function"
         }
       ]
@@ -6376,53 +6054,75 @@
       "filePath": "/lib/startup/validateConfig.ts",
       "items": [
         {
+          "name": "validateConfig",
+          "startPosition": { "row": 26, "column": 0 },
+          "endPosition": { "row": 52, "column": 1 },
+          "type": "function"
+        },
+        {
           "name": "checkYamlSchema",
-
+          "startPosition": { "row": 54, "column": 7 },
+          "endPosition": { "row": 65, "column": 1 },
           "type": "function"
         },
         {
           "name": "checkMinimumRequiredNumberOfProducts",
-
+          "startPosition": { "row": 67, "column": 7 },
+          "endPosition": { "row": 74, "column": 1 },
           "type": "function"
         },
         {
           "name": "checkUnambiguousMandatorySpecialProducts",
-
+          "startPosition": { "row": 76, "column": 7 },
+          "endPosition": { "row": 90, "column": 1 },
           "type": "function"
         },
         {
           "name": "checkNecessaryExtraKeysOnSpecialProducts",
-
+          "startPosition": { "row": 92, "column": 7 },
+          "endPosition": { "row": 104, "column": 1 },
           "type": "function"
         },
         {
           "name": "checkUniqueSpecialOnProducts",
-
+          "startPosition": { "row": 106, "column": 7 },
+          "endPosition": { "row": 117, "column": 1 },
           "type": "function"
         },
         {
           "name": "checkMinimumRequiredNumberOfMemories",
-
+          "startPosition": { "row": 119, "column": 7 },
+          "endPosition": { "row": 126, "column": 1 },
           "type": "function"
         },
         {
           "name": "checkUnambiguousMandatorySpecialMemories",
-
+          "startPosition": { "row": 128, "column": 7 },
+          "endPosition": { "row": 141, "column": 1 },
           "type": "function"
         },
         {
           "name": "checkSpecialMemoriesHaveNoUserAssociated",
-
+          "startPosition": { "row": 143, "column": 7 },
+          "endPosition": { "row": 153, "column": 1 },
           "type": "function"
         },
         {
           "name": "checkUniqueSpecialOnMemories",
-
+          "startPosition": { "row": 155, "column": 7 },
+          "endPosition": { "row": 165, "column": 1 },
           "type": "function"
         },
         {
           "name": "checkForIllogicalCombos",
-
+          "startPosition": { "row": 167, "column": 7 },
+          "endPosition": { "row": 182, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "validateConfig",
+          "startPosition": { "row": 184, "column": 15 },
+          "endPosition": { "row": 184, "column": 29 },
           "type": "function"
         }
       ]
@@ -6436,12 +6136,10 @@
       "items": [
         {
           "name": "validateChatBot",
-
           "type": "function"
         },
         {
           "name": "checkIntentWithFunctionHandlerExists",
-
           "type": "function"
         }
       ]
@@ -6455,17 +6153,14 @@
       "items": [
         {
           "name": "_changed",
-
           "type": "attribute"
         },
         {
           "name": "rawAttributes",
-
           "type": "attribute"
         },
         {
           "name": "_previousDataValues",
-
           "type": "attribute"
         }
       ]
@@ -6479,7 +6174,6 @@
       "items": [
         {
           "name": "validate",
-
           "type": "attribute"
         }
       ]
@@ -6493,7 +6187,6 @@
       "items": [
         {
           "name": "makeKeyNonUpdatable",
-
           "type": "function"
         }
       ]
@@ -6507,7 +6200,6 @@
       "items": [
         {
           "name": "isWindows",
-
           "type": "function"
         }
       ]
@@ -6521,17 +6213,14 @@
       "items": [
         {
           "name": "hasDockerEnv",
-
           "type": "function"
         },
         {
           "name": "hasDockerCGroup",
-
           "type": "function"
         },
         {
           "name": "isDocker",
-
           "type": "function"
         }
       ]
@@ -6545,37 +6234,30 @@
       "items": [
         {
           "name": "tokenMap",
-
           "type": "attribute"
         },
         {
           "name": "idMap",
-
           "type": "attribute"
         },
         {
           "name": "put",
-
           "type": "function"
         },
         {
           "name": "get",
-
           "type": "function"
         },
         {
           "name": "tokenOf",
-
           "type": "function"
         },
         {
           "name": "from",
-
           "type": "function"
         },
         {
           "name": "updateFrom",
-
           "type": "function"
         }
       ]
@@ -6589,27 +6271,22 @@
       "items": [
         {
           "name": "status",
-
           "type": "attribute"
         },
         {
           "name": "data",
-
           "type": "attribute"
         },
         {
           "name": "iat",
-
           "type": "attribute"
         },
         {
           "name": "exp",
-
           "type": "attribute"
         },
         {
           "name": "bid",
-
           "type": "attribute"
         }
       ]
@@ -6623,117 +6300,94 @@
       "items": [
         {
           "name": "hash",
-
           "type": "function"
         },
         {
           "name": "hmac",
-
           "type": "function"
         },
         {
           "name": "cutOffPoisonNullByte",
-
           "type": "function"
         },
         {
           "name": "isAuthorized",
-
           "type": "function"
         },
         {
           "name": "denyAll",
-
           "type": "function"
         },
         {
           "name": "authorize",
-
           "type": "function"
         },
         {
           "name": "verify",
-
           "type": "function"
         },
         {
           "name": "decode",
-
           "type": "function"
         },
         {
           "name": "sanitizeHtml",
-
           "type": "function"
         },
         {
           "name": "sanitizeLegacy",
-
           "type": "function"
         },
         {
           "name": "sanitizeFilename",
-
           "type": "function"
         },
         {
           "name": "sanitizeSecure",
-
           "type": "function"
         },
         {
           "name": "userEmailFrom",
-
           "type": "function"
         },
         {
           "name": "generateCoupon",
-
           "type": "function"
         },
         {
           "name": "discountFromCoupon",
-
           "type": "function"
         },
         {
           "name": "hasValidFormat",
-
           "type": "function"
         },
         {
           "name": "isRedirectAllowed",
-
           "type": "function"
         },
         {
           "name": "deluxeToken",
-
           "type": "function"
         },
         {
           "name": "isAccounting",
-
           "type": "function"
         },
         {
           "name": "isDeluxe",
-
           "type": "function"
         },
         {
           "name": "isCustomer",
-
           "type": "function"
         },
         {
           "name": "appendUserId",
-
           "type": "function"
         },
         {
           "name": "updateAuthenticatedUsers",
-
           "type": "function"
         }
       ]
@@ -6747,37 +6401,30 @@
       "items": [
         {
           "name": "server",
-
           "type": "attribute"
         },
         {
           "name": "application",
-
           "type": "attribute"
         },
         {
           "name": "challenges",
-
           "type": "attribute"
         },
         {
           "name": "hackingInstructor",
-
           "type": "attribute"
         },
         {
           "name": "products",
-
           "type": "attribute"
         },
         {
           "name": "memories",
-
           "type": "attribute"
         },
         {
           "name": "ctf",
-
           "type": "attribute"
         }
       ]
@@ -6791,17 +6438,14 @@
       "items": [
         {
           "name": "showFlagsInNotifications",
-
           "type": "attribute"
         },
         {
           "name": "showCountryDetailsInNotifications",
-
           "type": "attribute"
         },
         {
           "name": "countryMapping",
-
           "type": "attribute"
         }
       ]
@@ -6815,37 +6459,30 @@
       "items": [
         {
           "name": "image",
-
           "type": "attribute"
         },
         {
           "name": "caption",
-
           "type": "attribute"
         },
         {
           "name": "user",
-
           "type": "attribute"
         },
         {
           "name": "geoStalkingMetaSecurityQuestion",
-
           "type": "attribute"
         },
         {
           "name": "geoStalkingMetaSecurityAnswer",
-
           "type": "attribute"
         },
         {
           "name": "geoStalkingVisualSecurityQuestion",
-
           "type": "attribute"
         },
         {
           "name": "geoStalkingVisualSecurityAnswer",
-
           "type": "attribute"
         }
       ]
@@ -6859,72 +6496,58 @@
       "items": [
         {
           "name": "name",
-
           "type": "attribute"
         },
         {
           "name": "price",
-
           "type": "attribute"
         },
         {
           "name": "deluxePrice",
-
           "type": "attribute"
         },
         {
           "name": "limitPerUser",
-
           "type": "attribute"
         },
         {
           "name": "description",
-
           "type": "attribute"
         },
         {
           "name": "image",
-
           "type": "attribute"
         },
         {
           "name": "reviews",
-
           "type": "attribute"
         },
         {
           "name": "urlForProductTamperingChallenge",
-
           "type": "attribute"
         },
         {
           "name": "useForChristmasSpecialChallenge",
-
           "type": "attribute"
         },
         {
           "name": "keywordsForPastebinDataLeakChallenge",
-
           "type": "attribute"
         },
         {
           "name": "deletedDate",
-
           "type": "attribute"
         },
         {
           "name": "quantity",
-
           "type": "attribute"
         },
         {
           "name": "fileForRetrieveBlueprintChallenge",
-
           "type": "attribute"
         },
         {
           "name": "exifForBlueprintChallenge",
-
           "type": "attribute"
         }
       ]
@@ -6938,17 +6561,14 @@
       "items": [
         {
           "name": "isEnabled",
-
           "type": "attribute"
         },
         {
           "name": "avatarImage",
-
           "type": "attribute"
         },
         {
           "name": "hintPlaybackSpeed",
-
           "type": "attribute"
         }
       ]
@@ -6962,52 +6582,42 @@
       "items": [
         {
           "name": "showSolvedNotifications",
-
           "type": "attribute"
         },
         {
           "name": "showHints",
-
           "type": "attribute"
         },
         {
           "name": "showMitigations",
-
           "type": "attribute"
         },
         {
           "name": "codingChallengesEnabled",
-
           "type": "attribute"
         },
         {
           "name": "restrictToTutorialsFirst",
-
           "type": "attribute"
         },
         {
           "name": "overwriteUrlForProductTamperingChallenge",
-
           "type": "attribute"
         },
         {
           "name": "xssBonusPayload",
-
           "type": "attribute"
         },
         {
           "name": "safetyOverride",
-
           "type": "attribute"
         },
         {
           "name": "showFeedbackButtons",
-
           "type": "attribute"
         },
         {
           "name": "csafHashValue",
-
           "type": "attribute"
         }
       ]
@@ -7021,107 +6631,86 @@
       "items": [
         {
           "name": "domain",
-
           "type": "attribute"
         },
         {
           "name": "name",
-
           "type": "attribute"
         },
         {
           "name": "logo",
-
           "type": "attribute"
         },
         {
           "name": "favicon",
-
           "type": "attribute"
         },
         {
           "name": "theme",
-
           "type": "attribute"
         },
         {
           "name": "showVersionNumber",
-
           "type": "attribute"
         },
         {
           "name": "showGitHubLinks",
-
           "type": "attribute"
         },
         {
           "name": "localBackupEnabled",
-
           "type": "attribute"
         },
         {
           "name": "numberOfRandomFakeUsers",
-
           "type": "attribute"
         },
         {
           "name": "altcoinName",
-
           "type": "attribute"
         },
         {
           "name": "privacyContactEmail",
-
           "type": "attribute"
         },
         {
           "name": "customMetricsPrefix",
-
           "type": "attribute"
         },
         {
           "name": "chatBot",
-
           "type": "attribute"
         },
         {
           "name": "social",
-
           "type": "attribute"
         },
         {
           "name": "recyclePage",
-
           "type": "attribute"
         },
         {
           "name": "welcomeBanner",
-
           "type": "attribute"
         },
         {
           "name": "cookieConsent",
-
           "type": "attribute"
         },
         {
           "name": "securityTxt",
-
           "type": "attribute"
         },
         {
           "name": "promotion",
-
           "type": "attribute"
         },
         {
           "name": "easterEggPlanet",
-
           "type": "attribute"
         },
         {
           "name": "googleOauth",
-
           "type": "attribute"
         }
       ]
@@ -7135,17 +6724,14 @@
       "items": [
         {
           "name": "port",
-
           "type": "attribute"
         },
         {
           "name": "basePath",
-
           "type": "attribute"
         },
         {
           "name": "baseUrl",
-
           "type": "attribute"
         }
       ]
@@ -7159,7 +6745,6 @@
       "items": [
         {
           "name": "constructor",
-
           "type": "function"
         }
       ]
@@ -7173,17 +6758,14 @@
       "items": [
         {
           "name": "snippet",
-
           "type": "attribute"
         },
         {
           "name": "vulnLines",
-
           "type": "attribute"
         },
         {
           "name": "neutralLines",
-
           "type": "attribute"
         }
       ]
@@ -7197,12 +6779,10 @@
       "items": [
         {
           "name": "path",
-
           "type": "attribute"
         },
         {
           "name": "content",
-
           "type": "attribute"
         }
       ]
@@ -7216,22 +6796,18 @@
       "items": [
         {
           "name": "findFilesWithCodeChallenges",
-
           "type": "function"
         },
         {
           "name": "getCodeChallengesFromFile",
-
           "type": "function"
         },
         {
           "name": "getCodingChallengeFromFileContent",
-
           "type": "function"
         },
         {
           "name": "getCodeChallenges",
-
           "type": "function"
         }
       ]
@@ -7245,47 +6821,38 @@
       "items": [
         {
           "name": "solveIf",
-
           "type": "function"
         },
         {
           "name": "solve",
-
           "type": "function"
         },
         {
           "name": "sendNotification",
-
           "type": "function"
         },
         {
           "name": "sendCodingChallengeNotification",
-
           "type": "function"
         },
         {
           "name": "notSolved",
-
           "type": "function"
         },
         {
           "name": "findChallengeByName",
-
           "type": "function"
         },
         {
           "name": "findChallengeById",
-
           "type": "function"
         },
         {
           "name": "solveFindIt",
-
           "type": "function"
         },
         {
           "name": "solveFixIt",
-
           "type": "function"
         }
       ]
@@ -7299,17 +6866,14 @@
       "items": [
         {
           "name": "productPrice",
-
           "type": "function"
         },
         {
           "name": "couponCode",
-
           "type": "function"
         },
         {
           "name": "testFunction",
-
           "type": "function"
         }
       ]
@@ -7323,47 +6887,38 @@
       "items": [
         {
           "name": "checkForPreSolveInteractions",
-
           "type": "function"
         },
         {
           "name": "calculateCheatScore",
-
           "type": "function"
         },
         {
           "name": "calculateFindItCheatScore",
-
           "type": "function"
         },
         {
           "name": "calculateFixItCheatScore",
-
           "type": "function"
         },
         {
           "name": "totalCheatScore",
-
           "type": "function"
         },
         {
           "name": "areCoupled",
-
           "type": "function"
         },
         {
           "name": "isTrivial",
-
           "type": "function"
         },
         {
           "name": "previous",
-
           "type": "function"
         },
         {
           "name": "checkForIdenticalSolvedChallenge",
-
           "type": "function"
         }
       ]
@@ -7377,52 +6932,42 @@
       "items": [
         {
           "name": "storeFindItVerdict",
-
           "type": "function"
         },
         {
           "name": "storeFixItVerdict",
-
           "type": "function"
         },
         {
           "name": "calculateFindItAccuracy",
-
           "type": "function"
         },
         {
           "name": "calculateFixItAccuracy",
-
           "type": "function"
         },
         {
           "name": "totalFindItAccuracy",
-
           "type": "function"
         },
         {
           "name": "totalFixItAccuracy",
-
           "type": "function"
         },
         {
           "name": "getFindItAttempts",
-
           "type": "function"
         },
         {
           "name": "totalAccuracy",
-
           "type": "function"
         },
         {
           "name": "calculateAccuracy",
-
           "type": "function"
         },
         {
           "name": "storeVerdict",
-
           "type": "function"
         }
       ]
@@ -7436,27 +6981,22 @@
       "items": [
         {
           "name": "text",
-
           "type": "attribute"
         },
         {
           "name": "fixture",
-
           "type": "attribute"
         },
         {
           "name": "fixtureAfter",
-
           "type": "attribute"
         },
         {
           "name": "unskippable",
-
           "type": "attribute"
         },
         {
           "name": "resolved",
-
           "type": "function"
         }
       ]
@@ -7470,12 +7010,10 @@
       "items": [
         {
           "name": "name",
-
           "type": "attribute"
         },
         {
           "name": "hints",
-
           "type": "attribute"
         }
       ]
@@ -7489,27 +7027,22 @@
       "items": [
         {
           "name": "loadHint",
-
           "type": "function"
         },
         {
           "name": "waitForDoubleClick",
-
           "type": "function"
         },
         {
           "name": "waitForCancel",
-
           "type": "function"
         },
         {
           "name": "hasInstructions",
-
           "type": "function"
         },
         {
           "name": "startHackingInstructorFor",
-
           "type": "function"
         }
       ]
@@ -7523,82 +7056,66 @@
       "items": [
         {
           "name": "sleep",
-
           "type": "function"
         },
         {
           "name": "waitForInputToHaveValue",
-
           "type": "function"
         },
         {
           "name": "waitForInputToNotHaveValue",
-
           "type": "function"
         },
         {
           "name": "waitForInputToNotHaveValueAndNotBeEmpty",
-
           "type": "function"
         },
         {
           "name": "waitForInputToNotBeEmpty",
-
           "type": "function"
         },
         {
           "name": "waitForElementToGetClicked",
-
           "type": "function"
         },
         {
           "name": "waitForElementsInnerHtmlToBe",
-
           "type": "function"
         },
         {
           "name": "waitInMs",
-
           "type": "function"
         },
         {
           "name": "waitForAngularRouteToBeVisited",
-
           "type": "function"
         },
         {
           "name": "waitForLogIn",
-
           "type": "function"
         },
         {
           "name": "waitForAdminLogIn",
-
           "type": "function"
         },
         {
           "name": "waitForLogOut",
-
           "type": "function"
         },
         {
           "name": "waitForDevTools",
-
           "type": "function"
         },
         {
           "name": "waitForSelectToHaveValue",
-
           "type": "function"
         },
         {
           "name": "waitForSelectToNotHaveValue",
-
           "type": "function"
         },
         {
           "name": "waitForRightUriQueryParamPair",
-
           "type": "function"
         }
       ]
@@ -7611,8 +7128,15 @@
       "filePath": "/frontend/src/confetti/index.ts",
       "items": [
         {
+          "name": "timeout",
+          "startPosition": { "row": 2, "column": 0 },
+          "endPosition": { "row": 6, "column": 1 },
+          "type": "function"
+        },
+        {
           "name": "shootConfetti",
-
+          "startPosition": { "row": 7, "column": 7 },
+          "endPosition": { "row": 41, "column": 1 },
           "type": "function"
         }
       ]
@@ -7626,47 +7150,38 @@
       "items": [
         {
           "name": "title",
-
           "type": "attribute"
         },
         {
           "name": "message",
-
           "type": "attribute"
         },
         {
           "name": "showHackingInstructor",
-
           "type": "attribute"
         },
         {
           "name": "showDismissBtn",
-
           "type": "attribute"
         },
         {
           "name": "welcomeBannerStatusCookieKey",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "startHackingInstructor",
-
           "type": "function"
         },
         {
           "name": "closeWelcome",
-
           "type": "function"
         }
       ]
@@ -7680,17 +7195,14 @@
       "items": [
         {
           "name": "welcomeBannerStatusCookieKey",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         }
       ]
@@ -7704,7 +7216,6 @@
       "items": [
         {
           "name": "constructor",
-
           "type": "function"
         }
       ]
@@ -7718,122 +7229,98 @@
       "items": [
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "userData",
-
           "type": "attribute"
         },
         {
           "name": "session",
-
           "type": "attribute"
         },
         {
           "name": "metamaskAddress",
-
           "type": "attribute"
         },
         {
           "name": "selectedContractName",
-
           "type": "attribute"
         },
         {
           "name": "compiledContracts",
-
           "type": "attribute"
         },
         {
           "name": "deployedContractAddress",
-
           "type": "attribute"
         },
         {
           "name": "contractNames",
-
           "type": "attribute"
         },
         {
           "name": "commonGweiValue",
-
           "type": "attribute"
         },
         {
           "name": "contractFunctions",
-
           "type": "attribute"
         },
         {
           "name": "invokeOutput",
-
           "type": "attribute"
         },
         {
           "name": "selectedCompilerVersion",
-
           "type": "attribute"
         },
         {
           "name": "compilerVersions",
-
           "type": "attribute"
         },
         {
           "name": "compilerErrors",
-
           "type": "attribute"
         },
         {
           "name": "code",
-
           "type": "attribute"
         },
         {
           "name": "editorOptions",
-
           "type": "attribute"
         },
         {
           "name": "compileAndFetchContracts",
-
           "type": "function"
         },
         {
           "name": "deploySelectedContract",
-
           "type": "function"
         },
         {
           "name": "getInputHints",
-
           "type": "function"
         },
         {
           "name": "parseInputValue",
-
           "type": "function"
         },
         {
           "name": "invokeFunction",
-
           "type": "function"
         },
         {
           "name": "handleChainChanged",
-
           "type": "function"
         },
         {
           "name": "handleAuth",
-
           "type": "function"
         }
       ]
@@ -7847,7 +7334,6 @@
       "items": [
         {
           "name": "constructor",
-
           "type": "function"
         }
       ]
@@ -7861,87 +7347,70 @@
       "items": [
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "userData",
-
           "type": "attribute"
         },
         {
           "name": "session",
-
           "type": "attribute"
         },
         {
           "name": "walletBalance",
-
           "type": "attribute"
         },
         {
           "name": "myBEEBalance",
-
           "type": "attribute"
         },
         {
           "name": "inputAmount",
-
           "type": "attribute"
         },
         {
           "name": "successResponse",
-
           "type": "attribute"
         },
         {
           "name": "mintButtonDisabled",
-
           "type": "attribute"
         },
         {
           "name": "challengeSolved",
-
           "type": "attribute"
         },
         {
           "name": "errorMessage",
-
           "type": "attribute"
         },
         {
           "name": "metamaskAddress",
-
           "type": "attribute"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "handleChainChanged",
-
           "type": "function"
         },
         {
           "name": "depositETH",
-
           "type": "function"
         },
         {
           "name": "withdrawETH",
-
           "type": "function"
         },
         {
           "name": "getUserEthBalance",
-
           "type": "function"
         },
         {
           "name": "handleAuth",
-
           "type": "function"
         }
       ]
@@ -7955,27 +7424,22 @@
       "items": [
         {
           "name": "balance",
-
           "type": "attribute"
         },
         {
           "name": "balanceControl",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "continue",
-
           "type": "function"
         }
       ]
@@ -7989,17 +7453,14 @@
       "items": [
         {
           "name": "user",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         }
       ]
@@ -8013,22 +7474,18 @@
       "items": [
         {
           "name": "twoFactorForm",
-
           "type": "attribute"
         },
         {
           "name": "errored",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "verify",
-
           "type": "function"
         }
       ]
@@ -8042,7 +7499,6 @@
       "items": [
         {
           "name": "token",
-
           "type": "attribute"
         }
       ]
@@ -8056,72 +7512,58 @@
       "items": [
         {
           "name": "data",
-
           "type": "attribute"
         },
         {
           "name": "twoFactorSetupForm",
-
           "type": "attribute"
         },
         {
           "name": "twoFactorDisableForm",
-
           "type": "attribute"
         },
         {
           "name": "setupStatus",
-
           "type": "attribute"
         },
         {
           "name": "errored",
-
           "type": "attribute"
         },
         {
           "name": "totpUrl",
-
           "type": "attribute"
         },
         {
           "name": "totpSecret",
-
           "type": "attribute"
         },
         {
           "name": "setupToken",
-
           "type": "attribute"
         },
         {
           "name": "appName",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "updateStatus",
-
           "type": "function"
         },
         {
           "name": "setup",
-
           "type": "function"
         },
         {
           "name": "disable",
-
           "type": "function"
         }
       ]
@@ -8135,42 +7577,34 @@
       "items": [
         {
           "name": "displayedColumns",
-
           "type": "attribute"
         },
         {
           "name": "dataSource",
-
           "type": "attribute"
         },
         {
           "name": "orderId",
-
           "type": "attribute"
         },
         {
           "name": "results",
-
           "type": "attribute"
         },
         {
           "name": "status",
-
           "type": "attribute"
         },
         {
           "name": "Status",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         }
       ]
@@ -8184,17 +7618,14 @@
       "items": [
         {
           "name": "altcoinName",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         }
       ]
@@ -8208,117 +7639,94 @@
       "items": [
         {
           "name": "applicationName",
-
           "type": "attribute"
         },
         {
           "name": "showGitHubLink",
-
           "type": "attribute"
         },
         {
           "name": "userEmail",
-
           "type": "attribute"
         },
         {
           "name": "scoreBoardVisible",
-
           "type": "attribute"
         },
         {
           "name": "version",
-
           "type": "attribute"
         },
         {
           "name": "showPrivacySubmenu",
-
           "type": "attribute"
         },
         {
           "name": "showOrdersSubmenu",
-
           "type": "attribute"
         },
         {
           "name": "isShowing",
-
           "type": "attribute"
         },
         {
           "name": "offerScoreBoardTutorial",
-
           "type": "attribute"
         },
         {
           "name": "sidenavToggle",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "isLoggedIn",
-
           "type": "function"
         },
         {
           "name": "logout",
-
           "type": "function"
         },
         {
           "name": "goToProfilePage",
-
           "type": "function"
         },
         {
           "name": "goToDataErasurePage",
-
           "type": "function"
         },
         {
           "name": "noop",
-
           "type": "function"
         },
         {
           "name": "getScoreBoardStatus",
-
           "type": "function"
         },
         {
           "name": "getUserDetails",
-
           "type": "function"
         },
         {
           "name": "onToggleSidenav",
-
-          "type": "attribute"
+          "type": "function"
         },
         {
           "name": "getApplicationDetails",
-
           "type": "function"
         },
         {
           "name": "isAccounting",
-
           "type": "function"
         },
         {
           "name": "startHackingInstructor",
-
           "type": "function"
         }
       ]
@@ -8332,7 +7740,6 @@
       "items": [
         {
           "name": "on",
-
           "type": "function"
         }
       ]
@@ -8346,27 +7753,22 @@
       "items": [
         {
           "name": "hackingProgress",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "closeNotification",
-
           "type": "function"
         },
         {
           "name": "clearProgress",
-
           "type": "function"
         }
       ]
@@ -8380,12 +7782,10 @@
       "items": [
         {
           "name": "autoRestoreMessage",
-
           "type": "attribute"
         },
         {
           "name": "cleared",
-
           "type": "attribute"
         }
       ]
@@ -8399,7 +7799,6 @@
       "items": [
         {
           "name": "on",
-
           "type": "function"
         }
       ]
@@ -8413,117 +7812,94 @@
       "items": [
         {
           "name": "displayedColumns",
-
           "type": "attribute"
         },
         {
           "name": "tableData",
-
           "type": "attribute"
         },
         {
           "name": "pageSizeOptions",
-
           "type": "attribute"
         },
         {
           "name": "dataSource",
-
           "type": "attribute"
         },
         {
           "name": "gridDataSource",
-
           "type": "attribute"
         },
         {
           "name": "searchValue",
-
           "type": "attribute"
         },
         {
           "name": "resultsLength",
-
           "type": "attribute"
         },
         {
           "name": "paginator",
-
           "type": "attribute"
         },
         {
           "name": "productSubscription",
-
           "type": "attribute"
         },
         {
           "name": "routerSubscription",
-
           "type": "attribute"
         },
         {
           "name": "breakpoint",
-
           "type": "attribute"
         },
         {
           "name": "emptyState",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngAfterViewInit",
-
           "type": "function"
         },
         {
           "name": "trustProductDescription",
-
           "type": "function"
         },
         {
           "name": "ngOnDestroy",
-
           "type": "function"
         },
         {
           "name": "filterTable",
-
           "type": "function"
         },
         {
           "name": "startHackingInstructor",
-
           "type": "function"
         },
         {
           "name": "showDetail",
-
           "type": "function"
         },
         {
           "name": "addToBasket",
-
           "type": "function"
         },
         {
           "name": "isLoggedIn",
-
           "type": "function"
         },
         {
           "name": "onResize",
-
           "type": "function"
         },
         {
           "name": "isDeluxe",
-
           "type": "function"
         }
       ]
@@ -8537,37 +7913,30 @@
       "items": [
         {
           "name": "name",
-
           "type": "attribute"
         },
         {
           "name": "price",
-
           "type": "attribute"
         },
         {
           "name": "deluxePrice",
-
           "type": "attribute"
         },
         {
           "name": "id",
-
           "type": "attribute"
         },
         {
           "name": "image",
-
           "type": "attribute"
         },
         {
           "name": "description",
-
           "type": "attribute"
         },
         {
           "name": "quantity",
-
           "type": "attribute"
         }
       ]
@@ -8581,12 +7950,10 @@
       "items": [
         {
           "name": "snapshot",
-
           "type": "attribute"
         },
         {
           "name": "setQueryParameter",
-
           "type": "function"
         }
       ]
@@ -8600,12 +7967,10 @@
       "items": [
         {
           "name": "on",
-
           "type": "function"
         },
         {
           "name": "emit",
-
           "type": "function"
         }
       ]
@@ -8619,17 +7984,14 @@
       "items": [
         {
           "name": "originalDescription",
-
           "type": "attribute"
         },
         {
           "name": "tagList",
-
           "type": "attribute"
         },
         {
           "name": "hasCodingChallenge",
-
           "type": "attribute"
         }
       ]
@@ -8651,87 +8013,70 @@
       "items": [
         {
           "name": "allChallenges",
-
           "type": "attribute"
         },
         {
           "name": "filteredChallenges",
-
           "type": "attribute"
         },
         {
           "name": "filterSetting",
-
           "type": "attribute"
         },
         {
           "name": "applicationConfiguration",
-
           "type": "attribute"
         },
         {
           "name": "isInitialized",
-
           "type": "attribute"
         },
         {
           "name": "subscriptions",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "ngOnDestroy",
-
           "type": "function"
         },
         {
           "name": "onFilterSettingUpdate",
-
           "type": "function"
         },
         {
           "name": "onChallengeSolvedWebsocket",
-
           "type": "function"
         },
         {
           "name": "onCodeChallengeSolvedWebsocket",
-
           "type": "function"
         },
         {
           "name": "filterAndUpdateChallenges",
-
           "type": "function"
         },
         {
           "name": "getChallengeKey",
-
           "type": "function"
         },
         {
           "name": "reset",
-
           "type": "function"
         },
         {
           "name": "openCodingChallengeDialog",
-
           "type": "function"
         },
         {
           "name": "repeatChallengeNotification",
-
           "type": "function"
         }
       ]
@@ -8745,12 +8090,10 @@
       "items": [
         {
           "name": "key",
-
           "type": "attribute"
         },
         {
           "name": "codingChallengeStatus",
-
           "type": "attribute"
         }
       ]
@@ -8764,32 +8107,26 @@
       "items": [
         {
           "name": "key",
-
           "type": "attribute"
         },
         {
           "name": "name",
-
           "type": "attribute"
         },
         {
           "name": "challenge",
-
           "type": "attribute"
         },
         {
           "name": "flag",
-
           "type": "attribute"
         },
         {
           "name": "hidden",
-
           "type": "attribute"
         },
         {
           "name": "isRestore",
-
           "type": "attribute"
         }
       ]
@@ -8803,7 +8140,6 @@
       "items": [
         {
           "name": "createChallenge",
-
           "type": "function"
         }
       ]
@@ -8817,12 +8153,10 @@
       "items": [
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "transform",
-
           "type": "function"
         }
       ]
@@ -8836,7 +8170,6 @@
       "items": [
         {
           "name": "hintUrl",
-
           "type": "attribute"
         }
       ]
@@ -8850,7 +8183,6 @@
       "items": [
         {
           "name": "sortChallenges",
-
           "type": "function"
         }
       ]
@@ -8864,12 +8196,10 @@
       "items": [
         {
           "name": "filterChallenges",
-
           "type": "function"
         },
         {
           "name": "getCompleteChallengeStatus",
-
           "type": "function"
         }
       ]
@@ -8883,12 +8213,10 @@
       "items": [
         {
           "name": "fromQueryParams",
-
           "type": "function"
         },
         {
           "name": "toQueryParams",
-
           "type": "function"
         }
       ]
@@ -8902,37 +8230,30 @@
       "items": [
         {
           "name": "categories",
-
           "type": "attribute"
         },
         {
           "name": "difficulties",
-
           "type": "attribute"
         },
         {
           "name": "tags",
-
           "type": "attribute"
         },
         {
           "name": "status",
-
           "type": "attribute"
         },
         {
           "name": "searchQuery",
-
           "type": "attribute"
         },
         {
           "name": "showDisabledChallenges",
-
           "type": "attribute"
         },
         {
           "name": "restrictToTutorialChallengesFirst",
-
           "type": "attribute"
         }
       ]
@@ -8954,22 +8275,18 @@
       "items": [
         {
           "name": "allChallenges",
-
           "type": "attribute"
         },
         {
           "name": "applicationConfig",
-
           "type": "attribute"
         },
         {
           "name": "tutorialModeActive",
-
           "type": "attribute"
         },
         {
           "name": "ngOnChanges",
-
           "type": "function"
         }
       ]
@@ -8983,27 +8300,22 @@
       "items": [
         {
           "name": "description",
-
           "type": "attribute"
         },
         {
           "name": "total",
-
           "type": "attribute"
         },
         {
           "name": "score",
-
           "type": "attribute"
         },
         {
           "name": "showAsPercentage",
-
           "type": "attribute"
         },
         {
           "name": "showProgressBar",
-
           "type": "attribute"
         }
       ]
@@ -9017,27 +8329,22 @@
       "items": [
         {
           "name": "allChallenges",
-
           "type": "attribute"
         },
         {
           "name": "solvedChallenges",
-
           "type": "attribute"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "ngOnChanges",
-
           "type": "function"
         },
         {
           "name": "updatedNumberOfSolvedChallenges",
-
           "type": "function"
         }
       ]
@@ -9051,7 +8358,6 @@
       "items": [
         {
           "name": "transform",
-
           "type": "function"
         }
       ]
@@ -9065,12 +8371,10 @@
       "items": [
         {
           "name": "start",
-
           "type": "attribute"
         },
         {
           "name": "end",
-
           "type": "attribute"
         }
       ]
@@ -9084,12 +8388,10 @@
       "items": [
         {
           "name": "breakDifficultiesIntoNeighboringGroups",
-
           "type": "function"
         },
         {
           "name": "convertDifficultyGroupsToString",
-
           "type": "function"
         }
       ]
@@ -9103,72 +8405,58 @@
       "items": [
         {
           "name": "allChallenges",
-
           "type": "attribute"
         },
         {
           "name": "filterSetting",
-
           "type": "attribute"
         },
         {
           "name": "filterSettingChange",
-
           "type": "attribute"
         },
         {
           "name": "reset",
-
           "type": "function"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "tags",
-
           "type": "attribute"
         },
         {
           "name": "ngOnChanges",
-
           "type": "function"
         },
         {
           "name": "onDifficultyFilterChange",
-
           "type": "function"
         },
         {
           "name": "onStatusFilterChange",
-
           "type": "function"
         },
         {
           "name": "onTagFilterChange",
-
           "type": "function"
         },
         {
           "name": "onCategoryFilterChange",
-
           "type": "function"
         },
         {
           "name": "onSearchQueryFilterChange",
-
           "type": "function"
         },
         {
           "name": "canBeReset",
-
           "type": "function"
         },
         {
           "name": "openAdditionalSettingsDialog",
-
           "type": "function"
         }
       ]
@@ -9182,7 +8470,6 @@
       "items": [
         {
           "name": "constructor",
-
           "type": "function"
         }
       ]
@@ -9196,57 +8483,46 @@
       "items": [
         {
           "name": "availableCategories",
-
           "type": "attribute"
         },
         {
           "name": "allChallenges",
-
           "type": "attribute"
         },
         {
           "name": "categories",
-
           "type": "attribute"
         },
         {
           "name": "categoriesChange",
-
           "type": "attribute"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "ngOnChanges",
-
           "type": "function"
         },
         {
           "name": "getAvailableCategories",
-
           "type": "function"
         },
         {
           "name": "toggleCategorySelected",
-
           "type": "function"
         },
         {
           "name": "isCategorySelected",
-
           "type": "function"
         },
         {
           "name": "isAllCategoriesSelected",
-
           "type": "function"
         },
         {
           "name": "resetCategoryFilter",
-
           "type": "function"
         }
       ]
@@ -9260,7 +8536,6 @@
       "items": [
         {
           "name": "difficulty",
-
           "type": "attribute"
         }
       ]
@@ -9274,42 +8549,34 @@
       "items": [
         {
           "name": "allChallenges",
-
           "type": "attribute"
         },
         {
           "name": "totalChallenges",
-
           "type": "attribute"
         },
         {
           "name": "solvedChallenges",
-
           "type": "attribute"
         },
         {
           "name": "difficultySummaries",
-
           "type": "attribute"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "ngOnChanges",
-
           "type": "function"
         },
         {
           "name": "updatedNumberOfSolvedChallenges",
-
           "type": "function"
         },
         {
           "name": "calculateDifficultySummaries",
-
           "type": "function"
         }
       ]
@@ -9323,17 +8590,14 @@
       "items": [
         {
           "name": "difficulty",
-
           "type": "attribute"
         },
         {
           "name": "availableChallenges",
-
           "type": "attribute"
         },
         {
           "name": "solvedChallenges",
-
           "type": "attribute"
         }
       ]
@@ -9347,32 +8611,26 @@
       "items": [
         {
           "name": "allChallenges",
-
           "type": "attribute"
         },
         {
           "name": "availableCodingChallenges",
-
           "type": "attribute"
         },
         {
           "name": "solvedCodingChallenges",
-
           "type": "attribute"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "ngOnChanges",
-
           "type": "function"
         },
         {
           "name": "updatedNumberOfSolvedChallenges",
-
           "type": "function"
         }
       ]
@@ -9386,47 +8644,38 @@
       "items": [
         {
           "name": "challenges",
-
           "type": "attribute"
         },
         {
           "name": "filterSetting",
-
           "type": "attribute"
         },
         {
           "name": "filterSettingChange",
-
           "type": "attribute"
         },
         {
           "name": "numberOfDisabledChallenges",
-
           "type": "attribute"
         },
         {
           "name": "disabledBecauseOfEnv",
-
           "type": "attribute"
         },
         {
           "name": "disabledOnWindows",
-
           "type": "attribute"
         },
         {
           "name": "numberOfDisabledChallengesOnWindows",
-
           "type": "attribute"
         },
         {
           "name": "ngOnChanges",
-
           "type": "function"
         },
         {
           "name": "toggleShowDisabledChallenges",
-
           "type": "function"
         }
       ]
@@ -9440,32 +8689,26 @@
       "items": [
         {
           "name": "challenge",
-
           "type": "attribute"
         },
         {
           "name": "openCodingChallengeDialog",
-
           "type": "function"
         },
         {
           "name": "repeatChallengeNotification",
-
           "type": "function"
         },
         {
           "name": "applicationConfiguration",
-
           "type": "attribute"
         },
         {
           "name": "hasInstructions",
-
           "type": "attribute"
         },
         {
           "name": "startHackingInstructorFor",
-
           "type": "attribute"
         }
       ]
@@ -9495,57 +8738,46 @@
       "items": [
         {
           "name": "emailControl",
-
           "type": "attribute"
         },
         {
           "name": "passwordControl",
-
           "type": "attribute"
         },
         {
           "name": "repeatPasswordControl",
-
           "type": "attribute"
         },
         {
           "name": "securityQuestionControl",
-
           "type": "attribute"
         },
         {
           "name": "securityAnswerControl",
-
           "type": "attribute"
         },
         {
           "name": "securityQuestions",
-
           "type": "attribute"
         },
         {
           "name": "selected",
-
           "type": "attribute"
         },
         {
           "name": "error",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "save",
-
           "type": "function"
         }
       ]
@@ -9559,12 +8791,10 @@
       "items": [
         {
           "name": "matchValidator",
-
           "type": "function"
         },
         {
           "name": "matchOtherValidate",
-
           "type": "function"
         }
       ]
@@ -9578,97 +8808,78 @@
       "items": [
         {
           "name": "addressComponent",
-
           "type": "attribute"
         },
         {
           "name": "requestorControl",
-
           "type": "attribute"
         },
         {
           "name": "recycleQuantityControl",
-
           "type": "attribute"
         },
         {
           "name": "pickUpDateControl",
-
           "type": "attribute"
         },
         {
           "name": "pickup",
-
           "type": "attribute"
         },
         {
           "name": "topImage",
-
           "type": "attribute"
         },
         {
           "name": "bottomImage",
-
           "type": "attribute"
         },
         {
           "name": "recycles",
-
           "type": "attribute"
         },
         {
           "name": "recycle",
-
           "type": "attribute"
         },
         {
           "name": "userEmail",
-
           "type": "attribute"
         },
         {
           "name": "confirmation",
-
           "type": "attribute"
         },
         {
           "name": "addressId",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "initRecycle",
-
           "type": "function"
         },
         {
           "name": "save",
-
           "type": "function"
         },
         {
           "name": "findAll",
-
           "type": "function"
         },
         {
           "name": "resetForm",
-
           "type": "function"
         },
         {
           "name": "getMessage",
-
           "type": "function"
         }
       ]
@@ -9682,32 +8893,26 @@
       "items": [
         {
           "name": "title",
-
           "type": "attribute"
         },
         {
           "name": "url",
-
           "type": "attribute"
         },
         {
           "name": "address",
-
           "type": "attribute"
         },
         {
           "name": "data",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         }
       ]
@@ -9721,97 +8926,78 @@
       "items": [
         {
           "name": "allowEdit",
-
           "type": "attribute"
         },
         {
           "name": "displayTotal",
-
           "type": "attribute"
         },
         {
           "name": "totalPrice",
-
           "type": "attribute"
         },
         {
           "name": "emitTotal",
-
           "type": "attribute"
         },
         {
           "name": "emitProductCount",
-
           "type": "attribute"
         },
         {
           "name": "tableColumns",
-
           "type": "attribute"
         },
         {
           "name": "dataSource",
-
           "type": "attribute"
         },
         {
           "name": "bonus",
-
           "type": "attribute"
         },
         {
           "name": "itemTotal",
-
           "type": "attribute"
         },
         {
           "name": "userEmail",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "load",
-
           "type": "function"
         },
         {
           "name": "delete",
-
           "type": "function"
         },
         {
           "name": "inc",
-
           "type": "function"
         },
         {
           "name": "dec",
-
           "type": "function"
         },
         {
           "name": "addToQuantity",
-
           "type": "function"
         },
         {
           "name": "sendToParent",
-
           "type": "function"
         },
         {
           "name": "isDeluxe",
-
           "type": "function"
         }
       ]
@@ -9825,27 +9011,22 @@
       "items": [
         {
           "name": "editReviewControl",
-
           "type": "attribute"
         },
         {
           "name": "error",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "editReview",
-
           "type": "function"
         }
       ]
@@ -9859,57 +9040,46 @@
       "items": [
         {
           "name": "author",
-
           "type": "attribute"
         },
         {
           "name": "reviews$",
-
           "type": "attribute"
         },
         {
           "name": "userSubscription",
-
           "type": "attribute"
         },
         {
           "name": "reviewControl",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "ngOnDestroy",
-
           "type": "function"
         },
         {
           "name": "addReview",
-
           "type": "function"
         },
         {
           "name": "editReview",
-
           "type": "function"
         },
         {
           "name": "likeReview",
-
           "type": "function"
         },
         {
           "name": "isLoggedIn",
-
           "type": "function"
         }
       ]
@@ -9923,27 +9093,22 @@
       "items": [
         {
           "name": "Ip",
-
           "type": "attribute"
         },
         {
           "name": "windowWidth",
-
           "type": "attribute"
         },
         {
           "name": "ngAfterViewInit",
-
           "type": "function"
         },
         {
           "name": "isHandset$",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         }
       ]
@@ -9957,27 +9122,22 @@
       "items": [
         {
           "name": "applicationName",
-
           "type": "attribute"
         },
         {
           "name": "privacyContactEmail",
-
           "type": "attribute"
         },
         {
           "name": "applicationUrl",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         }
       ]
@@ -9991,57 +9151,46 @@
       "items": [
         {
           "name": "emptyState",
-
           "type": "attribute"
         },
         {
           "name": "imagePreview",
-
           "type": "attribute"
         },
         {
           "name": "form",
-
           "type": "attribute"
         },
         {
           "name": "slideshowDataSource",
-
           "type": "attribute"
         },
         {
           "name": "twitterHandle",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "onImagePicked",
-
           "type": "function"
         },
         {
           "name": "save",
-
           "type": "function"
         },
         {
           "name": "isLoggedIn",
-
           "type": "function"
         },
         {
           "name": "resetForm",
-
           "type": "function"
         }
       ]
@@ -10055,7 +9204,6 @@
       "items": [
         {
           "name": "mimeType",
-
           "type": "function"
         }
       ]
@@ -10069,117 +9217,94 @@
       "items": [
         {
           "name": "emitSelection",
-
           "type": "attribute"
         },
         {
           "name": "allowDelete",
-
           "type": "attribute"
         },
         {
           "name": "displayedColumns",
-
           "type": "attribute"
         },
         {
           "name": "nameControl",
-
           "type": "attribute"
         },
         {
           "name": "numberControl",
-
           "type": "attribute"
         },
         {
           "name": "monthControl",
-
           "type": "attribute"
         },
         {
           "name": "yearControl",
-
           "type": "attribute"
         },
         {
           "name": "confirmation",
-
           "type": "attribute"
         },
         {
           "name": "error",
-
           "type": "attribute"
         },
         {
           "name": "storedCards",
-
           "type": "attribute"
         },
         {
           "name": "card",
-
           "type": "attribute"
         },
         {
           "name": "dataSource",
-
           "type": "attribute"
         },
         {
           "name": "monthRange",
-
           "type": "attribute"
         },
         {
           "name": "yearRange",
-
           "type": "attribute"
         },
         {
           "name": "cardsExist",
-
           "type": "attribute"
         },
         {
           "name": "paymentId",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "load",
-
           "type": "function"
         },
         {
           "name": "save",
-
           "type": "function"
         },
         {
           "name": "delete",
-
           "type": "function"
         },
         {
           "name": "emitSelectionToParent",
-
           "type": "function"
         },
         {
           "name": "resetForm",
-
           "type": "function"
         }
       ]
@@ -10193,162 +9318,130 @@
       "items": [
         {
           "name": "couponConfirmation",
-
           "type": "attribute"
         },
         {
           "name": "couponError",
-
           "type": "attribute"
         },
         {
           "name": "card",
-
           "type": "attribute"
         },
         {
           "name": "twitterUrl",
-
           "type": "attribute"
         },
         {
           "name": "facebookUrl",
-
           "type": "attribute"
         },
         {
           "name": "applicationName",
-
           "type": "attribute"
         },
         {
           "name": "campaignCoupon",
-
           "type": "attribute"
         },
         {
           "name": "couponControl",
-
           "type": "attribute"
         },
         {
           "name": "clientDate",
-
           "type": "attribute"
         },
         {
           "name": "paymentId",
-
           "type": "attribute"
         },
         {
           "name": "couponPanelExpanded",
-
           "type": "attribute"
         },
         {
           "name": "paymentPanelExpanded",
-
           "type": "attribute"
         },
         {
           "name": "mode",
-
           "type": "attribute"
         },
         {
           "name": "walletBalance",
-
           "type": "attribute"
         },
         {
           "name": "walletBalanceStr",
-
           "type": "attribute"
         },
         {
           "name": "totalPrice",
-
           "type": "attribute"
         },
         {
           "name": "paymentMode",
-
           "type": "attribute"
         },
         {
           "name": "campaigns",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "initTotal",
-
           "type": "function"
         },
         {
           "name": "applyCoupon",
-
           "type": "function"
         },
         {
           "name": "showConfirmation",
-
           "type": "function"
         },
         {
           "name": "getMessage",
-
           "type": "function"
         },
         {
           "name": "routeToPreviousUrl",
-
           "type": "function"
         },
         {
           "name": "choosePayment",
-
           "type": "function"
         },
         {
           "name": "noop",
-
           "type": "function"
         },
         {
           "name": "showBitcoinQrCode",
-
           "type": "function"
         },
         {
           "name": "showDashQrCode",
-
           "type": "function"
         },
         {
           "name": "showEtherQrCode",
-
           "type": "function"
         },
         {
           "name": "useWallet",
-
           "type": "function"
         },
         {
           "name": "resetCouponForm",
-
           "type": "function"
         }
       ]
@@ -10362,7 +9455,6 @@
       "items": [
         {
           "name": "paramMap",
-
           "type": "attribute"
         }
       ]
@@ -10376,42 +9468,34 @@
       "items": [
         {
           "name": "privateKey",
-
           "type": "attribute"
         },
         {
           "name": "formSubmitted",
-
           "type": "attribute"
         },
         {
           "name": "successResponse",
-
           "type": "attribute"
         },
         {
           "name": "errorMessage",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "checkChallengeStatus",
-
           "type": "function"
         },
         {
           "name": "submitForm",
-
           "type": "function"
         }
       ]
@@ -10425,7 +9509,6 @@
       "items": [
         {
           "name": "on",
-
           "type": "function"
         }
       ]
@@ -10439,117 +9522,94 @@
       "items": [
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "userData",
-
           "type": "attribute"
         },
         {
           "name": "session",
-
           "type": "attribute"
         },
         {
           "name": "deployedContractAddress",
-
           "type": "attribute"
         },
         {
           "name": "BEEBalance",
-
           "type": "attribute"
         },
         {
           "name": "myBEEBalance",
-
           "type": "attribute"
         },
         {
           "name": "withdrawAmount",
-
           "type": "attribute"
         },
         {
           "name": "successResponse",
-
           "type": "attribute"
         },
         {
           "name": "mintButtonDisabled",
-
           "type": "attribute"
         },
         {
           "name": "challengeSolved",
-
           "type": "attribute"
         },
         {
           "name": "nftMintText",
-
           "type": "attribute"
         },
         {
           "name": "errorMessage",
-
           "type": "attribute"
         },
         {
           "name": "metamaskAddress",
-
           "type": "attribute"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "nftMintListener",
-
           "type": "function"
         },
         {
           "name": "checkNftMinted",
-
           "type": "function"
         },
         {
           "name": "fetchMyBeeBalance",
-
           "type": "function"
         },
         {
           "name": "fetchBeeBalance",
-
           "type": "function"
         },
         {
           "name": "handleChainChanged",
-
           "type": "function"
         },
         {
           "name": "handleAuth",
-
           "type": "function"
         },
         {
           "name": "extractBEETokens",
-
           "type": "function"
         },
         {
           "name": "mintNFT",
-
           "type": "function"
         },
         {
           "name": "signOut",
-
           "type": "function"
         }
       ]
@@ -10563,57 +9623,46 @@
       "items": [
         {
           "name": "displayedColumns",
-
           "type": "attribute"
         },
         {
           "name": "methods",
-
           "type": "attribute"
         },
         {
           "name": "address",
-
           "type": "attribute"
         },
         {
           "name": "dataSource",
-
           "type": "attribute"
         },
         {
           "name": "deliveryMethodId",
-
           "type": "attribute"
         },
         {
           "name": "selection",
-
           "type": "attribute"
         },
         {
           "name": "constructor",
-
           "type": "function"
         },
         {
           "name": "ngOnInit",
-
           "type": "function"
         },
         {
           "name": "selectMethod",
-
           "type": "function"
         },
         {
           "name": "routeToPreviousUrl",
-
           "type": "function"
         },
         {
           "name": "chooseDeliveryMethod",
-
           "type": "function"
         }
       ]
@@ -10627,7 +9676,6 @@
       "items": [
         {
           "name": "constructor",
-
           "type": "function"
         }
       ]
@@ -10641,7 +9689,6 @@
       "items": [
         {
           "name": "searchProducts",
-
           "type": "function"
         }
       ]
@@ -10655,7 +9702,6 @@
       "items": [
         {
           "name": "searchProducts",
-
           "type": "function"
         }
       ]
@@ -10719,14 +9765,74 @@
       "items": [
         {
           "name": "customizeApplication",
-          "startPosition": {
-            "row": 115,
-            "column": 15
-          },
-          "endPosition": {
-            "row": 115,
-            "column": 35
-          },
+          "startPosition": { "row": 11, "column": 0 },
+          "endPosition": { "row": 37, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizeLogo",
+          "startPosition": { "row": 39, "column": 0 },
+          "endPosition": { "row": 41, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizeChatbotAvatar",
+          "startPosition": { "row": 43, "column": 0 },
+          "endPosition": { "row": 46, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizeHackingInstructorAvatar",
+          "startPosition": { "row": 48, "column": 0 },
+          "endPosition": { "row": 51, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizeFavicon",
+          "startPosition": { "row": 53, "column": 0 },
+          "endPosition": { "row": 62, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizePromotionVideo",
+          "startPosition": { "row": 64, "column": 0 },
+          "endPosition": { "row": 66, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizePromotionSubtitles",
+          "startPosition": { "row": 68, "column": 0 },
+          "endPosition": { "row": 70, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "retrieveCustomFile",
+          "startPosition": { "row": 72, "column": 0 },
+          "endPosition": { "row": 80, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizeTitle",
+          "startPosition": { "row": 82, "column": 0 },
+          "endPosition": { "row": 91, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizeTheme",
+          "startPosition": { "row": 93, "column": 0 },
+          "endPosition": { "row": 102, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizeCookieConsentBanner",
+          "startPosition": { "row": 104, "column": 0 },
+          "endPosition": { "row": 113, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "customizeApplication",
+          "startPosition": { "row": 115, "column": 15 },
+          "endPosition": { "row": 115, "column": 35 },
           "type": "function"
         }
       ]
@@ -10754,14 +9860,20 @@
       "items": [
         {
           "name": "customizeEasterEgg",
-          "startPosition": {
-            "row": 47,
-            "column": 15
-          },
-          "endPosition": {
-            "row": 47,
-            "column": 33
-          },
+          "startPosition": { "row": 10, "column": 0 },
+          "endPosition": { "row": 23, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "replaceImagePath",
+          "startPosition": { "row": 25, "column": 0 },
+          "endPosition": { "row": 34, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "replaceThreeJsTitleTag",
+          "startPosition": { "row": 36, "column": 0 },
+          "endPosition": { "row": 45, "column": 1 },
           "type": "function"
         }
       ]
@@ -10823,15 +9935,21 @@
       "filePath": "/lib/startup/restoreOverwrittenFilesWithOriginals.ts",
       "items": [
         {
+          "name": "exists",
+          "startPosition": { "row": 11, "column": 0 },
+          "endPosition": { "row": 11, "column": 93 },
+          "type": "function"
+        },
+        {
           "name": "restoreOverwrittenFilesWithOriginals",
-          "startPosition": {
-            "row": 35,
-            "column": 15
-          },
-          "endPosition": {
-            "row": 35,
-            "column": 51
-          },
+          "startPosition": { "row": 13, "column": 0 },
+          "endPosition": { "row": 33, "column": 1 },
+          "type": "function"
+        },
+        {
+          "name": "restoreOverwrittenFilesWithOriginals",
+          "startPosition": { "row": 35, "column": 15 },
+          "endPosition": { "row": 35, "column": 51 },
           "type": "function"
         }
       ]
@@ -11005,6 +10123,486 @@
           },
           "endPosition": {
             "row": 26,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "privacyRequests.ts",
+      "entityType": "file",
+      "filePath": "/models/privacyRequests.ts",
+      "items": [
+        {
+          "name": "PrivacyRequestModelInit",
+          "startPosition": { "row": 24, "column": 0 },
+          "endPosition": { "row": 45, "column": 1 },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "product.ts",
+      "entityType": "file",
+      "filePath": "/models/product.ts",
+      "items": [
+        {
+          "name": "ProductModelInit",
+          "startPosition": { "row": 33, "column": 0 },
+          "endPosition": { "row": 68, "column": 1 },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "quantity.ts",
+      "entityType": "file",
+      "filePath": "/models/quantity.ts",
+      "items": [
+        {
+          "name": "QuantityModelInit",
+          "startPosition": { "row": 26, "column": 0 },
+          "endPosition": { "row": 56, "column": 1 },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "contact.spec.ts",
+      "entityType": "file",
+      "filePath": "/test/cypress/e2e/contact.spec.ts",
+      "items": [
+        {
+          "name": "sendPostRequest",
+          "startPosition": {
+            "row": 153,
+            "column": 8
+          },
+          "endPosition": {
+            "row": 176,
+            "column": 9
+          },
+          "type": "function"
+        },
+        {
+          "name": "sendPostRequest",
+          "startPosition": {
+            "row": 201,
+            "column": 10
+          },
+          "endPosition": {
+            "row": 218,
+            "column": 11
+          },
+          "type": "function"
+        },
+        {
+          "name": "solveNextCaptcha",
+          "startPosition": {
+            "row": 250,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 260,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "recycles.ts",
+      "entityType": "file",
+      "filePath": "/routes/recycles.ts",
+      "items": [
+        {
+          "name": "getRecycleItem",
+          "startPosition": {
+            "row": 10,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 20,
+            "column": 1
+          },
+          "type": "function"
+        },
+        {
+          "name": "blockRecycleItems",
+          "startPosition": {
+            "row": 22,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 25,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "wallet.ts",
+      "entityType": "file",
+      "filePath": "/models/wallet.ts",
+      "items": [
+        {
+          "name": "WalletModelInit",
+          "startPosition": {
+            "row": 24,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 48,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "user.ts",
+      "entityType": "file",
+      "filePath": "/models/user.ts",
+      "items": [
+        {
+          "name": "UserModelInit",
+          "startPosition": {
+            "row": 36,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 141,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "securityQuestion.ts",
+      "entityType": "file",
+      "filePath": "/models/securityQuestion.ts",
+      "items": [
+        {
+          "name": "SecurityQuestionModelInit",
+          "startPosition": {
+            "row": 23,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 40,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "securityAnswer.ts",
+      "entityType": "file",
+      "filePath": "/models/securityAnswer.ts",
+      "items": [
+        {
+          "name": "SecurityAnswerModelInit",
+          "startPosition": {
+            "row": 26,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 54,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "relations.ts",
+      "entityType": "file",
+      "filePath": "/models/relations.ts",
+      "items": [
+        {
+          "name": "relationsInit",
+          "startPosition": {
+            "row": 20,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 142,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "recycle.ts",
+      "entityType": "file",
+      "filePath": "/models/recycle.ts",
+      "items": [
+        {
+          "name": "RecycleModelInit",
+          "startPosition": {
+            "row": 28,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 51,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "memory.ts",
+      "entityType": "file",
+      "filePath": "/models/memory.ts",
+      "items": [
+        {
+          "name": "MemoryModelInit",
+          "startPosition": {
+            "row": 26,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 45,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "imageCaptcha.ts",
+      "entityType": "file",
+      "filePath": "/models/imageCaptcha.ts",
+      "items": [
+        {
+          "name": "ImageCaptchaModelInit",
+          "startPosition": {
+            "row": 25,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 43,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "feedback.ts",
+      "entityType": "file",
+      "filePath": "/models/feedback.ts",
+      "items": [
+        {
+          "name": "FeedbackModelInit",
+          "startPosition": {
+            "row": 28,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 73,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "delivery.ts",
+      "entityType": "file",
+      "filePath": "/models/delivery.ts",
+      "items": [
+        {
+          "name": "DeliveryModelInit",
+          "startPosition": {
+            "row": 26,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 45,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "complaint.ts",
+      "entityType": "file",
+      "filePath": "/models/complaint.ts",
+      "items": [
+        {
+          "name": "ComplaintModelInit",
+          "startPosition": {
+            "row": 26,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 45,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "challenge.ts",
+      "entityType": "file",
+      "filePath": "/models/challenge.ts",
+      "items": [
+        {
+          "name": "ChallengeModelInit",
+          "startPosition": {
+            "row": 34,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 61,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "card.ts",
+      "entityType": "file",
+      "filePath": "/models/card.ts",
+      "items": [
+        {
+          "name": "CardModelInit",
+          "startPosition": {
+            "row": 26,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 68,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "captcha.ts",
+      "entityType": "file",
+      "filePath": "/models/captcha.ts",
+      "items": [
+        {
+          "name": "CaptchaModelInit",
+          "startPosition": {
+            "row": 22,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 36,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "basketitem.ts",
+      "entityType": "file",
+      "filePath": "/models/basketitem.ts",
+      "items": [
+        {
+          "name": "BasketItemModelInit",
+          "startPosition": {
+            "row": 25,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 46,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "basket.ts",
+      "entityType": "file",
+      "filePath": "/models/basket.ts",
+      "items": [
+        {
+          "name": "BasketModelInit",
+          "startPosition": {
+            "row": 28,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 46,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "address.ts",
+      "entityType": "file",
+      "filePath": "/models/address.ts",
+      "items": [
+        {
+          "name": "AddressModelInit",
+          "startPosition": {
+            "row": 29,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 72,
             "column": 1
           },
           "type": "function"

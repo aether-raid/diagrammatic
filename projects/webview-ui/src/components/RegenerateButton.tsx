@@ -1,6 +1,9 @@
 // @ts-ignore: React is needed for testing, but not used in the component
 import React from 'react'; 
+import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
+
 import { sendRegenerateComponentDiagramMessageToExtension } from "../helpers/vscodeApiHandler";
+import { HiddenLabelButton } from "./HiddenLabelButton/HiddenLabelButton";
 
 interface RegenerateButtonProps {
     label: string;
@@ -18,8 +21,11 @@ export const RegenerateButton = ({
         sendRegenerateComponentDiagramMessageToExtension();
     }
     return (
-        <button onClick={handleRegenerateDiagram} disabled={disabled}>
-            {label}
-        </button>
+        <HiddenLabelButton
+            icon={<RefreshRoundedIcon />}
+            label={label}
+            onClick={handleRegenerateDiagram}
+            disabled={disabled}
+        />
     )
 };

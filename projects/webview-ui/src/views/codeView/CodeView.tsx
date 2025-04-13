@@ -31,6 +31,7 @@ import { NodeInfoPanel } from "../../components/NodeInfoPanel/NodeInfoPanel";
 import { SearchBar } from "../../components/SearchBar";
 import { ViewChangeHandler } from "../../components/ViewChangeHandler";
 import { getLayoutedElements } from "../../helpers/layoutHandlerDagre";
+import { AutoLayoutButton } from "../../components/AutoLayoutButton";
 
 const LayoutFlow = () => {
     // General ReactFlow states
@@ -72,19 +73,19 @@ const LayoutFlow = () => {
         diagramCtx.setViewport(getViewport());
     }
 
-    const renderComponentButtonText = () => {
+    const renderNavigateButtonText = () => {
         switch (componentDiagramStatus) {
             case FeatureStatus.ENABLED_LOADING:
                 return "Loading Component Diagram...";
             case FeatureStatus.ENABLED_DONE:
-                return "Component Diagram";
+                return "Switch to Component View";
             default:
                 // Disabled or unknown status
-                return "Component Diagram Disabled";
+                return "Component View Disabled";
         }
     }
 
-    const onLayout = useCallback(
+    const handleLayout = useCallback(
         (direction: string) => {
             const layouted = getLayoutedElements(nodes, edges, { direction });
             setNodes([...layouted.nodes]);
@@ -148,25 +149,26 @@ const LayoutFlow = () => {
 
                 {/* Displayed Elements */}
                 <SearchBar matchedNodesState={[matchedNodes, setMatchedNodes]} />
-                <Panel position="top-center">
-                    <button onClick={() => onLayout("TB")}>
-                        Vertical Layout
-                    </button>
-                    <button onClick={() => onLayout("LR")}>
-                        Horizontal Layout
-                    </button>
-                </Panel>
                 <MiniMap />
                 <Controls />
                 <Panel position="top-right">
-                    <div className="d-flex flex-column gap-2">
-                        <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
+                    <div className="d-flex flex-column gap-2 align-items-end">
                         <NavigationButton
                             target="/componentView"
-                            label={renderComponentButtonText()}
+                            label={renderNavigateButtonText()}
                             disabled={componentDiagramStatus !== FeatureStatus.ENABLED_DONE}
                             onNavigate={handleBeforeNavigate}
                         />
+                    </div>
+                    <div className="d-flex flex-column gap-2 align-items-end my-2">
+                        <div
+                            className="bg-light rounded"
+                            style={{ height: "2px", width: "42px" }}
+                        />
+                    </div>
+                    <div className="d-flex flex-column gap-2 align-items-end">
+                        <AutoLayoutButton handleLayout={handleLayout} />
+                        <DownloadButton minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
                     </div>
                 </Panel>
                 <Background />

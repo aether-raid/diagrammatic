@@ -177,6 +177,7 @@ export class Node {
            */
           if (
             variableA.variableType === VariableType.INJECTION &&
+            subgroup.groupType !== GroupType.FILE &&
             variableA.pointsTo === subgroup.token
           ) {
             variableA.pointsTo = subgroup;
@@ -189,6 +190,8 @@ export class Node {
            */
           if (
             variableA.variableType === VariableType.OBJECT_INSTANTIATION &&
+            subgroup.groupType !== GroupType.FILE &&
+            subgroup.groupType !== GroupType.INTERFACE &&
             variableA.pointsTo === subgroup.token
           ) {
             variableA.pointsTo = subgroup;

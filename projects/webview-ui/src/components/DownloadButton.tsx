@@ -7,6 +7,11 @@ import {
 } from "@xyflow/react";
 import { toPng } from "html-to-image";
 
+import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
+
+import { HiddenLabelButton } from "./HiddenLabelButton/HiddenLabelButton";
+
+
 function downloadImage(dataUrl: string) {
     const a = document.createElement("a");
 
@@ -54,9 +59,11 @@ function DownloadButton({minZoom, maxZoom}: DownloadButtonProps) {
 
     return (
         <>
-            <button className="download-btn" onClick={onClick}>
-                Download Diagram
-            </button>
+            <HiddenLabelButton
+                icon={<DownloadRoundedIcon />}
+                label="Download Diagram"
+                onClick={onClick}
+            />
         </>
     );
 }
