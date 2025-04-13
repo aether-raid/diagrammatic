@@ -1,3 +1,5 @@
+import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
+
 import { SerializedDiagnostic } from "@shared/vscode.types";
 
 import { sendJumpToLineMessageToExtension } from '../../helpers/vscodeApiHandler';
@@ -10,7 +12,7 @@ interface IssueItemProps {
 }
 
 export const IssueItem = ({ issue, filePath }: IssueItemProps) => {
-  const { message, range } = issue;
+  const { range } = issue;
 
   const handleClick = () => {
     if (!filePath) {
@@ -25,10 +27,8 @@ export const IssueItem = ({ issue, filePath }: IssueItemProps) => {
       onClick={handleClick}
       className="d-flex justify-content-between gap-3 px-3 p-2 border-bottom user-select-none cursor-pointer issue-item-hover fs-7"
     >
-      <span>{ message }</span>
-      <div className='d-flex border-start ps-2 align-items-center fst-italic text-nowrap'>
-        <span>Line { range.start.line }</span>
-      </div>
+      <div className='d-flex align-items-center text-nowrap'>Line { range.start.line }</div>
+      <OpenInNewRoundedIcon fontSize='small' />
     </div>
   );
 }
