@@ -1,8 +1,6 @@
 import {
   Node,
   Group,
-  GroupType,
-  NodeType,
   Variable,
   VariableType,
 } from "./model.js";
@@ -33,24 +31,32 @@ export class Language {
     const body = [];
 
     for (const child of node.children) {
-      if (RuleEngine.processNode(child, languageRules.nodes)) {
+      const nodeType = RuleEngine.matchNodeRules(child, languageRules.nodes);
+      if (nodeType) {
+        child.nodeType = nodeType;
         nodes.push(child);
-      } else if (RuleEngine.processNode(child, languageRules.groups)) {
-        groups.push(child);
-      } else {
-        const {
-          groups: subGroups,
-          nodes: subNodes,
-          body: subBody,
-        } = this.separateNamespaces(child, languageRules);
+        continue;
+      }
 
-        if (subGroups.length > 0 || subNodes.length > 0) {
-          groups.push(...subGroups);
-          nodes.push(...subNodes);
-          body.push(...subBody);
-        } else {
-          body.push(child);
-        }
+      const groupType = RuleEngine.matchGroupRules(child, languageRules.groups);
+      if (groupType) {
+        child.groupType = groupType;
+        groups.push(child);
+        continue;
+      }
+
+      const {
+        groups: subGroups,
+        nodes: subNodes,
+        body: subBody,
+      } = this.separateNamespaces(child, languageRules);
+
+      if (subGroups.length > 0 || subNodes.length > 0) {
+        groups.push(...subGroups);
+        nodes.push(...subNodes);
+        body.push(...subBody);
+      } else {
+        body.push(child);
       }
     }
 
@@ -62,18 +68,10 @@ export class Language {
    * Generate all of the nodes internal to the group.
    */
   static makeClassGroup(tree, parent, languageRules) {
-    const { nodes: nodeTrees } = this.separateNamespaces(tree, languageRules);
-    const matchingGroupRule = languageRules.groups.find(
-      (group) => group.type === tree.type
-    );
-    if (!matchingGroupRule || !matchingGroupRule.groupType) {
-      throw new Error("Group rule is missing groupType or does not exist!");
-    }
-    if (!GroupType[matchingGroupRule.groupType]) {
-      throw new Error("Group rule has invalid groupType!");
-    }
+    const { nodes: nodeTrees, groups: groupTrees } = this.separateNamespaces(tree, languageRules);
+
     const classGroup = new Group({
-      groupType: GroupType[matchingGroupRule.groupType],
+      groupType: tree.groupType,
       token: getName(tree, languageRules.getName),
       startPosition: tree.startPosition,
       endPosition: tree.endPosition,
@@ -87,6 +85,12 @@ export class Language {
         classGroup.addNode(subnode);
       }
     }
+
+    for (const subgroup of groupTrees) {
+      const newSubgroup = this.makeClassGroup(subgroup, classGroup, languageRules);
+      classGroup.addSubgroup(newSubgroup);
+    }
+
     return classGroup;
   }
 
@@ -151,16 +155,6 @@ export class Language {
       }
     }
 
-    const matchingNodeRule = languageRules.nodes.find(
-      (node) => node.type === tree.type
-    );
-    if (!matchingNodeRule || !matchingNodeRule.nodeType) {
-      throw new Error("Node rule is missing nodeType or does not exist!");
-    }
-    if (!NodeType[matchingNodeRule.nodeType]) {
-      throw new Error("Node rule has invalid nodeType!");
-    }
-
     const node = new Node({
       token,
       calls,
@@ -168,7 +162,7 @@ export class Language {
       startPosition: tree.startPosition,
       endPosition: tree.endPosition,
       parent,
-      nodeType: NodeType[matchingNodeRule.nodeType],
+      nodeType: tree.nodeType,
     });
     const subnodes = nodes.flatMap((t) =>
       this.makeNodes(t, node, languageRules)

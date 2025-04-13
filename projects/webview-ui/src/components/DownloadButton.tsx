@@ -42,8 +42,20 @@ function DownloadButton({minZoom, maxZoom}: DownloadButtonProps) {
             maxZoom ?? 2,
             0.02 // padding
         );
+        const viewportEl = document.querySelector<HTMLElement>('.react-flow__viewport');
+        if (!viewportEl) return;
 
-        toPng(document.querySelector<HTMLElement>('.react-flow__viewport')!, {
+        const paths = viewportEl.querySelectorAll<SVGPathElement>('.react-flow__edges path');
+        paths.forEach((path) => {
+            path.setAttribute('stroke', 'white');
+            path.setAttribute('stroke-width', '2');
+        });
+        const labels = viewportEl.querySelectorAll<SVGTextElement>('.react-flow__edge-textwrapper text');
+        labels.forEach((text) => {
+        text.setAttribute('fill', 'white');  // or any color you want for the labels
+        });
+
+        toPng(viewportEl, {
             backgroundColor: "#000000",
             width: imageWidth,
             height: imageHeight,

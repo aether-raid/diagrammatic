@@ -12,9 +12,8 @@ import {
 } from "../helper";
 import { RuleEngine } from "@extension/codeToDiagram/algorithm/rules";
 import path from "path";
-import fs from "fs"
 
-// Repository URL: https://github.com/arvidn/libtorrent/tree/RC_2_0
+// Repository URL: https://github.com/arvidn/libtorrent
 const mockDirectoryPath = "/Users/sharlenetio/Desktop/fyp/samples/libtorrent";
 
 describe("libtorrent", () => {
@@ -57,8 +56,6 @@ describe("libtorrent", () => {
     const [seconds, nanoseconds] = process.hrtime(start);
     console.log("Milliseconds:", seconds * 1000 + nanoseconds / 1e6);
 
-    fs.writeFileSync('expectedEdges.json', JSON.stringify(result.edges), 'utf-8');
-    fs.writeFileSync('expectedNodes.json', JSON.stringify(result.nodes), 'utf-8');
 
     const numComponents = result.nodes.length;
     console.log("Number of components:", numComponents);
@@ -113,5 +110,22 @@ describe("libtorrent", () => {
     console.log("Precision:", overallPrecision);
     console.log("Recall:", overallRecall);
     console.log("F1:", overallF1);
+  });
+
+  it('test runtime average over 10 runs', () => {
+    const runs = 10;
+    let totalTime = 0;
+  
+    for (let i = 0; i < runs; i++) {
+      const start = process.hrtime();
+      runCodeToDiagramAlgorithm(mockDirectoryPath);
+      const [seconds, nanoseconds] = process.hrtime(start);
+      const ms = seconds * 1000 + nanoseconds / 1e6;
+      totalTime += ms;
+      console.log(`Run ${i + 1}: ${ms.toFixed(2)} ms`);
+    }
+  
+    const average = totalTime / runs;
+    console.log(`\nAverage execution time over ${runs} runs: ${average.toFixed(2)} ms`);
   });
 });

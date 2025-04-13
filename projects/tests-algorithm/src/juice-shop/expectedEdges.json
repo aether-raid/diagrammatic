@@ -4436,5 +4436,1325 @@
     "sourceHandle": "walkRecursivelyInArray",
     "targetHandle": "walkRecursivelyInArray",
     "markerEnd": { "type": "arrowclosed" }
+  },
+  {
+    "id": "app-validateDependencies",
+    "source": "/app.ts",
+    "target": "/lib/startup/validateDependencies.ts",
+    "sourceHandle": "app",
+    "targetHandle": "validateDependencies",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "GenerateCoupon-generateCoupon",
+    "source": "/cypress.config.ts",
+    "target": "/lib/insecurity.ts",
+    "sourceHandle": "GenerateCoupon",
+    "targetHandle": "generateCoupon",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "isRedirectAllowed-escapeHTML",
+    "source": "/data/static/codefixes/redirectChallenge_3.ts",
+    "target": "/data/static/codefixes/redirectChallenge_3.ts",
+    "sourceHandle": "isRedirectAllowed",
+    "targetHandle": "escapeHTML",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "shootConfetti-timeout",
+    "source": "/frontend/src/confetti/index.ts",
+    "target": "/frontend/src/confetti/index.ts",
+    "sourceHandle": "shootConfetti",
+    "targetHandle": "timeout",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "calculateFindItCheatScore-checkForIdenticalSolvedChallenge",
+    "source": "/lib/antiCheat.ts",
+    "target": "/lib/antiCheat.ts",
+    "sourceHandle": "calculateFindItCheatScore",
+    "targetHandle": "checkForIdenticalSolvedChallenge",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "checkForIdenticalSolvedChallenge-getCodeChallenges",
+    "source": "/lib/antiCheat.ts",
+    "target": "/lib/codingChallenges.ts",
+    "sourceHandle": "checkForIdenticalSolvedChallenge",
+    "targetHandle": "getCodeChallenges",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "cutOffPoisonNullByte-contains",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "cutOffPoisonNullByte",
+    "targetHandle": "contains",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "generateCoupon-toMMMYY",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "generateCoupon",
+    "targetHandle": "toMMMYY",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "discountFromCoupon-toMMMYY",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "discountFromCoupon",
+    "targetHandle": "toMMMYY",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "isAccounting-jwtFrom",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "isAccounting",
+    "targetHandle": "jwtFrom",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "isAccounting-jwtFrom",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "isAccounting",
+    "targetHandle": "jwtFrom",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "isDeluxe-jwtFrom",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "isDeluxe",
+    "targetHandle": "jwtFrom",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "isDeluxe-jwtFrom",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "isDeluxe",
+    "targetHandle": "jwtFrom",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "isCustomer-jwtFrom",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "isCustomer",
+    "targetHandle": "jwtFrom",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "isCustomer-jwtFrom",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "isCustomer",
+    "targetHandle": "jwtFrom",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "appendUserId-jwtFrom",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "appendUserId",
+    "targetHandle": "jwtFrom",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "updateAuthenticatedUsers-jwtFrom",
+    "source": "/lib/insecurity.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "updateAuthenticatedUsers",
+    "targetHandle": "jwtFrom",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "cleanupFtpFolder-getErrorMessage",
+    "source": "/lib/startup/cleanupFtpFolder.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "cleanupFtpFolder",
+    "targetHandle": "getErrorMessage",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizeApplication-customizeTitle",
+    "source": "/lib/startup/customizeApplication.ts",
+    "target": "/lib/startup/customizeApplication.ts",
+    "sourceHandle": "customizeApplication",
+    "targetHandle": "customizeTitle",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizeApplication-customizeLogo",
+    "source": "/lib/startup/customizeApplication.ts",
+    "target": "/lib/startup/customizeApplication.ts",
+    "sourceHandle": "customizeApplication",
+    "targetHandle": "customizeLogo",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizeApplication-customizeFavicon",
+    "source": "/lib/startup/customizeApplication.ts",
+    "target": "/lib/startup/customizeApplication.ts",
+    "sourceHandle": "customizeApplication",
+    "targetHandle": "customizeFavicon",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizeApplication-customizeTheme",
+    "source": "/lib/startup/customizeApplication.ts",
+    "target": "/lib/startup/customizeApplication.ts",
+    "sourceHandle": "customizeApplication",
+    "targetHandle": "customizeTheme",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizeApplication-customizeCookieConsentBanner",
+    "source": "/lib/startup/customizeApplication.ts",
+    "target": "/lib/startup/customizeApplication.ts",
+    "sourceHandle": "customizeApplication",
+    "targetHandle": "customizeCookieConsentBanner",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizeApplication-customizePromotionVideo",
+    "source": "/lib/startup/customizeApplication.ts",
+    "target": "/lib/startup/customizeApplication.ts",
+    "sourceHandle": "customizeApplication",
+    "targetHandle": "customizePromotionVideo",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizeApplication-customizePromotionSubtitles",
+    "source": "/lib/startup/customizeApplication.ts",
+    "target": "/lib/startup/customizeApplication.ts",
+    "sourceHandle": "customizeApplication",
+    "targetHandle": "customizePromotionSubtitles",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizeApplication-customizeHackingInstructorAvatar",
+    "source": "/lib/startup/customizeApplication.ts",
+    "target": "/lib/startup/customizeApplication.ts",
+    "sourceHandle": "customizeApplication",
+    "targetHandle": "customizeHackingInstructorAvatar",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizeApplication-customizeChatbotAvatar",
+    "source": "/lib/startup/customizeApplication.ts",
+    "target": "/lib/startup/customizeApplication.ts",
+    "sourceHandle": "customizeApplication",
+    "targetHandle": "customizeChatbotAvatar",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizeLogo-retrieveCustomFile",
+    "source": "/lib/startup/customizeApplication.ts",
+    "target": "/lib/startup/customizeApplication.ts",
+    "sourceHandle": "customizeLogo",
+    "targetHandle": "retrieveCustomFile",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizeChatbotAvatar-retrieveCustomFile",
+    "source": "/lib/startup/customizeApplication.ts",
+    "target": "/lib/startup/customizeApplication.ts",
+    "sourceHandle": "customizeChatbotAvatar",
+    "targetHandle": "retrieveCustomFile",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizeHackingInstructorAvatar-retrieveCustomFile",
+    "source": "/lib/startup/customizeApplication.ts",
+    "target": "/lib/startup/customizeApplication.ts",
+    "sourceHandle": "customizeHackingInstructorAvatar",
+    "targetHandle": "retrieveCustomFile",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizeFavicon-retrieveCustomFile",
+    "source": "/lib/startup/customizeApplication.ts",
+    "target": "/lib/startup/customizeApplication.ts",
+    "sourceHandle": "customizeFavicon",
+    "targetHandle": "retrieveCustomFile",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizePromotionVideo-retrieveCustomFile",
+    "source": "/lib/startup/customizeApplication.ts",
+    "target": "/lib/startup/customizeApplication.ts",
+    "sourceHandle": "customizePromotionVideo",
+    "targetHandle": "retrieveCustomFile",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizePromotionSubtitles-retrieveCustomFile",
+    "source": "/lib/startup/customizeApplication.ts",
+    "target": "/lib/startup/customizeApplication.ts",
+    "sourceHandle": "customizePromotionSubtitles",
+    "targetHandle": "retrieveCustomFile",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "retrieveCustomFile-isUrl",
+    "source": "/lib/startup/customizeApplication.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "retrieveCustomFile",
+    "targetHandle": "isUrl",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "retrieveCustomFile-extractFilename",
+    "source": "/lib/startup/customizeApplication.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "retrieveCustomFile",
+    "targetHandle": "extractFilename",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "retrieveCustomFile-downloadToFile",
+    "source": "/lib/startup/customizeApplication.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "retrieveCustomFile",
+    "targetHandle": "downloadToFile",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizeEasterEgg-isUrl",
+    "source": "/lib/startup/customizeEasterEgg.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "customizeEasterEgg",
+    "targetHandle": "isUrl",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizeEasterEgg-extractFilename",
+    "source": "/lib/startup/customizeEasterEgg.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "customizeEasterEgg",
+    "targetHandle": "extractFilename",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizeEasterEgg-downloadToFile",
+    "source": "/lib/startup/customizeEasterEgg.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "customizeEasterEgg",
+    "targetHandle": "downloadToFile",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizeEasterEgg-replaceImagePath",
+    "source": "/lib/startup/customizeEasterEgg.ts",
+    "target": "/lib/startup/customizeEasterEgg.ts",
+    "sourceHandle": "customizeEasterEgg",
+    "targetHandle": "replaceImagePath",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "customizeEasterEgg-replaceThreeJsTitleTag",
+    "source": "/lib/startup/customizeEasterEgg.ts",
+    "target": "/lib/startup/customizeEasterEgg.ts",
+    "sourceHandle": "customizeEasterEgg",
+    "targetHandle": "replaceThreeJsTitleTag",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "registerWebsocketEvents-contains",
+    "source": "/lib/startup/registerWebsocketEvents.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "registerWebsocketEvents",
+    "targetHandle": "contains",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "registerWebsocketEvents-contains",
+    "source": "/lib/startup/registerWebsocketEvents.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "registerWebsocketEvents",
+    "targetHandle": "contains",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "restoreOverwrittenFilesWithOriginals-exists",
+    "source": "/lib/startup/restoreOverwrittenFilesWithOriginals.ts",
+    "target": "/lib/startup/restoreOverwrittenFilesWithOriginals.ts",
+    "sourceHandle": "restoreOverwrittenFilesWithOriginals",
+    "targetHandle": "exists",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "restoreOverwrittenFilesWithOriginals-getErrorMessage",
+    "source": "/lib/startup/restoreOverwrittenFilesWithOriginals.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "restoreOverwrittenFilesWithOriginals",
+    "targetHandle": "getErrorMessage",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validateChatBot-extractFilename",
+    "source": "/lib/startup/validateChatBot.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "validateChatBot",
+    "targetHandle": "extractFilename",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validateChatBot-extractFilename",
+    "source": "/lib/startup/validateChatBot.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "validateChatBot",
+    "targetHandle": "extractFilename",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validateConfig-checkYamlSchema",
+    "source": "/lib/startup/validateConfig.ts",
+    "target": "/lib/startup/validateConfig.ts",
+    "sourceHandle": "validateConfig",
+    "targetHandle": "checkYamlSchema",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validateConfig-checkMinimumRequiredNumberOfProducts",
+    "source": "/lib/startup/validateConfig.ts",
+    "target": "/lib/startup/validateConfig.ts",
+    "sourceHandle": "validateConfig",
+    "targetHandle": "checkMinimumRequiredNumberOfProducts",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validateConfig-checkUnambiguousMandatorySpecialProducts",
+    "source": "/lib/startup/validateConfig.ts",
+    "target": "/lib/startup/validateConfig.ts",
+    "sourceHandle": "validateConfig",
+    "targetHandle": "checkUnambiguousMandatorySpecialProducts",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validateConfig-checkUniqueSpecialOnProducts",
+    "source": "/lib/startup/validateConfig.ts",
+    "target": "/lib/startup/validateConfig.ts",
+    "sourceHandle": "validateConfig",
+    "targetHandle": "checkUniqueSpecialOnProducts",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validateConfig-checkNecessaryExtraKeysOnSpecialProducts",
+    "source": "/lib/startup/validateConfig.ts",
+    "target": "/lib/startup/validateConfig.ts",
+    "sourceHandle": "validateConfig",
+    "targetHandle": "checkNecessaryExtraKeysOnSpecialProducts",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validateConfig-checkMinimumRequiredNumberOfMemories",
+    "source": "/lib/startup/validateConfig.ts",
+    "target": "/lib/startup/validateConfig.ts",
+    "sourceHandle": "validateConfig",
+    "targetHandle": "checkMinimumRequiredNumberOfMemories",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validateConfig-checkUnambiguousMandatorySpecialMemories",
+    "source": "/lib/startup/validateConfig.ts",
+    "target": "/lib/startup/validateConfig.ts",
+    "sourceHandle": "validateConfig",
+    "targetHandle": "checkUnambiguousMandatorySpecialMemories",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validateConfig-checkUniqueSpecialOnMemories",
+    "source": "/lib/startup/validateConfig.ts",
+    "target": "/lib/startup/validateConfig.ts",
+    "sourceHandle": "validateConfig",
+    "targetHandle": "checkUniqueSpecialOnMemories",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validateConfig-checkSpecialMemoriesHaveNoUserAssociated",
+    "source": "/lib/startup/validateConfig.ts",
+    "target": "/lib/startup/validateConfig.ts",
+    "sourceHandle": "validateConfig",
+    "targetHandle": "checkSpecialMemoriesHaveNoUserAssociated",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validateConfig-checkForIllogicalCombos",
+    "source": "/lib/startup/validateConfig.ts",
+    "target": "/lib/startup/validateConfig.ts",
+    "sourceHandle": "validateConfig",
+    "targetHandle": "checkForIllogicalCombos",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validateDependencies-getErrorMessage",
+    "source": "/lib/startup/validateDependencies.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "validateDependencies",
+    "targetHandle": "getErrorMessage",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validatePreconditions-checkIfRunningOnSupportedNodeVersion",
+    "source": "/lib/startup/validatePreconditions.ts",
+    "target": "/lib/startup/validatePreconditions.ts",
+    "sourceHandle": "validatePreconditions",
+    "targetHandle": "checkIfRunningOnSupportedNodeVersion",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validatePreconditions-checkIfRunningOnSupportedOS",
+    "source": "/lib/startup/validatePreconditions.ts",
+    "target": "/lib/startup/validatePreconditions.ts",
+    "sourceHandle": "validatePreconditions",
+    "targetHandle": "checkIfRunningOnSupportedOS",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validatePreconditions-checkIfRunningOnSupportedCPU",
+    "source": "/lib/startup/validatePreconditions.ts",
+    "target": "/lib/startup/validatePreconditions.ts",
+    "sourceHandle": "validatePreconditions",
+    "targetHandle": "checkIfRunningOnSupportedCPU",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validatePreconditions-checkIfRequiredFileExists",
+    "source": "/lib/startup/validatePreconditions.ts",
+    "target": "/lib/startup/validatePreconditions.ts",
+    "sourceHandle": "validatePreconditions",
+    "targetHandle": "checkIfRequiredFileExists",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validatePreconditions-checkIfRequiredFileExists",
+    "source": "/lib/startup/validatePreconditions.ts",
+    "target": "/lib/startup/validatePreconditions.ts",
+    "sourceHandle": "validatePreconditions",
+    "targetHandle": "checkIfRequiredFileExists",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validatePreconditions-checkIfRequiredFileExists",
+    "source": "/lib/startup/validatePreconditions.ts",
+    "target": "/lib/startup/validatePreconditions.ts",
+    "sourceHandle": "validatePreconditions",
+    "targetHandle": "checkIfRequiredFileExists",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validatePreconditions-checkIfRequiredFileExists",
+    "source": "/lib/startup/validatePreconditions.ts",
+    "target": "/lib/startup/validatePreconditions.ts",
+    "sourceHandle": "validatePreconditions",
+    "targetHandle": "checkIfRequiredFileExists",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validatePreconditions-checkIfRequiredFileExists",
+    "source": "/lib/startup/validatePreconditions.ts",
+    "target": "/lib/startup/validatePreconditions.ts",
+    "sourceHandle": "validatePreconditions",
+    "targetHandle": "checkIfRequiredFileExists",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validatePreconditions-checkIfRequiredFileExists",
+    "source": "/lib/startup/validatePreconditions.ts",
+    "target": "/lib/startup/validatePreconditions.ts",
+    "sourceHandle": "validatePreconditions",
+    "targetHandle": "checkIfRequiredFileExists",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validatePreconditions-checkIfRequiredFileExists",
+    "source": "/lib/startup/validatePreconditions.ts",
+    "target": "/lib/startup/validatePreconditions.ts",
+    "sourceHandle": "validatePreconditions",
+    "targetHandle": "checkIfRequiredFileExists",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validatePreconditions-checkIfPortIsAvailable",
+    "source": "/lib/startup/validatePreconditions.ts",
+    "target": "/lib/startup/validatePreconditions.ts",
+    "sourceHandle": "validatePreconditions",
+    "targetHandle": "checkIfPortIsAvailable",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "validatePreconditions-checkIfDomainReachable",
+    "source": "/lib/startup/validatePreconditions.ts",
+    "target": "/lib/startup/validatePreconditions.ts",
+    "sourceHandle": "validatePreconditions",
+    "targetHandle": "checkIfDomainReachable",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "ctfFlag-getCtfKey",
+    "source": "/lib/utils.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "ctfFlag",
+    "targetHandle": "getCtfKey",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "notify-ctfFlag",
+    "source": "/lib/webhook.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "notify",
+    "targetHandle": "ctfFlag",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "notify-version",
+    "source": "/lib/webhook.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "notify",
+    "targetHandle": "version",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "set-isChallengeEnabled",
+    "source": "/models/feedback.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "set",
+    "targetHandle": "isChallengeEnabled",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "set-contains",
+    "source": "/models/feedback.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "set",
+    "targetHandle": "contains",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "set-isChallengeEnabled",
+    "source": "/models/product.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "set",
+    "targetHandle": "isChallengeEnabled",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "set-contains",
+    "source": "/models/product.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "set",
+    "targetHandle": "contains",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "relationsInit-makeKeyNonUpdatable",
+    "source": "/models/relations.ts",
+    "target": "/lib/noUpdate.ts",
+    "sourceHandle": "relationsInit",
+    "targetHandle": "makeKeyNonUpdatable",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "relationsInit-makeKeyNonUpdatable",
+    "source": "/models/relations.ts",
+    "target": "/lib/noUpdate.ts",
+    "sourceHandle": "relationsInit",
+    "targetHandle": "makeKeyNonUpdatable",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "set-hmac",
+    "source": "/models/securityAnswer.ts",
+    "target": "/lib/insecurity.ts",
+    "sourceHandle": "set",
+    "targetHandle": "hmac",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "set-solveIf",
+    "source": "/models/user.ts",
+    "target": "/lib/challengeUtils.ts",
+    "sourceHandle": "set",
+    "targetHandle": "solveIf",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "serveAngularClient-startsWith",
+    "source": "/routes/angular.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "serveAngularClient",
+    "targetHandle": "startsWith",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "serveAngularClient-startsWith",
+    "source": "/routes/angular.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "serveAngularClient",
+    "targetHandle": "startsWith",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "retrieveAppVersion-version",
+    "source": "/routes/appVersion.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "retrieveAppVersion",
+    "targetHandle": "version",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "retrieveUserList-decode",
+    "source": "/routes/authenticatedUsers.ts",
+    "target": "/lib/insecurity.ts",
+    "sourceHandle": "retrieveUserList",
+    "targetHandle": "decode",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "b2bOrder-isChallengeEnabled",
+    "source": "/routes/b2bOrder.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "b2bOrder",
+    "targetHandle": "isChallengeEnabled",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "b2bOrder-isChallengeEnabled",
+    "source": "/routes/b2bOrder.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "b2bOrder",
+    "targetHandle": "isChallengeEnabled",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "b2bOrder-getErrorMessage",
+    "source": "/routes/b2bOrder.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "b2bOrder",
+    "targetHandle": "getErrorMessage",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "b2bOrder-getErrorMessage",
+    "source": "/routes/b2bOrder.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "b2bOrder",
+    "targetHandle": "getErrorMessage",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "checkKeys-getErrorMessage",
+    "source": "/routes/checkKeys.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "checkKeys",
+    "targetHandle": "getErrorMessage",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "nftUnlocked-getErrorMessage",
+    "source": "/routes/checkKeys.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "nftUnlocked",
+    "targetHandle": "getErrorMessage",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "productReviews-getErrorMessage",
+    "source": "/routes/createProductReviews.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "productReviews",
+    "targetHandle": "getErrorMessage",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "endsWithAllowlistedFileType-endsWith",
+    "source": "/routes/fileServer.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "endsWithAllowlistedFileType",
+    "targetHandle": "endsWith",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "endsWithAllowlistedFileType-endsWith",
+    "source": "/routes/fileServer.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "endsWithAllowlistedFileType",
+    "targetHandle": "endsWith",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "handleZipFileUpload-endsWith",
+    "source": "/routes/fileUpload.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "handleZipFileUpload",
+    "targetHandle": "endsWith",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "handleZipFileUpload-isChallengeEnabled",
+    "source": "/routes/fileUpload.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "handleZipFileUpload",
+    "targetHandle": "isChallengeEnabled",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "handleXmlUpload-endsWith",
+    "source": "/routes/fileUpload.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "handleXmlUpload",
+    "targetHandle": "endsWith",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "handleXmlUpload-isChallengeEnabled",
+    "source": "/routes/fileUpload.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "handleXmlUpload",
+    "targetHandle": "isChallengeEnabled",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "handleXmlUpload-matchesEtcPasswdFile",
+    "source": "/routes/fileUpload.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "handleXmlUpload",
+    "targetHandle": "matchesEtcPasswdFile",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "handleXmlUpload-matchesSystemIniFile",
+    "source": "/routes/fileUpload.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "handleXmlUpload",
+    "targetHandle": "matchesSystemIniFile",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "handleXmlUpload-trunc",
+    "source": "/routes/fileUpload.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "handleXmlUpload",
+    "targetHandle": "trunc",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "handleXmlUpload-contains",
+    "source": "/routes/fileUpload.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "handleXmlUpload",
+    "targetHandle": "contains",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "updateLoop-retrieveChallengesWithCodeSnippet",
+    "source": "/routes/metrics.ts",
+    "target": "/routes/vulnCodeSnippet.ts",
+    "sourceHandle": "updateLoop",
+    "targetHandle": "retrieveChallengesWithCodeSnippet",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "updateLoop-totalCheatScore",
+    "source": "/routes/metrics.ts",
+    "target": "/lib/antiCheat.ts",
+    "sourceHandle": "updateLoop",
+    "targetHandle": "totalCheatScore",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "nftMintListener-getErrorMessage",
+    "source": "/routes/nftMint.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "nftMintListener",
+    "targetHandle": "getErrorMessage",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "walletNFTVerify-getErrorMessage",
+    "source": "/routes/nftMint.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "walletNFTVerify",
+    "targetHandle": "getErrorMessage",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "jwtChallenges-jwtChallenge",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "jwtChallenges",
+    "targetHandle": "jwtChallenge",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "jwtChallenges-jwtChallenge",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "jwtChallenges",
+    "targetHandle": "jwtChallenge",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "databaseRelatedChallenges-changeProductChallenge",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "databaseRelatedChallenges",
+    "targetHandle": "changeProductChallenge",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "databaseRelatedChallenges-feedbackChallenge",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "databaseRelatedChallenges",
+    "targetHandle": "feedbackChallenge",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "databaseRelatedChallenges-knownVulnerableComponentChallenge",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "databaseRelatedChallenges",
+    "targetHandle": "knownVulnerableComponentChallenge",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "databaseRelatedChallenges-weirdCryptoChallenge",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "databaseRelatedChallenges",
+    "targetHandle": "weirdCryptoChallenge",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "databaseRelatedChallenges-typosquattingNpmChallenge",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "databaseRelatedChallenges",
+    "targetHandle": "typosquattingNpmChallenge",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "databaseRelatedChallenges-typosquattingAngularChallenge",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "databaseRelatedChallenges",
+    "targetHandle": "typosquattingAngularChallenge",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "databaseRelatedChallenges-hiddenImageChallenge",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "databaseRelatedChallenges",
+    "targetHandle": "hiddenImageChallenge",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "databaseRelatedChallenges-supplyChainAttackChallenge",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "databaseRelatedChallenges",
+    "targetHandle": "supplyChainAttackChallenge",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "databaseRelatedChallenges-dlpPastebinDataLeakChallenge",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "databaseRelatedChallenges",
+    "targetHandle": "dlpPastebinDataLeakChallenge",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "databaseRelatedChallenges-csafChallenge",
+    "source": "/routes/verify.ts",
+    "target": "/routes/verify.ts",
+    "sourceHandle": "databaseRelatedChallenges",
+    "targetHandle": "csafChallenge",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "getVideo-videoPath",
+    "source": "/routes/videoHandler.ts",
+    "target": "/routes/videoHandler.ts",
+    "sourceHandle": "getVideo",
+    "targetHandle": "videoPath",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "favicon-extractFilename",
+    "source": "/routes/videoHandler.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "favicon",
+    "targetHandle": "extractFilename",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "videoPath-extractFilename",
+    "source": "/routes/videoHandler.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "videoPath",
+    "targetHandle": "extractFilename",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "checkCorrectFix-storeFixItVerdict",
+    "source": "/routes/vulnCodeFixes.ts",
+    "target": "/lib/accuracy.ts",
+    "sourceHandle": "checkCorrectFix",
+    "targetHandle": "storeFixItVerdict",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "serveCodeSnippet-retrieveCodeSnippet",
+    "source": "/routes/vulnCodeSnippet.ts",
+    "target": "/routes/vulnCodeSnippet.ts",
+    "sourceHandle": "serveCodeSnippet",
+    "targetHandle": "retrieveCodeSnippet",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "serveCodeSnippet-setStatusCode",
+    "source": "/routes/vulnCodeSnippet.ts",
+    "target": "/routes/vulnCodeSnippet.ts",
+    "sourceHandle": "serveCodeSnippet",
+    "targetHandle": "setStatusCode",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "serveChallengesWithCodeSnippet-retrieveChallengesWithCodeSnippet",
+    "source": "/routes/vulnCodeSnippet.ts",
+    "target": "/routes/vulnCodeSnippet.ts",
+    "sourceHandle": "serveChallengesWithCodeSnippet",
+    "targetHandle": "retrieveChallengesWithCodeSnippet",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "checkVulnLines-retrieveCodeSnippet",
+    "source": "/routes/vulnCodeSnippet.ts",
+    "target": "/routes/vulnCodeSnippet.ts",
+    "sourceHandle": "checkVulnLines",
+    "targetHandle": "retrieveCodeSnippet",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "checkVulnLines-setStatusCode",
+    "source": "/routes/vulnCodeSnippet.ts",
+    "target": "/routes/vulnCodeSnippet.ts",
+    "sourceHandle": "checkVulnLines",
+    "targetHandle": "setStatusCode",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "checkVulnLines-getVerdict",
+    "source": "/routes/vulnCodeSnippet.ts",
+    "target": "/routes/vulnCodeSnippet.ts",
+    "sourceHandle": "checkVulnLines",
+    "targetHandle": "getVerdict",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "contractExploitListener-getErrorMessage",
+    "source": "/routes/web3Wallet.ts",
+    "target": "/lib/utils.ts",
+    "sourceHandle": "contractExploitListener",
+    "targetHandle": "getErrorMessage",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "checkDiffs-retrieveCodeSnippet",
+    "source": "/rsn/rsnUtil.ts",
+    "target": "/routes/vulnCodeSnippet.ts",
+    "sourceHandle": "checkDiffs",
+    "targetHandle": "retrieveCodeSnippet",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "checkDiffs-filterString",
+    "source": "/rsn/rsnUtil.ts",
+    "target": "/rsn/rsnUtil.ts",
+    "sourceHandle": "checkDiffs",
+    "targetHandle": "filterString",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
+    "id": "checkDiffs-filterString",
+    "source": "/rsn/rsnUtil.ts",
+    "target": "/rsn/rsnUtil.ts",
+    "sourceHandle": "checkDiffs",
+    "targetHandle": "filterString",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   }
 ]

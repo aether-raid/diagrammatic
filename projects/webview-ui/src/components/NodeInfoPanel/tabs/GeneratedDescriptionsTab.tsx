@@ -23,7 +23,6 @@ export const GeneratedDescriptionsTab = ({ nodeId, items }: GeneratedDescription
 
     useEffect(() => {
         setSelectedValue(items[0].name);
-        setDisplayDesc(undefined);
 
         try {
             if (!diagramCtx?.nodeFnDesc?.[nodeId]) {

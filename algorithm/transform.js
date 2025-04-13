@@ -103,7 +103,11 @@ export function transformFileGroups(fileGroups) {
       }
     }
 
-    for (const subgroup of fileGroup.subgroups) {
+    for (const subgroup of fileGroup.allGroups()) {
+      if (subgroup === fileGroup) {
+        continue;
+      }
+
       const subgroupNodes = subgroup.nodes.flatMap((node) => [
         {
           name: node.token ?? "",
