@@ -1,3 +1,5 @@
+// @ts-ignore: React is needed for testing, but not used in the component
+import React from 'react'; 
 import {
     useReactFlow,
     getNodesBounds,

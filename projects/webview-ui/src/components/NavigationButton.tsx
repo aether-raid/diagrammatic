@@ -1,3 +1,5 @@
+// @ts-ignore: React is needed for testing, but not used in the component
+import React from 'react'; 
 import { useNavigate } from "react-router-dom";
 
 import FlipCameraAndroidRoundedIcon from '@mui/icons-material/FlipCameraAndroidRounded';
