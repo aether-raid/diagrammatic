@@ -24,10 +24,20 @@ jobs:
       - name: Install dependencies
         run: npm install
         
-      - name: Run tests with Xvfb
-        uses: GabrielBB/xvfb-action@v1
-        with:
-          run: npm test
+      - name: Run unit tests
+        run: npm run test:unit
+
+      - name: Run integration tests
+        run: npm run test:integration
+
+      - name: Run component tests
+        run: npm run test:component
+
+      - name: Run performance tests
+        run: npm run test:algo
+
+      - name: Run end-to-end tests
+        run: npm run test:e2e
 
     deploy:
         runs-on: ubuntu-latest
