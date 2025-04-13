@@ -111,8 +111,9 @@
     "vscode:prepublish": "npm run build",
     "pretest": "npm run build && npm run lint",
     "test:vscode-test": "vscode-test",
-    "test:component": "jest --config=jest.component.config.js",
+    "test:unit": "node ./dist/extension/test/runTest.js",
     "test:integration": "jest --config=jest.integration.config.js",
+    "test:component": "jest --config=jest.component.config.js",
     "test:e2e": "wdio run ./projects/extension/wdio.conf.ts",
     "test:algo": "ts-mocha -r tsconfig-paths/register -p ./projects/tests-algorithm/tsconfig.json ./projects/tests-algorithm/src/**/*.ts",
     "lint": "eslint --config ./eslint.config.mjs ./projects/extension/src && eslint --config ./eslint.config.react.mjs ./projects/webview-ui/src",
@@ -126,8 +127,7 @@
     "watch:react": "vite build --watch",
     "watch": "npm run prebuild && concurrently \"npm run watch:typecheck\" \"npm run watch:ext\" \"npm run watch:react\"",
     "deploy": "vsce publish",
-    "compile": "tsc -p ./projects/extension",
-    "test": "node ./dist/extension/test/runTest.js"
+    "compile": "tsc -p ./projects/extension"
   },
   "devDependencies": {
     "@babel/core": "^7.26.10",

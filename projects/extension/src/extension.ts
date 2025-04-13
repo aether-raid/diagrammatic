@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
+import * as path from "path"; // Add path import
 
 import { handleShowMVCDiagram } from "./showMVCDiagram";
 import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
@@ -119,8 +120,12 @@ export function activate(context: vscode.ExtensionContext) {
 
   const testShowMVCDiagram = vscode.commands.registerCommand(
     "diagrammatic.testShowMVCDiagram",
-    async () => {
-      const testRepoPath = "/Users/ashleytan/GitHub/diagrammatic/projects/webview-ui/src";
+    async (providedPath?: string) => {
+      // Use provided path if available, otherwise fall back to default location
+      const testRepoPath = providedPath || 
+        path.join(process.cwd(), 'temp-repos', 'nestjs-realworld-example-app');
+      
+      console.log(`Test using repository at: ${testRepoPath}`);
       vscode.window.showInformationMessage(`Parsing repository: ${testRepoPath}`);
       
       try {
