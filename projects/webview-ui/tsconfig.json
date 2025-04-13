@@ -3,7 +3,8 @@
     "paths": {
       "@shared/*": ["../shared/src/*"]
     },
-
+    "types": ["node", "jest"],
+    "esModuleInterop": true,
     "noEmit": true,
     "outDir": "../../dist/webview",
 
@@ -27,5 +28,9 @@
   },
   "references": [
     { "path": "../shared" },
+  ],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
   ]
 }

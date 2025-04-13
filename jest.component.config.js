@@ -1,6 +1,6 @@
 module.exports = {
     preset: "ts-jest",
-    testEnvironment: "jsdom",
+    testEnvironment: "jsdom", 
     setupFilesAfterEnv: [
         "<rootDir>/projects/webview-ui/src/test/setupTests.ts",
     ],
@@ -9,10 +9,10 @@ module.exports = {
         // Add any other path mappings your app uses
     },
     transform: {
-        "^.+\\.tsx?$": "ts-jest",
+        '^.+\\.(ts|tsx)$': 'babel-jest', 
+        '^.+\\.jsx?$': 'babel-jest',  
     },
     testRegex: ".*component\\.test\\.(jsx?|tsx?)$",
     moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
-    snapshotSerializers: ["enzyme-to-json/serializer"],
-    transformIgnorePatterns: ["/node_modules/*"],
+    transformIgnorePatterns: ["/node_modules/(?!cheerio|@xyflow)"],
 };
