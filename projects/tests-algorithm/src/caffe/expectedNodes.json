@@ -28834,5 +28834,194 @@
         }
       ]
     }
-  }
+  },
+  {
+    "data": {
+      "entityName": "apply",
+      "entityType": "struct",
+      "filePath": "/python/caffe/_caffe.cpp",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "nccl.hpp",
+      "entityType": "file",
+      "filePath": "/include/caffe/util/nccl.hpp",
+      "items": [
+        {
+          "name": "NCCL_CHECK",
+          "startPosition": {
+            "row": 8,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 14,
+            "column": 0
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "solver_factory.hpp",
+      "entityType": "file",
+      "startPosition": {
+        "filePath": "/include/caffe/solver_factory.hpp",
+        "items": [
+          {
+            "name": "REGISTER_SOLVER_CREATOR",
+            "startPosition": {
+              "row": 121,
+              "column": 0
+            },
+            "endPosition": {
+              "row": 125,
+              "column": 0
+            },
+            "type": "function"
+          },
+          {
+            "name": "REGISTER_SOLVER_CLASS",
+            "startPosition": {
+              "row": 125,
+              "column": 0
+            },
+            "endPosition": {
+              "row": 133,
+              "column": 0
+            },
+            "type": "function"
+          }
+        ]
+      }
+    }
+  }, { 
+    "data": {
+      "entityName": "layer_factory.hpp",
+      "entityType": "file",
+      "filePath": "/include/caffe/layer_factory.hpp",
+      "items": [
+        {
+          "name": "REGISTER_LAYER_CREATOR",
+          "startPosition": {
+            "row": 126,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 130,
+            "column": 0
+          },
+          "type": "function"
+        },
+        {
+          "name": "REGISTER_LAYER_CLASS",
+          "startPosition": {
+            "row": 130,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 137,
+            "column": 0
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "common.hpp",
+      "entityType": "file",
+      "filePath": "/include/caffe/common.hpp",
+      "items": [
+        {
+          "name": "STRINGIFY",
+          "startPosition": {
+            "row": 21,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 22,
+            "column": 0
+          },
+          "type": "function"
+        },
+        {
+          "name": "AS_STRING",
+          "startPosition": {
+            "row": 22,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 23,
+            "column": 0
+          },
+          "type": "function"
+        },
+        {
+          "name": "DISABLE_COPY_AND_ASSIGN",
+          "startPosition": {
+            "row": 34,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 38,
+            "column": 0
+          },
+          "type": "function"
+        },
+        {
+          "name": "INSTANTIATE_CLASS",
+          "startPosition": {
+            "row": 40,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 44,
+            "column": 0
+          },
+          "type": "function"
+        },
+        {
+          "name": "INSTANTIATE_LAYER_GPU_FORWARD",
+          "startPosition": {
+            "row": 45,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 52,
+            "column": 0
+          },
+          "type": "function"
+        },
+        {
+          "name": "INSTANTIATE_LAYER_GPU_BACKWARD",
+          "startPosition": {
+            "row": 53,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 62,
+            "column": 0
+          },
+          "type": "function"
+        },
+        {
+          "name": "INSTANTIATE_LAYER_GPU_FUNCS",
+          "startPosition": {
+            "row": 63,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 66,
+            "column": 0
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
 ]

@@ -10129,5 +10129,487 @@
         }
       ]
     }
+  },
+  {
+    "data": {
+      "entityName": "privacyRequests.ts",
+      "entityType": "file",
+      "filePath": "/models/privacyRequests.ts",
+      "items": [
+        {
+          "name": "PrivacyRequestModelInit",
+          "startPosition": { "row": 24, "column": 0 },
+          "endPosition": { "row": 45, "column": 1 },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "product.ts",
+      "entityType": "file",
+      "filePath": "/models/product.ts",
+      "items": [
+        {
+          "name": "ProductModelInit",
+          "startPosition": { "row": 33, "column": 0 },
+          "endPosition": { "row": 68, "column": 1 },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "quantity.ts",
+      "entityType": "file",
+      "filePath": "/models/quantity.ts",
+      "items": [
+        {
+          "name": "QuantityModelInit",
+          "startPosition": { "row": 26, "column": 0 },
+          "endPosition": { "row": 56, "column": 1 },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "contact.spec.ts",
+      "entityType": "file",
+      "filePath": "/test/cypress/e2e/contact.spec.ts",
+      "items": [
+        {
+          "name": "sendPostRequest",
+          "startPosition": {
+            "row": 153,
+            "column": 8
+          },
+          "endPosition": {
+            "row": 176,
+            "column": 9
+          },
+          "type": "function"
+        },
+        {
+          "name": "sendPostRequest",
+          "startPosition": {
+            "row": 201,
+            "column": 10
+          },
+          "endPosition": {
+            "row": 218,
+            "column": 11
+          },
+          "type": "function"
+        },
+        {
+          "name": "solveNextCaptcha",
+          "startPosition": {
+            "row": 250,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 260,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "recycles.ts",
+      "entityType": "file",
+      "filePath": "/routes/recycles.ts",
+      "items": [
+        {
+          "name": "getRecycleItem",
+          "startPosition": {
+            "row": 10,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 20,
+            "column": 1
+          },
+          "type": "function"
+        },
+        {
+          "name": "blockRecycleItems",
+          "startPosition": {
+            "row": 22,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 25,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "wallet.ts",
+      "entityType": "file",
+      "filePath": "/models/wallet.ts",
+      "items": [
+        {
+          "name": "WalletModelInit",
+          "startPosition": {
+            "row": 24,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 48,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "user.ts",
+      "entityType": "file",
+      "filePath": "/models/user.ts",
+      "items": [
+        {
+          "name": "UserModelInit",
+          "startPosition": {
+            "row": 36,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 141,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "securityQuestion.ts",
+      "entityType": "file",
+      "filePath": "/models/securityQuestion.ts",
+      "items": [
+        {
+          "name": "SecurityQuestionModelInit",
+          "startPosition": {
+            "row": 23,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 40,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "securityAnswer.ts",
+      "entityType": "file",
+      "filePath": "/models/securityAnswer.ts",
+      "items": [
+        {
+          "name": "SecurityAnswerModelInit",
+          "startPosition": {
+            "row": 26,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 54,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "relations.ts",
+      "entityType": "file",
+      "filePath": "/models/relations.ts",
+      "items": [
+        {
+          "name": "relationsInit",
+          "startPosition": {
+            "row": 20,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 142,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "recycle.ts",
+      "entityType": "file",
+      "filePath": "/models/recycle.ts",
+      "items": [
+        {
+          "name": "RecycleModelInit",
+          "startPosition": {
+            "row": 28,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 51,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "memory.ts",
+      "entityType": "file",
+      "filePath": "/models/memory.ts",
+      "items": [
+        {
+          "name": "MemoryModelInit",
+          "startPosition": {
+            "row": 26,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 45,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "imageCaptcha.ts",
+      "entityType": "file",
+      "filePath": "/models/imageCaptcha.ts",
+      "items": [
+        {
+          "name": "ImageCaptchaModelInit",
+          "startPosition": {
+            "row": 25,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 43,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "feedback.ts",
+      "entityType": "file",
+      "filePath": "/models/feedback.ts",
+      "items": [
+        {
+          "name": "FeedbackModelInit",
+          "startPosition": {
+            "row": 28,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 73,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "delivery.ts",
+      "entityType": "file",
+      "filePath": "/models/delivery.ts",
+      "items": [
+        {
+          "name": "DeliveryModelInit",
+          "startPosition": {
+            "row": 26,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 45,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "complaint.ts",
+      "entityType": "file",
+      "filePath": "/models/complaint.ts",
+      "items": [
+        {
+          "name": "ComplaintModelInit",
+          "startPosition": {
+            "row": 26,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 45,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "challenge.ts",
+      "entityType": "file",
+      "filePath": "/models/challenge.ts",
+      "items": [
+        {
+          "name": "ChallengeModelInit",
+          "startPosition": {
+            "row": 34,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 61,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "card.ts",
+      "entityType": "file",
+      "filePath": "/models/card.ts",
+      "items": [
+        {
+          "name": "CardModelInit",
+          "startPosition": {
+            "row": 26,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 68,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "captcha.ts",
+      "entityType": "file",
+      "filePath": "/models/captcha.ts",
+      "items": [
+        {
+          "name": "CaptchaModelInit",
+          "startPosition": {
+            "row": 22,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 36,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "basketitem.ts",
+      "entityType": "file",
+      "filePath": "/models/basketitem.ts",
+      "items": [
+        {
+          "name": "BasketItemModelInit",
+          "startPosition": {
+            "row": 25,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 46,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "basket.ts",
+      "entityType": "file",
+      "filePath": "/models/basket.ts",
+      "items": [
+        {
+          "name": "BasketModelInit",
+          "startPosition": {
+            "row": 28,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 46,
+            "column": 1
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "address.ts",
+      "entityType": "file",
+      "startPosition": {
+        "filePath": "/models/address.ts",
+        "items": [
+          {
+            "name": "AddressModelInit",
+            "startPosition": {
+              "row": 29,
+              "column": 0
+            },
+            "endPosition": {
+              "row": 72,
+              "column": 1
+            },
+            "type": "function"
+          }
+        ]
+      }
+    }
   }
 ]

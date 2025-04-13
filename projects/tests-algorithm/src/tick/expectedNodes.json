@@ -1648,5 +1648,43 @@
         { "name": "setGreetings",  "type": "function" }
       ]
     }
+  }, {
+    "data": {
+      "entityName": "CompositeKey",
+      "entityType": "class",
+      "filePath": "/backend/ticket-service/src/main/java/com/tick/ticketsservice/model/Ticket.java",
+      "items": [
+        {
+          "name": "eventID",
+          "startPosition": { "row": 36, "column": 8 },
+          "endPosition": { "row": 37, "column": 31 },
+          "type": "attribute"
+        },
+        {
+          "name": "eventDateID",
+          "startPosition": { "row": 38, "column": 8 },
+          "endPosition": { "row": 39, "column": 35 },
+          "type": "attribute"
+        },
+        {
+          "name": "section",
+          "startPosition": { "row": 40, "column": 8 },
+          "endPosition": { "row": 41, "column": 31 },
+          "type": "attribute"
+        },
+        {
+          "name": "row",
+          "startPosition": { "row": 42, "column": 8 },
+          "endPosition": { "row": 43, "column": 27 },
+          "type": "attribute"
+        },
+        {
+          "name": "seatNumber",
+          "startPosition": { "row": 44, "column": 8 },
+          "endPosition": { "row": 45, "column": 31 },
+          "type": "attribute"
+        }
+      ]
+    }
   }
 ]

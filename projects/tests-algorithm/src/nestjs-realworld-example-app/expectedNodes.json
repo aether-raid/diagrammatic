@@ -568,20 +568,6 @@
   },
   {
     "data": {
-      "entityName": "user.decorator.ts",
-      "entityType": "file",
-      "filePath": "/user/user.decorator.ts",
-      "items": [
-        {
-          "name": "User",
-
-          "type": "function"
-        }
-      ]
-    }
-  },
-  {
-    "data": {
       "entityName": "UserController",
       "entityType": "class",
       "filePath": "/user/user.controller.ts",
@@ -697,6 +683,21 @@
         {
           "name": "bootstrap",
 
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "tag.controller.spec.ts",
+      "entityType": "file",
+      "filePath": "/tag/tag.controller.spec.ts",
+      "items": [
+        {
+          "name": "createTag",
+          "startPosition": { "row": 24, "column": 6 },
+          "endPosition": { "row": 29, "column": 8 },
           "type": "function"
         }
       ]

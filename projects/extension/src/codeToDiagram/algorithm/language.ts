@@ -84,7 +84,7 @@ export class Language {
     parent: Group,
     languageRules: LanguageRules
   ) {
-    const { nodes: nodeTrees } = this.separateNamespaces(tree, languageRules);
+    const { nodes: nodeTrees, groups: groupTrees } = this.separateNamespaces(tree, languageRules);
 
     const classGroup = new Group({
       groupType: tree.groupType,
@@ -101,6 +101,12 @@ export class Language {
         classGroup.addNode(subnode);
       }
     }
+
+    for (const subgroup of groupTrees) {
+      const newSubgroup = this.makeClassGroup(subgroup, classGroup, languageRules);
+      classGroup.addSubgroup(newSubgroup);
+    }
+    
     return classGroup;
   }
 
