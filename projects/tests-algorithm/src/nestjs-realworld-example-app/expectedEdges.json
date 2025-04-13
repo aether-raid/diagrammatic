@@ -279,8 +279,8 @@
   },
   {
     "id": "createTag-TagEntity",
-    "source": "/src/tag/tag.controller.spec.ts",
-    "target": "/src/tag/tag.entity.ts.TagEntity",
+    "source": "/tag/tag.controller.spec.ts",
+    "target": "/tag/tag.entity.ts.TagEntity",
     "sourceHandle": "createTag",
     "targetHandle": "entity",
     "markerEnd": {
