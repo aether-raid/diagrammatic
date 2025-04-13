@@ -1,3 +1,4 @@
+import React from 'react'; // Do not remove this (for testing)
 import { sendRegenerateComponentDiagramMessageToExtension } from "../helpers/vscodeApiHandler";
 
 interface RegenerateButtonProps {
