@@ -4,5 +4,6 @@
         { "path": "./projects/shared" },
         { "path": "./projects/extension" },
         { "path": "./projects/tests-algorithm" },
+        { "path": "./projects/webview-ui" }
     ]
 }

@@ -4,3 +4,6 @@ node_modules
 .vscode-test/
 *.vsix
 *.env
+coverage
+.wdio-vscode-service/
+trace
