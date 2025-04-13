@@ -6,11 +6,6 @@
         "nodeType": "FUNCTION"
       },
       {
-        "parent": "declaration",
-        "type": "function_declarator",
-        "nodeType": "FUNCTION"
-      },
-      {
         "type": "preproc_function_def",
         "nodeType": "FUNCTION"
       },
@@ -60,7 +55,8 @@
           "qualified_identifier": { "delegate": true },
           "identifier": { "useText": true },
           "field_identifier": { "useText": true },
-          "destructor_name": { "useText": true }
+          "destructor_name": { "useText": true },
+          "operator_name": { "useText": true }
         }
       },
       "field_declaration": {
@@ -86,13 +82,30 @@
             "childTypes": {
               "function_declarator": {
                 "delegate": true
+              },
+              "field_identifier": {
+                "useText": true
               }
+            }
+          },
+          "array_declarator": {
+            "childTypes": {
+              "field_identifier": { "useText": true }
             }
           }
         }
       },
       "call_expression": {
         "childTypes": { "member_expression": { "useText": true } }
+      },
+      "init_declarator": {
+        "identifier": { "useText": true },
+        "reference_declarator": {
+          "childTypes": { "identifier": { "useText": true } }
+        },
+        "pointer_declarator": {
+          "childTypes": { "identifier": { "useText": true } }
+        }
       },
       "fallbackFields": [
         "name",
@@ -109,17 +122,18 @@
         "nodeType": "FUNCTION"
       },
       {
-        "parent": "declaration",
-        "type": "function_declarator",
-        "nodeType": "FUNCTION"
-      },
-      {
         "type": "preproc_function_def",
         "nodeType": "FUNCTION"
       },
       {
         "type": "field_declaration",
         "nodeType": "ATTRIBUTE"
+      },
+      {
+        "type": "declaration",
+        "child": { "type": "function_declarator" },
+        "parent": "field_declaration_list",
+        "nodeType": "FUNCTION"
       }
     ],
     "groups": [
@@ -141,6 +155,7 @@
       },
       "struct_specifier": {
         "childTypes": {
+          "identifier": { "useText": true },
           "type_identifier": {
             "useText": true
           }
@@ -169,7 +184,15 @@
             "childTypes": {
               "function_declarator": {
                 "delegate": true
+              },
+              "field_identifier": {
+                "useText": true
               }
+            }
+          },
+          "array_declarator": {
+            "childTypes": {
+              "field_identifier": { "useText": true }
             }
           }
         }
@@ -192,7 +215,8 @@
           "qualified_identifier": { "delegate": true },
           "identifier": { "useText": true },
           "field_identifier": { "useText": true },
-          "destructor_name": { "useText": true }
+          "destructor_name": { "useText": true },
+          "operator_name": { "useText": true }
         }
       },
       "call_expression": {
@@ -200,6 +224,32 @@
           "member_expression": {
             "useText": true
           }
+        }
+      },
+      "declaration": {
+        "childTypes": {
+          "function_declarator": {
+            "delegate": true
+          }
+        }
+      },
+      "init_declarator": {
+        "childTypes": {
+          "function_declarator": {
+            "delegate": true
+          },
+          "identifier": { "useText": true },
+          "reference_declarator": {
+            "childTypes": { "identifier": { "useText": true } }
+          },
+          "pointer_declarator": {
+            "childTypes": { "identifier": { "useText": true } }
+          }
+        }
+      },
+      "new_expression": {
+        "childTypes": {
+          "type_identifier": { "useText": true }
         }
       },
       "fallbackFields": [
@@ -268,6 +318,21 @@
   },
   ".ts": {
     "nodes": [
+      {
+        "type": "public_field_definition",
+        "child": {
+          "type": "type_annotation",
+          "child": { "type": "function_type" }
+        },
+        "nodeType": "FUNCTION"
+      },
+      {
+        "type": "public_field_definition",
+        "child": {
+          "type": "arrow_function"
+        },
+        "nodeType": "FUNCTION"
+      },
       { "type": "public_field_definition", "nodeType": "ATTRIBUTE" },
       {
         "type": "call_expression",
@@ -280,29 +345,24 @@
         "nodeType": "FUNCTION"
       },
       {
-        "type": "export_statement",
+        "type": "lexical_declaration",
         "child": {
-          "type": "lexical_declaration",
+          "type": "variable_declarator",
           "child": {
-            "type": "variable_declarator",
-            "child": {
-              "type": "arrow_function"
-            }
+            "type": "arrow_function"
           }
         },
         "nodeType": "FUNCTION"
       },
       {
-        "type": "export_statement",
+        "type": "expression_statement",
         "child": {
-          "type": "lexical_declaration",
+          "type": "assignment_expression",
           "child": {
-            "type": "variable_declarator",
-            "child": {
-              "type": "call_expression"
-            }
+            "type": "arrow_function"
           }
         },
+        "parent": "program",
         "nodeType": "FUNCTION"
       },
       {
@@ -338,6 +398,15 @@
       },
       {
         "type": "property_signature",
+        "child": {
+          "type": "type_annotation",
+          "child": { "type": "function_type" }
+        },
+        "parent": "interface_body",
+        "nodeType": "FUNCTION"
+      },
+      {
+        "type": "property_signature",
         "parent": "interface_body",
         "nodeType": "ATTRIBUTE"
       }
@@ -362,6 +431,17 @@
       "lexical_declaration": {
         "childTypes": { "variable_declarator": { "fieldName": "name" } }
       },
+      "expression_statement": {
+        "childTypes": {
+          "assignment_expression": {
+            "childTypes": {
+              "member_expression": {
+                "childTypes": { "property_identifier": { "useText": true } }
+              }
+            }
+          }
+        }
+      },
       "call_expression": {
         "childTypes": { "member_expression": { "useText": true } }
       },
@@ -383,7 +463,13 @@
       {
         "type": "export_statement",
         "child": {
-          "type": "lexical_declaration"
+          "type": "lexical_declaration",
+          "child": {
+            "type": "variable_declarator",
+            "child": {
+              "type": "function_expression"
+            }
+          }
         },
         "nodeType": "FUNCTION"
       },

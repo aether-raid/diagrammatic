@@ -104,7 +104,8 @@
         }
       ]
     }
-  },  {
+  },
+  {
     "id": "/examples/cpp_classification/classification.cpp.Classifier",
     "type": "entity",
     "position": {
@@ -11198,13 +11199,13 @@
           "name": "SyncedMemory",
           "startPosition": { "row": 59, "column": 2 },
           "endPosition": { "row": 59, "column": 37 },
-          "type": "attribute"
+          "type": "function"
         },
         {
           "name": "~SyncedMemory",
           "startPosition": { "row": 60, "column": 2 },
           "endPosition": { "row": 60, "column": 18 },
-          "type": "attribute"
+          "type": "function"
         },
         {
           "name": "cpu_data",
@@ -11550,7 +11551,8 @@
         }
       ]
     }
-  },  {
+  },
+  {
     "id": "/include/caffe/util/insert_splits.hpp",
     "type": "entity",
     "position": {
@@ -11636,13 +11638,13 @@
           "name": "Timer",
           "startPosition": { "row": 11, "column": 2 },
           "endPosition": { "row": 11, "column": 10 },
-          "type": "attribute"
+          "type": "function"
         },
         {
           "name": "~Timer",
           "startPosition": { "row": 12, "column": 2 },
           "endPosition": { "row": 12, "column": 19 },
-          "type": "attribute"
+          "type": "function"
         },
         {
           "name": "Start",
@@ -11820,7 +11822,7 @@
           "name": "BlockingQueue",
           "startPosition": { "row": 11, "column": 2 },
           "endPosition": { "row": 11, "column": 27 },
-          "type": "attribute"
+          "type": "function"
         },
         {
           "name": "push",
@@ -11890,6 +11892,18 @@
       "endPosition": { "row": 169, "column": 0 },
       "filePath": "/include/caffe/util/cudnn.hpp",
       "items": [
+        {
+          "name": "CUDNN_VERSION_MIN",
+          "startPosition": { "row": 9, "column": 0 },
+          "endPosition": { "row": 11, "column": 0 },
+          "type": "function"
+        },
+        {
+          "name": "CUDNN_CHECK",
+          "startPosition": { "row": 12, "column": 0 },
+          "endPosition": { "row": 18, "column": 0 },
+          "type": "function"
+        },
         {
           "name": "cudnnGetErrorString",
           "startPosition": { "row": 19, "column": 0 },
@@ -12590,6 +12604,48 @@
       "filePath": "/include/caffe/util/device_alternate.hpp",
       "items": [
         {
+          "name": "STUB_GPU",
+          "startPosition": { "row": 11, "column": 0 },
+          "endPosition": { "row": 20, "column": 0 },
+          "type": "function"
+        },
+        {
+          "name": "STUB_GPU_FORWARD",
+          "startPosition": { "row": 20, "column": 0 },
+          "endPosition": { "row": 25, "column": 0 },
+          "type": "function"
+        },
+        {
+          "name": "STUB_GPU_BACKWARD",
+          "startPosition": { "row": 25, "column": 0 },
+          "endPosition": { "row": 31, "column": 0 },
+          "type": "function"
+        },
+        {
+          "name": "CUDA_CHECK",
+          "startPosition": { "row": 47, "column": 0 },
+          "endPosition": { "row": 53, "column": 0 },
+          "type": "function"
+        },
+        {
+          "name": "CUBLAS_CHECK",
+          "startPosition": { "row": 54, "column": 0 },
+          "endPosition": { "row": 60, "column": 0 },
+          "type": "function"
+        },
+        {
+          "name": "CURAND_CHECK",
+          "startPosition": { "row": 61, "column": 0 },
+          "endPosition": { "row": 67, "column": 0 },
+          "type": "function"
+        },
+        {
+          "name": "CUDA_KERNEL_LOOP",
+          "startPosition": { "row": 69, "column": 0 },
+          "endPosition": { "row": 73, "column": 0 },
+          "type": "function"
+        },
+        {
           "name": "CAFFE_GET_BLOCKS",
           "startPosition": { "row": 87, "column": 0 },
           "endPosition": { "row": 89, "column": 1 },
@@ -12740,171 +12796,9 @@
       "filePath": "/include/caffe/util/math_functions.hpp",
       "items": [
         {
-          "name": "caffe_cpu_gemm",
-          "startPosition": { "row": 17, "column": 5 },
-          "endPosition": { "row": 20, "column": 13 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_cpu_gemv",
-          "startPosition": { "row": 23, "column": 5 },
-          "endPosition": { "row": 25, "column": 13 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_axpy",
-          "startPosition": { "row": 28, "column": 5 },
-          "endPosition": { "row": 29, "column": 13 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_cpu_axpby",
-          "startPosition": { "row": 32, "column": 5 },
-          "endPosition": { "row": 33, "column": 31 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_copy",
-          "startPosition": { "row": 36, "column": 5 },
-          "endPosition": { "row": 36, "column": 54 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_set",
-          "startPosition": { "row": 39, "column": 5 },
-          "endPosition": { "row": 39, "column": 56 },
-          "type": "function"
-        },
-        {
           "name": "caffe_memset",
           "startPosition": { "row": 41, "column": 0 },
           "endPosition": { "row": 43, "column": 1 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_add_scalar",
-          "startPosition": { "row": 46, "column": 5 },
-          "endPosition": { "row": 46, "column": 63 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_scal",
-          "startPosition": { "row": 49, "column": 5 },
-          "endPosition": { "row": 49, "column": 57 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_sqr",
-          "startPosition": { "row": 52, "column": 5 },
-          "endPosition": { "row": 52, "column": 53 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_sqrt",
-          "startPosition": { "row": 55, "column": 5 },
-          "endPosition": { "row": 55, "column": 54 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_add",
-          "startPosition": { "row": 58, "column": 5 },
-          "endPosition": { "row": 58, "column": 69 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_sub",
-          "startPosition": { "row": 61, "column": 5 },
-          "endPosition": { "row": 61, "column": 69 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_mul",
-          "startPosition": { "row": 64, "column": 5 },
-          "endPosition": { "row": 64, "column": 69 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_div",
-          "startPosition": { "row": 67, "column": 5 },
-          "endPosition": { "row": 67, "column": 69 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_powx",
-          "startPosition": { "row": 70, "column": 5 },
-          "endPosition": { "row": 70, "column": 69 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_rng_rand",
-          "startPosition": { "row": 72, "column": 13 },
-          "endPosition": { "row": 72, "column": 29 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_nextafter",
-          "startPosition": { "row": 75, "column": 6 },
-          "endPosition": { "row": 75, "column": 36 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_rng_uniform",
-          "startPosition": { "row": 78, "column": 5 },
-          "endPosition": { "row": 78, "column": 75 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_rng_gaussian",
-          "startPosition": { "row": 81, "column": 5 },
-          "endPosition": { "row": 82, "column": 33 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_rng_bernoulli",
-          "startPosition": { "row": 85, "column": 5 },
-          "endPosition": { "row": 85, "column": 60 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_rng_bernoulli",
-          "startPosition": { "row": 88, "column": 5 },
-          "endPosition": { "row": 88, "column": 69 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_exp",
-          "startPosition": { "row": 91, "column": 5 },
-          "endPosition": { "row": 91, "column": 53 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_log",
-          "startPosition": { "row": 94, "column": 5 },
-          "endPosition": { "row": 94, "column": 53 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_abs",
-          "startPosition": { "row": 97, "column": 5 },
-          "endPosition": { "row": 97, "column": 53 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_cpu_dot",
-          "startPosition": { "row": 100, "column": 6 },
-          "endPosition": { "row": 100, "column": 64 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_cpu_strided_dot",
-          "startPosition": { "row": 103, "column": 6 },
-          "endPosition": { "row": 104, "column": 35 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_cpu_asum",
-          "startPosition": { "row": 108, "column": 6 },
-          "endPosition": { "row": 108, "column": 49 },
           "type": "function"
         },
         {
@@ -12914,183 +12808,15 @@
           "type": "function"
         },
         {
-          "name": "caffe_cpu_scale",
-          "startPosition": { "row": 145, "column": 5 },
-          "endPosition": { "row": 145, "column": 78 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_gemm",
-          "startPosition": { "row": 153, "column": 5 },
-          "endPosition": { "row": 156, "column": 13 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_gemv",
-          "startPosition": { "row": 159, "column": 5 },
-          "endPosition": { "row": 161, "column": 13 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_axpy",
-          "startPosition": { "row": 164, "column": 5 },
-          "endPosition": { "row": 165, "column": 13 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_axpby",
-          "startPosition": { "row": 168, "column": 5 },
-          "endPosition": { "row": 169, "column": 31 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_memcpy",
-          "startPosition": { "row": 171, "column": 5 },
-          "endPosition": { "row": 171, "column": 61 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_set",
-          "startPosition": { "row": 174, "column": 5 },
-          "endPosition": { "row": 174, "column": 60 },
+          "name": "DEFINE_CAFFE_CPU_UNARY_FUNC",
+          "startPosition": { "row": 123, "column": 0 },
+          "endPosition": { "row": 131, "column": 0 },
           "type": "function"
         },
         {
           "name": "caffe_gpu_memset",
           "startPosition": { "row": 176, "column": 0 },
           "endPosition": { "row": 182, "column": 1 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_add_scalar",
-          "startPosition": { "row": 185, "column": 5 },
-          "endPosition": { "row": 185, "column": 67 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_scal",
-          "startPosition": { "row": 188, "column": 5 },
-          "endPosition": { "row": 188, "column": 61 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_scal",
-          "startPosition": { "row": 192, "column": 5 },
-          "endPosition": { "row": 192, "column": 79 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_add",
-          "startPosition": { "row": 196, "column": 5 },
-          "endPosition": { "row": 196, "column": 73 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_sub",
-          "startPosition": { "row": 199, "column": 5 },
-          "endPosition": { "row": 199, "column": 73 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_mul",
-          "startPosition": { "row": 202, "column": 5 },
-          "endPosition": { "row": 202, "column": 73 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_div",
-          "startPosition": { "row": 205, "column": 5 },
-          "endPosition": { "row": 205, "column": 73 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_abs",
-          "startPosition": { "row": 208, "column": 5 },
-          "endPosition": { "row": 208, "column": 57 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_exp",
-          "startPosition": { "row": 211, "column": 5 },
-          "endPosition": { "row": 211, "column": 57 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_log",
-          "startPosition": { "row": 214, "column": 5 },
-          "endPosition": { "row": 214, "column": 57 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_powx",
-          "startPosition": { "row": 217, "column": 5 },
-          "endPosition": { "row": 217, "column": 73 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_sqrt",
-          "startPosition": { "row": 220, "column": 5 },
-          "endPosition": { "row": 220, "column": 58 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_rng_uniform",
-          "startPosition": { "row": 224, "column": 5 },
-          "endPosition": { "row": 224, "column": 56 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_rng_uniform",
-          "startPosition": { "row": 232, "column": 5 },
-          "endPosition": { "row": 232, "column": 79 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_rng_gaussian",
-          "startPosition": { "row": 235, "column": 5 },
-          "endPosition": { "row": 236, "column": 37 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_rng_bernoulli",
-          "startPosition": { "row": 239, "column": 5 },
-          "endPosition": { "row": 239, "column": 64 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_dot",
-          "startPosition": { "row": 242, "column": 5 },
-          "endPosition": { "row": 242, "column": 75 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_asum",
-          "startPosition": { "row": 245, "column": 5 },
-          "endPosition": { "row": 245, "column": 58 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_sign",
-          "startPosition": { "row": 248, "column": 5 },
-          "endPosition": { "row": 248, "column": 58 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_sgnbit",
-          "startPosition": { "row": 251, "column": 5 },
-          "endPosition": { "row": 251, "column": 60 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_fabs",
-          "startPosition": { "row": 254, "column": 5 },
-          "endPosition": { "row": 254, "column": 58 },
-          "type": "function"
-        },
-        {
-          "name": "caffe_gpu_scale",
-          "startPosition": { "row": 257, "column": 5 },
-          "endPosition": { "row": 257, "column": 78 },
           "type": "function"
         }
       ]
@@ -19363,12 +19089,6 @@
           "type": "function"
         },
         {
-          "name": "adadelta_update_gpu",
-          "startPosition": { "row": 20, "column": 5 },
-          "endPosition": { "row": 21, "column": 34 },
-          "type": "function"
-        },
-        {
           "name": "ComputeUpdateValue",
           "startPosition": { "row": 25, "column": 0 },
           "endPosition": { "row": 106, "column": 1 },
@@ -19415,12 +19135,6 @@
           "type": "function"
         },
         {
-          "name": "adam_update_gpu",
-          "startPosition": { "row": 20, "column": 5 },
-          "endPosition": { "row": 21, "column": 59 },
-          "type": "function"
-        },
-        {
           "name": "ComputeUpdateValue",
           "startPosition": { "row": 25, "column": 0 },
           "endPosition": { "row": 88, "column": 1 },
@@ -19460,12 +19174,6 @@
       "endPosition": { "row": 70, "column": 0 },
       "filePath": "/src/caffe/solvers/rmsprop_solver.cpp",
       "items": [
-        {
-          "name": "rmsprop_update_gpu",
-          "startPosition": { "row": 8, "column": 5 },
-          "endPosition": { "row": 9, "column": 34 },
-          "type": "function"
-        },
         {
           "name": "ComputeUpdateValue",
           "startPosition": { "row": 13, "column": 0 },
@@ -19520,12 +19228,6 @@
           "name": "Regularize",
           "startPosition": { "row": 155, "column": 0 },
           "endPosition": { "row": 214, "column": 1 },
-          "type": "function"
-        },
-        {
-          "name": "sgd_update_gpu",
-          "startPosition": { "row": 218, "column": 5 },
-          "endPosition": { "row": 219, "column": 21 },
           "type": "function"
         },
         {
@@ -20495,7 +20197,7 @@
         }
       ]
     }
-  }, 
+  },
   {
     "id": "/src/caffe/test/test_blob.cpp.BlobMathTest",
     "type": "entity",
@@ -20965,7 +20667,8 @@
         }
       ]
     }
-  }, {
+  },
+  {
     "id": "/src/caffe/test/test_crop_layer.cpp.CropLayerTest",
     "type": "entity",
     "position": {
@@ -22143,18 +21846,6 @@
           "name": "TestForward",
           "startPosition": { "row": 39, "column": 2 },
           "endPosition": { "row": 61, "column": 3 },
-          "type": "function"
-        },
-        {
-          "name": "layer_weight_1",
-          "startPosition": { "row": 43, "column": 30 },
-          "endPosition": { "row": 43, "column": 57 },
-          "type": "function"
-        },
-        {
-          "name": "layer_weight_2",
-          "startPosition": { "row": 52, "column": 30 },
-          "endPosition": { "row": 52, "column": 57 },
           "type": "function"
         },
         {
@@ -23597,12 +23288,6 @@
           "name": "InfogainLossLayerTest",
           "startPosition": { "row": 20, "column": 2 },
           "endPosition": { "row": 46, "column": 3 },
-          "type": "function"
-        },
-        {
-          "name": "infogain_filler",
-          "startPosition": { "row": 41, "column": 25 },
-          "endPosition": { "row": 41, "column": 54 },
           "type": "function"
         },
         {
@@ -26353,18 +26038,6 @@
           "type": "function"
         },
         {
-          "name": "data_filler",
-          "startPosition": { "row": 27, "column": 26 },
-          "endPosition": { "row": 27, "column": 56 },
-          "type": "function"
-        },
-        {
-          "name": "targets_filler",
-          "startPosition": { "row": 34, "column": 25 },
-          "endPosition": { "row": 34, "column": 61 },
-          "type": "function"
-        },
-        {
           "name": "~SigmoidCrossEntropyLossLayerTest",
           "startPosition": { "row": 39, "column": 2 },
           "endPosition": { "row": 43, "column": 3 },
@@ -26380,18 +26053,6 @@
           "name": "TestForward",
           "startPosition": { "row": 61, "column": 2 },
           "endPosition": { "row": 91, "column": 3 },
-          "type": "function"
-        },
-        {
-          "name": "data_filler",
-          "startPosition": { "row": 67, "column": 26 },
-          "endPosition": { "row": 67, "column": 56 },
-          "type": "function"
-        },
-        {
-          "name": "targets_filler",
-          "startPosition": { "row": 71, "column": 25 },
-          "endPosition": { "row": 71, "column": 61 },
           "type": "function"
         },
         {
@@ -27952,7 +27613,8 @@
         }
       ]
     }
-  }, {
+  },
+  {
     "id": "/include/caffe/util/hdf5.hpp",
     "type": "entity",
     "position": {
@@ -28138,7 +27800,7 @@
         }
       ]
     }
-  }, 
+  },
   {
     "id": "/include/caffe/util/im2col.hpp",
     "type": "entity",
@@ -29167,6 +28829,194 @@
           "endPosition": {
             "row": 345,
             "column": 63
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "apply",
+      "entityType": "struct",
+      "filePath": "/python/caffe/_caffe.cpp",
+      "items": []
+    }
+  },
+  {
+    "data": {
+      "entityName": "nccl.hpp",
+      "entityType": "file",
+      "filePath": "/include/caffe/util/nccl.hpp",
+      "items": [
+        {
+          "name": "NCCL_CHECK",
+          "startPosition": {
+            "row": 8,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 14,
+            "column": 0
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "solver_factory.hpp",
+      "entityType": "file",
+      "filePath": "/include/caffe/solver_factory.hpp",
+      "items": [
+        {
+          "name": "REGISTER_SOLVER_CREATOR",
+          "startPosition": {
+            "row": 121,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 125,
+            "column": 0
+          },
+          "type": "function"
+        },
+        {
+          "name": "REGISTER_SOLVER_CLASS",
+          "startPosition": {
+            "row": 125,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 133,
+            "column": 0
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "layer_factory.hpp",
+      "entityType": "file",
+      "filePath": "/include/caffe/layer_factory.hpp",
+      "items": [
+        {
+          "name": "REGISTER_LAYER_CREATOR",
+          "startPosition": {
+            "row": 126,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 130,
+            "column": 0
+          },
+          "type": "function"
+        },
+        {
+          "name": "REGISTER_LAYER_CLASS",
+          "startPosition": {
+            "row": 130,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 137,
+            "column": 0
+          },
+          "type": "function"
+        }
+      ]
+    }
+  },
+  {
+    "data": {
+      "entityName": "common.hpp",
+      "entityType": "file",
+      "filePath": "/include/caffe/common.hpp",
+      "items": [
+        {
+          "name": "STRINGIFY",
+          "startPosition": {
+            "row": 21,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 22,
+            "column": 0
+          },
+          "type": "function"
+        },
+        {
+          "name": "AS_STRING",
+          "startPosition": {
+            "row": 22,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 23,
+            "column": 0
+          },
+          "type": "function"
+        },
+        {
+          "name": "DISABLE_COPY_AND_ASSIGN",
+          "startPosition": {
+            "row": 34,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 38,
+            "column": 0
+          },
+          "type": "function"
+        },
+        {
+          "name": "INSTANTIATE_CLASS",
+          "startPosition": {
+            "row": 40,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 44,
+            "column": 0
+          },
+          "type": "function"
+        },
+        {
+          "name": "INSTANTIATE_LAYER_GPU_FORWARD",
+          "startPosition": {
+            "row": 45,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 52,
+            "column": 0
+          },
+          "type": "function"
+        },
+        {
+          "name": "INSTANTIATE_LAYER_GPU_BACKWARD",
+          "startPosition": {
+            "row": 53,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 62,
+            "column": 0
+          },
+          "type": "function"
+        },
+        {
+          "name": "INSTANTIATE_LAYER_GPU_FUNCS",
+          "startPosition": {
+            "row": 63,
+            "column": 0
+          },
+          "endPosition": {
+            "row": 66,
+            "column": 0
           },
           "type": "function"
         }

@@ -1,4 +1,4 @@
-import { Node, Group, Variable, VariableType } from "./model";
+import { Node, Group, Variable, VariableType, GroupType } from "./model";
 import { NodeType } from "@shared/node.types";
 import {
   makeCalls,
@@ -6,13 +6,19 @@ import {
   getName,
   getAllChildrenOfType,
   processConstructorRequiredParameter,
-  toGroupTypeIgnoreCase,
-  toNodeTypeIgnoreCase,
 } from "./function";
 import { SyntaxNode } from "tree-sitter";
 import { LanguageRules, RuleEngine } from "./rules";
 
 export const GLOBAL = "(global)";
+
+interface NodeSyntaxNode extends SyntaxNode {
+  nodeType: NodeType
+}
+
+interface GroupSyntaxNode extends SyntaxNode {
+  groupType: GroupType
+}
 
 export class Language {
   /**
@@ -28,33 +34,41 @@ export class Language {
     node: SyntaxNode,
     languageRules: LanguageRules
   ): {
-    groups: SyntaxNode[];
-    nodes: SyntaxNode[];
+    groups: GroupSyntaxNode[];
+    nodes: NodeSyntaxNode[];
     body: SyntaxNode[];
   } {
-    const groups: SyntaxNode[] = [];
-    const nodes: SyntaxNode[] = [];
+    const groups: GroupSyntaxNode[] = [];
+    const nodes: NodeSyntaxNode[] = [];
     const body: SyntaxNode[] = [];
 
     for (const child of node.children) {
-      if (RuleEngine.processNode(child, languageRules.nodes)) {
-        nodes.push(child);
-      } else if (RuleEngine.processNode(child, languageRules.groups)) {
-        groups.push(child);
-      } else {
-        const {
-          groups: subGroups,
-          nodes: subNodes,
-          body: subBody,
-        } = this.separateNamespaces(child, languageRules);
+      const nodeType = RuleEngine.matchNodeRules(child, languageRules.nodes);
+      if (nodeType) {
+        (child as NodeSyntaxNode).nodeType = nodeType;
+        nodes.push(child as NodeSyntaxNode);
+        continue;
+      }
 
-        if (subGroups.length > 0 || subNodes.length > 0) {
-          groups.push(...subGroups);
-          nodes.push(...subNodes);
-          body.push(...subBody);
-        } else {
-          body.push(child);
-        }
+      const groupType = RuleEngine.matchGroupRules(child, languageRules.groups);
+      if (groupType) {
+        (child as GroupSyntaxNode).groupType = groupType;
+        groups.push(child as GroupSyntaxNode);
+        continue;
+      }
+
+      const {
+        groups: subGroups,
+        nodes: subNodes,
+        body: subBody,
+      } = this.separateNamespaces(child, languageRules);
+
+      if (subGroups.length > 0 || subNodes.length > 0) {
+        groups.push(...subGroups);
+        nodes.push(...subNodes);
+        body.push(...subBody);
+      } else {
+        body.push(child);
       }
     }
 
@@ -66,19 +80,14 @@ export class Language {
    * Generate all of the nodes internal to the group.
    */
   static makeClassGroup(
-    tree: SyntaxNode,
+    tree: GroupSyntaxNode,
     parent: Group,
     languageRules: LanguageRules
   ) {
-    const { nodes: nodeTrees } = this.separateNamespaces(tree, languageRules);
-    const matchingGroupRule = languageRules.groups.find(
-      (group) => group.type === tree.type
-    );
-    if (!matchingGroupRule || !matchingGroupRule.groupType) {
-      throw new Error("Group rule is missing groupType or does not exist!");
-    }
+    const { nodes: nodeTrees, groups: groupTrees } = this.separateNamespaces(tree, languageRules);
+
     const classGroup = new Group({
-      groupType: toGroupTypeIgnoreCase(matchingGroupRule.groupType),
+      groupType: tree.groupType,
       token: getName(tree, languageRules.getName),
       startPosition: tree.startPosition,
       endPosition: tree.endPosition,
@@ -92,6 +101,12 @@ export class Language {
         classGroup.addNode(subnode);
       }
     }
+
+    for (const subgroup of groupTrees) {
+      const newSubgroup = this.makeClassGroup(subgroup, classGroup, languageRules);
+      classGroup.addSubgroup(newSubgroup);
+    }
+    
     return classGroup;
   }
 
@@ -171,7 +186,7 @@ export class Language {
    * calls and variables internal to it. Also make the nested subnodes
    */
   static makeNodes(
-    tree: SyntaxNode,
+    tree: NodeSyntaxNode,
     parent: Node | Group,
     languageRules: LanguageRules
   ): Node[] {
@@ -186,12 +201,6 @@ export class Language {
     this.processConstructorInjection(tree, token, variables);
     this.processFieldDeclaration(tree, variables);
 
-    const matchingNodeRule = languageRules.nodes.find(
-      (node) => node.type === tree.type
-    );
-    if (!matchingNodeRule || !matchingNodeRule.nodeType) {
-      throw new Error("Node rule is missing nodeType or does not exist!");
-    }
     const node = new Node({
       token,
       calls,
@@ -199,7 +208,7 @@ export class Language {
       startPosition: tree.startPosition,
       endPosition: tree.endPosition,
       parent,
-      nodeType: toNodeTypeIgnoreCase(matchingNodeRule.nodeType),
+      nodeType: tree.nodeType,
     });
     const subnodes = nodes.flatMap((t) =>
       this.makeNodes(t, node, languageRules)
@@ -216,8 +225,8 @@ export class Language {
       token: GLOBAL,
       calls: makeCalls(body, languageRules.getName),
       variables: makeLocalVariables(body, parent, languageRules),
-      startPosition: body[0]?.startPosition ?? { row: 0, column: 0},
-      endPosition: body[body.length - 1]?.endPosition ?? {row: 0, column: 0}, 
+      startPosition: body[0]?.startPosition ?? { row: 0, column: 0 },
+      endPosition: body[body.length - 1]?.endPosition ?? { row: 0, column: 0 },
       parent,
       nodeType: NodeType.BODY,
     });

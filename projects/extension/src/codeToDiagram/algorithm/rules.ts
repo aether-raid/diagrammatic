@@ -1,4 +1,4 @@
-import { getFirstChildOfType } from "./function";
+import { getFirstChildOfType, toGroupTypeIgnoreCase, toNodeTypeIgnoreCase } from "./function";
 import fs from "fs";
 import { SyntaxNode } from "tree-sitter";
 import { GroupType } from "./model";
@@ -115,10 +115,19 @@ export class RuleEngine {
     return true;
   }
 
-  static processNode(node: SyntaxNode, rules: Rule[]) {
+  static matchNodeRules(node: SyntaxNode, rules: NodeRule[]): NodeType | false {
     for (const rule of rules) {
       if (this.matchNode(node, rule)) {
-        return true; // Node matches the rule
+        return toNodeTypeIgnoreCase(rule.nodeType); // Node matches the rule
+      }
+    }
+    return false;
+  }
+
+  static matchGroupRules(node: SyntaxNode, rules: GroupRule[]): GroupType | false {
+    for (const rule of rules) {
+      if (this.matchNode(node, rule)) {
+        return toGroupTypeIgnoreCase(rule.groupType); 
       }
     }
     return false;

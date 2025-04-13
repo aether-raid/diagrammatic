@@ -276,5 +276,15 @@
     "markerEnd": {
       "type": "arrowclosed"
     }
+  },
+  {
+    "id": "createTag-TagEntity",
+    "source": "/tag/tag.controller.spec.ts",
+    "target": "/tag/tag.entity.ts.TagEntity",
+    "sourceHandle": "createTag",
+    "targetHandle": "entity",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
   }
 ]
