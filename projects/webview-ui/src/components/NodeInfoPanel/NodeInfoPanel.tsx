@@ -15,20 +15,19 @@ import { sendJumpToLineMessageToExtension } from "../../helpers/vscodeApiHandler
 import "./styles/NodeInfoPanel.css";
 
 interface NodeInfoPanelProps {
-    show: boolean;
-    setShow: React.Dispatch<React.SetStateAction<boolean>>;
-    entity?: EntityNode;
+    entity: EntityNode | undefined;
+    setEntity: React.Dispatch<React.SetStateAction<EntityNode | undefined>>;
 }
 
-export const NodeInfoPanel = ({ show, setShow, entity }: NodeInfoPanelProps) => {
-    const onHide = () => setShow(false);
+export const NodeInfoPanel = ({ entity, setEntity }: NodeInfoPanelProps) => {
+    const onHide = () => setEntity(undefined);
 
     return (
         <Offcanvas
             backdrop={false}
             scroll={true}
             onHide={onHide}
-            show={show}
+            show={entity !== undefined}
         >
             <Offcanvas.Header className="gap-2 align-items-start border-bottom border-2 pb-2 px-3" closeButton>
                 <div>

@@ -50,7 +50,6 @@ const LayoutFlow = () => {
     const [matchedNodes, setMatchedNodes] = useState<AppNode[]>([]);
 
     // Collapsible Side Panel for node data
-    const [showNodeInfoPanel, setShowNodeInfoPanel] = useState<boolean>(false);
     const [panelNode, setPanelNode] = useState<EntityNode>();
 
     // Global contexts
@@ -113,7 +112,10 @@ const LayoutFlow = () => {
                         return item;
                     }),
                     matchesSearchTerm: matchedNodes.map(match => match.id).includes(node.id),
-                    setHoveredEntity,
+                    setters: {
+                        setHoveredEntity,
+                        setPanelNode,
+                    }
                 },
               };
 
@@ -129,12 +131,6 @@ const LayoutFlow = () => {
                 edges={edges.map((e) => prepareEdge(e))}
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
-                onNodeClick={(_event, node) => {
-                    if (node.type === 'entity') {
-                        setPanelNode(node);
-                        setShowNodeInfoPanel(true);
-                    }
-                }}
                 colorMode="dark"
                 minZoom={MIN_ZOOM}
                 maxZoom={MAX_ZOOM}
@@ -174,9 +170,8 @@ const LayoutFlow = () => {
                 <Background />
 
                 <NodeInfoPanel
-                    show={showNodeInfoPanel}
-                    setShow={setShowNodeInfoPanel}
                     entity={panelNode}
+                    setEntity={setPanelNode}
                 />
             </ReactFlow>
     );

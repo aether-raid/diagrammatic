@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 
-import { Handle, NodeProps, Position } from "@xyflow/react";
+import { Handle, NodeProps, Position, useReactFlow } from "@xyflow/react";
 
 import { type EntityNode as EntityNodeType } from "@shared/node.types";
+import { Feature, FeatureStatus } from "@shared/app.types";
 
 import { useFeatureStatusContext } from "../../contexts/FeatureStatusContext";
 import { EntityNodeItem } from "./EntityNodeItem";
 import { NodeSecurityBanner } from "./NodeSecurityBanner";
-import { Feature, FeatureStatus } from "@shared/app.types";
-
 
 export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
+  const { getNode } = useReactFlow<EntityNodeType>();
   const featureStatusCtx = useFeatureStatusContext();
   const nodeDescriptionStatus = featureStatusCtx?.getFeatureStatus(Feature.NODE_DESCRIPTIONS);
 
@@ -20,13 +20,17 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
 
   useEffect(() => {
     // console.log('running useEffect to setHoveredEntity');
-    if (!data.setHoveredEntity) { return; }
+    if (!data.setters.setHoveredEntity) { return; }
 
-    data.setHoveredEntity(hoveredRow
+    data.setters.setHoveredEntity(hoveredRow
       ? { nodeId: id, rowId: hoveredRow }
       : undefined
     );
   }, [hoveredRow, id])
+
+  const showNodeInfoPanel = () => {
+    data.setters.setPanelNode(getNode(id));
+  }
 
   const renderNodeDescriptions = () => {
     switch (nodeDescriptionStatus) {
@@ -51,7 +55,10 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
           </Popover>
         }
       >
-        <div className={`d-flex flex-column entity__${data.entityType}`}>
+        <div
+          className={`d-flex flex-column entity__${data.entityType}`}
+          onClick={showNodeInfoPanel}
+        >
           <div className="py-2">
             <p className="fs-8">{ data.entityType }</p>
             <p className="fw-bold">{ data.entityName }</p>

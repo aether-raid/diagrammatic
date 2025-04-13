@@ -55,11 +55,11 @@ export type EntityNode = Node<
     items: HighlightableEntityItem[];
     startPosition: Point;
     endPosition: Point;
-
+    setters: {
+      setHoveredEntity: React.Dispatch<React.SetStateAction<NodeRow | undefined>>;
+      setPanelNode: React.Dispatch<React.SetStateAction<EntityNode | undefined>>;
+    }
     matchesSearchTerm?: boolean;
-    setHoveredEntity?: React.Dispatch<
-      React.SetStateAction<NodeRow | undefined>
-    >;
     description?: string;
     filePath?: string;
     security?: EntityLintData;
