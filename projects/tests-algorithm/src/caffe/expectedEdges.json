@@ -30,6 +30,16 @@
     }
   },
   {
+    "id": "Classifier-Net",
+    "source": "/examples/cpp_classification/classification.cpp",
+    "target": "/include/caffe/net.hpp.Net",
+    "sourceHandle": "Classifier",
+    "targetHandle": "entity",
+    "markerEnd": {
+      "type": "arrowclosed"
+    }
+  },
+  {
     "id": "Classifier-SetMean",
     "source": "/examples/cpp_classification/classification.cpp",
     "target": "/examples/cpp_classification/classification.cpp",

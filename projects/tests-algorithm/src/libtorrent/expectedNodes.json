@@ -7840,7 +7840,8 @@
     "type": "struct",
     "position": { "x": 0, "y": 0 },
     "data": {
-      "fileName": "file_view_pool",
+      "entityName": "file_view_pool",
+      "entityType": "struct",
       "filePath": "/include/libtorrent/aux_/file_view_pool.hpp",
       "startPosition": { "row": 78, "column": 1 },
       "endPosition": { "row": 240, "column": 2 },
@@ -8615,7 +8616,8 @@
     "type": "struct",
     "position": { "x": 0, "y": 0 },
     "data": {
-      "fileName": "ip_change_notifier",
+      "entityName": "ip_change_notifier",
+      "entityType": "struct",
       "filePath": "/include/libtorrent/aux_/ip_notifier.hpp",
       "startPosition": { "row": 45, "column": 1 },
       "endPosition": { "row": 53, "column": 2 },
@@ -8809,7 +8811,8 @@
     "type": "struct",
     "position": { "x": 0, "y": 0 },
     "data": {
-      "fileName": "listen_socket_handle",
+      "entityName": "listen_socket_handle",
+      "entityType": "struct",
       "filePath": "/include/libtorrent/aux_/listen_socket_handle.hpp",
       "startPosition": { "row": 45, "column": 1 },
       "endPosition": { "row": 89, "column": 2 },
@@ -9139,7 +9142,8 @@
     "type": "struct",
     "position": { "x": 0, "y": 0 },
     "data": {
-      "fileName": "merkle_tree",
+      "entityName": "merkle_tree",
+      "entityType": "struct",
       "filePath": "/include/libtorrent/aux_/merkle_tree.hpp",
       "startPosition": { "row": 82, "column": 0 },
       "endPosition": { "row": 220, "column": 1 },
@@ -9782,7 +9786,8 @@
     "type": "struct",
     "position": { "x": 0, "y": 0 },
     "data": {
-      "fileName": "packet_slab",
+      "entityName": "packet_slab",
+      "entityType": "struct",
       "filePath": "/include/libtorrent/aux_/packet_pool.hpp",
       "startPosition": { "row": 132, "column": 1 },
       "endPosition": { "row": 177, "column": 2 },
@@ -9849,7 +9854,8 @@
     "type": "struct",
     "position": { "x": 0, "y": 0 },
     "data": {
-      "fileName": "packet_pool",
+      "entityName": "packet_pool",
+      "entityType": "struct",
       "filePath": "/include/libtorrent/aux_/packet_pool.hpp",
       "startPosition": { "row": 181, "column": 1 },
       "endPosition": { "row": 239, "column": 2 },
@@ -10049,7 +10055,7 @@
           "type": "function"
         },
         {
-          "name": "filename",
+          "name": "entityName",
           "startPosition": { "row": 143, "column": 22 },
           "endPosition": { "row": 143, "column": 64 },
           "type": "function"
@@ -14512,7 +14518,7 @@
           "type": "attribute"
         },
         {
-          "name": "filename",
+          "name": "entityName",
           "startPosition": { "row": 135, "column": 2 },
           "endPosition": { "row": 135, "column": 31 },
           "type": "attribute"
@@ -53257,7 +53263,7 @@
           "type": "function"
         },
         {
-          "name": "filename",
+          "name": "entityName",
           "startPosition": { "row": 607, "column": 1 },
           "endPosition": { "row": 638, "column": 2 },
           "type": "function"
@@ -61430,7 +61436,7 @@
       "filePath": "/test/test_add_torrent.cpp",
       "items": [
         {
-          "name": "filename",
+          "name": "entityName",
           "startPosition": { "row": 177, "column": 1 },
           "endPosition": { "row": 177, "column": 22 },
           "type": "attribute"
@@ -67688,13 +67694,13 @@
       "filePath": "/test/test_resolve_links.cpp",
       "items": [
         {
-          "name": "filename1",
+          "name": "entityName1",
           "startPosition": { "row": 58, "column": 1 },
           "endPosition": { "row": 58, "column": 23 },
           "type": "attribute"
         },
         {
-          "name": "filename2",
+          "name": "entityName2",
           "startPosition": { "row": 59, "column": 1 },
           "endPosition": { "row": 59, "column": 23 },
           "type": "attribute"

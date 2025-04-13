@@ -65,10 +65,10 @@ function parseFileToAST(
     return parser.parse(sourceCode);
   } catch (ex) {
     if (skipParseErrors) {
-      console.warn(
+      /* console.warn(
         `Could not parse ${file}. Skipping...`,
         (ex as Error).message
-      );
+      ); */
       return null;
     }
     throw ex;
