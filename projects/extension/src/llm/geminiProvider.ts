@@ -35,7 +35,7 @@ export class GeminiProvider implements LLMProvider {
       }
     }
     if (lastError) {
-      throw new Error(`Failed to generate response after ${this.maxRetries} attempts: ${lastError.message}`);
+      throw new Error(`Failed to generate response from Gemini after ${this.maxRetries} attempts: ${lastError.message}`);
     }
   }
 }
