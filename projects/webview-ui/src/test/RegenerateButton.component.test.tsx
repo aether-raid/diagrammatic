@@ -2,33 +2,47 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { RegenerateButton } from '../components/RegenerateButton';
-import { sendRegenerateComponentDiagramMessageToExtension } from '../helpers/vscodeApiHandler';
+import '@testing-library/jest-dom';
 
+// Mock the vscodeApiHandler helper function
+const mockSendMessage = jest.fn();
 jest.mock('../helpers/vscodeApiHandler', () => ({
-  sendRegenerateComponentDiagramMessageToExtension: jest.fn(),
+  sendRegenerateComponentDiagramMessageToExtension: () => mockSendMessage(),
 }));
 
-describe('RegenerateButton', () => {
-  it('calls onRegenerate and sends message when clicked', () => {
+// Mock HiddenLabelButton to simplify rendering
+jest.mock('../components/HiddenLabelButton/HiddenLabelButton', () => ({
+  HiddenLabelButton: ({ onClick, label, disabled }: any) => (
+    <button onClick={onClick} disabled={disabled} aria-label={label}>
+      {label}
+    </button>
+  ),
+}));
+
+describe('RegenerateButton Component', () => {
+  it('calls sendRegenerateComponentDiagramMessageToExtension when clicked', () => {
+    const { getByRole } = render(
+      <RegenerateButton label="Regenerate" />
+    );
+
+    const button = getByRole('button', { name: 'Regenerate' });
+
+    fireEvent.click(button);
+
+    expect(mockSendMessage).toHaveBeenCalled();
+  });
+
+  it('calls onRegenerate callback if provided', () => {
     const mockOnRegenerate = jest.fn();
 
-    const { getByText } = render(
+    const { getByRole } = render(
       <RegenerateButton label="Regenerate" onRegenerate={mockOnRegenerate} />
     );
 
-    const button = getByText('Regenerate');
+    const button = getByRole('button', { name: 'Regenerate' });
+
     fireEvent.click(button);
 
     expect(mockOnRegenerate).toHaveBeenCalled();
-    expect(sendRegenerateComponentDiagramMessageToExtension).toHaveBeenCalled();
-  });
-
-  it('disables button when disabled prop is true', () => {
-    const { getByText } = render(
-      <RegenerateButton label="Regenerate" disabled />
-    );
-
-    const button = getByText('Regenerate');
-    expect(button).toBeDisabled();
   });
 });

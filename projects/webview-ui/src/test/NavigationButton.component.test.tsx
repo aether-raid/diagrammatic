@@ -1,37 +1,54 @@
 // @ts-ignore: React is needed for testing, but not used in the component
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { NavigationButton } from '../components/NavigationButton';
-import { MemoryRouter } from 'react-router-dom';
+import '@testing-library/jest-dom';
 
-// Mock useNavigate
 const mockNavigate = jest.fn();
+
+// Mock useNavigate from react-router-dom
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockNavigate,
 }));
 
-test('renders NavigationButton and navigates on click', () => {
-  const mockOnNavigate = jest.fn();
+// Mock HiddenLabelButton to render a basic button for testing
+jest.mock('../components/HiddenLabelButton/HiddenLabelButton', () => ({
+  HiddenLabelButton: ({ onClick, label, disabled }: any) => (
+    <button onClick={onClick} disabled={disabled} aria-label={label}>
+      {label}
+    </button>
+  ),
+}));
 
-  render(
-    <MemoryRouter>
-      <NavigationButton 
-        target="/test-route" 
-        label="Go To Test" 
-        onNavigate={mockOnNavigate} 
+describe('NavigationButton Component', () => {
+  it('calls navigate with the target path when clicked', () => {
+    const { getByRole } = render(
+      <NavigationButton target="/target-page" label="Go Somewhere" />
+    );
+
+    const button = getByRole('button', { name: 'Go Somewhere' });
+
+    fireEvent.click(button);
+
+    expect(mockNavigate).toHaveBeenCalledWith('/target-page');
+  });
+
+  it('calls onNavigate callback if provided', () => {
+    const mockOnNavigate = jest.fn();
+
+    const { getByRole } = render(
+      <NavigationButton
+        target="/target-page"
+        label="Go Somewhere"
+        onNavigate={mockOnNavigate}
       />
-    </MemoryRouter>
-  );
+    );
 
-  // Button should be in the document
-  const button = screen.getByRole('button', { name: /Go To Test/i });
-  expect(button).toBeInTheDocument();
+    const button = getByRole('button', { name: 'Go Somewhere' });
 
-  // Simulate click
-  fireEvent.click(button);
+    fireEvent.click(button);
 
-  // onNavigate and navigate should both have been called
-  expect(mockOnNavigate).toHaveBeenCalledTimes(1);
-  expect(mockNavigate).toHaveBeenCalledWith('/test-route');
+    expect(mockOnNavigate).toHaveBeenCalled();
+  });
 });

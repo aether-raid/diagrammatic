@@ -14,5 +14,5 @@ module.exports = {
     },
     testRegex: ".*component\\.test\\.(jsx?|tsx?)$",
     moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
-    transformIgnorePatterns: ["/node_modules/(?!cheerio|@xyflow)"],
+    transformIgnorePatterns: ["/node_modules/(?!cheerio|@xyflow|react-bootstrap)"],
 };
