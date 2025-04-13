@@ -2,9 +2,10 @@ import { existsSync, readFileSync } from "fs";
 import { retrieveExtensionConfig } from "../../helpers/common";
 import { GLOBALS } from "../../globals";
 import * as vscode from "vscode";
+import * as path from 'path';
 
 const extension = vscode.extensions.getExtension("diagrammatic.diagrammatic")!;
-const lintFilterDefaultPath = `${extension.extensionPath}\\config\\linting-configs\\default-lint-filter.json`;
+const lintFilterDefaultPath = path.join(extension.extensionPath, 'config', 'linting-configs', 'default-lint-filter.json');
 const loadFilter = () : LintingConfigJson | undefined => {
     let lintFilterPath = retrieveExtensionConfig(GLOBALS.lintFilter.configName);
     if (!lintFilterPath || !existsSync(lintFilterPath)) {
