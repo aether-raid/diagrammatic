@@ -25,7 +25,9 @@ jobs:
         run: npm install && npm run build
         
       - name: Run unit tests
-        run: npm run test:unit
+        uses: GabrielBB/xvfb-action@v1
+        with:
+          run: npm run test:unit
 
       - name: Run integration tests
         run: npm run test:integration
@@ -34,7 +36,9 @@ jobs:
         run: npm run test:component
 
       - name: Run end-to-end tests
-        run: npm run test:e2e
+        uses: GabrielBB/xvfb-action@v1
+        with:
+          run: npm run test:e2e
 
     deploy:
         runs-on: ubuntu-latest
