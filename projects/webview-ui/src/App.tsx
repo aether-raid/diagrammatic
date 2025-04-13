@@ -45,6 +45,7 @@ export const App = () => {
                     componentDiagramCtx?.setGraphData({
                         nodes: msg.nodes,
                         edges: msg.edges,
+                        isTouched: false,
                     })
                     break;
                 }
@@ -67,6 +68,7 @@ export const App = () => {
                     codeDiagramCtx?.setGraphData({
                         nodes: msg.nodes,
                         edges: msg.edges,
+                        isTouched: false,
                     });
                     break;
                 }

@@ -21,8 +21,7 @@ import { AppEdge } from "@shared/edge.types";
 import { useFeatureStatusContext } from "../../contexts/FeatureStatusContext";
 import { useDiagramContext } from "../../contexts/DiagramContext";
 
-import { initialNodes, nodeTypes } from "../../nodes";
-import { initialEdges } from "../../edges";
+import { nodeTypes } from "../../nodes";
 import { ViewType } from "../../App.types";
 import DownloadButton from "../../components/DownloadButton";
 import { HighlightConnectedPathHandler } from "../../components/HighlightConnectedPathHandler";
@@ -36,8 +35,8 @@ import { AutoLayoutButton } from "../../components/AutoLayoutButton";
 const LayoutFlow = () => {
     // General ReactFlow states
     const { fitView, getViewport } = useReactFlow<AppNode, AppEdge>();
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+    const [nodes, setNodes, onNodesChange] = useNodesState<AppNode>([]);
+    const [edges, setEdges, onEdgesChange] = useEdgesState<AppEdge>([]);
 
     // Hover Highlighting states
     const [highlightedNodes, setHighlightedNodes] = useState<string[]>([]);
@@ -68,6 +67,7 @@ const LayoutFlow = () => {
         diagramCtx.setGraphData({
             nodes: nodes,
             edges: edges,
+            isTouched: true,
         });
         diagramCtx.setViewport(getViewport());
     }
@@ -91,9 +91,11 @@ const LayoutFlow = () => {
             setEdges([...layouted.edges]);
 
             // Re-fit the viewport to the new graph
-            window.requestAnimationFrame(() => {
-                fitView();
-            });
+            setTimeout(() => {
+                window.requestAnimationFrame(() => {
+                    fitView();
+                });
+            }, 1);
         },
         [nodes, edges]
     );
@@ -141,7 +143,7 @@ const LayoutFlow = () => {
                     setHighlightedEdges={setHighlightedEdges}
                     setHighlightedNodes={setHighlightedNodes}
                 />
-                <ViewChangeHandler view={CURRENT_VIEW} />
+                <ViewChangeHandler view={CURRENT_VIEW} handleLayout={handleLayout} />
 
                 {/* Displayed Elements */}
                 <SearchBar matchedNodesState={[matchedNodes, setMatchedNodes]} />

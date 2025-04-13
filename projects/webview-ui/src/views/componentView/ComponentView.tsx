@@ -14,25 +14,24 @@ import {
 
 import { AppNode } from "@shared/node.types";
 import { AppEdge } from "@shared/edge.types";
+import { Feature, FeatureStatus } from "@shared/app.types";
 
 import { useDiagramContext } from "../../contexts/DiagramContext";
 
-import { initialCompNodes, nodeTypes } from "../../nodes";
-import { initialCompEdges } from "../../edges";
+import { nodeTypes } from "../../nodes";
 import { ViewType } from "../../App.types";
 import DownloadButton from "../../components/DownloadButton";
 import { NavigationButton } from "../../components/NavigationButton";
 import { ViewChangeHandler } from "../../components/ViewChangeHandler";
 import { getLayoutedElements } from "../../helpers/layoutHandlerDagre";
 import { RegenerateButton } from "../../components/RegenerateButton";
-import { Feature, FeatureStatus } from "@shared/app.types";
 import { useFeatureStatusContext } from "../../contexts/FeatureStatusContext";
 import { AutoLayoutButton } from "../../components/AutoLayoutButton";
 
 const LayoutFlow = () => {
     const { fitView, getViewport } = useReactFlow<AppNode, AppEdge>();
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialCompNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialCompEdges);
+    const [nodes, setNodes, onNodesChange] = useNodesState<AppNode>([]);
+    const [edges, setEdges, onEdgesChange] = useEdgesState<AppEdge>([]);
 
     // Hover Highlighting states
     const [highlightedNodes, setHighlightedNodes] = useState<string[]>([]);
@@ -72,6 +71,7 @@ const LayoutFlow = () => {
         diagramCtx.setGraphData({
             nodes: nodes,
             edges: edges,
+            isTouched: true,
         });
         diagramCtx.setViewport(getViewport());
     }
@@ -81,6 +81,7 @@ const LayoutFlow = () => {
         diagramCtx?.setGraphData({
             nodes: [],
             edges: [],
+            isTouched: true,
         })
     }
 
@@ -91,9 +92,11 @@ const LayoutFlow = () => {
             setEdges([...layouted.edges]);
 
             // Re-fit the viewport to the new graph
-            window.requestAnimationFrame(() => {
-                fitView();
-            });
+            setTimeout(() => {
+                window.requestAnimationFrame(() => {
+                    fitView();
+                });
+            }, 1);
         },
         [nodes, edges]
     );
@@ -152,7 +155,7 @@ const LayoutFlow = () => {
             maxZoom={MAX_ZOOM}
         >
             {/* Handlers */}
-            <ViewChangeHandler view={CURRENT_VIEW}/>
+            <ViewChangeHandler view={CURRENT_VIEW} handleLayout={handleLayout}/>
 
             {/* Displayed Elements */}
             <MiniMap />
