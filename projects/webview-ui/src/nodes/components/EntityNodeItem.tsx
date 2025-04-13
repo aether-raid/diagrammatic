@@ -28,7 +28,7 @@ export function EntityNodeItem ({ itemName, highlighted, location, setHoveredRow
 
   return (
     <tr
-      className={highlighted ? 'highlighted-row' : ''}
+      className={`cursor-pointer ${highlighted ? 'highlighted-row' : ''}`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={onRowClick}

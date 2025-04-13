@@ -56,7 +56,7 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
         }
       >
         <div
-          className={`d-flex flex-column entity__${data.entityType}`}
+          className={`d-flex flex-column cursor-pointer entity__${data.entityType}`}
           onClick={showNodeInfoPanel}
         >
           <div className="py-2">

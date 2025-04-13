@@ -35,30 +35,40 @@
   padding: 0;
 }
 
+.entity-node > div[class*="entity__"] {
+  background-color: var(--node-bg);
+  color: var(--node-color);
+  transition: all 0.3s ease;
+}
+
+.entity-node > div[class*="entity__"]:hover {
+  filter: brightness(75%);
+}
+
 .entity-node > .entity__file {
-  background-color: var(--app-blue);
+  --node-bg: var(--app-blue);
 }
 
 .entity-node > .entity__class {
-  background-color: var(--app-pink);
+  --node-bg: var(--app-pink);
 }
 
 .entity-node > .entity__interface {
-  background-color: var(--app-green);
+  --node-bg: var(--app-green);
 }
 
 .entity-node > .entity__namespace {
-  background-color: var(--app-yellow);
-  color: var(--app-black);
+  --node-bg: var(--app-yellow);
+  --node-color: var(--app-black);
 }
 
 .entity-node > .entity__struct {
-  background-color: var(--app-purple);
+  --node-bg: var(--app-purple);
 }
 
 .entity-node > .entity__record {
-  background-color: var(--app-orange);
-  color: var(--app-black);
+  --node-bg: var(--app-orange);
+  --node-color: var(--app-black);
 }
 
 /* Text Updater Node */
