@@ -1,19 +1,19 @@
 :root {
     /* Main colors*/
-    --app-blue: #0D6EFD;
-    --app-pink: #E000A1;
-    --app-green: #008A00;
-    --app-yellow: #FFC400; /* Use black text */
-    --app-orange: #FF6600; /* Use black text */
-    --app-cyan: #00DFFF; /* Use black text */
-    --app-red: #EB0027;
-    --app-purple: #8D00FF; 
+    --app-blue: 13, 110, 253;
+    --app-pink: 224, 0, 161;
+    --app-green: 0, 138, 0;
+    --app-yellow: 255, 196, 0; /* Use black text */
+    --app-orange: 255, 102, 0; /* Use black text */
+    --app-cyan: 0, 223, 255; /* Use black text */
+    --app-red: 235, 0, 39;
+    --app-purple: 141, 0, 255;
 
     /* Monochromes */
-    --app-white: #FFFFFF;
-    --app-black: #222222;
+    --app-white: 255, 255, 255;
+    --app-black: 34, 34, 34;
 
     /* Other colors */
-    --app-highlighter-yellow: #FDFF32;
+    --app-highlighter-yellow: 253, 255, 50;
 }
 

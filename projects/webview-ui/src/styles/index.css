@@ -33,11 +33,11 @@ body,
 
 /* Background colors */
 .bg-charcoal {
-    background-color: var(--app-black)
+    background-color: rgb(var(--app-black));
 }
 
 .bg-highlighter {
-    background-color: var(--app-highlighter-yellow);
+    background-color: rgb(var(--app-highlighter-yellow));
 }
 
 /* Generic hover effects */

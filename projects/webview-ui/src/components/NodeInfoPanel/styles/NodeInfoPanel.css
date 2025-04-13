@@ -1,5 +1,5 @@
 .nav.nav-tabs .nav-link {
-    --bs-nav-link-color: var(--app-black);
+    --bs-nav-link-color: rgb(var(--app-black));
 }
 
 .nav.nav-tabs .nav-link.active {
