@@ -58,12 +58,12 @@
       },
       {
         "command": "diagrammatic.showMVCDiagram",
-        "title": "Generate MVC Diagram",
+        "title": "Generate Diagram",
         "category": "Diagrammatic"
       },
       {
         "command": "diagrammatic.testShowMVCDiagram",
-        "title": "Test Generate MVC Diagram",
+        "title": "Test Generate Diagram",
         "category": "Diagrammatic"
       },
       {

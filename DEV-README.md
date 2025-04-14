@@ -7,14 +7,14 @@
   * This will run the environment in watch mode (both the Extension & the React webview)
   * Ensure your local .vscode folder is using the one in this repo.
   * **To start the extension**:
-    * Ctrl+Shift+P > Diagrammatic: Generate MVC Diagram
+    * Ctrl+Shift+P > Diagrammatic: Generate Diagram
 
 * **Start in browser**: npm run dev
   * Not integrated with the extension, so only mock data is available
   * Typically only used for developing solely the ReactFlow features
 
 ## Available Commands
-**Generate MVC Diagram**
+**Generate Diagram**
 * Our main bread and butter :D
 * Run this to generate a diagram of any given codebase
 * Languages currently in development: JS, TS, Python, C++
