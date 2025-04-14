@@ -38,6 +38,7 @@
     "views": {
       "diagrammatic-view-container": [
         {
+          "icon": "assets/diagrammatic-logo.svg",
           "id": "select-folder-view",
           "name": "Select Folder"
         }

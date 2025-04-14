@@ -44,9 +44,10 @@ export class AzureOpenAIProvider implements LLMProvider {
             } catch (error) {
                 console.error("Error calling Azure OpenAI API:", error);
                 lastError = error;
+                const waitTime = this.retryDelayMs * Math.pow(2, attempt); // exponential backoff
                 if (attempt < this.maxRetries) {
-                    console.log(`Retrying in ${this.retryDelayMs}ms...`);
-                    await new Promise(resolve => setTimeout(resolve, this.retryDelayMs)); // Wait before retrying
+                    console.log(`Retrying in ${waitTime}ms...`);
+                    await new Promise(resolve => setTimeout(resolve, waitTime)); // Wait before retrying
                 }
             }
         }
