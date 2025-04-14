@@ -7,31 +7,10 @@ import { handleShowMVCDiagram } from "./showMVCDiagram";
 import { sendAcceptNodeEdgeMessageToWebview } from "./messageHandler";
 import { GLOBALS } from "./globals";
 
-class FolderSelectionTreeDataProvider  implements vscode.TreeDataProvider<vscode.TreeItem> {
-  private readonly _onDidChangeTreeData: vscode.EventEmitter<vscode.TreeItem | undefined | void> = new vscode.EventEmitter();
-  readonly onDidChangeTreeData: vscode.Event<vscode.TreeItem | undefined | void> = this._onDidChangeTreeData.event;
-
-  getTreeItem(element: vscode.TreeItem): vscode.TreeItem {
-    return element;
-  }
-
-  getChildren(): vscode.ProviderResult<vscode.TreeItem[]> {
-
-    const selectFolderItem = new vscode.TreeItem("Select Folder", vscode.TreeItemCollapsibleState.None);
-    selectFolderItem.command = {
-      command: "diagrammatic.showMVCDiagram", 
-      title: "Select Folder",
-    };
-    return [selectFolderItem];
-  }
-}
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
   let currentPanel: vscode.WebviewPanel | undefined = undefined;
-
-  const treeDataProvider = new FolderSelectionTreeDataProvider ();
-  vscode.window.createTreeView("select-folder-view", { treeDataProvider });
 
   const selectRulesetFile = vscode.commands.registerCommand(
     "diagrammatic.selectRulesetFile",

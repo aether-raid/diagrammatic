@@ -38,12 +38,18 @@
     "views": {
       "diagrammatic-view-container": [
         {
-          "icon": "assets/diagrammatic-logo.svg",
           "id": "select-folder-view",
-          "name": "Select Folder"
+          "name": "Select Folder",
+          "icon": "assets/diagrammatic-logo.svg"
         }
       ]
     },
+    "viewsWelcome": [
+      {
+        "view": "select-folder-view",
+        "contents": "Generate diagram\n[Select Folder](command:diagrammatic.showMVCDiagram)"
+      }
+    ],
     "commands": [
       {
         "command": "diagrammatic.selectRulesetFile",
