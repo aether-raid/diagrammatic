@@ -18,7 +18,7 @@
     "code-analysis"
   ],
   "license": "MIT",
-  "description": "Beautiful and concise MVC diagrams within seconds",
+  "description": "Beautiful and concise diagrams within seconds",
   "version": "0.0.32",
   "engines": {
     "vscode": "^1.96.0"
@@ -47,7 +47,7 @@
     "viewsWelcome": [
       {
         "view": "select-folder-view",
-        "contents": "Generate diagram\n[Select Folder](command:diagrammatic.showMVCDiagram)"
+        "contents": "Generate Diagram\n[Select Folder](command:diagrammatic.showMVCDiagram)"
       }
     ],
     "commands": [

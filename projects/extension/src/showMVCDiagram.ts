@@ -153,7 +153,7 @@ export const handleShowMVCDiagram = async (
 const setupWebviewPanel = (context: vscode.ExtensionContext) => {
   const panel = vscode.window.createWebviewPanel(
     "diagrammatic",
-    "MVC Diagram",
+    "Diagrammatic",
     vscode.ViewColumn.One,
     {
       localResourceRoots: [vscode.Uri.joinPath(context.extensionUri, "dist")],
