@@ -1,17 +1,10 @@
 import * as assert from "assert";
-import * as vscode from "vscode";
 import proxyquire from "proxyquire";
+import sinon from "sinon";
 import { NodeEdgeData } from "@shared/app.types";
-import { EntityNode } from "@shared/node.types";
+import { EntityNode, AppNode } from "@shared/node.types";
 
-describe("Extension Test Suite", () => {
-  vscode.window.showInformationMessage("Start all tests.");
-
-  it("Sample test", () => {
-    assert.strictEqual(-1, [1, 2, 3].indexOf(5));
-    assert.strictEqual(-1, [1, 2, 3].indexOf(0));
-  });
-
+describe("Unit Test Suite", () => {
   it("getFunctionDescriptions returns expected functions", async () => {
     const mockReadFile = async () => `
       import hello from './utils';
@@ -25,6 +18,12 @@ describe("Extension Test Suite", () => {
       .load("../src/functionDescriptions/runFunctionDescriptionsAlgorithm", {
         "fs/promises": {
           readFile: mockReadFile,
+        },
+        vscode: {
+          window: {
+            showInformationMessage: () => {},
+            showErrorMessage: () => {},
+          },
         },
       });
 
@@ -83,5 +82,74 @@ describe("Extension Test Suite", () => {
 
     assert.ok(result);
     assert.strictEqual(result?.[0].function_name, "greet");
+  });
+
+  it("runNodeDescriptionsAlgorithm adds descriptions correctly", async () => {
+    const vscodeStub = {
+      window: {
+        showInformationMessage: () => {},
+        showErrorMessage: () => {},
+      },
+    };
+
+    const { runNodeDescriptionsAlgorithm } = proxyquire
+      .noCallThru()
+      .load("../src/nodeDescriptions/runNodeDescriptionsAlgorithm", {
+        vscode: vscodeStub,
+        "../helpers/apiKey": {
+          retrieveApiKey: () => "fake-api-key",
+        },
+        "../helpers/llm": {
+          LLMProvider: class {
+            async generateResponse() {
+              return [
+                {
+                  node_id: "node1",
+                  class_description: "This is a test node",
+                },
+              ];
+            }
+          },
+        },
+        "../helpers/common": {
+          retrieveExtensionConfig: () => ({}), // if needed
+          vscode: vscodeStub,
+        },
+      });
+
+    const mockNode = {
+      id: "node1",
+      type: "entity",
+      data: {
+        entityName: "TestNode",
+        entityType: "class",
+        items: [],
+        startPosition: { row: 0, column: 0 },
+        endPosition: { row: 1, column: 0 },
+      },
+      position: { x: 0, y: 0 },
+    };
+
+    const mockEdgeData = {
+      nodes: [mockNode],
+      edges: [],
+    };
+
+    const result = await runNodeDescriptionsAlgorithm(
+      [mockNode],
+      mockEdgeData,
+      new (class {
+        async generateResponse() {
+          return [
+            {
+              node_id: "node1",
+              class_description: "This is a test node",
+            },
+          ];
+        }
+      })()
+    );
+
+    assert.strictEqual(result[0].data.description, "This is a test node");
   });
 });
