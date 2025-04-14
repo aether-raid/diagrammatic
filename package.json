@@ -19,7 +19,7 @@
   ],
   "license": "MIT",
   "description": "Beautiful and concise MVC diagrams within seconds",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "engines": {
     "vscode": "^1.96.0"
   },
