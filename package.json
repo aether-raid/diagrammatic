@@ -19,7 +19,7 @@
   ],
   "license": "MIT",
   "description": "Beautiful and concise MVC diagrams within seconds",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -58,12 +58,12 @@
       },
       {
         "command": "diagrammatic.showMVCDiagram",
-        "title": "Generate MVC Diagram",
+        "title": "Generate Diagram",
         "category": "Diagrammatic"
       },
       {
         "command": "diagrammatic.testShowMVCDiagram",
-        "title": "Test Generate MVC Diagram",
+        "title": "Test Generate Diagram",
         "category": "Diagrammatic"
       },
       {
