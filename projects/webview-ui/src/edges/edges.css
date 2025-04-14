@@ -1,3 +1,4 @@
 .highlighted-edge > path {
     stroke: greenyellow;
+    transition: stroke 0.2s ease-in-out;
 }

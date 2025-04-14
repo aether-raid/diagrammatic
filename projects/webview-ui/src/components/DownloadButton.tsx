@@ -61,6 +61,7 @@ function DownloadButton({minZoom, maxZoom}: DownloadButtonProps) {
             backgroundColor: "#000000",
             width: imageWidth,
             height: imageHeight,
+            pixelRatio: 3,
             style: {
                 width: "" + imageWidth,
                 height: "" + imageHeight,
