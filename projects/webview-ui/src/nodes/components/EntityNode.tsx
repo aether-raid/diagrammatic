@@ -19,13 +19,16 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
   const [hoveredRow, setHoveredRow] = useState<string|undefined>('');
 
   useEffect(() => {
-    // console.log('running useEffect to setHoveredEntity');
-    if (!data.setters?.setHoveredEntity) { return; }
+    const debounce = setTimeout(() => {
+      if (!data.setters?.setHoveredEntity) { return; }
 
-    data.setters.setHoveredEntity(hoveredRow
-      ? { nodeId: id, rowId: hoveredRow }
-      : undefined
-    );
+      data.setters.setHoveredEntity(hoveredRow
+        ? { nodeId: id, rowId: hoveredRow }
+        : undefined
+      );
+    }, 150);
+
+    return () => clearTimeout(debounce);
   }, [hoveredRow, id])
 
   const showNodeInfoPanel = () => {
@@ -44,7 +47,7 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
   }
 
   return (
-    <div className={`custom__node entity-node overflow-hidden ${data.matchesSearchTerm ? "search-matched-node" : ""}`}>
+    <div className={`custom__node entity-node ${data.matchesSearchTerm ? "search-matched-node" : ""}`}>
       <OverlayTrigger
         overlay={
           <Popover>
@@ -56,7 +59,7 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
         }
       >
         <div
-          className={`d-flex flex-column cursor-pointer entity__${data.entityType}`}
+          className={`d-flex flex-column rounded-top cursor-pointer entity__${data.entityType}`}
           onClick={showNodeInfoPanel}
         >
           <div className="py-2">
@@ -67,7 +70,13 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
         </div>
       </OverlayTrigger>
 
-      <table className='w-100'>
+      <table
+        className='w-100'
+        style={{
+          borderCollapse: "separate",
+          borderSpacing: "1px",
+        }}
+      >
         <tbody>
           {data.items.map(item => <EntityNodeItem
             key={item.name}

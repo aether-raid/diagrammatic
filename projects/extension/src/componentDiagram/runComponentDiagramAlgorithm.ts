@@ -47,6 +47,7 @@ export const getComponentDiagram = async (
     edges: [],
   };
   const prompt = `Group the file nodes into abstract functional components for C4 Level 3 Component diagram.
+    There should be NO components with only 1 file, give a high level grouping.
     Give unique numerical IDs to each component nodes.
     For example:
     {

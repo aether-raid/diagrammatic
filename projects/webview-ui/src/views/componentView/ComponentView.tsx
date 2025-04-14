@@ -109,14 +109,7 @@ const LayoutFlow = () => {
                   data: {
                       ...node.data,
                   },
-                  style: {
-                      border: highlightedNodes.includes(node.id)
-                          ? "1px solid greenyellow"
-                          : "",
-                      borderRadius: highlightedNodes.includes(node.id)
-                          ? "5px"
-                          : "",
-                  },
+                  className: highlightedNodes.includes(node.id) ? "rounded highlighted-row" : "",
               };
 
     const prepareEdge = (edge: AppEdge) => ({

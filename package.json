@@ -19,7 +19,7 @@
   ],
   "license": "MIT",
   "description": "Beautiful and concise MVC diagrams within seconds",
-  "version": "0.0.26",
+  "version": "0.0.30",
   "engines": {
     "vscode": "^1.96.0"
   },
@@ -38,12 +38,18 @@
     "views": {
       "diagrammatic-view-container": [
         {
-          "icon": "assets/diagrammatic-logo.svg",
           "id": "select-folder-view",
-          "name": "Select Folder"
+          "name": "Select Folder",
+          "icon": "assets/diagrammatic-logo.svg"
         }
       ]
     },
+    "viewsWelcome": [
+      {
+        "view": "select-folder-view",
+        "contents": "Generate diagram\n[Select Folder](command:diagrammatic.showMVCDiagram)"
+      }
+    ],
     "commands": [
       {
         "command": "diagrammatic.selectRulesetFile",
@@ -206,13 +212,11 @@
     "@dagrejs/dagre": "^1.1.4",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@esbuild/darwin-arm64": "^0.25.2",
     "@google/generative-ai": "^0.24.0",
     "@mui/icons-material": "^6.4.5",
     "@mui/material": "^6.4.5",
     "@radix-ui/react-accordion": "^1.2.3",
     "@radix-ui/react-collapsible": "^1.1.3",
-    "@rollup/rollup-darwin-arm64": "^4.40.0",
     "@typescript-eslint/eslint-plugin": "^8.22.0",
     "@typescript-eslint/parser": "^8.22.0",
     "@vscode/vsce": "^3.2.2",

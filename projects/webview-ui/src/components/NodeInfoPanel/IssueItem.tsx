@@ -27,7 +27,7 @@ export const IssueItem = ({ issue, filePath }: IssueItemProps) => {
       onClick={handleClick}
       className="d-flex justify-content-between gap-3 px-3 p-2 border-bottom user-select-none cursor-pointer issue-item-hover fs-7"
     >
-      <div className='d-flex align-items-center text-nowrap'>Line { range.start.line }</div>
+      <div className='d-flex align-items-center text-nowrap'>Line { range.start.line + 1 }</div>
       <OpenInNewRoundedIcon fontSize='small' />
     </div>
   );
