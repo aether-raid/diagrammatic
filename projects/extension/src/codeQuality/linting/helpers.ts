@@ -70,7 +70,7 @@ const filterSources = (ruleId: string) => {
 
 export const processCpplintOutput = (output: string): CppLintResult[] =>  {
     // (cpp filename):(line number): message [category] [column number]
-    const regex = /(.+\.cpp|.+\.h):(\d+):\s+(.+)\s\[(.+)\]\s+\[(\d+)\]/g;
+    const regex = /^((?:[a-zA-Z]:)?[^:]+\.(cpp|h|hpp|cc|cxx)):(\d+):\s*(.+?)\s*\[(.+?)\]\s*\[(\d+)\]$/gm;
     let match;
     let filePath = "";
     const diagnostics:CppLintMessage[] = [];
