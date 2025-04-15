@@ -74,7 +74,7 @@ export function EntityNode ({ id, data }: NodeProps<EntityNodeType>) {
         className='w-100'
         style={{
           borderCollapse: "separate",
-          borderSpacing: "1px",
+          borderSpacing: "0.75px",
         }}
       >
         <tbody>

@@ -20,14 +20,11 @@
 }
 
 /* Highlighted Row (hover-highlighting) */
-.highlighted-row {
-  box-shadow: 0 0 0 0.75px greenyellow;
-  transition: box-shadow 0.2s ease-in-out;
-}
-
-.highlighted-row:last-of-type {
-  border-bottom-left-radius: var(--bs-border-radius);
-  border-bottom-right-radius: var(--bs-border-radius);
+.highlighted-row td {
+  border-color: greenyellow !important;
+  background-color: #264235 !important;
+  box-shadow: 0 0 5px rgba(173, 255, 47, 0.33);
+  transition: all 0.2s ease-in-out;
 }
 
 /* Highlighted Node (search-matching) */
@@ -39,6 +36,15 @@
 /* Entity Node */
 .entity-node {
   padding: 0;
+}
+
+.entity-node table tr td {
+  border: 1.5px solid var(--xy-node-background-color-default);
+}
+
+.entity-node table tr:last-of-type td {
+  border-bottom-left-radius: var(--bs-border-radius);
+  border-bottom-right-radius: var(--bs-border-radius);
 }
 
 .entity-node > div[class*="entity__"] {
