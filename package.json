@@ -19,7 +19,7 @@
   ],
   "license": "MIT",
   "description": "Beautiful and concise diagrams within seconds",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "engines": {
     "vscode": "^1.96.0"
   },
