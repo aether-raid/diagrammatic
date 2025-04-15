@@ -808,7 +808,7 @@ _TYPES = re.compile(
 #   uppercase character, such as Python.h or nsStringAPI.h, for example).
 # - Lua headers.
 _THIRD_PARTY_HEADERS_PATTERN = re.compile(
-    r'^(?:[^/]*[A-Z][^/]*\.h|lua\.h|lauxlib\.h|lualib\.h)$')
+    r'^(?:[^/\s]*[/])?[^A-Z]*\.(?:h|lua)$')
 
 # Pattern for matching FileInfo.BaseName() against test file name
 _test_suffixes = ['_test', '_regtest', '_unittest']

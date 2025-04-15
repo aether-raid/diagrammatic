@@ -20,7 +20,7 @@ const getFilePath = (node: AppNode): string | undefined => {
 }
 
 const extractImportPaths = (content: string): string[] => {
-  const importRegex = /import\s+.*?\s+from\s+['"](.+?)['"]/g;
+  const importRegex = /import\s+(?:[^'"\s]+\s+)?['"]([^'"]+)['"]/g;
   let match;
   const importPaths: string[] = [];
 
