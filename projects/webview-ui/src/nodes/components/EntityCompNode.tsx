@@ -16,12 +16,12 @@ export function EntityCompNode({ data }: NodeProps<ComponentEntityNodeType>) {
         sendJumpToLineMessageToExtension(filePath, 0);
     }
     return (
-        <div className='custom__node entity-node' style={{ width: "250px" }}>
-            <div className={`p-2 fw-bold rounded-top entity__${data.name}`}>
+        <div className='custom__node entity-comp-node p-0' style={{ width: "250px" }}>
+            <div className={`p-2 fw-bold rounded-top`}>
                 <p>{data.name}</p>
             </div>
 
-            <div style={{ padding: '10px', backgroundColor: '#000000', borderRadius: '5px' }}>
+            <div className="p-2 bg-black rounded-bottom">
                 {data.description && <p>{data.description}</p>}
                 <div style={{ marginTop: "10px" }}>
                     <Accordion
