@@ -57,6 +57,7 @@ export function EntityCompNode({ data }: NodeProps<ComponentEntityNodeType>) {
                                                     style={{
                                                         color: "#FFFFFF",
                                                         margin: "2px 0px",
+                                                        overflowWrap: "anywhere"
                                                     }}
                                                     className="text-button"
                                                     onClick={() =>
