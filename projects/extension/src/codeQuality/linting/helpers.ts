@@ -70,12 +70,14 @@ const filterSources = (ruleId: string) => {
 
 export const processCpplintOutput = (output: string): CppLintResult[] =>  {
     // (cpp filename):(line number): message [category] [column number]
-    const regex = /^((?:[a-zA-Z]:)?[^:]+\.(cpp|h|hpp|cc|cxx)):(\d+):\s*(.+?)\s*\[(.+?)\]\s*\[(\d+)\]$/gm;
+    // const regex = /^((?:[a-zA-Z]:)?[^:]+\.(cpp|h|hpp|cc|cxx)):(\d+):\s*(.+?)\s*\[(.+?)\]\s*\[(\d+)\]$/gm;
+    const regex = /^(.+\.(cpp|h|hpp|cc|cxx)):(\d+):\s*(.+?)\s*\[([^\]]+)\](?:\s*\[(\d+)\])?$/gm
+
     let match;
     let filePath = "";
     const diagnostics:CppLintMessage[] = [];
     while ((match = regex.exec(output)) !== null) {
-        const [_,file, line, message, messageId, severity] = match;
+        const [_, file, _lang, line, message, messageId, severity] = match;
         filePath = file;
 
         // map linter severity to same as eslint severity

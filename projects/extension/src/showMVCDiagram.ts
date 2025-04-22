@@ -42,7 +42,7 @@ export const handleShowMVCDiagram = async (
   nodeEdgeData.nodes = lintedNodes;
   if (hasIssues) {
     vscode.window.showWarningMessage(
-      "ESLint issues found. Check the Problems panel."
+      "Linting issues found. Check the Problems panel."
     );
   }
 
