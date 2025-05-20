@@ -72,7 +72,7 @@ Use the component diagrams to plan refactoring efforts or discuss architectural 
 
 ## About the Team
 
-Diagrammatic is developed by a team of software engineers at SMU. The team includes:
+Diagrammatic is developed by a team of software engineers during their undergraduate CS programme in Singapore Management University (SMU). The team includes:
 
 - [Alex Choong Cheng Kang](https://www.linkedin.com/in/alex-choong-kahlia/)
 - [Ashley Tan](https://www.linkedin.com/in/ashleyytanjx/)
