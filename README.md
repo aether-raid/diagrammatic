@@ -4,7 +4,9 @@ Diagrammatic is a powerful VSCode extension that automatically generates interac
 
 Gain insights into unfamiliar code structures without spending hours reading documentation or tracing through files manually.
 
-![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/diagrammatic-team.diagrammatic)
+Diagrammatic is developed by a team of software engineers committed to making code comprehension easier. Our mission is to enhance software architecture understanding through intuitive visualization.
+
+![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/Diagrammatic.diagrammatic)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ## Features
@@ -34,6 +36,11 @@ Gain insights into unfamiliar code structures without spending hours reading doc
 
 ## Getting Started
 
+### Requirements
+
+-   VS Code 1.60.0 or higher
+-   For large codebases: At least 8GB RAM recommended
+
 ### Installation
 
 1. Open VS Code
@@ -58,20 +65,24 @@ Share diagrams with your team to facilitate more effective code reviews by provi
 
 Use the component diagrams to plan refactoring efforts or discuss architectural changes with your team.
 
-## Requirements
-
--   VS Code 1.60.0 or higher
--   For large codebases: At least 8GB RAM recommended
-
 ## Known Issues
 
 -   Very large codebases (>100k LOC) may experience slower diagram generation
 -   Component grouping may need manual adjustments for complex architectures
 
-## About
+## About the Team
 
-Diagrammatic is developed by a team of software engineers committed to making code comprehension easier. Our mission is to enhance software architecture understanding through intuitive visualization.
+Diagrammatic is developed by a team of software engineers at SMU. The team includes:
 
----
+- [Alex Choong Cheng Kang](https://www.linkedin.com/in/alex-choong-kahlia/)
+- [Ashley Tan](https://www.linkedin.com/in/ashleyytanjx/)
+- [Olivia Ow Jialin](https://www.linkedin.com/in/olivia-ow-jl/)
+- [Bruce Wu Zi Jian](https://www.linkedin.com/in/wu-zi-jian/)
+- [Shawn Chia Jia Jin](https://www.linkedin.com/in/shawn-chia-b64819225/)
+- [Sharlene Tio Xi Ning](https://www.linkedin.com/in/sharlene-tio-a82918216/)
 
-**Enjoy visualizing your code with Diagrammatic!**
+This project was conducted in partnership with [AETHER](https://github.com/aether-raid), RSAF's experimentations wing focused on rapid prototyping and harnessing of technologies.
+
+<p align="center">
+<img src="img/aether.png" width="200">
+</p>
