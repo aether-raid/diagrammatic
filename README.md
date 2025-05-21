@@ -81,7 +81,7 @@ Diagrammatic is developed by a team of software engineers during their undergrad
 - [Shawn Chia Jia Jin](https://www.linkedin.com/in/shawn-chia-b64819225/)
 - [Sharlene Tio Xi Ning](https://www.linkedin.com/in/sharlene-tio-a82918216/)
 
-This project was conducted in partnership with [AETHER](https://github.com/aether-raid), RSAF's experimentations wing focused on rapid prototyping and harnessing of technologies.
+This project was conducted in partnership with [AETHER](https://github.com/aether-raid), the experimentations wing of [RAiD](https://rsaf-agile-inno-digital.defence.gov.sg/) focused on rapid prototyping and harnessing of technologies.
 
 <p align="center">
 <img src="img/aether.png" width="200">
