@@ -4,17 +4,19 @@ import { existsSync } from "fs";
 import { RuleEngine } from "../codeToDiagram/algorithm/rules";
 import { GLOBALS } from "../globals";
 import { retrieveExtensionConfig } from "./common";
+import * as path from "path";
 
 const getDefaultRulesetPath = () => {
   const extension = vscode.extensions.getExtension(
     "diagrammatic.diagrammatic"
   )!;
-  const path = `${extension.extensionPath}\\config\\default-rules.json`;
+  // const rulesPath = `${extension.extensionPath}\\config\\default-rules.json`;
+  const rulesPath = path.join(extension.extensionPath, 'config', 'default-rules.json');
 
-  if (!path || !existsSync(path)) {
+  if (!rulesPath || !existsSync(rulesPath)) {
     return;
   }
-  return path;
+  return rulesPath;
 };
 
 export const retrieveRuleset = () => {
