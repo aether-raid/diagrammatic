@@ -7,7 +7,7 @@ Gain insights into unfamiliar code structures without spending hours reading doc
 Diagrammatic is developed by a team of software engineers committed to making code comprehension easier. Our mission is to enhance software architecture understanding through intuitive visualization.
 
 ![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/Diagrammatic.diagrammatic)
-![License](https://img.shields.io/badge/license-MIT-green)
+![License](https://img.shields.io/badge/license-Apache_2.0-green)
 
 ## Features
 
